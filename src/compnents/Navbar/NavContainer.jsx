@@ -5,11 +5,11 @@ export default function NavContainer() {
   return (
 <nav id="trellohead">
 
-        <button class="back-btn">Menu</button>
+      <button class="back-btn">Menu</button>
       <h1 id="tme">TME</h1>
     {/* <section className='nav-logo'>
       <CustomLink to="/"> <h2>I 8 PDF</h2></CustomLink> 
-    </section>
+    </section> */}
     <ul className='nav-items-container'>
            <CustomLink to="/Merge"> <h2>MERGE PDF</h2></CustomLink>
 
@@ -20,7 +20,7 @@ export default function NavContainer() {
            <CustomLink to="/Convert"> <h2>Convert PDF</h2></CustomLink>
 
            <CustomLink to="/AllPdf"> <h2>AllPdf PDF</h2></CustomLink>
-    </ul> */}
+    </ul> */
 
 </nav>
     

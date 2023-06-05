@@ -396,3 +396,34 @@ button:hover {
 
 #email-error2 {
 }
+
+input {
+  height: 20px;
+  font-size: 17px;
+  border: 1px solid #9397e0;
+  border-radius: 6px;
+  padding: 0px 12px;
+  outline: none;
+}
+
+.searchSection {
+  position: relative;
+  margin-top: 5px;
+  margin-left: 23px;
+}
+
+.searchSection input {
+  height: 20px;
+  font-size: 16px;
+  border: 1px solid #1c2061;
+  border-radius: 6px;
+  width: 320px;
+  padding: 0px 12px;
+  outline: none;
+}
+
+.nav-items-container {
+  display: flex;
+  column-gap: 2rem;
+  list-style: none;
+}
