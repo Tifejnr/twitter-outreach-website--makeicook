@@ -427,3 +427,8 @@ input {
   column-gap: 2rem;
   list-style: none;
 }
+
+.addMemberBtn {
+  margin-top: 8px;
+  margin-bottom: 10px;
+}
