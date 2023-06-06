@@ -1,14 +1,25 @@
 import React from 'react'
 import Input from './AddMember/Input'
 import SearchBoards from './AddMember/SearchBoards'
+import SelectAll from './AddMember/SelectAll'
+import ProgressBar from '../ProgressBar/ProgressBar'
+
+
 
 export default function Compress() {
   return (
 <>    
-      <section>
+    <section className='main-section-cont'>
       <Input/>
-      <SearchBoards/>       
-      </section>
+      <SearchBoards/>   
+
+       <section>
+          <SelectAll/>
+        </section>    
+     </section>
+
+     <ProgressBar/>
+
 
       {/* <div id="success"></div>
       <div id="sendin-progress2"></div>
@@ -27,3 +38,5 @@ export default function Compress() {
 
   )
 }
+
+

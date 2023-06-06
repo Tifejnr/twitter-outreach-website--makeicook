@@ -53,14 +53,14 @@ form {
   margin-left: 25px;
 }
 
-#resultoo {
+/* #resultoo {
   height: 20px;
   font-size: 17px;
   border: 1px solid #1c2061;
   border-radius: 6px;
   padding: 0px 12px;
   outline: none;
-}
+} */
 
 #trellohead {
   user-select: none;
@@ -114,7 +114,6 @@ form {
 }
 
 #survey-form {
-  margin-left: 50px;
 }
 
 /* #sendin-progress {
@@ -232,12 +231,12 @@ form {
 }
 
 #survey-form {
-  display: flex;
+  /* display: flex;
   margin: 0 auto;
   justify-content: left;
   margin-left: -26px;
   width: 100%;
-  font-size: 18px;
+  font-size: 18px; */
 }
 
 #email-error {
@@ -396,8 +395,8 @@ button:hover {
 
 .selecting-btn-cont {
   display: flex;
-  justify-content: space-around;
-  padding: 0 3rem;
+  justify-content: space-between;
+  /* padding: 0 3rem; */
 }
 
 input {
@@ -409,19 +408,13 @@ input {
   outline: none;
 }
 
-.searchSection {
-  position: relative;
-  margin-top: 5px;
-  margin-left: 23px;
-}
-
 .searchSection input {
-  height: 20px;
-  font-size: 16px;
+  height: 2rem;
+  font-size: 1.6rem;
   border: 1px solid #1c2061;
-  border-radius: 6px;
-  width: 320px;
-  padding: 0px 12px;
+  border-radius: 0.6rem;
+  width: 32rem;
+  padding: 0px 1.2rem;
   outline: none;
 }
 
@@ -434,4 +427,35 @@ input {
 .addMemberBtn {
   margin-top: 8px;
   margin-bottom: 10px;
+}
+
+/* Seelction Container */
+
+.main-section-cont {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  row-gap: 1rem;
+}
+
+.form-container {
+  position: relative;
+  text-align: center;
+  font-size: 1.6rem;
+  margin-top: 2rem;
+}
+
+.form-container article {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.selectionCont h1 {
+  text-align: left;
+  font-size: 1.8rem;
+  color: #0021d1;
+  margin: 0.6rem 0;
+  margin-top: 0;
 }
