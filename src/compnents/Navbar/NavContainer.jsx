@@ -5,7 +5,7 @@ export default function NavContainer() {
   return (
 <nav id="trellohead">
 
-      <button class="back-btn">Menu</button>
+      <button className="back-btn">Menu</button>
       <h1 id="tme">TME</h1>
     {/* <section className='nav-logo'>
       <CustomLink to="/"> <h2>I 8 PDF</h2></CustomLink> 

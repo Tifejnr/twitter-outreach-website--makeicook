@@ -4,17 +4,13 @@ import SearchBoards from './AddMember/SearchBoards'
 
 export default function Compress() {
   return (
-     <main id="mainContentCont">
-      <header id="headersHide">
+<>    
+      <section>
       <Input/>
-      <SearchBoards/>
+      <SearchBoards/>       
+      </section>
 
-        <h1 id="signin">Select Boards To Add Member To</h1>
-
-       
-      </header>
-
-      <div id="success"></div>
+      {/* <div id="success"></div>
       <div id="sendin-progress2"></div>
       <div id="fetch-progress2"></div>
       <div id="sendin-progress"></div>
@@ -26,7 +22,8 @@ export default function Compress() {
       <div id="service-error"></div>
       <div id="service-error2"></div>
 
-     <nav id="sameline"></nav> 
-    </main>
+     <nav id="sameline"></nav>  */}
+ </>
+
   )
 }

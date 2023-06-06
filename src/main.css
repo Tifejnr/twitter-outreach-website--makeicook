@@ -17,6 +17,12 @@ body {
   height: 100%;
 }
 
+.mainContentCont {
+  border: 2px solid red;
+  height: 20rem;
+  width: 50rem;
+}
+
 main {
   display: none;
 }
@@ -392,9 +398,6 @@ button:hover {
   display: flex;
   justify-content: space-around;
   padding: 0 3rem;
-}
-
-#email-error2 {
 }
 
 input {

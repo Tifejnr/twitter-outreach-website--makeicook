@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './App.css'
+// import './App.css'
 import './main.css'
 import {Route, Routes} from "react-router-dom"
 import Compress from './compnents/Pages/Compress'
@@ -10,7 +10,6 @@ import Home from './compnents/Pages/Home'
 import AllPdf from './compnents/Pages/AllPdf'
 
 import NavContainer from './compnents/Navbar/NavContainer'
-import Main from './compnents/Main'
 
 function App() {
 
@@ -31,7 +30,7 @@ function App() {
       
     <section>
 
-      <Main/>
+
 
     </section>
     </>
