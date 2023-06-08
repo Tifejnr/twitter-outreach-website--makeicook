@@ -6,7 +6,7 @@ export default function ProgressBar() {
       <div className="barHolder">
         <div id="bar"></div>
       </div>
-      <h2 id="progressBarTitle" className="title"></h2>
+      <h2 id="progressBarTitle" className="title" ></h2>
       <h3 id="successStatusTitle" className="title"></h3>
       <h3 id="completedStatus" className="title"></h3>
       <section className="btn-section" id="btnSection">

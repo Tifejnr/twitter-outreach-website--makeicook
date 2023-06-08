@@ -1,15 +1,25 @@
-import React from 'react'
+import React, { useState,  useEffect } from 'react';
 import Input from './AddMember/Input'
 import SearchBoards from './AddMember/SearchBoards'
 import SelectAll from './AddMember/SelectAll'
 import ProgressBar from '../ProgressBar/ProgressBar'
+import FetchData from '../../JS functions/fetchData';
 
 
 
 export default function Compress() {
+const [data, setData] = useState(null);
+const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+   FetchData()
+  }, []);
+
+
+
   return (
 <>    
-    <section className='main-section-cont'>
+    <section className='main-section-cont' id='mainContentCont'>
       <Input/>
       <SearchBoards/>   
 
@@ -20,23 +30,11 @@ export default function Compress() {
 
      <ProgressBar/>
 
-
-      {/* <div id="success"></div>
-      <div id="sendin-progress2"></div>
-      <div id="fetch-progress2"></div>
-      <div id="sendin-progress"></div>
-
-      <div id="email-error"></div>
-
-      <div id="addmail-error"></div>
-      <div id="addmail-error2"></div>
-      <div id="service-error"></div>
-      <div id="service-error2"></div>
-
-     <nav id="sameline"></nav>  */}
  </>
 
   )
 }
+
+
 
 
