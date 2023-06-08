@@ -13,8 +13,6 @@ export default function Compress() {
    FetchData()
   }, []);
 
-
-
   return (
 <>    
     <section className='main-section-cont' id='mainContentCont'>
@@ -26,10 +24,11 @@ export default function Compress() {
          <section>
           <SelectAll/>
          </section>    
-
-      <ProgressBar/>
       </section>
+      
      </section>
+
+    <ProgressBar/>
 
  </>
 
