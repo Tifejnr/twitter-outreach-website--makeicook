@@ -1,5 +1,5 @@
 export default function CheckAll() {
- const checkboxes = document.getElementsByName("fruit");
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
   checkboxes.forEach((checkbox) => {
     checkbox.checked = true;
     showChecked(checkboxes);

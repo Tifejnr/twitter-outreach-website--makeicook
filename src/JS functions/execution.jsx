@@ -1,6 +1,6 @@
-function AddChecked(arrayNo) {
+export default function Execution(arrayNo, inputedMail) {
   const noOfCheckedCheckbox = document.querySelectorAll("input:checked").length;
-  const email = "alaje10@gmail.com";
+  const email = inputedMail;
 
   const message = {
     email,

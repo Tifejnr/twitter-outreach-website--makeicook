@@ -20,12 +20,13 @@ function hide(ele) {
   ele.style.display = "none";
 }
 
-
 export default function FetchData() {
  const innerMainContentCont = document.getElementById("innerMainContentCont");
 
-  async function adds() {
-    const url = "http://localhost:3000/start";
+  return new Promise((resolve, reject) => {
+    async function adds() {
+      try {
+       const url = "http://localhost:3000/start";
     const dataSent = { send: true };
 
     const response = await fetch(url, {
@@ -89,11 +90,15 @@ export default function FetchData() {
       const fetchedDataSum = fetchedData.reduce((a, b) => a + b, 0);
       progressBarMove(fetchedDataSum, lenghtID);
     });
-  }
+      // Resolve the promise with the idCollections array
+        resolve(idCollections);
+      } catch (error) {
+        reject(error);
+      }
+    }
 
-  adds().catch((error) => {
-    console.log(error);
+    adds().catch((error) => {
+      reject(error);
+    });
   });
 }
-
-
