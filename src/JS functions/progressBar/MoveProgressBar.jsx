@@ -1,6 +1,3 @@
-import React, { useState,  useEffect } from 'react';
-
-
 export default function progressBarMove(fetchedDataSum, lengthId) {
 const progressBarTitle = document.getElementById("progressBarTitle");
 const successStatusTitle = document.getElementById("successStatusTitle");

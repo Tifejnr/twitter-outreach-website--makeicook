@@ -22,6 +22,7 @@ function hide(ele) {
 
 
 export default function FetchData() {
+ const innerMainContentCont = document.getElementById("innerMainContentCont");
 
   async function adds() {
     const url = "http://localhost:3000/start";
@@ -68,12 +69,18 @@ export default function FetchData() {
       label.id = `labelcheck${index}`;
       label.innerHTML = board.name;
 
+      //Create article Element
+      const article = document.createElement("article");
+      article.className = "label-article";
+
       // Append the checkbox and label elements to the form
-      form.appendChild(checkbox);
-      form.appendChild(label);
+      article .appendChild(checkbox);
+      article .appendChild(label);
+      //Append artcile to form
+      form.appendChild(article );
 
       // Append the form to the document body or any desired container
-      document.body.appendChild(form);
+     innerMainContentCont.appendChild(form);
 
       const boardId = board.id;
       idCollections.push(boardId);

@@ -8,8 +8,6 @@ import FetchData from '../../JS functions/fetchData';
 
 
 export default function Compress() {
-const [data, setData] = useState(null);
-const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
    FetchData()
@@ -20,15 +18,18 @@ const [isLoading, setIsLoading] = useState(true);
   return (
 <>    
     <section className='main-section-cont' id='mainContentCont'>
-      <Input/>
-      <SearchBoards/>   
 
-       <section>
+      <section className='inner-main-cont' id='innerMainContentCont'>
+        <Input/>
+         <SearchBoards/>   
+
+         <section>
           <SelectAll/>
-        </section>    
-     </section>
+         </section>    
 
-     <ProgressBar/>
+      <ProgressBar/>
+      </section>
+     </section>
 
  </>
 

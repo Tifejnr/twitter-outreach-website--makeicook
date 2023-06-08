@@ -15,16 +15,9 @@ body {
 body {
   position: relative;
   height: 100%;
-}
-
-.mainContentCont {
-  border: 2px solid red;
-  height: 20rem;
-  width: 50rem;
-}
-
-main {
-  display: none;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center; */
 }
 
 .item {
@@ -41,6 +34,8 @@ label {
 
 form {
   display: flex;
+  justify-items: center;
+  align-items: center;
   column-gap: 1rem;
 }
 
@@ -113,58 +108,7 @@ form {
   color: white;
 }
 
-#survey-form {
-}
-
-/* #sendin-progress {
-  width: 230px;
-  background-color: white;
-  color: blue;
-  font-weight: 500;
-  font-size: 16px;
-  margin-bottom: 10px;
-
-  text-align: center;
-
-  position: fixed;
-  top: 245px;
-  left: 80px;
-}
-
-#fetch-progress2 {
-  width: 315px;
-  background-color: white;
-  color: blue;
-  font-weight: 500;
-  font-size: 16px;
-
-  margin-left: 10px;
-  text-align: center;
-
-  position: fixed;
-  top: 245px;
-  left: 35px;
-} */
-
-#success {
-  width: 205px;
-  background-color: white;
-  color: blue;
-  font-weight: 500;
-  font-size: 16px;
-  position: fixed;
-  top: 275px;
-  left: 30px;
-  margin-top: 10px;
-}
-
-#paremeters {
-  position: fixed;
-  top: 230px;
-  left: 40px;
-}
-
-#container {
+/* #container {
   display: none;
   position: fixed;
   top: 180px;
@@ -176,7 +120,7 @@ form {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-}
+} */
 
 .cancel-btn,
 .okay-btn {
@@ -432,24 +376,39 @@ input {
 /* Seelction Container */
 
 .main-section-cont {
+  border: 2px solid red;
+  width: 60rem;
+  margin: 0 auto;
+}
+
+.inner-main-cont {
+  position: relative;
   display: grid;
   justify-content: center;
   align-items: center;
   justify-items: center;
-  row-gap: 1rem;
 }
 
-.form-container {
-  position: relative;
-  text-align: center;
+form {
   font-size: 1.6rem;
-  margin-top: 2rem;
+  margin-top: 0.7rem;
 }
 
-.form-container article {
+.label-article {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  max-width: 10rem;
+  column-gap: 0.5rem;
+}
+
+.input-form {
+  display: flex;
+  align-items: center;
+}
+
+.input-form p {
+  margin-right: 1rem;
 }
 
 .selectionCont h1 {
