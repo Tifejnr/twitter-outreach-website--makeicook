@@ -7,7 +7,6 @@ const BAR = document.getElementById("bar");
 const progressBarContainer = document.getElementById("loading");
 const allForms = document.getElementsByTagName("form");
 const startingTitle = "Loading Your Boards...";
-// progressBarTitle.innerHTML = startingTitle;
 
 // console
 let dataLength;
@@ -22,13 +21,8 @@ function hide(ele) {
 }
 
 
-
-
-
-
 export default function FetchData() {
 
-  console.log("ahahahah")
   async function adds() {
     const url = "http://localhost:3000/start";
     const dataSent = { send: true };

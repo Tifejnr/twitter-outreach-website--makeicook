@@ -1,6 +1,16 @@
-export default function progressBarMove(fetchedDataSum, lengthId) {
+import React, { useState,  useEffect } from 'react';
 
-  console.log(BAR)
+
+export default function progressBarMove(fetchedDataSum, lengthId) {
+const progressBarTitle = document.getElementById("progressBarTitle");
+const successStatusTitle = document.getElementById("successStatusTitle");
+const mainContentCont = document.getElementById("mainContentCont");
+const BAR = document.getElementById("bar");
+const progressBarContainer = document.getElementById("loading");
+const allForms = document.getElementsByTagName("form");
+const startingTitle = "Loading Your Boards...";
+progressBarTitle.innerHTML = startingTitle;
+
   let percentLoaded = (Number(fetchedDataSum) / Number(lengthId + 1)) * 100;
   BAR.style.width = percentLoaded + "%";
 
