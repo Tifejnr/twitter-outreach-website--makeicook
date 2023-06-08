@@ -39,16 +39,18 @@ export default function FetchData() {
 
     const dataRaw = await response.json();
 
+
     if (dataRaw.error) {
       if (dataRaw.error.code === "ENOTFOUND")
         return console.log("No internet network");
     }
 
     const data = dataRaw.boards;
-
     dataLength = data.length;
     lenghtID = data.length - 1;
     fetchedData = [];
+
+    console.log(dataLength)
 
     data.map((board, index) => {
       // Create the form element
