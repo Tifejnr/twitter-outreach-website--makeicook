@@ -1,9 +1,10 @@
 // import Execution from "./execution";
-
-let succes;
-
 import FetchIDCollections from "./FetchIdCollection";
 import ShowSuccessMess from "./progressBar/SucessMessage";
+import { validateInput } from "./Utilis/Validations/Input";
+import { isAnyCheckboxChecked } from "./Utilis/Validations/Checkbox";
+
+let succes;
 
 export default async function IsBoxChecked() {
   const inputedMail = document.getElementById("resultoo").value
@@ -37,35 +38,6 @@ export default async function IsBoxChecked() {
 
     return new Execution(arrayNoFromId, inputedMail, idCollections);
   });
-}
-
-
-
-function validateInput(input) {
-  // Check if input is empty or contains only whitespace
-  const isEmpty = input.trim() === '';
-
-  if (isEmpty) return console.log("email is empty")
-
-  // Check if input is a valid email
-  const isEmailValid = validateEmail(input);
-
-  if (!isEmailValid) return console.log("invalid email")
-
-  return true
-}
-
-function validateEmail(email) {
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailPattern.test(email);
-}
-
-
-function isAnyCheckboxChecked() {
-  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-  const isCheckedArray = Array.from(checkboxes).map((checkbox) => checkbox.checked);
-
-  return isCheckedArray.includes(true);
 }
 
 
