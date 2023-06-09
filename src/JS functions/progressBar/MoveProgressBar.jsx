@@ -1,3 +1,6 @@
+import { display, hide, displayForms } from "../Utilis/EleDisplay";
+
+
 export default function progressBarMove(fetchedDataSum, lengthId) {
 const progressBarTitle = document.getElementById("progressBarTitle");
 const successStatusTitle = document.getElementById("successStatusTitle");
@@ -20,20 +23,3 @@ progressBarTitle.innerHTML = startingTitle;
   }
 }
 
-function display(ele) {
-  ele.style.display = "block";
-}
-function hide(ele) {
-  ele.style.display = "none";
-}
-
-function displayForms(forms) {
-  for (var i = 0; i < forms.length; i++) {
-    forms[i].style.display = "block";
-  }
-}
-function hideForms(forms) {
-  for (var i = 0; i < forms.length; i++) {
-    forms[i].style.display = "none";
-  }
-}

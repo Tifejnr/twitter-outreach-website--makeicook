@@ -1,6 +1,16 @@
+import { display, hideForms, hide } from "../Utilis/EleDisplay";
+
 export default function ProgressBarExecution(noOfChecked, sumOfSucesses) {
+const progressBarTitle = document.getElementById("progressBarTitle");
+const successStatusTitle = document.getElementById("successStatusTitle");
+const mainContentCont = document.getElementById("mainContentCont");
+const BAR = document.getElementById("bar");
+const progressBarContainer = document.getElementById("loading");
+const allForms = document.getElementsByTagName("form");
+
+
   progressBarTitle.innerHTML = `Adding Member to ${noOfChecked} Boards... `;
-  successStatusTitle.innerHTML = `Boards with Successful Additions : ${sumOfSucesses}`;
+  successStatusTitle.innerHTML = `Successful Additions : ${sumOfSucesses}`;
   hide(mainContentCont);
   hideForms(allForms);
   display(progressBarContainer);
@@ -10,10 +20,5 @@ export default function ProgressBarExecution(noOfChecked, sumOfSucesses) {
 
   console.log(percentLoaded);
   BAR.style.width = percentLoaded + "%";
-
-  if (percentLoaded == 100) {
-    return setTimeout(() => {
-      succesMess();
-    }, 600);
-  }
 }
+

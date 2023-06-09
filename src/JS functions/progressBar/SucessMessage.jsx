@@ -1,6 +1,8 @@
 
 import ProgressBarExecution from "./ProgressBarExecution";
 
+import { display, hide } from "../Utilis/EleDisplay";
+
 export default function ShowSuccessMess(noOfCheckedCheckbox, noOfSucess) {
   displayBoardFetched(noOfCheckedCheckbox, noOfSucess);
 
@@ -11,7 +13,6 @@ function displayBoardFetched(noOfCheckedCheckbox, noOfSucess) {
   ProgressBarExecution(noOfCheckedCheckbox, noOfSucess);
 }
 
-// display(cancelEl);
 
 function succesMess() {
 const progressBarTitle = document.getElementById("progressBarTitle");
@@ -22,11 +23,4 @@ const cancelEl = document.getElementById("cancelBtn");
   display(okayEl);
   hide(progressBarTitle);
   hide(cancelEl);
-}
-
-function display(ele) {
-  ele.style.display = "block";
-}
-function hide(ele) {
-  ele.style.display = "none";
 }
