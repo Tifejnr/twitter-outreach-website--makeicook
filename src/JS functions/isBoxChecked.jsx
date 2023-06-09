@@ -59,10 +59,9 @@ function validateEmail(email) {
 }
 
 
+function isAnyCheckboxChecked() {
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  const isCheckedArray = Array.from(checkboxes).map((checkbox) => checkbox.checked);
 
-// function isAnyCheckboxChecked() {
-//   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-//   const isCheckedArray = Array.from(checkboxes).map((checkbox) => checkbox.checked);
-
-//   return isCheckedArray.includes(true);
-// }
+  return isCheckedArray.includes(true);
+}

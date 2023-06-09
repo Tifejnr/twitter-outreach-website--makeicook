@@ -13,7 +13,7 @@ export default function UncheckAll() {
 function showChecked(checkboxes) {
   const noOfCheckedDisplayCont = document.getElementById("para");
   const noOfChecked = document.querySelectorAll("input:checked").length;
-  noOfCheckedDisplayCont.innerHTML = `${noOfChecked/2} of ${checkboxes.length/2}`;
+  noOfCheckedDisplayCont.innerHTML = `${noOfChecked} of ${checkboxes.length}`;
 }
 
 

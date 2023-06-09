@@ -7,9 +7,7 @@ import FetchData from '../../JS functions/fetchData';
 
 
 export default function Compress() {
-
-  console.log("we back haa")
-
+  
 useEffect(() => {
 FetchData()
 
