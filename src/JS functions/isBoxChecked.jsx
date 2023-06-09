@@ -1,8 +1,9 @@
-import Execution from "./execution";
+// import Execution from "./execution";
 
 let succes;
 
 import FetchIDCollections from "./FetchIdCollection";
+import ShowSuccessMess from "./progressBar/SucessMessage";
 
 export default async function IsBoxChecked() {
   const inputedMail = document.getElementById("resultoo").value
@@ -13,9 +14,10 @@ export default async function IsBoxChecked() {
 
   const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
 
-  const idCollections = await FetchIDCollections()
+  let  idCollections = await FetchIDCollections()
 
-  console.log(allCheckboxes)
+  idCollections= idCollections[0]
+
   succes = [];
 
   Array.from(allCheckboxes).map((checkbox, index) => {
@@ -64,4 +66,37 @@ function isAnyCheckboxChecked() {
   const isCheckedArray = Array.from(checkboxes).map((checkbox) => checkbox.checked);
 
   return isCheckedArray.includes(true);
+}
+
+
+function Execution(arrayNo, inputedMail, idCollections) {
+  const noOfCheckedCheckbox = document.querySelectorAll("input:checked").length;
+  const email = inputedMail;
+
+  const message = {
+    email,
+    boardId: idCollections[arrayNo],
+  };
+
+  async function addMember() {
+    const response = await fetch(`http://localhost:3000/add`, {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify(message),
+    });
+
+    const data = await response.json();
+    if (!data.success) return;
+
+    succes.push(1);
+    const noOfSucess = succes.reduce((a, b) => a + b, 0);
+   ShowSuccessMess(noOfCheckedCheckbox, noOfSucess);
+  }
+  addMember().catch((error) => {
+    console.log(error);
+  });
 }

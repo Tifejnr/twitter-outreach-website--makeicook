@@ -1,4 +1,4 @@
-function progressBarExecution(noOfChecked, sumOfSucesses) {
+export default function ProgressBarExecution(noOfChecked, sumOfSucesses) {
   progressBarTitle.innerHTML = `Adding Member to ${noOfChecked} Boards... `;
   successStatusTitle.innerHTML = `Boards with Successful Additions : ${sumOfSucesses}`;
   hide(mainContentCont);
@@ -13,9 +13,6 @@ function progressBarExecution(noOfChecked, sumOfSucesses) {
 
   if (percentLoaded == 100) {
     return setTimeout(() => {
-      //   display(mainContentCont);
-      //   hide(progressBarContainer);
-      //   displayForms(allForms);
       succesMess();
     }, 600);
   }
