@@ -6,26 +6,12 @@ import ProgressBar from '../ProgressBar/ProgressBar'
 import FetchData from '../../JS functions/fetchData';
 
 
-
 export default function Compress() {
 
-  useEffect(() => {
-async function fetchDataAndProcess() {
-  try {
-    const idCollections = await FetchData();
-    // Access the idCollections array here
-    console.log(idCollections);
+  console.log("we back haa")
 
-    return idCollections
-    
-    // Continue with further processing or actions
-    // ...
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-fetchDataAndProcess();
+useEffect(() => {
+FetchData()
 
   }, []);
 

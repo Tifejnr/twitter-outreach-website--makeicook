@@ -13,20 +13,16 @@ let dataLength;
 let lenghtID;
 let idCollections = [];
 let fetchedData;
-let realLenght;
 
 
 function hide(ele) {
   ele.style.display = "none";
 }
 
-export default function FetchData() {
- const innerMainContentCont = document.getElementById("innerMainContentCont");
+export default async function FetchData() {
 
-  return new Promise((resolve, reject) => {
-    async function adds() {
-      try {
-       const url = "http://localhost:3000/start";
+  try {
+    const url = "http://localhost:3000/start";
     const dataSent = { send: true };
 
     const response = await fetch(url, {
@@ -83,6 +79,7 @@ export default function FetchData() {
       form.appendChild(article );
 
       // Append the form to the document body or any desired container
+      const innerMainContentCont = document.getElementById("innerMainContentCont");
      innerMainContentCont.appendChild(form);
 
       const boardId = board.id;
@@ -92,15 +89,9 @@ export default function FetchData() {
       const fetchedDataSum = fetchedData.reduce((a, b) => a + b, 0);
       progressBarMove(fetchedDataSum, lenghtID);
     });
-      // Resolve the promise with the idCollections array
-        resolve(idCollections);
-      } catch (error) {
-        reject(error);
-      }
-    }
+    
+  } catch (error) {
+    console.log(error)
+  }
 
-    adds().catch((error) => {
-      reject(error);
-    });
-  });
-}
+   }

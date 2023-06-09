@@ -1,5 +1,7 @@
 export default function CheckAll() {
+  console.log("celkinngs")
   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  console.log(checkboxes)
   checkboxes.forEach((checkbox) => {
     checkbox.checked = true;
     showChecked(checkboxes);

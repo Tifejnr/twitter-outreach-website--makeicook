@@ -1,4 +1,4 @@
-export default function Execution(arrayNo, inputedMail) {
+export default function Execution(arrayNo, inputedMail, idCollections) {
   const noOfCheckedCheckbox = document.querySelectorAll("input:checked").length;
   const email = inputedMail;
 
