@@ -2,7 +2,9 @@ import Execution from "./execution";
 
 let succes;
 
-export default function IsBoxChecked() {
+import FetchIDCollections from "./FetchIdCollection";
+
+export default async function IsBoxChecked() {
   const inputedMail = document.getElementById("resultoo").value
 
   if (!validateInput(inputedMail)) return console.log("Problem");
@@ -10,6 +12,8 @@ export default function IsBoxChecked() {
   if (!isAnyCheckboxChecked()) return console.log("Checkboxes not checked");
 
   const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+
+  const idCollections = await FetchIDCollections()
 
   console.log(allCheckboxes)
   succes = [];
@@ -29,7 +33,7 @@ export default function IsBoxChecked() {
 
     console.log(nameOfBoard);
 
-    return new Execution(arrayNoFromId, inputedMail);
+    return new Execution(arrayNoFromId, inputedMail, idCollections);
   });
 }
 
@@ -56,9 +60,9 @@ function validateEmail(email) {
 
 
 
-function isAnyCheckboxChecked() {
-  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-  const isCheckedArray = Array.from(checkboxes).map((checkbox) => checkbox.checked);
+// function isAnyCheckboxChecked() {
+//   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+//   const isCheckedArray = Array.from(checkboxes).map((checkbox) => checkbox.checked);
 
-  return isCheckedArray.includes(true);
-}
+//   return isCheckedArray.includes(true);
+// }
