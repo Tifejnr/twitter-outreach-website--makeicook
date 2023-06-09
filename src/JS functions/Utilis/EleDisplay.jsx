@@ -20,5 +20,13 @@ function displayForms(forms) {
 }
 
 
+ function showCountsOfChecked(checkboxes) {
+  const noOfCheckedDisplayCont = document.getElementById("para");
+  const noOfChecked = document.querySelectorAll("input:checked").length;
+  noOfCheckedDisplayCont.innerHTML = `${noOfChecked} of ${checkboxes.length}`;
+}
 
-export { display, hide ,hideForms, displayForms, };
+
+
+
+export { display, hide ,hideForms, displayForms, showCountsOfChecked };
