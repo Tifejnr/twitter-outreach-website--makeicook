@@ -1,4 +1,4 @@
-import { showCountsOfChecked } from "../Utilis/EleDisplay";
+import { showCountsOfChecked } from "../EleDisplay";
 
 export default function UncheckAll() {
   const checkboxes = document.querySelectorAll('input[type="checkbox"]');

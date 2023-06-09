@@ -1,8 +1,8 @@
 import React from 'react'
 
 import AddBtn from './AddBtn'
-import CheckAll from '../../../JS functions/Selections.jsx/CheckAll'
-import UncheckAll from '../../../JS functions/Selections.jsx/UncheckAll'
+import CheckAll from '../../../JS functions/Utilis/Selections.jsx/CheckAll'
+import UncheckAll from '../../../JS functions/Utilis/Selections.jsx/UncheckAll'
 
 export default function SelectAll() {
   return (

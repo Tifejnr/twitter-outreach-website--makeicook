@@ -8,7 +8,6 @@ import Merge from './compnents/Pages/Merge'
 import Split from './compnents/Pages/Split'
 import Home from './compnents/Pages/Home'
 import AllPdf from './compnents/Pages/AllPdf'
-
 import NavContainer from './compnents/Navbar/NavContainer'
 
 function App() {

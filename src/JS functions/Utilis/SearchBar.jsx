@@ -4,15 +4,10 @@ function getReceipes() {
   return document.getElementsByClassName("item");
 }
 
-function randomDiv() {
-  var receipes = getReceipes();
-  return receipes[Math.floor(Math.random() * receipes.length)];
-}
-
-document.getElementById("search").addEventListener("keyup", function (e) {
-  var searchText1 = this.value;
+function searchInput () {
+  const searchTextRaw= document.getElementById("search")
+  const searchText1 = searchTextRaw.value;
   let searchText = searchText1.replace(/\s/g, "").toLowerCase();
-  console.log(searchText);
 
   Array.from(getReceipes()).forEach(function (recipe) {
     if (searchText.length === 0) {
@@ -33,4 +28,7 @@ document.getElementById("search").addEventListener("keyup", function (e) {
       }
     }
   });
-});
+}
+
+
+export {searchInput}
