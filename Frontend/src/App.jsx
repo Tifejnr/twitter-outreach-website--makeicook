@@ -9,6 +9,7 @@ import Split from './compnents/Pages/Split'
 import Home from './compnents/Pages/Home'
 import AllPdf from './compnents/Pages/AllPdf'
 import NavContainer from './compnents/Navbar/NavContainer'
+import Delete from './compnents/Pages/Delete'
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
         <Route path='/Merge' element={<Merge/>}/>
         <Route path='/Split' element={<Split/>}/>
         <Route path='/AllPdf' element={<AllPdf/>}/>
+        <Route path='/delete-member' element={<Delete/>}/>
       </Routes>
     </section>
       

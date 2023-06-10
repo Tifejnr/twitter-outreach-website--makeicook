@@ -13,7 +13,7 @@ export default function NavContainer() {
     <ul className='nav-items-container'>
            <CustomLink to="/Merge"> <h2>MERGE PDF</h2></CustomLink>
 
-           <CustomLink to="/Split"> <h2>Split PDF</h2></CustomLink>
+           <CustomLink to="/delete-member"> <h2>Delete Member</h2></CustomLink>
 
            <CustomLink to="/Compress"> <h2>Compress PDF</h2></CustomLink>
 
