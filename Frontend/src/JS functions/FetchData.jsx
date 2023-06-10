@@ -20,6 +20,7 @@ function hide(ele) {
 }
 
 export default async function FetchData() {
+    progressBarMove(5, 100);
 
   try {
     const url = "http://localhost:3000/start";
