@@ -1,13 +1,13 @@
 import { searchInput } from "../../../JS functions/Utilis/SearchBar"
 
-export default function SearchBoards() {
+export default function SearchBoards(props) {
   return (
      <section className='searchSection'>
           <input 
           onKeyUp={searchInput}
             id="search"
             type="text"
-            placeholder="Search Boards ..." />
+            placeholder={props.searchPlaceholderTitle} />
      </section>
   )
 }
