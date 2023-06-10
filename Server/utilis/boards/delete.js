@@ -11,30 +11,27 @@ async function deleteMemberFromBoard(req, res) {
 
   try {
     const response = await axios.get(boardDetailsFetchUrl);
-    const boardDetails = response.data;
+    const membersCollection = response.data;
 
-    console.log(boardDetails);
+    if (!membersCollection)
+      return console.log("error occured with fetching board details");
 
-    res.status(200).json({ boardDetails });
+    const foundUser = findUserByUsername(membersCollection, username);
+
+    if (!foundUser) return console.log("Invalid username");
+
+    console.log(foundUser.id);
+
+    res.status(200).json({ membersCollection });
   } catch (error) {
     console.error("Error:", error);
     res.status(500).json({ error });
   }
 }
 
-// // Function to find object by username
-// function findUserByUsername(username) {
-//   return users.find((user) => user.username === username);
-// }
-
-// // Usage example
-// const usernameToFind = "jane_smith";
-// const foundUser = findUserByUsername(usernameToFind);
-
-// if (foundUser) {
-//   console.log("User found:", foundUser);
-// } else {
-//   console.log("User not found");
-// }
+// Function to find object by username
+function findUserByUsername(usersCollection, username) {
+  return usersCollection.find((user) => user.username === username);
+}
 
 exports.deleteMemberFromBoard = deleteMemberFromBoard;
