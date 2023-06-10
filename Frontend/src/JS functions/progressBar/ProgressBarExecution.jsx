@@ -7,6 +7,7 @@ const mainContentCont = document.getElementById("mainContentCont");
 const BAR = document.getElementById("bar");
 const progressBarContainer = document.getElementById("loading");
 const allForms = document.getElementsByTagName("form");
+progressBarTitle.innerHTML =""
 
 
   progressBarTitle.innerHTML = `Adding Member to ${noOfChecked} Boards... `;

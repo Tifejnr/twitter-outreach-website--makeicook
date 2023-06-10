@@ -15,22 +15,17 @@ export default function NavContainer() {
 
            <CustomLink to="/delete-member"> <h2>Delete Member</h2></CustomLink>
 
-           <CustomLink to="/Compress"> <h2>Compress PDF</h2></CustomLink>
+           <CustomLink to="/add-member"> <h2>Add Member</h2></CustomLink>
 
            <CustomLink to="/Convert"> <h2>Convert PDF</h2></CustomLink>
 
            <CustomLink to="/AllPdf"> <h2>AllPdf PDF</h2></CustomLink>
-    </ul> */
+    </ul>
 
 </nav>
     
   )
 }
-
-  <section id="trellohead">
-
-    </section>
-
 
 //Nav program that is active function
 const CustomLink= ({to, children, ...props}) => {

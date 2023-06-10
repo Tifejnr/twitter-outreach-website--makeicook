@@ -33,7 +33,6 @@ async function deleteMemberFromBoard(req, res) {
   }
 }
 
-// Find object by username
 function findUserByUsername(usersCollection, username) {
   return usersCollection.find((user) => user.username === username);
 }
