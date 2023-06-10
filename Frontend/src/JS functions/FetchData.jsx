@@ -19,7 +19,7 @@ function hide(ele) {
   ele.style.display = "none";
 }
 
-export default async function FetchData() {
+export default async function FetchData(needOnlyBoardCollections) {
     progressBarMove(5, 100);
 
   try {
@@ -43,11 +43,12 @@ export default async function FetchData() {
     }
 
     const data = dataRaw.boards;
+    
+    if (needOnlyBoardCollections) return data
+
     dataLength = data.length;
     lenghtID = data.length - 1;
     fetchedData = [];
-
-    console.log(dataLength)
 
     data.map((board, index) => {
       // Create the form element

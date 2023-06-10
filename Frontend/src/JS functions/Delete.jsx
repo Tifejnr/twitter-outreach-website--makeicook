@@ -1,7 +1,9 @@
-import FetchIDCollections from "./FetchIdCollection";
+import FetchData from "./fetchData";
 import ShowSuccessMess from "./progressBar/SucessMessage";
 import { validateUsername } from "./Utilis/Validations/Username";
 import { isAnyCheckboxChecked } from "./Utilis/Validations/Checkbox";
+import { findBoardIdByName } from "./Utilis/FindBoardId/byName";
+
 
 let succes;
 
@@ -12,12 +14,12 @@ export default async function DeleteMemberFromBoard() {
 
   if (!isAnyCheckboxChecked()) return console.log("Checkboxes not checked");
 
-  const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+ const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
  ShowSuccessMess(100, 5);
 
-  let  idCollections = await FetchIDCollections()
+  const boardCollection = await FetchData(true)
 
-  idCollections= idCollections[0]
+  console.log(boardCollection)
 
   succes = [];
 
@@ -32,21 +34,26 @@ export default async function DeleteMemberFromBoard() {
 
     const boardEl = document.getElementById(`labelcheck${arrayNoFromId}`);
 
-    const nameOfBoard = boardEl.innerHTML;
+    const boardName= boardEl.innerHTML;
 
-    console.log(nameOfBoard);
+    const foundBoard= findBoardIdByName(boardCollection, boardName) 
 
-    return new Execution(arrayNoFromId, username, idCollections);
+    if (!foundBoard) return console.log("board not found")
+
+    const boardId = foundBoard.id
+
+    return new Execution(username, boardId );
   });
 }
 
 
-function Execution(arrayNo, username, idCollections) {
+
+function Execution(username, boardId ) {
   const noOfCheckedCheckbox = document.querySelectorAll("input:checked").length;
 
   const message = {
     username,
-    boardId: idCollections[arrayNo],
+    boardId 
   };
 
   async function addMember() {
@@ -60,7 +67,7 @@ function Execution(arrayNo, username, idCollections) {
       body: JSON.stringify(message),
     });
 
-    const data = await response.json();
+   const data = await response.json();
    if (data.userNameNotFound) return console.log("User not found")
 
     succes.push(1);
@@ -71,3 +78,5 @@ function Execution(arrayNo, username, idCollections) {
     console.log(error);
   });
 }
+
+
