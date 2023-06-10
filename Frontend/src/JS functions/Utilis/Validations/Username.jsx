@@ -5,6 +5,8 @@ function validateUsername(input) {
 
   if (isEmpty) return console.log("email is empty");
 
+   if (!input.startsWith('@')) return console.log("Username must start with @")
+
   return true;
 }
 

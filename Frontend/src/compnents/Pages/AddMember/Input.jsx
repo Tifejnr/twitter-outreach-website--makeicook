@@ -10,7 +10,7 @@ export default function Input(props) {
               className='inputValue'
                 type="text"
                 id="resultoo"
-                placeholder="Enter Email"
+                placeholder={props.inputPlaceholderText}
                />
             </article>
           </form>

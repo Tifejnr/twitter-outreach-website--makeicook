@@ -15,7 +15,7 @@ export default async function AddToBoard() {
   if (!isAnyCheckboxChecked()) return console.log("Checkboxes not checked");
 
   const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
-  ShowSuccessMess(100, 5);
+  ShowSuccessMess(100, 0);
 
   const boardCollection = await FetchData(true)
 
@@ -46,7 +46,7 @@ export default async function AddToBoard() {
 
 function Execution(email, boardId) {
   const noOfCheckedCheckbox = document.querySelectorAll("input:checked").length;
-  
+
   const message = {
     email,
    boardId

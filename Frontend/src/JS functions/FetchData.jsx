@@ -6,7 +6,7 @@ let idCollections = [];
 let fetchedData;
 
 export default async function FetchData(needOnlyBoardCollections) {
-    progressBarMove(5, 100);
+    progressBarMove(3, 100);
 
   try {
     const url = "http://localhost:3000/start";

@@ -14,16 +14,17 @@ FetchData()
   }, []);
 
   const labelTitle = "Delete Member"
-  const inputLabel= "Trello Email:"
+  const inputLabel= "Trello Username:"
   const searchPlaceholderTitle= "Search Boards ..."
   const selectInstructionText= "Select Boards To Delete Member"
+   const inputPlaceholderText= "@..."
 
   return (
 <>    
     <section className='main-section-cont' id='mainContentCont'>
 
       <section className='inner-main-cont' id='innerMainContentCont'>
-        <Input inputLabel={inputLabel} />
+        <Input inputLabel={inputLabel} inputPlaceholderText={inputPlaceholderText}/>
          <SearchBoards searchPlaceholderTitle={searchPlaceholderTitle}/>   
 
          <section>
