@@ -19,8 +19,6 @@ export default async function DeleteMemberFromBoard() {
 
   const boardCollection = await FetchData(true)
 
-  console.log(boardCollection)
-
   succes = [];
 
   Array.from(allCheckboxes).map((checkbox, index) => {
