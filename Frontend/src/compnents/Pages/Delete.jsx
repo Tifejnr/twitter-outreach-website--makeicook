@@ -4,6 +4,7 @@ import SearchBoards from './AddMember/SearchBoards'
 import SelectAll from './AddMember/SelectAll'
 import ProgressBar from '../ProgressBar/ProgressBar'
 import FetchData from '../../JS functions/fetchData';
+import DeleteMemberFromBoard from '../../JS functions/Delete';
 
 
 export default function Delete() {
@@ -26,7 +27,11 @@ FetchData()
          <SearchBoards searchPlaceholderTitle={searchPlaceholderTitle}/>   
 
          <section>
-          <SelectAll labelTitle={labelTitle} selectInstructionText={selectInstructionText}/>
+          <SelectAll 
+          labelTitle={labelTitle} 
+          selectInstructionText={selectInstructionText}
+          action={DeleteMemberFromBoard}
+          />
          </section>    
       </section>
       

@@ -4,7 +4,7 @@ import SearchBoards from './AddMember/SearchBoards'
 import SelectAll from './AddMember/SelectAll'
 import ProgressBar from '../ProgressBar/ProgressBar'
 import FetchData from '../../JS functions/fetchData';
-
+import IsBoxChecked from '../../JS functions/isBoxChecked';
 
 export default function Compress() {
 useEffect(() => {
@@ -26,7 +26,11 @@ FetchData()
          <SearchBoards searchPlaceholderTitle={searchPlaceholderTitle}/>   
 
          <section>
-          <SelectAll labelTitle={labelTitle} selectInstructionText={selectInstructionText}/>
+          <SelectAll 
+          labelTitle={labelTitle} 
+          selectInstructionText={selectInstructionText} 
+          action={IsBoxChecked}
+          />
          </section>    
       </section>
       

@@ -9,6 +9,7 @@ const { addMemberToBoard } = require("./utilis/boards/add");
 const { fetchAllBoards } = require("./utilis/boards/fetchBoards");
 const { login } = require("./utilis/oauth/oauth-and-callback");
 const { callback } = require("./utilis/oauth/oauth-and-callback");
+const { deleteMemberFromBoard } = require("./utilis/boards/delete");
 
 app.use(cors());
 app.use(express.json());
@@ -45,6 +46,10 @@ app.post("/start", async (req, res) => {
 
 app.post("/add", async (req, res) => {
   addMemberToBoard(req, res);
+});
+
+app.post("/delete", async (req, res) => {
+  deleteMemberFromBoard(req, res);
 });
 
 app.listen(3000, function () {

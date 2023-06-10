@@ -14,7 +14,7 @@ export default function SelectAll(props) {
             <button id="clear-select" onClick={UncheckAll}>Deselect All</button>
           </section>
 
-        < AddBtn labelTitle={props.labelTitle}/>
+        < AddBtn labelTitle={props.labelTitle} action={props.action}/>
         
        </section>
   )
