@@ -60,7 +60,7 @@ function Execution(arrayNo, username, idCollections) {
     });
 
     const data = await response.json();
-    if (!data.success) return;
+   if (data.userNameNotFound) return console.log("User not found")
 
     succes.push(1);
     const noOfSucess = succes.reduce((a, b) => a + b, 0);
