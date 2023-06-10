@@ -4,7 +4,7 @@ import SearchBoards from './AddMember/SearchBoards'
 import SelectAll from './AddMember/SelectAll'
 import ProgressBar from '../ProgressBar/ProgressBar'
 import FetchData from '../../JS functions/fetchData';
-import IsBoxChecked from '../../JS functions/isBoxChecked';
+import AddToBoard from '../../JS functions/AddToBoard';
 
 export default function Compress() {
 useEffect(() => {
@@ -29,7 +29,7 @@ FetchData()
           <SelectAll 
           labelTitle={labelTitle} 
           selectInstructionText={selectInstructionText} 
-          action={IsBoxChecked}
+          action={AddToBoard}
           />
          </section>    
       </section>

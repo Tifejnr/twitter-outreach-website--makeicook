@@ -1,23 +1,23 @@
-import FetchIDCollections from "./FetchIdCollection";
+import FetchData from "./fetchData";
 import ShowSuccessMess from "./progressBar/SucessMessage";
 import { validateInput } from "./Utilis/Validations/Input";
 import { isAnyCheckboxChecked } from "./Utilis/Validations/Checkbox";
+import { findBoardIdByName } from "./Utilis/FindBoardId/byName";
+
 
 let succes;
 
-export default async function IsBoxChecked() {
-  const inputedMail = document.getElementById("resultoo").value
+export default async function AddToBoard() {
+  const email = document.getElementById("resultoo").value
 
-  if (!validateInput(inputedMail)) return console.log("Problem");
+  if (!validateInput(email)) return console.log("Problem");
 
   if (!isAnyCheckboxChecked()) return console.log("Checkboxes not checked");
 
   const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
   ShowSuccessMess(100, 5);
 
-  let  idCollections = await FetchIDCollections()
-
-  idCollections= idCollections[0]
+  const boardCollection = await FetchData(true)
 
   succes = [];
 
@@ -32,22 +32,24 @@ export default async function IsBoxChecked() {
 
     const boardEl = document.getElementById(`labelcheck${arrayNoFromId}`);
 
-    const nameOfBoard = boardEl.innerHTML;
+    const boardName = boardEl.innerHTML;
 
-    console.log(nameOfBoard);
+    const foundBoard= findBoardIdByName(boardCollection, boardName) 
 
-    return new Execution(arrayNoFromId, inputedMail, idCollections);
+    if (!foundBoard) return console.log("board not found")
+    const boardId = foundBoard.id
+
+    return new Execution( email, boardId );
   });
 }
 
 
-function Execution(arrayNo, inputedMail, idCollections) {
+function Execution(email, boardId) {
   const noOfCheckedCheckbox = document.querySelectorAll("input:checked").length;
-  const email = inputedMail;
-
+  
   const message = {
     email,
-    boardId: idCollections[arrayNo],
+   boardId
   };
 
   async function addMember() {

@@ -1,23 +1,9 @@
 import progressBarMove from "./progressBar/MoveProgressBar";
-
-const progressBarTitle = document.getElementById("progressBarTitle");
-const successStatusTitle = document.getElementById("successStatusTitle");
-const mainContentCont = document.getElementById("mainContentCont");
-const BAR = document.getElementById("bar");
-const progressBarContainer = document.getElementById("loading");
-const allForms = document.getElementsByTagName("form");
-const startingTitle = "Loading Your Boards...";
-
-// console
+import { hide } from "./Utilis/EleDisplay";
 let dataLength;
 let lenghtID;
 let idCollections = [];
 let fetchedData;
-
-
-function hide(ele) {
-  ele.style.display = "none";
-}
 
 export default async function FetchData(needOnlyBoardCollections) {
     progressBarMove(5, 100);
