@@ -1,15 +1,14 @@
-import express from "express";
-import cors from "cors";
-import path from "path";
-// import ejs from "ejs";
-import coookieParser from "cookie-parser";
-import session from "express-session";
-import { addMemberToBoard } from "./utilis/boards/add";
-import { fetchAllBoards } from "./utilis/boards/fetchBoards";
-import { login } from "./utilis/oauth/oauth-and-callback";
-import { callback } from "./utilis/oauth/oauth-and-callback";
-
+const express = require("express");
+const cors = require("cors");
+const path = require("path");
+const ejs = require("ejs");
+const coookieParser = require("cookie-parser");
 const app = express();
+const session = require("express-session");
+const { addMemberToBoard } = require("./utilis/boards/add");
+const { fetchAllBoards } = require("./utilis/boards/fetchBoards");
+const { login } = require("./utilis/oauth/oauth-and-callback");
+const { callback } = require("./utilis/oauth/oauth-and-callback");
 
 app.use(cors());
 app.use(express.json());
@@ -51,6 +50,3 @@ app.post("/add", async (req, res) => {
 app.listen(3000, function () {
   console.log("Listening on port 3000");
 });
-
-`https://www.upwork.com/nx/jobs/search/?q=crypto%20writing&sort=recency`;
-`English to German Translator Needed `;
