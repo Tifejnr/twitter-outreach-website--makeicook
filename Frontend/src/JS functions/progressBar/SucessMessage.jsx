@@ -2,15 +2,15 @@
 import ProgressBarExecution from "./ProgressBarExecution";
 import { display, hide } from "../Utilis/EleDisplay";
 
-export default function ShowSuccessMess(noOfCheckedCheckbox, noOfSucess, action) {
-   ProgressBarExecution(noOfCheckedCheckbox, noOfSucess, action);
+export default function ShowSuccessMess(noOfCheckedCheckbox, noOfSucess, action,sumOfFailures, totalAttemptedArray) {
+   ProgressBarExecution(noOfCheckedCheckbox, noOfSucess, action, sumOfFailures, totalAttemptedArray);
 
   if (noOfCheckedCheckbox == noOfSucess) return succesMess(action);
 }
 
 
 
-function succesMess() {
+function succesMess(action) {
 const progressBarTitle = document.getElementById("progressBarTitle");
 const okayEl = document.getElementById("okay");
 const cancelEl = document.getElementById("cancelBtn");

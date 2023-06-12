@@ -17,6 +17,7 @@ FetchData()
   const searchPlaceholderTitle= "Search Boards ..."
   const selectInstructionText= "Select Boards To Add Member To"
   const inputPlaceholderText= "Enter Email"
+  const pageName = "add-member"
 
   return (
 <>    
@@ -40,7 +41,7 @@ FetchData()
       
      </section>
 
-    <ProgressBar/>
+    <ProgressBar pageName={pageName}/>
 
  </>
 

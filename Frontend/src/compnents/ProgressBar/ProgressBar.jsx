@@ -8,6 +8,7 @@ export default function ProgressBar(props) {
       </div>
       <h2 id="progressBarTitle" className="title" ></h2>
       <h3 id="successStatusTitle" className="title"></h3>
+      <h3 id="failureTitle" className="title"></h3>
       <h3 id="completedStatus" className="title"></h3>
       <section className="btn-section" id="btnSection">
         <a href={`/${props.pageName}`}> <button className="okay-btn" id="okay">Okay</button></a>

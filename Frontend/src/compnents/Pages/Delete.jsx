@@ -18,6 +18,7 @@ FetchData()
   const searchPlaceholderTitle= "Search Boards ..."
   const selectInstructionText= "Select Boards To Delete Member"
    const inputPlaceholderText= "@..."
+   const pageName= "delete-member"
 
   return (
 <>    
@@ -41,7 +42,7 @@ FetchData()
       
      </section>
 
-    <ProgressBar/>
+    <ProgressBar pageName={pageName}/>
 
  </>
 
