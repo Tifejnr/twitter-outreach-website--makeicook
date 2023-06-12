@@ -5,7 +5,7 @@ import { display, hide } from "../Utilis/EleDisplay";
 export default function ShowSuccessMess(noOfCheckedCheckbox, noOfSucess, action,sumOfFailures, totalAttemptedArray) {
    ProgressBarExecution(noOfCheckedCheckbox, noOfSucess, action, sumOfFailures, totalAttemptedArray);
 
-  if (noOfCheckedCheckbox == noOfSucess) return succesMess(action);
+  if (noOfCheckedCheckbox == totalAttemptedArray) return succesMess(action);
 }
 
 
@@ -15,11 +15,11 @@ const progressBarTitle = document.getElementById("progressBarTitle");
 const okayEl = document.getElementById("okay");
 const cancelEl = document.getElementById("cancelBtn");
   const completedStatus = document.getElementById("completedStatus");
-  if (action=="deletion") {
+  if (action=="deleting") {
   completedStatus.innerHTML = `Member Deletion Completed `;
   }
 
-  if (action=="addition") {
+  if (action=="adding") {
   completedStatus.innerHTML = `Member Addition Completed `;
   }
   display(okayEl);

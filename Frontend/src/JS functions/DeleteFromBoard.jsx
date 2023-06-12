@@ -83,7 +83,7 @@ function Execution(username, boardId ) {
    } 
 
     succes.push(1);
-   ShowSuccessMess(noOfCheckedCheckbox, succes.length, action, failuresArray.length);
+   ShowSuccessMess(noOfCheckedCheckbox, succes.length, action, failuresArray.length, totalAttemptedArray.length);
   }
   deleteMember().catch((error) => {
     console.log(error);

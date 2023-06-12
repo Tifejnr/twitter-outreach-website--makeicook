@@ -4,7 +4,7 @@ import SearchBoards from './BasicSectionLayout/SearchBoards'
 import SelectAll from './BasicSectionLayout/SelectAll'
 import ProgressBar from '../ProgressBar/ProgressBar'
 import FetchData from '../../JS functions/fetchData';
-import DeleteMemberFromBoard from '../../JS functions/Delete';
+import DeleteMemberFromBoard from '../../JS functions/DeleteFromBoard';
 
 
 export default function Delete() {

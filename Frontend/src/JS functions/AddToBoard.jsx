@@ -5,7 +5,7 @@ import { isAnyCheckboxChecked } from "./Utilis/Validations/Checkbox";
 import { findBoardIdByName } from "./Utilis/FindBoardId/byName";
 
 
-let succes;
+let succes, failuresArray, totalAttemptedArray;
 
 export default async function AddToBoard() {
   const email = document.getElementById("resultoo").value
@@ -21,6 +21,8 @@ export default async function AddToBoard() {
   const boardCollection = await FetchData(true)
 
   succes = [];
+  failuresArray = [];
+  totalAttemptedArray = [];
 
   Array.from(allCheckboxes).map((checkbox, index) => {
     const checkboxEl = document.getElementById(`check${index}`);
@@ -65,12 +67,16 @@ function Execution(email, boardId) {
       body: JSON.stringify(message),
     });
 
+    totalAttemptedArray.push(1)
+
     const data = await response.json();
-    if (!data.success) return;
+    if (!data.success) {
+    failuresArray.push(1);
+   return ShowSuccessMess(noOfCheckedCheckbox, succes.length, action, failuresArray.length, totalAttemptedArray.length);
+    }
 
     succes.push(1);
-    const noOfSucess = succes.reduce((a, b) => a + b, 0);
-   ShowSuccessMess(noOfCheckedCheckbox, noOfSucess, action);
+   ShowSuccessMess(noOfCheckedCheckbox, succes.length, action, failuresArray.length, totalAttemptedArray.length);
   }
   addMember().catch((error) => {
     console.log(error);
