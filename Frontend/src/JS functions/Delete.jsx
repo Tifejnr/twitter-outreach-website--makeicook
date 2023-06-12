@@ -5,21 +5,27 @@ import { isAnyCheckboxChecked } from "./Utilis/Validations/Checkbox";
 import { findBoardIdByName } from "./Utilis/FindBoardId/byName";
 
 
-let succes;
+let succes 
+
 
 export default async function DeleteMemberFromBoard() {
-  const username = document.getElementById("resultoo").value
+const action ="deleting"
+ let  username = document.getElementById("resultoo").value
 
   if (!validateUsername(username)) return console.log("Problem");
 
   if (!isAnyCheckboxChecked()) return console.log("Checkboxes not checked");
 
  const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
- ShowSuccessMess(100, 0);
+ ShowSuccessMess(100, 0, action);
 
   const boardCollection = await FetchData(true)
 
   succes = [];
+
+  username = validateUsername(username)
+
+  console.log(action)
 
   Array.from(allCheckboxes).map((checkbox, index) => {
     const checkboxEl = document.getElementById(`check${index}`);
@@ -40,7 +46,7 @@ export default async function DeleteMemberFromBoard() {
 
     const boardId = foundBoard.id
 
-    return new Execution(username, boardId );
+    return new Execution(username, boardId, action );
   });
 }
 
@@ -54,7 +60,9 @@ function Execution(username, boardId ) {
     boardId 
   };
 
-  async function addMember() {
+  async function deleteMember() {
+    const action ="deleting"
+    console.log(action)
     const response = await fetch(`http://localhost:3000/delete`, {
       method: "POST",
 
@@ -70,9 +78,9 @@ function Execution(username, boardId ) {
 
     succes.push(1);
     const noOfSucess = succes.reduce((a, b) => a + b, 0);
-   ShowSuccessMess(noOfCheckedCheckbox, noOfSucess);
+   ShowSuccessMess(noOfCheckedCheckbox, noOfSucess, action);
   }
-  addMember().catch((error) => {
+  deleteMember().catch((error) => {
     console.log(error);
   });
 }

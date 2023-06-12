@@ -31,7 +31,10 @@ FetchData()
           <SelectAll 
           labelTitle={labelTitle} 
           selectInstructionText={selectInstructionText}
-          action={DeleteMemberFromBoard}
+          action={ (e)=> {
+            e.preventDefault()
+            DeleteMemberFromBoard()
+          } }
           />
          </section>    
       </section>

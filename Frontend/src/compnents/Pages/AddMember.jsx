@@ -30,7 +30,10 @@ FetchData()
           <SelectAll 
           labelTitle={labelTitle} 
           selectInstructionText={selectInstructionText} 
-          action={AddToBoard}
+           action={ (e)=> {
+            e.preventDefault()
+            AddToBoard()
+          } }
           />
          </section>    
       </section>

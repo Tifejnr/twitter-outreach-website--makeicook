@@ -9,13 +9,14 @@ let succes;
 
 export default async function AddToBoard() {
   const email = document.getElementById("resultoo").value
+  const action ="adding"
 
   if (!validateInput(email)) return console.log("Problem");
 
   if (!isAnyCheckboxChecked()) return console.log("Checkboxes not checked");
 
   const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
-  ShowSuccessMess(100, 0);
+  ShowSuccessMess(100, 0, action);
 
   const boardCollection = await FetchData(true)
 
@@ -39,7 +40,7 @@ export default async function AddToBoard() {
     if (!foundBoard) return console.log("board not found")
     const boardId = foundBoard.id
 
-    return new Execution( email, boardId );
+    return new Execution( email, boardId);
   });
 }
 
@@ -53,6 +54,7 @@ function Execution(email, boardId) {
   };
 
   async function addMember() {
+    const action ="adding"
     const response = await fetch(`http://localhost:3000/add`, {
       method: "POST",
 
@@ -68,7 +70,7 @@ function Execution(email, boardId) {
 
     succes.push(1);
     const noOfSucess = succes.reduce((a, b) => a + b, 0);
-   ShowSuccessMess(noOfCheckedCheckbox, noOfSucess);
+   ShowSuccessMess(noOfCheckedCheckbox, noOfSucess, action);
   }
   addMember().catch((error) => {
     console.log(error);

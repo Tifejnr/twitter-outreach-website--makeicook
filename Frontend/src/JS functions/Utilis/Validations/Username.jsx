@@ -7,7 +7,11 @@ function validateUsername(input) {
 
    if (!input.startsWith('@')) return console.log("Username must start with @")
 
-  return true;
+  const slicedInput = input.slice(1);
+
+  console.log(slicedInput)
+
+  return slicedInput 
 }
 
 export {validateUsername}
