@@ -304,6 +304,10 @@ button:hover {
   color: #1e2831;
 }
 
+.loading .title.failureTitle {
+  color: red;
+}
+
 .barHolder {
   background-color: #ffe629;
   width: 30rem;
@@ -369,7 +373,6 @@ input {
 
 .main-section-cont {
   display: none;
-  border: 2px solid red;
   width: 60rem;
   margin: 0 auto;
 }

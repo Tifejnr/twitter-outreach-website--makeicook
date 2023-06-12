@@ -70,7 +70,12 @@ function Execution(email, boardId) {
     totalAttemptedArray.push(1)
 
     const data = await response.json();
-    if (!data.success) {
+    if (data.error) {
+      console.log(data.error)
+     if (data.error.cause.code=="ECONNRESET") {
+      console.log("internet broke error")
+      }
+
     failuresArray.push(1);
    return ShowSuccessMess(noOfCheckedCheckbox, succes.length, action, failuresArray.length, totalAttemptedArray.length);
     }
