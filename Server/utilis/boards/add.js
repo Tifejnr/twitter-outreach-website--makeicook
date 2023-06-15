@@ -1,9 +1,10 @@
+require("dotenv").config();
+const key = process.env.CLIENT_SECRET_KEY;
+const token = process.env.ACCESS_TOKEN_SECRET;
+
 async function addMemberToBoard(req, res) {
   const { boardId, email } = req.body;
-  const key = "3871b737b5e006da43d0e48f6d8f68ee";
   const memberAddingUrl = `https://api.trello.com/1/boards/${boardId}/members`;
-  const token =
-    "688f89f00f6103cb099e8413af68ccd5ae446c869875aae282b5b5efafbb3c6d";
 
   const params = {
     email,

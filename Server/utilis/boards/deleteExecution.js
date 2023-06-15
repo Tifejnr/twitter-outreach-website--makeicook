@@ -1,9 +1,11 @@
 const axios = require("axios");
+require("dotenv").config();
+
+//fetching env variables
+const key = process.env.CLIENT_SECRET_KEY;
+const token = process.env.ACCESS_TOKEN_SECRET;
 
 async function deleteExecution(boardId, memberId) {
-  const key = "3871b737b5e006da43d0e48f6d8f68ee";
-  const token =
-    "688f89f00f6103cb099e8413af68ccd5ae446c869875aae282b5b5efafbb3c6d";
   const boardDeleteUrl = `
   https://api.trello.com/1/boards/${boardId}/members/${memberId}?key=${key}&token=${token}`;
 
