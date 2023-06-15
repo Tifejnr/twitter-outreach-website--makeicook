@@ -10,6 +10,7 @@ const { fetchAllBoards } = require("./utilis/boards/fetchBoards");
 const { login } = require("./utilis/oauth/oauth-and-callback");
 const { callback } = require("./utilis/oauth/oauth-and-callback");
 const { deleteMemberFromBoard } = require("./utilis/boards/delete");
+require("dotenv").config();
 
 app.use(cors());
 app.use(express.json());

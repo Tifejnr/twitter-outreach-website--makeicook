@@ -11,6 +11,9 @@ export default function ShowSuccessMess(noOfCheckedCheckbox, noOfSucess, action,
 
 
 function succesMess(action) {
+
+setTimeout(() => {
+    
 const progressBarTitle = document.getElementById("progressBarTitle");
 const okayEl = document.getElementById("okay");
 const cancelEl = document.getElementById("cancelBtn");
@@ -25,4 +28,6 @@ const cancelEl = document.getElementById("cancelBtn");
   display(okayEl);
   hide(progressBarTitle);
   hide(cancelEl);
+
+      }, 700);
 }

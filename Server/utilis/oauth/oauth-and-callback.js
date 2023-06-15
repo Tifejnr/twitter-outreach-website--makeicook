@@ -1,5 +1,6 @@
 const session = require("express-session");
 const OAuth = require("oauth").OAuth;
+require("dotenv").config();
 
 // OAuth Setup and Functions
 const requestURL = "https://trello.com/1/OAuthGetRequestToken";
@@ -9,9 +10,8 @@ const appName = "Trello OAuth Example";
 const scope = "read,write";
 const expiration = "never";
 
-const key = "3871b737b5e006da43d0e48f6d8f68ee";
-const secret =
-  "c659358a2cb9ba2a8db04844b480df9058f0806c95f941b2f02b323501488d9c";
+const key = process.env.CLIENT_SECRET_KEY;
+const secret = process.env.ACCESS_TOKEN_SECRET;
 
 const loginCallback = "http://localhost:3000/callback";
 const oauth = new OAuth(

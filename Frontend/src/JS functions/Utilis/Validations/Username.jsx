@@ -9,8 +9,6 @@ function validateUsername(input) {
 
   const slicedInput = input.slice(1);
 
-  console.log(slicedInput)
-
   return slicedInput 
 }
 

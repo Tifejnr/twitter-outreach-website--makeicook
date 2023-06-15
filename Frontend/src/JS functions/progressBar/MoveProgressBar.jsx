@@ -19,7 +19,7 @@ progressBarTitle.innerHTML = startingTitle;
       display(mainContentCont);
       hide(progressBarContainer);
       displayForms(allForms);
-    }, 600);
+    }, 700);
   }
 }
 
