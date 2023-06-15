@@ -11,7 +11,7 @@ const scope = "read,write";
 const expiration = "never";
 
 const key = process.env.CLIENT_SECRET_KEY;
-const secret = process.env.ACCESS_TOKEN_SECRET;
+const secret = process.env.SECRET;
 
 const loginCallback = "http://localhost:3000/callback";
 const oauth = new OAuth(
