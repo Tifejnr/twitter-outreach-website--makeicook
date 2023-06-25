@@ -2,14 +2,14 @@ import { useState } from 'react'
 // import './App.css'
 import './main.css'
 import {Route, Routes} from "react-router-dom"
-import Convert from './compnents/Pages/Convert'
-import Merge from './compnents/Pages/Merge'
-import Split from './compnents/Pages/Split'
-import Home from './compnents/Pages/Home'
-import AllPdf from './compnents/Pages/AllPdf'
-import NavContainer from './compnents/Navbar/NavContainer'
-import Delete from './compnents/Pages/Delete'
-import AddMember from './compnents/Pages/AddMember'
+import Convert from '/root/Trello-Project-React/Frontend/src/compnents/Pages/Convert'
+import Merge from '/root/Trello-Project-React/Frontend/src/compnents/Pages/Merge'
+import Split from '/root/Trello-Project-React/Frontend/src/compnents/Pages/Split'
+import Home from '/root/Trello-Project-React/Frontend/src/compnents/Pages/Home'
+import AllPdf from '/root/Trello-Project-React/Frontend/src/compnents/Pages/AllPdf'
+import NavContainer from '/root/Trello-Project-React/Frontend/src/compnents/Navbar/NavContainer'
+import Delete from '/root/Trello-Project-React/Frontend/src/compnents/Pages/Delete'
+import AddMember from '/root/Trello-Project-React/Frontend/src/compnents/Pages/AddMember'
 
 function App() {
 

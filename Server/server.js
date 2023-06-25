@@ -21,7 +21,7 @@ app.get("/*", function (req, res) {
   res.sendFile(
     path.join(
       __dirname,
-      "../../Trello-Project-React/Frontend/dist",
+      "../../../Trello-Project-React/Frontend/dist",
       "../../../Trello-Project-React/Frontend/dist/index.html"
     )
   );
