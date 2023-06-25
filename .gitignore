@@ -15,6 +15,7 @@ dist-ssr
 # Ignore .env files
 .env
 .env.*
+envKeys
 
 
 # Editor directories and files

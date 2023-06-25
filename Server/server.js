@@ -33,8 +33,16 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/login", async (req, res) => {
+  res.render("login");
+});
+
+app.get("/authorize", async (req, res) => {
   login(req, res);
 });
+
+// app.post("/login", async (req, res) => {
+//   login(req, res);
+// });
 
 app.get("/callback", async (req, res) => {
   callback(req, res);
