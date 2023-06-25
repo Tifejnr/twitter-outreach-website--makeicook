@@ -15,11 +15,15 @@ require("dotenv").config();
 app.use(cors());
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname, "../Frontend/dist")));
+app.use(express.static(path.join(__dirname, "/root/Frontend/dist")));
 
 app.get("/*", function (req, res) {
   res.sendFile(
-    path.join(__dirname, "../Frontend/dist", "../Frontend/dist/index.html")
+    path.join(
+      __dirname,
+      "/root/Frontend/dist",
+      "/root/Frontend/dist/index.html"
+    )
   );
 });
 
