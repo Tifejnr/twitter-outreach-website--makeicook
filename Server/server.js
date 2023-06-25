@@ -28,7 +28,6 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 // Routes Handling Section
-
 app.get("/", async (req, res) => {
   res.render("trelloAdd");
 });
