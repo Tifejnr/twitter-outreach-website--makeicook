@@ -1,9 +1,10 @@
 const axios = require("axios");
-require("dotenv").config();
+const { getKeys } = require("../../envKeys/allKeys");
+const keysObj = getKeys();
 
 //fetching env variables
-const key = process.env.CLIENT_SECRET_KEY;
-const token = process.env.ACCESS_TOKEN_SECRET;
+const key = keysObj.CLIENT_SECRET_KEY;
+const token = keysObj.ACCESS_TOKEN_SECRET;
 
 async function fetchAllBoards(req, res) {
   const boardsFetchingUrl = `https://api.trello.com/1/members/me/boards?key=${key}&token=${token}`;

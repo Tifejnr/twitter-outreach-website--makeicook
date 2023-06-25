@@ -1,6 +1,8 @@
-require("dotenv").config();
+const { getKeys } = require("../../envKeys/allKeys");
+
+const keysObj = getKeys();
 const key = process.env.CLIENT_SECRET_KEY;
-const token = process.env.ACCESS_TOKEN_SECRET;
+const token = keysObj.ACCESS_TOKEN_SECRET;
 
 async function addMemberToBoard(req, res) {
   const { boardId, email } = req.body;

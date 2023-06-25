@@ -1,7 +1,12 @@
 const axios = require("axios");
 const { deleteExecution } = require("./deleteExecution");
-const key = process.env.CLIENT_SECRET_KEY;
-const token = process.env.ACCESS_TOKEN_SECRET;
+const { getKeys } = require("../../envKeys/allKeys");
+const keysObj = getKeys();
+
+//fetching env variables
+const key = keysObj.CLIENT_SECRET_KEY;
+const token = keysObj.ACCESS_TOKEN_SECRET;
+
 async function deleteMemberFromBoard(req, res) {
   const { boardId, username } = req.body;
   const boardDetailsFetchUrl = `https://api.trello.com/1/boards/${boardId}/members?&key=${key}&token=${token}`;
