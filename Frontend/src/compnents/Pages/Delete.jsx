@@ -3,8 +3,8 @@ import Input from './BasicSectionLayout/Input'
 import SearchBoards from './BasicSectionLayout/SearchBoards'
 import SelectAll from './BasicSectionLayout/SelectAll'
 import ProgressBar from '../ProgressBar/ProgressBar'
-import FetchData from '../../JS functions/fetchData';
-import DeleteMemberFromBoard from '../../JS functions/DeleteFromBoard';
+import FetchData from '/root/Trello-Project-React/Frontend/src/JS functions/fetchData';
+import DeleteMemberFromBoard from '/root/Trello-Project-React/Frontend/src/JS functions/DeleteFromBoard';
 
 
 export default function Delete() {
