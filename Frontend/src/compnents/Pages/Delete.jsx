@@ -3,7 +3,7 @@ import Input from './BasicSectionLayout/Input'
 import SearchBoards from './BasicSectionLayout/SearchBoards'
 import SelectAll from './BasicSectionLayout/SelectAll'
 import ProgressBar from '../ProgressBar/ProgressBar'
-import FetchData from '../../src/JS functions/fetchData';
+import FetchData from '../../../../../Trello-Project-React/Frontend/src/JS functions/FetchData';
 import DeleteMemberFromBoard from '../../src/JS functions/DeleteFromBoard';
 
 
