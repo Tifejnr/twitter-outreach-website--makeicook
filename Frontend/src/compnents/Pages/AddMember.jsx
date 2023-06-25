@@ -3,8 +3,9 @@ import Input from './BasicSectionLayout/Input'
 import SearchBoards from './BasicSectionLayout/SearchBoards'
 import SelectAll from './BasicSectionLayout/SelectAll'
 import ProgressBar from '../ProgressBar/ProgressBar'
-import FetchData from '../../JS functions/fetchData';
+import FetchData from '../../../../../Trello-Project-ReactTrello-Project-React/Frontend/src/JS functions/FetchData';
 import AddToBoard from '../../JS functions/AddToBoard';
+
 
 export default function AddMember() {
 useEffect(() => {
