@@ -17,8 +17,6 @@ const keysObj = getKeys();
 const key = keysObj.CLIENT_SECRET_KEY;
 const secret = keysObj.SECRET;
 
-console.log(key, secret);
-
 const loginCallback = "http://localhost:3000/callback";
 
 const oauth_secrets = {};
