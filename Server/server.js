@@ -22,10 +22,10 @@ app.use(
   })
 );
 
-app.use(express.static("public"));
+app.use(express.static("Frontend/public"));
 
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));
+app.set("views", path.join(__dirname, "../Frontend/public/views"));
 
 // Routes Handling Section
 app.get("/", async (req, res) => {
