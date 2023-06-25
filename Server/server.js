@@ -22,7 +22,7 @@ app.get("/*", function (req, res) {
     path.join(
       __dirname,
       "../../Trello-Project-React/Frontend/dist",
-      "/root/Trello-Project-React/Frontend/dist/index.html"
+      "../../../Trello-Project-React/Frontend/dist/index.html"
     )
   );
 });
