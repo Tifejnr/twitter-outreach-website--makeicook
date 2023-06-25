@@ -21,14 +21,17 @@ app.get("/*", function (req, res) {
   res.sendFile(
     path.join(
       __dirname,
-      "../../Frontend/dist",
-      "../../Frontend/dist/index.html"
+      "../../Trello-Project-React/Frontend/dist",
+      "../../Trello-Project-React/Frontend/dist/index.html"
     )
   );
 });
 
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "../Frontend/public/views"));
+app.set(
+  "views",
+  path.join(__dirname, "../Trello-Project-React/Frontend/public/views")
+);
 
 // Routes Handling Section
 // app.get("/", async (req, res) => {
