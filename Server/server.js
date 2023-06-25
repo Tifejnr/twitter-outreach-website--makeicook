@@ -14,23 +14,22 @@ require("dotenv").config();
 
 app.use(cors());
 app.use(express.json());
-app.use(
-  session({
-    secret: "tifejnr",
-    resave: false,
-    saveUninitialized: true,
-  })
-);
 
-app.use(express.static("Frontend/public"));
+app.use(express.static(path.join(__dirname, "../Frontend/dist")));
+
+app.get("/*", function (req, res) {
+  res.sendFile(
+    path.join(__dirname, "../Frontend/dist", "../Frontend/dist/index.html")
+  );
+});
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "../Frontend/public/views"));
 
 // Routes Handling Section
-app.get("/", async (req, res) => {
-  res.render("trelloAdd");
-});
+// app.get("/", async (req, res) => {
+//   res.render("trelloAdd");
+// });
 
 app.get("/login", async (req, res) => {
   res.render("login");
