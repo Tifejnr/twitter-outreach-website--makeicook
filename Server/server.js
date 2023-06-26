@@ -70,6 +70,6 @@ app.post("/delete", async (req, res) => {
   deleteMemberFromBoard(req, res);
 });
 
-app.listen(8000, function () {
-  console.log("Listening on port 8000");
+app.listen(3000, function () {
+  console.log("Listening on port 3000");
 });
