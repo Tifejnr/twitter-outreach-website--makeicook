@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useMatch, useResolvedPath} from "react-router-dom"
 
-export default function NavItems() {
+export default function NavItemsLandingPage() {
   return (
     <ul className='nav-items-cont'>
         <CustomLink to="/platforms">Platforms</CustomLink> 

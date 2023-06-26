@@ -1,5 +1,5 @@
 import { useState } from 'react'
-// import './App.css'
+import './App.css'
 import './main.css'
 import {Route, Routes} from "react-router-dom"
 import Convert from './compnents/Pages/Convert'
@@ -10,14 +10,15 @@ import AllPdf from './compnents/Pages/AllPdf'
 import NavContainer from './compnents/Navbar/NavContainer'
 import Delete from './compnents/Pages/Delete'
 import AddMember from './compnents/Pages/AddMember'
+import NavBarLandingPage from './compnents/LandingPage/Nav'
 
 function App() {
 
   return (
     <>
-    <NavContainer/>
+    <NavBarLandingPage/>
 
-    <section>
+    {/* <section>
         <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/add-member' element={<AddMember/>}/>
@@ -29,11 +30,11 @@ function App() {
       </Routes>
     </section>
       
-    <section>
+    <section> */}
 
 
-
-    </section>
+{/* 
+    </section> */}
     </>
   )
  

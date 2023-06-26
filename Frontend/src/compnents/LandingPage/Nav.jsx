@@ -1,18 +1,15 @@
 import React from 'react'
 
-import NavItems from './NavItems'
+import NavItemsLandingPage from './NavItems'
 
-export default function NavBar() {
+export default function NavBarLandingPage() {
   return (
-   <>
    <nav className='nav'>
 
     <a href='/' className='site-title'>Site Name</a>
 
-    <NavItems/>
-
+    <NavItemsLandingPage/>
 
    </nav>  
-   </>
   )
 }
