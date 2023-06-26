@@ -6,6 +6,7 @@ import { findBoardIdByName } from "./Utilis/FindBoardId/byName";
 
 
 let succes, failuresArray, totalAttemptedArray;
+const websiteUrl= "http://24.199.110.139"
 
 export default async function AddToBoard() {
   const email = document.getElementById("resultoo").value
@@ -57,7 +58,7 @@ function Execution(email, boardId) {
 
   async function addMember() {
     const action ="adding"
-    const response = await fetch(`http://localhost:3000/add`, {
+    const response = await fetch(`${websiteUrl}/add`, {
       method: "POST",
 
       headers: {

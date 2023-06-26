@@ -5,11 +5,13 @@ let lenghtID;
 let idCollections = [];
 let fetchedData;
 
+const websiteUrl= "http://24.199.110.139"
+
 export default async function FetchData(needOnlyBoardCollections) {
     progressBarMove(3, 100);
 
   try {
-    const url = "http://24.199.110.139/start";
+    const url = `${websiteUrl}/start`;
     const dataSent = { send: true };
 
     const response = await fetch(url, {

@@ -6,6 +6,7 @@ import { findBoardIdByName } from "./Utilis/FindBoardId/byName";
 
 
 let succes, failuresArray, totalAttemptedArray;
+const websiteUrl= "http://24.199.110.139"
 
 
 export default async function DeleteMemberFromBoard() {
@@ -63,7 +64,7 @@ function Execution(username, boardId ) {
 
   async function deleteMember() {
     const action ="deleting"
-    const response = await fetch(`http://localhost:3000/delete`, {
+    const response = await fetch(`${websiteUrl}/delete`, {
       method: "POST",
 
       headers: {
