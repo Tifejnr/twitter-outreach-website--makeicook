@@ -2,6 +2,8 @@ import React from 'react'
 
 import NavItemsLandingPage from './NavItems'
 
+
+
 export default function NavBarLandingPage() {
   return (
    <nav className='nav'>
@@ -10,6 +12,10 @@ export default function NavBarLandingPage() {
 
     <NavItemsLandingPage/>
 
+     <a to='/try-for-free'>Try for Free</a> 
+
    </nav>  
   )
 }
+
+

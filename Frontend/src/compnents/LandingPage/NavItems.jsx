@@ -9,7 +9,7 @@ export default function NavItemsLandingPage() {
         <CustomLink to="/use-cases">Use cases</CustomLink> 
         <CustomLink to='/help'>Help</CustomLink> 
         <CustomLink to='/pricing'>Pricing</CustomLink> 
-        <CustomLink to='/try-for-free'>Try for Free</CustomLink> 
+       
     </ul>
   )
 }

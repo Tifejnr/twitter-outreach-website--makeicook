@@ -11,12 +11,15 @@ import NavContainer from './compnents/Navbar/NavContainer'
 import Delete from './compnents/Pages/Delete'
 import AddMember from './compnents/Pages/AddMember'
 import NavBarLandingPage from './compnents/LandingPage/Nav'
+import Hero from './compnents/LandingPage/Body/Hero'
+
 
 function App() {
 
   return (
     <>
     <NavBarLandingPage/>
+    <Hero/>
 
     {/* <section>
         <Routes>
