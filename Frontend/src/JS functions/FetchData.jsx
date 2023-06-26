@@ -9,7 +9,7 @@ export default async function FetchData(needOnlyBoardCollections) {
     progressBarMove(3, 100);
 
   try {
-    const url = "http://localhost:3000/start";
+    const url = "http://24.199.110.139/start";
     const dataSent = { send: true };
 
     const response = await fetch(url, {
