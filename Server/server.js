@@ -18,13 +18,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "../../Frontend/dist")));
 
 app.get("/*", function (req, res) {
-  res.sendFile(
-    path.join(
-      __dirname,
-      "../../../Trello-Project-React/Frontend/dist",
-      "/root/Trello-Project-React/Frontend/dist/index.html"
-    )
-  );
+  res.sendFile(path.join(__dirname, "../../Frontend/dist", "index.html"));
 });
 
 app.set("view engine", "ejs");
