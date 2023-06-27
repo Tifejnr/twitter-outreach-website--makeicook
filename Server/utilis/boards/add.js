@@ -2,27 +2,15 @@ const { getKeys } = require("../../envKeys/allKeys");
 const axios = require("axios");
 
 const keysObj = getKeys();
-const key = process.env.CLIENT_SECRET_KEY;
+const key = keysObj.CLIENT_SECRET_KEY;
 const token = keysObj.ACCESS_TOKEN_SECRET;
 
 async function addMemberToBoard(req, res) {
   const { boardId, email } = req.body;
-  const memberAddingUrl = `https://api.trello.com/1/boards/${boardId}/members`;
-
-  const params = {
-    email,
-    key,
-    token,
-  };
-
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
+  const memberAddingUrl = `https://api.trello.com/1/boards/${boardId}/members?email=${email}&key=${key}&token=${token}`;
 
   try {
-    const response = await axios.put(memberAddingUrl, params, config);
+    const response = await axios.put(memberAddingUrl);
 
     if (response.status === 200) {
       console.log("Member added successfully");

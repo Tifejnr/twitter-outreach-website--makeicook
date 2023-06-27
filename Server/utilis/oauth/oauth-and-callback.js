@@ -62,12 +62,12 @@ async function callback(req, response) {
             response.send(error);
           } else {
             console.log("data Gotten");
-            response.cookie("acesk", accessToken, {
+            response.cookie("acesT", accessToken, {
               maxAge: 1209600000,
               httpOnly: true,
               secure: true,
             });
-            response.cookie("acesec", accessTokenSecret, {
+            response.cookie("aceseTS", accessTokenSecret, {
               maxAge: 1209600000,
               httpOnly: true,
               secure: true,
