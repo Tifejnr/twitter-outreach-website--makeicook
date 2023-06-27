@@ -1,4 +1,5 @@
 import React from 'react'
+import trelloIcon from "../../../assets/trello-icon.svg"
 
 export default function Hero() {
   return (
@@ -7,7 +8,12 @@ export default function Hero() {
 
     <h3>All-in-one tool for addition and removal of members on Trello</h3>
 
-    <a href="" className='oauth-button'><h2>Continue with Trello</h2></a>
+    <a href="" className='oauth-button'>
+      <section>
+       <  img src= {trelloIcon} className='trello-icon' />
+       <h2>Continue with Trello</h2>
+      </section>
+    </a>
    </section>
   )
 }
