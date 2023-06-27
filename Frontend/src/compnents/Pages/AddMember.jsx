@@ -16,7 +16,7 @@ FetchData()
   const labelTitle = "Add Member"
   const inputLabel= "Member Email:"
   const searchPlaceholderTitle= "Search Boards ..."
-  const selectInstructionText= "Select Boards To Add Member To"
+  const selectInstructionText= "Select Boards for Member Addition"
   const inputPlaceholderText= "Enter Email"
   const pageName = "add-member"
 

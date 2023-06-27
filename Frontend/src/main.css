@@ -10,14 +10,7 @@ body {
   box-sizing: border-box;
   margin: 0;
   height: 100vh;
-}
-
-body {
-  position: relative;
-  height: 100%;
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center; */
+  font-family: "noto-sans", sans-serif;
 }
 
 .item {
@@ -200,6 +193,8 @@ button:hover {
   color: #4d7ec4;
 }
 
+/* Select All and Deselect All Button Block */
+
 .selecting-btn-cont button {
   border: 1px solid grey;
   border-radius: 0.6rem;
@@ -271,6 +266,7 @@ button:hover {
 .selecting-btn-cont {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 2.5rem;
   /* padding: 0 3rem; */
 }
 
@@ -293,35 +289,31 @@ input {
   outline: none;
 }
 
-.execution-btn:hover {
-  color: #ffffff;
-  background: #001b40;
-}
-
-.execution-btn {
-  font-size: 1.6rem;
-  font-weight: 500;
-  border-radius: 0.6rem;
-  cursor: pointer;
-  border: none;
-  height: 30px;
-  display: inline;
-  background-color: #3e1fde;
-  color: white;
-}
-
-.addMemberBtn {
+.executionBtn-container {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+  margin: 2rem 0;
 }
 
-.addMemberBtn button {
-  margin: auto;
+.selecting-btn-cont .execution-btn {
+  font-size: 1.6rem;
+  font-weight: 700;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  border: none;
+  height: 3rem;
+  background-color: #3e1fde;
+  color: white;
 }
 
-/* Seelction Container */
+.selecting-btn-cont .execution-btn:hover {
+  color: #ffffff;
+  background: #001b40;
+}
+
+/* Selction Container */
 
 .main-section-cont {
   display: none;
@@ -365,9 +357,9 @@ form {
 }
 
 .selectionCont h1 {
-  text-align: center;
+  text-align: left;
   font-size: 1.8rem;
   font-weight: 500;
-  color: #0021d1;
+  color: #1e2831;
   margin: 1rem 0;
 }
