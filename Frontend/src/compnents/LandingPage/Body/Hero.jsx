@@ -8,7 +8,7 @@ export default function Hero() {
     <section className='hero-container'> 
      <div className='hero-inner-container'>
       <h1>Add Trello Member to Multiple Boards at Once</h1>
-      <h3>Saves time that can be utilized for more productive activities</h3>
+      <h3>Saves time that can be utilized on more productive activities</h3>
 
         <a href={oauthUrl} className='oauth-button'>
           <section>
