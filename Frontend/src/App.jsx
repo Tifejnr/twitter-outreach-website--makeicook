@@ -32,7 +32,7 @@ function App() {
         <Route path='/delete-member' element={<Delete/>}/>
       </Routes>
     </section>
-    
+    <p id='para'></p>
     <section> 
     </section> 
     </>

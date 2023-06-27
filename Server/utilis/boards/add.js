@@ -1,4 +1,5 @@
 const { getKeys } = require("../../envKeys/allKeys");
+const axios = require("axios");
 
 const keysObj = getKeys();
 const key = process.env.CLIENT_SECRET_KEY;
@@ -14,17 +15,16 @@ async function addMemberToBoard(req, res) {
     token,
   };
 
-  const options = {
-    method: "PUT",
+  const config = {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(params),
   };
 
   try {
-    const response = await fetch(memberAddingUrl, options);
-    if (response.ok && response.status == 200) {
+    const response = await axios.put(memberAddingUrl, params, config);
+
+    if (response.status === 200) {
       console.log("Member added successfully");
       const success = true;
       res.status(200).json({ success });

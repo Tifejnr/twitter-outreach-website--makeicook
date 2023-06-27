@@ -19,10 +19,13 @@ FetchData()
   const selectInstructionText= "Select Boards for Member Addition"
   const inputPlaceholderText= "Enter Email"
   const pageName = "add-member"
+  const pageTitle = "Add Member Via Email"
 
   return (
 <>    
     <section className='main-section-cont' id='mainContentCont'>
+
+      <h1>{pageTitle}</h1>
 
       <section className='inner-main-cont' id='innerMainContentCont'>
         <Input inputLabel={inputLabel} inputPlaceholderText={inputPlaceholderText}/>  

@@ -321,6 +321,14 @@ input {
   margin: 0 auto;
 }
 
+.main-section-cont h1 {
+  color: #04002a;
+  margin: 0;
+  margin-top: 2rem;
+  font-size: 2.5rem;
+  text-align: center;
+}
+
 .inner-main-cont {
   width: 100%;
   position: relative;
