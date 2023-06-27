@@ -18,9 +18,9 @@ function App() {
 
   return (
     <>
-    <NavContainer/>
-    {/* <Hero/> */}
-
+    <NavBarLandingPage/>
+    <Hero/>
+{/* 
  <section>
         <Routes>
         <Route path='/' element={<Home/>}/>
@@ -34,7 +34,7 @@ function App() {
     </section>
     <p id='para'></p>
     <section> 
-    </section> 
+    </section>  */}
     </>
   )
  
