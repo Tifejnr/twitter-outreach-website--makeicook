@@ -18,10 +18,10 @@ function App() {
 
   return (
     <>
-    <NavBarLandingPage/>
-    <Hero/>
+    <NavContainer/>
+    {/* <Hero/> */}
 
-    {/* <section>
+ <section>
         <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/add-member' element={<AddMember/>}/>
@@ -32,12 +32,9 @@ function App() {
         <Route path='/delete-member' element={<Delete/>}/>
       </Routes>
     </section>
-      
-    <section> */}
-
-
-{/* 
-    </section> */}
+    
+    <section> 
+    </section> 
     </>
   )
  

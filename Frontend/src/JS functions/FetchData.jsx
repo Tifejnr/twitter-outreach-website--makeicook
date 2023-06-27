@@ -5,7 +5,7 @@ let lenghtID;
 let idCollections = [];
 let fetchedData;
 
-const websiteUrl= "http://24.199.110.139"
+const websiteUrl= "http://localhost:3000"
 
 export default async function FetchData(needOnlyBoardCollections) {
     progressBarMove(3, 100);

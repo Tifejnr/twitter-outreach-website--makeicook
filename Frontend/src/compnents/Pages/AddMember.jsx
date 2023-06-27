@@ -14,7 +14,7 @@ FetchData()
   }, []);
 
   const labelTitle = "Add Member"
-  const inputLabel= "Trello Name:"
+  const inputLabel= "Member Email:"
   const searchPlaceholderTitle= "Search Boards ..."
   const selectInstructionText= "Select Boards To Add Member To"
   const inputPlaceholderText= "Enter Email"
@@ -25,10 +25,8 @@ FetchData()
     <section className='main-section-cont' id='mainContentCont'>
 
       <section className='inner-main-cont' id='innerMainContentCont'>
-        <Input inputLabel={inputLabel} inputPlaceholderText={inputPlaceholderText}/>
-         <SearchBoards searchPlaceholderTitle={searchPlaceholderTitle}/>   
+        <Input inputLabel={inputLabel} inputPlaceholderText={inputPlaceholderText}/>  
 
-         <section>
           <SelectAll 
           labelTitle={labelTitle} 
           selectInstructionText={selectInstructionText} 
@@ -37,8 +35,9 @@ FetchData()
             AddToBoard()
           } }
           />
+
+          <SearchBoards searchPlaceholderTitle={searchPlaceholderTitle}/> 
          </section>    
-      </section>
       
      </section>
 
