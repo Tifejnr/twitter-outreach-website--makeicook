@@ -90,12 +90,12 @@ body {
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: 0.6px;
-  text-align: start;
-  color: #ffffff;
-  display: inline-block;
+  color: #fff;
+  text-align: center;
 }
 
 .hero-container h3 {
+  line-height: 1;
   margin: 0 auto 5.6rem;
   font-size: 2.5rem;
   font-weight: 400;
@@ -104,6 +104,11 @@ body {
   letter-spacing: 0.6px;
   color: #ffffff;
   white-space: pre-line;
+}
+
+.hero-container h1,
+.hero-container h3 {
+  margin: 2rem 26rem;
 }
 
 .oauth-button {
