@@ -1,9 +1,9 @@
 const axios = require("axios");
 const { deleteExecution } = require("./deleteExecution");
 const { getKeys } = require("../../envKeys/allKeys");
-const keysObj = getKeys();
 
 //fetching env variables
+const keysObj = getKeys();
 const key = keysObj.CLIENT_SECRET_KEY;
 const token = keysObj.ACCESS_TOKEN_SECRET;
 

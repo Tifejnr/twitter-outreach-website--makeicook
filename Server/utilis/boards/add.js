@@ -8,7 +8,6 @@ const token = keysObj.ACCESS_TOKEN_SECRET;
 async function addMemberToBoard(req, res) {
   const { boardId, email } = req.body;
   const memberAddingUrl = `https://api.trello.com/1/boards/${boardId}/members?email=${email}&key=${key}&token=${token}`;
-
   try {
     const response = await axios.put(memberAddingUrl);
 

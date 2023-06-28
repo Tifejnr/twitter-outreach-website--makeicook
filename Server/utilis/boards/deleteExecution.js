@@ -1,9 +1,10 @@
 const axios = require("axios");
-require("dotenv").config();
+const { getKeys } = require("../../envKeys/allKeys");
 
 //fetching env variables
-const key = process.env.CLIENT_SECRET_KEY;
-const token = process.env.ACCESS_TOKEN_SECRET;
+const keysObj = getKeys();
+const key = keysObj.CLIENT_SECRET_KEY;
+const token = keysObj.ACCESS_TOKEN_SECRET;
 
 async function deleteExecution(boardId, memberId) {
   const boardDeleteUrl = `
