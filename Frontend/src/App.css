@@ -81,7 +81,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 0 2rem;
+  padding: 0 1.5rem;
 }
 
 @media only screen and (min-width: 480px) {
@@ -92,13 +92,13 @@ body {
 
 @media only screen and (min-width: 960px) {
   .hero-inner-container {
-    margin: 2rem 10rem;
+    margin: 0 10rem;
   }
 }
 
 @media only screen and (min-width: 1200px) {
   .hero-inner-container {
-    margin: 2rem 26rem;
+    margin: 0 26rem;
   }
 }
 
@@ -108,6 +108,25 @@ body {
   letter-spacing: 0.6px;
   color: #fff;
   text-align: center;
+}
+
+@media only screen and (min-width: 480px) {
+  .hero-container h1 {
+    font-size: 4.8rem;
+  }
+}
+
+@media only screen and (min-width: 760px) {
+  .hero-container h1 {
+    font-weight: 700;
+  }
+}
+
+@media only screen and (min-width: 960px) {
+  .hero-container h1 {
+    font-size: 6.5rem;
+    line-height: 1.2;
+  }
 }
 
 .hero-container h3 {
@@ -121,16 +140,7 @@ body {
   margin: 0 auto 2.8rem;
 }
 
-@media only screen and (min-width: 480px) {
-  .hero-container h1 {
-    font-size: 4.8rem;
-  }
-}
-
 @media only screen and (min-width: 760px) {
-  .hero-container h1 {
-    font-weight: 700;
-  }
   .hero-container h3 {
     margin: 0 auto 4rem;
     font-size: 2rem;
@@ -140,12 +150,6 @@ body {
 }
 
 @media only screen and (min-width: 960px) {
-  .hero-container h1 {
-    margin: 0 2rem 1rem 0;
-    font-weight: 700;
-    font-size: 6.5rem;
-    line-height: 1.2;
-  }
   .hero-container h3 {
     margin: 0 auto 4rem;
     font-size: 2.4rem;
@@ -156,6 +160,8 @@ body {
 }
 
 .oauth-button {
+  height: 4.5rem;
+  width: 24rem;
   line-height: 0;
   color: #394557;
   display: flex;
@@ -166,11 +172,13 @@ body {
   box-shadow: none;
   text-decoration: none;
   transition: background-color 0.3s ease;
+  user-select: none;
+  cursor: pointer;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (min-width: 760px) {
   .oauth-button {
-    width: 24rem;
+    width: 25rem;
   }
 }
 
@@ -184,6 +192,12 @@ body {
   font-weight: 500;
   font-size: 1.6rem;
   letter-spacing: 0.6px;
+}
+
+@media screen and (min-width: 760px) {
+  .oauth-button h2 {
+    font-weight: 600;
+  }
 }
 
 .oauth-button section {
