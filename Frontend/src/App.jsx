@@ -21,6 +21,8 @@ function App() {
     <>
     <NavBarLandingPage/>
     <Hero/>
+
+    
 {/* 
  <section>
         <Routes>

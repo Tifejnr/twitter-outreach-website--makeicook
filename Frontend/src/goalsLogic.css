@@ -77,6 +77,12 @@ html {
   overflow-x: hidden;
 }
 
+body {
+  height: 100vh;
+  display: grid;
+  font-size: 1.6rem;
+}
+
 /* Logo Design Block */
 
 .logo-container {
@@ -105,9 +111,9 @@ html {
 }
 
 .logo-title {
+  margin: 0;
   position: relative;
-  text-transform: capitalize;
-  color: var(--red);
+  color: var(--deep-blue);
   font-size: 1.4rem;
   font-weight: 300;
 }
@@ -121,24 +127,6 @@ html {
     left: 4rem;
     padding-right: 3rem;
   }
-}
-
-.options {
-  background: #eee;
-  width: 100%;
-  padding: 1.5rem;
-  list-style: none;
-  cursor: pointer;
-  box-sizing: border-box;
-  position: relative;
-  transition: 0.4s;
-  border-top: 1px solid transparent;
-  border-color: #bbb transparent transparent transparent;
-}
-
-.options:hover {
-  color: #fff;
-  background: var(--deep-blue);
 }
 
 .hide {
@@ -193,13 +181,13 @@ html {
   background-color: var(--background-col);
   padding-bottom: 0.3rem;
   border-bottom: 1px solid #eef1f6;
-  height: 6.3rem;
 }
 .nav__menu li {
-  padding: 1.6rem;
+  padding: 0.6rem;
   list-style: none;
   display: none;
   font-weight: 600;
+  background-color: var(--background-col);
 }
 .nav__menu li:first-child {
   margin-right: auto;
