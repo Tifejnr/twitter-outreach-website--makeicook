@@ -16,8 +16,8 @@ export default function BelowTestimonials() {
         </a>
 
         <ul>
-            <li> No credit card needed</li>
-            <li>10 Credits every month</li>
+            <li>No credit card needed</li>
+            <li>5 free Credits to Add on 5 occasions every month</li>
             <li></li>
             <li></li>
         </ul>
