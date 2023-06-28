@@ -1,5 +1,5 @@
 import React from 'react'
-import trelloIcon from "../../../assets/trello-icon.svg"
+import trelloIcon from "../../../assets/SVGs/trello-icon.svg"
 import BelowHero from './BelowHero'
 import Testimonials from './Testimonials'
 import BelowTestimonials from './BelowTestimonials'
@@ -10,7 +10,7 @@ export default function Hero() {
 <>
     <section className='hero-container'> 
      <div className='hero-inner-container'>
-      <h1>Add Trello Member to Multiple Boards at Once</h1>
+      <h1>Add Team Member to Multiple Trello Boards at Once</h1>
       <h3>Saves time that can be utilized on more productive activities</h3>
 
         <a href={oauthUrl} className='oauth-button'>

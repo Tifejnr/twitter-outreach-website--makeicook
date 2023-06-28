@@ -1,5 +1,5 @@
 import React from 'react'
-import trelloIcon from "../../../assets/trello-icon.svg"
+import trelloIcon from "../../../assets/SVGs/trello-icon.svg"
 const oauthUrl= "https://collabfortrello.com/authorize"
 
 export default function BelowTestimonials() {
