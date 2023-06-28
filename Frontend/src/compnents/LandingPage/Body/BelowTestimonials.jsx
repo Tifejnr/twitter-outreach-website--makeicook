@@ -1,17 +1,12 @@
 import React from 'react'
 import trelloIcon from "../../../assets/trello-icon.svg"
-import BelowHero from './BelowHero'
-import Testimonials from './Testimonials'
-import BelowTestimonials from './BelowTestimonials'
 const oauthUrl= "https://collabfortrello.com/authorize"
 
-export default function Hero() {
+export default function BelowTestimonials() {
   return (
-<>
-    <section className='hero-container'> 
+    <section className='hero-container below-testimonial-cont'> 
      <div className='hero-inner-container'>
       <h1>Add Trello Member to Multiple Boards at Once</h1>
-      <h3>Saves time that can be utilized on more productive activities</h3>
 
         <a href={oauthUrl} className='oauth-button'>
           <section>
@@ -19,12 +14,14 @@ export default function Hero() {
           <h2>Get Started with Trello</h2>
           </section>
         </a>
+
+        <ul>
+            <li> No credit card needed</li>
+            <li>10 Credits every month</li>
+            <li></li>
+            <li></li>
+        </ul>
       </div>
     </section>
-
-    <BelowHero/>
-    <Testimonials/>
-    <BelowTestimonials/>
-</>
   )
 }
