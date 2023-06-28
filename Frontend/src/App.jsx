@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import './main.css'
+import './goalsLogic.css'
 import {Route, Routes} from "react-router-dom"
 import Convert from './compnents/Pages/Convert'
 import Merge from './compnents/Pages/Merge'
