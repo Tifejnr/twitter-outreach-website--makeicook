@@ -87,15 +87,15 @@ body {
 
 .logo-container {
   position: relative;
-  margin-top: 0.3rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 0.2rem;
+  margin-top: 0.4rem;
 }
+
 .logoIconsContainer {
-  font-size: 10px;
+  font-size: 7px;
   position: relative;
 }
 
@@ -104,10 +104,14 @@ body {
   height: 4em;
 }
 
-.letter-l {
+.letter-f {
   position: absolute;
-  left: 0;
-  rotate: 180deg;
+  top: -1em;
+  left: 0.18em;
+}
+.letter-t {
+  position: absolute;
+  left: 1.6em;
 }
 
 .logo-title {
@@ -129,6 +133,12 @@ body {
   }
 }
 
+@media screen and (min-width: 960px) {
+  .logo-container {
+    left: 12rem;
+  }
+}
+
 .hide {
   display: none;
 }
@@ -146,7 +156,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  height: 5rem;
+  height: 6.5rem;
   z-index: 900;
 }
 .nav__toggle {
@@ -157,7 +167,7 @@ body {
   margin-right: 2rem;
   transform: translate(0, -50%);
   top: 50%;
-  width: 2rem;
+  width: 3rem;
 }
 .nav__toggle svg {
   width: 2rem;
@@ -181,6 +191,7 @@ body {
   background-color: var(--background-col);
   padding-bottom: 0.3rem;
   border-bottom: 1px solid #eef1f6;
+  margin: 0;
 }
 .nav__menu li {
   padding: 0.6rem;
@@ -263,7 +274,6 @@ body {
 
 .mainNavIcons {
   width: 25%;
-  height: 0;
   float: right;
   margin-right: 1.5rem;
   max-width: 10rem;
@@ -353,7 +363,7 @@ body {
 }
 
 .hero-container h1 {
-  font-size: 3rem;
+  font-size: 3.2rem;
   line-height: 1.4;
   letter-spacing: 0.6px;
   color: #fff;
@@ -362,14 +372,14 @@ body {
 
 @media only screen and (min-width: 480px) {
   .hero-container h1 {
-    font-size: 4.2rem;
+    font-size: 3.8rem;
   }
 }
 
 @media only screen and (min-width: 760px) {
   .hero-container h1 {
     font-weight: 700;
-    font-size: 5rem;
+    font-size: 4.5rem;
   }
 }
 

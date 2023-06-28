@@ -1,6 +1,5 @@
-import addingStartPage from "../../../assets/adding-start-page-400x300.png"
-// import addingInProgress from "../../../assets/adding-in-progress-400x300.png"
-import addingCompleted from "../../../assets/adding-sucess-400x300.png"
+import addingStartPage from "../../../assets/Images/adding-start-page-400x300.png"
+import addingCompleted from "../../../assets/Images/adding-sucess-400x300.png"
 
 export default function BelowHero() {
   return (

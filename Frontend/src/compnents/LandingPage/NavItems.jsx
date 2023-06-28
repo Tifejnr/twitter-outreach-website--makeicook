@@ -1,21 +1,15 @@
 import React from 'react'
 import { Link, useMatch, useResolvedPath} from "react-router-dom"
+import letterC from "../../assets/SVGs/letter-c.svg"
+import letterF from "../../assets/SVGs/letter-f.svg"
+import letterT from "../../assets/SVGs/letter-t.svg"
 
 export default function NavItemsLandingPage() {
   return (
-
-    <>
+      <>
       <input type="checkbox" id="nav__checkbox" class="nav__checkbox" />
       <section class="mainNavIcons">
-        <article class="myProfileIcon">
-              <button>Try Now</button>
-          <a href="/userDashboard">
-            <picture class="cartIcon userAccountIcon" title="My Profile">
-          
-            </picture>
-          </a>
-        </article>
-
+     
         <label for="nav__checkbox" class="nav__toggle" title="Menu">
           <svg class="menu" viewBox="0 0 448 512" width="100" title="bars">
             <path
@@ -31,14 +25,17 @@ export default function NavItemsLandingPage() {
       <ul class="nav__menu">
         <li>
           <section class="logo-container">
-            {/* <section class="logoIconsContainer">
-              <picture>
-                <img src="./assets/letter-G.svg" alt="" />
+            <section class="logoIconsContainer">
+              <picture className='logo-icon'>
+                <img src={letterC} alt="" />
               </picture>
-              <picture class="letter-l">
-                <img src="./assets/letter-l.svg" alt="" />
+              <picture class="logo-icon letter-f">
+                <img src={letterF} alt="" />
               </picture>
-            </section> */}
+              <picture class="logo-icon letter-t">
+                <img src={letterT} alt="" />
+              </picture>
+            </section>
             <h2 class="logo-title">Collab for Trello</h2>
           </section>
         </li>
@@ -57,11 +54,7 @@ export default function NavItemsLandingPage() {
         </li>
 
         <li class="nav-list">
-          <a href="/userDashboard" class="userDashBoardLarge">
-            <picture class="cartIcon userAccountIcon" title="My Profile">
-              <button>Try Now</button>
-            </picture>
-          </a>
+        <button><CustomLink to="/reviews"><h3 class="reviews">Get Started</h3></CustomLink></button> 
         </li>
       </ul>
 </>
