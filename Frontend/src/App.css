@@ -228,14 +228,16 @@ body {
 .product-pic-container img {
   position: relative;
   border-radius: 0.6rem;
-  width: 33.5rem;
+  width: 90%;
   height: auto;
   border: 1px solid gray;
   border-radius: 0.6rem;
 }
 
-@media screen and (min-width: 480px) {
-  .product-pic-container img {
-    width: 40rem;
+@media screen and (min-width: 960px) {
+  .product-pic-container {
+    flex-direction: row;
+    column-gap: 5rem;
+    flex-wrap: wrap;
   }
 }

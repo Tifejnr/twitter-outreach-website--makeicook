@@ -1,6 +1,6 @@
-import addingStartPage from "../../../assets/adding-start-page.png"
-import addingInProgress from "../../../assets/adding-in-progress.png"
-import addingCompleted from "../../../assets/adding-sucess.png"
+import addingStartPage from "../../../assets/adding-start-page-400x300.png"
+import addingInProgress from "../../../assets/adding-in-progress-400x300.png"
+import addingCompleted from "../../../assets/adding-sucess-400x300.png"
 
 export default function BelowHero() {
   return (
@@ -9,11 +9,6 @@ export default function BelowHero() {
         <article>
             <h2>Adding Member Via Email</h2>
             <picture> <img src={addingStartPage} alt="Adding Member Via Email picture" /></picture>
-        </article>
-
-        <article>
-            <h2>Adding Member in Progress</h2>
-            <picture> <img src={addingInProgress} alt="Adding Member in Progress Picture" /></picture>
         </article>
 
         <article>
