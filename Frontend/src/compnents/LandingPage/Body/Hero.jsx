@@ -1,10 +1,11 @@
 import React from 'react'
 import trelloIcon from "../../../assets/trello-icon.svg"
+import BelowHero from './BelowHero'
 const oauthUrl= "https://collabfortrello.com/authorize"
 
 export default function Hero() {
   return (
-
+<>
     <section className='hero-container'> 
      <div className='hero-inner-container'>
       <h1>Add Trello Member to Multiple Boards at Once</h1>
@@ -16,7 +17,10 @@ export default function Hero() {
           <h2>Get Started with Trello</h2>
           </section>
         </a>
-        </div>
+      </div>
     </section>
+
+    <BelowHero/>
+</>
   )
 }

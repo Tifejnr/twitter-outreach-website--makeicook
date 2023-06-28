@@ -211,3 +211,31 @@ body {
   height: 3rem;
   width: 3rem;
 }
+
+/* Below Hero Block */
+.product-pic-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  row-gap: 2rem;
+}
+
+.product-pic-container h2 {
+}
+
+.product-pic-container img {
+  position: relative;
+  border-radius: 0.6rem;
+  width: 33.5rem;
+  height: auto;
+  border: 1px solid gray;
+  border-radius: 0.6rem;
+}
+
+@media screen and (min-width: 480px) {
+  .product-pic-container img {
+    width: 40rem;
+  }
+}
