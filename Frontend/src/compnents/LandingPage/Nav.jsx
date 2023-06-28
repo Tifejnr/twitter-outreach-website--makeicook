@@ -11,6 +11,7 @@ export default function NavBarLandingPage() {
       <input type="checkbox" id="nav__checkbox" class="nav__checkbox" />
       <section class="mainNavIcons">
         <article class="myProfileIcon">
+          Profile
           <a href="/userDashboard">
             <picture class="cartIcon userAccountIcon" title="My Profile">
               <img src="/images/account.svg" alt="" />
@@ -33,33 +34,33 @@ export default function NavBarLandingPage() {
       <ul class="nav__menu">
         <li>
           <section class="logo-container">
-            <section class="logoIconsContainer">
+            {/* <section class="logoIconsContainer">
               <picture>
                 <img src="./assets/letter-G.svg" alt="" />
               </picture>
               <picture class="letter-l">
                 <img src="./assets/letter-l.svg" alt="" />
               </picture>
-            </section>
-            <h2 class="logo-title">Goals Logic</h2>
+            </section> */}
+            <h2 class="logo-title">Collab for Trello</h2>
           </section>
         </li>
 
         <li class="nav-list">
-          <h3 class="makeRequest">Pricing</h3>
+          <h3 class="pricing">Pricing</h3>
         </li>
         <li class="nav-list">
-          <h3 class="rules">FAQ</h3>
+          <h3 class="faq">FAQ</h3>
         </li>
         <li class="nav-list">
-          <h3 class="faq">Reviews</h3>
+          <h3 class="reviews">Reviews</h3>
         </li>
 
         <li class="nav-list">
           <a href="/userDashboard" class="userDashBoardLarge">
-            <picture class="cartIcon userAccountIcon" title="My Profile">
+            {/* <picture class="cartIcon userAccountIcon" title="My Profile">
               <img src="/images/account.svg" alt="" />
-            </picture>
+            </picture> */}
           </a>
         </li>
       </ul>

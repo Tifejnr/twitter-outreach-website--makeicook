@@ -17,18 +17,31 @@ section {
   display: block;
 }
 
+/* === RESET.CSS === */
+* {
+  padding: 0;
+  user-select: none;
+  box-sizing: border-box;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
 /* Custom additions below: */
 
 :root {
   font-size: 62.5%;
-}
-
-a,
-a:hover,
-a:focus,
-a:active {
-  text-decoration: none;
-  color: inherit;
 }
 
 /* === STYLE.CSS === */
@@ -53,7 +66,7 @@ html {
   --dark-gray-blue: hsl(240, 6%, 50%);
   --light-gray-blue: hsl(240, 5%, 91%);
   /* violet & red */
-  --green: #14a800;
+  --deep-blue: #001b40;
   /* background */
   --background-col: #fff;
 
@@ -62,17 +75,6 @@ html {
   --z-index-secondary: 5;
   --z-index-lowest: 1;
   overflow-x: hidden;
-}
-
-body {
-  line-height: 1;
-  position: relative;
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-  background: var(--background-col);
-  row-gap: 2rem;
-  font-size: 1.6rem;
 }
 
 /* Logo Design Block */
@@ -121,14 +123,6 @@ body {
   }
 }
 
-#list {
-  width: 100%;
-  background: rgba(255, 255, 255, 0.7);
-  border-radius: 0.6rem;
-  overflow: hidden;
-  padding: 0;
-}
-
 .options {
   background: #eee;
   width: 100%;
@@ -144,7 +138,7 @@ body {
 
 .options:hover {
   color: #fff;
-  background: var(--green);
+  background: var(--deep-blue);
 }
 
 .hide {
@@ -154,7 +148,7 @@ body {
   rotate: 180deg;
 }
 
-/* New Nav Bar Design */
+/* Nav Bar Design */
 
 .nav {
   background-color: var(--background-col);
@@ -175,10 +169,11 @@ body {
   margin-right: 2rem;
   transform: translate(0, -50%);
   top: 50%;
+  width: 2rem;
 }
 .nav__toggle svg {
   width: 2rem;
-  fill: var(--green);
+  fill: var(--deep-blue);
 }
 .nav__toggle .close {
   display: none;
@@ -239,8 +234,8 @@ body {
 .nav-list:hover,
 .nav-list:focus {
   background-color: #fff;
-  color: var(--green);
-  border-color: var(--green);
+  color: var(--deep-blue);
+  border-color: var(--deep-blue);
   filter: blur(0.05rem);
   text-decoration: underline;
 }
@@ -283,7 +278,7 @@ body {
   height: 0;
   float: right;
   margin-right: 1.5rem;
-  max-width: 12rem;
+  max-width: 10rem;
 }
 
 @media only screen and (min-width: 768px) {
@@ -302,7 +297,7 @@ body {
 }
 
 /* Grey Shadow when hovered */
-.cartIcon:hover:after {
+/* .cartIcon:hover:after {
   content: "";
   width: 4.3rem;
   height: 4.3rem;
@@ -321,4 +316,4 @@ body {
 }
 .cartIcon img {
   width: 100%;
-}
+} */
