@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Testimonials() {
   return (
-    <section className='testimonials-contaner'>
+    <section className='testimonials-cont'>
 
         <h1>Loved By Users Around The World</h1>
 

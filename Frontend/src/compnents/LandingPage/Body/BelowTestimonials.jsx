@@ -7,7 +7,7 @@ export default function BelowTestimonials() {
     <section className='hero-container below-testimonial-cont'> 
      <div className='hero-inner-container'>
       <h1>Ready to try out CollabforTrello?</h1>
-      <h3>Save Stress of Navigating Multiple Trello Boards to Add Team Member with CollabforTrello</h3>
+       <h3>Eliminate manual addition of team members to multiple Trello boards</h3>
 
         <a href={oauthUrl} className='oauth-button'>
           <section>

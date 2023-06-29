@@ -508,8 +508,16 @@ body {
   text-align: center;
   row-gap: 1.5rem;
   background-color: rgba(102, 67, 255, 0.2);
+  padding-bottom: 3rem;
 }
 
+@media screen and (min-width: 960px) {
+  .product-pic-container {
+    flex-direction: row;
+    column-gap: 5rem;
+    flex-wrap: wrap;
+  }
+}
 .product-pic-container h2 {
   color: #020518;
   margin-bottom: 0;
@@ -520,25 +528,15 @@ body {
   border-radius: 0.6rem;
   width: 90%;
   max-width: 40rem;
-  height: auto;
   border: 1px solid gray;
   border-radius: 0.6rem;
 }
 
-@media screen and (min-width: 960px) {
-  .product-pic-container {
-    flex-direction: row;
-    column-gap: 5rem;
-    flex-wrap: wrap;
-  }
-}
-
 /* Testimonials Block */
 
-.testimonials-container {
+.testimonials-cont {
   margin-top: 2rem;
   text-align: center;
-  height: 80rem;
 }
 
 /* Below Testimonial Block */

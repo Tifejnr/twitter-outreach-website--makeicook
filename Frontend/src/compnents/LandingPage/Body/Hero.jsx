@@ -11,7 +11,7 @@ export default function Hero() {
     <section className='hero-container'> 
      <div className='hero-inner-container'>
       <h1>Add Team Member to Multiple Trello Boards at Once</h1>
-      <h3>Save time that can be utilized on more productive activities</h3>
+      <h3>Save time and stress of manually navigating multiple Trello Boards to add a team member to these boards one by one</h3>
 
         <a href={oauthUrl} className='oauth-button'>
           <section>
