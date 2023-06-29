@@ -334,7 +334,7 @@ body {
 
 /* Hero Component Block */
 .hero-container {
-  height: 45rem;
+  height: 50rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -443,12 +443,14 @@ body {
   text-decoration: none;
   transition: background-color 0.3s ease;
   cursor: pointer;
+  margin-top: 4rem;
   /* margin-bottom: 3rem; */
 }
 
 @media screen and (min-width: 760px) {
   .oauth-button {
     width: 25rem;
+    margin-top: 2rem;
   }
 }
 
