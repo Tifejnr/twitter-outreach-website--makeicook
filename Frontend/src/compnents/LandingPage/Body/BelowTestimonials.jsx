@@ -6,7 +6,8 @@ export default function BelowTestimonials() {
   return (
     <section className='hero-container below-testimonial-cont'> 
      <div className='hero-inner-container'>
-      <h1>Add Trello Member to Multiple Boards at Once</h1>
+      <h1>Ready to try out CollabforTrello?</h1>
+      <h3>Save Stress of Navigating Multiple Trello Boards to Add Team Member with CollabforTrello</h3>
 
         <a href={oauthUrl} className='oauth-button'>
           <section>
@@ -16,10 +17,9 @@ export default function BelowTestimonials() {
         </a>
 
         <ul>
-            <li>No credit card needed</li>
-            <li>5 free Credits to Add on 5 occasions every month</li>
-            <li></li>
-            <li></li>
+            <li> <p>No credit card required</p> </li>
+            <li><p> 5 free credits for trial</p></li>
+            
         </ul>
       </div>
     </section>

@@ -66,7 +66,7 @@ html {
   --dark-gray-blue: hsl(240, 6%, 50%);
   --light-gray-blue: hsl(240, 5%, 91%);
   /* violet & red */
-  --deep-blue: #001b40;
+  --deep-blue: #101c77;
   /* background */
   --background-col: #fff;
 
@@ -173,6 +173,7 @@ body {
   width: 2rem;
   fill: var(--deep-blue);
 }
+
 .nav__toggle .close {
   display: none;
   fill: #ff3860;
@@ -199,6 +200,8 @@ body {
   display: none;
   font-weight: 600;
   background-color: var(--background-col);
+  color: #101c77;
+  transition: 0.3s;
 }
 .nav__menu li:first-child {
   margin-right: auto;
@@ -230,10 +233,19 @@ body {
   transition: 0.3s;
 }
 
+.nav-list h3 {
+  color: var(--deep-blue);
+  transition: color linear 0.3s;
+}
+.nav-list h3:hover,
+.nav-list h3:focus {
+  color: #020518;
+}
+
 .nav-list:hover,
 .nav-list:focus {
   background-color: #fff;
-  color: var(--deep-blue);
+  color: #020518;
   border-color: var(--deep-blue);
   filter: blur(0.05rem);
   text-decoration: underline;
@@ -328,7 +340,7 @@ body {
   justify-content: center;
   align-items: center;
   color: #fff;
-  background: #01020a;
+  background: #101c77;
 }
 
 .hero-inner-container {
@@ -368,6 +380,7 @@ body {
   letter-spacing: 0.6px;
   color: #fff;
   text-align: center;
+  /* margin-top: 7rem; */
 }
 
 @media only screen and (min-width: 480px) {
@@ -402,7 +415,7 @@ body {
 @media only screen and (min-width: 760px) {
   .hero-container h3 {
     margin: 0 auto 4rem;
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 400;
   }
 }
@@ -493,16 +506,20 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  row-gap: 2rem;
+  row-gap: 1.5rem;
+  background-color: rgba(102, 67, 255, 0.2);
 }
 
 .product-pic-container h2 {
+  color: #020518;
+  margin-bottom: 0;
 }
 
 .product-pic-container img {
   position: relative;
   border-radius: 0.6rem;
   width: 90%;
+  max-width: 40rem;
   height: auto;
   border: 1px solid gray;
   border-radius: 0.6rem;
@@ -518,19 +535,25 @@ body {
 
 /* Testimonials Block */
 
-.testimonials-contaner {
+.testimonials-container {
   margin-top: 2rem;
   text-align: center;
+  height: 80rem;
 }
 
 /* Below Testimonial Block */
 
 .below-testimonial-cont {
-  background-color: purple;
-  height: 40rem;
+  background-color: rgba(48, 11, 184, 0.8);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: #fff;
+  margin-bottom: 5rem;
+}
+
+.below-testimonial-cont li p {
+  font-size: 1.6rem;
+  font-weight: 500;
 }

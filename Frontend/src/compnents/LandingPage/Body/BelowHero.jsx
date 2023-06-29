@@ -6,12 +6,12 @@ export default function BelowHero() {
     <section className='product-pic-container'>
 
         <article>
-            <h2>Adding Member Via Email</h2>
+            <h2> Start</h2>
             <picture> <img src={addingStartPage} alt="Adding Member Via Email picture" /></picture>
         </article>
 
         <article>
-            <h2>Adding Member Completion</h2>
+            <h2>End</h2>
             <picture> <img src={addingCompleted} alt="Adding Member Completed Picture" /></picture>
         </article>
 
