@@ -1,0 +1,552 @@
+/* === RESET.CSS === */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  user-select: none;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+button {
+  border: none;
+  background: none;
+  outline: none;
+}
+
+/* Custom additions below: */
+
+html {
+  /* Fonts */
+  font-size: 62.5%;
+  font-family: "Kumbh Sans", sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+  --font-size-heading: 2.2rem;
+  --font-size-summary-description: clamp(1.3rem, 1.2545rem + 0.1212vw, 1.4rem);
+  --font-size-summary-detail: 1.2rem;
+  --line-height-summary-detail: 1.8rem;
+
+  /* Colors */
+  /* blue */
+  --dark-des-blue: hsl(238, 29%, 16%);
+  --very-dark-gray-blue: hsl(237, 12%, 33%);
+  --dark-gray-blue: hsl(240, 6%, 50%);
+  --light-gray-blue: hsl(240, 5%, 91%);
+  --soft-blue: hsl(240, 73%, 65%);
+  /* violet & red */
+  --green: #14a800;
+  --violet: hsl(273, 75%, 66%);
+  /* background */
+  --background-col: #fff;
+
+  /* z-index */
+  --z-index-main: 10;
+  --z-index-secondary: 5;
+  --z-index-lowest: 1;
+  overflow-x: hidden;
+}
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100vh;
+  /* display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column; */
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #fff;
+}
+
+@media (min-width: 768px) {
+  body {
+    background-color: #f8f8f8;
+  }
+}
+
+h1,
+h2,
+h3 {
+  color: #fff;
+  text-align: center;
+  margin-bottom: 0;
+  margin-top: 1rem;
+}
+
+h1 {
+  font-size: 3rem;
+}
+h2 {
+  font-size: 2.6rem;
+}
+h3 {
+  font-size: 1.8rem;
+}
+
+/* Main Container Block */
+
+.main-container {
+  position: relative;
+  width: 90%;
+  height: 100%;
+  padding: 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 508px) {
+  .main-container {
+    padding: 1.5rem auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .main-container {
+    background-color: #fff;
+    max-width: 36rem;
+    width: 100%;
+    padding: 0 4.4rem;
+    border: 1px solid #d3d3d3;
+    border-radius: 0.4rem;
+    box-shadow: 0 0 0.5rem 0 rgba(42, 45, 48, 0.12);
+    transition: all 0.3s ease;
+    margin: 1rem auto;
+    position: relative;
+  }
+
+  .reg-container {
+    top: 8.4rem;
+    max-height: 72rem;
+  }
+  .login-container {
+    top: 8.5rem;
+    max-height: 49rem;
+  }
+  .forgot-password-container,
+  .reset-password-container,
+  .email-sent-container {
+    top: 8rem;
+  }
+
+  .forgot-password-container,
+  .email-sent-container {
+    max-height: 36rem;
+  }
+
+  .reset-password-container {
+    max-height: 39rem;
+  }
+}
+
+/* Input Form Design Block */
+
+input,
+.input-wrapper {
+  border-radius: 0.5rem;
+}
+
+.input-wrapper {
+  display: block;
+  margin-bottom: 4.5rem;
+  background-color: #fff;
+  width: 97%;
+  height: 3rem;
+  border: 0;
+  outline: 0;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 0.4rem 0.5rem;
+  font-size: 1.4rem;
+  font-weight: 300;
+  border: 1px solid gainsboro;
+  height: 100%;
+}
+
+.input-wrapper input:focus {
+  outline: none;
+  border: 0.2rem solid gray;
+}
+
+.input-wrapper.success input {
+  border-color: #09c372;
+}
+
+.input-wrapper.error input {
+  border-color: #ff3860;
+}
+
+.input-wrapper .error {
+  text-align: left;
+  color: #ff3860;
+  font-size: 1.5rem;
+  margin-top: 0.3rem;
+}
+
+/* Button Design Block */
+
+.submit-btn {
+  width: 100%;
+  border-radius: 1.8rem;
+  margin-top: 1rem;
+  border: 0;
+  padding: 1.5rem;
+  font-size: 1.8rem;
+  text-align: center;
+  justify-self: center;
+  background-color: var(--green);
+  color: #fff;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: 0.3s ease-in-out;
+}
+
+.submit-btn:hover {
+  background-color: rgb(18, 90, 9);
+}
+
+.label {
+  font-size: 1.6rem;
+  background-color: transparent;
+  text-align: left;
+  color: var(--dark-des-blue);
+}
+
+.main__title {
+  position: relative;
+  margin: 5.6rem 0 2.9rem 0;
+  top: 3rem;
+  text-transform: capitalize;
+}
+
+.main__title h2 {
+  color: var(--dark-des-blue);
+  font-weight: 600;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+}
+
+.email-sent-title h2,
+.reset-pass-title h2 {
+  text-align: left;
+}
+
+.email-sent-title h2 {
+  padding-bottom: 2rem;
+}
+
+.reset-pass-title h2 {
+  padding-bottom: 3rem;
+}
+
+@media screen and (min-width: 768px) {
+  .main__title {
+    margin: 2.9rem 0 2.9rem 0;
+    top: 0;
+  }
+
+  .main__title h2 {
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+}
+
+.work-for-rep-title {
+  margin-top: 0;
+}
+
+.policy-agreement-text {
+  color: var(--dark-des-blue);
+  text-align: left;
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-top: 0;
+  padding-bottom: 1rem;
+}
+
+.forgot-password {
+  width: 100%;
+  text-align: right;
+  font-size: 1.5rem;
+  margin-top: -0.5rem;
+  color: var(--green);
+  transition: 0.3s ease-out;
+  text-decoration: none;
+}
+
+a {
+  color: var(--green);
+  transition: 0.3s ease-out;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: rgb(15, 66, 8);
+}
+
+.prompt-message h3 {
+  color: var(--dark-des-blue);
+  font-weight: 300;
+  font-size: 1.6rem;
+  margin-top: 3rem;
+}
+/* Nav bar Block */
+
+.nav-bar {
+  position: fixed;
+  top: 0;
+  height: 6rem;
+  width: 100%;
+  transform: translate(-50%, 0);
+  left: 50%;
+  background-color: #fff;
+  z-index: 20;
+}
+.nav-bar img {
+  width: 100%;
+}
+
+/* Logo Design Block */
+
+.logo {
+  height: 4rem;
+  width: 7rem;
+  position: absolute;
+  transform: translate(-50%, 0);
+  left: 50%;
+  top: 0;
+}
+
+.logo-icon {
+  font-size: 7px;
+  height: 5em;
+  width: 5em;
+  margin-left: 1em;
+  margin-top: 1.5em;
+}
+
+.letter-f {
+  position: absolute;
+  top: -1em;
+  left: 0.18em;
+}
+.letter-r {
+  position: absolute;
+  top: -1em;
+  left: 3.6em;
+}
+
+.nav-bar .icon-title {
+  position: relative;
+  top: 3rem;
+  text-transform: capitalize;
+  color: var(--green);
+  font-size: 1.4rem;
+  font-weight: 300;
+}
+
+@media screen and (min-width: 768px) {
+  .nav-bar .icon-title {
+    top: 4rem;
+    margin-top: 0;
+  }
+}
+
+/* Footer Block */
+
+.footer {
+  position: relative;
+  display: block;
+  background-color: #fff;
+  z-index: 1;
+  width: 100%;
+  padding: 3.9rem 0 4.2rem;
+  margin: auto auto;
+  text-align: center;
+  color: #bac1c7;
+  font-size: 1.6rem;
+}
+
+@media screen and (min-width: 768px) {
+  .register-footer {
+    top: 11rem;
+  }
+  .login-footer {
+    top: 9rem;
+  }
+
+  .forgot-password-footer {
+    top: 6rem;
+  }
+  .reset-password-footer {
+    top: 6.7rem;
+  }
+
+  .email-sent-footer {
+    top: 5.3rem;
+  }
+}
+
+/* Email Sent Page Styles */
+.reset-pass-info h3 {
+  color: var(--dark-des-blue);
+  margin-top: 0;
+  font-size: 1.4rem;
+  text-align: left;
+  padding-bottom: 2rem;
+  font-weight: 300;
+}
+
+/* Password Reset Page Styles */
+.password_reset-success {
+  position: fixed;
+  background-color: var(--green);
+  color: #fff;
+  height: 5rem;
+  width: 28rem;
+  z-index: 4;
+  align-self: flex-start;
+  top: 9rem;
+  display: none;
+}
+
+.password_reset-success h3 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  text-align: center;
+  text-transform: capitalize;
+  line-height: 1.2;
+  padding: 0.3rem;
+}
+
+/* Forgot-Password Page Styles */
+
+.forgot-pass-info h3 {
+  color: var(--dark-des-blue);
+  margin-top: 0;
+  font-size: 1.4rem;
+  text-align: left;
+  padding-bottom: 2rem;
+  font-weight: 300;
+}

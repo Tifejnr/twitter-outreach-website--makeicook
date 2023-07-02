@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import './main.css'
-import './goalsLogic.css'
+import './auth.css'
 import {Route, Routes} from "react-router-dom"
 import Convert from './compnents/Pages/Convert'
 import Merge from './compnents/Pages/Merge'
@@ -13,14 +13,17 @@ import Delete from './compnents/Pages/Delete'
 import AddMember from './compnents/Pages/AddMember'
 import NavBarLandingPage from './compnents/LandingPage/Nav'
 import Hero from './compnents/LandingPage/Body/Hero'
+import SignIn from './compnents/Auth/SignIn/SignIn'
 
 
 function App() {
 
   return (
     <>
-    <NavBarLandingPage/>
-    <Hero/>
+
+    <SignIn/>
+    {/* <NavBarLandingPage/>
+    <Hero/> */}
 
     
 {/* 
