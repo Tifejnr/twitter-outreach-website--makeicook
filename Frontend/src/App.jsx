@@ -13,7 +13,7 @@ import Delete from './compnents/Pages/Delete'
 import AddMember from './compnents/Pages/AddMember'
 import NavBarLandingPage from './compnents/LandingPage/Nav'
 import Hero from './compnents/LandingPage/Body/Hero'
-import SignIn from './compnents/Auth/SignIn/SignIn'
+import Register from './compnents/Auth/Register/Register'
 
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
   return (
     <>
 
-    <SignIn/>
+    <Register/>
     {/* <NavBarLandingPage/>
     <Hero/> */}
 
