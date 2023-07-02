@@ -13,7 +13,7 @@ import Delete from './compnents/Pages/Delete'
 import AddMember from './compnents/Pages/AddMember'
 import NavBarLandingPage from './compnents/LandingPage/Nav'
 import Hero from './compnents/LandingPage/Body/Hero'
-import Register from './compnents/Auth/Register/Register'
+import Register from './compnents/Auth/Regsiter/Register'
 
 
 function App() {
