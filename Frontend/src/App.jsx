@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState,  createContext } from 'react'
 import ReactDOM from 'react-dom/client'
 import './App.css'
 import './main.css'
@@ -19,11 +19,16 @@ import SignIn from './compnents/Auth/SignIn/SignIn'
 import AuthCombo from './compnents/Auth/AuthCombo'
 import { display } from './JS functions/Utilis/EleDisplay'
 
+export const LoginStatusContext =  createContext()
+
 
 
 
 function App() {
+
+  const [loggedIn, setLoggedIn] = useState(false)
   return (
+    <LoginStatusContext.Provider value={[loggedIn, setLoggedIn]}>
     <>
    
     <AuthCombo  />
@@ -49,6 +54,7 @@ function App() {
     
  
     </>
+    </LoginStatusContext.Provider>
   )
 
 }

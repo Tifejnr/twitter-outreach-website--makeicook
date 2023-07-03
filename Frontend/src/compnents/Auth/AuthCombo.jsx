@@ -1,8 +1,9 @@
-import React from 'react'
+import React , {useContext} from 'react'
 import {Link, Navigate, Route, Routes} from "react-router-dom";
 import SignIn from './SignIn/SignIn';
 import Register from './Register/Register';
 import NavBarLandingPage from '../LandingPage/Nav';
+import { LoginStatusContext } from '../../App';
 
 export default function AuthCombo() {
   return (
@@ -16,7 +17,7 @@ function AuthRoutes () {
       <Route  path='/' element={<LandingPageLogic> <NavBarLandingPage/></LandingPageLogic>}></Route>
       <Route  path='/register' element={<RegisterPageLogic> <Register/></RegisterPageLogic>}></Route>
       <Route path='/sign-in' element={<SignInPageLogic> <SignIn/></SignInPageLogic>}></Route>
-      {/* <Route path='*' element={<WrongPageLogic> <div>Page Not Available</div></WrongPageLogic>}></Route> */}
+      <Route path='/wrong' element={<WrongPageLogic> <div>Page Not Available</div></WrongPageLogic>}></Route>
    </Routes>
   )
 }
@@ -44,7 +45,11 @@ function SignInPageLogic ({children}) {
 
 
 function LandingPageLogic ({children}) {
-  return( <>{children}</>)
+  const isLoggedIn = useContext(LoginStatusContext);
+
+  if (isLoggedIn==true) return( <>{children}</>) 
+  return (<Navigate replace to={"/wrong"}/>);
+
 }
 
 function WrongPageLogic({children}) {

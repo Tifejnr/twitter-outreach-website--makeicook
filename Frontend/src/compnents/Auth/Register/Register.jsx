@@ -1,15 +1,16 @@
-import React , {useState} from "react";
+import React , {useContext, useState, useEffect} from "react";
 import { useNavigate} from "react-router-dom";
+import { LoginStatusContext } from "../../../App";
 import { auth } from "../../../JS functions/FirebaseConfigs/firebase";
 import { createUserWithEmailAndPassword,  updateProfile } from "firebase/auth";
+
 
 
 export default function Register() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [name, setName] = useState("")
-  const [authenticated, setauthenticated] = useState(localStorage.getItem(localStorage.getItem("cft_auth")|| false));
-const navigate = useNavigate()
+const [loginStatus, setLoggedInStatus]= useContext(LoginStatusContext) ;
 
   const sendInfoToServer = async (e)=> {
     e.preventDefault();
@@ -21,12 +22,11 @@ const navigate = useNavigate()
     await updateProfile(user, {
       displayName: name
     });
-     setauthenticated(true)
-     localStorage.setItem("cft_auth", true);
+     setLoggedInStatus(true)
    }
   
 
-    console.log(user)
+    console.log(userStatus)
 
     if(user) return navigate("/")
 
