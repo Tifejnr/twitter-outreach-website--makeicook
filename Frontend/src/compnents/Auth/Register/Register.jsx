@@ -1,5 +1,5 @@
 import React , {useState} from "react";
-import { Navigate} from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import { auth } from "../../../JS functions/FirebaseConfigs/firebase";
 import { createUserWithEmailAndPassword,  updateProfile } from "firebase/auth";
 
@@ -8,7 +8,8 @@ export default function Register() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [name, setName] = useState("")
-
+  const [authenticated, setauthenticated] = useState(localStorage.getItem(localStorage.getItem("cft_auth")|| false));
+const navigate = useNavigate()
 
   const sendInfoToServer = async (e)=> {
     e.preventDefault();
@@ -16,13 +17,18 @@ export default function Register() {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password)
     const user = userCredential.user;
 
-   await updateProfile(user, {
+     if (user) {
+    await updateProfile(user, {
       displayName: name
     });
+     setauthenticated(true)
+     localStorage.setItem("cft_auth", true);
+   }
+  
 
     console.log(user)
 
-    if(user) return (<Navigate to={"/"}/>);
+    if(user) return navigate("/")
 
     } catch (error) {
       console.log(error.message)
