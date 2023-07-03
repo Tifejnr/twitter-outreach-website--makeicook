@@ -1,25 +1,30 @@
 import React , {useState} from "react";
+import { Navigate} from "react-router-dom";
 import { auth } from "../../../JS functions/FirebaseConfigs/firebase";
 import { createUserWithEmailAndPassword,  updateProfile } from "firebase/auth";
+
 
 export default function Register() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [name, setName] = useState("")
 
+
   const sendInfoToServer = async (e)=> {
     e.preventDefault();
-
     try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password)
     const user = userCredential.user;
 
-    await updateProfile(user, {
+   await updateProfile(user, {
       displayName: name
     });
 
+    console.log(user)
 
-     } catch (error) {
+    if(user) return (<Navigate to={"/"}/>);
+
+    } catch (error) {
       console.log(error.message)
     }
 

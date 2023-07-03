@@ -14,19 +14,19 @@ import Delete from './compnents/Pages/Delete'
 import AddMember from './compnents/Pages/AddMember'
 import NavBarLandingPage from './compnents/LandingPage/Nav'
 import Hero from './compnents/LandingPage/Body/Hero'
-import Register from './compnents/Auth/Regsiter/Register'
+import Register from './compnents/Auth/Register/Register'
 import SignIn from './compnents/Auth/SignIn/SignIn'
+import AuthCombo from './compnents/Auth/AuthCombo'
 import { display } from './JS functions/Utilis/EleDisplay'
 
 
 
 
 function App() {
-
   return (
     <>
    
-    <SignIn />
+    <AuthCombo  />
     {/* <NavBarLandingPage/>
     <Hero/> */}
 

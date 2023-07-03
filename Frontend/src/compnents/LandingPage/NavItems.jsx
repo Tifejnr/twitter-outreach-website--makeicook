@@ -7,54 +7,54 @@ import letterT from "../../assets/SVGs/letter-t.svg"
 export default function NavItemsLandingPage() {
   return (
       <>
-      <input type="checkbox" id="nav__checkbox" class="nav__checkbox" />
-      <section class="mainNavIcons">
+      <input type="checkbox" id="nav__checkbox" className="nav__checkbox" />
+      <section className="mainNavIcons">
      
-        <label for="nav__checkbox" class="nav__toggle" title="Menu">
-          <svg class="menu" viewBox="0 0 448 512" width="100" title="bars">
+        <label htmlFor="nav__checkbox" className="nav__toggle" title="Menu">
+          <svg className="menu" viewBox="0 0 448 512" width="100" title="bars">
             <path
               d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z" />
           </svg>
-          <svg class="close" viewBox="0 0 384 512" width="100" title="times">
+          <svg className="close" viewBox="0 0 384 512" width="100" title="times">
             <path
               d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z" />
           </svg>
         </label>
       </section>
 
-      <ul class="nav__menu">
+      <ul className="nav__menu">
         <li>
-          <section class="logo-container">
-            <section class="logoIconsContainer">
+          <section className="logo-container">
+            <section className="logoIconsContainer">
               <picture className='logo-icon'>
                 <img src={letterC} alt="" />
               </picture>
-              <picture class="logo-icon letter-f">
+              <picture className="logo-icon letter-f">
                 <img src={letterF} alt="" />
               </picture>
-              <picture class="logo-icon letter-t">
+              <picture className="logo-icon letter-t">
                 <img src={letterT} alt="" />
               </picture>
             </section>
-            <h2 class="logo-title">Collab for Trello</h2>
+            <h2 className="logo-title">Collab for Trello</h2>
           </section>
         </li>
 
-        <li class="nav-list">
-          <CustomLink to="/features"><h3 class="features">Features</h3></CustomLink>
+        <li className="nav-list">
+          <CustomLink to="/features"><h3 className="features">Features</h3></CustomLink>
         </li>
-        <li class="nav-list">
-          <CustomLink to="/pricing"><h3 class="pricing">Pricing</h3></CustomLink>
+        <li className="nav-list">
+          <CustomLink to="/pricing"><h3 className="pricing">Pricing</h3></CustomLink>
         </li>
-        <li class="nav-list">
-          <CustomLink to="/faq"><h3 class="faq">FAQ</h3></CustomLink>
+        <li className="nav-list">
+          <CustomLink to="/faq"><h3 className="faq">FAQ</h3></CustomLink>
         </li>
-        <li class="nav-list">
-            <CustomLink to="/reviews"><h3 class="reviews">Reviews</h3></CustomLink>
+        <li className="nav-list">
+            <CustomLink to="/reviews"><h3 className="reviews">Reviews</h3></CustomLink>
         </li>
 
-        <li class="nav-list">
-        <button><CustomLink to="/reviews"><h3 class="reviews">Get Started</h3></CustomLink></button> 
+        <li className="nav-list">
+        <button><CustomLink to="/reviews"><h3 className="reviews">Get Started</h3></CustomLink></button> 
         </li>
       </ul>
 </>
