@@ -45,9 +45,10 @@ function SignInPageLogic ({children}) {
 
 
 function LandingPageLogic ({children}) {
-  const isLoggedIn = useContext(LoginStatusContext);
+  const [isLoggedIn, setLoggedStatus ]= useContext(LoginStatusContext);
 
-  if (isLoggedIn==true) return( <>{children}</>) 
+  if (isLoggedIn) return( <>{children}</>) 
+
   return (<Navigate replace to={"/wrong"}/>);
 
 }

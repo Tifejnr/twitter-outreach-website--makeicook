@@ -10,6 +10,7 @@ export default function Register() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [name, setName] = useState("")
+  const navigate = useNavigate();
 const [loginStatus, setLoggedInStatus]= useContext(LoginStatusContext) ;
 
   const sendInfoToServer = async (e)=> {
@@ -18,17 +19,14 @@ const [loginStatus, setLoggedInStatus]= useContext(LoginStatusContext) ;
     const userCredential = await createUserWithEmailAndPassword(auth, email, password)
     const user = userCredential.user;
 
-     if (user) {
+    if (!user) return console.log("user does not exist")
+
     await updateProfile(user, {
       displayName: name
     });
+
      setLoggedInStatus(true)
-   }
-  
-
-    console.log(userStatus)
-
-    if(user) return navigate("/")
+     navigate('/');
 
     } catch (error) {
       console.log(error.message)
