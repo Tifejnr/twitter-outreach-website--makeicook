@@ -1,8 +1,9 @@
 import { useState } from 'react'
+import ReactDOM from 'react-dom/client'
 import './App.css'
 import './main.css'
 import './auth.css'
-import {Route, Routes} from "react-router-dom"
+import {Link, Navigate, Route, Routes} from "react-router-dom"
 import Convert from './compnents/Pages/Convert'
 import Merge from './compnents/Pages/Merge'
 import Split from './compnents/Pages/Split'
@@ -14,14 +15,18 @@ import AddMember from './compnents/Pages/AddMember'
 import NavBarLandingPage from './compnents/LandingPage/Nav'
 import Hero from './compnents/LandingPage/Body/Hero'
 import Register from './compnents/Auth/Regsiter/Register'
+import SignIn from './compnents/Auth/SignIn/SignIn'
+import { display } from './JS functions/Utilis/EleDisplay'
+
+
 
 
 function App() {
 
   return (
     <>
-
-    <Register/>
+   
+    <SignIn />
     {/* <NavBarLandingPage/>
     <Hero/> */}
 
@@ -41,9 +46,12 @@ function App() {
     <p id='para'></p>
     <section> 
     </section>  */}
+    
+ 
     </>
   )
- 
+
 }
+
 
 export default App
