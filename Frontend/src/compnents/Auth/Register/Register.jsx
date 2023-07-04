@@ -1,4 +1,4 @@
-import React , {useContext, useState, useEffect} from "react";
+import React , {useContext, useState} from "react";
 import { useNavigate} from "react-router-dom";
 import { LoginStatusContext } from "../../../App";
 import { auth } from "../../../JS functions/FirebaseConfigs/firebase";
@@ -11,7 +11,7 @@ export default function Register() {
   const [password, setPassword] = useState("")
   const [name, setName] = useState("")
   const navigate = useNavigate();
-const [loginStatus, setLoggedInStatus]= useContext(LoginStatusContext) ;
+  const [loginStatus, setLoggedInStatus]= useContext(LoginStatusContext) ;
 
   const sendInfoToServer = async (e)=> {
     e.preventDefault();
