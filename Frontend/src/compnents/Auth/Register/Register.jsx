@@ -2,8 +2,10 @@ import React , {useContext, useState} from "react";
 import { useNavigate} from "react-router-dom";
 import { LoginStatusContext } from "../../../App";
 import { auth } from "../../../JS functions/FirebaseConfigs/firebase";
+import {getDoc, collection, addDoc, setDoc, deleteDoc, doc, updateDoc} from "firebase/firestore"
+import { db } from "../../../JS functions/FirebaseConfigs/firebase";
 import { createUserWithEmailAndPassword,  updateProfile } from "firebase/auth";
-
+const collectionName= "Users"
 
 
 export default function Register() {
@@ -25,15 +27,44 @@ export default function Register() {
       displayName: name
     });
 
+//Add properties to user data inside firestore cloud
+    const propsToAdd = {
+      isPaid: false,
+      credits: 5,
+      trello_token: "NA"
+    }
+
+  const userDocRef = doc(db, collectionName, user.uid)
+  await setDoc(userDocRef, propsToAdd)
+    console.log(user.uid)
      setLoggedInStatus(true)
      navigate('/');
+
 
     } catch (error) {
       console.log(error.message)
     }
 
-
   }
+
+//   getCreditsFromStore()
+// async function getCreditsFromStore () {
+//   const userDocRef = doc(db, collectionName, "SPJFwF26bcfRbzvXlgMocWmNnfg2");
+
+// try {
+//   const userSnapshot = await getDoc(userDocRef);
+//   if (userSnapshot.exists()) {
+//     const userData = userSnapshot.data();
+//     const credits = userData.credits;
+//     console.log('Number of credits:', credits);
+//   } else {
+//     console.log('User document does not exist');
+//   }
+// } catch (error) {
+//   console.error('Error retrieving document:', error);
+// }
+
+// }
   return (
    <section>
     <form action="" onSubmit={sendInfoToServer}>
@@ -63,3 +94,5 @@ export default function Register() {
    </section>
   );
 }
+
+

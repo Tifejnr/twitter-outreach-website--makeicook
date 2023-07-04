@@ -2,7 +2,7 @@ const session = require("express-session");
 const OAuth = require("oauth").OAuth;
 const url = require("url");
 const { getKeys } = require("../../envKeys/allKeys");
-require("dotenv").config();
+const { upadteUserData } = require("../firbase-functions/update-user-info");
 
 // OAuth Setup and Functions
 const requestURL = "https://trello.com/1/OAuthGetRequestToken";
@@ -57,23 +57,25 @@ async function callback(req, response) {
         accessToken,
         accessTokenSecret,
         function (error, data, response2) {
-          if (error) {
-            console.log(error);
-            response.send(error);
-          } else {
-            console.log("data Gotten");
-            response.cookie("acesT", accessToken, {
-              maxAge: 1209600000,
-              httpOnly: true,
-              secure: true,
-            });
-            response.cookie("aceseTS", accessTokenSecret, {
-              maxAge: 1209600000,
-              httpOnly: true,
-              secure: true,
-            });
-            response.redirect("/");
-          }
+          if (error) return console.log(error);
+
+          const updateToken = {
+            trello_token: accessToken,
+          };
+          upadteUserData(userUid, updateToken);
+
+          console.log("data Gotten");
+          response.cookie("acesT", accessToken, {
+            maxAge: 1209600000,
+            httpOnly: true,
+            secure: true,
+          });
+          response.cookie("aceseTS", accessTokenSecret, {
+            maxAge: 1209600000,
+            httpOnly: true,
+            secure: true,
+          });
+          response.redirect("/");
         }
       );
     }
