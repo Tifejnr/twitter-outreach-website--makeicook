@@ -2,6 +2,7 @@ const session = require("express-session");
 const OAuth = require("oauth").OAuth;
 const url = require("url");
 const { getKeys } = require("../../envKeys/allKeys");
+const { signJwt } = require("../../JWT/sign-jwt");
 const { upadteUserData } = require("../firbase-functions/update-user-info");
 
 // OAuth Setup and Functions
@@ -56,13 +57,13 @@ async function callback(req, response) {
         "GET",
         accessToken,
         accessTokenSecret,
-        function (error, data, response2) {
+        async function (error, data, response2) {
           if (error) return console.log(error);
 
           const updateToken = {
             trello_token: accessToken,
           };
-          upadteUserData(userUid, updateToken);
+          await upadteUserData(userUid, updateToken);
 
           console.log("data Gotten");
           response.cookie("acesT", accessToken, {
