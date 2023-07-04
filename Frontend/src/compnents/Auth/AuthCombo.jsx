@@ -31,16 +31,12 @@ const userTypes = {
 
 const currentUser= true;
 function RegisterPageLogic ({children}) {
-  if (currentUser=== userTypes.paid) return(<> {children} </>) 
-  return (<Navigate to={"/"}/>);
+ return(<> {children} </>) 
 
 }
 
 function SignInPageLogic ({children}) {
-  console.log(currentUser)
-  if (currentUser== userTypes.guest) return(<> {children} </>)
-
-   return (<Navigate to={"/"}/>);
+ return(<> {children} </>) 
 }
 
 

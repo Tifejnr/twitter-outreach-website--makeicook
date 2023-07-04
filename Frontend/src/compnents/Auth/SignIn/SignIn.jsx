@@ -1,18 +1,24 @@
-import React , {useState} from "react";
+import React , {useState, useContext} from "react";
+import { useNavigate} from "react-router-dom";
+import { LoginStatusContext } from "../../../App";
 import { auth } from "../../../JS functions/FirebaseConfigs/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 export default function SignIn() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [loginStatus, setLoggedInStatus]= useContext(LoginStatusContext);
+  const navigate = useNavigate();
 
   const sendInfoToServer = async (e)=> {
     e.preventDefault();
 
     try {
     const useCredential = await signInWithEmailAndPassword(auth, email, password)
-
-    console.log(useCredential)
+    if (useCredential) return (
+    setLoggedInStatus(true),
+     navigate('/')
+    )   
 
         } catch (error) {
       console.log(error.message)
