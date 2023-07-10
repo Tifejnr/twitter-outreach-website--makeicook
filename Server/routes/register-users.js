@@ -18,7 +18,7 @@ router.post("/", async (req, res) => {
     let accountUser = await user.findOne({ email: req.body.email });
     if (accountUser)
       return res
-        .status(400)
+        .status(409)
         .json({ alreadyRegistered: "User already registered" });
     accountUser = new user(_.pick(req.body, ["email", "password"]));
 
@@ -29,7 +29,6 @@ router.post("/", async (req, res) => {
 
     const token = await signJwt(accountUser);
 
-    console.log(token);
     res
       .cookie("cftRegT", token, {
         maxAge: 1209600000,
@@ -37,6 +36,8 @@ router.post("/", async (req, res) => {
         secure: true,
       })
       .json({ registered: true });
+
+    console.log("registered");
   } catch (error) {
     console.log(error);
     res.json({ error });

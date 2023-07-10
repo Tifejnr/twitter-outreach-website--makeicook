@@ -33,7 +33,7 @@ if(validateInputs(paramsObj)) {
   }
  const regUser = await registerUser(regParam)
 
- if (regParam) return ( setLoggedInStatus(true),navigate('/'))
+ if (regUser ) return ( setLoggedInStatus(true),navigate('/'))
 }
 
 //Add properties to user data inside firestore cloud
@@ -73,7 +73,7 @@ if(validateInputs(paramsObj)) {
         <input type="password" placeholder="Minimum of 6 characters" id="passwordId" value={password} 
                  onChange={(e)=> setPassword(e.target.value)} 
         />
-        <p className="error"></p>
+        <p className="error" id="regErrorDisplay"></p>
       </fieldset>
 
       <button type="submit">Register</button>
