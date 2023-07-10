@@ -1,9 +1,9 @@
 const jwt = require("jsonwebtoken");
-const { getSecretKeys } = require("../envKeys/allKeys");
-const keysObject = getSecretKeys();
+const { getKeys } = require("../envKeys/allKeys");
+const keysObject = getKeys();
 const JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
 
-export default async function signJwt(accountUser) {
+async function signJwt(accountUser) {
   try {
     const jwtSigned = jwt.sign(
       { _id: accountUser._id, isPaid: accountUser.isPaid },
@@ -15,3 +15,5 @@ export default async function signJwt(accountUser) {
     return console.log(error);
   }
 }
+
+exports.signJwt = signJwt;

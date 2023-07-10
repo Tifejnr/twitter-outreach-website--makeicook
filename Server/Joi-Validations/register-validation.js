@@ -1,3 +1,5 @@
+const Joi = require("joi");
+
 function validateRegsiterParams(reqBody) {
   const schema = Joi.object({
     email: Joi.string().min(3).max(250).required().email(),

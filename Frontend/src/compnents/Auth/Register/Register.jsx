@@ -2,14 +2,15 @@ import React , {useContext, useState} from "react";
 import { useNavigate} from "react-router-dom";
 import { LoginStatusContext } from "../../../App";
 import validateInputs from "../../../JS functions/inputs-validations/overall-val-func";
+import registerUser from "../../../JS functions/Auth/register";
 
 
 
 export default function Register() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [loginStatus, setLoggedInStatus]= useContext(LoginStatusContext) ;
   const navigate = useNavigate();
-
 
 
   const sendInfoToServer = async (e)=> {
@@ -25,7 +26,15 @@ export default function Register() {
     passwordId
     }
 
-if(validateInputs(paramsObj)) return console.log("Yooooh")
+if(validateInputs(paramsObj)) {
+  const regParam = {
+    email,
+    password
+  }
+ const regUser = await registerUser(regParam)
+
+ if (regParam) return ( setLoggedInStatus(true),navigate('/'))
+}
 
 //Add properties to user data inside firestore cloud
   //   const propsToAdd = {
@@ -37,8 +46,8 @@ if(validateInputs(paramsObj)) return console.log("Yooooh")
   // const userDocRef = doc(db, collectionName, user.uid)
   // await setDoc(userDocRef, propsToAdd)
   //   console.log(user.uid)
-  //    setLoggedInStatus(true)
-  //    navigate('/');
+    //  setLoggedInStatus(true)
+    //  navigate('/');
 
 
     } catch (error) {

@@ -4,7 +4,6 @@ const Joi = require("joi");
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
     minlength: 4,
     maxlength: 40,
   },
