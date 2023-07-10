@@ -1,5 +1,4 @@
-function validatePassword() {
-  const password = passwordId.value.trim();
+export default function validatePassword(password, passwordId) {
   if (password === "") {
     setError(passwordId, "Password is required");
     return false;

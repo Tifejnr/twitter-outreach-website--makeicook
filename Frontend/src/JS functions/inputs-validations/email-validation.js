@@ -4,19 +4,7 @@ const isValidEmailId = (email) => {
   return re.test(String(email).toLowerCase());
 };
 
-const validateInputs = () => {
-  validatEmailId();
-  validatePassword();
-  if (validatePassword() && validatEmailId()) {
-    return true;
-  } else {
-    return false;
-  }
-};
-
-function validatEmailId() {
-  const email = emailId.value;
-  console.log(email);
+export default function validatEmailId(email, emailId) {
   if (email === "") {
     setError(emailId, "Email is required");
     return false;
