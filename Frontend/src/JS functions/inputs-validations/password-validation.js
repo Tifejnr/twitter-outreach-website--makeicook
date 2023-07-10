@@ -1,3 +1,6 @@
+import setSuccess from "./set-success-noti";
+import setError from "./set-error-noti";
+
 export default function validatePassword(password, passwordId) {
   if (password === "") {
     setError(passwordId, "Password is required");

@@ -1,8 +1,7 @@
-export default function setSuccess(element) {
-  const inputControl = element.parentElement;
-  const errorDisplay = inputControl.querySelector(".error");
+const successColor = "#09c372";
 
+export default function setSuccess(element) {
+  const errorDisplay = inputControl.querySelector(".error");
   errorDisplay.innerText = "";
-  inputControl.classList.add("success");
-  inputControl.classList.remove("error");
+  element.style.borderColor = successColor;
 }

@@ -270,7 +270,7 @@ input,
   background-color: #fff;
   width: 97%;
   height: 3rem;
-  border: 0;
+  border: 1px solid transparent;
   outline: 0;
 }
 
@@ -286,14 +286,6 @@ input,
 .input-wrapper input:focus {
   outline: none;
   border: 0.2rem solid gray;
-}
-
-.input-wrapper.success input {
-  border-color: #09c372;
-}
-
-.input-wrapper.error input {
-  border-color: #ff3860;
 }
 
 .input-wrapper .error {

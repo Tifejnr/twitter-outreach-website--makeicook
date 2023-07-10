@@ -26,7 +26,7 @@ export const LoginStatusContext =  createContext()
 
 function App() {
 
-  const [loggedIn, setLoggedIn] = useState(false)
+  const [loggedIn, setLoggedIn] = useState(true)
   return (
     <LoginStatusContext.Provider value={[loggedIn, setLoggedIn]}>
     <>
