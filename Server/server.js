@@ -13,12 +13,14 @@ const { callback } = require("./utilis/oauth/oauth-and-callback");
 const { deleteMemberFromBoard } = require("./utilis/boards/delete");
 const { getKeys } = require("./envKeys/allKeys");
 require("dotenv").config();
-
 require("./startup/prod")(app);
+
+//Importing api routes
+const registerUser = require("./routes/register-users");
 
 app.use(cors());
 app.use(express.json());
-
+app.use("/api/register-user", registerUser);
 app.use(
   express.static(
     path.join(__dirname, "../../Trello-Project-React/Frontend/dist")
