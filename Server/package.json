@@ -23,6 +23,7 @@
 		"install": "^0.13.0",
 		"ioredis": "^5.1.0",
 		"jsonwebtoken": "^9.0.0",
+		"mongoose": "^7.3.2",
 		"node-fetch": "^2.6.7",
 		"npm": "^8.14.0",
 		"oauth": "^0.9.15",

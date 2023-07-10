@@ -3,6 +3,7 @@ import { useNavigate} from "react-router-dom";
 import { LoginStatusContext } from "../../../App";
 import { auth } from "../../../JS functions/FirebaseConfigs/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import uidToServer from "../../../JS functions/uid-to-server/UidToServer";
 
 export default function SignIn() {
   const [email, setEmail] = useState("")
@@ -15,10 +16,12 @@ export default function SignIn() {
 
     try {
     const useCredential = await signInWithEmailAndPassword(auth, email, password)
-    if (useCredential) return (
-    setLoggedInStatus(true),
+    if (useCredential)  {
+    const user = useCredential.user;
+    console.log(user.uid)
+    setLoggedInStatus(true);
      navigate('/')
-    )   
+    } 
 
         } catch (error) {
       console.log(error.message)

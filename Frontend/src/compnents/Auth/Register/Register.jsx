@@ -5,6 +5,7 @@ import { auth } from "../../../JS functions/FirebaseConfigs/firebase";
 import {getDoc, collection, addDoc, setDoc, deleteDoc, doc, updateDoc} from "firebase/firestore"
 import { db } from "../../../JS functions/FirebaseConfigs/firebase";
 import { createUserWithEmailAndPassword,  updateProfile } from "firebase/auth";
+import uidToServer from "../../../JS functions/uid-to-server/UidToServer";
 const collectionName= "Users"
 
 

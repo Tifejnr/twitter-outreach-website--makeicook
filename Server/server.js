@@ -1,4 +1,5 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
 const ejs = require("ejs");
@@ -10,7 +11,10 @@ const { fetchAllBoards } = require("./utilis/boards/fetchBoards");
 const { login } = require("./utilis/oauth/oauth-and-callback");
 const { callback } = require("./utilis/oauth/oauth-and-callback");
 const { deleteMemberFromBoard } = require("./utilis/boards/delete");
+const { getKeys } = require("./envKeys/allKeys");
 require("dotenv").config();
+
+require("./startup/prod")(app);
 
 app.use(cors());
 app.use(express.json());
@@ -20,6 +24,15 @@ app.use(
     path.join(__dirname, "../../Trello-Project-React/Frontend/dist")
   )
 );
+
+const keysObjects = getKeys();
+const mongoDB_string = keysObjects.mongoDB_string;
+mongoose
+  .connect(mongoDB_string)
+  .then(() => {
+    console.log("connected to mong db");
+  })
+  .catch((err) => console.error("could not connect", err));
 
 app.get("/", function (req, res) {
   res.sendFile(
