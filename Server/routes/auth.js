@@ -8,20 +8,12 @@ const Joi = require("joi");
 const jwt = require("jsonwebtoken");
 const coookieParser = require("cookie-parser");
 const { getSecretKeys } = require("/root/Wfr-Digital-Ocean/envVariables");
-
-function validate(req) {
-  const schema = Joi.object({
-    email: Joi.string().min(3).max(250).required().email(),
-    password: Joi.string().min(3).max(250).required(),
-  });
-
-  return schema.validate(req);
-}
+const { validateSignInParams } = require("../Joi-Validations/SignIn");
 
 router.post("/", async (req, res) => {
   const keysObject = getSecretKeys();
   const JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
-  const { error } = validate(req.body);
+  const { error } = validateSignInParams(req.body);
   if (error)
     return res.status(400).json({ emailError: error.details[0].message });
 
