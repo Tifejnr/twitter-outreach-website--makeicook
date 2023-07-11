@@ -1,9 +1,9 @@
 import Cookies from "js-cookie";
 
-export default async function getCookie() {
+export default function getCookie() {
   try {
     const jwtToken = Cookies.get("cftAuth");
-    if (!jwtToken) return "";
+    if (!jwtToken) return false;
 
     return jwtToken;
   } catch (error) {

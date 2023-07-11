@@ -233,6 +233,12 @@ body {
   transition: 0.3s;
 }
 
+.nav-list a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .nav-list h3 {
   color: var(--deep-blue);
   transition: color linear 0.3s;
