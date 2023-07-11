@@ -1,15 +1,13 @@
-import React , {useContext} from 'react'
-import { Link, useMatch, useResolvedPath,Navigate, Route, Routes} from "react-router-dom"
+import React from 'react'
 import letterC from "../../assets/SVGs/letter-c.svg"
 import letterF from "../../assets/SVGs/letter-f.svg"
 import letterT from "../../assets/SVGs/letter-t.svg"
 import NavItemsLandingPage from './NavItems'
-import AuthCombo from '../Auth/AuthCombo'
 import HomePageNavItems from '../Navbar/HomePageNavItems'
 import getCookie from '../../JS functions/Auth/cookie-handling/get-cookie'
 
 
-export default function NavBarLandingPage() {
+export default function MainNav() {
 
   const isLoggedIn= getCookie();
 
@@ -47,8 +45,7 @@ export default function NavBarLandingPage() {
             <h2 className="logo-title">Collab for Trello</h2>
           </section>
         </li>
-        {isLoggedIn?<NavItemsLandingPage/>:<HomePageNavItems/>} 
-      
+        {isLoggedIn?<HomePageNavItems/>:<NavItemsLandingPage/>}     
       </ul>
    </nav>  
   )

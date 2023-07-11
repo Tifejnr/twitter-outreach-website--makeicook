@@ -41,7 +41,6 @@ if(validateInputs(paramsObj)) {
     } catch (error) {
       console.log(error.message)
     }
-
   }
 
   return (

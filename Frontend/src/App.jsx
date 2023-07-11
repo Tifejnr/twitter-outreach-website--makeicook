@@ -4,20 +4,10 @@ import './App.css'
 import './main.css'
 import './auth.css'
 import {Link, Navigate, Route, Routes} from "react-router-dom"
-import Convert from './compnents/Pages/Convert'
-import Merge from './compnents/Pages/Merge'
-import Split from './compnents/Pages/Split'
-import Home from './compnents/Pages/Home'
-import AllPdf from './compnents/Pages/AllPdf'
-import NavContainer from './compnents/Navbar/HomePageNavItems'
-import Delete from './compnents/Pages/Delete'
-import AddMember from './compnents/Pages/AddMember'
-import NavBarLandingPage from './compnents/LandingPage/Nav'
+import MainNav from './compnents/LandingPage/MainNav'
 import Hero from './compnents/LandingPage/Body/Hero'
 import Register from './compnents/Auth/Register/Register'
 import SignIn from './compnents/Auth/SignIn/SignIn'
-import AuthCombo from './compnents/Auth/AuthCombo'
-import { display } from './JS functions/Utilis/EleDisplay'
 
 export const LoginStatusContext =  createContext()
 
@@ -27,29 +17,16 @@ function App() {
   return (
     <LoginStatusContext.Provider value={[loggedIn, setLoggedIn]}>
     <>
-   
-    <AuthCombo  />
+    {/* <AuthCombo  /> */}
     {/* <NavBarLandingPage/>
     <Hero/> */}
 
-    
-
- <section>
-        <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/add-member' element={<AddMember/>}/>
-        <Route path='/Convert' element={<Convert/>}/>
-        <Route path='/Merge' element={<Merge/>}/>
-        <Route path='/Split' element={<Split/>}/>
-        <Route path='/AllPdf' element={<AllPdf/>}/>
-        <Route path='/delete-member' element={<Delete/>}/>
+      <Routes>
+        <Route path='/' element={<MainNav/>}/>
+        <Route path='/sign-in' element={<SignIn/>}/>
+        <Route path='/register' element={<Register/>}/>
       </Routes>
-    </section>
-    <p id='para'></p>
-    <section> 
-    </section> 
-    
- 
+
     </>
     </LoginStatusContext.Provider>
   )
