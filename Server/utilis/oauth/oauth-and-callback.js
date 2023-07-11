@@ -63,17 +63,12 @@ async function callback(req, response) {
         async function (error, data, response2) {
           if (error) return console.log(error);
           const accountUser = await user.findById(req.user._id);
-          accountUser.trello_token = accessToken;
+          const salt = await bycrypt.genSalt(11);
+          accountUser.trello_token = await bycrypt.hash(accessToken, salt);
           console.log(accountUser);
           console.log("data Gotten");
 
-          response
-            .cookie("cftacesT", accessToken, {
-              maxAge: 1209600000,
-              //   httpOnly: true,
-              //   secure: true,
-            })
-            .redirect(redirectUrl);
+          response.redirect(redirectUrl);
         }
       );
     }
