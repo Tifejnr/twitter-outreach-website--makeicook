@@ -1,4 +1,7 @@
 const axios = require("axios");
+const {
+  getDecryptedToken,
+} = require("../../middlewares/token-safety/get-decrypted-token");
 const { getKeys } = require("../../envKeys/allKeys");
 const keysObj = getKeys();
 
@@ -7,6 +10,7 @@ const key = keysObj.CLIENT_SECRET_KEY;
 const token = keysObj.ACCESS_TOKEN_SECRET;
 
 async function fetchAllBoards(req, res) {
+  const token = await getDecryptedToken(userDetails);
   const boardsFetchingUrl = `https://api.trello.com/1/members/me/boards?key=${key}&token=${token}`;
 
   try {

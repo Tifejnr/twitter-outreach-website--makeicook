@@ -1,12 +1,17 @@
 const { getKeys } = require("../../envKeys/allKeys");
+const {
+  getDecryptedToken,
+} = require("../../middlewares/token-safety/get-decrypted-token");
 const axios = require("axios");
 
 const keysObj = getKeys();
 const key = keysObj.CLIENT_SECRET_KEY;
-const token = keysObj.ACCESS_TOKEN_SECRET;
+// const token = keysObj.ACCESS_TOKEN_SECRET;
 
 async function addMemberToBoard(req, res) {
   const { boardId, email } = req.body;
+
+  const token = await getDecryptedToken(userDetails);
   const memberAddingUrl = `https://api.trello.com/1/boards/${boardId}/members?email=${email}&key=${key}&token=${token}`;
   try {
     const response = await axios.put(memberAddingUrl);

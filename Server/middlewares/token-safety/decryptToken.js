@@ -1,11 +1,20 @@
 const CryptoJS = require("crypto-js");
-// Encrypt
+const { getKeys } = require("../../envKeys/allKeys");
+const keysObject = getKeys();
+const CRYPTO_SECRET_KEY = keysObject.CRYPTO_SECRET_KEY;
 
-export default function encryptToken() {
-  const encrytptedText = CryptoJS.AES.encrypt(
-    JSON.stringify(data),
-    "secret key 123"
-  ).toString();
+async function decryptToken(encryptedToken) {
+  try {
+    const bytes = CryptoJS.AES.decrypt(encryptedToken, CRYPTO_SECRET_KEY);
+    const decryptedToken = bytes.toString(CryptoJS.enc.Utf8);
 
-  return encrytptedText;
+    console.log(decryptedToken); // 'my message'
+
+    return decryptedToken;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
 }
+
+exports.decryptToken = decryptToken;

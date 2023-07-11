@@ -3,8 +3,7 @@ const OAuth = require("oauth").OAuth;
 const url = require("url");
 const { user } = require("../../models/users");
 const { getKeys } = require("../../envKeys/allKeys");
-const cookie = require("cookie");
-// const { upadteUserData } = require("../firbase-functions/update-user-info");
+const { encryptToken } = require("../../middlewares/token-safety/encryptToken");
 
 // OAuth Setup and Functions
 const requestURL = "https://trello.com/1/OAuthGetRequestToken";
@@ -44,7 +43,6 @@ function login(req, res) {
 }
 
 async function callback(req, response) {
-  console.log("Hahhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
   const query = url.parse(req.url, true).query;
   const token = query.oauth_token;
   const tokenSecret = oauth_secrets[token];
@@ -63,8 +61,7 @@ async function callback(req, response) {
         async function (error, data, response2) {
           if (error) return console.log(error);
           const accountUser = await user.findById(req.user._id);
-          const salt = await bycrypt.genSalt(11);
-          accountUser.trello_token = await bycrypt.hash(accessToken, salt);
+          accountUser.trello_token = await encryptToken(accessToken);
           console.log(accountUser);
           console.log("data Gotten");
 
