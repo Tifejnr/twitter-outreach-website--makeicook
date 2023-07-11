@@ -1,8 +1,12 @@
-import React from 'react'
-import { Link, useMatch, useResolvedPath} from "react-router-dom"
+import React , {useContext} from 'react'
+import { Link, useMatch, useResolvedPath,Navigate, Route, Routes} from "react-router-dom"
 import letterC from "../../assets/SVGs/letter-c.svg"
 import letterF from "../../assets/SVGs/letter-f.svg"
 import letterT from "../../assets/SVGs/letter-t.svg"
+import getCookie from '../../JS functions/Auth/cookie-handling/get-cookie'
+import AddMember from '../Pages/AddMember'
+import Delete from '../Pages/Delete'
+
 
 export default function NavItemsLandingPage() {
   return (
@@ -41,20 +45,20 @@ export default function NavItemsLandingPage() {
         </li>
 
         <li className="nav-list">
-          <CustomLink to="/features"><h3 className="features">Features</h3></CustomLink>
+         <h3 className="features">Features</h3>
         </li>
         <li className="nav-list">
-          <CustomLink to="/pricing"><h3 className="pricing">Pricing</h3></CustomLink>
+          <h3 className="pricing">Pricing</h3>
         </li>
         <li className="nav-list">
-          <CustomLink to="/faq"><h3 className="faq">FAQ</h3></CustomLink>
+         <h3 className="faq">FAQ</h3>
         </li>
         <li className="nav-list">
-            <CustomLink to="/reviews"><h3 className="reviews">Reviews</h3></CustomLink>
+            <h3 className="reviews">Reviews</h3>
         </li>
 
         <li className="nav-list">
-        <button><CustomLink to="/reviews"><h3 className="reviews">Get Started</h3></CustomLink></button> 
+        <h3 className="reviews">Get Started</h3> 
         </li>
       </ul>
 </>
@@ -76,6 +80,43 @@ const CustomLink= ({to, children, ...props}) => {
 
   </li>
  )
+}
+
+
+
+function NavMenuControllers () {
+  return (
+     <Routes>
+      <Route  path='/' element={<LandingPageLogic> <NavBarLandingPage/></LandingPageLogic>}></Route>
+      <Route  path='/register' element={<RegisterPageLogic> <Register/></RegisterPageLogic>}></Route>
+      <Route path='/sign-in' element={<SignInPageLogic> <SignIn/></SignInPageLogic>}></Route>
+      <Route path='/wrong' element={<WrongPageLogic> <div>Page Not Available</div></WrongPageLogic>}></Route>
+   </Routes>
+  )
+}
+
+
+function RegisterPageLogic ({children}) {
+ return(<> {children} </>) 
+
+}
+
+function SignInPageLogic ({children}) {
+ return(<> {children} </>) 
+}
+
+
+function LandingPageLogic ({children}) {
+  const [isLoggedIn, setLoggedStatus ]= useContext(LoginStatusContext);
+
+  if (isLoggedIn) return( <>{children}</>) 
+
+  return (<Navigate replace to={"/wrong"}/>);
+
+}
+
+function WrongPageLogic({children}) {
+  return( <>{children}</>)
 }
 
 

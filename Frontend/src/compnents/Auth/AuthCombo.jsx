@@ -22,14 +22,7 @@ function AuthRoutes () {
   )
 }
 
-const userTypes = {
-  public: true,
-  loggedIn : true,
-  guest : "guest",
-  paid : true
-}
 
-const currentUser= true;
 function RegisterPageLogic ({children}) {
  return(<> {children} </>) 
 

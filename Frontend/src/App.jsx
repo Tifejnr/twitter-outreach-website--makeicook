@@ -22,8 +22,6 @@ import { display } from './JS functions/Utilis/EleDisplay'
 export const LoginStatusContext =  createContext()
 
 
-
-
 function App() {
   const [loggedIn, setLoggedIn] = useState(true)
   return (
