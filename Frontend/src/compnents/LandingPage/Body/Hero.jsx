@@ -16,9 +16,9 @@ export default function Hero() {
       <h1>Add Team Member to Multiple Trello Boards at Once</h1>
       <h3>Save time and stress of manually navigating multiple Trello Boards, to add a team member to these boards</h3>
 
-        <a href={oauthUrl} onClick={async (e)=> {
+        <a onClick={async (e)=> {
           e.preventDefault()
-         await  trelloAuthRedirect()
+         await  trelloAuthRedirect();
         }} 
         
         className='oauth-button'>

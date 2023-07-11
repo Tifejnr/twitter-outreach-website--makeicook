@@ -1,6 +1,7 @@
 const session = require("express-session");
 const OAuth = require("oauth").OAuth;
 const url = require("url");
+const { user } = require("../../models/users");
 const { getKeys } = require("../../envKeys/allKeys");
 const cookie = require("cookie");
 // const { upadteUserData } = require("../firbase-functions/update-user-info");
@@ -19,7 +20,7 @@ const key = keysObj.CLIENT_SECRET_KEY;
 const secret = keysObj.SECRET;
 
 const loginCallback = "http://localhost:3000/callback";
-// const redirectUrl = "http://localhost:5173";
+const redirectUrl = "http://localhost:5173";
 
 const oauth_secrets = {};
 

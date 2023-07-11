@@ -63,10 +63,7 @@ app.set(
 //   res.render("trelloAdd");
 // });
 
-app.post("/isloggedIn", async (req, res) => {
-  console.log("here");
-  res.cookie("matcftAuth", "token");
-
+app.post("/isloggedIn", loginStatusChecker, async (req, res) => {
   res.json({ loggedIn: true });
 });
 
