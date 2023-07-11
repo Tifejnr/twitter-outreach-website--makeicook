@@ -71,7 +71,7 @@ app.get("/login", async (req, res) => {
   res.render("login");
 });
 
-app.get("/authorize", async (req, res) => {
+app.post("/authorize", async (req, res) => {
   login(req, res);
 });
 
@@ -80,7 +80,13 @@ app.get("/authorize", async (req, res) => {
 // });
 
 app.get("/callback", async (req, res) => {
+  res.render("login");
+
+  console.log("was heree");
   callback(req, res);
+  const accountUser = await user.findById(req.user._id);
+
+  console.log(accountUser);
 });
 
 app.post("/start", async (req, res) => {

@@ -4,8 +4,11 @@ import BelowHero from './BelowHero'
 import Testimonials from './Testimonials'
 import BelowTestimonials from './BelowTestimonials'
 const oauthUrl= "https://collabfortrello.com/authorize"
+import trelloAuthRedirect from '../../../JS functions/Auth/trello-oauth'
 
 export default function Hero() {
+
+  
   return (
 <>
     <section className='hero-container'> 
@@ -13,7 +16,12 @@ export default function Hero() {
       <h1>Add Team Member to Multiple Trello Boards at Once</h1>
       <h3>Save time and stress of manually navigating multiple Trello Boards, to add a team member to these boards</h3>
 
-        <a href={oauthUrl} className='oauth-button'>
+        <a href={oauthUrl} onClick={async (e)=> {
+          e.preventDefault()
+         await  trelloAuthRedirect()
+        }} 
+        
+        className='oauth-button'>
           <section>
           <img src= {trelloIcon} className='trello-icon' />
           <h2>Get Started with Trello</h2>
