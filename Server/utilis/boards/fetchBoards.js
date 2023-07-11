@@ -10,6 +10,7 @@ const key = keysObj.CLIENT_SECRET_KEY;
 const token = keysObj.ACCESS_TOKEN_SECRET;
 
 async function fetchAllBoards(req, res) {
+  console.log(userDetails);
   const token = await getDecryptedToken(userDetails);
   const boardsFetchingUrl = `https://api.trello.com/1/members/me/boards?key=${key}&token=${token}`;
 

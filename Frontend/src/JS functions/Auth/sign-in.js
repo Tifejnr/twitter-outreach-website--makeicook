@@ -1,6 +1,6 @@
 import axios from "axios";
 import displayErrorMessage from "../inputs-validations/error-text-style";
-import setCookie from "./set-cookie";
+import setCookie from "./cookie-handling/set-cookie";
 const signInEndPoint = "http://localhost:3000/api/sign-in";
 
 const axiosConfig = {

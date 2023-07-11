@@ -1,18 +1,20 @@
 import progressBarMove from "./progressBar/MoveProgressBar";
 import { hide } from "./Utilis/EleDisplay";
+import getCookie from "./Auth/cookie-handling/get-cookie";
 let dataLength;
 let lenghtID;
 let idCollections = [];
 let fetchedData;
 
-const websiteUrl= "http://localhost:3000"
+const websiteUrl = "http://localhost:3000";
 
 export default async function FetchData(needOnlyBoardCollections) {
-    progressBarMove(3, 100);
+  progressBarMove(3, 100);
 
   try {
+    const jwtToken = await getCookie();
     const url = `${websiteUrl}/start`;
-    const dataSent = { send: true };
+    const dataSent = { jwtToken };
 
     const response = await fetch(url, {
       method: "POST",
@@ -24,15 +26,16 @@ export default async function FetchData(needOnlyBoardCollections) {
 
     const dataRaw = await response.json();
 
-
     if (dataRaw.error) {
       if (dataRaw.error.code === "ENOTFOUND")
         return console.log("No internet network");
     }
 
     const data = dataRaw.boards;
-    
-    if (needOnlyBoardCollections) return data
+
+    console.log(data);
+
+    if (needOnlyBoardCollections) return data;
 
     dataLength = data.length;
     lenghtID = data.length - 1;
@@ -63,14 +66,16 @@ export default async function FetchData(needOnlyBoardCollections) {
       article.className = "label-article";
 
       // Append the checkbox and label elements to the form
-      article .appendChild(checkbox);
-      article .appendChild(label);
+      article.appendChild(checkbox);
+      article.appendChild(label);
       //Append artcile to form
-      form.appendChild(article );
+      form.appendChild(article);
 
       // Append the form to the document body or any desired container
-      const innerMainContentCont = document.getElementById("innerMainContentCont");
-     innerMainContentCont.appendChild(form);
+      const innerMainContentCont = document.getElementById(
+        "innerMainContentCont"
+      );
+      innerMainContentCont.appendChild(form);
 
       const boardId = board.id;
       idCollections.push(boardId);
@@ -79,9 +84,7 @@ export default async function FetchData(needOnlyBoardCollections) {
       const fetchedDataSum = fetchedData.reduce((a, b) => a + b, 0);
       progressBarMove(fetchedDataSum, lenghtID);
     });
-    
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-
-   }
+}

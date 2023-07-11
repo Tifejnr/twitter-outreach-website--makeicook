@@ -69,7 +69,6 @@ app.post("/isloggedIn", loginStatusChecker, async (req, res) => {
 
 app.get("/login", async (req, res) => {
   console.log(req.cookies);
-  res.cookie("cftAuth", "token");
   res.render("login");
 });
 
@@ -86,15 +85,15 @@ app.get("/callback", loginStatusChecker, async (req, res) => {
   callback(req, res);
 });
 
-app.post("/start", async (req, res) => {
+app.post("/start", loginStatusChecker, async (req, res) => {
   fetchAllBoards(req, res);
 });
 
-app.post("/add", async (req, res) => {
+app.post("/add", loginStatusChecker, async (req, res) => {
   addMemberToBoard(req, res);
 });
 
-app.post("/delete", async (req, res) => {
+app.post("/delete", loginStatusChecker, async (req, res) => {
   deleteMemberFromBoard(req, res);
 });
 

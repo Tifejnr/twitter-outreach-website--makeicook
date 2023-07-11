@@ -2,7 +2,7 @@ import { useState,  createContext } from 'react'
 import ReactDOM from 'react-dom/client'
 import './App.css'
 import './main.css'
-import './auth.css'
+// import './auth.css'
 import {Link, Navigate, Route, Routes} from "react-router-dom"
 import Convert from './compnents/Pages/Convert'
 import Merge from './compnents/Pages/Merge'
@@ -25,17 +25,19 @@ export const LoginStatusContext =  createContext()
 
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(true)
+  const [loggedIn, setLoggedIn] = useState("")
+
+
   return (
     <LoginStatusContext.Provider value={[loggedIn, setLoggedIn]}>
     <>
    
-    {/* <AuthCombo  /> */}
-    <NavBarLandingPage/>
-    <Hero/>
+    < NavContainer />
+    {/* <NavBarLandingPage/>
+    <Hero/> */}
 
     
-{/* 
+
  <section>
         <Routes>
         <Route path='/' element={<Home/>}/>
@@ -49,7 +51,7 @@ function App() {
     </section>
     <p id='para'></p>
     <section> 
-    </section>  */}
+    </section> 
     
  
     </>

@@ -1,5 +1,5 @@
 import axios from "axios";
-import setCookie from "./set-cookie";
+import setCookie from "./cookie-handling/set-cookie";
 import displayErrorMessage from "../inputs-validations/error-text-style";
 const registerUserEndPoint = "http://localhost:3000/api/register-user";
 
