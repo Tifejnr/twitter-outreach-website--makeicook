@@ -4,7 +4,7 @@ import SearchBoards from './BasicSectionLayout/SearchBoards'
 import SelectAll from './BasicSectionLayout/SelectAll'
 import ProgressBar from '../ProgressBar/ProgressBar'
 import FetchData from '../../../../../Trello-Project-React/Frontend/src/JS functions/FetchData';
-import AddToBoard from '../../../../../Trello-Project-React/Frontend/src/JS functions/AddToBoard';
+import AddToBoard from '../../JS functions/AddToBoard';
 
 
 export default function AddMember() {

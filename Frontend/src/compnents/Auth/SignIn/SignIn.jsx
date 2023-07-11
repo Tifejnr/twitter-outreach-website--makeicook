@@ -2,11 +2,11 @@ import React , {useContext, useState} from "react";
 import { useNavigate} from "react-router-dom";
 import { LoginStatusContext } from "../../../App";
 import validateInputs from "../../../JS functions/inputs-validations/overall-val-func";
-import registerUser from "../../../JS functions/Auth/register";
+import signInUser from "../../../JS functions/Auth/sign-in";
 
 
 
-export default function Register() {
+export default function SignIn() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [loginStatus, setLoggedInStatus]= useContext(LoginStatusContext) ;
@@ -27,13 +27,13 @@ const sendInfoToServer = async (e)=> {
     }
 
 if(validateInputs(paramsObj)) {
-  const regParam = {
+  const signInParam = {
     email,
     password
   }
- const regUser = await registerUser(regParam)
+ const signedIn = await signInUser(signInParam)
 
- if (regUser) return ( setLoggedInStatus(true),navigate('/'))
+ if (signedIn) return ( setLoggedInStatus(true),navigate('/'))
 
  return false
 }
