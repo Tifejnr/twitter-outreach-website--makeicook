@@ -5,6 +5,8 @@ const JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
 
 module.exports = function (req, res, next) {
   const token = req.cookies.cftAuth;
+
+  console.log(token);
   if (!token) return res.status(401).json({ unauthorizedToken: true });
 
   try {

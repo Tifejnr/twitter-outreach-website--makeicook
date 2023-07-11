@@ -2,6 +2,7 @@ const session = require("express-session");
 const OAuth = require("oauth").OAuth;
 const url = require("url");
 const { getKeys } = require("../../envKeys/allKeys");
+const cookie = require("cookie");
 // const { upadteUserData } = require("../firbase-functions/update-user-info");
 
 // OAuth Setup and Functions
@@ -42,12 +43,11 @@ function login(req, res) {
 }
 
 async function callback(req, response) {
+  console.log("Hahhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
   const query = url.parse(req.url, true).query;
   const token = query.oauth_token;
   const tokenSecret = oauth_secrets[token];
   const verifier = query.oauth_verifier;
-
-  console.log(token, "Hahhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
 
   oauth.getOAuthAccessToken(
     token,
@@ -61,24 +61,18 @@ async function callback(req, response) {
         accessTokenSecret,
         async function (error, data, response2) {
           if (error) return console.log(error);
-
-          const updateToken = {
-            trello_token: accessToken,
-          };
-          await upadteUserData(userUid, updateToken);
-
+          const accountUser = await user.findById(req.user._id);
+          accountUser.trello_token = accessToken;
+          console.log(accountUser);
           console.log("data Gotten");
-          response.cookie("acesT", accessToken, {
-            maxAge: 1209600000,
-            httpOnly: true,
-            secure: true,
-          });
-          response.cookie("aceseTS", accessTokenSecret, {
-            maxAge: 1209600000,
-            httpOnly: true,
-            secure: true,
-          });
-          response.redirect(redirectUrl);
+
+          response
+            .cookie("cftacesT", accessToken, {
+              maxAge: 1209600000,
+              //   httpOnly: true,
+              //   secure: true,
+            })
+            .redirect(redirectUrl);
         }
       );
     }

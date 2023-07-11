@@ -20,6 +20,11 @@ const userSchema = new mongoose.Schema({
     minlength: 4,
     maxlength: 1250,
   },
+  trello_token: {
+    type: String,
+    minlength: 3,
+    maxlength: 12250,
+  },
 
   isPaid: {
     type: Boolean,

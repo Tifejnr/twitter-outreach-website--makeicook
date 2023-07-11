@@ -42,7 +42,7 @@ mongoose
   })
   .catch((err) => console.error("could not connect", err));
 
-app.get("/*", function (req, res) {
+app.get("/", function (req, res) {
   res.sendFile(
     path.join(
       __dirname,
@@ -68,6 +68,7 @@ app.post("is-user-loggedIn", loginStatusChecker, async (req, res) => {
 });
 
 app.get("/login", async (req, res) => {
+  console.log(req.cookies);
   res.render("login");
 });
 
@@ -75,18 +76,13 @@ app.post("/authorize", async (req, res) => {
   login(req, res);
 });
 
-// app.post("/login", async (req, res) => {
-//   login(req, res);
-// });
+app.post("/login", async (req, res) => {
+  login(req, res);
+});
 
-app.get("/callback", async (req, res) => {
-  res.render("login");
-
+app.get("/callback", loginStatusChecker, async (req, res) => {
   console.log("was heree");
   callback(req, res);
-  const accountUser = await user.findById(req.user._id);
-
-  console.log(accountUser);
 });
 
 app.post("/start", async (req, res) => {

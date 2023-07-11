@@ -27,13 +27,7 @@ router.post("/", async (req, res) => {
 
     const token = await signJwt(accountUser);
 
-    res
-      .cookie("cftAuth", token, {
-        maxAge: 1209600000,
-        httpOnly: true,
-        secure: true,
-      })
-      .json({ signedIn: true });
+    res.cookie("cftAuth", token).json({ signedIn: true });
 
     console.log("signed in");
   } catch (error) {
