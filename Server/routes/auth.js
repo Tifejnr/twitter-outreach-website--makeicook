@@ -2,7 +2,7 @@ const { user } = require("../models/users");
 const express = require("express");
 const router = express.Router();
 const bycrypt = require("bcrypt");
-const { signJwt } = require("../middlewares/sign-jwt");
+const { signJwt } = require("../middlewares/jwt-related/sign-jwt");
 const { validateSignInParams } = require("../Joi-Validations/SignIn");
 
 router.post("/", async (req, res) => {
@@ -28,7 +28,7 @@ router.post("/", async (req, res) => {
     const token = await signJwt(accountUser);
 
     res
-      .cookie("CFTLogT", token, {
+      .cookie("cftAuth", token, {
         maxAge: 1209600000,
         httpOnly: true,
         secure: true,

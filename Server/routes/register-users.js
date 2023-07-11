@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 const _ = require("lodash");
 const bycrypt = require("bcrypt");
-const { signJwt } = require("../middlewares/sign-jwt");
+const { signJwt } = require("../middlewares/jwt-related/sign-jwt");
 const coookieParser = require("cookie-parser");
 const {
   validateRegsiterParams,
@@ -30,7 +30,7 @@ router.post("/", async (req, res) => {
     const token = await signJwt(accountUser);
 
     res
-      .cookie("cftRegT", token, {
+      .cookie("cftAuth", token, {
         maxAge: 1209600000,
         httpOnly: true,
         secure: true,

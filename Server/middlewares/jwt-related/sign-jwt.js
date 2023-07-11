@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const { getKeys } = require("../envKeys/allKeys");
+const { getKeys } = require("../../envKeys/allKeys");
 const keysObject = getKeys();
 const JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
 
