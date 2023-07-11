@@ -61,7 +61,9 @@ async function callback(req, response) {
         async function (error, data, response2) {
           if (error) return console.log(error);
           const accountUser = await user.findById(req.user._id);
-          accountUser.trello_token = await encryptToken(accessToken);
+          const { iv, encrytptedToken } = await encryptToken(accessToken);
+          accountUser.trello_token = encrytptedToken;
+          accountUser.iv = iv;
           console.log(accountUser);
           console.log("data Gotten");
 

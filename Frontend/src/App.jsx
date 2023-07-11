@@ -30,9 +30,9 @@ function App() {
     <LoginStatusContext.Provider value={[loggedIn, setLoggedIn]}>
     <>
    
-    <AuthCombo  />
-    {/* <NavBarLandingPage/>
-    <Hero/> */}
+    {/* <AuthCombo  /> */}
+    <NavBarLandingPage/>
+    <Hero/>
 
     
 {/* 

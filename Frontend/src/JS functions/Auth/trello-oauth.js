@@ -5,7 +5,7 @@ const trelloAuthEndpoint = "http://localhost:3000/authorize";
 export default async function trelloAuthRedirect() {
   const jwtToken = await getCookie();
   try {
-    const response = await axios.post(trelloAuthEndpoint, jwtToken);
+    const response = await axios.post(trelloAuthEndpoint, { jwtToken });
     const data = await response.data;
 
     if (!data.authorizationUrl) return false;

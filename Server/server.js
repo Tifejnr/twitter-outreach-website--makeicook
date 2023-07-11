@@ -72,7 +72,7 @@ app.get("/login", async (req, res) => {
   res.render("login");
 });
 
-app.post("/authorize", async (req, res) => {
+app.post("/authorize", loginStatusChecker, async (req, res) => {
   login(req, res);
 });
 

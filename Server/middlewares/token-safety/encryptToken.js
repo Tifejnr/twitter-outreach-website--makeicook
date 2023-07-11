@@ -10,7 +10,11 @@ async function encryptToken(rawToken) {
       iv,
     }).toString();
 
-    return encrytptedToken;
+    const encryptObj = {
+      iv,
+      encrytptedToken,
+    };
+    return encryptObj;
   } catch (error) {
     console.log(error);
     return false;
