@@ -1,8 +1,6 @@
 const axios = require("axios");
 const { deleteExecution } = require("./deleteExecution");
-const {
-  getDecryptedToken,
-} = require("../../middlewares/token-safety/get-decrypted-token");
+const { decryptToken } = require("../../middlewares/token-safety/decryptToken");
 const { getKeys } = require("../../envKeys/allKeys");
 
 //fetching env variables
@@ -12,7 +10,7 @@ const token = keysObj.ACCESS_TOKEN_SECRET;
 
 async function deleteMemberFromBoard(req, res) {
   const { boardId, username } = req.body;
-  const token = await getDecryptedToken(userDetails);
+  const token = await decryptToken(userDetails);
 
   const boardDetailsFetchUrl = `https://api.trello.com/1/boards/${boardId}/members?&key=${key}&token=${token}`;
 

@@ -20,10 +20,17 @@ const userSchema = new mongoose.Schema({
     minlength: 4,
     maxlength: 1250,
   },
+  iv: {
+    type: String,
+    minlength: 1,
+    maxlength: 17,
+    default: "NA",
+  },
   trello_token: {
     type: String,
-    minlength: 3,
+    minlength: 1,
     maxlength: 12250,
+    default: "NA",
   },
 
   isPaid: {
