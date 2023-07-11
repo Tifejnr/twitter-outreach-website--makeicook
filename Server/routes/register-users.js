@@ -29,13 +29,13 @@ router.post("/", async (req, res) => {
 
     const token = await signJwt(accountUser);
 
-    res
-      .cookie("cftAuth", token, {
-        maxAge: 1209600000,
-        httpOnly: true,
-        secure: true,
-      })
-      .json({ registered: true });
+    const cookieOptions = {
+      maxAge: 1209600000,
+      httpOnly: true,
+      secure: false,
+    };
+
+    res.json({ registered: true, jwtToken: token });
 
     console.log("registered");
   } catch (error) {

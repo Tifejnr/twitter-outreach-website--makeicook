@@ -1,13 +1,19 @@
 import axios from "axios";
 import displayErrorMessage from "../inputs-validations/error-text-style";
+import setCookie from "./set-cookie";
 const signInEndPoint = "http://localhost:3000/api/sign-in";
+
+const axiosConfig = {
+  withCredentials: true,
+};
 
 export default async function signInUser(signInParams) {
   try {
     const response = await axios.post(signInEndPoint, signInParams);
     const data = await response.data;
-    console.log(data);
     if (!data.signedIn) return false;
+    const jwtToken = data.jwtToken;
+    await setCookie(jwtToken);
     return true;
   } catch (error) {
     console.log(error.response.data);

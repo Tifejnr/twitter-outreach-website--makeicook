@@ -6,6 +6,7 @@ import registerUser from "../../../JS functions/Auth/register";
 
 
 
+
 export default function Register() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")

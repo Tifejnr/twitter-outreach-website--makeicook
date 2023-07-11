@@ -6,9 +6,13 @@ const { signJwt } = require("../middlewares/jwt-related/sign-jwt");
 const { validateSignInParams } = require("../Joi-Validations/SignIn");
 
 router.post("/", async (req, res) => {
+  res.cookie("myCookie", "Hello, World!");
   const { error } = validateSignInParams(req.body);
+
   if (error)
     return res.status(400).json({ joiError: error.details[0].message });
+
+  res.cookie("mancftAuthaaa", "token");
 
   try {
     const accountUser = await user.findOne({ email: req.body.email });
@@ -20,6 +24,7 @@ router.post("/", async (req, res) => {
       req.body.password,
       accountUser.password
     );
+
     if (!validPassword)
       return res
         .status(401)
@@ -27,7 +32,14 @@ router.post("/", async (req, res) => {
 
     const token = await signJwt(accountUser);
 
-    res.cookie("cftAuth", token).json({ signedIn: true });
+    if (!token) return console.log("token not found");
+    const cookieOptions = {
+      maxAge: 1209600000,
+      secure: false,
+    };
+
+    res.cookie("cftAuth", token, cookieOptions);
+    res.json({ signedIn: true, jwtToken: token });
 
     console.log("signed in");
   } catch (error) {
@@ -36,4 +48,5 @@ router.post("/", async (req, res) => {
     return res.json({ error });
   }
 });
+
 module.exports = router;
