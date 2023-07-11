@@ -25,13 +25,12 @@ export const LoginStatusContext =  createContext()
 
 
 function App() {
-
   const [loggedIn, setLoggedIn] = useState(true)
   return (
     <LoginStatusContext.Provider value={[loggedIn, setLoggedIn]}>
     <>
    
-    <AuthCombo  />
+    <NavBarLandingPage  />
     {/* <NavBarLandingPage/>
     <Hero/> */}
 

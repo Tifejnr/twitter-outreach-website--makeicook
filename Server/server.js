@@ -12,6 +12,7 @@ const { login } = require("./utilis/oauth/oauth-and-callback");
 const { callback } = require("./utilis/oauth/oauth-and-callback");
 const { deleteMemberFromBoard } = require("./utilis/boards/delete");
 const { getKeys } = require("./envKeys/allKeys");
+const loginStatusChecker = require("./middlewares/jwt-related/login-status-checker");
 require("dotenv").config();
 require("./startup/prod")(app);
 
@@ -61,6 +62,10 @@ app.set(
 // app.get("/", async (req, res) => {
 //   res.render("trelloAdd");
 // });
+
+app.post("is-user-loggedIn", loginStatusChecker, async (req, res) => {
+  res.json({ loggedIn: true });
+});
 
 app.get("/login", async (req, res) => {
   res.render("login");
