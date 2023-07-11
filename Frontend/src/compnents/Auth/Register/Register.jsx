@@ -13,7 +13,7 @@ export default function Register() {
   const navigate = useNavigate();
 
 
-  const sendInfoToServer = async (e)=> {
+const sendInfoToServer = async (e)=> {
     e.preventDefault();
     
   const emailId = document.getElementById("emailId")
@@ -33,23 +33,10 @@ if(validateInputs(paramsObj)) {
   }
  const regUser = await registerUser(regParam)
 
- if (regUser ) return ( setLoggedInStatus(true),navigate('/'))
+ if (regUser) return ( setLoggedInStatus(true),navigate('/'))
+
+ return false
 }
-
-//Add properties to user data inside firestore cloud
-  //   const propsToAdd = {
-  //     isPaid: false,
-  //     credits: 5,
-  //     trello_token: "NA"
-  //   }
-
-  // const userDocRef = doc(db, collectionName, user.uid)
-  // await setDoc(userDocRef, propsToAdd)
-  //   console.log(user.uid)
-    //  setLoggedInStatus(true)
-    //  navigate('/');
-
-
     } catch (error) {
       console.log(error.message)
     }
