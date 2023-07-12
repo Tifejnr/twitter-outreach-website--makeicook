@@ -4,6 +4,7 @@ import { LoginStatusContext } from "../../../App";
 import validateInputs from "../../../JS functions/inputs-validations/overall-val-func";
 import registerUser from "../../../JS functions/Auth/register";
 import AuthNav from "../AuthNav";
+import AuthFooter from "../AuthFooter";
 
 
 
@@ -72,8 +73,8 @@ if(validateInputs(paramsObj)) {
 
        <h3 className="policy-agreement-text">
           By Registering, I agree to Work for Reputation's
-          <a href="#">Terms of Use</a> & <a href="#">Privacy Policy</a>
-        </h3>
+          <a to="#">Terms of Use</a> & <a to="#">Privacy Policy</a>
+       </h3>
 
         <button id="create_btn" type="submit" className="submit-btn">Register</button>
     </form>
@@ -85,10 +86,9 @@ if(validateInputs(paramsObj)) {
         </h3>
     </aside>
 
-   <div></div>
 </section>
 
-   <footer className="footer register-footer">© Work for Reputation 2023</footer>
+<AuthFooter/>
  </>
   );
 }
