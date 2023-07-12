@@ -450,11 +450,21 @@ body {
   }
 }
 
+/* Call to Action Section */
+.call-to-action-cont {
+  text-align: center;
+}
+
+.call-to-action-cont ul {
+  margin-top: 0.7rem;
+  display: grid;
+  row-gap: 1rem;
+  letter-spacing: 0.3px;
+}
 .oauth-button {
   height: 4.5rem;
   width: 24rem;
   line-height: 0;
-  color: #394557;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -487,10 +497,15 @@ body {
 }
 
 .oauth-button h2 {
+  color: #333;
   margin: 0;
   font-weight: 500;
   font-size: 1.6rem;
   letter-spacing: 0.6px;
+}
+
+.oauth-button a:hover {
+  text-decoration: none;
 }
 
 @media screen and (min-width: 760px) {
@@ -505,7 +520,7 @@ body {
   }
 }
 
-.oauth-button section {
+/* .oauth-button section {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -516,7 +531,7 @@ body {
 .oauth-button .trello-icon {
   height: 3rem;
   width: 3rem;
-}
+} */
 
 /* Below Hero Block */
 .product-pic-container {

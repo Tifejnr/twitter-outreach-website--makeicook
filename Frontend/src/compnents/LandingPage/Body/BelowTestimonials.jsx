@@ -1,6 +1,5 @@
 import React from 'react'
-import trelloIcon from "../../../assets/SVGs/trello-icon.svg"
-const oauthUrl= "https://collabfortrello.com/authorize"
+import { Link } from 'react-router-dom';
 
 export default function BelowTestimonials() {
   return (
@@ -9,18 +8,15 @@ export default function BelowTestimonials() {
       <h1>Ready to try out CollabforTrello?</h1>
        <h3>Eliminate manual addition of a team member to multiple Trello boards</h3>
 
-        <a href={oauthUrl} className='oauth-button'>
-          <section>
-          <img src= {trelloIcon} className='trello-icon' />
-          <h2>Get Started with Trello</h2>
-          </section>
-        </a>
-
-        <ul>
-            <li> <p>No credit card required</p> </li>
-            <li><p> 5 free credits for trial</p></li>
-            
-        </ul>
+        <section className='call-to-action-cont'>
+          <Link  to="/register" className='oauth-button'>
+              <h2>Get Started    &#8594; </h2>
+          </Link>
+                 <ul>
+              <li><p> 5 free credits for trial</p></li>
+              <li> <p>No credit card required</p> </li>
+          </ul>
+        </section>
       </div>
     </section>
   )

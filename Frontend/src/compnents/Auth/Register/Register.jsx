@@ -51,7 +51,7 @@ if(validateInputs(paramsObj)) {
 <section className="main-container reg-container" id="form">
 
     <article className="main__title">
-        <h2>Register Now</h2>
+        <h2>Sign Up</h2>
       </article>
    <section>
     <form action="" className="reg-form" onSubmit={sendInfoToServer} >
@@ -72,11 +72,11 @@ if(validateInputs(paramsObj)) {
       </fieldset>
 
        <h3 className="policy-agreement-text">
-          By Registering, I agree to Work for Reputation's
+          By Registering, I agree to Collab for Trello's
           <a to="#">Terms of Use</a> & <a to="#">Privacy Policy</a>
        </h3>
 
-        <button id="create_btn" type="submit" className="submit-btn">Register</button>
+        <button id="create_btn" type="submit" className="submit-btn">Sign Up</button>
     </form>
    </section>
 
