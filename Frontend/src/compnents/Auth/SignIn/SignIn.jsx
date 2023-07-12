@@ -3,6 +3,8 @@ import { useNavigate} from "react-router-dom";
 import { LoginStatusContext } from "../../../App";
 import validateInputs from "../../../JS functions/inputs-validations/overall-val-func";
 import signInUser from "../../../JS functions/Auth/sign-in";
+import AuthNav from "../AuthNav";
+import AuthFooter from "../AuthFooter";
 
 
 
@@ -44,9 +46,17 @@ if(validateInputs(paramsObj)) {
 }
 
   return (
+     
+<>
+
+<AuthNav/>
+<section className="main-container reg-container" id="form">
+
+    <article className="main__title">
+        <h2>Log in</h2>
+      </article>
    <section>
-    <form action="" onSubmit={sendInfoToServer}>
-      <h1>Log in</h1>
+    <form action="" className="reg-form" onSubmit={sendInfoToServer}>
 
       <fieldset className="input-wrapper">
         <label htmlFor="emailId"><p>Email</p></label>
@@ -63,10 +73,28 @@ if(validateInputs(paramsObj)) {
         <p className="error" id="regErrorDisplay"></p>
       </fieldset>
 
-      <button type="submit">Log in</button>
+       <section className="forgot-password">
+          <a to="/forgot-password" className="forgot-pass-text"
+            ><b>Forgot Password?</b></a>
+       </section>
+
+        <button id="login_btn" className="submit-btn">Login</button>
+        <p className="widthRegulator"> By Registering, I agree to Work for Reputation's
+          <a to="#">Terms of Use</a> & <a to="#">Privacy Policy</a></p>
     </form>
+    <aside className="prompt-message">
+        <h3>
+          Don't have an account? <a to="/register"><b>Register</b></a>
+        </h3>
+    </aside>
    </section>
+ </section>
+<AuthFooter/>
+
+</>
   );
 }
+
+
 
 
