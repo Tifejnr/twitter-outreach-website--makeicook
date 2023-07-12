@@ -4,7 +4,9 @@ import letterF from "../../assets/SVGs/letter-f.svg"
 import letterT from "../../assets/SVGs/letter-t.svg"
 import NavItemsLandingPage from './NavItems'
 import HomePageNavItems from '../Navbar/HomePageNavItems'
+import Hero from './Body/Hero'
 import getCookie from '../../JS functions/Auth/cookie-handling/get-cookie'
+
 
 
 export default function MainNav() {
@@ -12,6 +14,8 @@ export default function MainNav() {
   const isLoggedIn= getCookie();
 
   return (
+<>
+
    <nav className='nav'>
     <input type="checkbox" id="nav__checkbox" className="nav__checkbox" />
       <section className="mainNavIcons">
@@ -47,7 +51,10 @@ export default function MainNav() {
         </li>
         {isLoggedIn?<HomePageNavItems/>:<NavItemsLandingPage/>}     
       </ul>
-   </nav>  
+  </nav>  
+
+      {!isLoggedIn && <Hero/>}
+</>
   )
 }
 

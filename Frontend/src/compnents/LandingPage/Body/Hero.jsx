@@ -3,11 +3,9 @@ import trelloIcon from "../../../assets/SVGs/trello-icon.svg"
 import BelowHero from './BelowHero'
 import Testimonials from './Testimonials'
 import BelowTestimonials from './BelowTestimonials'
-const oauthUrl= "https://collabfortrello.com/authorize"
 import trelloAuthRedirect from '../../../JS functions/Auth/trello-oauth'
 
 export default function Hero() {
-
   
   return (
 <>
