@@ -316,6 +316,8 @@ input {
 /* Selction Container */
 
 .main-section-cont {
+  position: relative;
+  top: 7rem;
   display: none;
   width: 60rem;
   margin: 0 auto;
@@ -323,10 +325,9 @@ input {
 
 .main-section-cont h1 {
   color: #04002a;
-  margin: 0;
-  margin-top: 2rem;
   font-size: 2.5rem;
   text-align: center;
+  margin-bottom: 2.5rem;
 }
 
 .inner-main-cont {

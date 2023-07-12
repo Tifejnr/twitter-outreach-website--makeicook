@@ -53,7 +53,7 @@ export default function MainNav() {
       </ul>
   </nav>  
 
-      {isLoggedIn && <Hero/>}
+      {!isLoggedIn && <Hero/>}
 </>
   )
 }

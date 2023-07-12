@@ -18,13 +18,17 @@ FetchData()
   const searchPlaceholderTitle= "Search Boards ..."
   const selectInstructionText= "Select Boards To Delete Member"
    const inputPlaceholderText= "@..."
-   const pageName= "delete-member"
+   const pageName= "delete-member";
+     const pageTitle = "Delete Member Via Username"
 
   return (
 <>    
 
    <MainNav/>   
     <section className='main-section-cont' id='mainContentCont'>
+
+      
+      <h1>{pageTitle}</h1>
 
       <section className='inner-main-cont' id='innerMainContentCont'>
         <Input inputLabel={inputLabel} inputPlaceholderText={inputPlaceholderText}/>

@@ -44,28 +44,50 @@ if(validateInputs(paramsObj)) {
   }
 
   return (
+    <>
+<section className="main-container reg-container" id="form">
+
+    <article className="main__title">
+        <h2>Register Now</h2>
+      </article>
    <section>
-    <form action="" onSubmit={sendInfoToServer}>
-      <h1>Register</h1>
+    <form action="" className="reg-form" onSubmit={sendInfoToServer} >
 
       <fieldset className="input-wrapper">
-        <label htmlFor="emailId">Email</label>
+        <label htmlFor="emailId"><p>Email</p></label>
         <input type="email" placeholder="Please enter an email you can access" id="emailId" value={email}
            onChange={(e)=> setEmail(e.target.value)} 
         />
         <p className="error"></p>
       </fieldset>
       <fieldset className="input-wrapper">
-        <label htmlFor="passwordId">Password</label>
+        <label htmlFor="passwordId"><p>Password</p></label>
         <input type="password" placeholder="Minimum of 6 characters" id="passwordId" value={password} 
                  onChange={(e)=> setPassword(e.target.value)} 
         />
         <p className="error" id="regErrorDisplay"></p>
       </fieldset>
 
-      <button type="submit">Register</button>
+       <h3 className="policy-agreement-text">
+          By Registering, I agree to Work for Reputation's
+          <a href="#">Terms of Use</a> & <a href="#">Privacy Policy</a>
+        </h3>
+
+        <button id="create_btn" type="submit" className="submit-btn">Register</button>
     </form>
    </section>
+
+    <aside className="prompt-message">
+        <h3>
+          Already have an account? <a to="/login"><b>Login</b></a>
+        </h3>
+    </aside>
+
+   <footer className="footer register-footer"></footer>
+</section>
+
+   <footer className="footer register-footer">© Work for Reputation 2023</footer>
+ </>
   );
 }
 
