@@ -1,7 +1,8 @@
 import axios from "axios";
 import setCookie from "./cookie-handling/set-cookie";
 import displayErrorMessage from "../inputs-validations/error-text-style";
-const registerUserEndPoint = "http://localhost:3000/api/register-user";
+const registerUserEndPoint =
+  "https://www.collabfortrello.com/api/register-user";
 
 export default async function registerUser(regParams) {
   try {

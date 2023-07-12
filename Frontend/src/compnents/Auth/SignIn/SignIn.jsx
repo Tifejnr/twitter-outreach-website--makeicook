@@ -7,7 +7,6 @@ import AuthNav from "../AuthNav";
 import AuthFooter from "../AuthFooter";
 
 
-
 export default function SignIn() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -92,7 +91,7 @@ if(validateInputs(paramsObj)) {
 <AuthFooter/>
 
 </>
-  );
+ );
 }
 
 
