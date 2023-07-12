@@ -1,5 +1,5 @@
 import React , {useContext, useState} from "react";
-import { useNavigate} from "react-router-dom";
+import { useNavigate, Link} from "react-router-dom";
 import { LoginStatusContext } from "../../../App";
 import validateInputs from "../../../JS functions/inputs-validations/overall-val-func";
 import registerUser from "../../../JS functions/Auth/register";
@@ -73,7 +73,7 @@ if(validateInputs(paramsObj)) {
 
        <h3 className="policy-agreement-text">
           By Registering, I agree to Collab for Trello's
-          <a to="#">Terms of Use</a> & <a to="#">Privacy Policy</a>
+          <Link to="#"> Terms of Use </Link> & <Link to="#"> Privacy Policy</Link>
        </h3>
 
         <button id="create_btn" type="submit" className="submit-btn">Sign Up</button>
@@ -82,7 +82,7 @@ if(validateInputs(paramsObj)) {
 
     <aside className="prompt-message">
         <h3>
-          Already have an account? <a to="/login"><b>Login</b></a>
+          Already have an account? <Link to="/sign-in"><b>Login</b></Link>
         </h3>
     </aside>
 

@@ -1,5 +1,5 @@
 import React , {useContext, useState} from "react";
-import { useNavigate} from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { LoginStatusContext } from "../../../App";
 import validateInputs from "../../../JS functions/inputs-validations/overall-val-func";
 import signInUser from "../../../JS functions/Auth/sign-in";
@@ -84,7 +84,7 @@ if(validateInputs(paramsObj)) {
     </form>
     <aside className="prompt-message">
         <h3>
-          Don't have an account? <a to="/register"><b>Register</b></a>
+          Don't have an account? <Link to="/register"><b>Register</b></Link>
         </h3>
     </aside>
    </section>
