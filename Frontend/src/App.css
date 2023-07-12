@@ -82,6 +82,13 @@ body {
   font-size: 1.6rem;
 }
 
+/* Auth Nav Design  */
+.nav.auth-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Logo Design Block */
 
 .logo-container {
@@ -130,11 +137,20 @@ body {
     left: 4rem;
     padding-right: 3rem;
   }
+
+  .auth-nav .logo-container {
+    left: 0;
+    padding-right: 0;
+  }
 }
 
 @media screen and (min-width: 960px) {
   .logo-container {
     left: 12rem;
+  }
+
+  .auth-nav .logo-container {
+    left: 0;
   }
 }
 

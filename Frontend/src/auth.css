@@ -200,6 +200,7 @@ h3 {
 
 .main-container {
   position: relative;
+  top: 2rem;
   width: 90%;
   height: 100%;
   padding: 1.5rem 2rem;
@@ -207,16 +208,11 @@ h3 {
   flex-direction: column;
 }
 
-@media (min-width: 508px) {
-  .main-container {
-    padding: 1.5rem auto;
-  }
-}
-
 @media (min-width: 768px) {
   .main-container {
     background-color: #fff;
     max-width: 40rem;
+    max-height: 50rem;
     width: 100%;
     padding: 0 4.4rem;
     border: 1px solid #d3d3d3;
@@ -386,12 +382,14 @@ a:hover {
   font-weight: 300;
   font-size: 1.6rem;
   margin-top: 3rem;
+  padding-bottom: 2rem;
 }
 
 /* Footer Block */
 
 .footer {
   position: relative;
+  top: 4rem;
   display: block;
   background-color: #fff;
   z-index: 1;

@@ -3,6 +3,7 @@ import { useNavigate} from "react-router-dom";
 import { LoginStatusContext } from "../../../App";
 import validateInputs from "../../../JS functions/inputs-validations/overall-val-func";
 import registerUser from "../../../JS functions/Auth/register";
+import AuthNav from "../AuthNav";
 
 
 
@@ -45,6 +46,7 @@ if(validateInputs(paramsObj)) {
 
   return (
     <>
+    <AuthNav/>
 <section className="main-container reg-container" id="form">
 
     <article className="main__title">
@@ -83,7 +85,7 @@ if(validateInputs(paramsObj)) {
         </h3>
     </aside>
 
-   <footer className="footer register-footer"></footer>
+   <div></div>
 </section>
 
    <footer className="footer register-footer">© Work for Reputation 2023</footer>

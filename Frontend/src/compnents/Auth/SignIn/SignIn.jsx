@@ -41,7 +41,7 @@ if(validateInputs(paramsObj)) {
       console.log(error.message)
     }
 
-  }
+}
 
   return (
    <section>
@@ -49,14 +49,14 @@ if(validateInputs(paramsObj)) {
       <h1>Log in</h1>
 
       <fieldset className="input-wrapper">
-        <label htmlFor="emailId">Email</label>
+        <label htmlFor="emailId"><p>Email</p></label>
         <input type="email" placeholder="Enter your email" id="emailId" value={email}
            onChange={(e)=> setEmail(e.target.value)} 
         />
         <p className="error"></p>
       </fieldset>
       <fieldset className="input-wrapper">
-        <label htmlFor="passwordId">Password</label>
+        <label htmlFor="passwordId"><p>Password</p></label>
         <input type="password" placeholder="Enter your password" id="passwordId" value={password} 
                  onChange={(e)=> setPassword(e.target.value)} 
         />
