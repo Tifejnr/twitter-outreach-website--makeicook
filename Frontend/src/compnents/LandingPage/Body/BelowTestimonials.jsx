@@ -10,7 +10,7 @@ export default function BelowTestimonials() {
 
         <section className='call-to-action-cont'>
           <Link  to="/register" className='oauth-button'>
-              <h2>Get Started    &#8594; </h2>
+              <h2>Start for free  &#8594; </h2>
           </Link>
                  <ul>
               <li><p> 5 free credits for trial</p></li>

@@ -202,7 +202,8 @@ body {
 .nav__menu {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  row-gap: 1rem;
+  column-gap: 2rem;
   align-items: center;
   background-color: var(--background-col);
   padding-bottom: 0.3rem;
@@ -355,7 +356,9 @@ body {
 
 /* Hero Component Block */
 .hero-container {
-  height: 50rem;
+  position: relative;
+  height: 54rem;
+  top: 6.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -370,6 +373,7 @@ body {
   align-items: center;
   flex-direction: column;
   padding: 0 1.5rem;
+  row-gap: 0.5rem;
 }
 
 @media only screen and (min-width: 480px) {
@@ -385,7 +389,7 @@ body {
 
 @media only screen and (min-width: 960px) {
   .hero-inner-container {
-    margin: 0 8rem;
+    margin: 0 10rem;
   }
 }
 
@@ -396,7 +400,7 @@ body {
 }
 
 .hero-container h1 {
-  font-size: 3.2rem;
+  font-size: 3.6rem;
   line-height: 1.4;
   letter-spacing: 0.6px;
   color: #fff;
@@ -406,26 +410,26 @@ body {
 
 @media only screen and (min-width: 480px) {
   .hero-container h1 {
-    font-size: 3.8rem;
+    font-size: 4.3rem;
   }
 }
 
 @media only screen and (min-width: 760px) {
   .hero-container h1 {
     font-weight: 700;
-    font-size: 4.5rem;
+    font-size: 5.5rem;
   }
 }
 
 .hero-container h3 {
-  margin: 0 auto 2.8rem;
+  margin: 2rem 0;
+  margin-bottom: 0;
   font-size: 1.6rem;
   font-weight: 500;
   line-height: 1.5;
   white-space: pre-wrap;
   text-align: center;
   letter-spacing: 0.6px;
-  margin: 0 auto 2.8rem;
 }
 
 @media only screen and (min-width: 480px) {
@@ -435,7 +439,6 @@ body {
 }
 @media only screen and (min-width: 760px) {
   .hero-container h3 {
-    margin: 0 auto 4rem;
     font-size: 1.8rem;
     font-weight: 400;
   }
@@ -443,9 +446,7 @@ body {
 
 @media only screen and (min-width: 960px) {
   .hero-container h3 {
-    margin: 0 auto 4rem;
     font-size: 1.9rem;
-    margin: 0 auto 5.6rem;
     font-weight: 400;
   }
 }
@@ -464,7 +465,7 @@ body {
 }
 .oauth-button {
   height: 4.5rem;
-  width: 20rem;
+  width: 17rem;
   line-height: 0;
   display: flex;
   justify-content: center;
@@ -481,14 +482,14 @@ body {
 
 @media screen and (min-width: 760px) {
   .oauth-button {
-    width: 25rem;
+    width: 20rem;
     margin-top: 2rem;
   }
 }
 
 @media screen and (min-width: 960px) {
   .oauth-button {
-    width: 30rem;
+    width: 21rem;
   }
 }
 

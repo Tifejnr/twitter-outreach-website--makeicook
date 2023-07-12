@@ -7,15 +7,25 @@ export default function NavItemsLandingPage() {
       <li className="nav-list">
          <h3 className="features">Features</h3>
       </li>
+
+        <li className="nav-list">
+          <h3 className="pricing">Pricing</h3>
+        </li>
+
         <li className="nav-list">
          <h3 className="faq">FAQ</h3>
         </li>
+
         <li className="nav-list">
             <h3 className="reviews">Reviews</h3>
         </li>
 
         <li className="nav-list">
-        <h3 className="reviews">Get Started</h3> 
+         <h3 className="sign-up">Log In</h3> 
+        </li>
+
+        <li className="nav-list">
+        <h3 className="sign-up">Start for free</h3> 
         </li>
 </>
 )
