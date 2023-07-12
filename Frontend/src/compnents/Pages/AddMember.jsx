@@ -5,6 +5,7 @@ import SelectAll from './BasicSectionLayout/SelectAll'
 import ProgressBar from '../ProgressBar/ProgressBar'
 import FetchData from '../../../../../Trello-Project-React/Frontend/src/JS functions/FetchData';
 import AddToBoard from '../../JS functions/AddToBoard';
+import MainNav from '../LandingPage/MainNav';
 
 
 export default function AddMember() {
@@ -22,7 +23,8 @@ FetchData()
   const pageTitle = "Add Member Via Email"
 
   return (
-<>    
+<>   
+   <MainNav/> 
     <section className='main-section-cont' id='mainContentCont'>
 
       <h1>{pageTitle}</h1>
