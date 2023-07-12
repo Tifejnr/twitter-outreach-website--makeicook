@@ -8,6 +8,7 @@ import Register from './compnents/Auth/Register/Register'
 import SignIn from './compnents/Auth/SignIn/SignIn'
 import AddMember from './compnents/Pages/AddMember'
 import Delete from './compnents/Pages/Delete'
+import Pricing from './compnents/Pages/Pricing'
 
 export const LoginStatusContext =  createContext()
 
@@ -23,6 +24,7 @@ function App() {
         <Route path='/register' element={<Register/>}/>
         <Route path='/add-member' element={<AddMember/>}/>
         <Route path='/delete-member' element={<Delete/>}/>
+        <Route path='/pricing' element={<Pricing/>}/>
       </Routes>
 
     </>
