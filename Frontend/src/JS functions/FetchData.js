@@ -12,16 +12,15 @@ export default async function FetchData(needOnlyBoardCollections) {
   progressBarMove(3, 100);
 
   try {
-    const jwtToken = await getCookie();
+    const jwtToken = getCookie();
     const url = `${websiteUrl}/start`;
-    const dataSent = { jwtToken };
 
     const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(dataSent),
+      body: JSON.stringify({ jwtToken }),
     });
 
     const dataRaw = await response.json();

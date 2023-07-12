@@ -23,13 +23,13 @@ const userSchema = new mongoose.Schema({
   iv: {
     type: String,
     minlength: 1,
-    maxlength: 17,
+    maxlength: 50000,
     default: "NA",
   },
   trello_token: {
     type: String,
     minlength: 1,
-    maxlength: 12250,
+    maxlength: 122250,
     default: "NA",
   },
 

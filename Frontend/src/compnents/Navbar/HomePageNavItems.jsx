@@ -6,7 +6,6 @@ export default function HomePageNavItems() {
 <>
     <CustomLink to="/add-member"> <h3>Add Member</h3></CustomLink>
     <CustomLink to="/delete-member"> <h3>Delete Member</h3></CustomLink>
-
 </>
 )
 }

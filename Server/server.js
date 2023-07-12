@@ -81,7 +81,6 @@ app.post("/login", async (req, res) => {
 });
 
 app.get("/callback", loginStatusChecker, async (req, res) => {
-  console.log("was heree");
   callback(req, res);
 });
 

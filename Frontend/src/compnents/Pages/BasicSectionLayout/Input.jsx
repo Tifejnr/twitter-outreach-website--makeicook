@@ -14,6 +14,6 @@ export default function Input(props) {
                />
             </article>
           </form>
-        </section>
+     </section>
   )
 }

@@ -5,7 +5,7 @@ import SelectAll from './BasicSectionLayout/SelectAll'
 import ProgressBar from '../ProgressBar/ProgressBar'
 import FetchData from '../../../../../Trello-Project-React/Frontend/src/JS functions/FetchData';
 import DeleteMemberFromBoard from '../../../../../Trello-Project-React/Frontend/src/JS functions/DeleteFromBoard';
-
+import MainNav from '../LandingPage/MainNav';
 
 export default function Delete() {
 useEffect(() => {
@@ -22,6 +22,8 @@ FetchData()
 
   return (
 <>    
+
+   <MainNav/>   
     <section className='main-section-cont' id='mainContentCont'>
 
       <section className='inner-main-cont' id='innerMainContentCont'>
