@@ -2,9 +2,9 @@ import React from 'react'
 import letterC from "../../assets/SVGs/letter-c.svg"
 import letterF from "../../assets/SVGs/letter-f.svg"
 import letterT from "../../assets/SVGs/letter-t.svg"
-import NavItemsLandingPage from './NavItems'
-import HomePageNavItems from '../Navbar/HomePageNavItems'
-import Hero from './Body/Hero'
+import NavItemsLandingPage from '../LandingPage/NavItems'
+import HomePageNavItems from '../Home-nav-items/HomePageNavItems'
+import Hero from '../LandingPage/Body/Hero'
 import getCookie from '../../JS functions/Auth/cookie-handling/get-cookie'
 
 

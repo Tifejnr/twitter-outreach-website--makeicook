@@ -5,7 +5,7 @@ import SelectAll from './BasicSectionLayout/SelectAll'
 import ProgressBar from '../ProgressBar/ProgressBar'
 import FetchData from '../../../../../Trello-Project-React/Frontend/src/JS functions/FetchData';
 import AddToBoard from '../../JS functions/AddToBoard';
-import MainNav from '../LandingPage/MainNav';
+import MainNav from '../Main-nav-bar/MainNav';
 
 
 export default function AddMember() {

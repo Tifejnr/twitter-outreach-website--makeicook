@@ -3,7 +3,7 @@ import './App.css'
 import './main.css'
 import './auth.css'
 import {Route, Routes} from "react-router-dom"
-import MainNav from './compnents/LandingPage/MainNav'
+import MainNav from './compnents/Main-nav-bar/MainNav'
 import Register from './compnents/Auth/Register/Register'
 import SignIn from './compnents/Auth/SignIn/SignIn'
 import AddMember from './compnents/Pages/AddMember'
