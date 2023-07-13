@@ -52,9 +52,7 @@ router.post("/", async (req, res) => {
 
     console.log("signed in");
 
-    res
-      .cookie("cftAuth", token, cookieOptions)
-      .json({ signedIn: true, jwtToken: token });
+    res.cookie("cftAuth", token, cookieOptions).json({ signedIn: true });
   } catch (error) {
     console.log(error);
     return res.json({ error });

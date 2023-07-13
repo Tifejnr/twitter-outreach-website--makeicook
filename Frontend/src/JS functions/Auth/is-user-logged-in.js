@@ -1,10 +1,8 @@
 import axios from "axios";
-import getCookie from "./cookie-handling/get-cookie";
 const isUserLoggedInEndpoint = "https://www.collabfortrello.com/isloggedIn";
 // const isUserLoggedInEndpoint = "http://localhost:3000/isloggedIn";
 
 export default async function isUserLoggedIn() {
-  // const jwtToken = getCookie();
   try {
     const response = await axios.post(isUserLoggedInEndpoint);
     const data = await response.data;

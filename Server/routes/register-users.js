@@ -35,9 +35,7 @@ router.post("/", async (req, res) => {
       secure: true,
     };
 
-    res
-      .cookie("cftAuth", token, cookieOptions)
-      .json({ registered: true, jwtToken: token });
+    res.cookie("cftAuth", token, cookieOptions).json({ registered: true });
 
     console.log("registered");
   } catch (error) {
