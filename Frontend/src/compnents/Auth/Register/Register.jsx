@@ -36,7 +36,7 @@ if(validateInputs(paramsObj)) {
   }
  const regUser = await registerUser(regParam)
 
- if (regUser) return ( setLoggedInStatus(true),navigate('/'))
+ if (regUser) return ( setLoggedInStatus(true),navigate('/authorize'))
 
  return false
 }

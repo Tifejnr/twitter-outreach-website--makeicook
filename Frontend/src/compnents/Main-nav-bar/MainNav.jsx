@@ -1,5 +1,4 @@
-import React from 'react'
-
+import React,  { useState, useEffect } from 'react'
 import NavItemsLandingPage from '../LandingPage/NavItems'
 import HomePageNavItems from '../Home-nav-items/HomePageNavItems'
 import Hero from '../LandingPage/Body/Hero'
@@ -10,8 +9,30 @@ import getCookie from '../../JS functions/Auth/cookie-handling/get-cookie'
 
 
 export default function MainNav() {
+  const [isLoggedIn, setIsLoggedIn]= useState(false)
 
-  const isLoggedIn= getCookie();
+   useEffect(() => {
+
+    if (getCookie()) {
+
+      console.log(getCookie())
+    setIsLoggedIn(prevState=>!prevState);
+    }
+
+
+
+     const cookies = document.cookie.split(';');
+    const parsedCookies = {};
+
+    cookies.forEach(cookie => {
+      const [name, value] = cookie.split('=');
+      parsedCookies[name.trim()] = decodeURIComponent(value);
+    });
+
+    console.log(parsedCookies);
+  }, []);
+
+
 
   return (
 <>

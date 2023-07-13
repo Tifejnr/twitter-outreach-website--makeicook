@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function LinkingArrow() {
   return (
-    <div class="linking-arrow">
+    <div className="linking-arrow">
         <span></span>
         <span></span>
         <span></span>

@@ -2,10 +2,9 @@ import Cookies from "js-cookie";
 
 export default function getCookie() {
   try {
-    const jwtToken = Cookies.get("cftAuth");
-
-    console.log(jwtToken);
-    if (!jwtToken) return false;
+    const removeCookie = () => {
+      Cookies.remove("yourCookieName");
+    };
 
     return jwtToken;
   } catch (error) {
