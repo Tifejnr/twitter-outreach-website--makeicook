@@ -7,8 +7,8 @@ const [isLoggedIn, setIsLoggedIn]= useState(false);
 
 useEffect(() => {
   (async function ()  {
-
-  if (await isUserLoggedIn())
+  const checkStatusTrue = await isUserLoggedIn()
+  if (checkStatusTrue)
      setIsLoggedIn(prevState=>!prevState);
   }
 
@@ -16,6 +16,7 @@ useEffect(() => {
 
   }, []);
 
+  console.log(isLoggedIn)
 
   if (isLoggedIn) return( <>{children}</>) 
 
