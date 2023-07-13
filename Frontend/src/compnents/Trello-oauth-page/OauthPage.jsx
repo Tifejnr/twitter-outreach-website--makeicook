@@ -4,6 +4,7 @@ import OauthNavItems from "./OauthNavItems"
 import GetStartedIcon from "./GetStartedIcon"
 import trelloIcon from "../../assets/SVGs/trello-icon.svg"
 import forwardArrowIcon from "../../assets/SVGs/forward-arrow.svg"
+import LinkingArrow from "./LinkingArrow"
 
 
 
@@ -27,18 +28,18 @@ export default function OauthPage() {
        <h1>AUTHORIZE ACCESS</h1>
 
        <section className="authorize-image-desc">
-        <article>
-           <img src= {trelloIcon} className='trello-icon' />
-            <h3>Trello</h3>
-        </article>
+          <article>
+            <img src= {trelloIcon} className='trello-icon' />
+              <h3>Trello</h3>
+          </article>
 
-        <picture>
-            <img src= {forwardArrowIcon} className='forward-arrow-icon' />
-        </picture>
+          <picture id="linking-arrow-cont" >
+            <LinkingArrow/> 
+          </picture>
 
-        <picture>
-          <NavLogo/>
-        </picture>
+          <picture>
+            <NavLogo/>
+          </picture>
 
        </section>
 

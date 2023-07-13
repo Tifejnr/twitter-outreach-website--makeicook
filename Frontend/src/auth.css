@@ -190,14 +190,15 @@ h3 {
   padding: 1.5rem 2rem;
   display: flex;
   flex-direction: column;
+  top: 4rem;
 }
 
 @media (min-width: 768px) {
   .main-container {
     background-color: #fff;
-    top: 3rem;
+    top: 7rem;
     max-width: 40rem;
-    max-height: 50rem;
+    max-height: 43rem;
     width: 100%;
     padding: 0 4.4rem;
     border: 1px solid #d3d3d3;
@@ -385,7 +386,7 @@ a:hover {
 
 .footer {
   position: relative;
-  top: 4rem;
+  top: 7rem;
   display: block;
   background-color: #fff;
   z-index: 1;
