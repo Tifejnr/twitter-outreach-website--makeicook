@@ -11,13 +11,6 @@ const { validateSignInParams } = require("../Joi-Validations/SignIn");
 // });
 
 router.post("/", async (req, res) => {
-  res.cookie("myCookie", "Hello, World!", {
-    maxAge: 1209600000,
-  });
-
-  console.log(req.cookies);
-  console.log("req.cookies");
-
   const { error } = validateSignInParams(req.body);
 
   if (error)
