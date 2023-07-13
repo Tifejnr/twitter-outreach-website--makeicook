@@ -223,6 +223,13 @@ body {
   margin-right: auto;
   display: block;
 }
+
+@media only screen and (min-width: 960px) {
+  .nav__menu li:last-child {
+    margin-right: 7rem;
+  }
+}
+
 .nav__menu h3,
 .nav__menu a {
   margin: 0;
@@ -460,12 +467,6 @@ body {
   padding: 0.3rem;
 }
 
-@media only screen and (min-width: 960px) {
-  .sign-up-cont {
-    margin-right: 7rem;
-  }
-}
-
 .sign-up {
   height: 4rem;
   width: 11rem;
@@ -496,6 +497,7 @@ body {
   letter-spacing: 0.3px;
   font-size: 1.7rem;
 }
+
 .oauth-button {
   height: 4.5rem;
   width: 17rem;
@@ -510,19 +512,12 @@ body {
   transition: background-color 0.3s ease;
   cursor: pointer;
   margin-top: 4rem;
-  /* margin-bottom: 3rem; */
 }
 
 @media screen and (min-width: 760px) {
   .oauth-button {
     width: 20rem;
     margin-top: 2rem;
-  }
-}
-
-@media screen and (min-width: 960px) {
-  .oauth-button {
-    width: 21rem;
   }
 }
 
@@ -596,6 +591,26 @@ body {
   height: 3rem;
   width: 3rem;
 } */
+
+/* Trello Oauth Page Design */
+
+.auth-page-main-cont {
+  height: 100%;
+  margin: 0 1rem;
+  display: grid;
+  border: 1px solid red;
+}
+
+.auth-page-main-cont h1 {
+  color: #020518;
+}
+
+.authorize-image-desc {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: rgb(246, 246, 247);
+}
 
 /* Below Hero Block */
 .product-pic-container {

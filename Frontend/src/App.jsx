@@ -9,6 +9,7 @@ import SignIn from './compnents/Auth/SignIn/SignIn'
 import AddMember from './compnents/Pages/AddMember'
 import Delete from './compnents/Pages/Delete'
 import Pricing from './compnents/Pages/Pricing'
+import OauthPage from './compnents/Trello-oauth-page/OauthPage'
 
 export const LoginStatusContext =  createContext()
 
@@ -25,6 +26,7 @@ function App() {
         <Route path='/add-member' element={<AddMember/>}/>
         <Route path='/delete-member' element={<Delete/>}/>
         <Route path='/pricing' element={<Pricing/>}/>
+        <Route path='/authorize' element={<OauthPage />}/>
       </Routes>
 
     </>
