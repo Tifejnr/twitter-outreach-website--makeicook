@@ -17,11 +17,11 @@ checkStatusNow ()
 
   }, []);
 
-  console.log(isLoggedIn)
+  console.log(isLoggedIn, "Latee one")
 
-  if (isLoggedIn) return( <>{children}</>) 
+  if (!isLoggedIn) return (<Navigate to={"/"}/>);
+  return( <>{children}</>)   
 
-  return (<Navigate to={"/"}/>);
 }
 
 
