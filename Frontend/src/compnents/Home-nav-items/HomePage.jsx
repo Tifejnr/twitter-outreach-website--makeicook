@@ -3,6 +3,7 @@ import HomePageNavItems from './HomePageNavItems'
 import NavToggleIcon from '../Main-nav-bar/NavToggleIcon'
 import NavLogo from '../Main-nav-bar/NavLogo'
 import isUserLoggedIn from '../../JS functions/Auth/is-user-logged-in'
+import LandingPage from '../LandingPage/LandingPage'
 
 export default function HomePage() {
   const [isLoggedIn, setIsLoggedIn]= useState(false);
@@ -21,8 +22,9 @@ useEffect(() => {
 
   return (
 <>
+
+{!isLoggedIn?<LandingPage/>:
   <nav className='nav'>
-       
        <NavToggleIcon/>
 
       <ul className="nav__menu">
@@ -34,7 +36,7 @@ useEffect(() => {
         {<HomePageNavItems/>}     
       </ul>
   </nav>  
-
+}  
 </>
   )
 }
