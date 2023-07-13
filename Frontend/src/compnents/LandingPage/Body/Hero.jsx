@@ -11,11 +11,11 @@ export default function Hero() {
     <section className='hero-container'> 
      <div className='hero-inner-container'>
       <h1>Add Team Member to Multiple Trello Boards at Once</h1>
-      <h3>Save time and stress of manually navigating multiple Trello Boards, to add a team member.</h3>
+      <h3>Save time and stress of manually navigating multiple boards, to add a team member.</h3>
        
         <section className='call-to-action-cont'>
           <Link  to="/register" className='oauth-button'>
-              <h2>Start for free  &#8594; </h2>
+              <h2>Start for free <span className='floating-arrow'>&#8594;</span> </h2>
           </Link>
           <ul>
             <li><p> 5 free credits for trial</p></li>

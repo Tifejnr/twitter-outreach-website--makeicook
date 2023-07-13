@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, useMatch, useResolvedPath} from "react-router-dom"
+import CustomLink from '../CustomLink'
 
 export default function HomePageNavItems() {
   return (
@@ -10,18 +10,5 @@ export default function HomePageNavItems() {
 )
 }
 
-//Nav program that is active function
-const CustomLink= ({to, children, ...props}) => {
- const resolvedPath = useResolvedPath(to);
 
- const isActive =  useMatch({path: resolvedPath.pathname, end:true})
-
- return (
-  <li className={ 'nav-list' || isActive && "active"}>
-    <Link  to={to} {...props}>
-      {children}
-    </Link>
-  </li>
- )
-}
 

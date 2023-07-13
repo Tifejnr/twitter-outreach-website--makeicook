@@ -1,5 +1,6 @@
 import React , {useContext} from 'react'
 import { Link, useMatch, useResolvedPath,Navigate, Route, Routes} from "react-router-dom"
+import CustomLink from '../CustomLink'
 
 export default function NavItemsLandingPage() {
   return (
@@ -20,32 +21,16 @@ export default function NavItemsLandingPage() {
             <h3 className="reviews">Reviews</h3>
         </li>
 
-        <li className="nav-list">
-         <h3 className="sign-up">Log In</h3> 
-        </li>
+        <CustomLink to="/sign-in">
+         <h3 className="login">Log In</h3> 
+        </CustomLink>
 
-        <li className="nav-list">
-        <h3 className="sign-up">Start for free</h3> 
-        </li>
+        <CustomLink to="/register" className="sign-up-cont">
+        <h4 className='sign-up'>Start for free</h4> 
+        </CustomLink>
 </>
 )
 }
 
-
-//Nav program that is active function
-const CustomLink= ({to, children, ...props}) => {
- const resolvedPath = useResolvedPath(to);
-
- const isActive =  useMatch({path: resolvedPath.pathname, end:true})
-
- return (
-  <li className={isActive && "active"}>
-    <Link to={to} {...props}>
-      {children}
-    </Link>
-
-  </li>
- )
-}
 
 
