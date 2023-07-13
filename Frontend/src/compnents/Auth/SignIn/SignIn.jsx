@@ -34,7 +34,7 @@ if(validateInputs(paramsObj)) {
   }
  const signedIn = await signInUser(signInParam)
 
- if (signedIn) return ( setLoggedInStatus(true),navigate('/'))
+ if (signedIn) return ( setLoggedInStatus(true),navigate('/home'))
 
  return false
 }
