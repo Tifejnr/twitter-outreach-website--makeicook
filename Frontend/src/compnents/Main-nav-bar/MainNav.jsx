@@ -15,7 +15,7 @@ export default function MainNav() {
 
   return (
 <>
-   <nav className='nav'>
+  <nav className='nav'>
        
        <NavToggleIcon/>
 
