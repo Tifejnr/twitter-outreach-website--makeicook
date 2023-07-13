@@ -1,6 +1,5 @@
 import progressBarMove from "./progressBar/MoveProgressBar";
 import { hide } from "./Utilis/EleDisplay";
-import getCookie from "./Auth/cookie-handling/get-cookie";
 let dataLength;
 let lenghtID;
 let idCollections = [];
@@ -12,7 +11,6 @@ export default async function FetchData(needOnlyBoardCollections) {
   progressBarMove(3, 100);
 
   try {
-    const jwtToken = getCookie();
     const url = `${websiteUrl}/start`;
 
     const response = await fetch(url, {
@@ -20,7 +18,7 @@ export default async function FetchData(needOnlyBoardCollections) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ jwtToken }),
+      body: JSON.stringify({ true: true }),
     });
 
     const dataRaw = await response.json();
