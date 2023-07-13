@@ -18,8 +18,8 @@ const keysObj = getKeys();
 const key = keysObj.CLIENT_SECRET_KEY;
 const secret = keysObj.SECRET;
 
-const loginCallback = "http://localhost:3000/callback";
-const redirectUrl = "http://localhost:5173";
+const loginCallback = "https://www.collabfortrello.com/callback";
+const redirectUrl = "https://www.collabfortrello.com/";
 
 const oauth_secrets = {};
 
