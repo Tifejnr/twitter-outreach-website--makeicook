@@ -65,10 +65,13 @@ async function callback(req, response) {
           accountUser.trello_token = encrytptedToken;
           accountUser.iv = iv;
           await accountUser.save();
-          console.log(accountUser);
-          console.log("data Gotten");
 
-          response.redirect(redirectUrl);
+          response
+            .cookie("cftAuth", req.cookies.cftAuth, {
+              maxAge: 2592000,
+              httpOnly: true,
+            })
+            .redirect(redirectUrl);
         }
       );
     }

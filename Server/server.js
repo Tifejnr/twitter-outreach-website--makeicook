@@ -16,6 +16,16 @@ const loginStatusChecker = require("./middlewares/jwt-related/login-status-check
 require("dotenv").config();
 require("./startup/prod")(app);
 
+//Concet to mong db
+const keysObjects = getKeys();
+const mongoDB_string = keysObjects.mongoDB_string;
+mongoose
+  .connect(mongoDB_string)
+  .then(() => {
+    console.log("connected to mong db");
+  })
+  .catch((err) => console.error("could not connect", err));
+
 //Importing api routes
 const registerUser = require("./routes/register-users");
 const signInUser = require("./routes/auth");
@@ -33,16 +43,12 @@ app.use(
   )
 );
 
-const keysObjects = getKeys();
-const mongoDB_string = keysObjects.mongoDB_string;
-mongoose
-  .connect(mongoDB_string)
-  .then(() => {
-    console.log("connected to mong db");
-  })
-  .catch((err) => console.error("could not connect", err));
+//Won't be accessible by React route, server owns this route
+app.get("/callback", loginStatusChecker, async (req, res) => {
+  callback(req, res);
+});
 
-app.get("/*", function (req, res) {
+app.get("*", function (req, res) {
   res.sendFile(
     path.join(
       __dirname,
@@ -67,21 +73,8 @@ app.post("/isloggedIn", loginStatusChecker, async (req, res) => {
   res.json({ loggedIn: true });
 });
 
-app.get("/login", async (req, res) => {
-  console.log(req.cookies);
-  res.render("login");
-});
-
 app.post("/authorize", loginStatusChecker, async (req, res) => {
   login(req, res);
-});
-
-app.post("/login", async (req, res) => {
-  login(req, res);
-});
-
-app.get("/callback", loginStatusChecker, async (req, res) => {
-  callback(req, res);
 });
 
 app.post("/start", loginStatusChecker, async (req, res) => {
