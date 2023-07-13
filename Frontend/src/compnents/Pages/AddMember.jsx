@@ -5,7 +5,7 @@ import SelectAll from './BasicSectionLayout/SelectAll'
 import ProgressBar from '../ProgressBar/ProgressBar'
 import FetchData from '../../../../../Trello-Project-React/Frontend/src/JS functions/FetchData';
 import AddToBoard from '../../JS functions/AddToBoard';
-import MainNav from '../Main-nav-bar/MainNav';
+import HomePage from '../Home-nav-items/HomePage';
 
 
 export default function AddMember() {
@@ -24,7 +24,7 @@ FetchData()
 
   return (
 <>   
-   <MainNav/> 
+   <HomePage/> 
     <section className='main-section-cont' id='mainContentCont'>
 
       <h1>{pageTitle}</h1>
