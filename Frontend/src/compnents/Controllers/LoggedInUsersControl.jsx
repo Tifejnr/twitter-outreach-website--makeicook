@@ -5,7 +5,7 @@ import isUserLoggedIn from '../../JS functions/Auth/is-user-logged-in';
 export default  function LoggedInUsersControl({children}) {
 const [isLoggedIn, setIsLoggedIn]= useState(false);
 
-useEffect(() => {
+
  async  function checkStatusNow ()  {
   const checkStatusTrue = await isUserLoggedIn()
   console.log(checkStatusTrue)
@@ -15,7 +15,7 @@ useEffect(() => {
 
 checkStatusNow ()
 
-  }, []);
+
 
   console.log(isLoggedIn, "Latee one")
 
