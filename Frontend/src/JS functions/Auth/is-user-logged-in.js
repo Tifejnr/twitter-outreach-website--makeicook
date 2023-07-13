@@ -1,6 +1,7 @@
 import axios from "axios";
 import getCookie from "./cookie-handling/get-cookie";
-const isUserLoggedInEndpoint = "http://localhost:3000/isloggedIn";
+const isUserLoggedInEndpoint = "https://www.collabfortrello.com/isloggedIn";
+// const isUserLoggedInEndpoint = "http://localhost:3000/isloggedIn";
 
 export default async function isUserLoggedIn() {
   // const jwtToken = getCookie();
