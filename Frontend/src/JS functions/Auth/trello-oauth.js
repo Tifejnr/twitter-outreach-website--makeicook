@@ -1,12 +1,10 @@
 import axios from "axios";
-import getCookie from "./cookie-handling/get-cookie";
 // const trelloAuthEndpoint = "http://localhost:3000/authorize";
 const trelloAuthEndpoint = "https://www.collabfortrello.com/authorize";
 
 export default async function trelloAuthRedirect() {
-  const jwtToken = getCookie();
   try {
-    const response = await axios.post(trelloAuthEndpoint, { jwtToken });
+    const response = await axios.post(trelloAuthEndpoint);
     const data = await response.data;
 
     if (!data.authorizationUrl) return false;
