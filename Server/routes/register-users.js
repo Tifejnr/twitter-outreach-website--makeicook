@@ -32,10 +32,12 @@ router.post("/", async (req, res) => {
     const cookieOptions = {
       maxAge: 1209600000,
       httpOnly: true,
-      secure: false,
+      secure: true,
     };
 
-    res.json({ registered: true, jwtToken: token });
+    res
+      .cookie("cftAuth", token, cookieOptions)
+      .json({ registered: true, jwtToken: token });
 
     console.log("registered");
   } catch (error) {

@@ -5,33 +5,24 @@ import Hero from '../LandingPage/Body/Hero'
 import NavToggleIcon from './NavToggleIcon'
 import NavLogo from './NavLogo'
 import getCookie from '../../JS functions/Auth/cookie-handling/get-cookie'
+import isUserLoggedIn from '../../JS functions/Auth/is-user-logged-in'
 
 
 
 export default function MainNav() {
-  const [isLoggedIn, setIsLoggedIn]= useState(false)
+  const [isLoggedIn, setIsLoggedIn]= useState(false);
 
-   useEffect(() => {
+useEffect(() => {
+  (async function ()  {
 
-    if (getCookie()) {
+  if (await isUserLoggedIn())
 
-      console.log(getCookie())
-    setIsLoggedIn(prevState=>!prevState);
-    }
+     setIsLoggedIn(prevState=>!prevState);
+  }
 
+  ())
 
-
-     const cookies = document.cookie.split(';');
-    const parsedCookies = {};
-
-    cookies.forEach(cookie => {
-      const [name, value] = cookie.split('=');
-      parsedCookies[name.trim()] = decodeURIComponent(value);
-    });
-
-    console.log(parsedCookies);
   }, []);
-
 
 
   return (

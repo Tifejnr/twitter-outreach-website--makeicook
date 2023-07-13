@@ -6,8 +6,18 @@ const CryptoJS = require("crypto-js");
 const { signJwt } = require("../middlewares/jwt-related/sign-jwt");
 const { validateSignInParams } = require("../Joi-Validations/SignIn");
 
+// res.cookie("cftAuth", jwtToken, {
+//   maxAge: 1209600000,
+// });
+
 router.post("/", async (req, res) => {
-  res.cookie("myCookie", "Hello, World!");
+  res.cookie("myCookie", "Hello, World!", {
+    maxAge: 1209600000,
+  });
+
+  console.log(req.cookies);
+  console.log("req.cookies");
+
   const { error } = validateSignInParams(req.body);
 
   if (error)
@@ -36,16 +46,17 @@ router.post("/", async (req, res) => {
     if (!token) return console.log("token not found");
     const cookieOptions = {
       maxAge: 1209600000,
-      secure: false,
+      httpOnly: true,
+      secure: true,
     };
 
-    res.cookie("cftAuth", token, cookieOptions);
-    res.json({ signedIn: true, jwtToken: token });
-
     console.log("signed in");
+
+    res
+      .cookie("cftAuth", token, cookieOptions)
+      .json({ signedIn: true, jwtToken: token });
   } catch (error) {
     console.log(error);
-
     return res.json({ error });
   }
 });

@@ -66,12 +66,7 @@ async function callback(req, response) {
           accountUser.iv = iv;
           await accountUser.save();
 
-          response
-            .cookie("cftAuth", req.cookies.cftAuth, {
-              maxAge: 2592000,
-              httpOnly: true,
-            })
-            .redirect(redirectUrl);
+          response.redirect(redirectUrl);
         }
       );
     }

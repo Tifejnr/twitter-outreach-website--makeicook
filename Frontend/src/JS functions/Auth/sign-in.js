@@ -1,11 +1,8 @@
 import axios from "axios";
 import displayErrorMessage from "../inputs-validations/error-text-style";
 import setCookie from "./cookie-handling/set-cookie";
-const signInEndPoint = "https://www.collabfortrello.com/api/sign-in";
-
-const axiosConfig = {
-  withCredentials: true,
-};
+// const signInEndPoint = "https://www.collabfortrello.com/api/sign-in";
+const signInEndPoint = "http://localhost:3000/api/sign-in";
 
 export default async function signInUser(signInParams) {
   try {

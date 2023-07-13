@@ -3,11 +3,9 @@ import getCookie from "./cookie-handling/get-cookie";
 const isUserLoggedInEndpoint = "http://localhost:3000/isloggedIn";
 
 export default async function isUserLoggedIn() {
-  const jwtToken = await getCookie();
+  // const jwtToken = getCookie();
   try {
-    const response = await axios.post(isUserLoggedInEndpoint, jwtToken);
-
-    console.log(response);
+    const response = await axios.post(isUserLoggedInEndpoint);
     const data = await response.data;
     console.log(data);
     if (!data.loggedIn) return false;
