@@ -6,7 +6,7 @@ export default async function isUserLoggedIn() {
   try {
     const response = await axios.post(isUserLoggedInEndpoint);
     const data = await response.data;
-    console.log(data);
+
     if (!data.loggedIn) return false;
     return true;
   } catch (error) {

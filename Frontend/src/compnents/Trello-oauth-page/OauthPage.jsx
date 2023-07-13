@@ -3,8 +3,7 @@ import NavLogo from "../Main-nav-bar/NavLogo"
 import OauthNavItems from "./OauthNavItems"
 import GetStartedIcon from "./GetStartedIcon"
 import trelloIcon from "../../assets/SVGs/trello-icon.svg"
-import forwardArrowIcon from "../../assets/SVGs/forward-arrow.svg"
-import LinkingArrow from "./LinkingArrow"
+import forwardArrow from "../../assets/SVGs/thin-long-arrow-right-icon.svg"
 
 
 
@@ -12,7 +11,7 @@ export default function OauthPage() {
   return (
    <>
   <nav className='nav'>
-       
+
        <NavToggleIcon/>
 
       <ul className="nav__menu">
@@ -34,7 +33,7 @@ export default function OauthPage() {
           </article>
 
           <picture id="linking-arrow-cont" >
-            <LinkingArrow/> 
+              <img src={forwardArrow} alt="" />
           </picture>
 
           <picture>

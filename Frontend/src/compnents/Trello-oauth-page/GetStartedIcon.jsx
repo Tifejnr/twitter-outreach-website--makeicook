@@ -12,8 +12,7 @@ export default function GetStartedIcon() {
         
         className='oauth-button real-oauth'>
           <section>
-          <img src= {trelloIcon} className='trello-icon' />
-          <h2> CLICK TO AUTHORIZE </h2>
+          <h2>CLICK TO AUTHORIZE</h2>
           </section>
         </a>
     </>

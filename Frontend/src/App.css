@@ -709,61 +709,15 @@ body {
 #linking-arrow-cont {
   position: relative;
   justify-self: stretch;
-  width: auto;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.linking-arrow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  transform: rotate(90deg);
+#linking-arrow-co .forwardArrow {
+  height: 1rem;
 }
-
-.linking-arrow span {
-  display: block;
-  width: 1.6rem;
-  height: 1.6rem;
-  border-top: 0.5rem solid var(--dark-des-blue);
-  border-left: 0.5rem solid var(--dark-des-blue);
-  transform: rotate(45deg);
-  margin: -1rem;
-  animation: animate 3s infinite;
-}
-
-.linking-arrow span:nth-child(2) {
-  animation-delay: -0.2s;
-}
-
-.linking-arrow span:nth-child(3) {
-  animation-delay: -0.4s;
-}
-
-@keyframes animate {
-  0% {
-    opacity: 0;
-    transform: rotate(45deg) translate(100%, 100%);
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 1;
-    transform: rotate(45deg) translate(-100%, -100%);
-  }
-}
-
-/* @media only screen and (min-width: 360px) {
-  @keyframes animate {
-    0% {
-      transform: rotate(45deg) translate(4rem, 4rem);
-    }
-    100% {
-      transform: rotate(45deg) translate(-4rem, -4rem);
-    }
-  }
-} */
 
 /* Below Hero Block */
 .product-pic-container {
