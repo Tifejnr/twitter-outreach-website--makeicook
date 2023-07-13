@@ -6,6 +6,7 @@ import ProgressBar from '../ProgressBar/ProgressBar'
 import FetchData from '../../../../../Trello-Project-React/Frontend/src/JS functions/FetchData';
 import DeleteMemberFromBoard from '../../../../../Trello-Project-React/Frontend/src/JS functions/DeleteFromBoard';
 import HomePage from '../Home-nav-items/HomePage';
+import LoggedInUsersControl from '../Controllers/LoggedInUsersControl';
 
 export default function Delete() {
 useEffect(() => {
@@ -23,7 +24,7 @@ FetchData()
 
   return (
 <>    
-
+<LoggedInUsersControl>
    <HomePage/>   
     <section className='main-section-cont' id='mainContentCont'>
 
@@ -49,7 +50,8 @@ FetchData()
      </section>
 
     <ProgressBar pageName={pageName}/>
-
+    
+</LoggedInUsersControl>
  </>
 
   )

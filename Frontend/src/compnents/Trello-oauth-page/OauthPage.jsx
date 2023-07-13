@@ -4,12 +4,14 @@ import OauthNavItems from "./OauthNavItems"
 import GetStartedIcon from "./GetStartedIcon"
 import trelloIcon from "../../assets/SVGs/trello-icon.svg"
 import forwardArrow from "../../assets/SVGs/thin-long-arrow-right-icon.svg"
+import LoggedInUsersControl from "../Controllers/LoggedInUsersControl"
 
 
 
 export default function OauthPage() {
   return (
    <>
+ <LoggedInUsersControl>
   <nav className='nav'>
 
        <NavToggleIcon/>
@@ -55,6 +57,7 @@ export default function OauthPage() {
        </section>
 
   </main> 
+</LoggedInUsersControl>  
    </>
   )
 }

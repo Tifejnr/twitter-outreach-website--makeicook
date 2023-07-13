@@ -19,7 +19,7 @@ const key = keysObj.CLIENT_SECRET_KEY;
 const secret = keysObj.SECRET;
 
 const loginCallback = "https://www.collabfortrello.com/callback";
-const redirectUrl = "https://www.collabfortrello.com/";
+const redirectUrl = "https://www.collabfortrello.com/add-member";
 
 const oauth_secrets = {};
 
