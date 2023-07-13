@@ -1,5 +1,4 @@
 import axios from "axios";
-import setCookie from "./cookie-handling/set-cookie";
 import displayErrorMessage from "../inputs-validations/error-text-style";
 const registerUserEndPoint =
   "https://www.collabfortrello.com/api/register-user";
@@ -9,8 +8,6 @@ export default async function registerUser(regParams) {
     const response = await axios.post(registerUserEndPoint, regParams);
     const data = await response.data;
     if (!data.registered) return false;
-    const jwtToken = data.jwtToken;
-    await setCookie(jwtToken);
     return true;
   } catch (error) {
     console.log(error.response.data);
