@@ -498,6 +498,21 @@ body {
   font-size: 1.7rem;
 }
 
+.oauth-button.real-oauth {
+  width: 25rem;
+  background-color: var(--deep-blue);
+}
+
+.oauth-button.real-oauth h2 {
+  color: #fff;
+}
+
+@media screen and (min-width: 760px) {
+  .oauth-button.real-oauth {
+    width: 29rem;
+  }
+}
+
 .oauth-button {
   height: 4.5rem;
   width: 17rem;
@@ -579,7 +594,7 @@ body {
   }
 }
 
-/* .oauth-button section {
+.oauth-button section {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -590,7 +605,7 @@ body {
 .oauth-button .trello-icon {
   height: 3rem;
   width: 3rem;
-} */
+}
 
 /* Trello Oauth Page Design */
 
@@ -598,15 +613,11 @@ body {
   height: 100%;
   margin: 0 2rem;
   display: grid;
+  row-gap: 3rem;
   justify-content: center;
-  align-items: center;
+  justify-items: center;
   position: relative;
-  top: 6rem;
-}
-
-.auth-page-main-cont p {
-  padding: 0 12rem;
-  text-align: center;
+  align-content: center;
 }
 
 @media only screen and (min-width: 480px) {
@@ -632,11 +643,30 @@ body {
   }
 }
 
+.auth-page-main-cont p {
+  padding: 0 2rem;
+  text-align: center;
+  line-height: 1.6;
+}
+
+@media only screen and (min-width: 480px) {
+  .auth-page-main-cont p {
+    padding: 0 4rem;
+    text-align: center;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .auth-page-main-cont p {
+    padding: 0 8rem;
+    text-align: center;
+  }
+}
 .auth-page-main-cont h1 {
-  color: #020518;
+  color: #6b7280;
 }
 
 .authorize-image-desc {
+  width: 100%;
   height: 10rem;
   display: flex;
   column-gap: 1.5rem;
