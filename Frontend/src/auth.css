@@ -161,21 +161,6 @@ html {
   --z-index-lowest: 1;
   overflow-x: hidden;
 }
-body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  height: 100vh;
-  /* display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-direction: column; */
-  display: grid;
-  justify-items: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #fff;
-}
 
 h1,
 h2,

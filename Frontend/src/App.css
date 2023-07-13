@@ -596,9 +596,40 @@ body {
 
 .auth-page-main-cont {
   height: 100%;
-  margin: 0 1rem;
+  margin: 0 2rem;
   display: grid;
-  border: 1px solid red;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 6rem;
+}
+
+.auth-page-main-cont p {
+  padding: 0 12rem;
+  text-align: center;
+}
+
+@media only screen and (min-width: 480px) {
+  .auth-page-main-cont {
+    margin: 0 4rem;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .auth-page-main-cont {
+    margin: 0 5rem;
+  }
+}
+
+@media only screen and (min-width: 960px) {
+  .auth-page-main-cont {
+    margin: 0 15rem;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .auth-page-main-cont {
+    margin: 0 28rem;
+  }
 }
 
 .auth-page-main-cont h1 {
@@ -606,10 +637,27 @@ body {
 }
 
 .authorize-image-desc {
+  height: 10rem;
   display: flex;
+  column-gap: 1.5rem;
   justify-content: space-evenly;
   align-items: center;
   background-color: rgb(246, 246, 247);
+}
+
+.authorize-image-desc article {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.authorize-image-desc h3 {
+  color: var(--dark-des-blue);
+  font-size: 2rem;
+}
+
+.authorize-image-desc img {
+  height: 4rem;
 }
 
 /* Below Hero Block */

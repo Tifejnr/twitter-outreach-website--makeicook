@@ -1,6 +1,11 @@
 import NavToggleIcon from "../Main-nav-bar/NavToggleIcon"
 import NavLogo from "../Main-nav-bar/NavLogo"
 import OauthNavItems from "./OauthNavItems"
+import GetStartedIcon from "./GetStartedIcon"
+import trelloIcon from "../../assets/SVGs/trello-icon.svg"
+import forwardArrowIcon from "../../assets/SVGs/forward-arrow.svg"
+
+
 
 export default function OauthPage() {
   return (
@@ -22,18 +27,31 @@ export default function OauthPage() {
        <h1>AUTHORIZE ACCESS</h1>
 
        <section className="authorize-image-desc">
+        <article>
+           <img src= {trelloIcon} className='trello-icon' />
+            <h3>Trello</h3>
+        </article>
+
         <picture>
-            Trello Icon
+            <img src= {forwardArrowIcon} className='forward-arrow-icon' />
         </picture>
 
         <picture>
-           Arrow Icon
+          <NavLogo/>
         </picture>
 
-        <picture>
-           Cbf Icon
-        </picture>
+       </section>
 
+       <section>
+        <p>
+         Before we can let you dive in, please click the button below to connect Screenful with Trello. 
+         We only read data from the boards you select. 
+         We don't change anything in your Trello account and we won't store any of your credentials.
+        </p>
+       </section>
+
+       <section>
+         <GetStartedIcon/>
        </section>
 
   </main> 

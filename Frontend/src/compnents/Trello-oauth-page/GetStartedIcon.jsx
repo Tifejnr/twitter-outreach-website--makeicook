@@ -1,4 +1,6 @@
 import React from 'react'
+import trelloIcon from "../../assets/SVGs/trello-icon.svg"
+import trelloAuthRedirect from "../../JS functions/Auth/trello-oauth"
 
 export default function GetStartedIcon() {
   return (
@@ -11,7 +13,7 @@ export default function GetStartedIcon() {
         className='oauth-button'>
           <section>
           <img src= {trelloIcon} className='trello-icon' />
-          <h2>Get Started with Trello</h2>
+          <h2> CLICK TO AUTHORIZE </h2>
           </section>
         </a>
     </>
