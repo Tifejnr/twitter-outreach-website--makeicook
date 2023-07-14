@@ -1,9 +1,9 @@
 import axios from "axios";
 import displayErrorMessage from "../inputs-validations/error-text-style";
-const registerUserEndPoint =
-  "https://www.collabfortrello.com/api/register-user";
+import { websiteUrl } from "../websiteUrl";
 
 export default async function registerUser(regParams) {
+  const registerUserEndPoint = `${websiteUrl}/api/register-user`;
   try {
     const response = await axios.post(registerUserEndPoint, regParams);
     const data = await response.data;

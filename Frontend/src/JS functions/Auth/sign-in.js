@@ -1,9 +1,9 @@
 import axios from "axios";
+import { websiteUrl } from "../websiteUrl";
 import displayErrorMessage from "../inputs-validations/error-text-style";
-const signInEndPoint = "https://www.collabfortrello.com/api/sign-in";
-// const signInEndPoint = "http://localhost:3000/api/sign-in";
 
 export default async function signInUser(signInParams) {
+  const signInEndPoint = `${websiteUrl}/api/sign-in`;
   try {
     const response = await axios.post(signInEndPoint, signInParams);
     const data = await response.data;

@@ -3,10 +3,9 @@ import ShowSuccessMess from "./progressBar/SucessMessage";
 import { validateUsername } from "./Utilis/Validations/Username";
 import { isAnyCheckboxChecked } from "./Utilis/Validations/Checkbox";
 import { findBoardIdByName } from "./Utilis/FindBoardId/byName";
+import { websiteUrl } from "./websiteUrl";
 
 let succes, failuresArray, totalAttemptedArray;
-// const websiteUrl = "http://localhost:3000";
-const websiteUrl = "https://www.collabfortrello.com";
 
 export default async function DeleteMemberFromBoard() {
   const action = "deleting";

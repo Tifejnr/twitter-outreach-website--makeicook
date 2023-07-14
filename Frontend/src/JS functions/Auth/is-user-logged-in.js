@@ -1,8 +1,8 @@
 import axios from "axios";
-const isUserLoggedInEndpoint = "https://www.collabfortrello.com/isloggedIn";
-// const isUserLoggedInEndpoint = "http://localhost:3000/isloggedIn";
+import { websiteUrl } from "../websiteUrl";
 
 export default async function isUserLoggedIn() {
+  const isUserLoggedInEndpoint = `${websiteUrl}/isloggedIn`;
   try {
     const response = await axios.post(isUserLoggedInEndpoint);
     const data = await response.data;

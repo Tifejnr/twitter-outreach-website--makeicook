@@ -1,12 +1,10 @@
 import progressBarMove from "./progressBar/MoveProgressBar";
 import { hide } from "./Utilis/EleDisplay";
+import { websiteUrl } from "./websiteUrl";
 let dataLength;
 let lenghtID;
 let idCollections = [];
 let fetchedData;
-
-const websiteUrl = "https://www.collabfortrello.com";
-// const websiteUrl = "http://localhost:3000";
 
 export default async function FetchData(needOnlyBoardCollections) {
   progressBarMove(3, 100);

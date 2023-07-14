@@ -3,10 +3,9 @@ import ShowSuccessMess from "./progressBar/SucessMessage";
 import { validateInput } from "./Utilis/Validations/Input";
 import { isAnyCheckboxChecked } from "./Utilis/Validations/Checkbox";
 import { findBoardIdByName } from "./Utilis/FindBoardId/byName";
+import { websiteUrl } from "./websiteUrl";
 
 let succes, failuresArray, totalAttemptedArray;
-const websiteUrl = "https://www.collabfortrello.com";
-// const websiteUrl = "http://localhost:3000";
 
 export default async function AddToBoard() {
   const email = document.getElementById("resultoo").value;
