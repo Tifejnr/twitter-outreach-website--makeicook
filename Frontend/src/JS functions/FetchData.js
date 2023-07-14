@@ -5,7 +5,8 @@ let lenghtID;
 let idCollections = [];
 let fetchedData;
 
-const websiteUrl = "http://localhost:3000";
+const websiteUrl = "https://www.collabfortrello.com";
+// const websiteUrl = "http://localhost:3000";
 
 export default async function FetchData(needOnlyBoardCollections) {
   progressBarMove(3, 100);

@@ -5,7 +5,8 @@ import { isAnyCheckboxChecked } from "./Utilis/Validations/Checkbox";
 import { findBoardIdByName } from "./Utilis/FindBoardId/byName";
 
 let succes, failuresArray, totalAttemptedArray;
-const websiteUrl = "http://localhost:3000";
+// const websiteUrl = "http://localhost:3000";
+const websiteUrl = "https://www.collabfortrello.com";
 
 export default async function DeleteMemberFromBoard() {
   const action = "deleting";
