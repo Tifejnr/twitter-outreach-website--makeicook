@@ -10,22 +10,19 @@ useEffect(() => {
 (async  function  ()  {
 
   if ( await isUserLoggedIn()) setIsLoggedIn(prev=> !prev);
-    console.log( await isUserLoggedIn(), isLoggedIn)
+    console.log( "await isUserLoggedIn()", isLoggedIn)
   }
   () )
-}, []);
+}, [isLoggedIn]);
 
 
 
 
-  console.log(isLoggedIn, "Latee one")
+console.log(isLoggedIn, "Latee one")
 
-  setTimeout(() => {
     
-  if (!isLoggedIn) return (<Navigate to={"/"}/>);
-  return( <>{children}</>)   
-  }, 300);
-
+  if (isLoggedIn)  return( <>{children}</>)  
+  return   (<Navigate to={"/"}/>);
 
 }
 
