@@ -13,7 +13,7 @@ useEffect(() => {
     console.log( "await isUserLoggedIn()", isLoggedIn)
   }
   () )
-}, [isLoggedIn]);
+}, []);
 
 
 
