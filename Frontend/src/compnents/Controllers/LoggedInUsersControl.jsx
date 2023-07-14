@@ -7,16 +7,12 @@ const [isLoggedIn, setIsLoggedIn]= useState(false);
 
 
 useEffect(() => {
-async  function checkStatusNow ()  {
-  const checkStatusTrue = await isUserLoggedIn()
-  console.log(checkStatusTrue, isLoggedIn)
-  if (checkStatusTrue) setIsLoggedIn(true);
-  }
+(async  function  ()  {
 
-checkStatusNow ()
-  (() => {
-     console.log("checkStatusTrue" , isLoggedIn)
-  })();
+  if ( await isUserLoggedIn()) setIsLoggedIn(prev=> !prev);
+    console.log( await isUserLoggedIn(), isLoggedIn)
+  }
+  () )
 }, []);
 
 
@@ -24,8 +20,12 @@ checkStatusNow ()
 
   console.log(isLoggedIn, "Latee one")
 
+  setTimeout(() => {
+    
   if (!isLoggedIn) return (<Navigate to={"/"}/>);
   return( <>{children}</>)   
+  }, 300);
+
 
 }
 
