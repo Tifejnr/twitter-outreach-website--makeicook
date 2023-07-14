@@ -1,6 +1,16 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 
 export default function ProgressBar(props) {
+  const [isPageLoad, setIsPageLoad]= useState()
+
+  useEffect(() => {
+  setIsPageLoad(true)
+
+  }, [])
+
+
+  if (isPageLoad === undefined) return "";
+  
   return (
       <div className="loading" id="loading">
       <div className="barHolder">

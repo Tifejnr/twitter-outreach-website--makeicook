@@ -1,11 +1,8 @@
-import { useState, useEffect } from "react";
 import { display, hide, displayForms } from "../Utilis/EleDisplay";
 
 
 export default function progressBarMove(fetchedDataSum, lengthId) {
-
-  useEffect(() => {
-  const progressBarTitle = document.getElementById("progressBarTitle");
+const progressBarTitle = document.getElementById("progressBarTitle");
 const mainContentCont = document.getElementById("mainContentCont");
 const BAR = document.getElementById("bar");
 const progressBarContainer = document.getElementById("loading");
@@ -23,10 +20,5 @@ progressBarTitle.innerHTML = startingTitle;
       displayForms(allForms);
     }, 700);
   }
-  
-
-  }, [])
-  
-
 }
 
