@@ -2,6 +2,8 @@ import { display, hide, displayForms } from "../Utilis/EleDisplay";
 
 
 export default function progressBarMove(fetchedDataSum, lengthId) {
+
+setTimeout(() => {
 const progressBarTitle = document.getElementById("progressBarTitle");
 const mainContentCont = document.getElementById("mainContentCont");
 const BAR = document.getElementById("bar");
@@ -9,10 +11,10 @@ const progressBarContainer = document.getElementById("loading");
 const allForms = document.getElementsByTagName("form");
 const startingTitle = "Loading Your Boards...";
 progressBarTitle.innerHTML = startingTitle;
-
-  let percentLoaded = (Number(fetchedDataSum) / Number(lengthId + 1)) * 100;
+    let percentLoaded = (Number(fetchedDataSum) / Number(lengthId + 1)) * 100;
   BAR.style.width = percentLoaded + "%";
 
+  
   if (percentLoaded == 100) {
     return setTimeout(() => {
       display(mainContentCont);
@@ -20,5 +22,8 @@ progressBarTitle.innerHTML = startingTitle;
       displayForms(allForms);
     }, 700);
   }
+}, 100);
+
+
 }
 

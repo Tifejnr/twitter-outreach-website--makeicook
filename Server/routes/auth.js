@@ -39,6 +39,7 @@ router.post("/", async (req, res) => {
     if (!token) return console.log("token not found");
     const cookieOptions = {
       maxAge: 1209600000,
+      domain: "http://localhost:5173/",
       // httpOnly: true,
     };
 
