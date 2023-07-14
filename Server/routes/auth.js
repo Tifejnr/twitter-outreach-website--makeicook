@@ -39,8 +39,7 @@ router.post("/", async (req, res) => {
     if (!token) return console.log("token not found");
     const cookieOptions = {
       maxAge: 1209600000,
-      httpOnly: true,
-      secure: true,
+      // httpOnly: true,
     };
 
     console.log("signed in");
