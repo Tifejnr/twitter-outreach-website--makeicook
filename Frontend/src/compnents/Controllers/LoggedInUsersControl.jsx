@@ -6,14 +6,19 @@ export default  function LoggedInUsersControl({children}) {
 const [isLoggedIn, setIsLoggedIn]= useState(false);
 
 
- async  function checkStatusNow ()  {
+useEffect(() => {
+async  function checkStatusNow ()  {
   const checkStatusTrue = await isUserLoggedIn()
-  console.log(checkStatusTrue)
-  if (checkStatusTrue)
-     setIsLoggedIn(prevState=>!prevState);
+  console.log(checkStatusTrue, isLoggedIn)
+  if (checkStatusTrue) setIsLoggedIn(true);
   }
 
 checkStatusNow ()
+  (() => {
+     console.log("checkStatusTrue" , isLoggedIn)
+  })();
+}, []);
+
 
 
 
@@ -23,6 +28,5 @@ checkStatusNow ()
   return( <>{children}</>)   
 
 }
-
 
 
