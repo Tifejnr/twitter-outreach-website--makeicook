@@ -9,10 +9,11 @@ export default function ProgressBar(props) {
   }, [])
 
 
-  if (isPageLoad === undefined) return "";
+if (isPageLoad === undefined) return "";
   
   return (
-      <div className="loading" id="loading">
+isPageLoad &&
+    <div className="loading" id="loading">
       <div className="barHolder">
         <div id="bar"></div>
       </div>
@@ -27,6 +28,5 @@ export default function ProgressBar(props) {
         </a>
       </section>
     </div>
-
   )
 }
