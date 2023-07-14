@@ -9,6 +9,7 @@ export default function HomePage() {
 
   return (
 <>
+<LoggedInUsersControl>
   
   <nav className='nav'>
        <NavToggleIcon/>
@@ -23,6 +24,7 @@ export default function HomePage() {
       </ul>
   </nav>  
 
+</LoggedInUsersControl>  
 </>
   )
 }
