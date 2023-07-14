@@ -11,6 +11,7 @@ import Pricing from './compnents/Pages/Pricing'
 import OauthPage from './compnents/Trello-oauth-page/OauthPage'
 import LandingPage from './compnents/LandingPage/LandingPage'
 import HomePage from './compnents/Home-nav-items/HomePage'
+import LoggedInUsersControl from './compnents/Controllers/LoggedInUsersControl'
 
 export const LoginStatusContext =  createContext()
 
@@ -22,7 +23,7 @@ function App() {
     <>
       <Routes>
         <Route path='/' element={<LandingPage/>}/>
-        <Route path='/home' element={<HomePage/>}/>
+        <Route path='/home' element={<LoggedInUsersControl><HomePage/></LoggedInUsersControl>}/>
         <Route path='/sign-in' element={<SignIn/>}/>
         <Route path='/register' element={<Register/>}/>
         <Route path='/add-member' element={<AddMember/>}/>
