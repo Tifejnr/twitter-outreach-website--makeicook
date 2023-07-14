@@ -1,8 +1,8 @@
 import axios from "axios";
-// const trelloAuthEndpoint = "http://localhost:3000/authorize";
-const trelloAuthEndpoint = "https://www.collabfortrello.com/authorize";
+import { websiteUrl } from "../websiteUrl";
 
 export default async function trelloAuthRedirect() {
+  const trelloAuthEndpoint = `${websiteUrl}/authorize`;
   try {
     const response = await axios.post(trelloAuthEndpoint);
     const data = await response.data;
