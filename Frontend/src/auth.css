@@ -185,7 +185,6 @@ h3 {
 
 .main-container {
   position: relative;
-  width: 100%;
   padding: 1.5rem 2.1rem;
   display: flex;
   flex-direction: column;
@@ -228,7 +227,7 @@ input,
   height: 4rem;
   border: 1px solid transparent;
   outline: 0;
-  rotate: 0.4deg;
+  rotate: 0.6deg;
 }
 
 .input-wrapper label {
@@ -236,7 +235,7 @@ input,
 }
 
 .input-wrapper p {
-  rotate: -0.4deg;
+  rotate: -0.6deg;
   position: relative;
   top: -0.3rem;
 }
@@ -244,8 +243,9 @@ input,
 .input-wrapper input {
   width: 100%;
   padding: 0.4rem 0.5rem;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 300;
+  letter-spacing: 1px;
   border: 1px solid gainsboro;
   height: 100%;
 }
@@ -380,7 +380,7 @@ a:hover {
   color: var(--dark-des-blue);
   font-weight: 300;
   font-size: 1.6rem;
-  margin-top: 3rem;
+  margin-top: 1rem;
   padding-bottom: 2rem;
 }
 
@@ -391,18 +391,17 @@ a:hover {
   display: block;
   background-color: #fff;
   z-index: 1;
-  margin: 0 auto;
   text-align: center;
   color: #bac1c7;
   font-size: 1.6rem;
-  margin-top: 10rem;
+  margin-top: 12rem;
 }
 
 @media screen and (min-width: 768px) {
   .footer {
     margin: 0 auto;
     padding: 3.9rem 0 4.2rem;
-    top: 7rem;
+    top: 9rem;
   }
 }
 

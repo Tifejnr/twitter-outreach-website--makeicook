@@ -372,3 +372,10 @@ form {
   color: #1e2831;
   margin: 1rem 0;
 }
+
+/* No of Selection display box */
+#para {
+  position: fixed;
+  top: 50%;
+  left: 10%;
+}

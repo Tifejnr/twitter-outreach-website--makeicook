@@ -26,7 +26,7 @@ export default function SelectAll(props) {
 
              <button className="execution-btn" id="deleting-btn" onClick={props.action}>{props.labelTitle}</button>
           </section>
-        
+          <p id='para'></p>
        </section>
   )
 }

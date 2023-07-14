@@ -77,7 +77,7 @@ app.post("/authorize", loginStatusChecker, async (req, res) => {
   login(req, res);
 });
 
-app.post("/start", async (req, res) => {
+app.post("/start", loginStatusChecker, async (req, res) => {
   fetchAllBoards(req, res);
 });
 
