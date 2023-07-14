@@ -211,8 +211,8 @@ body {
 .nav__menu {
   display: flex;
   flex-direction: column;
-  row-gap: 1rem;
-  column-gap: 2rem;
+  row-gap: 2rem;
+  column-gap: 1.5rem;
   align-items: center;
   background-color: var(--background-col);
   padding-bottom: 0.3rem;
@@ -530,7 +530,7 @@ body {
   justify-content: center;
   align-items: center;
   border-radius: 0.6rem;
-  background-color: #fdfdfd;
+  background-color: #ff6b35;
   box-shadow: none;
   text-decoration: none;
   transition: background-color 0.3s ease;
@@ -547,11 +547,11 @@ body {
 
 .oauth-button:hover,
 .oauth-button:active {
-  background-color: rgb(199, 204, 243);
+  background-color: rgb(199, 128, 97);
 }
 
 .oauth-button h2 {
-  color: #333;
+  color: #fff;
   margin: 0;
   font-weight: 600;
   font-size: 1.6rem;

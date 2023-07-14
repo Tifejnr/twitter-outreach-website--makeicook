@@ -47,7 +47,6 @@ if(validateInputs(paramsObj)) {
   return (
      
 <>
-
 <AuthNav/>
 <section className="main-container reg-container" id="form">
 
@@ -89,7 +88,6 @@ if(validateInputs(paramsObj)) {
    </section>
  </section>
 <AuthFooter/>
-
 </>
  );
 }
