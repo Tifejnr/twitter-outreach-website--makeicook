@@ -4,7 +4,6 @@ const axios = require("axios");
 
 const keysObj = getKeys();
 const key = keysObj.CLIENT_SECRET_KEY;
-// const token = keysObj.ACCESS_TOKEN_SECRET;
 
 async function addMemberToBoard(req, res) {
   const { boardId, email } = req.body;
