@@ -22,7 +22,7 @@ progressBarTitle.innerHTML = startingTitle;
       displayForms(allForms);
     }, 700);
   }
-}, 100);
+}, 50);
 
 
 }

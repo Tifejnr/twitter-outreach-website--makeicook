@@ -48,7 +48,7 @@ export default async function FetchData(needOnlyBoardCollections) {
       const checkbox = document.createElement("input");
       checkbox.type = "checkbox";
       checkbox.name = "fruit";
-      checkbox.className = "inputs";
+      checkbox.className = "inputs board-checkbox";
       checkbox.id = `check${index}`;
 
       // Create the label element

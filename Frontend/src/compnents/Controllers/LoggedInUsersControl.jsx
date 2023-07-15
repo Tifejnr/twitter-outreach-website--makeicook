@@ -8,14 +8,13 @@ const [isLoggedIn, setIsLoggedIn]= useState();
 
   useEffect(() => {
     fetchData();
-      console.log(isLoggedIn)
   }, []);
 
 
   const fetchData = async () => {
     try {
       const response = await isUserLoggedIn();
-      if (response) return setIsLoggedIn(true)
+      if (!response) return setIsLoggedIn(true)
         return setIsLoggedIn(false)
     } catch (error) {
       console.error('Error fetching data:', error);
