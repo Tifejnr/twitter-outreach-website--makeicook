@@ -2,6 +2,7 @@ import React from 'react'
 import goBackIcon from "../../../assets/SVGs/goBack.svg"
 import DashBody from './DashBody'
 import NavLogo from '../../Main-nav-bar/NavLogo'
+import AuthFooter from '../AuthFooter'
 
 export default function Dashboard() {
   return (
@@ -23,6 +24,8 @@ export default function Dashboard() {
   </nav> 
 
   <DashBody />
+
+  <AuthFooter/>
     </>
   )
 }

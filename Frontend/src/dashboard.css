@@ -33,7 +33,7 @@
 
 /* User Account Design Block */
 main {
-  margin-top: 3rem;
+  margin-top: 8rem;
   display: grid;
   align-items: center;
   justify-items: center;
@@ -254,48 +254,4 @@ tr .jobRelatedKeyword {
 
 tr:last-child td {
   border-color: transparent;
-}
-
-/* JSS heading style */
-.nextJSSHeading {
-  border: 1px solid var(--green);
-  margin: auto;
-  position: relative;
-  margin-top: 4rem;
-  margin-bottom: 2rem;
-  width: 30rem;
-  max-width: 35rem;
-  border-radius: 1rem;
-  text-align: center;
-  padding: 1rem;
-}
-
-.nextJSSHeading h2 {
-  color: #828282;
-  font-size: 2.5rem;
-}
-
-/* Footer */
-.footer {
-  position: relative;
-  display: block;
-  background-color: #fff;
-  z-index: 1;
-  width: 100%;
-  padding: 3.9rem 0 4.2rem;
-  margin: auto auto;
-  text-align: center;
-  color: #bac1c7;
-  font-size: 1.6rem;
-}
-
-.slogan {
-  font-size: 1.5rem;
-  color: var(--dark-des-blue);
-  z-index: 5;
-  text-align: center;
-}
-
-.slogan h2 {
-  font-size: 1.5rem;
 }

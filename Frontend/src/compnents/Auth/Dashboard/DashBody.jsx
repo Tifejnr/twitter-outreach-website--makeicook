@@ -1,8 +1,13 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import accountIcon from "../../../assets/SVGs/account.svg"
 import logoutIcon from "../../../assets/SVGs/logout.svg"
 
 export default function DashBody() {
+  const [username, setUsername] = useState("username");
+  const [email, setEmail] = useState("email");
+  const [credits, setCredits] = useState(5);
+  const [creditsExpiration, setCreditsExpiration] = useState("Never");
+
   return (
  <>
 
@@ -17,17 +22,17 @@ export default function DashBody() {
           </picture>
 
           <section className="profileDetails">
-            <article className="name"><h2>hahaa</h2></article>
-            <article className="email"><p>aanaahh</p></article>
+            <article className="name"><h2>{username}</h2></article>
+            <article className="email"><p>{email}</p></article>
             <table>
               <tbody>
                 <tr>
-                  <td>UP Link</td>
-                  <td className="value upLink">;a;aak</td>
+                  <td>Credits</td>
+                  <td className="value upLink">{credits}</td>
                 </tr>
                 <tr>
-                  <td>Paid For</td>
-                  <td className="value jobsPiadFor">akakka</td>
+                  <td>Credits Expiration</td>
+                  <td className="value jobsPiadFor">{creditsExpiration}</td>
                 </tr>
                 <tr>
                   <td className="jobRelatedKeyword">Jobs Completed</td>
