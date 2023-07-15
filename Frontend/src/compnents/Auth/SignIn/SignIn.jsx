@@ -87,7 +87,6 @@ if(validateInputs(paramsObj)) {
     </aside>
    </section>
  </section>
-<AuthFooter/>
 </>
  );
 }

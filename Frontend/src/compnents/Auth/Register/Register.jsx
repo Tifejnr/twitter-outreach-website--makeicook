@@ -72,7 +72,7 @@ if(validateInputs(paramsObj)) {
       </fieldset>
 
        <h3 className="policy-agreement-text">
-          I agree to Collab for Trello's
+        By getting started, I agree to Collab for Trello's
           <Link to="#"> Terms of Use </Link> & <Link to="#"> Privacy Policy</Link>
        </h3>
 
@@ -90,7 +90,6 @@ if(validateInputs(paramsObj)) {
 
 </section>
 
-<AuthFooter/>
  </>
   );
 }
