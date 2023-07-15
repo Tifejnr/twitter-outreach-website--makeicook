@@ -3,10 +3,6 @@ import { useNavigate, Link} from "react-router-dom";
 import validateInputs from "../../../JS functions/inputs-validations/overall-val-func";
 import registerUser from "../../../JS functions/Auth/register";
 import AuthNav from "../AuthNav";
-import { websiteUrl } from "../../../JS functions/websiteUrl";
-
-
-
 
 
 export default function Register() {
@@ -35,7 +31,7 @@ if(validateInputs(paramsObj)) {
   }
  const regUser = await registerUser(regParam)
 
- if (regUser) return ( navigate('/authorize'))
+ if (regUser) return (navigate('/authorize'))
 
  return false
 }
@@ -75,14 +71,14 @@ if(validateInputs(paramsObj)) {
           <Link to="#"> Terms of Use </Link> & <Link to="#"> Privacy Policy</Link>
        </h3>
 
-        <button id="create_btn" type="submit" onClick={async (e)=> {
+        <button id="create_btn" type="submit" onClick={(e)=> {
           e.preventDefault();
     const data = {
-      price: "price",
-      gallons: "gallons",
-      miles: "miles",
-      notes: "notes",
-      source: "params.car_source",
+      price: price,
+      gallons: gallons,
+      miles: miles,
+      notes: notes,
+      source: params.car_source,
     };
 
     const options = {
@@ -93,11 +89,7 @@ if(validateInputs(paramsObj)) {
       body: JSON.stringify(data),
     };
 
-const response=  await fetch(`${websiteUrl}/trial`, options);
-
-console.log (response.json)
-
-
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/consumption/`, options);
         }} className="submit-btn">Get Started</button>
 
         <h5>5 free credits for trial</h5>
