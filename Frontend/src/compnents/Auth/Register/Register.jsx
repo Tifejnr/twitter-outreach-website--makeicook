@@ -3,6 +3,7 @@ import { useNavigate, Link} from "react-router-dom";
 import validateInputs from "../../../JS functions/inputs-validations/overall-val-func";
 import registerUser from "../../../JS functions/Auth/register";
 import AuthNav from "../AuthNav";
+import { websiteUrl } from "../../../JS functions/websiteUrl";
 
 
 
