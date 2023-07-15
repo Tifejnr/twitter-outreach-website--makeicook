@@ -246,7 +246,6 @@ input,
 }
 
 .input-wrapper p {
-  rotate: -0.6deg;
   position: relative;
   top: -0.3rem;
 }
@@ -258,9 +257,12 @@ input,
   font-weight: 300;
   border: 1px solid gainsboro;
   height: 100%;
+  letter-spacing: 0.5px;
+  color: var(--dark-des-blue);
 }
 
-.input-wrapper input::placeholder {
+.input-wrapper input::placeholder,
+.input-wrapper p {
   rotate: -0.6deg;
 }
 
