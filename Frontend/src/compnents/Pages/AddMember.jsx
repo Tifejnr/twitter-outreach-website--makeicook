@@ -10,20 +10,18 @@ import LoggedInUsersControl from '../Controllers/LoggedInUsersControl';
 
 
 export default function AddMember() {
-const [labelTitle , setLabelTitle ] = useState("")
+  const [inputLabel, setInputLabel] = useState("Member Email:");
+  const [searchPlaceholderTitle, setSearchPlaceholderTitle] = useState("Search Boards ...");
+  const [selectInstructionText, setSelectInstructionText] = useState("Select Boards to Add Member to");
+  const [inputPlaceholderText, setInputPlaceholderText] = useState("Enter Email");
+  const [pageName, setPageName] = useState("add-member");
+  const [pageTitle, setPageTitle] = useState("Add Member Via Email");
+
 useEffect(() => {
 FetchData()
 
-setLabelTitle("Add Member")
+}, []);
 
-  }, []);
-
-  const inputLabel= "Member Email:"
-  const searchPlaceholderTitle= "Search Boards ..."
-  const selectInstructionText= "Select Boards to Add Member to"
-  const inputPlaceholderText= "Enter Email"
-  const pageName = "add-member"
-  const pageTitle = "Add Member Via Email"
 
   return (
 <>   
@@ -60,4 +58,50 @@ setLabelTitle("Add Member")
 
 
 
+
+
+
+//setting ele instead of getting by id
+
+
+// const MyComponent = () => {
+//   const [myElement, setMyElement] = useState(null);
+
+//   const handleClick = () => {
+//     console.log(myElement);
+//     // Perform operations on the element
+//   };
+
+//   return (
+//     <div>
+//       <div ref={setMyElement}>This is my element</div>
+//       <button onClick={handleClick}>Get Element</button>
+//     </div>
+//   );
+// };
+
+
+//when it's not within the comp
+
+
+// const MyComponent = () => {
+//   const [myElement, setMyElement] = useState(null);
+
+//   useEffect(() => {
+//     const element = document.getElementById('myElement');
+//     setMyElement(element);
+//   }, []);
+
+//   const handleClick = () => {
+//     console.log(myElement);
+//     // Perform operations on the element
+//   };
+
+//   return (
+//     <div>
+//       {/* Your component content */}
+//       <button onClick={handleClick}>Get Element</button>
+//     </div>
+//   );
+// };
 

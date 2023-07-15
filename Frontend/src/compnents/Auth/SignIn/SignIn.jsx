@@ -10,7 +10,6 @@ import AuthFooter from "../AuthFooter";
 export default function SignIn() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [loginStatus, setLoggedInStatus]= useContext(LoginStatusContext) ;
   const navigate = useNavigate();
 
 

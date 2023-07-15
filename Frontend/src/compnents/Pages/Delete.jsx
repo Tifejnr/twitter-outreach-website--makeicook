@@ -9,20 +9,21 @@ import HomePage from '../Home-nav-items/HomePage';
 import LoggedInUsersControl from '../Controllers/LoggedInUsersControl';
 
 export default function Delete() {
+  const [labelTitle, setLabelTitle] = useState("Delete Member");
+  const [inputLabel, setInputLabel] = useState("Trello Username:");
+  const [searchPlaceholderTitle, setSearchPlaceholderTitle] = useState("Search Boards ...");
+  const [selectInstructionText, setSelectInstructionText] = useState("Select Boards To Delete Member");
+  const [inputPlaceholderText, setInputPlaceholderText] = useState("@...");
+  const [pageName, setPageName] = useState("delete-member");
+  const [pageTitle, setPageTitle] = useState("Delete Member Via Username");
+
 useEffect(() => {
 FetchData()
 
   }, []);
 
-  const labelTitle = "Delete Member"
-  const inputLabel= "Trello Username:"
-  const searchPlaceholderTitle= "Search Boards ..."
-  const selectInstructionText= "Select Boards To Delete Member"
-   const inputPlaceholderText= "@..."
-   const pageName= "delete-member";
-     const pageTitle = "Delete Member Via Username"
 
-  return (
+return (
 <>    
 <LoggedInUsersControl>
    <HomePage/>   
