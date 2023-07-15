@@ -3,8 +3,8 @@ const axios = require("axios");
 async function addMemberToBoard(req, res) {
   const { boardId, email } = req.body;
 
-  const token = await decryptToken(userDetails);
   const memberAddingUrl = `https://api.trello.com/1/boards/${boardId}/members?email=${email}&key=${key}&token=${token}`;
+  
   try {
     const response = await axios.put(memberAddingUrl);
 

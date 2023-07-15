@@ -2,21 +2,15 @@ const { user } = require("../models/users");
 const express = require("express");
 const router = express.Router();
 const bycrypt = require("bcrypt");
-const CryptoJS = require("crypto-js");
 const { signJwt } = require("../middlewares/jwt-related/sign-jwt");
 const { validateSignInParams } = require("../Joi-Validations/SignIn");
 
-// res.cookie("cftAuth", jwtToken, {
-//   maxAge: 1209600000,
-// });
-
 router.post("/", async (req, res) => {
+  console.log(req.body);
   const { error } = validateSignInParams(req.body);
 
   if (error)
     return res.status(400).json({ joiError: error.details[0].message });
-
-  res.cookie("mancftAuthaaa", "token");
 
   try {
     const accountUser = await user.findOne({ email: req.body.email });
@@ -39,8 +33,7 @@ router.post("/", async (req, res) => {
     if (!token) return console.log("token not found");
     const cookieOptions = {
       maxAge: 1209600000,
-      domain: "http://localhost:5173/",
-      // httpOnly: true,
+      httpOnly: true,
     };
 
     console.log("signed in");

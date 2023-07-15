@@ -3,7 +3,6 @@ const { deleteExecution } = require("./deleteExecution");
 
 async function deleteMemberFromBoard(req, res) {
   const { boardId, username } = req.body;
-  const token = await decryptToken(userDetails);
 
   const boardDetailsFetchUrl = `https://api.trello.com/1/boards/${boardId}/members?&key=${key}&token=${token}`;
 

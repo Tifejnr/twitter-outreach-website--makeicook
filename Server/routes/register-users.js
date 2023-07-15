@@ -4,7 +4,6 @@ const router = express.Router();
 const _ = require("lodash");
 const bycrypt = require("bcrypt");
 const { signJwt } = require("../middlewares/jwt-related/sign-jwt");
-const coookieParser = require("cookie-parser");
 const {
   validateRegsiterParams,
 } = require("../Joi-Validations/register-validation");
