@@ -5,6 +5,8 @@ import registerUser from "../../../JS functions/Auth/register";
 import AuthNav from "../AuthNav";
 
 
+
+
 export default function Register() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -13,31 +15,47 @@ export default function Register() {
 
 const sendInfoToServer = async (e)=> {
     e.preventDefault();
+
+         const data = {
+      source: "params.car_source,"
+    };
+
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    };
+
+  const response=  await fetch(`${websiteUrl}/trial`, options);
+
+  console.log(response.json)
     
-  const emailId = document.getElementById("emailId")
-  const passwordId = document.getElementById("passwordId")
-  try {
-   const paramsObj = {
-    email,
-    emailId,
-    password,
-    passwordId
-    }
+//   const emailId = document.getElementById("emailId")
+//   const passwordId = document.getElementById("passwordId")
+//   try {
+//    const paramsObj = {
+//     email,
+//     emailId,
+//     password,
+//     passwordId
+//     }
 
-if(validateInputs(paramsObj)) {
-  const regParam = {
-    email,
-    password
-  }
- const regUser = await registerUser(regParam)
+// if(validateInputs(paramsObj)) {
+//   const regParam = {
+//     email,
+//     password
+//   }
+//  const regUser = await registerUser(regParam)
 
- if (regUser) return (navigate('/authorize'))
+//  if (regUser) return ( navigate('/authorize'))
 
- return false
-}
-    } catch (error) {
-      console.log(error.message)
-    }
+//  return false
+// }
+//     } catch (error) {
+//       console.log(error.message)
+//     }
   }
 
   return (
@@ -49,7 +67,7 @@ if(validateInputs(paramsObj)) {
         <h2>Get Started</h2>
       </article>
    <section>
-    <form action="" className="reg-form"  >
+    <form action="" className="reg-form" onSubmit={sendInfoToServer} >
 
       <fieldset className="input-wrapper">
         <label htmlFor="emailId"><p>Email</p></label>
@@ -71,26 +89,7 @@ if(validateInputs(paramsObj)) {
           <Link to="#"> Terms of Use </Link> & <Link to="#"> Privacy Policy</Link>
        </h3>
 
-        <button id="create_btn" type="submit" onClick={(e)=> {
-          e.preventDefault();
-    const data = {
-      price: price,
-      gallons: gallons,
-      miles: miles,
-      notes: notes,
-      source: params.car_source,
-    };
-
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    };
-
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/consumption/`, options);
-        }} className="submit-btn">Get Started</button>
+        <button id="create_btn" type="submit" className="submit-btn">Get Started</button>
 
         <h5>5 free credits for trial</h5>
     </form>
