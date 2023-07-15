@@ -4,7 +4,8 @@ import { LoginStatusContext } from "../../../App";
 import validateInputs from "../../../JS functions/inputs-validations/overall-val-func";
 import registerUser from "../../../JS functions/Auth/register";
 import AuthNav from "../AuthNav";
-import AuthFooter from "../AuthFooter";
+import { websiteUrl } from "../../../JS functions/websiteUrl";
+
 
 
 
@@ -54,7 +55,7 @@ if(validateInputs(paramsObj)) {
         <h2>Get Started</h2>
       </article>
    <section>
-    <form action="" className="reg-form" onSubmit={sendInfoToServer} >
+    <form action="" className="reg-form"  >
 
       <fieldset className="input-wrapper">
         <label htmlFor="emailId"><p>Email</p></label>
@@ -76,7 +77,26 @@ if(validateInputs(paramsObj)) {
           <Link to="#"> Terms of Use </Link> & <Link to="#"> Privacy Policy</Link>
        </h3>
 
-        <button id="create_btn" type="submit" className="submit-btn">Get Started</button>
+        <button id="create_btn" type="submit" onClick={(e)=> {
+          e.preventDefault();
+    const data = {
+      price: price,
+      gallons: gallons,
+      miles: miles,
+      notes: notes,
+      source: params.car_source,
+    };
+
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    };
+
+    fetch(`${websiteUrl}/trial`, options);
+        }} className="submit-btn">Get Started</button>
 
         <h5>5 free credits for trial</h5>
     </form>
