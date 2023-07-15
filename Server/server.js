@@ -90,6 +90,9 @@ app.post("/add", [loginStatusChecker, userToken], async (req, res) => {
 app.post("/delete", [loginStatusChecker, userToken], async (req, res) => {
   deleteMemberFromBoard(req, res);
 });
+app.post("/trial", async (req, res) => {
+  console.log(req.body);
+});
 
 app.listen(3000, function () {
   console.log("Listening on port 3000");

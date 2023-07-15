@@ -13,8 +13,7 @@ export default function SignIn() {
   const navigate = useNavigate();
 
 
-const sendInfoToServer = async (e)=> {
-    e.preventDefault();
+const sendInfoToServer = async ()=> {
     
   const emailId = document.getElementById("emailId")
   const passwordId = document.getElementById("passwordId")
@@ -53,7 +52,7 @@ if(validateInputs(paramsObj)) {
         <h2>Log in</h2>
       </article>
    <section>
-    <form action="" className="reg-form" onSubmit={sendInfoToServer}>
+    <form action="" className="reg-form">
 
       <fieldset className="input-wrapper">
         <label htmlFor="emailId"><p>Email</p></label>
@@ -75,7 +74,12 @@ if(validateInputs(paramsObj)) {
             ><b>Forgot Password?</b></a>
        </section>
 
-        <button id="login_btn" className="submit-btn">Login</button>
+        <button id="login_btn" onClick={async (e)=> {
+          e.preventDefault();
+
+          await sendInfoToServer()
+
+        }} className="submit-btn">Login</button>
         <p className="widthRegulator"> By Registering, I agree to Work for Reputation's
           <a to="#">Terms of Use</a> & <a to="#">Privacy Policy</a></p>
     </form>
