@@ -1,11 +1,5 @@
 const axios = require("axios");
 const { deleteExecution } = require("./deleteExecution");
-const { decryptToken } = require("../../middlewares/token-safety/decryptToken");
-const { getKeys } = require("../../envKeys/allKeys");
-
-//fetching env variables
-const keysObj = getKeys();
-const key = keysObj.CLIENT_SECRET_KEY;
 
 async function deleteMemberFromBoard(req, res) {
   const { boardId, username } = req.body;

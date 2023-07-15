@@ -27,7 +27,6 @@ module.exports = async function (req, res, next) {
 
     next();
   } catch (error) {
-    console.log("whakaa with decoding");
     console.log(error);
     res.status(400).json({ unauthorizedToken: true });
     return false;

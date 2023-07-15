@@ -1,9 +1,4 @@
-const { getKeys } = require("../../envKeys/allKeys");
-const { decryptToken } = require("../../middlewares/token-safety/decryptToken");
 const axios = require("axios");
-
-const keysObj = getKeys();
-const key = keysObj.CLIENT_SECRET_KEY;
 
 async function addMemberToBoard(req, res) {
   const { boardId, email } = req.body;
