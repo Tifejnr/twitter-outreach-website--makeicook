@@ -10,12 +10,14 @@ import LoggedInUsersControl from '../Controllers/LoggedInUsersControl';
 
 
 export default function AddMember() {
+const [labelTitle , setLabelTitle ] = useState("")
 useEffect(() => {
 FetchData()
 
+setLabelTitle("Add Member")
+
   }, []);
 
-  const labelTitle = "Add Member"
   const inputLabel= "Member Email:"
   const searchPlaceholderTitle= "Search Boards ..."
   const selectInstructionText= "Select Boards to Add Member to"
