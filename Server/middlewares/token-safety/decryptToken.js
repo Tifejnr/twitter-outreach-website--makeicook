@@ -4,7 +4,7 @@ const { getKeys } = require("../../envKeys/allKeys");
 const keysObject = getKeys();
 const CRYPTO_SECRET_KEY = keysObject.CRYPTO_SECRET_KEY;
 
-async function decryptToken(userDetails) {
+module.exports = async function (req, res, next) {
   try {
     const accountUser = await user.findById(userDetails._id);
     const iv = accountUser.iv;
@@ -19,14 +19,17 @@ async function decryptToken(userDetails) {
 
     // Convert the decrypted data to a readable string (assuming the original plaintext was a string)
     const decryptedToken = decryptedData.toString(CryptoJS.enc.Utf8);
-    console.log(decryptedToken); // 'my message'
+    token = decryptedToken;
+    key = keysObject.CLIENT_SECRET_KEY;
 
-    return decryptedToken;
+    if (!token && !key)
+      return res.status(401).json({ unauthorizedToken: true });
+
+    next();
   } catch (error) {
     console.log("whakaa with decoding");
     console.log(error);
+    res.status(400).json({ unauthorizedToken: true });
     return false;
   }
-}
-
-exports.decryptToken = decryptToken;
+};
