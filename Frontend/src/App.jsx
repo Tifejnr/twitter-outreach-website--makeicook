@@ -2,6 +2,7 @@ import { useState,  createContext } from 'react'
 import './App.css'
 import './main.css'
 import './auth.css'
+import './dashboard.css'
 import {Route, Routes} from "react-router-dom"
 import Register from './compnents/Auth/Register/Register'
 import SignIn from './compnents/Auth/SignIn/SignIn'
@@ -12,6 +13,7 @@ import OauthPage from './compnents/Trello-oauth-page/OauthPage'
 import LandingPage from './compnents/LandingPage/LandingPage'
 import HomePage from './compnents/Home-nav-items/HomePage'
 import LoggedInUsersControl from './compnents/Controllers/LoggedInUsersControl'
+import Dashboard from './compnents/Auth/Dashboard/Dashboard'
 
 export const LoginStatusContext =  createContext()
 
@@ -26,6 +28,7 @@ function App() {
         <Route path='/home' element={<HomePage/>}/>
         <Route path='/sign-in' element={<SignIn/>}/>
         <Route path='/register' element={<Register/>}/>
+        <Route path='/dashboard' element={<Dashboard/>}/>
         <Route path='/add-member' element={<AddMember/>}/>
         <Route path='/delete-member' element={<Delete/>}/>
         <Route path='/pricing' element={<Pricing/>}/>
