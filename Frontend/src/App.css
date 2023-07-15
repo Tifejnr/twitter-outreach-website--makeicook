@@ -441,7 +441,7 @@ body {
 .hero-container h3 {
   margin: 2rem 0;
   margin-bottom: 0;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   font-weight: 500;
   line-height: 1.5;
   white-space: pre-wrap;
@@ -449,14 +449,9 @@ body {
   letter-spacing: 0.6px;
 }
 
-@media only screen and (min-width: 480px) {
+@media only screen and (min-width: 768px) {
   .hero-container h3 {
-    font-size: 1.73rem;
-  }
-}
-@media only screen and (min-width: 760px) {
-  .hero-container h3 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: 400;
     margin: 3rem 0;
   }
@@ -464,8 +459,7 @@ body {
 
 @media only screen and (min-width: 960px) {
   .hero-container h3 {
-    font-size: 1.9rem;
-    font-weight: 400;
+    font-size: 1.7rem;
   }
 }
 
@@ -503,8 +497,14 @@ body {
   margin-top: 0.7rem;
   display: grid;
   row-gap: 1rem;
-  letter-spacing: 0.3px;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+@media screen and (min-width: 768px) {
+  .call-to-action-cont ul {
+    font-size: 1.6rem;
+  }
 }
 
 .oauth-button.real-oauth {
