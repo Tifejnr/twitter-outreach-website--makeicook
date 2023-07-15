@@ -20,12 +20,12 @@ require("./startup/prod")(app);
 //Concet to mong db
 const keysObjects = getKeys();
 const mongoDB_string = keysObjects.mongoDB_string;
-// mongoose
-//   .connect(mongoDB_string)
-//   .then(() => {
-//     console.log("connected to mong db");
-//   })
-//   .catch((err) => console.error("could not connect", err));
+mongoose
+  .connect(mongoDB_string)
+  .then(() => {
+    console.log("connected to mong db");
+  })
+  .catch((err) => console.error("could not connect", err));
 
 //Importing api routes
 const registerUser = require("./routes/register-users");
