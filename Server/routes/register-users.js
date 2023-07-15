@@ -14,7 +14,7 @@ router.post("/", async (req, res) => {
     return res.status(400).json({ emailError: error.details[0].message });
 
   try {
-    const accountUser = await user.findOne({ email: req.body.email });
+    let accountUser = await user.findOne({ email: req.body.email });
     if (accountUser)
       return res
         .status(409)
