@@ -3,7 +3,6 @@ import { useNavigate, Link} from "react-router-dom";
 import validateInputs from "../../../JS functions/inputs-validations/overall-val-func";
 import registerUser from "../../../JS functions/Auth/register";
 import AuthNav from "../AuthNav";
-import { websiteUrl } from "../../../JS functions/websiteUrl";
 
 
 
@@ -16,47 +15,31 @@ export default function Register() {
 
 const sendInfoToServer = async (e)=> {
     e.preventDefault();
-
-         const data = {
-      source: "params.car_source,"
-    };
-
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    };
-
-  const response=  await fetch(`${websiteUrl}/trial`, options);
-
-  console.log(response.json)
     
-//   const emailId = document.getElementById("emailId")
-//   const passwordId = document.getElementById("passwordId")
-//   try {
-//    const paramsObj = {
-//     email,
-//     emailId,
-//     password,
-//     passwordId
-//     }
+  const emailId = document.getElementById("emailId")
+  const passwordId = document.getElementById("passwordId")
+  try {
+   const paramsObj = {
+    email,
+    emailId,
+    password,
+    passwordId
+    }
 
-// if(validateInputs(paramsObj)) {
-//   const regParam = {
-//     email,
-//     password
-//   }
-//  const regUser = await registerUser(regParam)
+if(validateInputs(paramsObj)) {
+  const regParam = {
+    email,
+    password
+  }
+ const regUser = await registerUser(regParam)
 
-//  if (regUser) return ( navigate('/authorize'))
+ if (regUser) return ( navigate('/authorize'))
 
-//  return false
-// }
-//     } catch (error) {
-//       console.log(error.message)
-//     }
+ return false
+}
+    } catch (error) {
+      console.log(error.message)
+    }
   }
 
   return (
