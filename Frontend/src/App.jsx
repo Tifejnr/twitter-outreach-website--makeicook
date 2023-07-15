@@ -12,7 +12,6 @@ import Pricing from './compnents/Pages/Pricing'
 import OauthPage from './compnents/Trello-oauth-page/OauthPage'
 import LandingPage from './compnents/LandingPage/LandingPage'
 import HomePage from './compnents/Home-nav-items/HomePage'
-import LoggedInUsersControl from './compnents/Controllers/LoggedInUsersControl'
 import Dashboard from './compnents/Auth/Dashboard/Dashboard'
 
 export const LoginStatusContext =  createContext()
