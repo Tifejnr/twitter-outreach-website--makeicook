@@ -1,10 +1,10 @@
 const axios = require("axios");
 const { decryptToken } = require("../../middlewares/token-safety/decryptToken");
 const { getKeys } = require("../../envKeys/allKeys");
-const keysObj = getKeys();
+// const keysObj = getKeys();
 
-//fetching env variables
-const key = keysObj.CLIENT_SECRET_KEY;
+// //fetching env variables
+// const key = keysObj.CLIENT_SECRET_KEY;
 
 async function fetchAllBoards(req, res) {
   // const token = await decryptToken(userDetails);

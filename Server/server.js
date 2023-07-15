@@ -13,6 +13,7 @@ const { callback } = require("./utilis/oauth/oauth-and-callback");
 const { deleteMemberFromBoard } = require("./utilis/boards/delete");
 const { getKeys } = require("./envKeys/allKeys");
 const loginStatusChecker = require("./middlewares/jwt-related/login-status-checker");
+const userToken = require("./middlewares/token-safety/decryptToken");
 require("dotenv").config();
 require("./startup/prod")(app);
 
@@ -77,12 +78,12 @@ app.post("/authorize", loginStatusChecker, async (req, res) => {
   login(req, res);
 });
 
-app.post("/start", async (req, res) => {
+app.post("/start", userToken, async (req, res) => {
   console.log("here fetchd atat");
   fetchAllBoards(req, res);
 });
 
-app.post("/add", loginStatusChecker, async (req, res) => {
+app.post("/add", [loginStatusChecker, userToken], async (req, res) => {
   addMemberToBoard(req, res);
 });
 

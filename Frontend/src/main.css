@@ -356,6 +356,10 @@ form {
   column-gap: 0.5rem;
 }
 
+form:last-child {
+  margin-bottom: 2rem;
+}
+
 .input-form {
   display: flex;
   align-items: center;
