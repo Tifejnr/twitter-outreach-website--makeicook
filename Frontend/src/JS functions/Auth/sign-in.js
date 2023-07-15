@@ -4,16 +4,8 @@ import displayErrorMessage from "../inputs-validations/error-text-style";
 
 export default async function signInUser(signInParams) {
   const signInEndPoint = `${websiteUrl}/api/sign-in`;
-
-  const options = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(signInParams),
-  };
   try {
-    const response = await fetch(signInEndPoint, options);
+    const response = await axios.post(signInEndPoint, signInParams);
     const data = await response.data;
     if (!data.signedIn) return false;
     return true;
