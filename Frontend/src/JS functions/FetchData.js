@@ -29,8 +29,6 @@ export default async function FetchData(needOnlyBoardCollections) {
 
     const data = dataRaw.boards;
 
-    console.log(data);
-
     if (needOnlyBoardCollections) return data;
 
     dataLength = data.length;
