@@ -1,6 +1,5 @@
 import React , {useEffect, useState} from "react";
 import { Link, useNavigate} from "react-router-dom";
-import { LoginStatusContext } from "../../../App";
 import validateInputs from "../../../JS functions/inputs-validations/overall-val-func";
 import signInUser from "../../../JS functions/Auth/sign-in";
 import AuthNav from "../AuthNav";
@@ -32,7 +31,7 @@ if(validateInputs(paramsObj)) {
   }
  const signedIn = await signInUser(signInParam)
 
- if (signedIn) return ( setLoggedInStatus(true),navigate('/home'))
+ if (signedIn) return (navigate('/home'))
 
  return false
 }

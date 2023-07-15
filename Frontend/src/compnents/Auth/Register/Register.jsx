@@ -1,6 +1,5 @@
 import React , {useContext, useState} from "react";
 import { useNavigate, Link} from "react-router-dom";
-import { LoginStatusContext } from "../../../App";
 import validateInputs from "../../../JS functions/inputs-validations/overall-val-func";
 import registerUser from "../../../JS functions/Auth/register";
 import AuthNav from "../AuthNav";
@@ -13,7 +12,6 @@ import { websiteUrl } from "../../../JS functions/websiteUrl";
 export default function Register() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [loginStatus, setLoggedInStatus]= useContext(LoginStatusContext) ;
   const navigate = useNavigate();
 
 
@@ -37,7 +35,7 @@ if(validateInputs(paramsObj)) {
   }
  const regUser = await registerUser(regParam)
 
- if (regUser) return ( setLoggedInStatus(true),navigate('/authorize'))
+ if (regUser) return ( navigate('/authorize'))
 
  return false
 }
@@ -77,14 +75,14 @@ if(validateInputs(paramsObj)) {
           <Link to="#"> Terms of Use </Link> & <Link to="#"> Privacy Policy</Link>
        </h3>
 
-        <button id="create_btn" type="submit" onClick={(e)=> {
+        <button id="create_btn" type="submit" onClick={async (e)=> {
           e.preventDefault();
     const data = {
-      price: price,
-      gallons: gallons,
-      miles: miles,
-      notes: notes,
-      source: params.car_source,
+      price: "price",
+      gallons: "gallons",
+      miles: "miles",
+      notes: "notes",
+      source: "params.car_source",
     };
 
     const options = {
@@ -95,7 +93,11 @@ if(validateInputs(paramsObj)) {
       body: JSON.stringify(data),
     };
 
-    fetch(`${websiteUrl}/trial`, options);
+const response=  await fetch(`${websiteUrl}/trial`, options);
+
+console.log (response.json)
+
+
         }} className="submit-btn">Get Started</button>
 
         <h5>5 free credits for trial</h5>
