@@ -78,7 +78,7 @@ app.post("/authorize", loginStatusChecker, async (req, res) => {
   login(req, res);
 });
 
-app.post("/start", userToken, async (req, res) => {
+app.post("/start", [loginStatusChecker, userToken], async (req, res) => {
   console.log("here fetchd atat");
   fetchAllBoards(req, res);
 });
@@ -87,7 +87,7 @@ app.post("/add", [loginStatusChecker, userToken], async (req, res) => {
   addMemberToBoard(req, res);
 });
 
-app.post("/delete", loginStatusChecker, async (req, res) => {
+app.post("/delete", [loginStatusChecker, userToken], async (req, res) => {
   deleteMemberFromBoard(req, res);
 });
 
