@@ -256,6 +256,10 @@ input,
   height: 100%;
 }
 
+.input-wrapper input::placeholder {
+  rotate: -0.6deg;
+}
+
 .input-wrapper input:focus {
   outline: none;
   border: 0.2rem solid gray;
@@ -265,7 +269,7 @@ input,
   text-align: left;
   color: #ff3860;
   font-size: 1.5rem;
-  margin-top: 0.3rem;
+  margin-top: 0.4rem;
 }
 
 /* Button Design Block */
