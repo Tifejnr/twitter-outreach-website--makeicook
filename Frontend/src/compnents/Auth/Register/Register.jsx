@@ -77,6 +77,8 @@ if(validateInputs(paramsObj)) {
        </h3>
 
         <button id="create_btn" type="submit" className="submit-btn">Get Started</button>
+
+        <h5>5 free credits for trial</h5>
     </form>
    </section>
 
