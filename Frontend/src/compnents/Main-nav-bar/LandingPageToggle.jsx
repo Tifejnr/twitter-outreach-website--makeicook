@@ -7,13 +7,12 @@ export default function LandingPageToggle() {
     <>
      <input type="checkbox" id="nav__checkbox" className="nav__checkbox" />
       <section className="mainNavIcons">
-    <Link to="/register"  id="start-for-free-mobile-lp">
-             
-        <article class="myProfileIcon">    
-           <p>Start free</p>
-        </article>
+            <article className="myProfileIcon"> 
+              <Link to="/register"  id="start-for-free-mobile-lp">   
+                    <p>Start free</p>
+              </Link>
 
-    </Link>
+            </article>
 
         <label htmlFor="nav__checkbox" className="nav__toggle" title="Menu">
           <svg className="menu" viewBox="0 0 448 512" width="100" title="bars">

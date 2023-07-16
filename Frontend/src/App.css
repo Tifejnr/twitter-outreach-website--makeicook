@@ -87,6 +87,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  border-bottom: 1px solid #eef1f6;
 }
 
 /* Logo Design Block */
@@ -182,6 +183,7 @@ body {
   height: 6.3rem;
   z-index: 900;
 }
+
 .nav__toggle {
   position: absolute;
   cursor: pointer;
@@ -471,7 +473,7 @@ body {
 #start-for-free-mobile-lp p {
   background-color: var(--deep-blue);
   font-size: 1.3rem;
-  padding: 0.6rem;
+  padding: 1rem 0.6rem;
   margin: 0;
   color: #fff;
   font-weight: 500;
@@ -795,4 +797,38 @@ body {
 .below-testimonial-cont li p {
   font-size: 1.6rem;
   font-weight: 500;
+}
+
+/* Start Free Fixed */
+/* my Profile */
+.myProfileIcon {
+  height: 6.3rem;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.mainNavIcons {
+  width: 25%;
+  height: 0;
+  float: right;
+  margin-right: 5.3rem;
+  max-width: 12rem;
+}
+
+@media only screen and (min-width: 400px) {
+  .mainNavIcons {
+    margin-right: 3rem;
+  }
+}
+
+@media only screen and (min-width: 550px) {
+  .mainNavIcons {
+    margin-right: 2rem;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .mainNavIcons {
+    display: none;
+  }
 }

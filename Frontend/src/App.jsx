@@ -3,7 +3,6 @@ import './App.css'
 import './main.css'
 import './auth.css'
 import './dashboard.css'
-import './homepage.css'
 import {Route, Routes} from "react-router-dom"
 import Register from './compnents/Auth/Register/Register'
 import SignIn from './compnents/Auth/SignIn/SignIn'

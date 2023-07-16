@@ -186,13 +186,12 @@ h3 {
 }
 
 /* Main Container Block */
-
 .main-container {
   position: relative;
   padding: 1.5rem 2.1rem;
   display: flex;
   flex-direction: column;
-  top: 4rem;
+  top: 3rem;
   height: 80vh;
 }
 
@@ -201,6 +200,8 @@ h3 {
   letter-spacing: 0.3px;
   color: var(--dark-des-blue);
   padding-top: 1rem;
+  font-weight: 300;
+  text-align: center;
 }
 
 @media (min-width: 768px) {
