@@ -467,24 +467,24 @@ body {
 /* Call to Action Section */
 #start-for-free-mobile-lp {
   background-color: var(--deep-blue);
+  border: 1px solid transparent;
+  border-radius: 0.7rem;
   width: 7rem;
+  cursor: pointer;
+}
+
+#start-for-free-mobile-lp:hover,
+#start-for-free-mobile-lp:active {
+  background-color: #4b538d;
 }
 
 #start-for-free-mobile-lp p {
-  background-color: var(--deep-blue);
   font-size: 1.3rem;
-  padding: 1rem 0.6rem;
+  padding: 0.8rem 0.6rem;
   margin: 0;
   color: #fff;
   font-weight: 500;
   border-radius: 0.7rem;
-}
-
-@media only screen and (min-width: 500px) {
-  #start-for-free-mobile-lp p {
-    font-size: 1.5rem;
-    letter-spacing: 0.3px;
-  }
 }
 
 .sign-up-cont h3 {
@@ -535,6 +535,12 @@ body {
   background-color: var(--deep-blue);
 }
 
+.oauth-button.real-oauth:hover,
+.oauth-button.real-oauth:active {
+  background-color: #4b538d;
+  text-decoration: none;
+}
+
 .oauth-button.real-oauth h2 {
   color: #fff;
 }
@@ -571,6 +577,7 @@ body {
 .oauth-button:hover,
 .oauth-button:active {
   background-color: rgb(199, 128, 97);
+  text-decoration: none;
 }
 
 .oauth-button h2 {
@@ -812,10 +819,15 @@ body {
   width: 25%;
   height: 0;
   float: right;
-  margin-right: 5.3rem;
+  margin-right: 6rem;
   max-width: 12rem;
 }
 
+@media only screen and (min-width: 315px) {
+  .mainNavIcons {
+    margin-right: 5.3rem;
+  }
+}
 @media only screen and (min-width: 400px) {
   .mainNavIcons {
     margin-right: 3rem;
