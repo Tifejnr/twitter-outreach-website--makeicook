@@ -48,8 +48,10 @@ if(validateInputs(paramsObj)) {
 <section className="main-container reg-container" id="form">
 
     <article className="main__title">
-        <h2>Get Started</h2>
-        <h5><b>5</b> free credits for trial</h5>
+        <h2>Get Started
+            <h5><b>5</b> free credits for trial</h5>
+        </h2>
+      
       </article>
    <section>
     <form action="" className="reg-form" onSubmit={sendInfoToServer} >
