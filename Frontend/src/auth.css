@@ -192,7 +192,8 @@ h3 {
   padding: 1.5rem 2.1rem;
   display: flex;
   flex-direction: column;
-  top: 4rem;
+  top: 3rem;
+  height: 90vh;
 }
 
 .main-container h5 {
