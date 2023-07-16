@@ -512,16 +512,17 @@ body {
   color: #fff;
 }
 
-.call-to-action-cont {
-  text-align: center;
-}
-
 .call-to-action-cont ul {
   margin-top: 0.7rem;
   display: grid;
   row-gap: 1rem;
   font-size: 1.5rem;
   font-weight: 300;
+  text-align: center;
+}
+
+.call-to-action-cont ul p {
+  text-align: center;
 }
 
 @media screen and (min-width: 768px) {
@@ -647,7 +648,6 @@ body {
 }
 
 /* Trello Oauth Page Design */
-
 .auth-page-main-cont {
   height: 100%;
   margin: 0 2rem;
@@ -657,29 +657,6 @@ body {
   justify-items: center;
   position: relative;
   align-content: center;
-}
-
-@media only screen and (min-width: 480px) {
-  .auth-page-main-cont {
-    margin: 0 4rem;
-  }
-}
-@media only screen and (min-width: 768px) {
-  .auth-page-main-cont {
-    margin: 0 5rem;
-  }
-}
-
-@media only screen and (min-width: 960px) {
-  .auth-page-main-cont {
-    margin: 0 15rem;
-  }
-}
-
-@media only screen and (min-width: 1200px) {
-  .auth-page-main-cont {
-    margin: 0 28rem;
-  }
 }
 
 .auth-page-main-cont p {
@@ -698,6 +675,17 @@ body {
   .auth-page-main-cont p {
     padding: 0 8rem;
     text-align: center;
+  }
+}
+
+@media only screen and (min-width: 960px) {
+  .auth-page-main-cont p {
+    margin: 0 12rem;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .auth-page-main-cont p {
+    margin: 0 28rem;
   }
 }
 .auth-page-main-cont h1 {
