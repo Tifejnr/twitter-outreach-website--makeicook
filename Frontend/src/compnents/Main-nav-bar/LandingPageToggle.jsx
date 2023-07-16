@@ -8,9 +8,10 @@ export default function LandingPageToggle() {
      <input type="checkbox" id="nav__checkbox" className="nav__checkbox" />
       <section className="mainNavIcons">
             <article className="myProfileIcon"> 
+            
               <Link to="/register" >   
                     <button id="start-for-free-mobile-lp">
-                      <p>Start free</p>
+                      <p>Free start</p>
                     </button>
               </Link>
 

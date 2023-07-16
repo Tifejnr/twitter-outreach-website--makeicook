@@ -1,8 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import BelowHero from './BelowHero'
-import Testimonials from './Testimonials'
-import BelowTestimonials from './BelowTestimonials'
 
 export default function Hero() {
   
@@ -24,10 +21,6 @@ export default function Hero() {
         </section>
       </div>
     </section>
-
-    <BelowHero/>
-    <Testimonials/>
-    <BelowTestimonials/>
 </>
   )
 }
