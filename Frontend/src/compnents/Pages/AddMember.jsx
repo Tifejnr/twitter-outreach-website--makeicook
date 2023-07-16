@@ -10,6 +10,7 @@ import LoggedInUsersControl from '../Controllers/LoggedInUsersControl';
 
 
 export default function AddMember() {
+  const [labelTitle, setLabelTitle] = useState("Add Member");
   const [inputLabel, setInputLabel] = useState("Member Email:");
   const [searchPlaceholderTitle, setSearchPlaceholderTitle] = useState("Search Boards ...");
   const [selectInstructionText, setSelectInstructionText] = useState("Select Boards to Add Member to");
