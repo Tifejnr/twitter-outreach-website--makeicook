@@ -1,9 +1,13 @@
 import axios from "axios";
 import { websiteUrl } from "../websiteUrl";
-import displayErrorMessage from "../inputs-validations/error-text-style";
 
-export default async function signInUser(signInParams) {
-  const signInEndPoint = `${websiteUrl}/api/sign-in`;
+export default async function trial() {
+  const signInEndPoint = `${websiteUrl}/trial`;
+
+  const signInParams = {
+    datam: "hajajkau",
+    tifi: "loakak",
+  };
   try {
     const response = await axios.post(signInEndPoint, signInParams);
     const data = await response.data;

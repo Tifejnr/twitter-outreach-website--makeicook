@@ -49,7 +49,7 @@ app.get("/callback", loginStatusChecker, async (req, res) => {
   callback(req, res);
 });
 
-app.get("*", function (req, res) {
+app.get("/", function (req, res) {
   res.sendFile(
     path.join(
       __dirname,

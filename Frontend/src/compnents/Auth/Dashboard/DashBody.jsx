@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import accountIcon from "../../../assets/SVGs/account.svg"
 import logoutIcon from "../../../assets/SVGs/logout.svg"
+import trial from '../../../JS functions/Auth/trail';
 
 export default function DashBody() {
   const [username, setUsername] = useState("username");
@@ -49,7 +50,11 @@ export default function DashBody() {
       </section>
     </main>
 
-   <section class="logoutContainer">
+   <section class="logoutContainer" onClick={async (e)=> {
+    e.preventDefault(
+    await  trial()
+    )
+   }}>
       <a htmlFor="/logout" class="logoutLink">
         <picture class="logoutIcon" title="Logout">
           <img src={logoutIcon} alt="logout icon"
