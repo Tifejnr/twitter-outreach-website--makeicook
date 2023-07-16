@@ -1,5 +1,3 @@
-import React , {useContext} from 'react'
-import { Link, useMatch, useResolvedPath,Navigate, Route, Routes} from "react-router-dom"
 import CustomLink from '../CustomLink'
 
 export default function NavItemsLandingPage() {

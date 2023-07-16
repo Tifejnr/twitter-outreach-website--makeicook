@@ -1,7 +1,7 @@
 import React from 'react'
 import NavItemsLandingPage from './NavItems'
 import Hero from './Body/Hero'
-import NavToggleIcon from '../Main-nav-bar/NavToggleIcon'
+import LandingPageToggle from '../Main-nav-bar/LandingPageToggle'
 import NavLogo from '../Main-nav-bar/NavLogo'
 
 export default function LandingPage() {
@@ -11,7 +11,7 @@ export default function LandingPage() {
 <>
   <nav className='nav'>
        
-       <NavToggleIcon/>
+       <LandingPageToggle/>
 
       <ul className="nav__menu">
 

@@ -174,13 +174,12 @@ body {
 
 .nav {
   background-color: var(--background-col);
-  border-bottom: 1px solid #eef1f6;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  height: 6.5rem;
+  height: 6.3rem;
   z-index: 900;
 }
 .nav__toggle {
@@ -464,6 +463,28 @@ body {
 }
 
 /* Call to Action Section */
+#start-for-free-mobile-lp {
+  background-color: var(--deep-blue);
+  width: 7rem;
+}
+
+#start-for-free-mobile-lp p {
+  background-color: var(--deep-blue);
+  font-size: 1.3rem;
+  padding: 0.6rem;
+  margin: 0;
+  color: #fff;
+  font-weight: 500;
+  border-radius: 0.7rem;
+}
+
+@media only screen and (min-width: 500px) {
+  #start-for-free-mobile-lp p {
+    font-size: 1.5rem;
+    letter-spacing: 0.3px;
+  }
+}
+
 .sign-up-cont h3 {
   color: #fff;
   font-size: 1.6rem;
