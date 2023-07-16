@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useRef} from 'react'
 import NavItemsLandingPage from './NavItems'
 import Hero from './Body/Hero'
 import LandingPageToggle from '../Main-nav-bar/LandingPageToggle'
@@ -9,7 +9,6 @@ import Testimonials from './Body/Testimonials'
 import FAQ from './FAQ/FAQ'
 
 export default function LandingPage() {
-
 return (
 <>
   <nav className='nav'>

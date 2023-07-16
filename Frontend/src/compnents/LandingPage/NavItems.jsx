@@ -1,6 +1,15 @@
 import CustomLink from '../CustomLink'
+import { smoothScroll } from '../../JS functions/Utilis/SmoothScrolling/scroll'
+import { closeMenuBar } from '../../JS functions/Utilis/SmoothScrolling/scroll'
 
 export default function NavItemsLandingPage() {
+const faqSection = "#faq__text-container";
+
+const handleFaqClick = ()=> {
+  smoothScroll(faqSection, 1000, 80)
+  closeMenuBar()
+}
+
   return (
       <>
       <li className="nav-list">
@@ -11,7 +20,7 @@ export default function NavItemsLandingPage() {
           <h3 className="pricing">Pricing</h3>
         </li>
 
-        <li className="nav-list">
+        <li className="nav-list" onClick={handleFaqClick}>
          <h3 className="faq">FAQ</h3>
         </li>
 

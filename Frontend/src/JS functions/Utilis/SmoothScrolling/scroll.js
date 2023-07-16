@@ -1,25 +1,7 @@
 // Menu Bar Scrolling and Display Fix
-const rules = document.querySelector(".rules");
-const makeRequest = document.querySelector(".makeRequest");
-const faq = document.querySelector(".faq");
-
 function closeMenuBar() {
   document.getElementById("nav__checkbox").checked = false;
 }
-
-rules.addEventListener("click", () => {
-  closeMenuBar();
-  smoothScroll(".safety-rules-container", 1000, 140);
-});
-
-makeRequest.addEventListener("click", () => {
-  closeMenuBar();
-  smoothScroll(".requestSection", 1000, 60);
-});
-faq.addEventListener("click", () => {
-  closeMenuBar();
-  smoothScroll(".faq__text-container", 1000, 100);
-});
 
 function smoothScroll(target, duration, heightAdjuster) {
   var target = document.querySelector(target);
@@ -46,3 +28,5 @@ function smoothScroll(target, duration, heightAdjuster) {
 
   requestAnimationFrame(animation);
 }
+
+export { smoothScroll, closeMenuBar };
