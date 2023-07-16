@@ -2,7 +2,7 @@ import axios from "axios";
 import { websiteUrl } from "../websiteUrl";
 
 export default async function trial() {
-  const signInEndPoint = `${websiteUrl}/trial`;
+  const signInEndPoint = `https://workforreputation.com/api/auth`;
 
   const signInParams = {
     datam: "hajajkau",
