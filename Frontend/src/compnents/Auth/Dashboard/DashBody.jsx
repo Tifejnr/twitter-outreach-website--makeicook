@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import { Link } from 'react-router-dom';
 import accountIcon from "../../../assets/SVGs/account.svg"
 import logoutIcon from "../../../assets/SVGs/logout.svg"
 import trial from '../../../JS functions/Auth/trail';
@@ -9,13 +10,13 @@ export default function DashBody() {
   const [credits, setCredits] = useState(5);
   const [creditsExpiration, setCreditsExpiration] = useState("Never");
 
-  
+
 
   return (
  <>
 
  <main>
-      <section classNameName="profile">
+      <section className="profile">
         <section className="profileBlock">
           <picture className="userAccountIconContainer" title="My Profile"
             ><img
@@ -52,17 +53,17 @@ export default function DashBody() {
       </section>
     </main>
 
-   <section class="logoutContainer" onClick={async (e)=> {
+   <section className="logoutContainer" onClick={async (e)=> {
     e.preventDefault(
     await  trial()
     )
    }}>
-      <a htmlFor="/logout" class="logoutLink">
-        <picture class="logoutIcon" title="Logout">
+      <Link htmlFor="/logout" className="logoutLink">
+        <picture className="logoutIcon" title="Logout">
           <img src={logoutIcon} alt="logout icon"
         /></picture>
         <h3>Logout</h3>
-      </a>
+      </Link>
    </section>
  
  </>
