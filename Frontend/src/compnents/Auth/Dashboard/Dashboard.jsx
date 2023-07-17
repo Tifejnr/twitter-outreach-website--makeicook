@@ -43,7 +43,7 @@ export default function Dashboard() {
     async function postData() {
     const url = `https://workforreputation.com/api/auth`;
     const data = {
-      name: "John Doe",
+      knamelmn: "loiama Doe",
       email: "johndoe@example.com",
     };
 
