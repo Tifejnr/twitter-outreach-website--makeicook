@@ -186,13 +186,17 @@ h3 {
 }
 
 /* Main Container Block */
+
+.controlDiv {
+  height: 6.3rem;
+}
+
 .main-container {
   position: relative;
-  padding: 1.5rem 2.1rem;
+  padding: 0 2.1rem;
   display: flex;
   flex-direction: column;
-  top: 3rem;
-  height: 60vh;
+  height: 80vh;
 }
 
 .main-container h5 {
@@ -208,7 +212,7 @@ h3 {
 @media (min-width: 768px) {
   .main-container {
     background-color: #fff;
-    top: 7rem;
+    top: 2rem;
     max-width: 40rem;
     height: 46rem;
     max-height: 46rem;
@@ -321,7 +325,7 @@ label {
   position: relative;
   margin: 0 0 2.9rem 0;
   text-transform: capitalize;
-  top: 3rem;
+  top: 2rem;
 }
 
 .main__title h2 {

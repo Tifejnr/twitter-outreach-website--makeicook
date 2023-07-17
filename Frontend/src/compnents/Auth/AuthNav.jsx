@@ -7,6 +7,7 @@ export default function AuthNav() {
     <nav className='nav auth-nav'>
             <NavLogo />
     </nav> 
+    <div className='controlDiv'></div>
    </>
   )
 }
