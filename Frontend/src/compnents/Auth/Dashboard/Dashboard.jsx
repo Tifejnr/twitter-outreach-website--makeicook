@@ -37,6 +37,38 @@ export default function Dashboard() {
 
   postData();
   }
+
+
+  const postData2= ()=> {
+    async function postData() {
+    const url = `https://workforreputation.com/api/auth`;
+    const data = {
+      name: "John Doe",
+      email: "johndoe@example.com",
+    };
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error("Request failed with status: " + response.status);
+      }
+
+      const responseData = await response.json();
+      console.log(responseData);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  postData();
+  }
   return (
     <>
   <nav className='nav'>
@@ -57,7 +89,8 @@ export default function Dashboard() {
 
   <DashBody />
 
-     <button onClick={buttonClick}>button click me</button>
+  <button onClick={buttonClick}>button click me</button>
+  <button onClick={postData2}>post to wfr</button>
 
   <AuthFooter/>
     </>
