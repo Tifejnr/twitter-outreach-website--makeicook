@@ -27,8 +27,9 @@ export const faqArray = [
     answer: "No, we do not have a refund policy.",
   },
   {
-    question: "Can my Team Members link their accounts to use my credits",
-    answer: "NO. An email address can only be linked to one Trello Account",
+    question: "Can others link their accounts to use my credits",
+    answer:
+      "NO. Only the Trello account linked to your email address can utilize the credits on your account.",
   },
   {
     question: "Do you provide live Demo/Training?",

@@ -894,6 +894,10 @@ li.faq__faq-item {
   line-height: 1.4;
 }
 
+.faq-item__arrow-container {
+  align-self: center;
+}
+
 @media screen and (min-width: 768px) {
   .faq-item__summary {
     padding-right: 1.5rem;
@@ -930,12 +934,12 @@ img.faq-item__arrow-icon {
 }
 
 .faq-item__detail p {
-  font-size: 1.7rem;
+  font-size: 1.6rem;
   line-height: 1.6;
 }
 
 .faq-item__description {
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   font-weight: 500;
 }
 
