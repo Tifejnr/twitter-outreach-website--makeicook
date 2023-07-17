@@ -918,13 +918,10 @@ img.faq-item__arrow-icon {
   font-size: var(--font-size-summary-detail);
   line-height: var(--line-height-summary-detail);
   height: 100%;
-  margin-top: 1rem;
+  overflow: hidden;
+  max-height: 0;
   transition: max-height 250ms ease, margin-top 250ms;
   color: var(--dark-gray-blue);
-}
-
-.faq__faq-item:is(.active) > .faq-item__detail {
-  margin-top: 1.1rem;
 }
 
 .faq-item__detail p,
@@ -933,13 +930,13 @@ img.faq-item__arrow-icon {
 }
 
 .faq-item__detail p {
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   line-height: 1.6;
 }
 
 .faq-item__description {
-  font-size: 1.7rem;
-  font-weight: 700;
+  font-size: 2.2rem;
+  font-weight: 500;
 }
 
 .faq__head {

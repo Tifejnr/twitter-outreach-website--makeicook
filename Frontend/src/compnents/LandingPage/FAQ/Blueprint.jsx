@@ -12,6 +12,12 @@ export default function Blueprint(props) {
     transform: isClicked && "rotate(180deg)"
   };
 
+ const openFaqDetailsStyle= {
+        maxHeight: isClicked &&  "100%",
+        marginTop: isClicked&& '1.2rem',
+        overflow: isClicked &&  'visible',
+      }
+
   return (
    <li className="faq__faq-item" onClick={handleToggle}>
             <section className="faq-item__summary">
@@ -25,12 +31,10 @@ export default function Blueprint(props) {
               </div>
             </section>
 
-          {
-           isClicked &&            
-          <section className='faq-item__detail'>
+          <section  className='faq-item__detail' style={openFaqDetailsStyle}>
             <p>{props.faqObj.answer}  </p> 
-            </section>
-             } 
+          </section>
+   
  </li>
   )
 }
