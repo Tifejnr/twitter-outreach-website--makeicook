@@ -3,7 +3,9 @@ function closeMenuBar() {
   document.getElementById("nav__checkbox").checked = false;
 }
 
-function smoothScroll(target, duration, heightAdjuster) {
+function smoothScroll(target, heightAdjuster) {
+  const duration = 1000;
+
   var target = document.querySelector(target);
   var targetPosition = target.getBoundingClientRect().top;
   var startPosition = window.pageYOffset;
