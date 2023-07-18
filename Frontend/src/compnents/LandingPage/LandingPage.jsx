@@ -7,6 +7,7 @@ import BelowHero from './Body/BelowHero'
 import BelowTestimonials from './Body/BelowTestimonials'
 import Testimonials from './Body/Testimonials'
 import FAQ from './FAQ/FAQ'
+import PricingPage from '../PricingPage/PricingPage'
 
 export default function LandingPage() {
 return (
@@ -27,6 +28,7 @@ return (
 
   <Hero/>
   <BelowHero/>
+  <PricingPage/>
   <FAQ/>
   <Testimonials/>
   <BelowTestimonials/>
