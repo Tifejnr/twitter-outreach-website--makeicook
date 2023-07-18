@@ -5,9 +5,10 @@ import spaceshipPic from "../../assets/SVGs/spaceship.svg";
 const basicPlanObj = {
   planName: "Basic",
   planPic: paperPlanePic,
-  suitabilityTimeUsage: 5,
+  suitabilityTimeUsage: 20,
   planCreditsAmount: 10,
   planPrice: 5,
+  choiceIndcator: true,
 };
 
 const standardPlanObj = {

@@ -2,7 +2,7 @@ export const faqArray = [
   {
     question: "What are credits?",
     answer:
-      "To use our tools, you need credits. Our tools require a specific amount of credits to work. We have different plans that offer different amounts of credits. You can check our Pricing page to select a suitable plan for your team.",
+      "Credits are currencies required to perform automations with our tools. Most tools cost 0.5 credit per usage.",
   },
   {
     question: "How do credits work?",
@@ -29,7 +29,7 @@ export const faqArray = [
   {
     question: "Can others link their accounts to use my credits",
     answer:
-      "NO. Only the Trello account linked to your email address can utilize the credits on your account.",
+      "NO! Only the Trello account linked with the email registered with us can utilize the credits on your account.",
   },
   {
     question: "Do you provide live Demo/Training?",

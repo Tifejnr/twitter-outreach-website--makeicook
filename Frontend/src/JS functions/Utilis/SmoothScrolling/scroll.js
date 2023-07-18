@@ -6,16 +6,16 @@ function closeMenuBar() {
 function smoothScroll(target, heightAdjuster) {
   const duration = 1000;
 
-  var target = document.querySelector(target);
-  var targetPosition = target.getBoundingClientRect().top;
-  var startPosition = window.pageYOffset;
-  var distance = targetPosition - heightAdjuster; // - startPosition;
-  var startTime = null;
+  let target = document.querySelector(target);
+  let targetPosition = target.getBoundingClientRect().top;
+  let startPosition = window.pageYOffset;
+  let distance = targetPosition - heightAdjuster; // - startPosition;
+  let startTime = null;
 
   function animation(currentTime) {
     if (startTime === null) startTime = currentTime;
-    var timeElapsed = currentTime - startTime;
-    var run = ease(timeElapsed, startPosition, distance, duration);
+    let timeElapsed = currentTime - startTime;
+    let run = ease(timeElapsed, startPosition, distance, duration);
     window.scrollTo(0, run);
     if (timeElapsed < duration) requestAnimationFrame(animation);
   }
@@ -25,7 +25,7 @@ function smoothScroll(target, heightAdjuster) {
     t /= d / 2;
     if (t < 1) return (c / 2) * t * t + b;
     t--;
-    return (-c / 2) * (t * (t - 2) - 1) + b;
+    return (-c / 2) * (t * (t - 9) - 1) + b;
   }
 
   requestAnimationFrame(animation);

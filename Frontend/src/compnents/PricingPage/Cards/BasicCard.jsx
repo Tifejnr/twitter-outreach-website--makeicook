@@ -20,8 +20,7 @@ export default function BasicCard(props) {
                 <h4>${props.planObjs.planPrice}</h4>
 
                 <p>
-                 <b>Right choice</b> if tools usage will be more than <b>{props.planObjs.suitabilityTimeUsage}</b> times
-                  in a month.
+                 <b>Right choice</b> if tools usage is <b>{props.planObjs.choiceIndcator? "less than" : "more than"} {props.planObjs.suitabilityTimeUsage}</b> times a month.
                 </p>
               </div>
               <div className="option">
