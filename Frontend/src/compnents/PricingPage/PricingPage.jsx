@@ -1,20 +1,23 @@
 import React from 'react'
-import { basicPlanObj } from './allPlansInfo'
 import BasicCard from './Cards/BasicCard'
+import { allPricingPlansObjArray } from './allPlansInfo'
 
 export default function PricingPage() {
   return (
-   <>
-<section>
-    <div className="container-fluid">
-      <div className="container">
-        <div className="row">     
-          <BasicCard planObjs={basicPlanObj}/>
-        </div>
-      </div>
-    </div>
-  </section>
+      <>
+                <section className="pricing-section">
+                  <header>
+                    <h2>Pricing</h2>
+                    <p>Select plan tailored to your needs below.</p>
+                  </header>
+                  <section className="pricing-cont">
+                  <h1></h1>
+                    {allPricingPlansObjArray.map((planObj, index) => (
+                        <BasicCard key={index} planObjs={planObj} />
+                      ))}
+                  </section>
+                </section>
 
-   </>
+     </>
   )
 }

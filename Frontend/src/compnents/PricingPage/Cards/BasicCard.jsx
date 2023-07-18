@@ -6,25 +6,25 @@ import checkMark from "../../../assets/SVGs/check-mark.svg";
 
 export default function BasicCard(props) {
   return (
-<div class="col-sm-4">
-            <div class="card text-center">
-              <picture class="title">
+<div className="col-sm-4">
+            <div className="card text-center">
+              <picture className="title">
                 <img
-                  class="fa"
+                  className="fa"
                   src={props.planObjs.planPic}
                   alt="basic plan icon" />
 
-                <h2>{props.planObjs.planName}Basic</h2>
+                <h2>{props.planObjs.planName}</h2>
               </picture>
-              <div class="price">
-                <h4>$5</h4>
+              <div className="price">
+                <h4>${props.planObjs.planPrice}</h4>
 
                 <p>
-                 Suitable if our tools usage by you will be more than {props.planObjs.suitabilityTimeUsage} times
+                 <b>Right choice</b> if tools usage will be more than <b>{props.planObjs.suitabilityTimeUsage}</b> times
                   in a month.
                 </p>
               </div>
-              <div class="option">
+              <div className="option">
                 <ul>
                   <li>
                     <img
@@ -36,13 +36,13 @@ export default function BasicCard(props) {
                     <img
                       src={checkMark}
                       alt="check mark icon" />
-                    <p>No Expiration</p>
+                    <p>Total Usage - <b>{props.planObjs.planCreditsAmount * 2}</b> times</p>
                   </li>
                   <li>
                     <img
                       src={checkMark}
                       alt="check mark icon" />
-                    <p>Total Usage - {props.planObjs.planCreditsAmount * 2} times</p>
+                    <p>No Expiration</p>
                   </li>
                   <li>
                     <img
