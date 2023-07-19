@@ -46,9 +46,7 @@ export default function OauthPage() {
 
        <section>
         <p>
-         Before we can let you dive in, please click the button below to connect Collab for Trello with Trello. 
-         We only read data from the boards you select. 
-         We don't change anything in your Trello account and we won't store any of your credentials.
+         Before we can let you dive in, please click the button below to connect Collab for Trello with Trello in order to perform automations on your behalf. 
         </p>
        </section>
 
