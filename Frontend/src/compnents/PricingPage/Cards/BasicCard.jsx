@@ -41,7 +41,7 @@ export default function BasicCard(props) {
                     <img
                       src={checkMark}
                       alt="check mark icon" />
-                    <p>Total Usage - <b>{props.planObjs.planCreditsAmount * 2}</b> times</p>
+                    <p>Total Usage - <b>{props.planObjs.planCreditsAmount}</b> times</p>
                   </li>
                   <li>
                     <img

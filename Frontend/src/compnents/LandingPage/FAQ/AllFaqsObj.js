@@ -2,7 +2,7 @@ export const faqArray = [
   {
     question: "What are credits?",
     answer:
-      "Credits are currencies required to perform automations with our tools. Most tools cost 0.5 credit per usage.",
+      "Credits are currencies required to perform automations with our tools. Most tools cost 1 credit per usage.",
   },
   {
     question: "How do credits work?",

@@ -9,7 +9,7 @@ const basicPlanObj = {
   planName: "Basic",
   planPic: paperPlanePic,
   suitabilityTimeUsage: 20,
-  planCreditsAmount: 10,
+  planCreditsAmount: 20,
   planPrice: 4.99,
   paymentLink: basicPaymentLink,
   choiceIndcator: true,
@@ -19,7 +19,7 @@ const standardPlanObj = {
   planName: "Standard",
   planPic: aeroplanePic,
   suitabilityTimeUsage: 20,
-  planCreditsAmount: 50,
+  planCreditsAmount: 100,
   paymentLink: standardPaymentLink,
   planPrice: 19,
 };
@@ -28,7 +28,7 @@ const PremiumPlanObj = {
   planName: "Premium",
   planPic: spaceshipPic,
   suitabilityTimeUsage: 100,
-  planCreditsAmount: 230,
+  planCreditsAmount: 460,
   paymentLink: premiumPaymentLink,
   planPrice: 49,
 };
