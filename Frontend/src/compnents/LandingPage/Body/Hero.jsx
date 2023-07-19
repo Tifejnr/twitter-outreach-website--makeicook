@@ -7,7 +7,7 @@ export default function Hero() {
 <>
     <section className='hero-container'> 
      <div className='hero-inner-container'>
-      <h1>Trello Members Addition and Removal Automation Tools</h1>
+      <h1>Trello Members Addition and Removal Tools</h1>
       <h3>Save time and stress of manual addition and removal of trello members from boards and workspaces</h3>
        
         <section className='call-to-action-cont'>

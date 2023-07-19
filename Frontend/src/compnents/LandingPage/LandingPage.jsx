@@ -8,6 +8,7 @@ import BelowTestimonials from './Body/BelowTestimonials'
 import Testimonials from './Body/Testimonials'
 import FAQ from './FAQ/FAQ'
 import PricingPage from '../PricingPage/PricingPage'
+import Features from './Features/Features'
 
 export default function LandingPage() {
 return (
@@ -22,12 +23,13 @@ return (
           <NavLogo />
         </li>
        
-     <NavItemsLandingPage/>  
+      <NavItemsLandingPage/>  
       </ul>
   </nav>  
 
   <Hero/>
   <BelowHero/>
+  <Features/>
   <PricingPage/>
   <FAQ/>
   <Testimonials/>
