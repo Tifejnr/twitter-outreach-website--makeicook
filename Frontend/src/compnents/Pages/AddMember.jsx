@@ -10,13 +10,13 @@ import LoggedInUsersControl from '../Controllers/LoggedInUsersControl';
 
 
 
-const labelTitle = "Add Member";
-const inputLabel = "Member Email:";
+const labelTitle = "Add Members";
+const inputLabel = "Members' Emails:";
 const searchPlaceholderTitle = "Search Boards ...";
-const selectInstructionText = "Select Boards to Add Member to";
-const inputPlaceholderText = "Enter Email";
+const selectInstructionText = "Select Boards to Add Members to";
+const inputPlaceholderText = "Input emails of members to be added, each separated with a comma.";
 const pageName = "add-member";
-const pageTitle = "Add Member Via Email";
+const pageTitle = "Add Members Via Email";
 
 
 export default function AddMember() {

@@ -2,18 +2,18 @@ import React from 'react'
 
 export default function Input(props) {
   return (
-      <section className="form-container">
-          <form id="survey-form" >
-            <article className='input-form'> 
-              <p> {props.inputLabel}</p> 
-              <input
-              className='inputValue'
-                type="text"
-                id="resultoo"
-                placeholder={props.inputPlaceholderText}
-               />
-            </article>
-          </form>
-     </section>
+        <section class="memberDetailsCont">
+          <label htmlFor='memberDetailTextArea'><p>{props.inputLabel}</p></label>
+          <textarea
+            name=""
+            id="memberDetailTextArea"
+            cols="40"
+            rows="10"
+            placeholder={props.inputPlaceholderText}></textarea>
+          <p class="error">error</p>
+        </section>
+
   )
 }
+
+
