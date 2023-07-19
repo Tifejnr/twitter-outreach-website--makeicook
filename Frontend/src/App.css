@@ -102,9 +102,8 @@ body {
 }
 
 .logoIconsContainer {
-  font-size: 30px;
+  font-size: 7px;
   position: relative;
-  top: 4rem;
 }
 
 .logo-container img {
@@ -123,7 +122,6 @@ body {
 }
 
 .logo-title {
-  display: none;
   margin: 0;
   position: relative;
   color: var(--deep-blue);
@@ -384,7 +382,7 @@ body {
   align-items: center;
   color: #fff;
   background: #101c77;
-  background: linear-gradient(-45deg, #c75328, #fff, #fff);
+  background: linear-gradient(-45deg, #c75328, #101c77, #101c77);
 }
 
 .hero-inner-container {
