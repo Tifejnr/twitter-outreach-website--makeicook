@@ -1235,7 +1235,7 @@ li img {
 .each-tool-section article p:first-child {
   font-weight: 600;
   font-size: 1.7rem;
-  color: var(--dark-des-blue);
+  color: #181818;
 }
 
 .each-tool-section p {
