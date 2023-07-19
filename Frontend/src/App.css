@@ -469,7 +469,7 @@ body {
 #start-for-free-mobile-lp {
   background-color: var(--deep-blue);
   border: 1px solid transparent;
-  border-radius: 0.7rem;
+  border-radius: 1rem;
   width: 7rem;
   cursor: pointer;
 }
@@ -500,7 +500,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 0.6rem;
+  border-radius: 1.2rem;
   background-color: var(--deep-blue);
   color: #fff;
   transition: background-color color 0.3s ease;
@@ -560,7 +560,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 0.6rem;
+  border-radius: 4rem;
   background-color: #ff6b35;
   box-shadow: none;
   text-decoration: none;
@@ -788,6 +788,12 @@ body {
   align-items: center;
   color: #fff;
   margin-bottom: 5rem;
+  background: linear-gradient(
+    -45deg,
+    #c75328,
+    rgba(48, 11, 184, 0.8),
+    rgba(48, 11, 184, 0.8)
+  );
 }
 
 .below-testimonial-cont li p {

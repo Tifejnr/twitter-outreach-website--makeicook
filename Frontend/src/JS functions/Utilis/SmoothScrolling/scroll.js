@@ -6,7 +6,7 @@ function closeMenuBar() {
 function smoothScroll(target, heightAdjuster) {
   const duration = 1000;
 
-  let target = document.querySelector(target);
+  target = document.querySelector(target);
   let targetPosition = target.getBoundingClientRect().top;
   let startPosition = window.pageYOffset;
   let distance = targetPosition - heightAdjuster; // - startPosition;
@@ -25,7 +25,7 @@ function smoothScroll(target, heightAdjuster) {
     t /= d / 2;
     if (t < 1) return (c / 2) * t * t + b;
     t--;
-    return (-c / 2) * (t * (t - 9) - 1) + b;
+    return (-c / 2) * (t * (t - 2) - 1) + b;
   }
 
   requestAnimationFrame(animation);

@@ -5,6 +5,12 @@ import checkMark from "../../../assets/SVGs/check-mark.svg";
 
 
 export default function BasicCard(props) {
+
+    const getPlanClick = () => {
+    // Redirect the user to the specified link
+    window.location.href = props.planObjs.paymentLink
+  };
+
   return (
 <div className="col-sm-4">
             <div className="card text-center">
@@ -57,7 +63,7 @@ export default function BasicCard(props) {
                   </li>
                 </ul>
               </div>
-              <Link htmlFor="/">Get Plan</Link>
+              <Link htmlFor="/" onClick={getPlanClick} >Get Plan</Link>
             </div>
     </div>
   )
