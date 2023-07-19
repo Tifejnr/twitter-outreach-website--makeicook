@@ -1,6 +1,6 @@
 import React from 'react'
-import FeatureBlueprint from './Tool-Blueprint'
-import { addToBoardsFeatureDetails } from './EachTool/AddToBoards'
+import ToolBlueprint from './Tool-Blueprint'
+import { allToolsArray } from './allToolsArray'
 
 export default function ToolsSection() {
   return (
@@ -8,7 +8,11 @@ export default function ToolsSection() {
         <header>
            <h2>Tools</h2>
         </header>
-        <FeatureBlueprint featureDetails={addToBoardsFeatureDetails}/>
+
+          {allToolsArray.map((toolDetails, index) => (
+              <ToolBlueprint key={index} toolDetails={toolDetails} indexNo={index} />
+            ))}
+
     </section>
   )
 }

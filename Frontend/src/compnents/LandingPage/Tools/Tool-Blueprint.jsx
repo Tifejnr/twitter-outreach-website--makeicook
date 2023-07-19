@@ -1,19 +1,19 @@
 import React from 'react'
 
-export default function FeatureBlueprint(props) {
+export default function ToolBlueprint(props) {
   return (
  <section className='each-tool-section'>
-        <h2>{props.featureDetails.heading}</h2>
+        <h2><span>{props.indexNo+1}.</span> {props.toolDetails.heading}</h2>
 
         <article>
             <p>Overview</p>
-            <p>{props.featureDetails.overview}</p>
+            <p>{props.toolDetails.overview}</p>
         </article>
 
         <article>
             <section>
                 <p>How it works</p>
-                <p>{props.featureDetails.howItWorks}</p>
+                <p>{props.toolDetails.howItWorks}</p>
             </section>
 
             <picture>
@@ -25,9 +25,9 @@ export default function FeatureBlueprint(props) {
          <p>To use this tool, you must have one of these details about the member :</p>
 
         <ul>
-            {props.featureDetails.email && <li>Email</li>}   
-            {props.featureDetails.username && <li>Username</li>}   
-            {props.featureDetails.name && <li>Name - <b>Note:</b> Member must be on one of your boards already to use their Name.</li>}   
+            {props.toolDetails.email && <li>Email</li>}   
+            {props.toolDetails.username && <li>Username</li>}   
+            {props.toolDetails.name && <li>Name - <b>Note:</b> Member must be on one of your boards already to use their Name.</li>}   
         
         </ul>
         

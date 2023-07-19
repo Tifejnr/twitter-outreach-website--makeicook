@@ -5,6 +5,7 @@ import { closeMenuBar } from '../../JS functions/Utilis/SmoothScrolling/scroll'
 export default function NavItemsLandingPage() {
 const faqSection = "#faq__text-container";
 const pricingSection = ".pricing-section";
+const toolsSection = ".tools-section-cont"
 
 const faqClick = ()=> {
   smoothScroll(faqSection, 80)
@@ -14,10 +15,14 @@ const pricingClick = ()=> {
   smoothScroll(pricingSection, 70)
   closeMenuBar()
 }
+const toolsClick = ()=> {
+  smoothScroll(toolsSection, 40)
+  closeMenuBar()
+}
 
   return (
       <>
-      <li className="nav-list">
+      <li className="nav-list" onClick={toolsClick}>
          <h3 className="tools">Tools</h3>
       </li>
 
