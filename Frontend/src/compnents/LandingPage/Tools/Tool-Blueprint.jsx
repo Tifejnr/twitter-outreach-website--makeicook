@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function FeatureBlueprint(props) {
   return (
- <section>
+ <section className='each-tool-section'>
         <h2>{props.featureDetails.heading}</h2>
 
         <article>
@@ -22,12 +22,12 @@ export default function FeatureBlueprint(props) {
         </article>
 
        <article>
-         <p>To use this tool, you must have at least one of these details about the member</p>
+         <p>To use this tool, you must have one of these details about the member :</p>
 
         <ul>
             {props.featureDetails.email && <li>Email</li>}   
             {props.featureDetails.username && <li>Username</li>}   
-            {props.featureDetails.name && <li>Name - <b>Member must be on one of your boards already to use 'Name'</b></li>}   
+            {props.featureDetails.name && <li>Name - <b>Note:</b> Member must be on one of your boards already to use their Name.</li>}   
         
         </ul>
         
@@ -35,8 +35,8 @@ export default function FeatureBlueprint(props) {
 
        <article>
 
-        <p>Credits needed to use this tool</p>
-        <p>1 Credit</p>
+        <p>Credits needed to use this tool :</p>
+        <p><b>1</b> Credit</p>
 
        </article>
         

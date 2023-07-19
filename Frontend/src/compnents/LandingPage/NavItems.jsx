@@ -18,7 +18,7 @@ const pricingClick = ()=> {
   return (
       <>
       <li className="nav-list">
-         <h3 className="features">Features</h3>
+         <h3 className="tools">Tools</h3>
       </li>
 
         <li className="nav-list" onClick={pricingClick}>

@@ -24,7 +24,6 @@ section {
 /* === RESET.CSS === */
 * {
   padding: 0;
-  user-select: none;
   box-sizing: border-box;
 }
 /* HTML5 display-role reset for older browsers */
@@ -385,7 +384,8 @@ body {
   background: linear-gradient(-45deg, #c75328, #101c77, #101c77);
 }
 
-.hero-inner-container {
+.hero-inner-container,
+.tools-section-cont {
   position: relative;
   display: flex;
   justify-content: center;
@@ -397,24 +397,28 @@ body {
 }
 
 @media only screen and (min-width: 480px) {
-  .hero-inner-container {
+  .hero-inner-container,
+  .tools-section-cont {
     margin: 0 4rem;
   }
 }
 @media only screen and (min-width: 768px) {
-  .hero-inner-container {
+  .hero-inner-container,
+  .tools-section-cont {
     margin: 0 3rem;
   }
 }
 
 @media only screen and (min-width: 960px) {
-  .hero-inner-container {
+  .hero-inner-container,
+  .tools-section-cont {
     margin: 0 10rem;
   }
 }
 
 @media only screen and (min-width: 1200px) {
-  .hero-inner-container {
+  .hero-inner-container,
+  .tools-section-cont {
     margin: 0 26rem;
   }
 }
@@ -973,12 +977,14 @@ img.faq-item__arrow-icon {
 }
 
 @media screen and (min-width: 580px) {
-  .pricing-section header {
-    margin-bottom: 5rem;
+  .pricing-section header,
+  .tools-section-cont header {
+    margin: 4rem 0;
   }
 }
 
-.pricing-section h2 {
+.pricing-section h2,
+.tools-section-cont h2 {
   color: var(--dark-des-blue);
   font-size: 4rem;
 }
@@ -1197,4 +1203,44 @@ li img {
 .option li:first-child p {
   font-size: 1.9rem;
   font-weight: 600;
+}
+
+/* Features Section */
+
+.tools-section-cont {
+  /* border: 5px solid transparent; */
+}
+
+.each-tool-section {
+  display: grid;
+  row-gap: 2rem;
+  justify-items: left;
+  align-content: center;
+}
+
+.each-tool-section h2 {
+  color: var(--dark-des-blue);
+  font-size: 2.2rem;
+}
+
+.each-tool-section article {
+  display: grid;
+  row-gap: 1rem;
+  justify-items: left;
+}
+
+.each-tool-section article p:first-child {
+  font-weight: 600;
+  font-size: 1.7rem;
+  color: var(--dark-des-blue);
+}
+
+.each-tool-section p {
+  text-align: left;
+  line-height: 1.4;
+}
+
+.each-tool-section ul {
+  display: grid;
+  row-gap: 1rem;
 }

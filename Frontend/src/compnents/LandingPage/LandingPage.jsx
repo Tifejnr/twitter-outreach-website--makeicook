@@ -8,7 +8,7 @@ import BelowTestimonials from './Body/BelowTestimonials'
 import Testimonials from './Body/Testimonials'
 import FAQ from './FAQ/FAQ'
 import PricingPage from '../PricingPage/PricingPage'
-import Features from './Features/Features'
+import ToolsSection from './Tools/Tools'
 
 export default function LandingPage() {
 return (
@@ -29,7 +29,7 @@ return (
 
   <Hero/>
   <BelowHero/>
-  <Features/>
+  <ToolsSection/>
   <PricingPage/>
   <FAQ/>
   <Testimonials/>
