@@ -22,6 +22,14 @@ const pageTitle = "Add Members Via Email";
 
 export default function AddMember() {
   const [boards, setBoards] = useState([]);
+  const [textareaValue, setTextareaValue] = useState('');
+
+  // Function to handle textarea value changes
+  const handleTextareaChange = (event) => {
+    setTextareaValue(event.target.value);
+    console.log(textareaValue)
+  };
+
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -78,8 +86,20 @@ export default function AddMember() {
       <h1>{pageTitle}</h1>
 
       <section className='inner-main-cont' id='innerMainContentCont'>
-        <Input inputLabel={inputLabel} inputPlaceholderText={inputPlaceholderText}/>  
 
+        <section className="memberDetailsCont">
+              <label htmlFor='memberDetailTextArea'><p>{inputLabel}</p></label>
+              <textarea
+              value={textareaValue}
+            onChange={handleTextareaChange}
+                name=""
+                id="memberDetailTextArea"
+                cols="40"
+                rows="10"
+                placeholder={inputPlaceholderText}></textarea>
+              <p className="error">error</p>
+        </section>
+        
           <SelectAll 
           labelTitle={labelTitle} 
           selectInstructionText={selectInstructionText} 

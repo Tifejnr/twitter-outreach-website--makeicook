@@ -6,7 +6,7 @@ import { websiteUrl } from "./websiteUrl";
 
 let succes, failuresArray, totalAttemptedArray;
 
-export default async function AddToBoard() {
+export default async function AddToBoard(boardCollection) {
   const email = document.getElementById("resultoo").value;
   const action = "adding";
 
@@ -16,8 +16,6 @@ export default async function AddToBoard() {
 
   const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
   ShowSuccessMess(100, 0, action);
-
-  const boardCollection = await FetchData(true);
 
   succes = [];
   failuresArray = [];
@@ -46,7 +44,8 @@ export default async function AddToBoard() {
 }
 
 function Execution(email, boardId) {
-  const noOfCheckedCheckbox = document.querySelectorAll("input:checked").length;
+  const noOfCheckedCheckbox =
+    document.querySelectorAll(".board-checkbox").length;
 
   const message = {
     email,

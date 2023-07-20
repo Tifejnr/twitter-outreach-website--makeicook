@@ -6,7 +6,7 @@ import { websiteUrl } from "./websiteUrl";
 
 let succes, failuresArray, totalAttemptedArray;
 
-export default async function DeleteMemberFromBoard() {
+export default async function DeleteMemberFromBoard(boardCollection) {
   const action = "deleting";
   let username = document.getElementById("resultoo").value;
 
@@ -14,10 +14,8 @@ export default async function DeleteMemberFromBoard() {
 
   if (!isAnyCheckboxChecked()) return console.log("Checkboxes not checked");
 
-  const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+  const allCheckboxes = document.querySelectorAll(".board-checkbox");
   ShowSuccessMess(100, 0, action);
-
-  const boardCollection = await FetchData(true);
 
   succes = [];
   failuresArray = [];
