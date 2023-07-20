@@ -1,4 +1,4 @@
-import React, { useState,  useEffect } from 'react';
+import React, { useState,  useEffect, useRef } from 'react';
 import Input from './BasicSectionLayout/Input'
 import SearchBoards from './BasicSectionLayout/SearchBoards'
 import SelectAll from './BasicSectionLayout/SelectAll'
@@ -23,11 +23,12 @@ const pageTitle = "Add Members Via Email";
 export default function AddMember() {
   const [boards, setBoards] = useState([]);
   const [textareaValue, setTextareaValue] = useState('');
+  const [textareaRefValue, setTextareaRefValue] = useState(null);
+  const textareaRef = useRef(null);
 
   // Function to handle textarea value changes
   const handleTextareaChange = (event) => {
     setTextareaValue(event.target.value);
-    console.log(textareaValue)
   };
 
 
@@ -74,7 +75,7 @@ export default function AddMember() {
   }, []);
 
   useEffect(() => {
-
+    setTextareaRefValue(textareaRef.current)
   }, [boards]);
 
   return (
@@ -92,20 +93,21 @@ export default function AddMember() {
               <textarea
               value={textareaValue}
             onChange={handleTextareaChange}
-                name=""
+                ref={textareaRef}
                 id="memberDetailTextArea"
                 cols="40"
                 rows="10"
                 placeholder={inputPlaceholderText}></textarea>
               <p className="error">error</p>
         </section>
-        
+
           <SelectAll 
           labelTitle={labelTitle} 
           selectInstructionText={selectInstructionText} 
            action={ (e)=> {
             e.preventDefault();
-            AddToBoard()
+            console.log(textareaRefValue)
+            AddToBoard(boards,textareaValue, textareaRefValue)
           } }
           />
 
@@ -114,7 +116,6 @@ export default function AddMember() {
          {boards.map((board, index) => {
           return  ( <BoardsDisplaySection key={index} board={board} indexNo={index}/>)
          })}
-
 
          </section>    
       
@@ -130,50 +131,4 @@ export default function AddMember() {
 
 
 
-
-
-
-//setting ele instead of getting by id
-
-
-// const MyComponent = () => {
-//   const [myElement, setMyElement] = useState(null);
-
-//   const handleClick = () => {
-//     console.log(myElement);
-//     // Perform operations on the element
-//   };
-
-//   return (
-//     <div>
-//       <div ref={setMyElement}>This is my element</div>
-//       <button onClick={handleClick}>Get Element</button>
-//     </div>
-//   );
-// };
-
-
-//when it's not within the comp
-
-
-// const MyComponent = () => {
-//   const [myElement, setMyElement] = useState(null);
-
-//   useEffect(() => {
-//     const element = document.getElementById('myElement');
-//     setMyElement(element);
-//   }, []);
-
-//   const handleClick = () => {
-//     console.log(myElement);
-//     // Perform operations on the element
-//   };
-
-//   return (
-//     <div>
-//       {/* Your component content */}
-//       <button onClick={handleClick}>Get Element</button>
-//     </div>
-//   );
-// };
 

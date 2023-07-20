@@ -6,11 +6,10 @@ import { websiteUrl } from "./websiteUrl";
 
 let succes, failuresArray, totalAttemptedArray;
 
-export default async function AddToBoard(boardCollection) {
-  const email = document.getElementById("resultoo").value;
+export default async function AddToBoard(boardCollection, email, textAreaRef) {
   const action = "adding";
 
-  if (!validateInput(email)) return console.log("Problem");
+  if (!validateInput(email, textAreaRef)) return console.log("Problem");
 
   if (!isAnyCheckboxChecked()) return console.log("Checkboxes not checked");
 
