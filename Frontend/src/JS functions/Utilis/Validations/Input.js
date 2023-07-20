@@ -9,12 +9,26 @@ function validateInput(input, textAreaRef) {
 
   if (isEmpty) return setErrorTextarea(textAreaRef, isEmptyMessage);
 
-  // Check if input is a valid email
-  const isEmailValid = validateEmail(input);
+  //Check if all are separated by commas
+  const regex = /^\w+(,\s*\w+)*$/;
+  const isValid = regex.test(input);
+  const commaError = "Emails must be seperated by commas";
+  if (!isValid) return setErrorTextarea(textAreaRef, commaError);
 
-  const invalidEmailMessage = "Invalid email";
+  const inputsSplittedByComma = input.split(",");
 
-  if (!isEmailValid) return setErrorTextarea(textAreaRef, invalidEmailMessage);
+  // Check if inputs are  all valid email
+  for (const eachInput of inputsSplittedByComma) {
+    const isEmailValid = validateEmail(eachInput);
+
+    console.log(isEmailValid);
+
+    const invalidEmailMessage = "One of the emails is Invalid";
+
+    if (!isEmailValid)
+      return setErrorTextarea(textAreaRef, invalidEmailMessage);
+  }
+
   setSuccess(textAreaRef);
   return true;
 }

@@ -106,7 +106,6 @@ export default function AddMember() {
           selectInstructionText={selectInstructionText} 
            action={ (e)=> {
             e.preventDefault();
-            console.log(textareaRefValue)
             AddToBoard(boards,textareaValue, textareaRefValue)
           } }
           />
