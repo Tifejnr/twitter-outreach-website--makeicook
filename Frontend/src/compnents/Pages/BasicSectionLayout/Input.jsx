@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Input(props) {
   return (
-        <section class="memberDetailsCont">
+        <section className="memberDetailsCont">
           <label htmlFor='memberDetailTextArea'><p>{props.inputLabel}</p></label>
           <textarea
             name=""
@@ -10,7 +10,7 @@ export default function Input(props) {
             cols="40"
             rows="10"
             placeholder={props.inputPlaceholderText}></textarea>
-          <p class="error">error</p>
+          <p className="error">error</p>
         </section>
 
   )
