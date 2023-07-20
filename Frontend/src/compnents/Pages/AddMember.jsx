@@ -3,12 +3,10 @@ import Input from './BasicSectionLayout/Input'
 import SearchBoards from './BasicSectionLayout/SearchBoards'
 import SelectAll from './BasicSectionLayout/SelectAll'
 import ProgressBar from '../ProgressBar/ProgressBar'
-import FetchData from '../../../../../Trello-Project-React/Frontend/src/JS functions/FetchData';
 import AddToBoard from '../../JS functions/AddToBoard';
 import HomePage from '../Home-nav-items/HomePage';
 import LoggedInUsersControl from '../Controllers/LoggedInUsersControl';
 import BoardsDisplaySection from './BasicSectionLayout/BoardsDisplaySection';
-import progressBarMove from '../../JS functions/progressBar/MoveProgressBar';
 import { websiteUrl } from '../../JS functions/websiteUrl';
 
 
@@ -24,7 +22,6 @@ const pageTitle = "Add Members Via Email";
 
 export default function AddMember() {
   const [boards, setBoards] = useState([]);
-  const [lenghtID, setLengthID]= useState(0)
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -56,15 +53,9 @@ export default function AddMember() {
         }
 
         const data = dataRaw.boards;
-        console.log("Boards before update:", boards);
         setBoards(data);
-        setLengthID(data.length-1)
       } catch (error) {
         console.log(error);
-      }
-
-      finally {
-              progressBarMove(3, 100);
       }
     })();
 
@@ -75,9 +66,7 @@ export default function AddMember() {
   }, []);
 
   useEffect(() => {
-    console.log("Updated boards:", boards);
-    console.log(lenghtID)
-      progressBarMove(lenghtID, lenghtID-1);
+
   }, [boards]);
 
   return (
@@ -103,11 +92,8 @@ export default function AddMember() {
           <SearchBoards searchPlaceholderTitle={searchPlaceholderTitle}/> 
           
          {boards.map((board, index) => {
-            console.log(board.name); // Log the board object to the console
-         return  ( <BoardsDisplaySection key={index} board={board} indexNo={index}/>)
-
-
-      })}
+          return  ( <BoardsDisplaySection key={index} board={board} indexNo={index}/>)
+         })}
 
 
          </section>    
