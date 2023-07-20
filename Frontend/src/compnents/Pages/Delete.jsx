@@ -3,10 +3,11 @@ import Input from './BasicSectionLayout/Input'
 import SearchBoards from './BasicSectionLayout/SearchBoards'
 import SelectAll from './BasicSectionLayout/SelectAll'
 import ProgressBar from '../ProgressBar/ProgressBar'
-import FetchData from '../../../../../Trello-Project-React/Frontend/src/JS functions/FetchData';
 import DeleteMemberFromBoard from '../../../../../Trello-Project-React/Frontend/src/JS functions/DeleteFromBoard';
 import HomePage from '../Home-nav-items/HomePage';
 import LoggedInUsersControl from '../Controllers/LoggedInUsersControl';
+import BoardsDisplaySection from './BasicSectionLayout/BoardsDisplaySection';
+import { websiteUrl } from '../../JS functions/websiteUrl';
 
 
 const labelTitle = "Delete Member";
@@ -19,12 +20,53 @@ const pageTitle = "Delete Member Via Username";
 
 
 export default function Delete() {
-
+  const [boards, setBoards] = useState([]);
 useEffect(() => {
-FetchData()
+    const abortController = new AbortController();
 
+    (async function () {
+      try {
+        const url = `${websiteUrl}/start`;
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ true: true }),
+          signal: abortController.signal, // Pass the signal to the fetch call
+        });
+
+        const dataRaw = await response.json();
+
+        if (!dataRaw) {
+          console.log("No data seen");
+          return;
+        }
+
+        if (dataRaw.error) {
+          if (dataRaw.error.code === "ENOTFOUND") {
+            console.log("No internet network");
+            return;
+          }
+        }
+
+        const data = dataRaw.boards;
+        console.log("Boards before update:", boards);
+        setBoards(data);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+
+    return () => {
+      // Clean up the effect by aborting the fetch request if the component is unmounted
+      abortController.abort();
+    };
   }, []);
 
+  useEffect(() => {
+    console.log("Updated boards:", boards);
+  }, [boards]);
 
 return (
 <>    
@@ -37,9 +79,7 @@ return (
 
       <section className='inner-main-cont' id='innerMainContentCont'>
         <Input inputLabel={inputLabel} inputPlaceholderText={inputPlaceholderText}/>
-         <SearchBoards searchPlaceholderTitle={searchPlaceholderTitle}/>   
 
-         <section>
           <SelectAll 
           labelTitle={labelTitle} 
           selectInstructionText={selectInstructionText}
@@ -48,7 +88,13 @@ return (
             DeleteMemberFromBoard()
           } }
           />
-         </section>    
+
+        <SearchBoards searchPlaceholderTitle={searchPlaceholderTitle}/>   
+
+         {boards.map((board, index) => {
+           return  ( <BoardsDisplaySection key={index} board={board} indexNo={index}/>)
+         })}
+
       </section>
       
      </section>

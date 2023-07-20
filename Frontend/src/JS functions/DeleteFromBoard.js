@@ -1,4 +1,3 @@
-import FetchData from "./FetchData";
 import ShowSuccessMess from "./progressBar/SucessMessage";
 import { validateUsername } from "./Utilis/Validations/Username";
 import { isAnyCheckboxChecked } from "./Utilis/Validations/Checkbox";

@@ -227,6 +227,7 @@ button:hover {
   font-size: 1.7rem;
   font-weight: 600;
   font-family: Georgia, "Times New Roman", Times, serif;
+  display: none;
 }
 
 .loading .title {
@@ -318,7 +319,7 @@ input {
 .main-section-cont {
   position: relative;
   top: 7rem;
-  display: none;
+
   width: 60rem;
   margin: 0 auto;
 }
