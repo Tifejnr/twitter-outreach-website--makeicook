@@ -1,31 +1,22 @@
-import React, { useState,  useEffect, useContext, } from 'react';
-import { ProgressBarContext } from '../compnents/Hooks/Contexts/ProgressBarContext';
-import ShowSuccessMess from "./progressBar/SucessMessage";
-import { validateInput } from "./Utilis/Validations/Input";
-import { isAnyCheckboxChecked } from "./Utilis/Validations/Checkbox";
-import { findBoardIdByName } from "./Utilis/FindBoardId/byName";
-import { websiteUrl } from "./websiteUrl";
+import React, { useState, useEffect, useContext } from "react";
+import ShowSuccessMess from "../../JS functions/progressBar/SucessMessage";
+import { findBoardIdByName } from "../../JS functions/Utilis/FindBoardId/byName";
+import { websiteUrl } from "../../JS functions/websiteUrl";
+import useStore from "../Hooks/Zustand/usersStore";
+import ProgressBar from "./ProgressBar";
 
 let succes, failuresArray, totalAttemptedArray, noOfCheckedCheckbox;
 
-export default async function AddToBoard(executionParams) {
- const { progressBarTitle, 
-    setProgressBarTitle,
-    successStatusTitle, 
-    setSuccessStatusTitle,
-    failureTitle,
-    setFailureTitle } = useContext(ProgressBarContext);
 
+export default async function ProgressExceution(props) {
+  const setTaskTitle = useStore((state) => state.setTaskTitle);
 
-  const boardsCollection = executionParams.boardsCollection;
-  const emailInputs = executionParams.textAreaValue;
-  const textAreaRef = executionParams.textAreaRefEl;
+   const boardsCollection = props.executionParams.boardsCollection;
+  const emailInputs = props.executionParams.textAreaValue;
 
-  const action = "adding";
-
-  if (!validateInput(emailInputs, textAreaRef)) return console.log("Problem");
-
-  if (!isAnyCheckboxChecked()) return console.log("Checkboxes not checked");
+  const handleTitleChange = () => {
+    setTaskTitle("I am clear");
+  };
 
   const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
 
@@ -40,7 +31,6 @@ export default async function AddToBoard(executionParams) {
   ).length;
 
   noOfCheckedCheckbox = Number(checkedCheckboxesLength) * userDetailsLength;
-
 
   Array.from(allCheckboxes).map((checkbox, index) => {
     const checkboxEl = document.getElementById(`check${index}`);
@@ -132,4 +122,7 @@ function Execution(email, boardId) {
   addMember().catch((error) => {
     console.log(error);
   });
+
+
+  return(<ProgressBar/>)
 }

@@ -10,7 +10,7 @@ import LoggedInUsersControl from '../Controllers/LoggedInUsersControl';
 import BoardsDisplaySection from './BasicSectionLayout/BoardsDisplaySection';
 import { websiteUrl } from '../../JS functions/websiteUrl';
 import useStore from '../Hooks/Zustand/usersStore';
-
+import ProgressExceution from '../ProgressBar/ProgressExceution';
 
 
 const labelTitle = "Add Members";
@@ -32,11 +32,25 @@ export default function AddMember() {
   const taskTitle = useStore((state) => state.taskTitle);
   const setTaskTitle = useStore((state) => state.setTaskTitle);
 
-    const handleTitleChange = () => {
+  const handleTitleChange = () => {
     setTaskTitle("New Task Title");
 
     console.log(taskTitle)
   };
+
+    const executionParams= {
+       boardsCollection,
+       textAreaValue,
+       textAreaRefEl
+    }
+
+  const handleTextAreaValidation = (e)=> {
+          e.preventDefault();
+          const validationTest=  AddToBoard(executionParams)
+
+          if (!validationTest) return false
+          setExecute(true)
+  }
 
 
   useEffect(() => {
@@ -82,19 +96,17 @@ export default function AddMember() {
   }, []);
 
   useEffect(() => {
-     handleTitleChange ()
   }, [boardsCollection]);
 
 
   if (boardsCollection=== undefined) return console.log("boards not available")
-
 
   return (
 <>   
 <LoggedInUsersControl>
    <HomePage/> 
 
-  { execute ?  <ProgressBar pageName={pageName} executionParams={executionParams} /> : 
+  { execute ?  <ProgressExceution pageName={pageName} executionParams={executionParams} /> : 
   
    <section className='main-section-cont' id='mainContentCont'>
 
@@ -106,10 +118,7 @@ export default function AddMember() {
           <SelectAll 
           labelTitle={labelTitle} 
           selectInstructionText={selectInstructionText} 
-           action={ (e)=> {
-            e.preventDefault();
-            setExecute(true)
-          } }
+           action={handleTextAreaValidation}
           />
 
           <SearchBoards searchPlaceholderTitle={searchPlaceholderTitle}/> 
