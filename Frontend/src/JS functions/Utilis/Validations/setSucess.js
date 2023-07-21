@@ -5,7 +5,7 @@ const setSuccess = (element) => {
   const errorDisplay = inputControl.querySelector(".error");
 
   errorDisplay.innerText = "";
-  inputControl.style.borderColor = successColor;
+  element.style.borderColor = successColor;
 };
 
 export { setSuccess };

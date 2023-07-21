@@ -227,7 +227,7 @@ button:hover {
   font-size: 1.7rem;
   font-weight: 600;
   font-family: Georgia, "Times New Roman", Times, serif;
-  display: none;
+  /* display: none; */
 }
 
 .loading .title {

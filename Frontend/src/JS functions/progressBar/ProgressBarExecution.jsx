@@ -1,37 +1,47 @@
-import { display, hideForms, hide } from "../Utilis/EleDisplay";
+// import { display, hideForms, hide } from "../Utilis/EleDisplay";
 
-export default function ProgressBarExecution(noOfChecked, sumOfSucesses, action, sumOfFailures, totalAttemptedArray) {
-if (sumOfFailures==undefined) {
-  sumOfFailures=0
- }
-const progressBarTitle = document.getElementById("progressBarTitle");
-const successStatusTitle = document.getElementById("successStatusTitle");
-const failureTitle = document.getElementById("failureTitle");
-const mainContentCont = document.getElementById("mainContentCont");
-const BAR = document.getElementById("bar");
-const progressBarContainer = document.getElementById("loading");
-const allForms = document.getElementsByTagName("form");
-progressBarTitle.innerHTML=""
+// export default function ProgressBarExecution(progressBarParams) {
 
-if (action =="deleting") {
-  progressBarTitle.innerHTML = `Deleting Member from ${noOfChecked} Boards... `;
-  successStatusTitle.innerHTML = `Successful Deletions: ${sumOfSucesses}`;
-  failureTitle.innerHTML = `Failed Deletions: ${sumOfFailures}`;
-}
+//   const userDetail= progressBarParams.userDetail
+//   const isAddedTo = progressBarParams.isAddedTo 
+//   const noOfCheckedCheckbox= progressBarParams.noOfCheckedCheckbox
+//   const successLength= progressBarParams.successLength + 1
+//   const action= progressBarParams.action
+//   let failuresArrayLength= progressBarParams.failuresArrayLength
+//   const totalAttemptedArrayLength= progressBarParams.totalAttemptedArrayLength
 
-if (action=="adding") {
-  progressBarTitle.innerHTML = `Adding Member to ${noOfChecked} Boards... `;
-  successStatusTitle.innerHTML = `Successful Additions: ${sumOfSucesses}`;
-    failureTitle.innerHTML = `Failed Additions: ${sumOfFailures}`;
+// if (failuresArrayLength==undefined) {
+//   failuresArrayLength= 0
+//  }
 
-}
-  hide(mainContentCont);
-  hideForms(allForms);
-  display(progressBarContainer);
-  display(btnSection);
+// const progressBarTitle = document.getElementById("progressBarTitle");
+// const successStatusTitle = document.getElementById("successStatusTitle");
+// const failureTitle = document.getElementById("failureTitle");
+// const mainContentCont = document.getElementById("mainContentCont");
+// const BAR = document.getElementById("bar");
+// const progressBarContainer = document.getElementById("loading");
+// const allForms = document.getElementsByTagName("form");
+// progressBarTitle.innerHTML=""
 
-  let percentLoaded = (Number(totalAttemptedArray) / Number(noOfChecked)) * 100;
+// if (action =="deleting") {
+//   progressBarTitle.innerHTML = `Deleting ${userDetail} from ${noOfCheckedCheckbox} Boards... `;
+//   successStatusTitle.innerHTML = `Successful ${isAddedTo} Deletions: ${successLength}`;
+//   failureTitle.innerHTML = `Failed Deletions: ${failuresArrayLength}`;
+// }
 
-  BAR.style.width = percentLoaded + "%";
-}
+// if (action=="adding") {
+//   progressBarTitle.innerHTML = `Adding ${userDetail} to ${noOfCheckedCheckbox} Boards... `;
+//   successStatusTitle.innerHTML = `Successful ${isAddedTo} Additions: ${successLength}`;
+//   failureTitle.innerHTML = `Failed Additions: ${failuresArrayLength}`;
+
+// }
+//   hide(mainContentCont);
+//   hideForms(allForms);
+//   display(progressBarContainer);
+//   display(btnSection);
+
+//   let percentLoaded = (Number(totalAttemptedArrayLength) / Number(noOfCheckedCheckbox)) * 100;
+
+//   BAR.style.width = percentLoaded + "%";
+// }
 

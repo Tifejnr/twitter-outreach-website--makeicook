@@ -1,8 +1,6 @@
 const axios = require("axios");
 
 async function fetchAllBoards(req, res) {
-  const token = process.env.ACCESS_TOKEN_SECRET;
-  const key = process.env.CLIENT_SECRET_KEY;
   const boardsFetchingUrl = `https://api.trello.com/1/members/me/boards?key=${key}&token=${token}`;
 
   try {

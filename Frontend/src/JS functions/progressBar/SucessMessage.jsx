@@ -1,13 +1,15 @@
 
-import ProgressBarExecution from "./ProgressBarExecution";
 import { display, hide } from "../Utilis/EleDisplay";
 
-export default function ShowSuccessMess(noOfCheckedCheckbox, noOfSucess, action,sumOfFailures, totalAttemptedArray) {
-   ProgressBarExecution(noOfCheckedCheckbox, noOfSucess, action, sumOfFailures, totalAttemptedArray);
+export default function ShowSuccessMess(showSuccessParams) {
+  const noOfCheckedCheckbox= showSuccessParams.noOfCheckedCheckbox
+  const action= showSuccessParams.action
+  const  totalAttemptedArrayLength= showSuccessParams.totalAttemptedArrayLength
 
-  if (noOfCheckedCheckbox == totalAttemptedArray) return succesMess(action);
+  //  ProgressBarExecution(showSuccessParams);
+
+  // if (noOfCheckedCheckbox == totalAttemptedArrayLength) return succesMess(action);
 }
-
 
 
 function succesMess(action) {
@@ -29,5 +31,5 @@ const cancelEl = document.getElementById("cancelBtn");
   hide(progressBarTitle);
   hide(cancelEl);
 
-      }, 700);
+      }, 600);
 }

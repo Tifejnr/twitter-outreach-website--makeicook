@@ -1,4 +1,5 @@
-import React, { useState,  useEffect } from 'react';
+import React, { useState,  useEffect, useContext } from 'react';
+import { MyContext } from '../Hooks/Contexts/UserContext';
 import Input from './BasicSectionLayout/Input'
 import SearchBoards from './BasicSectionLayout/SearchBoards'
 import SelectAll from './BasicSectionLayout/SelectAll'
@@ -20,14 +21,8 @@ const pageTitle = "Delete Member Via Username";
 
 
 export default function Delete() {
-  const [boards, setBoards] = useState([]);
-  const [textareaValue, setTextareaValue] = useState('');
-
-    // Function to handle textarea value changes
-  const handleTextareaChange = (event) => {
-    setTextareaValue(event.target.value);
-    console.log(textareaValue)
-  };
+  const [boardsCollection, setBoardsCollection] = useState([]);
+  const { textAreaValue, setc, textAreaRefEl, setd } = useContext(MyContext);
 
 useEffect(() => {
     const abortController = new AbortController();
@@ -58,9 +53,8 @@ useEffect(() => {
           }
         }
 
-        const data = dataRaw.boards;
-        console.log("Boards before update:", boards);
-        setBoards(data);
+        const data = dataRaw.boardsCollection;
+        setBoardsCollection(data);
       } catch (error) {
         console.log(error);
       }
@@ -74,7 +68,7 @@ useEffect(() => {
 
   useEffect(() => {
 
-  }, [boards]);
+  }, [boardsCollection]);
 
 return (
 <>    
@@ -86,25 +80,20 @@ return (
       <h1>{pageTitle}</h1>
 
       <section className='inner-main-cont' id='innerMainContentCont'>
-        <section className="memberDetailsCont">
-              <label htmlFor='memberDetailTextArea'><p>{inputLabel}</p></label>
-              <textarea
-              value={textareaValue}
-            onChange={handleTextareaChange}
-                name=""
-                id="memberDetailTextArea"
-                cols="40"
-                rows="10"
-                placeholder={inputPlaceholderText}></textarea>
-              <p className="error">error</p>
-        </section>
+        <Input inputLabel={inputLabel} inputPlaceholderText={inputPlaceholderText}/>
 
           <SelectAll 
           labelTitle={labelTitle} 
           selectInstructionText={selectInstructionText}
           action={ (e)=> {
             e.preventDefault()
-            DeleteMemberFromBoard(boards)
+            const executionParams= {
+              boardsCollection,
+              textAreaValue,
+              textAreaRefEl
+            }
+
+            DeleteMemberFromBoard(executionParams)
           } }
           />
 

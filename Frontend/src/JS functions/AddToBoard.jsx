@@ -2,23 +2,39 @@ import ShowSuccessMess from "./progressBar/SucessMessage";
 import { validateInput } from "./Utilis/Validations/Input";
 import { isAnyCheckboxChecked } from "./Utilis/Validations/Checkbox";
 import { findBoardIdByName } from "./Utilis/FindBoardId/byName";
+import ProgressBar from "../compnents/ProgressBar/ProgressBar";
 import { websiteUrl } from "./websiteUrl";
 
-let succes, failuresArray, totalAttemptedArray;
+let succes, failuresArray, totalAttemptedArray, noOfCheckedCheckbox;
 
-export default async function AddToBoard(boardCollection, email, textAreaRef) {
+export default async function AddToBoard(executionParams) {
+  const boardsCollection = executionParams.boardsCollection;
+  const emailInputs = executionParams.textAreaValue;
+  const textAreaRef = executionParams.textAreaRefEl;
+
   const action = "adding";
 
-  if (!validateInput(email, textAreaRef)) return console.log("Problem");
+  if (!validateInput(emailInputs, textAreaRef)) return console.log("Problem");
 
   if (!isAnyCheckboxChecked()) return console.log("Checkboxes not checked");
 
   const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+
+  const emailListSplited = emailInputs.split(",");
+  const userDetailsLength = Number(emailListSplited.length);
   ShowSuccessMess(100, 0, action);
 
-  succes = [];
-  failuresArray = [];
+  <ProgressBar />;
+
   totalAttemptedArray = [];
+
+  const checkedCheckboxesLength = document.querySelectorAll(
+    ".board-checkbox:checked"
+  ).length;
+
+  noOfCheckedCheckbox = Number(checkedCheckboxesLength) * userDetailsLength;
+
+  console.log(noOfCheckedCheckbox);
 
   Array.from(allCheckboxes).map((checkbox, index) => {
     const checkboxEl = document.getElementById(`check${index}`);
@@ -33,23 +49,31 @@ export default async function AddToBoard(boardCollection, email, textAreaRef) {
 
     const boardName = boardEl.innerHTML;
 
-    const foundBoard = findBoardIdByName(boardCollection, boardName);
+    const foundBoard = findBoardIdByName(boardsCollection, boardName);
 
     if (!foundBoard) return console.log("board not found");
     const boardId = foundBoard.id;
 
-    return new Execution(email, boardId);
+    // each email execution to server
+    emailListSplited.map((eachEmail, index) => {
+      const email = eachEmail;
+      setTimeout(() => {
+        new Execution(email, boardId);
+      }, 4000 * index);
+    });
   });
 }
 
 function Execution(email, boardId) {
-  const noOfCheckedCheckbox =
-    document.querySelectorAll(".board-checkbox").length;
-
+  const userDetail = email.trim();
+  const isAddedTo = "Boards";
   const message = {
     email,
     boardId,
   };
+
+  succes = [];
+  failuresArray = [];
 
   async function addMember() {
     const action = "adding";
@@ -73,23 +97,31 @@ function Execution(email, boardId) {
       }
 
       failuresArray.push(1);
-      return ShowSuccessMess(
+
+      const showSuccessParams = {
+        userDetail,
+        isAddedTo,
         noOfCheckedCheckbox,
-        succes.length,
+        successLength: succes.length,
         action,
-        failuresArray.length,
-        totalAttemptedArray.length
-      );
+        failuresArrayLength: failuresArray.length,
+        totalAttemptedArrayLength: totalAttemptedArray.length,
+      };
+      return ShowSuccessMess(showSuccessParams);
     }
 
-    succes.push(1);
-    ShowSuccessMess(
+    const showSuccessParams = {
+      userDetail,
+      isAddedTo,
       noOfCheckedCheckbox,
-      succes.length,
+      successLength: succes.length,
       action,
-      failuresArray.length,
-      totalAttemptedArray.length
-    );
+      failuresArrayLength: failuresArray.length,
+      totalAttemptedArrayLength: totalAttemptedArray.length,
+    };
+
+    succes.push(1);
+    ShowSuccessMess(showSuccessParams);
   }
   addMember().catch((error) => {
     console.log(error);

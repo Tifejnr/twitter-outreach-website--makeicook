@@ -14,14 +14,13 @@ import OauthPage from './compnents/Trello-oauth-page/OauthPage'
 import LandingPage from './compnents/LandingPage/LandingPage'
 import HomePage from './compnents/Home-nav-items/HomePage'
 import Dashboard from './compnents/Auth/Dashboard/Dashboard'
+import { MyProvider } from './compnents/Hooks/Contexts/UserContext'
 
-export const LoginStatusContext =  createContext()
 
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(true)
   return (
-    <LoginStatusContext.Provider value={[loggedIn, setLoggedIn]}>
+    <MyProvider>
     <>
       <Routes>
         <Route path='/' element={<LandingPage/>}/>
@@ -36,7 +35,7 @@ function App() {
       </Routes>
 
     </>
-    </LoginStatusContext.Provider>
+    </MyProvider>
   )
 
 }

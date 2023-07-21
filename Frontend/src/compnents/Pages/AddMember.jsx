@@ -1,4 +1,5 @@
-import React, { useState,  useEffect, useRef } from 'react';
+import React, { useState,  useEffect, useContext, } from 'react';
+import { MyContext } from '../Hooks/Contexts/UserContext';
 import Input from './BasicSectionLayout/Input'
 import SearchBoards from './BasicSectionLayout/SearchBoards'
 import SelectAll from './BasicSectionLayout/SelectAll'
@@ -20,17 +21,12 @@ const pageName = "add-member";
 const pageTitle = "Add Members Via Email";
 
 
+
+
 export default function AddMember() {
-  const [boards, setBoards] = useState([]);
-  const [textareaValue, setTextareaValue] = useState('');
-  const [textareaRefValue, setTextareaRefValue] = useState(null);
-  const textareaRef = useRef(null);
-
-  // Function to handle textarea value changes
-  const handleTextareaChange = (event) => {
-    setTextareaValue(event.target.value);
-  };
-
+  const [boardsCollection, setBoardsCollection] = useState([]);
+  const [execute, setExecute] = useState(false);
+  const { textAreaValue, setc, textAreaRefEl, setd } = useContext(MyContext);
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -62,7 +58,7 @@ export default function AddMember() {
         }
 
         const data = dataRaw.boards;
-        setBoards(data);
+        setBoardsCollection(data);
       } catch (error) {
         console.log(error);
       }
@@ -75,52 +71,52 @@ export default function AddMember() {
   }, []);
 
   useEffect(() => {
-    setTextareaRefValue(textareaRef.current)
-  }, [boards]);
+  }, [boardsCollection]);
+
+
+  if (boardsCollection=== undefined) return console.log("boards not available")
 
   return (
 <>   
 <LoggedInUsersControl>
    <HomePage/> 
-    <section className='main-section-cont' id='mainContentCont'>
+   
+
+  { execute ?  <ProgressBar pageName={pageName}/> : 
+  
+   <section className='main-section-cont' id='mainContentCont'>
 
       <h1>{pageTitle}</h1>
 
       <section className='inner-main-cont' id='innerMainContentCont'>
 
-        <section className="memberDetailsCont">
-              <label htmlFor='memberDetailTextArea'><p>{inputLabel}</p></label>
-              <textarea
-              value={textareaValue}
-            onChange={handleTextareaChange}
-                ref={textareaRef}
-                id="memberDetailTextArea"
-                cols="40"
-                rows="10"
-                placeholder={inputPlaceholderText}></textarea>
-              <p className="error">error</p>
-        </section>
-
+        <Input inputLabel={inputLabel} inputPlaceholderText={inputPlaceholderText}/>
           <SelectAll 
           labelTitle={labelTitle} 
           selectInstructionText={selectInstructionText} 
            action={ (e)=> {
             e.preventDefault();
-            AddToBoard(boards,textareaValue, textareaRefValue)
+
+            setExecute(true)
+            const executionParams= {
+              boardsCollection,
+              textAreaValue,
+              textAreaRefEl
+            }
+            AddToBoard(executionParams)
           } }
           />
 
           <SearchBoards searchPlaceholderTitle={searchPlaceholderTitle}/> 
           
-         {boards.map((board, index) => {
+         {boardsCollection.map((board, index) => {
           return  ( <BoardsDisplaySection key={index} board={board} indexNo={index}/>)
          })}
 
          </section>    
       
      </section>
-
-    <ProgressBar pageName={pageName}/>
+  }
     
 </LoggedInUsersControl>
  </>

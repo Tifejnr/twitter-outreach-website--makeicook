@@ -1,4 +1,5 @@
 import { validateEmail } from "./Email";
+import { commaSeperationRegex } from "./commaSeperationRegex";
 import { setErrorTextarea } from "./setError";
 import { setSuccess } from "./setSucess";
 
@@ -10,24 +11,26 @@ function validateInput(input, textAreaRef) {
   if (isEmpty) return setErrorTextarea(textAreaRef, isEmptyMessage);
 
   //Check if all are separated by commas
-  const regex = /^\w+(,\s*\w+)*$/;
-  const isValid = regex.test(input);
-  const commaError = "Emails must be seperated by commas";
-  if (!isValid) return setErrorTextarea(textAreaRef, commaError);
+  const inputsSplitted = input.split(",");
 
-  const inputsSplittedByComma = input.split(",");
+  const isValid = commaSeperationRegex(input);
+  const commaErrorMultipleInputs = "Emails must be seperated by commas";
 
-  // Check if inputs are  all valid email
-  for (const eachInput of inputsSplittedByComma) {
-    const isEmailValid = validateEmail(eachInput);
+  const ifOneInputError = "You don't need a comma if it's one detail";
+  if (!isValid && inputsSplitted.length == 2)
+    return setErrorTextarea(textAreaRef, ifOneInputError);
 
-    console.log(isEmailValid);
+  if (!isValid) return setErrorTextarea(textAreaRef, commaErrorMultipleInputs);
 
-    const invalidEmailMessage = "One of the emails is Invalid";
+  const isEmailsValid = validateEmail(input);
 
-    if (!isEmailValid)
-      return setErrorTextarea(textAreaRef, invalidEmailMessage);
-  }
+  const invalidEmailMessage = "At least one of the emails is Invalid";
+  const oneOnlyInvalidMessage = "Invalid email";
+
+  if (!isEmailsValid && inputsSplitted.length == 1)
+    return setErrorTextarea(textAreaRef, oneOnlyInvalidMessage);
+
+  if (!isEmailsValid) return setErrorTextarea(textAreaRef, invalidEmailMessage);
 
   setSuccess(textAreaRef);
   return true;
