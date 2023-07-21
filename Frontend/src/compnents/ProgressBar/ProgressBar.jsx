@@ -1,26 +1,21 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext } from 'react'
+import { ProgressBarContext } from '../Hooks/Contexts/ProgressBarContext';
+import AddToBoard from '../../JS functions/AddToBoard';
 
 export default function ProgressBar(props) {
-  const [isPageLoad, setIsPageLoad]= useState()
-
-  useEffect(() => {
-  setIsPageLoad(true)
-
-  }, [])
 
 
 if (isPageLoad === undefined) return "";
   
   return (
-isPageLoad &&
     <div className="loading" id="loading">
       <div className="barHolder">
         <div id="bar"></div>
       </div>
-      {/* <h2 id="progressBarTitle" className="title" >{props.progressBarParams.taskTitle}</h2>
-      <h3 id="successStatusTitle" className="title">{props.progressBarParams.sucessLength}</h3>
-      <h3 id="failureTitle" className="title failureTitle">{props.progressBarParams.failureLength}</h3>
-      <h3 id="completedStatus" className="title">{props.progressBarParams.completedStatus}</h3> */}
+      <h2 id="progressBarTitle" className="title" >{"progressBarTitle"}</h2>
+      {/* <h3 id="successStatusTitle" className="title">{successStatusTitle}</h3>
+      <h3 id="failureTitle" className="title failureTitle">{failureTitle}</h3> */}
+      {/* <h3 id="completedStatus" className="title">{props.progressBarParams.completedStatus}</h3> */}
       <section className="btn-section" id="btnSection">
         <a href={`/${props.pageName}`}> <button className="okay-btn" id="okay">Okay</button></a>
         <a href={`/${props.pageName}`}>

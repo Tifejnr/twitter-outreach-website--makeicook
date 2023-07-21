@@ -1,4 +1,4 @@
-import React, { useState,  useEffect, useContext, } from 'react';
+import React, { useState,  useEffect, useContext } from 'react';
 import { MyContext } from '../Hooks/Contexts/UserContext';
 import Input from './BasicSectionLayout/Input'
 import SearchBoards from './BasicSectionLayout/SearchBoards'
@@ -9,6 +9,7 @@ import HomePage from '../Home-nav-items/HomePage';
 import LoggedInUsersControl from '../Controllers/LoggedInUsersControl';
 import BoardsDisplaySection from './BasicSectionLayout/BoardsDisplaySection';
 import { websiteUrl } from '../../JS functions/websiteUrl';
+import useStore from '../Hooks/Zustand/usersStore';
 
 
 
@@ -19,6 +20,7 @@ const selectInstructionText = "Select Boards to Add Members to";
 const inputPlaceholderText = "Input emails of members to be added, each separated with a comma.";
 const pageName = "add-member";
 const pageTitle = "Add Members Via Email";
+const action = "adding";
 
 
 
@@ -27,6 +29,15 @@ export default function AddMember() {
   const [boardsCollection, setBoardsCollection] = useState([]);
   const [execute, setExecute] = useState(false);
   const { textAreaValue, setc, textAreaRefEl, setd } = useContext(MyContext);
+  const taskTitle = useStore((state) => state.taskTitle);
+  const setTaskTitle = useStore((state) => state.setTaskTitle);
+
+    const handleTitleChange = () => {
+    setTaskTitle("New Task Title");
+
+    console.log(taskTitle)
+  };
+
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -71,18 +82,19 @@ export default function AddMember() {
   }, []);
 
   useEffect(() => {
+     handleTitleChange ()
   }, [boardsCollection]);
 
 
   if (boardsCollection=== undefined) return console.log("boards not available")
 
+
   return (
 <>   
 <LoggedInUsersControl>
    <HomePage/> 
-   
 
-  { execute ?  <ProgressBar pageName={pageName}/> : 
+  { execute ?  <ProgressBar pageName={pageName} executionParams={executionParams} /> : 
   
    <section className='main-section-cont' id='mainContentCont'>
 
@@ -96,14 +108,7 @@ export default function AddMember() {
           selectInstructionText={selectInstructionText} 
            action={ (e)=> {
             e.preventDefault();
-
             setExecute(true)
-            const executionParams= {
-              boardsCollection,
-              textAreaValue,
-              textAreaRefEl
-            }
-            AddToBoard(executionParams)
           } }
           />
 

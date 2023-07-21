@@ -30,9 +30,9 @@
 // }
 
 // if (action=="adding") {
-//   progressBarTitle.innerHTML = `Adding ${userDetail} to ${noOfCheckedCheckbox} Boards... `;
-//   successStatusTitle.innerHTML = `Successful ${isAddedTo} Additions: ${successLength}`;
-//   failureTitle.innerHTML = `Failed Additions: ${failuresArrayLength}`;
+  // progressBarTitle.innerHTML = `Adding ${userDetail} to ${noOfCheckedCheckbox} Boards... `;
+  // successStatusTitle.innerHTML = `Successful ${isAddedTo} Additions: ${successLength}`;
+  // failureTitle.innerHTML = `Failed Additions: ${failuresArrayLength}`;
 
 // }
 //   hide(mainContentCont);

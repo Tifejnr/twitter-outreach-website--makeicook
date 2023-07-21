@@ -1,13 +1,22 @@
+import React, { useState,  useEffect, useContext, } from 'react';
+import { ProgressBarContext } from '../compnents/Hooks/Contexts/ProgressBarContext';
 import ShowSuccessMess from "./progressBar/SucessMessage";
 import { validateInput } from "./Utilis/Validations/Input";
 import { isAnyCheckboxChecked } from "./Utilis/Validations/Checkbox";
 import { findBoardIdByName } from "./Utilis/FindBoardId/byName";
-import ProgressBar from "../compnents/ProgressBar/ProgressBar";
 import { websiteUrl } from "./websiteUrl";
 
 let succes, failuresArray, totalAttemptedArray, noOfCheckedCheckbox;
 
 export default async function AddToBoard(executionParams) {
+ const { progressBarTitle, 
+    setProgressBarTitle,
+    successStatusTitle, 
+    setSuccessStatusTitle,
+    failureTitle,
+    setFailureTitle } = useContext(ProgressBarContext);
+
+
   const boardsCollection = executionParams.boardsCollection;
   const emailInputs = executionParams.textAreaValue;
   const textAreaRef = executionParams.textAreaRefEl;
@@ -22,9 +31,7 @@ export default async function AddToBoard(executionParams) {
 
   const emailListSplited = emailInputs.split(",");
   const userDetailsLength = Number(emailListSplited.length);
-  ShowSuccessMess(100, 0, action);
-
-  <ProgressBar />;
+  // ShowSuccessMess(100, 0, action);
 
   totalAttemptedArray = [];
 
@@ -34,7 +41,6 @@ export default async function AddToBoard(executionParams) {
 
   noOfCheckedCheckbox = Number(checkedCheckboxesLength) * userDetailsLength;
 
-  console.log(noOfCheckedCheckbox);
 
   Array.from(allCheckboxes).map((checkbox, index) => {
     const checkboxEl = document.getElementById(`check${index}`);

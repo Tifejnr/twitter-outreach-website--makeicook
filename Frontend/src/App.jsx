@@ -15,12 +15,14 @@ import LandingPage from './compnents/LandingPage/LandingPage'
 import HomePage from './compnents/Home-nav-items/HomePage'
 import Dashboard from './compnents/Auth/Dashboard/Dashboard'
 import { MyProvider } from './compnents/Hooks/Contexts/UserContext'
+import { ProgressBarProvider } from './compnents/Hooks/Contexts/ProgressBarContext'
 
 
 
 function App() {
   return (
     <MyProvider>
+      <ProgressBarProvider>
     <>
       <Routes>
         <Route path='/' element={<LandingPage/>}/>
@@ -35,6 +37,7 @@ function App() {
       </Routes>
 
     </>
+    </ProgressBarProvider>
     </MyProvider>
   )
 
