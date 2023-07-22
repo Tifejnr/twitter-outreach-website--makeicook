@@ -25,44 +25,43 @@ export default function ProgressExceution(props) {
   const executionObjs = props.executionParams.executionObjs;
   const checkedCheckboxesLength = props.executionParams.checkedCheckboxesLength;
 
-  const settingProgress = (showProgressToUserObj) => {
-    // Initialize successLength and failuresLength to 0 when setting progress
-    let successLength = 0;
-    let failuresLength = 0;
-
-    const userDetailNow = showProgressToUserObj.userDetail;
-    const totalAttemptedArrayLength = showProgressToUserObj.totalAttemptedArrayLength;
-    const percentLoaded = showProgressToUserObj.percentLoaded;
-
-    setFailuresLength(failuresLength);
-    setSucessLength(successLength);
-    setUserDetail(userDetailNow);
-    setTotalAttemptedLength(totalAttemptedArrayLength);
-    setBarWidth(percentLoaded);
-  };
-
   const emailListSplited = emailInputs.split(",");
+  const flattenedEmailList =  emailListSplited.flat();
   userDetailsLength = Number(emailListSplited.length);
 
   totalAttemptedArray = [];
   totalDurationLength = Number(checkedCheckboxesLength) * userDetailsLength;
+
+
+  useEffect(() => {
+    console.log("See wahala ma g")
+
+    //Loop through all email and add them to all the boards
+ flattenedEmailList.map((eachEmail, index) => {
+    const email = eachEmail;   
+   const userDetail = email.trim();
+
+   console.log(userDetail)
+
+    if (email) {
+    setUserDetail(userDetail)
+    setFailuresLength(0);
+    setSucessLength(0);
+    }
 
   // Loop through all boards to get their Id and names
   executionObjs.map((boardObj, index) => {
     const boardId = boardObj.boardId;
     const boardName = boardObj.boarName;
 
-    //Loop through all email and add them to all the boards
-    emailListSplited.map((eachEmail, index) => {
-      const email = eachEmail;
       // setTimeout(() => {
       new Execution(email, boardId);
       // }, 4000 * index);
     });
   });
 
+
   function Execution(email, boardId) {
-    const userDetail = email.trim();
     const message = {
       email,
       boardId,
@@ -79,7 +78,7 @@ export default function ProgressExceution(props) {
         body: JSON.stringify(message),
       });
 
-      totalAttemptedArray.push(1);
+      setTotalAttemptedLength((prev) => prev+1)
       const data = await response.json();
       if (data.error) {
         console.log(data.error);
@@ -88,34 +87,27 @@ export default function ProgressExceution(props) {
         }
 
         // Increment failuresLength and update progress
-        failuresLength += 1;
-        settingProgress(getProgressData());
+    return( setFailuresLength((prevValue)=>prevValue+1),     
+              setBarWidth((Number(totalAttemptedLength) / Number(totalDurationLength)) * 100)
+      )
       }
 
       // Increment successLength and update progress
-      successLength += 1;
-      settingProgress(getProgressData());
-    }
+  return( setSucessLength((prevValue)=>prevValue + 1),     
+              setBarWidth((Number(totalAttemptedLength) / Number(totalDurationLength)) * 100)
+      )
+    }   
 
     addMember().catch((error) => {
       console.log(error);
     });
   }
 
-  // Helper function to get progress data
-  function getProgressData() {
-    const showProgressToUserObj = {
-      userDetail,
-      percentLoaded: (Number(totalAttemptedLength) / Number(totalDurationLength)) * 100,
-      successLength,
-      failuresArrayLength: failuresLength,
-      totalAttemptedArrayLength: totalAttemptedArray.length,
-    };
-
-    return showProgressToUserObj;
-  }
-
   console.log(barWidth);
+
+  }, [])
+
+
 
   const objToBar = {
     action,
