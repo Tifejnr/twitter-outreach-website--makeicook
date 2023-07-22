@@ -1,62 +1,80 @@
 import React, { useState, useEffect, useContext } from "react";
-import ShowSuccessMess from "../../JS functions/progressBar/SucessMessage";
-import { findBoardIdByName } from "../../JS functions/Utilis/FindBoardId/byName";
 import { websiteUrl } from "../../JS functions/websiteUrl";
 import useStore from "../Hooks/Zustand/usersStore";
 import ProgressBar from "./ProgressBar";
 
-let succes, failuresArray, totalAttemptedArray, noOfCheckedCheckbox;
+let succes,
+  failuresArray,
+  totalAttemptedArray,
+  userDetailsLength,
+  totalDurationLength,
+  userDetailNow,
+  failuresArrayLength,
+  successLength,
+  totalAttemptedArrayLength,
+  barWidth,
+  totalAttemptedLength,
+  userDetail;
+
+const action = "Addition";
+const actionTitle = "Adding";
+const section = "boards";
+const pageName = "add-member";
 
 export default function ProgressExceution(props) {
-  const [showProgressBar, setShowProgressBar] = useState(false);
+  // const [userDetail, setUserDetail] = useState("");
+  // const [failuresLength, setFailuresLength] = useState(0);
+  // const [sucessLength, setSucessLength] = useState(0);
+  // const [totalAttemptedLength, setTotalAttemptedLength] = useState(0);
+  // const [barWidth, setBarWidth] = useState(0);
 
   //props collections
-  const [taskTitleNow, setTaskTitleNow] = useState("");
   const emailInputs = props.executionParams.textAreaValue;
   const executionObjs = props.executionParams.executionObjs;
   const checkedCheckboxesLength = props.executionParams.checkedCheckboxesLength;
 
+  const settingProgress = (showProgressToUserObj) => {
+     userDetailNow = showProgressToUserObj.userDetail;
+     successLength = showProgressToUserObj.successLength;
+     failuresArrayLength = showProgressToUserObj.failuresArrayLength;
+     totalAttemptedArrayLength =
+     showProgressToUserObj.totalAttemptedArrayLength;
 
+    // setFailuresLength(failuresArrayLength);
+    // setSucessLength(successLength);
+    // setUserDetail(userDetailNow);
+    // setTotalAttemptedLength(totalAttemptedArrayLength);
+   barWidth = (Number(totalAttemptedArrayLength) / Number(totalDurationLength)) * 100;
 
-  useEffect(() => {
-    if (checkedCheckboxesLength) {
-      // Show the ProgressBar if there are checked checkboxes
-      setShowProgressBar(true);
-    } else {
-      // Hide the ProgressBar if there are no checked checkboxes
-      setShowProgressBar(false);
-    }
-  }, [checkedCheckboxesLength]);
+    console.log(totalAttemptedArrayLength, successLength, totalDurationLength, barWidth)
 
-  const handleTitleChange = () => {
-    const title = "Adding Member Nows";
-    setTaskTitleNow(title);
-
-    console.log(taskTitleNow);
+    // setBarWidth(percentLoaded)
   };
 
   const emailListSplited = emailInputs.split(",");
-  const userDetailsLength = Number(emailListSplited.length);
+  userDetailsLength = Number(emailListSplited.length);
+
+  console.log(emailListSplited);
 
   totalAttemptedArray = [];
 
-  noOfCheckedCheckbox = Number(checkedCheckboxesLength) * userDetailsLength;
+  totalDurationLength = Number(checkedCheckboxesLength) * userDetailsLength;
 
-  // each email execution to server
-  executionObjs.map((boardObj, index) => {
-    const boardId = boardObj.boardId;
-    const boarName= boardObj.boarName;
+  
+   //Loop through all email and add them to all the boards
   emailListSplited.map((eachEmail, index) => {
-    const email = eachEmail;
-    setTimeout(() => {
-      new Execution(email, boardId);
-    }, 4000 * index);
+      const email = eachEmail;
+  // Loop through all boards to get their Id and names
+    executionObjs.map((boardObj, index) => {
+      const boardId = boardObj.boardId;
+      const boardName = boardObj.boarName;
+        // setTimeout(() => {
+          new Execution(email, boardId);
+        // }, 4000 * index);
+      });
   });
-
-    })
   function Execution(email, boardId) {
-    const userDetail = email.trim();
-    const isAddedTo = "Boards";
+     userDetail = email.trim();
     const message = {
       email,
       boardId,
@@ -66,7 +84,6 @@ export default function ProgressExceution(props) {
     failuresArray = [];
 
     async function addMember() {
-      const action = "adding";
       const response = await fetch(`${websiteUrl}/add`, {
         method: "POST",
 
@@ -78,7 +95,6 @@ export default function ProgressExceution(props) {
       });
 
       totalAttemptedArray.push(1);
-      handleTitleChange();
       const data = await response.json();
       if (data.error) {
         console.log(data.error);
@@ -88,30 +104,25 @@ export default function ProgressExceution(props) {
 
         failuresArray.push(1);
 
-        const showSuccessParams = {
+        settingProgress(showProgressToUserObj);
+
+        const showProgressToUserObj = {
           userDetail,
-          isAddedTo,
-          noOfCheckedCheckbox,
           successLength: succes.length,
-          action,
           failuresArrayLength: failuresArray.length,
           totalAttemptedArrayLength: totalAttemptedArray.length,
         };
-        //   return ShowSuccessMess(showSuccessParams);
       }
 
-      const showSuccessParams = {
+      const showProgressToUserObj = {
         userDetail,
-        isAddedTo,
-        noOfCheckedCheckbox,
         successLength: succes.length,
-        action,
         failuresArrayLength: failuresArray.length,
         totalAttemptedArrayLength: totalAttemptedArray.length,
       };
 
       succes.push(1);
-      // ShowSuccessMess(showSuccessParams);
+      settingProgress(showProgressToUserObj);
     }
     addMember().catch((error) => {
       console.log(error);
@@ -119,11 +130,18 @@ export default function ProgressExceution(props) {
   }
 
 
-   return (
-    <>
-      {/* Step 4: Render the ProgressBar conditionally */}
-      {showProgressBar && <ProgressBar taskTitle={taskTitleNow} />}
-      {/* Rest of your component's JSX */}
-    </>
-  );
+  const objToBar = {
+    action,
+    actionTitle,
+    section,
+    userDetail,
+    userDetailsLength,
+    pageName,
+    failuresLength,
+    sucessLength,
+    checkedCheckboxesLength,
+    barWidth
+  };
+
+  return <ProgressBar progressProps={objToBar} />;
 }
