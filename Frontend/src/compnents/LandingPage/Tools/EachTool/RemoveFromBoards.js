@@ -1,8 +1,8 @@
-const heading = "Single Member Removal from Multiple Boards Tool";
+const heading = "Members Removal from Multiple Boards";
 const overview =
-  "With this tool, you can easily remove a team member from multiple Trello boards at once, eliminating the need to perform the task manually for each board.";
+  "This tool allows easy removal of team members from multiple Trello boards at once, eliminating the need to perform the task manually for each board.";
 const howItWorks =
-  "This tool offers a user-friendly interface where you can input details of the desired member and select the boards you want to remove the member from.";
+  "It offers a user-friendly interface where you can input details of desired team members and select the boards you want to remove them from";
 export const removeFromBoardsToolDetails = {
   heading,
   overview,

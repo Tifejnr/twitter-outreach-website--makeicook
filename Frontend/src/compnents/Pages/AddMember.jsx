@@ -10,7 +10,8 @@ import LoggedInUsersControl from '../Controllers/LoggedInUsersControl';
 import BoardsDisplaySection from './BasicSectionLayout/BoardsDisplaySection';
 import { websiteUrl } from '../../JS functions/websiteUrl';
 import useStore from '../Hooks/Zustand/usersStore';
-import ProgressExceution from '../ProgressBar/ProgressExceution';
+import ProgressExceution from '../ProgressBar/ProgressExceution.jsx';
+import { findBoardIdByName } from '../../JS functions/Utilis/FindBoardId/byName';
 
 
 const labelTitle = "Add Members";
@@ -27,14 +28,12 @@ const action = "adding";
 
 export default function AddMember() {
   const [boardsCollection, setBoardsCollection] = useState([]);
-  const [boardsId, setBoardsIdCollection] = useState([]);
   const [execute, setExecute] = useState(false);
   const { textAreaValue, setc, textAreaRefEl, } = useContext(MyContext);
   const taskTitle = useStore((state) => state.taskTitle);
   const setTaskTitle = useStore((state) => state.setTaskTitle);
-  const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
   const [checkedCheckboxesLength, setCheckedLength] = useState(0)
-  const [executionObjs, setexecutionObjs] = useState(0)
+  const [executionObjs, setexecutionObjs] = useState([])
 
 
   const handleTitleChange = () => {
@@ -47,22 +46,25 @@ export default function AddMember() {
        boardsCollection,
        textAreaValue,
        textAreaRefEl,
-       allCheckboxes ,
        checkedCheckboxesLength,
        executionObjs
     }
 
   const handleTextAreaValidation = (e)=> {
           e.preventDefault();
-          const validationTest=  AddToBoard(executionParams)
+    const validationTest=  AddToBoard(executionParams)
 
-          if (!validationTest) return false
-    const checkedLength = document.querySelectorAll(
+    if (!validationTest) return false
+
+  const allCheckboxesOnPage = document.querySelectorAll('.board-checkbox');
+
+  const checkedLength = document.querySelectorAll(
     ".board-checkbox:checked"
   ).length;
-          setCheckedLength(checkedLength);
+  
+  setCheckedLength(checkedLength);
           
-  const neededObjs = Array.from(allCheckboxes).map((checkbox, index) => {
+  const neededObjs = Array.from(allCheckboxesOnPage).map((checkbox, index) => {
     const checkboxEl = document.getElementById(`check${index}`);
     if (!checkboxEl.checked) return false;
 
