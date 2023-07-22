@@ -3,18 +3,10 @@ import { websiteUrl } from "../../JS functions/websiteUrl";
 import useStore from "../Hooks/Zustand/usersStore";
 import ProgressBar from "./ProgressBar";
 
-let succes,
-  failuresArray,
-  totalAttemptedArray,
+let totalAttemptedArray,
   userDetailsLength,
   totalDurationLength,
-  userDetailNow,
-  failuresArrayLength,
-  successLength,
-  totalAttemptedArrayLength,
-  barWidth,
-  totalAttemptedLength,
-  userDetail;
+  successLength
 
 const action = "Addition";
 const actionTitle = "Adding";
@@ -22,11 +14,11 @@ const section = "boards";
 const pageName = "add-member";
 
 export default function ProgressExceution(props) {
-  // const [userDetail, setUserDetail] = useState("");
-  // const [failuresLength, setFailuresLength] = useState(0);
-  // const [sucessLength, setSucessLength] = useState(0);
-  // const [totalAttemptedLength, setTotalAttemptedLength] = useState(0);
-  // const [barWidth, setBarWidth] = useState(0);
+  const [userDetail, setUserDetail] = useState("");
+  const [failuresLength, setFailuresLength] = useState(0);
+  const [sucessLength, setSucessLength] = useState(0);
+  const [totalAttemptedLength, setTotalAttemptedLength] = useState(0);
+  const [barWidth, setBarWidth] = useState(0);
 
   //props collections
   const emailInputs = props.executionParams.textAreaValue;
@@ -34,54 +26,47 @@ export default function ProgressExceution(props) {
   const checkedCheckboxesLength = props.executionParams.checkedCheckboxesLength;
 
   const settingProgress = (showProgressToUserObj) => {
-     userDetailNow = showProgressToUserObj.userDetail;
-     successLength = showProgressToUserObj.successLength;
-     failuresArrayLength = showProgressToUserObj.failuresArrayLength;
-     totalAttemptedArrayLength =
-     showProgressToUserObj.totalAttemptedArrayLength;
+    // Initialize successLength and failuresLength to 0 when setting progress
+    let successLength = 0;
+    let failuresLength = 0;
 
-    // setFailuresLength(failuresArrayLength);
-    // setSucessLength(successLength);
-    // setUserDetail(userDetailNow);
-    // setTotalAttemptedLength(totalAttemptedArrayLength);
-   barWidth = (Number(totalAttemptedArrayLength) / Number(totalDurationLength)) * 100;
+    const userDetailNow = showProgressToUserObj.userDetail;
+    const totalAttemptedArrayLength = showProgressToUserObj.totalAttemptedArrayLength;
+    const percentLoaded = showProgressToUserObj.percentLoaded;
 
-    console.log(totalAttemptedArrayLength, successLength, totalDurationLength, barWidth)
-
-    // setBarWidth(percentLoaded)
+    setFailuresLength(failuresLength);
+    setSucessLength(successLength);
+    setUserDetail(userDetailNow);
+    setTotalAttemptedLength(totalAttemptedArrayLength);
+    setBarWidth(percentLoaded);
   };
 
   const emailListSplited = emailInputs.split(",");
   userDetailsLength = Number(emailListSplited.length);
 
-  console.log(emailListSplited);
-
   totalAttemptedArray = [];
-
   totalDurationLength = Number(checkedCheckboxesLength) * userDetailsLength;
 
-  
-   //Loop through all email and add them to all the boards
-  emailListSplited.map((eachEmail, index) => {
-      const email = eachEmail;
   // Loop through all boards to get their Id and names
-    executionObjs.map((boardObj, index) => {
-      const boardId = boardObj.boardId;
-      const boardName = boardObj.boarName;
-        // setTimeout(() => {
-          new Execution(email, boardId);
-        // }, 4000 * index);
-      });
+  executionObjs.map((boardObj, index) => {
+    const boardId = boardObj.boardId;
+    const boardName = boardObj.boarName;
+
+    //Loop through all email and add them to all the boards
+    emailListSplited.map((eachEmail, index) => {
+      const email = eachEmail;
+      // setTimeout(() => {
+      new Execution(email, boardId);
+      // }, 4000 * index);
+    });
   });
+
   function Execution(email, boardId) {
-     userDetail = email.trim();
+    const userDetail = email.trim();
     const message = {
       email,
       boardId,
     };
-
-    succes = [];
-    failuresArray = [];
 
     async function addMember() {
       const response = await fetch(`${websiteUrl}/add`, {
@@ -102,33 +87,35 @@ export default function ProgressExceution(props) {
           console.log("internet broke error");
         }
 
-        failuresArray.push(1);
-
-        settingProgress(showProgressToUserObj);
-
-        const showProgressToUserObj = {
-          userDetail,
-          successLength: succes.length,
-          failuresArrayLength: failuresArray.length,
-          totalAttemptedArrayLength: totalAttemptedArray.length,
-        };
+        // Increment failuresLength and update progress
+        failuresLength += 1;
+        settingProgress(getProgressData());
       }
 
-      const showProgressToUserObj = {
-        userDetail,
-        successLength: succes.length,
-        failuresArrayLength: failuresArray.length,
-        totalAttemptedArrayLength: totalAttemptedArray.length,
-      };
-
-      succes.push(1);
-      settingProgress(showProgressToUserObj);
+      // Increment successLength and update progress
+      successLength += 1;
+      settingProgress(getProgressData());
     }
+
     addMember().catch((error) => {
       console.log(error);
     });
   }
 
+  // Helper function to get progress data
+  function getProgressData() {
+    const showProgressToUserObj = {
+      userDetail,
+      percentLoaded: (Number(totalAttemptedLength) / Number(totalDurationLength)) * 100,
+      successLength,
+      failuresArrayLength: failuresLength,
+      totalAttemptedArrayLength: totalAttemptedArray.length,
+    };
+
+    return showProgressToUserObj;
+  }
+
+  console.log(barWidth);
 
   const objToBar = {
     action,
@@ -140,7 +127,7 @@ export default function ProgressExceution(props) {
     failuresLength,
     sucessLength,
     checkedCheckboxesLength,
-    barWidth
+    barWidth,
   };
 
   return <ProgressBar progressProps={objToBar} />;
