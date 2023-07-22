@@ -27,10 +27,15 @@ const action = "adding";
 
 export default function AddMember() {
   const [boardsCollection, setBoardsCollection] = useState([]);
+  const [boardsId, setBoardsIdCollection] = useState([]);
   const [execute, setExecute] = useState(false);
-  const { textAreaValue, setc, textAreaRefEl, setd } = useContext(MyContext);
+  const { textAreaValue, setc, textAreaRefEl, } = useContext(MyContext);
   const taskTitle = useStore((state) => state.taskTitle);
   const setTaskTitle = useStore((state) => state.setTaskTitle);
+  const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+  const [checkedCheckboxesLength, setCheckedLength] = useState(0)
+  const [executionObjs, setexecutionObjs] = useState(0)
+
 
   const handleTitleChange = () => {
     setTaskTitle("New Task Title");
@@ -41,7 +46,10 @@ export default function AddMember() {
     const executionParams= {
        boardsCollection,
        textAreaValue,
-       textAreaRefEl
+       textAreaRefEl,
+       allCheckboxes ,
+       checkedCheckboxesLength,
+       executionObjs
     }
 
   const handleTextAreaValidation = (e)=> {
@@ -49,7 +57,39 @@ export default function AddMember() {
           const validationTest=  AddToBoard(executionParams)
 
           if (!validationTest) return false
-          setExecute(true)
+    const checkedLength = document.querySelectorAll(
+    ".board-checkbox:checked"
+  ).length;
+          setCheckedLength(checkedLength);
+          
+  const neededObjs = Array.from(allCheckboxes).map((checkbox, index) => {
+    const checkboxEl = document.getElementById(`check${index}`);
+    if (!checkboxEl.checked) return false;
+
+    const checkboxId = checkbox.id;
+
+    const arrayNoFromId = Number(checkboxId.replace(/\D/g, ""));
+
+    const boardEl = document.getElementById(`labelcheck${arrayNoFromId}`);
+
+    const boardName = boardEl.innerHTML;
+
+    const foundBoard = findBoardIdByName(boardsCollection, boardName);
+
+    if (!foundBoard) return console.log("board not found");
+    const boardId = foundBoard.id;
+
+    const neededObj= {
+      boardId ,
+       boardName
+    }
+
+    return neededObj
+    
+  })
+
+  setexecutionObjs(neededObjs)
+  setExecute(true)
   }
 
 
@@ -96,6 +136,7 @@ export default function AddMember() {
   }, []);
 
   useEffect(() => {
+    
   }, [boardsCollection]);
 
 

@@ -5,7 +5,7 @@ import useStore from '../Hooks/Zustand/usersStore';
 
 export default function ProgressBar(props) {
 
-  const taskTitle = useStore((state) => state.taskTitle);
+  // const taskTitle = useStore((state) => state.taskTitle);
 
   
   return (
@@ -13,7 +13,7 @@ export default function ProgressBar(props) {
       <div className="barHolder">
         <div id="bar"></div>
       </div>
-      <h2 id="progressBarTitle" className="title" >{taskTitle }</h2>
+      <h2 id="progressBarTitle" className="title" >{props.taskTitle }</h2>
       {/* <h3 id="successStatusTitle" className="title">{successStatusTitle}</h3>
       <h3 id="failureTitle" className="title failureTitle">{failureTitle}</h3> */}
       {/* <h3 id="completedStatus" className="title">{props.progressBarParams.completedStatus}</h3> */}

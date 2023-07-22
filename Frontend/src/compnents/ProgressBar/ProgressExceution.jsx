@@ -8,17 +8,20 @@ import ProgressBar from "./ProgressBar";
 let succes, failuresArray, totalAttemptedArray, noOfCheckedCheckbox;
 
 
-export default async function ProgressExceution(props) {
-  const setTaskTitle = useStore((state) => state.setTaskTitle);
-
+export default function ProgressExceution(props) {
+    const [taskTitleNow , setTaskTitleNow]= useState("")
    const boardsCollection = props.executionParams.boardsCollection;
-  const emailInputs = props.executionParams.textAreaValue;
+   const emailInputs = props.executionParams.textAreaValue;
+   const allCheckboxes = props.executionParams.allCheckboxes;
+   const checkedCheckboxesLength = props.executionParams.checkedCheckboxesLength;
 
   const handleTitleChange = () => {
-    setTaskTitle("I am clear");
+    const title= "Adding Member Nows"
+    setTaskTitleNow(title);
+
+    console.log(taskTitleNow)
   };
 
-  const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
 
   const emailListSplited = emailInputs.split(",");
   const userDetailsLength = Number(emailListSplited.length);
@@ -26,15 +29,16 @@ export default async function ProgressExceution(props) {
 
   totalAttemptedArray = [];
 
-  const checkedCheckboxesLength = document.querySelectorAll(
-    ".board-checkbox:checked"
-  ).length;
-
   noOfCheckedCheckbox = Number(checkedCheckboxesLength) * userDetailsLength;
+
+
+
+  if (noOfCheckedCheckbox) {
+       (<ProgressBar taskTitle={taskTitleNow}/>)
+ }
 
   Array.from(allCheckboxes).map((checkbox, index) => {
     const checkboxEl = document.getElementById(`check${index}`);
-
     if (!checkboxEl.checked) return false;
 
     const checkboxId = checkbox.id;
@@ -49,17 +53,19 @@ export default async function ProgressExceution(props) {
 
     if (!foundBoard) return console.log("board not found");
     const boardId = foundBoard.id;
+    
 
     // each email execution to server
     emailListSplited.map((eachEmail, index) => {
       const email = eachEmail;
       setTimeout(() => {
-        new Execution(email, boardId);
+       new Execution(email, boardId);
+        
       }, 4000 * index);
     });
-  });
-}
 
+
+    
 function Execution(email, boardId) {
   const userDetail = email.trim();
   const isAddedTo = "Boards";
@@ -84,7 +90,7 @@ function Execution(email, boardId) {
     });
 
     totalAttemptedArray.push(1);
-
+    handleTitleChange()
     const data = await response.json();
     if (data.error) {
       console.log(data.error);
@@ -103,7 +109,7 @@ function Execution(email, boardId) {
         failuresArrayLength: failuresArray.length,
         totalAttemptedArrayLength: totalAttemptedArray.length,
       };
-      return ShowSuccessMess(showSuccessParams);
+    //   return ShowSuccessMess(showSuccessParams);
     }
 
     const showSuccessParams = {
@@ -117,12 +123,13 @@ function Execution(email, boardId) {
     };
 
     succes.push(1);
-    ShowSuccessMess(showSuccessParams);
+    // ShowSuccessMess(showSuccessParams);
   }
   addMember().catch((error) => {
     console.log(error);
   });
 
+}
 
-  return(<ProgressBar/>)
+  });
 }
