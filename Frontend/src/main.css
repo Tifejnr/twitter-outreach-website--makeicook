@@ -372,7 +372,7 @@ form:last-child {
 
 .selectionCont h1 {
   text-align: left;
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: 500;
   color: #1e2831;
   margin: 1rem 0;
@@ -404,19 +404,34 @@ textarea::placeholder {
 
 /* Range Slider Design*/
 
+.time-interval-container {
+  display: grid;
+  row-gap: 1.5rem;
+  color: #17252a;
+  margin-bottom: 2rem;
+}
+
 .time-interval-container h2 {
   color: #17252a;
   font-size: 2rem;
+  font-weight: 500;
+  text-align: left;
 }
 
-.time-interval-container p {
+.time-interval-container article p {
+  font-weight: 600;
   text-align: center;
 }
 
-.number--label {
+.time-interval-container p {
+  text-align: left;
+}
+
+.number--label p {
   position: relative;
-  font-size: 1.5rem;
-  color: hsl(198deg 91% 45%);
+  font-size: 2rem;
+  padding: 1rem 0;
+  padding-bottom: 0;
 }
 
 .input-slider {
@@ -435,15 +450,17 @@ textarea::placeholder {
 .input-slider::-webkit-slider-thumb {
   background: linear-gradient(
     to bottom,
-    orangered 30%,
-    orangered 75%,
-    orangered (192deg 3% 46%)
+    #fff 30%,
+    hsl(192, 3%, 68%) 75%,
+    hsl(192deg 3% 46%)
   );
   border-radius: 50%;
   width: clamp(2rem, calc(1.28rem + 3.18vw), 3.88rem);
   aspect-ratio: 1;
   -webkit-appearance: none;
   appearance: none;
-  box-shadow: 0 -1px 5px 4px #fff7 inset, 0 1px 1.5px #0004, 0 2px 5px #0003,
-    0 5px 9px #0002;
+  box-shadow: 0 -1px 5px 4px hsl(198deg 41% 45%) inset, 0 1px 1.5px #0004,
+    0 2px 5px #0003, 0 5px 9px #0002;
+
+  cursor: pointer;
 }
