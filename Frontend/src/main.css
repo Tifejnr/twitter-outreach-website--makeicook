@@ -401,3 +401,49 @@ textarea::placeholder {
   text-align: left;
   margin-bottom: 0.5rem;
 }
+
+/* Range Slider Design*/
+
+.time-interval-container h2 {
+  color: #17252a;
+  font-size: 2rem;
+}
+
+.time-interval-container p {
+  text-align: center;
+}
+
+.number--label {
+  position: relative;
+  font-size: 1.5rem;
+  color: hsl(198deg 91% 45%);
+}
+
+.input-slider {
+  place-self: center;
+  border-radius: 100vh;
+  width: 100%;
+  border: 1px solid transparent;
+  height: 1.2rem;
+  background-color: hsl(198deg 41% 45%);
+  box-shadow: inset 0 2px 3px #0005, inset 0 -2px 2.5px 0.5px #fff3;
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+}
+
+.input-slider::-webkit-slider-thumb {
+  background: linear-gradient(
+    to bottom,
+    orangered 30%,
+    orangered 75%,
+    orangered (192deg 3% 46%)
+  );
+  border-radius: 50%;
+  width: clamp(2rem, calc(1.28rem + 3.18vw), 3.88rem);
+  aspect-ratio: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  box-shadow: 0 -1px 5px 4px #fff7 inset, 0 1px 1.5px #0004, 0 2px 5px #0003,
+    0 5px 9px #0002;
+}

@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useRef } from 'react';
+import SliderTimeInterval from './Sliders/TimeInterval';
 import { MyContext } from '../../Hooks/Contexts/UserContext';
 
 export default function Input(props) {
@@ -16,6 +17,8 @@ export default function Input(props) {
   }, []);
 
   return (
+
+    <>
         <section className="memberDetailsCont">
           <label htmlFor='memberDetailTextArea'><p>{props.inputLabel}</p></label>
           <textarea
@@ -28,6 +31,12 @@ export default function Input(props) {
             placeholder={props.inputPlaceholderText}></textarea>
           <p className="error"></p>
         </section>
+
+        <section>
+          <SliderTimeInterval />
+        </section>
+        
+    </>
 
   )
 }

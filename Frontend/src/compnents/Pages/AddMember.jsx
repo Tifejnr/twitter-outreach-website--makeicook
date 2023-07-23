@@ -12,6 +12,7 @@ import { websiteUrl } from '../../JS functions/websiteUrl';
 import useStore from '../Hooks/Zustand/usersStore';
 import ProgressExceution from '../ProgressBar/ProgressExceution.jsx';
 import { findBoardIdByName } from '../../JS functions/Utilis/FindBoardId/byName';
+import SliderTimeInterval from './BasicSectionLayout/Sliders/TimeInterval';
 
 
 const labelTitle = "Add Members";
@@ -118,7 +119,7 @@ export default function AddMember() {
           return  ( <BoardsDisplaySection key={index} board={board} indexNo={index}/>)
          })}
 
-         </section>    
+      </section>    
       
      </section>
    <ProgressBar pageName={pageName} />
