@@ -1,14 +1,23 @@
-import React, { useState, useEffect, useContext } from "react";
-import { ProgressBarContext } from "../compnents/Hooks/Contexts/ProgressBarContext";
-import ShowSuccessMess from "./progressBar/SucessMessage";
+import ProgressBarExecution from "./progressBar/ProgressBarExecution";
 import { validateInput } from "./Utilis/Validations/Input";
 import { isAnyCheckboxChecked } from "./Utilis/Validations/Checkbox";
 import { findBoardIdByName } from "./Utilis/FindBoardId/byName";
 import { websiteUrl } from "./websiteUrl";
 
-let succes, failuresArray, totalAttemptedArray, noOfCheckedCheckbox;
+let succes,
+  failuresArray,
+  totalAttemptedArray,
+  totalDurationLength,
+  userDetail,
+  noOfCheckedCheckbox,
+  boardName,
+  userDetailsLength;
 
-export default function AddToBoard(executionParams) {
+let showSuccessParams = {};
+const action = "adding";
+const isAddedTo = "boards";
+
+export default async function AddToBoards(executionParams) {
   const boardsCollection = executionParams.boardsCollection;
   const emailInputs = executionParams.textAreaValue;
   const textAreaRef = executionParams.textAreaRefEl;
@@ -17,113 +26,125 @@ export default function AddToBoard(executionParams) {
 
   if (!isAnyCheckboxChecked()) return false;
 
-  return true;
+  const allCheckboxesOnPage = document.querySelectorAll(".board-checkbox");
+
+  noOfCheckedCheckbox = document.querySelectorAll(
+    ".board-checkbox:checked"
+  ).length;
+
+  const emailListSplited = emailInputs.split(",");
+
+  userDetailsLength = Number(emailListSplited.length);
+  totalDurationLength = Number(noOfCheckedCheckbox) * userDetailsLength;
+
+  const boardDetailsObj = Array.from(allCheckboxesOnPage).map(
+    (checkbox, index) => {
+      const checkboxEl = document.getElementById(`check${index}`);
+      if (!checkboxEl.checked) return false;
+
+      const checkboxId = checkbox.id;
+
+      const arrayNoFromId = Number(checkboxId.replace(/\D/g, ""));
+
+      const boardEl = document.getElementById(`labelcheck${arrayNoFromId}`);
+
+      boardName = boardEl.innerHTML;
+
+      const foundBoard = findBoardIdByName(boardsCollection, boardName);
+
+      if (!foundBoard) return console.log("board not found");
+      const boardId = foundBoard.id;
+
+      const neededObj = {
+        boardId,
+        boardName,
+      };
+
+      return neededObj;
+    }
+  );
+
+  if (!boardDetailsObj) return "";
+
+  totalAttemptedArray = 0;
+  // each email execution to server
+  emailListSplited.map((eachEmail, index) => {
+    const email = eachEmail.trim();
+    //loop through all checked boards
+    setTimeout(() => {
+      boardDetailsObj.map((boardObj, index) => {
+        succes = 0;
+        failuresArray = 0;
+        const boardId = boardObj.boardId;
+        boardName = boardObj.boardName;
+
+        if (!boardId && !boardName) return console.log("board id not found");
+
+        setTimeout(() => {
+          new Execution(email, boardId, boardName);
+        }, index * 1000);
+      });
+    }, index * 1300 * noOfCheckedCheckbox);
+  });
+
+  function Execution(email, boardId, boardName) {
+    userDetail = email;
+    const message = {
+      email,
+      boardId,
+    };
+
+    (async () => {
+      try {
+        const response = await fetch(`${websiteUrl}/add`, {
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json",
+          },
+
+          body: JSON.stringify(message),
+        });
+
+        const data = await response.json();
+        if (data.error) {
+          console.log(data);
+          if (data.error.cause.code == "ECONNRESET") {
+            console.log("internet broke error");
+          }
+
+          failuresArray += 1;
+        }
+
+        console.log(data);
+
+        succes += 1;
+      } catch (error) {
+        console.log(error);
+      } finally {
+        totalAttemptedArray += 1;
+
+        let showSuccessParams = {
+          userDetail,
+          boardName,
+          isAddedTo,
+          noOfCheckedCheckbox,
+          succes,
+          action,
+          failuresArray,
+          totalAttemptedArray,
+          totalDurationLength,
+        };
+
+        ProgressBarExecution(showSuccessParams);
+
+        console.log(
+          totalDurationLength,
+          totalAttemptedArray,
+          succes,
+          failuresArray
+        );
+      }
+    })();
+  }
 }
-
-// export default async function AddToBoardss(executionParams) {
-
-//   const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
-
-//   const emailListSplited = emailInputs.split(",");
-//   const userDetailsLength = Number(emailListSplited.length);
-//   // ShowSuccessMess(100, 0, action);
-
-//   totalAttemptedArray = [];
-
-//   const checkedCheckboxesLength = document.querySelectorAll(
-//     ".board-checkbox:checked"
-//   ).length;
-
-//   noOfCheckedCheckbox = Number(checkedCheckboxesLength) * userDetailsLength;
-
-//   Array.from(allCheckboxes).map((checkbox, index) => {
-//     const checkboxEl = document.getElementById(`check${index}`);
-
-//     if (!checkboxEl.checked) return false;
-
-//     const checkboxId = checkbox.id;
-
-//     const arrayNoFromId = Number(checkboxId.replace(/\D/g, ""));
-
-//     const boardEl = document.getElementById(`labelcheck${arrayNoFromId}`);
-
-//     const boardName = boardEl.innerHTML;
-
-//     const foundBoard = findBoardIdByName(boardsCollection, boardName);
-
-//     if (!foundBoard) return console.log("board not found");
-//     const boardId = foundBoard.id;
-
-//     // each email execution to server
-//     emailListSplited.map((eachEmail, index) => {
-//       const email = eachEmail;
-//       setTimeout(() => {
-//         new Execution(email, boardId);
-//       }, 4000 * index);
-//     });
-//   });
-// }
-
-// function Execution(email, boardId) {
-//   const userDetail = email.trim();
-//   const isAddedTo = "Boards";
-//   const message = {
-//     email,
-//     boardId,
-//   };
-
-//   succes = [];
-//   failuresArray = [];
-
-//   async function addMember() {
-//     const action = "adding";
-//     const response = await fetch(`${websiteUrl}/add`, {
-//       method: "POST",
-
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-
-//       body: JSON.stringify(message),
-//     });
-
-//     totalAttemptedArray.push(1);
-
-//     const data = await response.json();
-//     if (data.error) {
-//       console.log(data.error);
-//       if (data.error.cause.code == "ECONNRESET") {
-//         console.log("internet broke error");
-//       }
-
-//       failuresArray.push(1);
-
-//       const showSuccessParams = {
-//         userDetail,
-//         isAddedTo,
-//         noOfCheckedCheckbox,
-//         successLength: succes.length,
-//         action,
-//         failuresArrayLength: failuresArray.length,
-//         totalAttemptedArrayLength: totalAttemptedArray.length,
-//       };
-//       return ShowSuccessMess(showSuccessParams);
-//     }
-
-//     const showSuccessParams = {
-//       userDetail,
-//       isAddedTo,
-//       noOfCheckedCheckbox,
-//       successLength: succes.length,
-//       action,
-//       failuresArrayLength: failuresArray.length,
-//       totalAttemptedArrayLength: totalAttemptedArray.length,
-//     };
-
-//     succes.push(1);
-//     ShowSuccessMess(showSuccessParams);
-//   }
-//   addMember().catch((error) => {
-//     console.log(error);
-//   });
-// }

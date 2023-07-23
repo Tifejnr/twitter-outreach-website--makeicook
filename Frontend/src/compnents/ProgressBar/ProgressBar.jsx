@@ -5,22 +5,18 @@ import useStore from '../Hooks/Zustand/usersStore';
 
 export default function ProgressBar(props) {
 
-  const progressObj= props.progressProps
-   const moveBarWidth = {
-    width: `${progressObj.barWidth}%`
-  };
   return (
     <div className="loading" id="loading">
       <div className="barHolder">
-        <div style={moveBarWidth} id="bar"></div>
+        <div id="bar"></div>
       </div>
-      <h2 id="progressBarTitle" className="title" >{`${progressObj.actionTitle} ${progressObj.userDetail} to ${progressObj.checkedCheckboxesLength} ${progressObj.section}`}</h2>
-      <h3 id="successStatusTitle" className="title">{`Successful ${progressObj.action} : ${progressObj.sucessLength}`}</h3>
-      <h3 id="failureTitle" className="title failureTitle">{`Failed ${progressObj.action} : ${progressObj.failuresLength}`}</h3>
-      {/* <h3 id="completedStatus" className="title">{progressObj.progressBarParams.completedStatus}</h3> */}
+      <h2 id="progressBarTitle" className="title" ></h2>
+      <h3 id="successStatusTitle" className="title"></h3>
+      <h3 id="failureTitle" className="title failureTitle"></h3>
+      <h3 id="completedStatus" className="title"></h3>
       <section className="btn-section" id="btnSection">
-        <a href={`/${progressObj.pageName}`}> <button className="okay-btn" id="okay">Okay</button></a>
-        <a href={`/${progressObj.pageName}`}>
+        <a href={`/${props.pageName}`}> <button className="okay-btn" id="okay">Okay</button></a>
+        <a href={`/${props.pageName}`}>
           <button className="cancel-btn" id="cancelBtn">Cancel</button>
         </a>
       </section>

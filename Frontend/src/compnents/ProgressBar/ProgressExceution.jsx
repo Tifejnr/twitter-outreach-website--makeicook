@@ -22,52 +22,24 @@ export default function ProgressExceution(props) {
 
   //props collections
   const emailInputs = props.executionParams.textAreaValue;
-  const executionObjs = props.executionParams.executionObjs;
+  const boardDetailsObj = props.executionParams.executionObjs;
   const checkedCheckboxesLength = props.executionParams.checkedCheckboxesLength;
 
   const emailListSplited = emailInputs.split(",");
-  const flattenedEmailList =  emailListSplited.flat();
-  userDetailsLength = Number(emailListSplited.length);
+  const flattenedEmailList =  [emailInputs];
 
-  totalAttemptedArray = [];
+  console.log(flattenedEmailList)
+  userDetailsLength = Number(emailListSplited.length);
   totalDurationLength = Number(checkedCheckboxesLength) * userDetailsLength;
 
-
-  useEffect(() => {
-    console.log("See wahala ma g")
-
-    //Loop through all email and add them to all the boards
- flattenedEmailList.map((eachEmail, index) => {
-    const email = eachEmail;   
-   const userDetail = email.trim();
-
-   console.log(userDetail)
-
-    if (email) {
-    setUserDetail(userDetail)
-    setFailuresLength(0);
-    setSucessLength(0);
-    }
-
-  // Loop through all boards to get their Id and names
-  executionObjs.map((boardObj, index) => {
-    const boardId = boardObj.boardId;
-    const boardName = boardObj.boarName;
-
-      // setTimeout(() => {
-      new Execution(email, boardId);
-      // }, 4000 * index);
-    });
-  });
-
-
-  function Execution(email, boardId) {
-    const message = {
-      email,
-      boardId,
-    };
-
+  const serverParams= {
+        flattenedEmailList,
+        boardDetailsObj
+      }
+  console.log(serverParams)
+    addMember()
     async function addMember() {
+
       const response = await fetch(`${websiteUrl}/add`, {
         method: "POST",
 
@@ -75,37 +47,34 @@ export default function ProgressExceution(props) {
           "Content-Type": "application/json",
         },
 
-        body: JSON.stringify(message),
+        body: JSON.stringify(serverParams),
       });
 
       setTotalAttemptedLength((prev) => prev+1)
       const data = await response.json();
-      if (data.error) {
-        console.log(data.error);
-        if (data.error.cause.code == "ECONNRESET") {
-          console.log("internet broke error");
-        }
 
-        // Increment failuresLength and update progress
-    return( setFailuresLength((prevValue)=>prevValue+1),     
-              setBarWidth((Number(totalAttemptedLength) / Number(totalDurationLength)) * 100)
-      )
-      }
+      console.log(data)
+  //     if (data.error) {
+  //       console.log(data.error);
+  //       if (data.error.cause.code == "ECONNRESET") {
+  //         console.log("internet broke error");
+  //       }
 
-      // Increment successLength and update progress
-  return( setSucessLength((prevValue)=>prevValue + 1),     
-              setBarWidth((Number(totalAttemptedLength) / Number(totalDurationLength)) * 100)
-      )
+  //       // Increment failuresLength and update progress
+  //   return( setFailuresLength((prevValue)=>prevValue+1),     
+  //             setBarWidth((Number(totalAttemptedLength) / Number(totalDurationLength)) * 100)
+  //     )
+  //     }
+
+  //     // Increment successLength and update progress
+  // return( setSucessLength((prevValue)=>prevValue + 1),     
+  //             setBarWidth((Number(totalAttemptedLength) / Number(totalDurationLength)) * 100)
+  //     )
     }   
 
     addMember().catch((error) => {
       console.log(error);
     });
-  }
-
-  console.log(barWidth);
-
-  }, [])
 
 
 
