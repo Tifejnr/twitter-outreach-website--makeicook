@@ -78,11 +78,11 @@ app.post("/authorize", loginStatusChecker, async (req, res) => {
   login(req, res);
 });
 
-app.post("/start", async (req, res) => {
+app.post("/start", [loginStatusChecker, userToken], async (req, res) => {
   fetchAllBoards(req, res);
 });
 
-app.post("/add", async (req, res) => {
+app.post("/add", [loginStatusChecker, userToken], async (req, res) => {
   addMemberToBoard(req, res);
 });
 
