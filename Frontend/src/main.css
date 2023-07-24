@@ -32,35 +32,6 @@ form {
   column-gap: 1rem;
 }
 
-#signin {
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  color: #3e1fde;
-  margin-bottom: 5px;
-  margin-left: 25px;
-}
-
-#trellohead {
-  user-select: none;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 55px;
-  background-color: #0021d1;
-  /* border-bottom: 1px solid rgba( 0, 0, 0, 0.12 ); */
-  color: white;
-  font-size: 16px;
-  font-weight: 500;
-}
-
-.nav-items-container {
-  display: flex;
-  column-gap: 2rem;
-  list-style: none;
-}
-
 #counter {
   position: fixed;
   background-color: white;
@@ -69,14 +40,13 @@ form {
 
 .cancel-btn,
 .okay-btn {
-  width: 32rem;
+  width: 100%;
   height: 4.8rem;
-  background: #0021d1;
-  border: none;
-  border-radius: 2.5rem;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 1.8rem;
+  background: #04002a;
+  outline: none;
+  border-radius: 1rem;
+  font-weight: 600;
+  font-size: 2rem;
   padding: 1.5rem;
   cursor: pointer;
   color: #fff;
@@ -86,9 +56,13 @@ form {
   left: 50%;
 }
 
+.okay-btn:hover {
+  background-color: #302d53;
+}
+
 .cancel-btn:hover {
   color: white;
-  background-color: red;
+  background-color: #ff3860;
 }
 
 #member-name {
@@ -96,97 +70,6 @@ form {
   user-select: none;
   margin-top: 10px;
   margin-bottom: 5px;
-}
-
-.back-btn {
-  color: white;
-  font-size: 17px;
-  border-radius: 4px;
-  background-color: black;
-  height: 25px;
-  margin-right: 400px;
-}
-.back-btn:hover {
-  color: #3e1fde;
-}
-
-#tme {
-  margin-left: -300px;
-  padding-right: 180px;
-}
-
-#submit-eloo {
-  display: none;
-}
-
-#email-error {
-  color: rgb(255, 26, 26);
-  font-size: 0.75rem;
-  font-weight: 700;
-  width: 185px;
-  position: absolute;
-  top: 370px;
-  left: 190px;
-  margin-left: 40px;
-  margin-top: 10px;
-  background-color: white;
-}
-
-#addmail-error {
-  background-color: white;
-  color: red;
-  font-size: 16px;
-  width: 135px;
-  font-weight: 500;
-  position: fixed;
-  top: 275px;
-  left: 30px;
-  margin-top: 10px;
-  margin-left: 10px;
-}
-
-#addmail-error2 {
-  background-color: white;
-  color: red;
-  font-size: 16px;
-  width: 120px;
-  font-weight: 500;
-  position: fixed;
-  top: 275px;
-  left: 150px;
-  margin-left: 30px;
-  margin-top: 10px;
-}
-
-#service-error {
-  background-color: white;
-  color: red;
-  font-size: 16px;
-  width: 170px;
-  font-weight: 400;
-  display: inline;
-  font-weight: 500;
-  font-size: 14px;
-  position: fixed;
-  top: 275px;
-  left: 30px;
-  margin-top: 10px;
-  margin-left: 5px;
-}
-
-#service-error2 {
-  margin-top: 10px;
-  background-color: white;
-  color: red;
-  font-size: 16px;
-  width: 120px;
-  font-weight: 500;
-  font-size: 14px;
-  visibility: visible;
-  position: fixed;
-  top: 275px;
-  left: 180px;
-  margin-left: 20px;
 }
 
 button:hover {
@@ -226,8 +109,8 @@ button:hover {
   color: purple;
   font-size: 1.7rem;
   font-weight: 600;
-  font-family: Georgia, "Times New Roman", Times, serif;
   display: none;
+  width: 60%;
 }
 
 .loading .title {
@@ -236,14 +119,16 @@ button:hover {
 }
 
 .loading .title.failureTitle {
-  color: red;
+  color: #ff3860;
 }
 
 .barHolder {
   background-color: #ffe629;
-  width: 30rem;
+  width: 100%;
   height: 1.7rem;
   border-radius: 0.4rem;
+  position: absolute;
+  top: -2rem;
 }
 
 #bar {
@@ -470,6 +355,6 @@ textarea::placeholder {
 /* Blur page  */
 
 .blurred {
-  filter: blur(1rem);
+  filter: blur(0.5rem);
   pointer-events: none;
 }

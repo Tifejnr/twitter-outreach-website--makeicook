@@ -181,8 +181,7 @@ function AddToBoards(executionParams) {
             roundIndex = index + 1;
             setTimeout(function () {
               roundIndex = index + 1;
-            }, index * noOfCheckedCheckbox * timeInterval + 3000);
-            console.log(email, roundIndex, index);
+            }, index * noOfCheckedCheckbox * timeInterval * 1.35);
 
             if (totalAttemptedArray === 0) {
               var boardName = "...";
@@ -218,7 +217,7 @@ function AddToBoards(executionParams) {
                   new Execution(email, boardId, boardName);
                 }, index * timeInterval);
               });
-            }, index * noOfCheckedCheckbox * timeInterval + 5000);
+            }, index * noOfCheckedCheckbox * timeInterval * 1.35);
           });
 
         case 25:

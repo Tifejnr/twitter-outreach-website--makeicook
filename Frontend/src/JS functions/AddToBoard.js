@@ -84,9 +84,8 @@ export default async function AddToBoards(executionParams) {
 
     setTimeout(() => {
       roundIndex = index + 1;
-    }, index * noOfCheckedCheckbox * timeInterval + 3000);
+    }, index * noOfCheckedCheckbox * timeInterval * 1.35);
 
-    console.log(email, roundIndex, index);
     if (totalAttemptedArray === 0) {
       let boardName = "...";
       userDetail = "...";
@@ -122,7 +121,7 @@ export default async function AddToBoards(executionParams) {
           new Execution(email, boardId, boardName);
         }, index * timeInterval);
       });
-    }, index * noOfCheckedCheckbox * timeInterval + 5000);
+    }, index * noOfCheckedCheckbox * timeInterval * 1.35);
   });
 
   function Execution(email, boardId, boardName) {
