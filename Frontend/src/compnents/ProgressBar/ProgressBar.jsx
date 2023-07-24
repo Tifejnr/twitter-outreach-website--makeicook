@@ -10,18 +10,20 @@ export default function ProgressBar(props) {
       <div className="barHolder">
         <div id="bar"></div>
       </div>
-      <h2 id="progressBarTitle" className="title" ></h2>
-      <h2 id="totalRoundsEl" className="title" ></h2>
-      <h2 id="noOfRounds" className="title" ></h2>
-      <h3 id="successStatusTitle" className="title successTitle"></h3>
-      <h3 id="failureTitle" className="title failureTitle"></h3>
-      <h3 id="completedStatus" className="title"></h3>
-      <section className="btn-section" id="btnSection">
-        <a href={`/${props.pageName}`}> <button className="okay-btn" id="okay">Okay</button></a>
-        <a href={`/${props.pageName}`}>
-          <button className="cancel-btn" id="cancelBtn">Cancel</button>
-        </a>
+      <section className="changing-ele-on-bar">
+        <h2 id="progressBarTitle" className="title" ></h2>
+        <h2 id="totalRoundsEl" className="title" ></h2>
+        <h2 id="noOfRounds" className="title" ></h2>
+        <h3 id="successStatusTitle" className="title successTitle"></h3>
+        <h3 id="failureTitle" className="title failureTitle"></h3>
+        <h3 id="completedStatus" className="title"></h3>
       </section>
+        <section className="btn-section" id="btnSection">
+          <a href={`/${props.pageName}`}> <button className="okay-btn" id="okay">Okay</button></a>
+          <a href={`/${props.pageName}`}>
+            <button className="cancel-btn" id="cancelBtn">Cancel</button>
+          </a>
+        </section>
     </div>
   )
 }

@@ -16,9 +16,8 @@ let succes,
   userDetailsLength,
   roundIndex;
 
-let showSuccessParams = {};
 const action = "adding";
-const isAddedTo = "boards";
+const isAddedTo = "Boards";
 
 export default async function AddToBoards(executionParams) {
   const boardsCollection = executionParams.boardsCollection;

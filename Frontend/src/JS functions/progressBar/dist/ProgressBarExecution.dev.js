@@ -15,7 +15,7 @@ function ProgressBarExecution(progressBarParams) {
   var successStatusTitle = document.getElementById("successStatusTitle");
   var failureTitle = document.getElementById("failureTitle");
   var mainContentCont = document.getElementById("mainContentCont");
-  var noOfRounds = document.getElementById("noOfRounds");
+  var noOfRoundsEl = document.getElementById("noOfRounds");
   var totalRoundsEl = document.getElementById("totalRoundsEl");
   var BAR = document.getElementById("bar");
   var progressBarContainer = document.getElementById("loading");
@@ -55,7 +55,7 @@ function ProgressBarExecution(progressBarParams) {
     progressBarTitle.innerHTML = "Adding ".concat(userDetail, " to ").concat(boardName, " ");
     successStatusTitle.innerHTML = "Successful ".concat(isAddedTo, " Additions: ").concat(successLength);
     failureTitle.innerHTML = "Failed Additions: ".concat(failuresArrayLength);
-    noOfRounds.innerHTML = "Current Round : ".concat(roundIndex);
+    noOfRoundsEl.innerHTML = "Current Round : ".concat(roundIndex);
 
     if (totalRounds > 1) {
       totalRoundsEl.innerHTML = "Rounds to complete:  ".concat(totalRounds);
@@ -67,23 +67,29 @@ function ProgressBarExecution(progressBarParams) {
   var percentLoaded = Number(totalAttemptedArrayLength) / Number(totalDurationLength) * 100;
   BAR.style.width = "".concat(percentLoaded, "%");
   if (percentLoaded === 100) return succesMess(action, totalRounds);
-}
 
-function succesMess(action, totalRounds) {
-  setTimeout(function () {
-    var progressBarTitle = document.getElementById("progressBarTitle");
-    var okayEl = document.getElementById("okay");
-    var cancelEl = document.getElementById("cancelBtn");
-    var completedStatus = document.getElementById("completedStatus");
+  function succesMess(action, totalRounds) {
+    setTimeout(function () {
+      var progressBarTitle = document.getElementById("progressBarTitle");
+      var okayEl = document.getElementById("okay");
+      var cancelEl = document.getElementById("cancelBtn");
+      var completedStatus = document.getElementById("completedStatus");
 
-    if (action == "deleting") {
-      if (totalRounds > 1) completedStatus.innerHTML = "Members Deletion Completed ";else completedStatus.innerHTML = "Member Deletion Completed ";
-    }
+      if (action == "deleting") {
+        if (totalRounds > 1) completedStatus.innerHTML = "Members Deletion Completed ";else completedStatus.innerHTML = "Member Deletion Completed ";
+      }
 
-    if (action == "adding") {
-      if (totalRounds > 1) completedStatus.innerHTML = "Members Addition Completed ";else completedStatus.innerHTML = "Member Addition Completed ";
-    }
+      if (action == "adding") {
+        if (totalRounds > 1) completedStatus.innerHTML = "Members Addition Completed ";else completedStatus.innerHTML = "Member Addition Completed ";
 
-    return (0, _EleDisplay.display)(okayEl), (0, _EleDisplay.hide)(progressBarTitle), (0, _EleDisplay.hide)(cancelEl);
-  }, 600);
+        if (totalRounds > 1) {
+          totalRoundsEl.innerHTML = "Completed Rounds:  ".concat(totalRounds);
+        } else {
+          totalRoundsEl.innerHTML = "Completed Round:  ".concat(totalRounds);
+        }
+      }
+
+      return (0, _EleDisplay.display)(okayEl), (0, _EleDisplay.hide)(progressBarTitle), (0, _EleDisplay.hide)(cancelEl), (0, _EleDisplay.hide)(noOfRoundsEl);
+    }, 600);
+  }
 }

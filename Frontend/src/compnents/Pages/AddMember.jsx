@@ -106,7 +106,7 @@ export default function AddMember() {
         <HomePage />
 
         <section className="main-section-cont" id="mainContentCont" ref={pageContentRef}>
-          <h1>{pageTitle}</h1>
+          <h1 id="toolInstruction">{pageTitle}</h1>
 
           <section className="inner-main-cont" id="innerMainContentCont">
             <Input

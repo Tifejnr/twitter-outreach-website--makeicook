@@ -113,6 +113,15 @@ button:hover {
   width: 60%;
 }
 
+.changing-ele-on-bar {
+  display: grid;
+  row-gap: 1.5rem;
+}
+
+#completedStatus {
+  margin-bottom: 1rem;
+}
+
 .loading .title {
   font-size: 1.5rem;
   color: #1e2831;
@@ -203,8 +212,7 @@ input {
 
 .main-section-cont {
   position: relative;
-  top: 7rem;
-
+  top: 13rem;
   width: 60rem;
   margin: 0 auto;
 }
@@ -214,6 +222,22 @@ input {
   font-size: 2.5rem;
   text-align: center;
   margin-bottom: 2.5rem;
+}
+
+#toolInstruction {
+  position: fixed;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 11%;
+  color: #04002a;
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  background-color: #ffff;
+  width: 100%;
+  z-index: 10000;
+  padding-top: 0.7rem;
+  padding-bottom: 0.3rem;
 }
 
 .inner-main-cont {

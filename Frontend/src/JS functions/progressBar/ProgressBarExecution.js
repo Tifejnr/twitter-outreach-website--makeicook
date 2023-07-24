@@ -6,7 +6,7 @@ export default function ProgressBarExecution(progressBarParams) {
   const successStatusTitle = document.getElementById("successStatusTitle");
   const failureTitle = document.getElementById("failureTitle");
   const mainContentCont = document.getElementById("mainContentCont");
-  const noOfRounds = document.getElementById("noOfRounds");
+  const noOfRoundsEl = document.getElementById("noOfRounds");
   const totalRoundsEl = document.getElementById("totalRoundsEl");
   const BAR = document.getElementById("bar");
   const progressBarContainer = document.getElementById("loading");
@@ -49,7 +49,7 @@ export default function ProgressBarExecution(progressBarParams) {
     progressBarTitle.innerHTML = `Adding ${userDetail} to ${boardName} `;
     successStatusTitle.innerHTML = `Successful ${isAddedTo} Additions: ${successLength}`;
     failureTitle.innerHTML = `Failed Additions: ${failuresArrayLength}`;
-    noOfRounds.innerHTML = `Current Round : ${roundIndex}`;
+    noOfRoundsEl.innerHTML = `Current Round : ${roundIndex}`;
 
     if (totalRounds > 1) {
       totalRoundsEl.innerHTML = `Rounds to complete:  ${totalRounds}`;
@@ -64,25 +64,36 @@ export default function ProgressBarExecution(progressBarParams) {
   BAR.style.width = `${percentLoaded}%`;
 
   if (percentLoaded === 100) return succesMess(action, totalRounds);
-}
 
-function succesMess(action, totalRounds) {
-  setTimeout(() => {
-    const progressBarTitle = document.getElementById("progressBarTitle");
-    const okayEl = document.getElementById("okay");
-    const cancelEl = document.getElementById("cancelBtn");
-    const completedStatus = document.getElementById("completedStatus");
-    if (action == "deleting") {
-      if (totalRounds > 1)
-        completedStatus.innerHTML = `Members Deletion Completed `;
-      else completedStatus.innerHTML = `Member Deletion Completed `;
-    }
+  function succesMess(action, totalRounds) {
+    setTimeout(() => {
+      const progressBarTitle = document.getElementById("progressBarTitle");
+      const okayEl = document.getElementById("okay");
+      const cancelEl = document.getElementById("cancelBtn");
+      const completedStatus = document.getElementById("completedStatus");
+      if (action == "deleting") {
+        if (totalRounds > 1)
+          completedStatus.innerHTML = `Members Deletion Completed `;
+        else completedStatus.innerHTML = `Member Deletion Completed `;
+      }
 
-    if (action == "adding") {
-      if (totalRounds > 1)
-        completedStatus.innerHTML = `Members Addition Completed `;
-      else completedStatus.innerHTML = `Member Addition Completed `;
-    }
-    return display(okayEl), hide(progressBarTitle), hide(cancelEl);
-  }, 600);
+      if (action == "adding") {
+        if (totalRounds > 1)
+          completedStatus.innerHTML = `Members Addition Completed `;
+        else completedStatus.innerHTML = `Member Addition Completed `;
+
+        if (totalRounds > 1) {
+          totalRoundsEl.innerHTML = `Completed Rounds:  ${totalRounds}`;
+        } else {
+          totalRoundsEl.innerHTML = `Completed Round:  ${totalRounds}`;
+        }
+      }
+      return (
+        display(okayEl),
+        hide(progressBarTitle),
+        hide(cancelEl),
+        hide(noOfRoundsEl)
+      );
+    }, 600);
+  }
 }

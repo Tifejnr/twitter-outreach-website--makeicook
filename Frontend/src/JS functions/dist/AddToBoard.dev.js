@@ -20,9 +20,8 @@ var _websiteUrl = require("./websiteUrl");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var succes, failuresArray, totalAttemptedArray, totalDurationLength, userDetail, noOfCheckedCheckbox, userDetailsLength, roundIndex;
-var showSuccessParams = {};
 var action = "adding";
-var isAddedTo = "boards";
+var isAddedTo = "Boards";
 
 function AddToBoards(executionParams) {
   var boardsCollection, emailInputs, textAreaRef, timeIntervalValue, timeIntervalRef, pageContentElRef, allCheckboxesOnPage, emailListSplited, boardDetailsObj, timeInterval, Execution;
@@ -40,8 +39,7 @@ function AddToBoards(executionParams) {
             };
 
             (function _callee() {
-              var response, data, _showSuccessParams2;
-
+              var response, data, showSuccessParams;
               return regeneratorRuntime.async(function _callee$(_context) {
                 while (1) {
                   switch (_context.prev = _context.next) {
@@ -86,7 +84,7 @@ function AddToBoards(executionParams) {
                     case 15:
                       _context.prev = 15;
                       totalAttemptedArray += 1;
-                      _showSuccessParams2 = {
+                      showSuccessParams = {
                         userDetail: userDetail,
                         boardName: boardName,
                         isAddedTo: isAddedTo,
@@ -99,7 +97,7 @@ function AddToBoards(executionParams) {
                         totalDurationLength: totalDurationLength,
                         roundIndex: roundIndex
                       };
-                      (0, _ProgressBarExecution["default"])(_showSuccessParams2);
+                      (0, _ProgressBarExecution["default"])(showSuccessParams);
                       console.log(totalDurationLength, totalAttemptedArray, succes, failuresArray);
                       return _context.finish(15);
 
@@ -189,7 +187,7 @@ function AddToBoards(executionParams) {
               succes = 0;
               failuresArray = 0;
               roundIndex = 1;
-              var _showSuccessParams = {
+              var showSuccessParams = {
                 userDetail: userDetail,
                 boardName: boardName,
                 isAddedTo: isAddedTo,
@@ -202,7 +200,7 @@ function AddToBoards(executionParams) {
                 roundIndex: roundIndex,
                 userDetailsLength: userDetailsLength
               };
-              (0, _ProgressBarExecution["default"])(_showSuccessParams);
+              (0, _ProgressBarExecution["default"])(showSuccessParams);
             } //loop through all checked boards
 
 
