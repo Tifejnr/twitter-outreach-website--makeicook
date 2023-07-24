@@ -9,4 +9,12 @@ function setErrorTextarea(element, message) {
   element.style.borderColor = errorColor;
 }
 
-export { setErrorTextarea };
+function setSliderError(element, message) {
+  const inputControl = element.parentElement;
+  const errorDisplay = inputControl.querySelector(".error");
+  errorDisplay.innerText = message;
+  errorDisplay.style.color = errorColor;
+  inputControl.style.borderColor = errorColor;
+}
+
+export { setErrorTextarea, setSliderError };

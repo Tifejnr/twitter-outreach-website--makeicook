@@ -21,11 +21,12 @@ export default function SliderTimeInterval() {
 
   useEffect(() => {
     setTimeIntervalRef(timeIntervalSliderRef.current);
-  }, []);
+  }, [timeIntervalRef]);
+
   return (
     <section className="time-interval-container">
       <article>
-        <h2>Select time interval between additions:</h2>
+        <h2>Set time interval between additions:</h2>
         <label
           htmlFor="timeIntervalSlider"
           className="number--label"
@@ -50,7 +51,7 @@ export default function SliderTimeInterval() {
         value={timeInterval}
       />
       <p className="error">
-        Move the slider above to select desired time interval
+        Move the slider above to set desired time interval
       </p>
     </section>
   );

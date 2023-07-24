@@ -11,7 +11,9 @@ export default function ProgressBar(props) {
         <div id="bar"></div>
       </div>
       <h2 id="progressBarTitle" className="title" ></h2>
-      <h3 id="successStatusTitle" className="title"></h3>
+      <h2 id="totalRoundsEl" className="title" ></h2>
+      <h2 id="noOfRounds" className="title" ></h2>
+      <h3 id="successStatusTitle" className="title successTitle"></h3>
       <h3 id="failureTitle" className="title failureTitle"></h3>
       <h3 id="completedStatus" className="title"></h3>
       <section className="btn-section" id="btnSection">

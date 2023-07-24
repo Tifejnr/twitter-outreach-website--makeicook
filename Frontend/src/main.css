@@ -409,6 +409,8 @@ textarea::placeholder {
   row-gap: 1.5rem;
   color: #17252a;
   margin-bottom: 2rem;
+  margin-top: 0.5rem;
+  border: 1px solid transparent;
 }
 
 .time-interval-container h2 {
@@ -463,4 +465,11 @@ textarea::placeholder {
     0 2px 5px #0003, 0 5px 9px #0002;
 
   cursor: pointer;
+}
+
+/* Blur page  */
+
+.blurred {
+  filter: blur(1rem);
+  pointer-events: none;
 }

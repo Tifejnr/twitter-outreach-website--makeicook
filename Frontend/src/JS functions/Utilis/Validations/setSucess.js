@@ -8,4 +8,11 @@ const setSuccess = (element) => {
   element.style.borderColor = successColor;
 };
 
-export { setSuccess };
+function setSliderSuccess(element) {
+  const inputControl = element.parentElement;
+  const errorDisplay = inputControl.querySelector(".error");
+  errorDisplay.innerText = "";
+  inputControl.style.borderColor = successColor;
+}
+
+export { setSuccess, setSliderSuccess };

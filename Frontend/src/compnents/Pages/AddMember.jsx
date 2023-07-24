@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext , useRef} from "react";
 import { MyContext } from "../Hooks/Contexts/UserContext";
 import Input from "./BasicSectionLayout/Input";
 import SearchBoards from "./BasicSectionLayout/SearchBoards";
@@ -12,7 +12,6 @@ import { websiteUrl } from "../../JS functions/websiteUrl";
 import useStore from "../Hooks/Zustand/usersStore";
 import ProgressExceution from "../ProgressBar/ProgressExceution.jsx";
 import { findBoardIdByName } from "../../JS functions/Utilis/FindBoardId/byName";
-import SliderTimeInterval from "./BasicSectionLayout/Sliders/TimeInterval";
 
 const labelTitle = "Add Members";
 const inputLabel = "Members' Emails:";
@@ -26,7 +25,6 @@ const action = "adding";
 
 export default function AddMember() {
   const [boardsCollection, setBoardsCollection] = useState([]);
-  // const [execute, setExecute] = useState(false);
   const {
     textAreaValue,
     setc,
@@ -34,19 +32,23 @@ export default function AddMember() {
     setd,
     timeInterval,
     setT,
-    timeIntervalHref,
+    timeIntervalRef,
   } = useContext(MyContext);
   // const taskTitle = useStore((state) => state.taskTitle);
   // const setTaskTitle = useStore((state) => state.setTaskTitle);
   // const [checkedCheckboxesLength, setCheckedLength] = useState(0)
   // const [executionObjs, setexecutionObjs] = useState([])
+  const [pageContentElRef, setPageContentElRef]= useState(null)
+
+  const pageContentRef = useRef(null);
 
   const executionParams = {
     boardsCollection,
     textAreaValue,
     textAreaRefEl,
     timeInterval,
-    timeIntervalHref
+    timeIntervalRef,
+    pageContentElRef
   };
 
   useEffect(() => {
@@ -91,7 +93,9 @@ export default function AddMember() {
     };
   }, []);
 
-  useEffect(() => {}, [boardsCollection]);
+  useEffect(() => {
+   setPageContentElRef(pageContentRef.current)
+  }, [boardsCollection]);
 
   if (boardsCollection === undefined)
     return console.log("boards not available");
@@ -101,7 +105,7 @@ export default function AddMember() {
       <LoggedInUsersControl>
         <HomePage />
 
-        <section className="main-section-cont" id="mainContentCont">
+        <section className="main-section-cont" id="mainContentCont" ref={pageContentRef}>
           <h1>{pageTitle}</h1>
 
           <section className="inner-main-cont" id="innerMainContentCont">

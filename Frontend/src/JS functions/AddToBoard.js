@@ -1,5 +1,8 @@
+"use strict";
+
 import ProgressBarExecution from "./progressBar/ProgressBarExecution";
 import { validateInput } from "./Utilis/Validations/Input";
+import { timeIntervalSliderVal } from "./Utilis/Validations/sliderValidation";
 import { isAnyCheckboxChecked } from "./Utilis/Validations/Checkbox";
 import { findBoardIdByName } from "./Utilis/FindBoardId/byName";
 import { websiteUrl } from "./websiteUrl";
@@ -10,8 +13,8 @@ let succes,
   totalDurationLength,
   userDetail,
   noOfCheckedCheckbox,
-  boardName,
-  userDetailsLength;
+  userDetailsLength,
+  roundIndex;
 
 let showSuccessParams = {};
 const action = "adding";
@@ -21,8 +24,13 @@ export default async function AddToBoards(executionParams) {
   const boardsCollection = executionParams.boardsCollection;
   const emailInputs = executionParams.textAreaValue;
   const textAreaRef = executionParams.textAreaRefEl;
+  const timeIntervalValue = Number(executionParams.timeInterval);
+  const timeIntervalRef = executionParams.timeIntervalRef;
+  const pageContentElRef = executionParams.pageContentElRef;
 
   if (!validateInput(emailInputs, textAreaRef)) return false;
+  if (!timeIntervalSliderVal(timeIntervalValue, timeIntervalRef))
+    return console.log("slider whaala");
 
   if (!isAnyCheckboxChecked()) return false;
 
@@ -39,8 +47,7 @@ export default async function AddToBoards(executionParams) {
 
   const boardDetailsObj = Array.from(allCheckboxesOnPage).map(
     (checkbox, index) => {
-      const checkboxEl = document.getElementById(`check${index}`);
-      if (!checkboxEl.checked) return false;
+      if (!checkbox.checked) return false;
 
       const checkboxId = checkbox.id;
 
@@ -48,7 +55,7 @@ export default async function AddToBoards(executionParams) {
 
       const boardEl = document.getElementById(`labelcheck${arrayNoFromId}`);
 
-      boardName = boardEl.innerHTML;
+      const boardName = boardEl.innerHTML;
 
       const foundBoard = findBoardIdByName(boardsCollection, boardName);
 
@@ -66,28 +73,63 @@ export default async function AddToBoards(executionParams) {
 
   if (!boardDetailsObj) return "";
 
+  pageContentElRef.classList.add("blurred");
+  const timeInterval = timeIntervalValue * 1000;
+
   totalAttemptedArray = 0;
   // each email execution to server
   emailListSplited.map((eachEmail, index) => {
     const email = eachEmail.trim();
+    roundIndex = index + 1;
+
+    setTimeout(() => {
+      roundIndex = index + 1;
+    }, index * noOfCheckedCheckbox * timeInterval + 3000);
+
+    console.log(email, roundIndex, index);
+    if (totalAttemptedArray === 0) {
+      let boardName = "...";
+      userDetail = "...";
+      succes = 0;
+      failuresArray = 0;
+      roundIndex = 1;
+
+      let showSuccessParams = {
+        userDetail,
+        boardName,
+        isAddedTo,
+        noOfCheckedCheckbox,
+        succes,
+        action,
+        failuresArray,
+        totalAttemptedArray,
+        totalDurationLength,
+        roundIndex,
+        userDetailsLength,
+      };
+
+      ProgressBarExecution(showSuccessParams);
+    }
     //loop through all checked boards
     setTimeout(() => {
       boardDetailsObj.map((boardObj, index) => {
+        const boardId = boardObj.boardId;
+        let boardName = boardObj.boardName;
+        if (!boardId && !boardName) return console.log("board id not found");
         succes = 0;
         failuresArray = 0;
-        const boardId = boardObj.boardId;
-        boardName = boardObj.boardName;
-
-        if (!boardId && !boardName) return console.log("board id not found");
-
         setTimeout(() => {
           new Execution(email, boardId, boardName);
-        }, index * 1000);
+        }, index * timeInterval);
       });
-    }, index * 1300 * noOfCheckedCheckbox);
+    }, index * noOfCheckedCheckbox * timeInterval + 5000);
   });
 
   function Execution(email, boardId, boardName) {
+    if (!boardName) return console.log("boardname does not exist");
+
+    console.log(boardName, roundIndex);
+
     userDetail = email;
     const message = {
       email,
@@ -109,11 +151,10 @@ export default async function AddToBoards(executionParams) {
         const data = await response.json();
         if (data.error) {
           console.log(data);
+          failuresArray += 1;
           if (data.error.cause.code == "ECONNRESET") {
             console.log("internet broke error");
           }
-
-          failuresArray += 1;
         }
 
         console.log(data);
@@ -129,11 +170,13 @@ export default async function AddToBoards(executionParams) {
           boardName,
           isAddedTo,
           noOfCheckedCheckbox,
+          userDetailsLength,
           succes,
           action,
           failuresArray,
           totalAttemptedArray,
           totalDurationLength,
+          roundIndex,
         };
 
         ProgressBarExecution(showSuccessParams);
