@@ -11,6 +11,7 @@ const { getKeys } = require("../../envKeys/allKeys");
 // const { retrieveVariant, listAllVariants } = require("lemonsqueezy.ts/variant");
 
 const keysObjects = getKeys();
+const apiKey = keysObjects.lemonApiKey;
 
 const standardPlanName = "Standard Plan";
 const storeId = "18668";
@@ -19,11 +20,9 @@ const productPrice = 4.99;
 const redirectUrl = "https://www.collabfortrello.com";
 
 router.post("/", async (req, res) => {
-  const apiKey = keysObjects.lemonApiKey;
   const { planName } = req.body;
   const productName = `${planName} Plans`;
 
-  console.log(apiKey, productName);
   try {
     const newCheckout = await createCheckout({
       apiKey,
@@ -46,8 +45,6 @@ router.post("/", async (req, res) => {
     if (!newCheckout) return console.log("checkout not sucessfull");
 
     const checkoutUrl = newCheckout.data.attributes.url;
-    console.log(checkoutUrl);
-
     return res.json({ checkoutUrl });
   } catch (error) {
     console.log("An error occurred:", error);
@@ -57,6 +54,7 @@ router.post("/", async (req, res) => {
 
 // Endpoint to handle incoming webhook events
 router.post("/webhooks", (req, res) => {
+  console.log(req.body);
   const secret = keysObjects.webHookSecret; // Replace with your actual secret
   const signature = Buffer.from(req.get("X-Signature") || "", "utf8");
 

@@ -8,6 +8,8 @@ var cors = require("cors");
 
 var path = require("path");
 
+var bodyParser = require("body-parser");
+
 var ejs = require("ejs");
 
 var coookieParser = require("cookie-parser");
@@ -60,7 +62,8 @@ var paymentsHandling = require("./routes/Payments/lemonSqueezy-checkout");
 
 app.use(cors());
 app.use(express.json());
-app.use(coookieParser()); //api routes declaarations
+app.use(coookieParser());
+app.use(bodyParser.json()); //api routes declaarations
 
 app.use("/api/register-user", registerUser);
 app.use("/api/sign-in", signInUser);
