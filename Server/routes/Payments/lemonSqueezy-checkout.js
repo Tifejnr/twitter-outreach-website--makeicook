@@ -13,6 +13,7 @@ const { getKeys } = require("../../envKeys/allKeys");
 const keysObjects = getKeys();
 const apiKey = keysObjects.lemonApiKey;
 
+const userIdNow = "idgaabkaj568118nahaha";
 const standardPlanName = "Standard Plan";
 const storeId = "18668";
 const variantId = "101819";
@@ -28,13 +29,16 @@ router.post("/", async (req, res) => {
       apiKey,
       checkout_data: {
         email: "carter@gmail.com",
+        custom: {
+          user_id: userIdNow,
+        },
       },
       custom_price: 100000,
       product_options: {
         description: "Hello World",
         name: productName,
         receipt_button_text: "Buy now",
-        receipt_link_url: "https://lemonsqueezy.com",
+        receipt_link_url: redirectUrl,
         receipt_thank_you_note: "Thank you for your purchase",
         redirect_url: redirectUrl,
       },
@@ -54,7 +58,6 @@ router.post("/", async (req, res) => {
 
 // Endpoint to handle incoming webhook events
 router.post("/webhooks", (req, res) => {
-  console.log(req.body);
   const secret = keysObjects.webHookSecret; // Replace with your actual secret
   const signature = Buffer.from(req.get("X-Signature") || "", "utf8");
 
@@ -68,8 +71,8 @@ router.post("/webhooks", (req, res) => {
   }
 
   // Signature is valid, process the webhook event
-  const { event, data } = req.body;
-  if (event === "order_created") {
+  const data = req.body;
+  if (data) {
     // Handle the successful order payment event
     // You can perform any actions you want here, such as updating your database, sending notifications, etc.
     console.log("Received successful order payment event:", data);
@@ -82,7 +85,6 @@ router.post("/webhooks", (req, res) => {
 });
 
 module.exports = router;
-const userIdNow = "idgaabkaj568118nahaha";
 
 // test();
 async function test() {

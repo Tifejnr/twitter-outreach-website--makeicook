@@ -23,6 +23,7 @@ var _require3 = require("../../envKeys/allKeys"),
 
 var keysObjects = getKeys();
 var apiKey = keysObjects.lemonApiKey;
+var userIdNow = "idgaabkaj568118nahaha";
 var standardPlanName = "Standard Plan";
 var storeId = "18668";
 var variantId = "101819";
@@ -41,14 +42,17 @@ router.post("/", function _callee(req, res) {
           return regeneratorRuntime.awrap(createCheckout({
             apiKey: apiKey,
             checkout_data: {
-              email: "carter@gmail.com"
+              email: "carter@gmail.com",
+              custom: {
+                user_id: userIdNow
+              }
             },
             custom_price: 100000,
             product_options: {
               description: "Hello World",
               name: productName,
               receipt_button_text: "Buy now",
-              receipt_link_url: "https://lemonsqueezy.com",
+              receipt_link_url: redirectUrl,
               receipt_thank_you_note: "Thank you for your purchase",
               redirect_url: redirectUrl
             },
@@ -89,7 +93,6 @@ router.post("/", function _callee(req, res) {
 }); // Endpoint to handle incoming webhook events
 
 router.post("/webhooks", function (req, res) {
-  console.log(req.body);
   var secret = keysObjects.webHookSecret; // Replace with your actual secret
 
   var signature = Buffer.from(req.get("X-Signature") || "", "utf8"); // Verify the signature
@@ -105,11 +108,9 @@ router.post("/webhooks", function (req, res) {
   } // Signature is valid, process the webhook event
 
 
-  var _req$body = req.body,
-      event = _req$body.event,
-      data = _req$body.data;
+  var data = req.body;
 
-  if (event === "order_created") {
+  if (data) {
     // Handle the successful order payment event
     // You can perform any actions you want here, such as updating your database, sending notifications, etc.
     console.log("Received successful order payment event:", data); // Respond with a 200 status to acknowledge receipt of the webhook
@@ -120,8 +121,7 @@ router.post("/webhooks", function (req, res) {
     return res.sendStatus(204);
   }
 });
-module.exports = router;
-var userIdNow = "idgaabkaj568118nahaha"; // test();
+module.exports = router; // test();
 
 function test() {
   var newCheckout, checkoutUrl;
