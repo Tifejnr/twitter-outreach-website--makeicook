@@ -20,6 +20,7 @@ require("./startup/prod")(app);
 //Concet to mong db
 const keysObjects = getKeys();
 const mongoDB_string = keysObjects.mongoDB_string;
+const lemonApiKey = keysObjects.lemonApiKey;
 mongoose
   .connect(mongoDB_string)
   .then(() => {
@@ -30,6 +31,7 @@ mongoose
 //Importing api routes
 const registerUser = require("./routes/register-users");
 const signInUser = require("./routes/auth");
+const paymentsHandling = require("./routes/Payments/lemonSqueezy-checkout");
 
 app.use(cors());
 app.use(express.json());
@@ -38,6 +40,7 @@ app.use(coookieParser());
 //api routes declaarations
 app.use("/api/register-user", registerUser);
 app.use("/api/sign-in", signInUser);
+app.use("/api/checkout", paymentsHandling);
 app.use(
   express.static(
     path.join(__dirname, "../../Trello-Project-React/Frontend/dist")
@@ -78,11 +81,11 @@ app.post("/authorize", loginStatusChecker, async (req, res) => {
   login(req, res);
 });
 
-app.post("/start", [loginStatusChecker, userToken], async (req, res) => {
+app.post("/start", async (req, res) => {
   fetchAllBoards(req, res);
 });
 
-app.post("/add", [loginStatusChecker, userToken], async (req, res) => {
+app.post("/add", async (req, res) => {
   addMemberToBoard(req, res);
 });
 
@@ -96,3 +99,39 @@ app.post("/trial", async (req, res) => {
 app.listen(3000, function () {
   console.log("Listening on port 3000");
 });
+
+const apiUrl = "https://api.lemonsqueezy.com/v1/checkouts";
+const apiKey = lemonApiKey; // Replace this with your actual API key
+
+const standardPlanName = "Stadard Plan";
+
+const storeId = "18668";
+const variantId = "101819";
+
+// createCheckoutNow();
+async function createCheckoutNow() {
+  try {
+    const newCheckout = await createCheckout({
+      apiKey,
+      checkout_data: {
+        email: "carter@gmail.com",
+        name: "Carter5",
+      },
+      custom_price: 100000,
+      product_options: {
+        description: "Hello World",
+        name: "Standard Plan",
+        receipt_button_text: "Buy now",
+        receipt_link_url: "https://lemonsqueezy.com",
+        receipt_thank_you_note: "Thank you for your purchase",
+        redirect_url: "https://lemonsqueezy.com",
+      },
+      store: storeId,
+      variant: variantId,
+    });
+
+    console.log(newCheckout.data.attributes.url);
+  } catch (error) {
+    console.log("An error occurred:", error);
+  }
+}

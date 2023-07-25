@@ -1,14 +1,24 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, {useState,useRef} from 'react'
+import { Link ,useNavigate} from 'react-router-dom'
 import checkMark from "../../../assets/SVGs/check-mark.svg";
+import getCheckoutLink from '../checkoutUrl/fetchUrl';
 
 
 
 export default function BasicCard(props) {
+  const planNameRef = useRef(null);
+  const navigate = useNavigate();
 
-    const getPlanClick = () => {
+    const planCheckout = async () => {
+    if (!planNameRef.current) return console.log("plan name ref not found")
+      const planName = planNameRef.current.innerHTML;
+      const response = await getCheckoutLink(planName);
+      if (response.unauthorizedToken)  return ( navigate('/register'))
+
+      const checkoutUrl= response
+
     // Redirect the user to the specified link
-    window.location.href = props.planObjs.paymentLink
+    window.location.href = checkoutUrl
   };
 
   return (
@@ -20,7 +30,7 @@ export default function BasicCard(props) {
                   src={props.planObjs.planPic}
                   alt="basic plan icon" />
 
-                <h2>{props.planObjs.planName}</h2>
+                <h2 ref={planNameRef}> {props.planObjs.planName} </h2>
               </picture>
               <div className="price">
                 <h4>${props.planObjs.planPrice}</h4>
@@ -63,7 +73,7 @@ export default function BasicCard(props) {
                   </li>
                 </ul>
               </div>
-              <Link htmlFor="/" onClick={getPlanClick} >Get Plan</Link>
+              <Link htmlFor="/" onClick={planCheckout} >Get Plan</Link>
             </div>
     </div>
   )

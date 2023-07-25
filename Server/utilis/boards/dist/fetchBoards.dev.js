@@ -2,6 +2,13 @@
 
 var axios = require("axios");
 
+var _require = require("../../envKeys/allKeys"),
+    getKeys = _require.getKeys;
+
+var keysObjects = getKeys();
+var key = keysObjects.CLIENT_SECRET_KEY;
+var token = keysObjects.ACCESS_TOKEN_SECRET;
+
 function fetchAllBoards(req, res) {
   var boardsFetchingUrl, response, boards;
   return regeneratorRuntime.async(function fetchAllBoards$(_context) {

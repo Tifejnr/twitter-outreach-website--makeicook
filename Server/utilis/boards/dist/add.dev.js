@@ -2,6 +2,13 @@
 
 var axios = require("axios");
 
+var _require = require("../../envKeys/allKeys"),
+    getKeys = _require.getKeys;
+
+var keysObjects = getKeys();
+var key = keysObjects.CLIENT_SECRET_KEY;
+var token = keysObjects.ACCESS_TOKEN_SECRET;
+
 function addMemberToBoard(req, res) {
   var _req$body, email, boardId, memberAddingUrl, response, success;
 
