@@ -23,11 +23,11 @@ var _require3 = require("../../envKeys/allKeys"),
 
 var keysObjects = getKeys();
 var apiKey = keysObjects.lemonApiKey;
-var standardPlanName = "Stadard Plan";
+var standardPlanName = "Standard Plan";
 var storeId = "18668";
 var variantId = "101819";
 var productPrice = 4.99;
-var redirectUrl = "https://www.collabfortrello.com/add-member";
+var redirectUrl = "https://www.collabfortrello.com";
 router.post("/", function _callee(req, res) {
   var planName, productName, newCheckout, checkoutUrl;
   return regeneratorRuntime.async(function _callee$(_context) {
@@ -36,8 +36,9 @@ router.post("/", function _callee(req, res) {
         case 0:
           planName = req.body.planName;
           productName = "".concat(planName, " Plans");
-          _context.prev = 2;
-          _context.next = 5;
+          console.log(apiKey, productName);
+          _context.prev = 3;
+          _context.next = 6;
           return regeneratorRuntime.awrap(createCheckout({
             apiKey: apiKey,
             checkout_data: {
@@ -56,37 +57,37 @@ router.post("/", function _callee(req, res) {
             variant: variantId
           }));
 
-        case 5:
+        case 6:
           newCheckout = _context.sent;
 
           if (newCheckout) {
-            _context.next = 8;
+            _context.next = 9;
             break;
           }
 
           return _context.abrupt("return", console.log("checkout not sucessfull"));
 
-        case 8:
+        case 9:
           checkoutUrl = newCheckout.data.attributes.url;
           console.log(checkoutUrl);
           return _context.abrupt("return", res.json({
             checkoutUrl: checkoutUrl
           }));
 
-        case 13:
-          _context.prev = 13;
-          _context.t0 = _context["catch"](2);
+        case 14:
+          _context.prev = 14;
+          _context.t0 = _context["catch"](3);
           console.log("An error occurred:", _context.t0);
           res.json({
             error: _context.t0
           });
 
-        case 17:
+        case 18:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[2, 13]]);
+  }, null, null, [[3, 14]]);
 }); // Endpoint to handle incoming webhook events
 
 router.post("/webhooks", function (req, res) {
@@ -227,63 +228,3 @@ function testOrder() {
     }
   }, null, null, [[1, 9]]);
 }
-
-var secretsWebhook = "sx#9@Fc6:vzR;d4m";
-createWebhooks();
-
-function createWebhooks() {
-  var apiUrl, requestData, config, response;
-  return regeneratorRuntime.async(function createWebhooks$(_context4) {
-    while (1) {
-      switch (_context4.prev = _context4.next) {
-        case 0:
-          apiUrl = "https://api.lemonsqueezy.com/v1/webhooks";
-          requestData = {
-            data: {
-              type: "webhooks",
-              attributes: {
-                url: "https://www.collabfortrello.com/webhooks/",
-                events: ["order_created"],
-                secret: secretsWebhook
-              },
-              relationships: {
-                store: {
-                  data: {
-                    type: "stores",
-                    id: storeId
-                  }
-                }
-              }
-            }
-          };
-          config = {
-            headers: {
-              Accept: "application/vnd.api+json",
-              "Content-Type": "application/vnd.api+json",
-              Authorization: "Bearer ".concat(apiKey)
-            }
-          };
-          _context4.prev = 3;
-          _context4.next = 6;
-          return regeneratorRuntime.awrap(axios.post(apiUrl, requestData, config));
-
-        case 6:
-          response = _context4.sent;
-          console.log("Webhook created successfully:", response.data);
-          _context4.next = 13;
-          break;
-
-        case 10:
-          _context4.prev = 10;
-          _context4.t0 = _context4["catch"](3);
-          console.error("Error creating webhook:", _context4.t0);
-
-        case 13:
-        case "end":
-          return _context4.stop();
-      }
-    }
-  }, null, null, [[3, 10]]);
-}
-
-createWebhooks();

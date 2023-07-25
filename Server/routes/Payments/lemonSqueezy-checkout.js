@@ -13,15 +13,17 @@ const { getKeys } = require("../../envKeys/allKeys");
 const keysObjects = getKeys();
 const apiKey = keysObjects.lemonApiKey;
 
-const standardPlanName = "Stadard Plan";
+const standardPlanName = "Standard Plan";
 const storeId = "18668";
 const variantId = "101819";
 const productPrice = 4.99;
-const redirectUrl = "https://www.collabfortrello.com/add-member";
+const redirectUrl = "https://www.collabfortrello.com";
 
 router.post("/", async (req, res) => {
   const { planName } = req.body;
   const productName = `${planName} Plans`;
+
+  console.log(apiKey, productName);
   try {
     const newCheckout = await createCheckout({
       apiKey,
@@ -146,45 +148,3 @@ async function testOrder() {
     console.log("An error occurred:", error);
   }
 }
-
-const secretsWebhook = "sx#9@Fc6:vzR;d4m";
-createWebhooks();
-async function createWebhooks() {
-  const apiUrl = "https://api.lemonsqueezy.com/v1/webhooks";
-
-  const requestData = {
-    data: {
-      type: "webhooks",
-      attributes: {
-        url: "https://www.collabfortrello.com/webhooks/",
-        events: ["order_created"],
-        secret: secretsWebhook,
-      },
-      relationships: {
-        store: {
-          data: {
-            type: "stores",
-            id: storeId,
-          },
-        },
-      },
-    },
-  };
-
-  const config = {
-    headers: {
-      Accept: "application/vnd.api+json",
-      "Content-Type": "application/vnd.api+json",
-      Authorization: `Bearer ${apiKey}`,
-    },
-  };
-
-  try {
-    const response = await axios.post(apiUrl, requestData, config);
-    console.log("Webhook created successfully:", response.data);
-  } catch (error) {
-    console.error("Error creating webhook:", error);
-  }
-}
-
-createWebhooks();
