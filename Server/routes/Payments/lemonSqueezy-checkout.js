@@ -188,12 +188,3 @@ async function createWebhooks() {
 }
 
 createWebhooks();
-
-const secret = keysObjects.webHookSecret;
-const hmac = crypto.createHmac("sha256", secret);
-const digest = Buffer.from(hmac.update(request.rawBody).digest("hex"), "utf8");
-const signature = Buffer.from(request.get("X-Signature") || "", "utf8");
-
-if (!crypto.timingSafeEqual(digest, signature)) {
-  throw new Error("Invalid signature.");
-}

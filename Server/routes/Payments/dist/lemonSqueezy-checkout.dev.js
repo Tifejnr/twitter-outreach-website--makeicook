@@ -287,11 +287,3 @@ function createWebhooks() {
 }
 
 createWebhooks();
-var secret = keysObjects.webHookSecret;
-var hmac = crypto.createHmac("sha256", secret);
-var digest = Buffer.from(hmac.update(request.rawBody).digest("hex"), "utf8");
-var signature = Buffer.from(request.get("X-Signature") || "", "utf8");
-
-if (!crypto.timingSafeEqual(digest, signature)) {
-  throw new Error("Invalid signature.");
-}
