@@ -17,11 +17,11 @@ const standardPlanName = "Stadard Plan";
 const storeId = "18668";
 const variantId = "101819";
 const productPrice = 4.99;
-const redirectUrl = "https://http://localhost:5173/";
+const redirectUrl = "https://www.collabfortrello.com/add-member";
 
 router.post("/", async (req, res) => {
   const { planName } = req.body;
-  const productName = `${planName} Plan`;
+  const productName = `${planName} Plans`;
   try {
     const newCheckout = await createCheckout({
       apiKey,
@@ -69,7 +69,7 @@ router.post("/webhooks", (req, res) => {
 
   // Signature is valid, process the webhook event
   const { event, data } = req.body;
-  if (event === "order_paid") {
+  if (event === "order_created") {
     // Handle the successful order payment event
     // You can perform any actions you want here, such as updating your database, sending notifications, etc.
     console.log("Received successful order payment event:", data);

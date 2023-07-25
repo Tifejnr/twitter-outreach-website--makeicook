@@ -27,7 +27,7 @@ var standardPlanName = "Stadard Plan";
 var storeId = "18668";
 var variantId = "101819";
 var productPrice = 4.99;
-var redirectUrl = "https://http://localhost:5173/";
+var redirectUrl = "https://www.collabfortrello.com/add-member";
 router.post("/", function _callee(req, res) {
   var planName, productName, newCheckout, checkoutUrl;
   return regeneratorRuntime.async(function _callee$(_context) {
@@ -35,7 +35,7 @@ router.post("/", function _callee(req, res) {
       switch (_context.prev = _context.next) {
         case 0:
           planName = req.body.planName;
-          productName = "".concat(planName, " Plan");
+          productName = "".concat(planName, " Plans");
           _context.prev = 2;
           _context.next = 5;
           return regeneratorRuntime.awrap(createCheckout({
@@ -109,7 +109,7 @@ router.post("/webhooks", function (req, res) {
       event = _req$body.event,
       data = _req$body.data;
 
-  if (event === "order_paid") {
+  if (event === "order_created") {
     // Handle the successful order payment event
     // You can perform any actions you want here, such as updating your database, sending notifications, etc.
     console.log("Received successful order payment event:", data); // Respond with a 200 status to acknowledge receipt of the webhook
