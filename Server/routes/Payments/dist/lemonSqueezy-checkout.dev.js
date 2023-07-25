@@ -22,23 +22,23 @@ var _require3 = require("../../envKeys/allKeys"),
 
 
 var keysObjects = getKeys();
-var apiKey = keysObjects.lemonApiKey;
 var standardPlanName = "Standard Plan";
 var storeId = "18668";
 var variantId = "101819";
 var productPrice = 4.99;
 var redirectUrl = "https://www.collabfortrello.com";
 router.post("/", function _callee(req, res) {
-  var planName, productName, newCheckout, checkoutUrl;
+  var apiKey, planName, productName, newCheckout, checkoutUrl;
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
+          apiKey = keysObjects.lemonApiKey;
           planName = req.body.planName;
           productName = "".concat(planName, " Plans");
           console.log(apiKey, productName);
-          _context.prev = 3;
-          _context.next = 6;
+          _context.prev = 4;
+          _context.next = 7;
           return regeneratorRuntime.awrap(createCheckout({
             apiKey: apiKey,
             checkout_data: {
@@ -57,37 +57,37 @@ router.post("/", function _callee(req, res) {
             variant: variantId
           }));
 
-        case 6:
+        case 7:
           newCheckout = _context.sent;
 
           if (newCheckout) {
-            _context.next = 9;
+            _context.next = 10;
             break;
           }
 
           return _context.abrupt("return", console.log("checkout not sucessfull"));
 
-        case 9:
+        case 10:
           checkoutUrl = newCheckout.data.attributes.url;
           console.log(checkoutUrl);
           return _context.abrupt("return", res.json({
             checkoutUrl: checkoutUrl
           }));
 
-        case 14:
-          _context.prev = 14;
-          _context.t0 = _context["catch"](3);
+        case 15:
+          _context.prev = 15;
+          _context.t0 = _context["catch"](4);
           console.log("An error occurred:", _context.t0);
           res.json({
             error: _context.t0
           });
 
-        case 18:
+        case 19:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[3, 14]]);
+  }, null, null, [[4, 15]]);
 }); // Endpoint to handle incoming webhook events
 
 router.post("/webhooks", function (req, res) {

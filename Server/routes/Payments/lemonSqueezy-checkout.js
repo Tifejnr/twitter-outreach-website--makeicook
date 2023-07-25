@@ -11,7 +11,6 @@ const { getKeys } = require("../../envKeys/allKeys");
 // const { retrieveVariant, listAllVariants } = require("lemonsqueezy.ts/variant");
 
 const keysObjects = getKeys();
-const apiKey = keysObjects.lemonApiKey;
 
 const standardPlanName = "Standard Plan";
 const storeId = "18668";
@@ -20,6 +19,7 @@ const productPrice = 4.99;
 const redirectUrl = "https://www.collabfortrello.com";
 
 router.post("/", async (req, res) => {
+  const apiKey = keysObjects.lemonApiKey;
   const { planName } = req.body;
   const productName = `${planName} Plans`;
 
