@@ -9,8 +9,9 @@ const keysObjects = getKeys();
 const secret = keysObjects.webHookSecret;
 
 // Endpoint to handle incoming webhook events
-router.post("/", async (req, res) => {
-  if (!req.rawBody) return console.log("req.rawBody does not exist");
+router.post("/", express.raw({ type: "*/*" }), async (req, res) => {
+  const rawBody = req.body.toString();
+  if (!rawBody) return console.log("rawBody  does not exist");
 
   if (!secret) return console.log("secret  does not exist");
 

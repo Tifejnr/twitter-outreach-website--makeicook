@@ -15,30 +15,34 @@ var _require = require("../../envKeys/allKeys"),
 var keysObjects = getKeys();
 var secret = keysObjects.webHookSecret; // Endpoint to handle incoming webhook events
 
-router.post("/", function _callee(req, res) {
-  var headerSignarture, hmac, generatedSigFromBody, _req$body, event, data;
+router.post("/", express.raw({
+  type: "*/*"
+}), function _callee(req, res) {
+  var rawBody, headerSignarture, hmac, generatedSigFromBody, _req$body, event, data;
 
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          if (req.rawBody) {
-            _context.next = 2;
+          rawBody = req.body.toString();
+
+          if (rawBody) {
+            _context.next = 3;
             break;
           }
 
-          return _context.abrupt("return", console.log("req.rawBody does not exist"));
+          return _context.abrupt("return", console.log("rawBody  does not exist"));
 
-        case 2:
+        case 3:
           if (secret) {
-            _context.next = 4;
+            _context.next = 5;
             break;
           }
 
           return _context.abrupt("return", console.log("secret  does not exist"));
 
-        case 4:
-          _context.prev = 4;
+        case 5:
+          _context.prev = 5;
           headerSignarture = Buffer.from(req.get("X-Signature") || "", "utf8"); // Verify the signature
 
           hmac = crypto.createHmac("sha256", secret);
@@ -47,7 +51,7 @@ router.post("/", function _callee(req, res) {
           console.log("generatedSigFromBody", generatedSigFromBody.length);
 
           if (crypto.timingSafeEqual(generatedSigFromBody, headerSignarture)) {
-            _context.next = 13;
+            _context.next = 14;
             break;
           }
 
@@ -57,12 +61,12 @@ router.post("/", function _callee(req, res) {
             error: "Invalid signature."
           }));
 
-        case 13:
+        case 14:
           // Signature is valid, process the webhook event
           _req$body = req.body, event = _req$body.event, data = _req$body.data;
 
           if (!(event === "order_created")) {
-            _context.next = 19;
+            _context.next = 20;
             break;
           }
 
@@ -72,23 +76,23 @@ router.post("/", function _callee(req, res) {
 
           return _context.abrupt("return", res.sendStatus(200));
 
-        case 19:
+        case 20:
           return _context.abrupt("return", res.sendStatus(204));
 
-        case 20:
-          _context.next = 25;
+        case 21:
+          _context.next = 26;
           break;
 
-        case 22:
-          _context.prev = 22;
-          _context.t0 = _context["catch"](4);
+        case 23:
+          _context.prev = 23;
+          _context.t0 = _context["catch"](5);
           console.log(_context.t0);
 
-        case 25:
+        case 26:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[4, 22]]);
+  }, null, null, [[5, 23]]);
 });
 module.exports = router;

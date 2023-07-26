@@ -53,13 +53,7 @@ mongoose.connect(mongoDB_string).then(function () {
 });
 app.use(cors());
 app.use(express.json());
-app.use(coookieParser());
-app.use(express.json({
-  limit: "5mb",
-  verify: function verify(req, res, buf) {
-    req.rawBody = buf.toString();
-  }
-})); //Importing api routes
+app.use(coookieParser()); //Importing api routes
 
 var registerUser = require("./routes/register-users");
 
