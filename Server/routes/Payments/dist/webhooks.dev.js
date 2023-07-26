@@ -18,7 +18,7 @@ var secret = keysObjects.webHookSecret; // Endpoint to handle incoming webhook e
 router.post("/", express.raw({
   type: "*/*"
 }), function _callee(req, res) {
-  var rawBody, headerSignarture, hmac, generatedSigFromBody, _req$body, event, data;
+  var rawBody, myObject, headerSignarture, hmac, generatedSigFromBody, _req$body, event, data;
 
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
@@ -34,17 +34,19 @@ router.post("/", express.raw({
           return _context.abrupt("return", console.log("rawBody  does not exist"));
 
         case 3:
+          myObject = rawBody;
+          console.log(myObject.key);
           console.log(rawBody);
 
           if (secret) {
-            _context.next = 6;
+            _context.next = 8;
             break;
           }
 
           return _context.abrupt("return", console.log("secret  does not exist"));
 
-        case 6:
-          _context.prev = 6;
+        case 8:
+          _context.prev = 8;
           headerSignarture = Buffer.from(req.get("X-Signature") || "", "utf8"); // Verify the signature
 
           hmac = crypto.createHmac("sha256", secret);
@@ -53,7 +55,7 @@ router.post("/", express.raw({
           console.log("generatedSigFromBody", generatedSigFromBody.length);
 
           if (crypto.timingSafeEqual(generatedSigFromBody, headerSignarture)) {
-            _context.next = 15;
+            _context.next = 17;
             break;
           }
 
@@ -63,12 +65,12 @@ router.post("/", express.raw({
             error: "Invalid signature."
           }));
 
-        case 15:
+        case 17:
           // Signature is valid, process the webhook event
           _req$body = req.body, event = _req$body.event, data = _req$body.data;
 
           if (!(event === "order_created")) {
-            _context.next = 21;
+            _context.next = 23;
             break;
           }
 
@@ -78,23 +80,23 @@ router.post("/", express.raw({
 
           return _context.abrupt("return", res.sendStatus(200));
 
-        case 21:
+        case 23:
           return _context.abrupt("return", res.sendStatus(204));
 
-        case 22:
-          _context.next = 27;
+        case 24:
+          _context.next = 29;
           break;
 
-        case 24:
-          _context.prev = 24;
-          _context.t0 = _context["catch"](6);
+        case 26:
+          _context.prev = 26;
+          _context.t0 = _context["catch"](8);
           console.log(_context.t0);
 
-        case 27:
+        case 29:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[6, 24]]);
+  }, null, null, [[8, 26]]);
 });
 module.exports = router;

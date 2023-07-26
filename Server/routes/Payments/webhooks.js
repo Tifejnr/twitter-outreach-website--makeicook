@@ -12,6 +12,8 @@ const secret = keysObjects.webHookSecret;
 router.post("/", express.raw({ type: "*/*" }), async (req, res) => {
   const rawBody = req.body.toString();
   if (!rawBody) return console.log("rawBody  does not exist");
+  const myObject = rawBody;
+  console.log(myObject.key);
 
   console.log(rawBody);
 
