@@ -23,7 +23,8 @@ router.post("/", function _callee(req, res) {
         case 0:
           rawData = "";
           req.on("data", function (chunk) {
-            // Accumulate the raw data chunks
+            console.log(req.body); // Accumulate the raw data chunks
+
             rawData += chunk;
           });
           req.on("end", function () {

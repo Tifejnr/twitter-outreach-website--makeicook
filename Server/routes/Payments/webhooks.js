@@ -12,6 +12,7 @@ const secret = keysObjects.webHookSecret;
 router.post("/", async (req, res) => {
   let rawData = "";
   req.on("data", (chunk) => {
+    console.log(req.body);
     // Accumulate the raw data chunks
     rawData += chunk;
   });
