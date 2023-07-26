@@ -3,7 +3,7 @@
 //Lemon squuezy payment checkou url getting
 var express = require("express");
 
-var axios = require("axios");
+var bodyParser = require("body-parser");
 
 var crypto = require("crypto");
 
@@ -12,28 +12,40 @@ var router = express.Router();
 var _require = require("../../envKeys/allKeys"),
     getKeys = _require.getKeys;
 
-var keysObjects = getKeys(); // Endpoint to handle incoming webhook events
+var keysObjects = getKeys();
+var secret = keysObjects.webHookSecret; // Middleware to parse JSON data
+
+router.use(bodyParser.json()); // Custom middleware to store raw JSON data in req.rawBody
+
+router.use(function (req, res, next) {
+  req.rawBody = JSON.stringify(req.body);
+  next();
+}); // Endpoint to handle incoming webhook events
 
 router.post("/", function _callee(req, res) {
-  var secret, signature, rawBody, hmac, digest, _req$body, event, data;
+  var headerSignarture, hmac, generatedSigFromBody, _req$body, event, data;
 
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          console.log("yeahaaaaaaaaaaaaaaaaaaaa");
-          secret = keysObjects.webHookSecret;
-          signature = Buffer.from(req.get("X-Signature") || "", "utf8");
-          _context.next = 5;
-          return regeneratorRuntime.awrap(req.text());
+          if (req.rawBody) {
+            _context.next = 2;
+            break;
+          }
 
-        case 5:
-          rawBody = _context.sent;
-          // Verify the signature
+          return _context.abrupt("return", console.log("req.rawBody does not exist"));
+
+        case 2:
+          _context.prev = 2;
+          headerSignarture = Buffer.from(req.get("X-Signature") || "", "utf8"); // Verify the signature
+
           hmac = crypto.createHmac("sha256", secret);
-          digest = Buffer.from(hmac.update(rawBody).digest("hex"), "utf8");
+          generatedSigFromBody = Buffer.from(hmac.update(req.rawBody).digest("hex"), "utf8");
+          console.log(" headerSignarture ", headerSignarture);
+          console.log("generatedSigFromBody", generatedSigFromBody);
 
-          if (crypto.timingSafeEqual(digest, signature)) {
+          if (crypto.timingSafeEqual(headerSignarture, generatedSigFromBody)) {
             _context.next = 11;
             break;
           }
@@ -63,10 +75,19 @@ router.post("/", function _callee(req, res) {
           return _context.abrupt("return", res.sendStatus(204));
 
         case 18:
+          _context.next = 23;
+          break;
+
+        case 20:
+          _context.prev = 20;
+          _context.t0 = _context["catch"](2);
+          console.log(_context.t0);
+
+        case 23:
         case "end":
           return _context.stop();
       }
     }
-  });
+  }, null, null, [[2, 20]]);
 });
 module.exports = router;
