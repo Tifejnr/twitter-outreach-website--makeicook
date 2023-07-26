@@ -27,7 +27,7 @@ router.use(
 // Endpoint to handle incoming webhook events
 router.post("/", async (req, res) => {
   if (!req.rawBody) {
-    return next("Request body empty");
+    return console.log(" req.body not found");
   }
   try {
     const signature = Buffer.from(req.get(sigHeaderName) || "", "utf8");

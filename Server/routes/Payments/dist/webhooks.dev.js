@@ -41,7 +41,7 @@ router.post("/", function _callee(req, res) {
             break;
           }
 
-          return _context.abrupt("return", next("Request body empty"));
+          return _context.abrupt("return", console.log(" req.body not found"));
 
         case 2:
           _context.prev = 2;
