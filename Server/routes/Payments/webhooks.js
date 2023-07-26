@@ -19,6 +19,8 @@ router.use(
     verify: (req, res, buf, encoding) => {
       if (buf && buf.length) {
         req.rawBody = buf.toString(encoding || "utf8");
+
+        console.log(req.rawBody);
       }
     },
   })

@@ -25,6 +25,7 @@ router.use(bodyParser.json({
   verify: function verify(req, res, buf, encoding) {
     if (buf && buf.length) {
       req.rawBody = buf.toString(encoding || "utf8");
+      console.log(req.rawBody);
     }
   }
 })); // Endpoint to handle incoming webhook events
