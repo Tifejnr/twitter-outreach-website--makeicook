@@ -19,8 +19,20 @@ var _require2 = require("lemonsqueezy.ts/order"),
 var _require3 = require("../../envKeys/allKeys"),
     getKeys = _require3.getKeys; // const { retrieveStore, listAllStores } = require("lemonsqueezy.ts/store");
 // const { retrieveVariant, listAllVariants } = require("lemonsqueezy.ts/variant");
+// Middleware to store the raw request body in req.rawBody
 
 
+router.use(function (req, res, next) {
+  var data = "";
+  req.setEncoding("utf8");
+  req.on("data", function (chunk) {
+    data += chunk;
+  });
+  req.on("end", function () {
+    req.rawBody = data;
+    next();
+  });
+});
 var keysObjects = getKeys();
 var apiKey = keysObjects.lemonApiKey;
 var userIdNow = "idgaabkaj568118nahaha";
@@ -101,24 +113,28 @@ router.post("/webhooks", function (req, res) {
   var digest = Buffer.from(hmac.update(req.rawBody).digest("hex"), "utf8");
 
   if (!crypto.timingSafeEqual(digest, signature)) {
-    // Invalid signature
+    console.log("invalid signature ma g"); // Invalid signature
+
     return res.status(403).json({
       error: "Invalid signature."
     });
-  }
+  } // Signature is valid, process the webhook event
 
-  console.log(req.body); // Signature is valid, process the webhook event
-  // const {even, data} = req.body;
-  // if (event="") {
-  //   // Handle the successful order payment event
-  //   // You can perform any actions you want here, such as updating your database, sending notifications, etc.
-  //   console.log("Received successful order payment event:", data);
-  //   // Respond with a 200 status to acknowledge receipt of the webhook
-  //   return res.sendStatus(200);
-  // } else {
-  //   // For other events, respond with a 204 status to indicate that the event is not handled by this endpoint
-  //   return res.sendStatus(204);
-  // }
+
+  var _req$body = req.body,
+      event = _req$body.event,
+      data = _req$body.data;
+
+  if (event === "order_paid") {
+    // Handle the successful order payment event
+    // You can perform any actions you want here, such as updating your database, sending notifications, etc.
+    console.log("Received successful order payment event:", data); // Respond with a 200 status to acknowledge receipt of the webhook
+
+    return res.sendStatus(200);
+  } else {
+    // For other events, respond with a 204 status to indicate that the event is not handled by this endpoint
+    return res.sendStatus(204);
+  }
 });
 module.exports = router; // test();
 
