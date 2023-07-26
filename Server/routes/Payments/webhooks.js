@@ -21,6 +21,8 @@ router.use((req, res, next) => {
 router.post("/", async (req, res) => {
   if (!req.rawBody) return console.log("req.rawBody does not exist");
 
+  if (!secret) return console.log("secret  does not exist");
+
   try {
     const headerSignarture = Buffer.from(req.get("X-Signature") || "", "utf8");
 

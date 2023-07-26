@@ -37,7 +37,15 @@ router.post("/", function _callee(req, res) {
           return _context.abrupt("return", console.log("req.rawBody does not exist"));
 
         case 2:
-          _context.prev = 2;
+          if (secret) {
+            _context.next = 4;
+            break;
+          }
+
+          return _context.abrupt("return", console.log("secret  does not exist"));
+
+        case 4:
+          _context.prev = 4;
           headerSignarture = Buffer.from(req.get("X-Signature") || "", "utf8"); // Verify the signature
 
           hmac = crypto.createHmac("sha256", secret);
@@ -46,7 +54,7 @@ router.post("/", function _callee(req, res) {
           console.log("generatedSigFromBody", generatedSigFromBody.length);
 
           if (crypto.timingSafeEqual(generatedSigFromBody, headerSignarture)) {
-            _context.next = 11;
+            _context.next = 13;
             break;
           }
 
@@ -56,12 +64,12 @@ router.post("/", function _callee(req, res) {
             error: "Invalid signature."
           }));
 
-        case 11:
+        case 13:
           // Signature is valid, process the webhook event
           _req$body = req.body, event = _req$body.event, data = _req$body.data;
 
           if (!(event === "order_created")) {
-            _context.next = 17;
+            _context.next = 19;
             break;
           }
 
@@ -71,23 +79,23 @@ router.post("/", function _callee(req, res) {
 
           return _context.abrupt("return", res.sendStatus(200));
 
-        case 17:
+        case 19:
           return _context.abrupt("return", res.sendStatus(204));
 
-        case 18:
-          _context.next = 23;
+        case 20:
+          _context.next = 25;
           break;
 
-        case 20:
-          _context.prev = 20;
-          _context.t0 = _context["catch"](2);
+        case 22:
+          _context.prev = 22;
+          _context.t0 = _context["catch"](4);
           console.log(_context.t0);
 
-        case 23:
+        case 25:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[2, 20]]);
+  }, null, null, [[4, 22]]);
 });
 module.exports = router;
