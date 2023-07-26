@@ -10,9 +10,7 @@ var crypto = require("crypto");
 var router = express.Router();
 
 var _require = require("../../envKeys/allKeys"),
-    getKeys = _require.getKeys; // const { retrieveStore, listAllStores } = require("lemonsqueezy.ts/store");
-// const { retrieveVariant, listAllVariants } = require("lemonsqueezy.ts/variant");
-// Middleware to store the raw request body in req.rawBody
+    getKeys = _require.getKeys; // Middleware to store the raw request body in req.rawBody
 
 
 router.use(function (req, res, next) {
