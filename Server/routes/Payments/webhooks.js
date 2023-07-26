@@ -8,46 +8,37 @@ const { getKeys } = require("../../envKeys/allKeys");
 const keysObjects = getKeys();
 const secret = keysObjects.webHookSecret;
 
-// Use express.raw() middleware to capture the raw request body
-router.use(express.raw({ type: "*/*" }));
+// // Use express.raw() middleware to capture the raw request body
+// router.use(express.raw({ type: "*/*" }));
 
 // Middleware to store the raw request body in req.rawBody
-router.use((req, res, next) => {
-  req.rawBody = req.body.toString("utf8");
-  console.log(req.rawBody);
-  next();
-});
+router.use(
+  bodyParser.json({
+    verify: (req, res, buf, encoding) => {
+      if (buf && buf.length) {
+        req.rawBody = buf.toString(encoding || "utf8");
 
-router.use(bodyParser.json());
+        console.log(req.rawBody);
+      }
+    },
+  })
+);
 
 // Endpoint to handle incoming webhook events
 router.post("/", async (req, res) => {
+  if (!req.rawBody) return console.log("req.rawBody does not exist");
   try {
     const signature = Buffer.from(req.get("X-Signature") || "", "utf8");
 
     // Verify the signature
     const hmac = crypto.createHmac("sha256", secret);
-    const digest = Buffer.from(
-      "sha256" + "=" + hmac.update(req.rawBody).digest("hex"),
-      "utf8"
-    );
+    const digest = Buffer.from(hmac.update(req.rawBody).digest("hex"), "utf8");
 
-    if (
-      !signature.length !== digest.length ||
-      !crypto.timingSafeEqual(digest, signature)
-    ) {
+    if (!crypto.timingSafeEqual(digest, signature)) {
       console.log("invalid signature ma g");
-
       // Invalid signature
       return res.status(403).json({ error: "Invalid signature." });
     }
-
-    // if (!crypto.timingSafeEqual(digest, signature)) {
-    //   console.log("invalid signature ma g");
-    //   throw new Error("Invalid signature.");
-    //   // Invalid signature
-    //   return res.status(403).json({ error: "Invalid signature." });
-    // }
     // Signature is valid, process the webhook event
     const { event, data } = req.body;
     if (event === "order_created") {
