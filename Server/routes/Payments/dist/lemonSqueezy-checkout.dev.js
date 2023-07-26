@@ -36,7 +36,7 @@ router.post("/", function _callee(req, res) {
       switch (_context.prev = _context.next) {
         case 0:
           planName = req.body.planName;
-          productName = "".concat(planName, " Plans");
+          productName = "".concat(planName, " Plan");
           _context.prev = 2;
           _context.next = 5;
           return regeneratorRuntime.awrap(createCheckout({

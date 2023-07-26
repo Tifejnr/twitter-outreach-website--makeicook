@@ -22,7 +22,7 @@ const redirectUrl = "https://www.collabfortrello.com";
 
 router.post("/", async (req, res) => {
   const { planName } = req.body;
-  const productName = `${planName} Plans`;
+  const productName = `${planName} Plan`;
 
   try {
     const newCheckout = await createCheckout({

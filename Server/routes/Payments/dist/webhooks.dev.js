@@ -23,6 +23,7 @@ router.use(function (req, res, next) {
   });
   req.on("end", function () {
     req.rawBody = data;
+    console.log(req.rawBody);
     next();
   });
 });
@@ -30,7 +31,7 @@ var keysObjects = getKeys();
 var secret = keysObjects.webHookSecret; // Endpoint to handle incoming webhook events
 
 router.post("/", function (req, res) {
-  console.log("yeah");
+  console.log("yeahaaaaaaaaaaaaaaaaaaaa");
   var signature = Buffer.from(req.get("X-Signature") || "", "utf8"); // Verify the signature
 
   var hmac = crypto.createHmac("sha256", secret);
@@ -49,7 +50,7 @@ router.post("/", function (req, res) {
       event = _req$body.event,
       data = _req$body.data;
 
-  if (event === "order_paid") {
+  if (event === "order_created") {
     // Handle the successful order payment event
     // You can perform any actions you want here, such as updating your database, sending notifications, etc.
     console.log("Received successful order payment event:", data); // Respond with a 200 status to acknowledge receipt of the webhook

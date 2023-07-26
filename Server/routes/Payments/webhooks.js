@@ -16,6 +16,7 @@ router.use((req, res, next) => {
   });
   req.on("end", () => {
     req.rawBody = data;
+    console.log(req.rawBody);
     next();
   });
 });
@@ -25,7 +26,7 @@ const secret = keysObjects.webHookSecret;
 
 // Endpoint to handle incoming webhook events
 router.post("/", (req, res) => {
-  console.log("yeah");
+  console.log("yeahaaaaaaaaaaaaaaaaaaaa");
   const signature = Buffer.from(req.get("X-Signature") || "", "utf8");
 
   // Verify the signature
@@ -39,7 +40,7 @@ router.post("/", (req, res) => {
   }
   // Signature is valid, process the webhook event
   const { event, data } = req.body;
-  if (event === "order_paid") {
+  if (event === "order_created") {
     // Handle the successful order payment event
     // You can perform any actions you want here, such as updating your database, sending notifications, etc.
     console.log("Received successful order payment event:", data);
