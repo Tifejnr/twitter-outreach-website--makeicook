@@ -34,12 +34,11 @@ router.post("/", async (req, res) => {
     console.log(" headerSignarture ", headerSignarture.length);
     console.log("generatedSigFromBody", generatedSigFromBody.length);
 
-    if (!crypto.timingSafeEqual(generatedSigFromBody, headerSignarture)) {
-      console.log("invalid signature ma g");
-      // Invalid signature
+    if (!crypto.timingSafeEqual(generatedSigFromBody, headerSignarture))
       return res.status(403).json({ error: "Invalid signature." });
-    }
     // Signature is valid, process the webhook event
+
+    console.log(req.body);
     const { event, data } = req.body;
     if (event === "order_created") {
       // Handle the successful order payment event

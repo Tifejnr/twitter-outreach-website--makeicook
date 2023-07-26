@@ -45,18 +45,17 @@ router.post("/", function _callee(req, res) {
           console.log("generatedSigFromBody", generatedSigFromBody.length);
 
           if (crypto.timingSafeEqual(generatedSigFromBody, headerSignarture)) {
-            _context.next = 11;
+            _context.next = 10;
             break;
           }
-
-          console.log("invalid signature ma g"); // Invalid signature
 
           return _context.abrupt("return", res.status(403).json({
             error: "Invalid signature."
           }));
 
-        case 11:
+        case 10:
           // Signature is valid, process the webhook event
+          console.log(req.body);
           _req$body = req.body, event = _req$body.event, data = _req$body.data;
 
           if (!(event === "order_created")) {
