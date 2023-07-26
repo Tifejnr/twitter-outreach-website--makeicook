@@ -2,6 +2,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const crypto = require("crypto");
+const { user } = require("../../models/users");
 const router = express.Router();
 const { getKeys } = require("../../envKeys/allKeys");
 
@@ -37,18 +38,19 @@ router.post("/", async (req, res) => {
       return res.status(403).json({ error: "Invalid signature." });
     // Signature is valid, process the webhook event
 
+    //destructuring data sent to get needed details
     const { data, meta } = req.body;
     const { event_name, custom_data } = meta;
     const { user_id } = custom_data;
 
     if (event_name === orderCreatedEvent) {
+      const accountUser = await user.findById(user_id);
+      if (!accountUser) return res.status(400).json({ invalid_User: true });
+
+      console.log(accountUser);
+
       // Handle the successful order payment event
       // You can perform any actions you want here, such as updating your database, sending notifications, etc.
-      console.log(
-        "Received successful order payment event:",
-        event_name,
-        user_id
-      );
       // Respond with a 200 status to acknowledge receipt of the webhook
       return res.sendStatus(200);
     } else {
@@ -61,5 +63,3 @@ router.post("/", async (req, res) => {
 });
 
 module.exports = router;
-
-`Farhad is a seriously talented developer. He delivered like a wizard, his communication was top-notch, lightning fast responsiveness, he delivered way before the deadline, was willing to go the extra mile and his skills were reasonably strong.. Clean code, amazing results, FAST.  Very pleased with his work and I can't recommend him highly enough. If Farhad bids on your project, look no further. You've found your guy.`;

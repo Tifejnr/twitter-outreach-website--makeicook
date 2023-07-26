@@ -3,21 +3,20 @@
 //Lemon squuezy payment checkou url getting
 var express = require("express");
 
-var axios = require("axios");
-
-var crypto = require("crypto");
+var _require = require("../../models/users"),
+    user = _require.user;
 
 var router = express.Router();
 
-var _require = require("lemonsqueezy.ts/checkout"),
-    createCheckout = _require.createCheckout;
+var _require2 = require("lemonsqueezy.ts/checkout"),
+    createCheckout = _require2.createCheckout;
 
-var _require2 = require("lemonsqueezy.ts/order"),
-    retrieveOrder = _require2.retrieveOrder,
-    listAllOrders = _require2.listAllOrders;
+var _require3 = require("lemonsqueezy.ts/order"),
+    retrieveOrder = _require3.retrieveOrder,
+    listAllOrders = _require3.listAllOrders;
 
-var _require3 = require("../../envKeys/allKeys"),
-    getKeys = _require3.getKeys; // const { retrieveStore, listAllStores } = require("lemonsqueezy.ts/store");
+var _require4 = require("../../envKeys/allKeys"),
+    getKeys = _require4.getKeys; // const { retrieveStore, listAllStores } = require("lemonsqueezy.ts/store");
 // const { retrieveVariant, listAllVariants } = require("lemonsqueezy.ts/variant");
 
 
@@ -30,7 +29,8 @@ var variantId = "101819";
 var productPrice = 4.99;
 var redirectUrl = "https://www.collabfortrello.com";
 router.post("/", function _callee(req, res) {
-  var planName, productName, accountUser, newCheckout, checkoutUrl;
+  var planName, productName, accountUser, email, _id, newCheckout, checkoutUrl;
+
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
@@ -43,18 +43,19 @@ router.post("/", function _callee(req, res) {
 
         case 5:
           accountUser = _context.sent;
-          _context.next = 8;
+          email = accountUser.email, _id = accountUser._id;
+          _context.next = 9;
           return regeneratorRuntime.awrap(createCheckout({
             apiKey: apiKey,
             checkout_data: {
-              email: "carter@gmail.com",
+              email: email,
               custom: {
-                user_id: userIdNow
+                user_id: _id
               }
             },
-            custom_price: 100000,
+            custom_price: productPrice * 100,
             product_options: {
-              description: "Hello World",
+              description: "You get 460 credits",
               name: productName,
               receipt_button_text: "Buy now",
               receipt_link_url: redirectUrl,
@@ -65,36 +66,36 @@ router.post("/", function _callee(req, res) {
             variant: variantId
           }));
 
-        case 8:
+        case 9:
           newCheckout = _context.sent;
 
           if (newCheckout) {
-            _context.next = 11;
+            _context.next = 12;
             break;
           }
 
           return _context.abrupt("return", console.log("checkout not sucessfull"));
 
-        case 11:
+        case 12:
           checkoutUrl = newCheckout.data.attributes.url;
           return _context.abrupt("return", res.json({
             checkoutUrl: checkoutUrl
           }));
 
-        case 15:
-          _context.prev = 15;
+        case 16:
+          _context.prev = 16;
           _context.t0 = _context["catch"](2);
           console.log("An error occurred:", _context.t0);
           res.json({
             error: _context.t0
           });
 
-        case 19:
+        case 20:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[2, 15]]);
+  }, null, null, [[2, 16]]);
 });
 module.exports = router; // test();
 
@@ -154,51 +155,4 @@ function test() {
       }
     }
   }, null, null, [[0, 10]]);
-} // testOrder();
-// async function testOrder() {
-//   try {
-//     const orders = await listAllOrders({
-//       apiKey,
-//     });
-//     console.log(orders.data);
-//     // console.log(orders.data[0].attributes);
-//   } catch (error) {
-//     console.log("An error occurred:", error);
-//   }
-// }
-// testOrder();
-
-
-function testOrder() {
-  var orderId, order;
-  return regeneratorRuntime.async(function testOrder$(_context3) {
-    while (1) {
-      switch (_context3.prev = _context3.next) {
-        case 0:
-          orderId = "986456";
-          _context3.prev = 1;
-          _context3.next = 4;
-          return regeneratorRuntime.awrap(retrieveOrder({
-            apiKey: apiKey,
-            id: orderId
-          }));
-
-        case 4:
-          order = _context3.sent;
-          console.log(order);
-          console.log(order.data.relationships);
-          _context3.next = 12;
-          break;
-
-        case 9:
-          _context3.prev = 9;
-          _context3.t0 = _context3["catch"](1);
-          console.log("An error occurred:", _context3.t0);
-
-        case 12:
-        case "end":
-          return _context3.stop();
-      }
-    }
-  }, null, null, [[1, 9]]);
 }

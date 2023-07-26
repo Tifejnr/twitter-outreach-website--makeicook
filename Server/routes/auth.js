@@ -6,7 +6,6 @@ const { signJwt } = require("../middlewares/jwt-related/sign-jwt");
 const { validateSignInParams } = require("../Joi-Validations/SignIn");
 
 router.post("/", async (req, res) => {
-  console.log(req.body);
   const { error } = validateSignInParams(req.body);
 
   if (error)

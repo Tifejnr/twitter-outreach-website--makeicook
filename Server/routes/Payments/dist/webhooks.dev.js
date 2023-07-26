@@ -7,10 +7,13 @@ var bodyParser = require("body-parser");
 
 var crypto = require("crypto");
 
+var _require = require("../../models/users"),
+    user = _require.user;
+
 var router = express.Router();
 
-var _require = require("../../envKeys/allKeys"),
-    getKeys = _require.getKeys;
+var _require2 = require("../../envKeys/allKeys"),
+    getKeys = _require2.getKeys;
 
 var keysObjects = getKeys();
 var secret = keysObjects.webHookSecret;
@@ -23,7 +26,7 @@ router.use(bodyParser.json({
 })); // Endpoint to handle incoming webhook events
 
 router.post("/", function _callee(req, res) {
-  var headerSignarture, hmac, generatedSigFromBody, _req$body, data, meta, event_name, custom_data, user_id;
+  var headerSignarture, hmac, generatedSigFromBody, _req$body, data, meta, event_name, custom_data, user_id, accountUser;
 
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
@@ -54,39 +57,55 @@ router.post("/", function _callee(req, res) {
 
         case 8:
           // Signature is valid, process the webhook event
+          //destructuring data sent to get needed details
           _req$body = req.body, data = _req$body.data, meta = _req$body.meta;
           event_name = meta.event_name, custom_data = meta.custom_data;
           user_id = custom_data.user_id;
 
           if (!(event_name === orderCreatedEvent)) {
-            _context.next = 16;
+            _context.next = 21;
             break;
           }
 
-          // Handle the successful order payment event
+          _context.next = 14;
+          return regeneratorRuntime.awrap(user.findById(user_id));
+
+        case 14:
+          accountUser = _context.sent;
+
+          if (accountUser) {
+            _context.next = 17;
+            break;
+          }
+
+          return _context.abrupt("return", res.status(400).json({
+            invalid_User: true
+          }));
+
+        case 17:
+          console.log(accountUser); // Handle the successful order payment event
           // You can perform any actions you want here, such as updating your database, sending notifications, etc.
-          console.log("Received successful order payment event:", event_name, user_id); // Respond with a 200 status to acknowledge receipt of the webhook
+          // Respond with a 200 status to acknowledge receipt of the webhook
 
           return _context.abrupt("return", res.sendStatus(200));
 
-        case 16:
+        case 21:
           return _context.abrupt("return", res.sendStatus(204));
 
-        case 17:
-          _context.next = 22;
+        case 22:
+          _context.next = 27;
           break;
 
-        case 19:
-          _context.prev = 19;
+        case 24:
+          _context.prev = 24;
           _context.t0 = _context["catch"](2);
           console.log(_context.t0);
 
-        case 22:
+        case 27:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[2, 19]]);
+  }, null, null, [[2, 24]]);
 });
 module.exports = router;
-"Farhad is a seriously talented developer. He delivered like a wizard, his communication was top-notch, lightning fast responsiveness, he delivered way before the deadline, was willing to go the extra mile and his skills were reasonably strong.. Clean code, amazing results, FAST.  Very pleased with his work and I can't recommend him highly enough. If Farhad bids on your project, look no further. You've found your guy.";

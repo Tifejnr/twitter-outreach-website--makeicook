@@ -38,12 +38,12 @@ app.use(coookieParser());
 //Importing api routes
 const registerUser = require("./routes/register-users");
 const signInUser = require("./routes/auth");
-const paymentsHandling = require("./routes/Payments/lemonSqueezy-checkout");
+const paymentsHandling = require("./routes/Payments/checkout");
 
 //api routes declaarations
 app.use("/api/register-user", registerUser);
 app.use("/api/sign-in", signInUser);
-app.use("/api/checkout", paymentsHandling);
+app.use("/api/checkout", loginStatusChecker, paymentsHandling);
 app.use("/api/checkout/webhooks", webhooks);
 app.use(
   express.static(

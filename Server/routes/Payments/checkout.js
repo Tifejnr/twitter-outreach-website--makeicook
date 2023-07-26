@@ -1,7 +1,6 @@
 //Lemon squuezy payment checkou url getting
 const express = require("express");
-const axios = require("axios");
-const crypto = require("crypto");
+const { user } = require("../../models/users");
 const router = express.Router();
 
 const { createCheckout } = require("lemonsqueezy.ts/checkout");
@@ -25,17 +24,21 @@ router.post("/", async (req, res) => {
   const productName = `${planName} Plan`;
 
   try {
+    //get userId to be sent in chekout details
+    const accountUser = await user.findById(userDetails._id);
+    const { email, _id } = accountUser;
+
     const newCheckout = await createCheckout({
       apiKey,
       checkout_data: {
-        email: "carter@gmail.com",
+        email: email,
         custom: {
-          user_id: userIdNow,
+          user_id: _id,
         },
       },
-      custom_price: 100000,
+      custom_price: productPrice * 100,
       product_options: {
-        description: "Hello World",
+        description: "You get 460 credits",
         name: productName,
         receipt_button_text: "Buy now",
         receipt_link_url: redirectUrl,
@@ -87,35 +90,6 @@ async function test() {
 
     const checkoutUrl = newCheckout.data.attributes.url;
     console.log(checkoutUrl);
-  } catch (error) {
-    console.log("An error occurred:", error);
-  }
-}
-
-// testOrder();
-// async function testOrder() {
-//   try {
-//     const orders = await listAllOrders({
-//       apiKey,
-//     });
-
-//     console.log(orders.data);
-//     // console.log(orders.data[0].attributes);
-//   } catch (error) {
-//     console.log("An error occurred:", error);
-//   }
-// }
-// testOrder();
-async function testOrder() {
-  const orderId = "986456";
-  try {
-    const order = await retrieveOrder({
-      apiKey,
-      id: orderId,
-    });
-
-    console.log(order);
-    console.log(order.data.relationships);
   } catch (error) {
     console.log("An error occurred:", error);
   }
