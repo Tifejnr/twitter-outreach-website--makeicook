@@ -22,16 +22,19 @@ router.post("/", async (req, res) => {
   if (!req.rawBody) return console.log("req.rawBody does not exist");
 
   try {
-    const signature = Buffer.from(req.get("X-Signature") || "", "utf8");
+    const headerSignarture = Buffer.from(req.get("X-Signature") || "", "utf8");
 
     // Verify the signature
     const hmac = crypto.createHmac("sha256", secret);
-    const digest = Buffer.from(hmac.update(req.rawBody).digest("hex"), "utf8");
+    const generatedSigFromBody = Buffer.from(
+      hmac.update(req.rawBody).digest("hex"),
+      "utf8"
+    );
 
     console.log("signature", signature);
     console.log("digest", digest);
 
-    if (!crypto.timingSafeEqual(digest, signature)) {
+    if (!crypto.timingSafeEqual(headerSignarture, generatedSigFromBody)) {
       console.log("invalid signature ma g");
       // Invalid signature
       return res.status(403).json({ error: "Invalid signature." });

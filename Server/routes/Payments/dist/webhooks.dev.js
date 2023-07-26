@@ -23,7 +23,7 @@ router.use(function (req, res, next) {
 }); // Endpoint to handle incoming webhook events
 
 router.post("/", function _callee(req, res) {
-  var signature, hmac, digest, _req$body, event, data;
+  var headerSignarture, hmac, generatedSigFromBody, _req$body, event, data;
 
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
@@ -38,14 +38,14 @@ router.post("/", function _callee(req, res) {
 
         case 2:
           _context.prev = 2;
-          signature = Buffer.from(req.get("X-Signature") || "", "utf8"); // Verify the signature
+          headerSignarture = Buffer.from(req.get("X-Signature") || "", "utf8"); // Verify the signature
 
           hmac = crypto.createHmac("sha256", secret);
-          digest = Buffer.from(hmac.update(req.rawBody).digest("hex"), "utf8");
+          generatedSigFromBody = Buffer.from(hmac.update(req.rawBody).digest("hex"), "utf8");
           console.log("signature", signature);
           console.log("digest", digest);
 
-          if (crypto.timingSafeEqual(digest, signature)) {
+          if (crypto.timingSafeEqual(headerSignarture, generatedSigFromBody)) {
             _context.next = 11;
             break;
           }
