@@ -16,67 +16,84 @@ var keysObjects = getKeys();
 var secret = keysObjects.webHookSecret; // Endpoint to handle incoming webhook events
 
 router.post("/", function _callee(req, res) {
-  var rawData;
+  var rawBody, headerSignarture, hmac, generatedSigFromBody, _req$body, event, data;
+
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          console.log(req.body);
-          rawData = "";
-          req.on("data", function (chunk) {
-            console.log(req.body); // Accumulate the raw data chunks
+          rawBody = req.body;
 
-            rawData += chunk;
-          });
-          req.on("end", function () {
-            // rawData now contains the complete raw data from the request
-            console.log("Raw Data:", rawData);
-            if (!rawData) return console.log("rawData  does not exist");
-            console.log(rawData);
-            if (!secret) return console.log("secret  does not exist");
+          if (rawBody) {
+            _context.next = 3;
+            break;
+          }
 
-            try {
-              var headerSignarture = Buffer.from(req.get("X-Signature") || "", "utf8"); // Verify the signature
+          return _context.abrupt("return", console.log("rawBody  does not exist"));
 
-              var hmac = crypto.createHmac("sha256", secret);
-              var generatedSigFromBody = Buffer.from(hmac.update(rawData).digest("hex"), "utf8");
-              console.log(" headerSignarture ", headerSignarture.length);
-              console.log("generatedSigFromBody", generatedSigFromBody.length);
+        case 3:
+          console.log(rawBody);
 
-              if (!crypto.timingSafeEqual(generatedSigFromBody, headerSignarture)) {
-                console.log("invalid signature ma g"); // Invalid signature
+          if (secret) {
+            _context.next = 6;
+            break;
+          }
 
-                return res.status(403).json({
-                  error: "Invalid signature."
-                });
-              } // Signature is valid, process the webhook event
+          return _context.abrupt("return", console.log("secret  does not exist"));
 
+        case 6:
+          _context.prev = 6;
+          headerSignarture = Buffer.from(req.get("X-Signature") || "", "utf8"); // Verify the signature
 
-              var _req$body = req.body,
-                  event = _req$body.event,
-                  data = _req$body.data;
+          hmac = crypto.createHmac("sha256", secret);
+          generatedSigFromBody = Buffer.from(hmac.update(rawBody).digest("hex"), "utf8");
+          console.log(" headerSignarture ", headerSignarture.length);
+          console.log("generatedSigFromBody", generatedSigFromBody.length);
 
-              if (event === "order_created") {
-                // Handle the successful order payment event
-                // You can perform any actions you want here, such as updating your database, sending notifications, etc.
-                console.log("Received successful order payment event:", data); // Respond with a 200 status to acknowledge receipt of the webhook
+          if (crypto.timingSafeEqual(generatedSigFromBody, headerSignarture)) {
+            _context.next = 15;
+            break;
+          }
 
-                return res.sendStatus(200);
-              } else {
-                // For other events, respond with a 204 status to indicate that the event is not handled by this endpoint
-                return res.sendStatus(204);
-              }
-            } catch (error) {
-              console.log(error);
-            }
-          });
+          console.log("invalid signature ma g"); // Invalid signature
 
-        case 4:
+          return _context.abrupt("return", res.status(403).json({
+            error: "Invalid signature."
+          }));
+
+        case 15:
+          // Signature is valid, process the webhook event
+          _req$body = req.body, event = _req$body.event, data = _req$body.data;
+
+          if (!(event === "order_created")) {
+            _context.next = 21;
+            break;
+          }
+
+          // Handle the successful order payment event
+          // You can perform any actions you want here, such as updating your database, sending notifications, etc.
+          console.log("Received successful order payment event:", data); // Respond with a 200 status to acknowledge receipt of the webhook
+
+          return _context.abrupt("return", res.sendStatus(200));
+
+        case 21:
+          return _context.abrupt("return", res.sendStatus(204));
+
+        case 22:
+          _context.next = 27;
+          break;
+
+        case 24:
+          _context.prev = 24;
+          _context.t0 = _context["catch"](6);
+          console.log(_context.t0);
+
+        case 27:
         case "end":
           return _context.stop();
       }
     }
-  });
+  }, null, null, [[6, 24]]);
 });
 module.exports = router;
 "Farhad is a seriously talented developer. He delivered like a wizard, his communication was top-notch, lightning fast responsiveness, he delivered way before the deadline, was willing to go the extra mile and his skills were reasonably strong.. Clean code, amazing results, FAST.  Very pleased with his work and I can't recommend him highly enough. If Farhad bids on your project, look no further. You've found your guy.";
