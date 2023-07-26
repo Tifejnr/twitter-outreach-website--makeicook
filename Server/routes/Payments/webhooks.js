@@ -8,6 +8,8 @@ const { getKeys } = require("../../envKeys/allKeys");
 const keysObjects = getKeys();
 const secret = keysObjects.webHookSecret;
 
+const orderCreatedEvent = "order_created";
+
 // Custom middleware to capture the raw request body before parsing it
 router.use(
   bodyParser.json({
@@ -36,12 +38,17 @@ router.post("/", async (req, res) => {
     // Signature is valid, process the webhook event
 
     const { data, meta } = req.body;
+    const { event_name, custom_data } = meta;
+    const { user_id } = custom_data;
 
-    console.log(meta);
-    if (meta.event_name === "order_created") {
+    if (event_name === orderCreatedEvent) {
       // Handle the successful order payment event
       // You can perform any actions you want here, such as updating your database, sending notifications, etc.
-      console.log("Received successful order payment event:", meta.event_name);
+      console.log(
+        "Received successful order payment event:",
+        event_name,
+        user_id
+      );
       // Respond with a 200 status to acknowledge receipt of the webhook
       return res.sendStatus(200);
     } else {

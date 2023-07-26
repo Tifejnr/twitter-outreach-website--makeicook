@@ -13,7 +13,8 @@ var _require = require("../../envKeys/allKeys"),
     getKeys = _require.getKeys;
 
 var keysObjects = getKeys();
-var secret = keysObjects.webHookSecret; // Custom middleware to capture the raw request body before parsing it
+var secret = keysObjects.webHookSecret;
+var orderCreatedEvent = "order_created"; // Custom middleware to capture the raw request body before parsing it
 
 router.use(bodyParser.json({
   verify: function verify(req, res, buf) {
@@ -22,7 +23,7 @@ router.use(bodyParser.json({
 })); // Endpoint to handle incoming webhook events
 
 router.post("/", function _callee(req, res) {
-  var headerSignarture, hmac, generatedSigFromBody, _req$body, data, meta;
+  var headerSignarture, hmac, generatedSigFromBody, _req$body, data, meta, event_name, custom_data, user_id;
 
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
@@ -54,37 +55,38 @@ router.post("/", function _callee(req, res) {
         case 8:
           // Signature is valid, process the webhook event
           _req$body = req.body, data = _req$body.data, meta = _req$body.meta;
-          console.log(meta);
+          event_name = meta.event_name, custom_data = meta.custom_data;
+          user_id = custom_data.user_id;
 
-          if (!(meta.event_name === "order_created")) {
-            _context.next = 15;
+          if (!(event_name === orderCreatedEvent)) {
+            _context.next = 16;
             break;
           }
 
           // Handle the successful order payment event
           // You can perform any actions you want here, such as updating your database, sending notifications, etc.
-          console.log("Received successful order payment event:", meta.event_name); // Respond with a 200 status to acknowledge receipt of the webhook
+          console.log("Received successful order payment event:", event_name, user_id); // Respond with a 200 status to acknowledge receipt of the webhook
 
           return _context.abrupt("return", res.sendStatus(200));
 
-        case 15:
+        case 16:
           return _context.abrupt("return", res.sendStatus(204));
 
-        case 16:
-          _context.next = 21;
+        case 17:
+          _context.next = 22;
           break;
 
-        case 18:
-          _context.prev = 18;
+        case 19:
+          _context.prev = 19;
           _context.t0 = _context["catch"](2);
           console.log(_context.t0);
 
-        case 21:
+        case 22:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[2, 18]]);
+  }, null, null, [[2, 19]]);
 });
 module.exports = router;
 "Farhad is a seriously talented developer. He delivered like a wizard, his communication was top-notch, lightning fast responsiveness, he delivered way before the deadline, was willing to go the extra mile and his skills were reasonably strong.. Clean code, amazing results, FAST.  Very pleased with his work and I can't recommend him highly enough. If Farhad bids on your project, look no further. You've found your guy.";
