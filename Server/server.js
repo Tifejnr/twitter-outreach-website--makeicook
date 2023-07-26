@@ -33,6 +33,7 @@ mongoose
 const registerUser = require("./routes/register-users");
 const signInUser = require("./routes/auth");
 const paymentsHandling = require("./routes/Payments/lemonSqueezy-checkout");
+const webhooks = require("./routes/Payments/webhooks");
 
 app.use(cors());
 app.use(express.json());
@@ -43,6 +44,7 @@ app.use(bodyParser.json());
 app.use("/api/register-user", registerUser);
 app.use("/api/sign-in", signInUser);
 app.use("/api/checkout", paymentsHandling);
+app.use("/api/checkout/webhooks", webhooks);
 app.use(
   express.static(
     path.join(__dirname, "../../Trello-Project-React/Frontend/dist")

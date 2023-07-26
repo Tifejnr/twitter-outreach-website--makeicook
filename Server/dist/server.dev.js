@@ -60,6 +60,8 @@ var signInUser = require("./routes/auth");
 
 var paymentsHandling = require("./routes/Payments/lemonSqueezy-checkout");
 
+var webhooks = require("./routes/Payments/webhooks");
+
 app.use(cors());
 app.use(express.json());
 app.use(coookieParser());
@@ -68,6 +70,7 @@ app.use(bodyParser.json()); //api routes declaarations
 app.use("/api/register-user", registerUser);
 app.use("/api/sign-in", signInUser);
 app.use("/api/checkout", paymentsHandling);
+app.use("/api/checkout/webhooks", webhooks);
 app.use(express["static"](path.join(__dirname, "../../Trello-Project-React/Frontend/dist"))); //Won't be accessible by React route, server owns this route
 
 app.get("/callback", loginStatusChecker, function _callee(req, res) {
