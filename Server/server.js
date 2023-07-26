@@ -17,6 +17,10 @@ const userToken = require("./middlewares/token-safety/decryptToken");
 require("dotenv").config();
 require("./startup/prod")(app);
 
+//webhooks set here so reqbody does not get parsed before reaching the route.
+const webhooks = require("./routes/Payments/webhooks");
+app.use("/api/checkout/webhooks", webhooks);
+
 //Concet to mong db
 const keysObjects = getKeys();
 const mongoDB_string = keysObjects.mongoDB_string;
@@ -28,14 +32,13 @@ mongoose
   .catch((err) => console.error("could not connect", err));
 
 app.use(cors());
-// app.use(express.json());
+app.use(express.json());
 app.use(coookieParser());
 
 //Importing api routes
 const registerUser = require("./routes/register-users");
 const signInUser = require("./routes/auth");
 const paymentsHandling = require("./routes/Payments/lemonSqueezy-checkout");
-const webhooks = require("./routes/Payments/webhooks");
 
 //api routes declaarations
 app.use("/api/register-user", registerUser);

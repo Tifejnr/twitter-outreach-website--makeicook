@@ -40,8 +40,12 @@ var userToken = require("./middlewares/token-safety/decryptToken");
 
 require("dotenv").config();
 
-require("./startup/prod")(app); //Concet to mong db
+require("./startup/prod")(app); //webhooks set here so reqbody does not get parsed before reaching the route.
 
+
+var webhooks = require("./routes/Payments/webhooks");
+
+app.use("/api/checkout/webhooks", webhooks); //Concet to mong db
 
 var keysObjects = getKeys();
 var mongoDB_string = keysObjects.mongoDB_string;
@@ -50,17 +54,15 @@ mongoose.connect(mongoDB_string).then(function () {
 })["catch"](function (err) {
   return console.error("could not connect", err);
 });
-app.use(cors()); // app.use(express.json());
-
+app.use(cors());
+app.use(express.json());
 app.use(coookieParser()); //Importing api routes
 
 var registerUser = require("./routes/register-users");
 
 var signInUser = require("./routes/auth");
 
-var paymentsHandling = require("./routes/Payments/lemonSqueezy-checkout");
-
-var webhooks = require("./routes/Payments/webhooks"); //api routes declaarations
+var paymentsHandling = require("./routes/Payments/lemonSqueezy-checkout"); //api routes declaarations
 
 
 app.use("/api/register-user", registerUser);
