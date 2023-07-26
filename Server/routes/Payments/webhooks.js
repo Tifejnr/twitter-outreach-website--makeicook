@@ -8,26 +8,14 @@ const { getKeys } = require("../../envKeys/allKeys");
 const keysObjects = getKeys();
 const secret = keysObjects.webHookSecret;
 
-// Custom middleware to capture the raw request body
-router.use((req, res, next) => {
-  let rawData = "";
-  req.on("data", (chunk) => {
-    rawData += chunk;
-  });
-
-  req.on("end", () => {
-    req.rawBody = rawData;
-
-    console.log(req.rawBody);
-    next();
-  });
-
-  req.on("error", (err) => {
-    // Handle any error that might occur during data reception.
-    console.error("Error while receiving request data:", err);
-    res.status(500).send("Error occurred while processing the request.");
-  });
-});
+// Custom middleware to capture the raw request body before parsing it
+router.use(
+  bodyParser.json({
+    verify: (req, res, buf) => {
+      req.rawBody = buf.toString();
+    },
+  })
+);
 
 // Endpoint to handle incoming webhook events
 router.post("/", async (req, res) => {

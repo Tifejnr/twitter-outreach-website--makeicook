@@ -13,24 +13,13 @@ var _require = require("../../envKeys/allKeys"),
     getKeys = _require.getKeys;
 
 var keysObjects = getKeys();
-var secret = keysObjects.webHookSecret; // Custom middleware to capture the raw request body
+var secret = keysObjects.webHookSecret; // Custom middleware to capture the raw request body before parsing it
 
-router.use(function (req, res, next) {
-  var rawData = "";
-  req.on("data", function (chunk) {
-    rawData += chunk;
-  });
-  req.on("end", function () {
-    req.rawBody = rawData;
-    console.log(req.rawBody);
-    next();
-  });
-  req.on("error", function (err) {
-    // Handle any error that might occur during data reception.
-    console.error("Error while receiving request data:", err);
-    res.status(500).send("Error occurred while processing the request.");
-  });
-}); // Endpoint to handle incoming webhook events
+router.use(bodyParser.json({
+  verify: function verify(req, res, buf) {
+    req.rawBody = buf.toString();
+  }
+})); // Endpoint to handle incoming webhook events
 
 router.post("/", function _callee(req, res) {
   var headerSignarture, hmac, generatedSigFromBody, _req$body, event, data;
