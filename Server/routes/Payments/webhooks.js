@@ -17,12 +17,17 @@ router.use((req, res, next) => {
 
   req.on("end", () => {
     req.rawBody = rawData;
+
+    console.log(req.rawBody);
     next();
   });
-});
 
-// Parse incoming request bodies in JSON format
-router.use(bodyParser.json());
+  req.on("error", (err) => {
+    // Handle any error that might occur during data reception.
+    console.error("Error while receiving request data:", err);
+    res.status(500).send("Error occurred while processing the request.");
+  });
+});
 
 // Endpoint to handle incoming webhook events
 router.post("/", async (req, res) => {

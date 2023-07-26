@@ -22,11 +22,15 @@ router.use(function (req, res, next) {
   });
   req.on("end", function () {
     req.rawBody = rawData;
+    console.log(req.rawBody);
     next();
   });
-}); // Parse incoming request bodies in JSON format
-
-router.use(bodyParser.json()); // Endpoint to handle incoming webhook events
+  req.on("error", function (err) {
+    // Handle any error that might occur during data reception.
+    console.error("Error while receiving request data:", err);
+    res.status(500).send("Error occurred while processing the request.");
+  });
+}); // Endpoint to handle incoming webhook events
 
 router.post("/", function _callee(req, res) {
   var headerSignarture, hmac, generatedSigFromBody, _req$body, event, data;
