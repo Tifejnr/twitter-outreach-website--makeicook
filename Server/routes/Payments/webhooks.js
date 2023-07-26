@@ -13,6 +13,8 @@ router.post("/", express.raw({ type: "*/*" }), async (req, res) => {
   const rawBody = req.body.toString();
   if (!rawBody) return console.log("rawBody  does not exist");
 
+  console.log(rawBody);
+
   if (!secret) return console.log("secret  does not exist");
 
   try {
@@ -21,7 +23,7 @@ router.post("/", express.raw({ type: "*/*" }), async (req, res) => {
     // Verify the signature
     const hmac = crypto.createHmac("sha256", secret);
     const generatedSigFromBody = Buffer.from(
-      hmac.update(req.rawBody).digest("hex"),
+      hmac.update(rawBody).digest("hex"),
       "utf8"
     );
 
