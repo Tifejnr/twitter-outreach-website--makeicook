@@ -13,13 +13,7 @@ var _require = require("../../envKeys/allKeys"),
     getKeys = _require.getKeys;
 
 var keysObjects = getKeys();
-var secret = keysObjects.webHookSecret;
-router.use(express.json({
-  limit: "5mb",
-  verify: function verify(req, res, buf) {
-    req.rawBody = buf.toString();
-  }
-})); // Endpoint to handle incoming webhook events
+var secret = keysObjects.webHookSecret; // Endpoint to handle incoming webhook events
 
 router.post("/", function _callee(req, res) {
   var headerSignarture, hmac, generatedSigFromBody, _req$body, event, data;

@@ -8,14 +8,6 @@ const { getKeys } = require("../../envKeys/allKeys");
 const keysObjects = getKeys();
 const secret = keysObjects.webHookSecret;
 
-router.use(
-  express.json({
-    limit: "5mb",
-    verify: (req, res, buf) => {
-      req.rawBody = buf.toString();
-    },
-  })
-);
 // Endpoint to handle incoming webhook events
 router.post("/", async (req, res) => {
   if (!req.rawBody) return console.log("req.rawBody does not exist");
