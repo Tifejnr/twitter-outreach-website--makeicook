@@ -22,7 +22,8 @@ router.use(bodyParser.json({
 })); // Endpoint to handle incoming webhook events
 
 router.post("/", function _callee(req, res) {
-  var headerSignarture, hmac, generatedSigFromBody, data;
+  var headerSignarture, hmac, generatedSigFromBody, _req$body, data, meta;
+
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
@@ -52,17 +53,17 @@ router.post("/", function _callee(req, res) {
 
         case 8:
           // Signature is valid, process the webhook event
-          console.log(req.body.meta);
-          data = req.body.data;
+          _req$body = req.body, data = _req$body.data, meta = _req$body.meta;
+          console.log(meta);
 
-          if (!(event === "order_created")) {
+          if (!(meta.event_name === "order_created")) {
             _context.next = 15;
             break;
           }
 
           // Handle the successful order payment event
           // You can perform any actions you want here, such as updating your database, sending notifications, etc.
-          console.log("Received successful order payment event:", data); // Respond with a 200 status to acknowledge receipt of the webhook
+          console.log("Received successful order payment event:", meta.event_name); // Respond with a 200 status to acknowledge receipt of the webhook
 
           return _context.abrupt("return", res.sendStatus(200));
 

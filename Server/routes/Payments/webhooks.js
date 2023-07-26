@@ -35,12 +35,13 @@ router.post("/", async (req, res) => {
       return res.status(403).json({ error: "Invalid signature." });
     // Signature is valid, process the webhook event
 
-    console.log(req.body.meta);
-    const { data } = req.body;
-    if (event === "order_created") {
+    const { data, meta } = req.body;
+
+    console.log(meta);
+    if (meta.event_name === "order_created") {
       // Handle the successful order payment event
       // You can perform any actions you want here, such as updating your database, sending notifications, etc.
-      console.log("Received successful order payment event:", data);
+      console.log("Received successful order payment event:", meta.event_name);
       // Respond with a 200 status to acknowledge receipt of the webhook
       return res.sendStatus(200);
     } else {
