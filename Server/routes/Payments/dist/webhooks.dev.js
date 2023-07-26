@@ -63,7 +63,7 @@ router.post("/", function _callee(req, res) {
           user_id = custom_data.user_id;
 
           if (!(event_name === orderCreatedEvent)) {
-            _context.next = 21;
+            _context.next = 22;
             break;
           }
 
@@ -83,29 +83,30 @@ router.post("/", function _callee(req, res) {
           }));
 
         case 17:
-          console.log(accountUser); // Handle the successful order payment event
+          accountUser.isPaid = true;
+          console.log(data); // Handle the successful order payment event
           // You can perform any actions you want here, such as updating your database, sending notifications, etc.
           // Respond with a 200 status to acknowledge receipt of the webhook
 
           return _context.abrupt("return", res.sendStatus(200));
 
-        case 21:
+        case 22:
           return _context.abrupt("return", res.sendStatus(204));
 
-        case 22:
-          _context.next = 27;
+        case 23:
+          _context.next = 28;
           break;
 
-        case 24:
-          _context.prev = 24;
+        case 25:
+          _context.prev = 25;
           _context.t0 = _context["catch"](2);
           console.log(_context.t0);
 
-        case 27:
+        case 28:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[2, 24]]);
+  }, null, null, [[2, 25]]);
 });
 module.exports = router;

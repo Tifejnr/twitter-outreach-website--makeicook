@@ -46,8 +46,9 @@ router.post("/", async (req, res) => {
     if (event_name === orderCreatedEvent) {
       const accountUser = await user.findById(user_id);
       if (!accountUser) return res.status(400).json({ invalid_User: true });
+      accountUser.isPaid = true;
 
-      console.log(accountUser);
+      console.log(data);
 
       // Handle the successful order payment event
       // You can perform any actions you want here, such as updating your database, sending notifications, etc.
