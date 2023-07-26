@@ -14,25 +14,12 @@ var _require = require("../../envKeys/allKeys"),
 
 var keysObjects = getKeys();
 var secret = keysObjects.webHookSecret;
-router.use(function (req, res, next) {
-  var contentType = req.headers["content-type"] || "",
-      mime = contentType.split(";")[0];
-
-  if (mime != "text/plain") {
-    return next();
+router.use(express.json({
+  limit: "5mb",
+  verify: function verify(req, res, buf) {
+    req.rawBody = buf.toString();
   }
-
-  var data = "";
-  req.setEncoding("utf8");
-  req.on("data", function (chunk) {
-    data += chunk;
-  });
-  req.on("end", function () {
-    req.rawBody = data;
-    console.log(req.rawBody);
-    next();
-  });
-}); // Endpoint to handle incoming webhook events
+})); // Endpoint to handle incoming webhook events
 
 router.post("/", function _callee(req, res) {
   var headerSignarture, hmac, generatedSigFromBody, _req$body, event, data;

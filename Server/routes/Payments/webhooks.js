@@ -8,26 +8,14 @@ const { getKeys } = require("../../envKeys/allKeys");
 const keysObjects = getKeys();
 const secret = keysObjects.webHookSecret;
 
-router.use(function (req, res, next) {
-  var contentType = req.headers["content-type"] || "",
-    mime = contentType.split(";")[0];
-
-  if (mime != "text/plain") {
-    return next();
-  }
-
-  var data = "";
-  req.setEncoding("utf8");
-  req.on("data", function (chunk) {
-    data += chunk;
-  });
-  req.on("end", function () {
-    req.rawBody = data;
-
-    console.log(req.rawBody);
-    next();
-  });
-});
+router.use(
+  express.json({
+    limit: "5mb",
+    verify: (req, res, buf) => {
+      req.rawBody = buf.toString();
+    },
+  })
+);
 // Endpoint to handle incoming webhook events
 router.post("/", async (req, res) => {
   if (!req.rawBody) return console.log("req.rawBody does not exist");
