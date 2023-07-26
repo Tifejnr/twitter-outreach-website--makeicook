@@ -42,8 +42,8 @@ router.post("/", function _callee(req, res) {
 
           hmac = crypto.createHmac("sha256", secret);
           generatedSigFromBody = Buffer.from(hmac.update(req.rawBody).digest("hex"), "utf8");
-          console.log("signature", signature);
-          console.log("digest", digest);
+          console.log(" headerSignarture ", headerSignarture);
+          console.log("generatedSigFromBody", generatedSigFromBody);
 
           if (crypto.timingSafeEqual(headerSignarture, generatedSigFromBody)) {
             _context.next = 11;

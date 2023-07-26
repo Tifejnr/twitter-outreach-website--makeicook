@@ -31,8 +31,8 @@ router.post("/", async (req, res) => {
       "utf8"
     );
 
-    console.log("signature", signature);
-    console.log("digest", digest);
+    console.log(" headerSignarture ", headerSignarture);
+    console.log("generatedSigFromBody", generatedSigFromBody);
 
     if (!crypto.timingSafeEqual(headerSignarture, generatedSigFromBody)) {
       console.log("invalid signature ma g");
