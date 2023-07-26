@@ -19,7 +19,6 @@ router.use(bodyParser.json()); // Custom middleware to store raw JSON data in re
 
 router.use(function (req, res, next) {
   req.rawBody = JSON.stringify(req.body);
-  console.log(req.rawBody);
   next();
 }); // Endpoint to handle incoming webhook events
 
@@ -44,9 +43,10 @@ router.post("/", function _callee(req, res) {
 
           hmac = crypto.createHmac("sha256", secret);
           digest = Buffer.from(hmac.update(req.rawBody).digest("hex"), "utf8");
+          console.log(digest, signature);
 
           if (crypto.timingSafeEqual(digest, signature)) {
-            _context.next = 10;
+            _context.next = 11;
             break;
           }
 
@@ -56,12 +56,12 @@ router.post("/", function _callee(req, res) {
             error: "Invalid signature."
           }));
 
-        case 10:
+        case 11:
           // Signature is valid, process the webhook event
           _req$body = req.body, event = _req$body.event, data = _req$body.data;
 
           if (!(event === "order_created")) {
-            _context.next = 16;
+            _context.next = 17;
             break;
           }
 
@@ -71,23 +71,23 @@ router.post("/", function _callee(req, res) {
 
           return _context.abrupt("return", res.sendStatus(200));
 
-        case 16:
+        case 17:
           return _context.abrupt("return", res.sendStatus(204));
 
-        case 17:
-          _context.next = 22;
+        case 18:
+          _context.next = 23;
           break;
 
-        case 19:
-          _context.prev = 19;
+        case 20:
+          _context.prev = 20;
           _context.t0 = _context["catch"](3);
           console.log(_context.t0);
 
-        case 22:
+        case 23:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[3, 19]]);
+  }, null, null, [[3, 20]]);
 });
 module.exports = router;

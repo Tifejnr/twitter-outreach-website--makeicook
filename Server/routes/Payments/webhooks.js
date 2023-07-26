@@ -14,8 +14,6 @@ router.use(bodyParser.json());
 // Custom middleware to store raw JSON data in req.rawBody
 router.use((req, res, next) => {
   req.rawBody = JSON.stringify(req.body);
-
-  console.log(req.rawBody);
   next();
 });
 
@@ -30,6 +28,8 @@ router.post("/", async (req, res) => {
     // Verify the signature
     const hmac = crypto.createHmac("sha256", secret);
     const digest = Buffer.from(hmac.update(req.rawBody).digest("hex"), "utf8");
+
+    console.log(digest, signature);
 
     if (!crypto.timingSafeEqual(digest, signature)) {
       console.log("invalid signature ma g");
