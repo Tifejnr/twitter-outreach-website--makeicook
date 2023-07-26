@@ -13,35 +13,44 @@ var _require = require("../../envKeys/allKeys"),
     getKeys = _require.getKeys;
 
 var keysObjects = getKeys();
-var secret = keysObjects.webHookSecret; // Use express.raw() middleware to capture the raw request body
+var secret = keysObjects.webHookSecret;
+var sigHeaderName = "X-Signature";
+var sigHashAlg = "sha256"; // Use express.raw() middleware to capture the raw request body
 
 router.use(express.raw({
   type: "*/*"
 })); // Middleware to store the raw request body in req.rawBody
 
-router.use(function (req, res, next) {
-  req.rawBody = req.body.toString("utf8");
-  console.log(req.rawBody);
-  next();
-});
-router.use(bodyParser.json()); // Endpoint to handle incoming webhook events
+router.use(bodyParser.json({
+  verify: function verify(req, res, buf, encoding) {
+    if (buf && buf.length) {
+      req.rawBody = buf.toString(encoding || "utf8");
+    }
+  }
+})); // Endpoint to handle incoming webhook events
 
 router.post("/", function _callee(req, res) {
-  var signature, hmac, digest, result, _req$body, event, data;
+  var signature, hmac, digest, _req$body, event, data;
 
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          _context.prev = 0;
-          signature = Buffer.from(req.get("X-Signature") || "", "utf8"); // Verify the signature
+          if (req.rawBody) {
+            _context.next = 2;
+            break;
+          }
 
-          hmac = crypto.createHmac("sha256", secret);
-          digest = Buffer.from(hmac.update(req.rawBody).digest("hex"), "utf8");
-          result = crypto.timingSafeEqual(digest, signature);
-          console.log(result);
+          return _context.abrupt("return", next("Request body empty"));
 
-          if (crypto.timingSafeEqual(digest, signature)) {
+        case 2:
+          _context.prev = 2;
+          signature = Buffer.from(req.get(sigHeaderName) || "", "utf8"); // Verify the signature
+
+          hmac = crypto.createHmac(sigHashAlg, secret);
+          digest = Buffer.from(sigHashAlg + "=" + hmac.update(req.rawBody).digest("hex"), "utf8");
+
+          if (!(!signature.length !== digest.length || !crypto.timingSafeEqual(digest, signature))) {
             _context.next = 9;
             break;
           }
@@ -76,7 +85,7 @@ router.post("/", function _callee(req, res) {
 
         case 18:
           _context.prev = 18;
-          _context.t0 = _context["catch"](0);
+          _context.t0 = _context["catch"](2);
           console.log(_context.t0);
 
         case 21:
@@ -84,6 +93,6 @@ router.post("/", function _callee(req, res) {
           return _context.stop();
       }
     }
-  }, null, null, [[0, 18]]);
+  }, null, null, [[2, 18]]);
 });
 module.exports = router;
