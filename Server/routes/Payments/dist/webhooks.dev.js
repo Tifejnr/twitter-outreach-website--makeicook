@@ -16,6 +16,7 @@ var keysObjects = getKeys();
 var secret = keysObjects.webHookSecret; // Endpoint to handle incoming webhook events
 
 router.post("/", function (req, res) {
+  console.log(req.body);
   var signature = Buffer.from(req.get("X-Signature") || "", "utf8");
   console.log(signature); // Verify the signature
 

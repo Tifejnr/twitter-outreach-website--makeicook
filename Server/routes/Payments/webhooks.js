@@ -10,6 +10,7 @@ const secret = keysObjects.webHookSecret;
 
 // Endpoint to handle incoming webhook events
 router.post("/", (req, res) => {
+  console.log(req.body);
   const signature = Buffer.from(req.get("X-Signature") || "", "utf8");
 
   console.log(signature);

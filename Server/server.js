@@ -29,16 +29,16 @@ mongoose
   })
   .catch((err) => console.error("could not connect", err));
 
+app.use(cors());
+app.use(express.json());
+app.use(coookieParser());
+app.use(bodyParser.json());
+
 //Importing api routes
 const registerUser = require("./routes/register-users");
 const signInUser = require("./routes/auth");
 const paymentsHandling = require("./routes/Payments/lemonSqueezy-checkout");
 const webhooks = require("./routes/Payments/webhooks");
-
-app.use(cors());
-app.use(express.json());
-app.use(coookieParser());
-app.use(bodyParser.json());
 
 //api routes declaarations
 app.use("/api/register-user", registerUser);

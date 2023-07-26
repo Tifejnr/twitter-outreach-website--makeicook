@@ -52,7 +52,11 @@ mongoose.connect(mongoDB_string).then(function () {
   console.log("connected to mong db");
 })["catch"](function (err) {
   return console.error("could not connect", err);
-}); //Importing api routes
+});
+app.use(cors());
+app.use(express.json());
+app.use(coookieParser());
+app.use(bodyParser.json()); //Importing api routes
 
 var registerUser = require("./routes/register-users");
 
@@ -60,12 +64,8 @@ var signInUser = require("./routes/auth");
 
 var paymentsHandling = require("./routes/Payments/lemonSqueezy-checkout");
 
-var webhooks = require("./routes/Payments/webhooks");
+var webhooks = require("./routes/Payments/webhooks"); //api routes declaarations
 
-app.use(cors());
-app.use(express.json());
-app.use(coookieParser());
-app.use(bodyParser.json()); //api routes declaarations
 
 app.use("/api/register-user", registerUser);
 app.use("/api/sign-in", signInUser);
