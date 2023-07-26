@@ -4,8 +4,6 @@ const axios = require("axios");
 const crypto = require("crypto");
 const router = express.Router();
 const { getKeys } = require("../../envKeys/allKeys");
-// const { retrieveStore, listAllStores } = require("lemonsqueezy.ts/store");
-// const { retrieveVariant, listAllVariants } = require("lemonsqueezy.ts/variant");
 
 // Middleware to store the raw request body in req.rawBody
 router.use((req, res, next) => {
