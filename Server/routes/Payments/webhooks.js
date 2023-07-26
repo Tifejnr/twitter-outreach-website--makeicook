@@ -8,11 +8,26 @@ const { getKeys } = require("../../envKeys/allKeys");
 const keysObjects = getKeys();
 const secret = keysObjects.webHookSecret;
 
+// Custom middleware to capture the raw request body
+router.use((req, res, next) => {
+  let rawData = "";
+  req.on("data", (chunk) => {
+    rawData += chunk;
+  });
+
+  req.on("end", () => {
+    req.rawBody = rawData;
+    next();
+  });
+});
+
+// Parse incoming request bodies in JSON format
+router.use(bodyParser.json());
+
 // Endpoint to handle incoming webhook events
 router.post("/", async (req, res) => {
-  const rawBody = JSON.stringify(req.body);
-  if (!rawBody) return console.log("rawBody  does not exist");
-  console.log(rawBody);
+  if (!req.rawBody) return console.log(" req.rawBody  does not exist");
+  console.log(req.rawBody);
 
   if (!secret) return console.log("secret  does not exist");
 
@@ -22,7 +37,7 @@ router.post("/", async (req, res) => {
     // Verify the signature
     const hmac = crypto.createHmac("sha256", secret);
     const generatedSigFromBody = Buffer.from(
-      hmac.update(rawBody).digest("hex"),
+      hmac.update(req.rawBody).digest("hex"),
       "utf8"
     );
 

@@ -13,45 +13,56 @@ var _require = require("../../envKeys/allKeys"),
     getKeys = _require.getKeys;
 
 var keysObjects = getKeys();
-var secret = keysObjects.webHookSecret; // Endpoint to handle incoming webhook events
+var secret = keysObjects.webHookSecret; // Custom middleware to capture the raw request body
+
+router.use(function (req, res, next) {
+  var rawData = "";
+  req.on("data", function (chunk) {
+    rawData += chunk;
+  });
+  req.on("end", function () {
+    req.rawBody = rawData;
+    next();
+  });
+}); // Parse incoming request bodies in JSON format
+
+router.use(bodyParser.json()); // Endpoint to handle incoming webhook events
 
 router.post("/", function _callee(req, res) {
-  var rawBody, headerSignarture, hmac, generatedSigFromBody, _req$body, event, data;
+  var headerSignarture, hmac, generatedSigFromBody, _req$body, event, data;
 
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          rawBody = JSON.stringify(req.body);
-
-          if (rawBody) {
-            _context.next = 3;
+          if (req.rawBody) {
+            _context.next = 2;
             break;
           }
 
-          return _context.abrupt("return", console.log("rawBody  does not exist"));
+          return _context.abrupt("return", console.log(" req.rawBody  does not exist"));
 
-        case 3:
-          console.log(rawBody);
+        case 2:
+          console.log(req.rawBody);
 
           if (secret) {
-            _context.next = 6;
+            _context.next = 5;
             break;
           }
 
           return _context.abrupt("return", console.log("secret  does not exist"));
 
-        case 6:
-          _context.prev = 6;
+        case 5:
+          _context.prev = 5;
           headerSignarture = Buffer.from(req.get("X-Signature") || "", "utf8"); // Verify the signature
 
           hmac = crypto.createHmac("sha256", secret);
-          generatedSigFromBody = Buffer.from(hmac.update(rawBody).digest("hex"), "utf8");
+          generatedSigFromBody = Buffer.from(hmac.update(req.rawBody).digest("hex"), "utf8");
           console.log(" headerSignarture ", headerSignarture.length);
           console.log("generatedSigFromBody", generatedSigFromBody.length);
 
           if (crypto.timingSafeEqual(generatedSigFromBody, headerSignarture)) {
-            _context.next = 15;
+            _context.next = 14;
             break;
           }
 
@@ -61,12 +72,12 @@ router.post("/", function _callee(req, res) {
             error: "Invalid signature."
           }));
 
-        case 15:
+        case 14:
           // Signature is valid, process the webhook event
           _req$body = req.body, event = _req$body.event, data = _req$body.data;
 
           if (!(event === "order_created")) {
-            _context.next = 21;
+            _context.next = 20;
             break;
           }
 
@@ -76,24 +87,24 @@ router.post("/", function _callee(req, res) {
 
           return _context.abrupt("return", res.sendStatus(200));
 
-        case 21:
+        case 20:
           return _context.abrupt("return", res.sendStatus(204));
 
-        case 22:
-          _context.next = 27;
+        case 21:
+          _context.next = 26;
           break;
 
-        case 24:
-          _context.prev = 24;
-          _context.t0 = _context["catch"](6);
+        case 23:
+          _context.prev = 23;
+          _context.t0 = _context["catch"](5);
           console.log(_context.t0);
 
-        case 27:
+        case 26:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[6, 24]]);
+  }, null, null, [[5, 23]]);
 });
 module.exports = router;
 "Farhad is a seriously talented developer. He delivered like a wizard, his communication was top-notch, lightning fast responsiveness, he delivered way before the deadline, was willing to go the extra mile and his skills were reasonably strong.. Clean code, amazing results, FAST.  Very pleased with his work and I can't recommend him highly enough. If Farhad bids on your project, look no further. You've found your guy.";
