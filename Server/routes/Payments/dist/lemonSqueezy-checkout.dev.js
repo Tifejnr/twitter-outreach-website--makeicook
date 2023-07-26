@@ -105,21 +105,20 @@ router.post("/webhooks", function (req, res) {
     return res.status(403).json({
       error: "Invalid signature."
     });
-  } // Signature is valid, process the webhook event
-
-
-  var data = req.body;
-
-  if (data) {
-    // Handle the successful order payment event
-    // You can perform any actions you want here, such as updating your database, sending notifications, etc.
-    console.log("Received successful order payment event:", data); // Respond with a 200 status to acknowledge receipt of the webhook
-
-    return res.sendStatus(200);
-  } else {
-    // For other events, respond with a 204 status to indicate that the event is not handled by this endpoint
-    return res.sendStatus(204);
   }
+
+  console.log(req.body); // Signature is valid, process the webhook event
+  // const {even, data} = req.body;
+  // if (event="") {
+  //   // Handle the successful order payment event
+  //   // You can perform any actions you want here, such as updating your database, sending notifications, etc.
+  //   console.log("Received successful order payment event:", data);
+  //   // Respond with a 200 status to acknowledge receipt of the webhook
+  //   return res.sendStatus(200);
+  // } else {
+  //   // For other events, respond with a 204 status to indicate that the event is not handled by this endpoint
+  //   return res.sendStatus(204);
+  // }
 });
 module.exports = router; // test();
 
