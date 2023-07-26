@@ -8,18 +8,14 @@ const { getKeys } = require("../../envKeys/allKeys");
 const keysObjects = getKeys();
 const secret = keysObjects.webHookSecret;
 
+// Use express.raw() middleware to capture the raw request body
+router.use(express.raw({ type: "*/*" }));
+
 // Middleware to store the raw request body in req.rawBody
 router.use((req, res, next) => {
-  let data = "";
-  req.setEncoding("utf8");
-  req.on("data", (chunk) => {
-    data += chunk;
-  });
-  req.on("end", () => {
-    req.rawBody = data;
-    console.log(req.rawBody);
-    next();
-  });
+  req.rawBody = req.body.toString("utf8");
+  console.log(req.rawBody);
+  next();
 });
 
 router.use(bodyParser.json());

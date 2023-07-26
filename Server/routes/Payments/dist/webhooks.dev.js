@@ -13,19 +13,16 @@ var _require = require("../../envKeys/allKeys"),
     getKeys = _require.getKeys;
 
 var keysObjects = getKeys();
-var secret = keysObjects.webHookSecret; // Middleware to store the raw request body in req.rawBody
+var secret = keysObjects.webHookSecret; // Use express.raw() middleware to capture the raw request body
+
+router.use(express.raw({
+  type: "*/*"
+})); // Middleware to store the raw request body in req.rawBody
 
 router.use(function (req, res, next) {
-  var data = "";
-  req.setEncoding("utf8");
-  req.on("data", function (chunk) {
-    data += chunk;
-  });
-  req.on("end", function () {
-    req.rawBody = data;
-    console.log(req.rawBody);
-    next();
-  });
+  req.rawBody = req.body.toString("utf8");
+  console.log(req.rawBody);
+  next();
 });
 router.use(bodyParser.json()); // Endpoint to handle incoming webhook events
 
