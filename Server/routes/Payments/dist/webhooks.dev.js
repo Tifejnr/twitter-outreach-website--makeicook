@@ -27,9 +27,7 @@ router.use(function (req, res, next) {
     next();
   });
 });
-router.use(bodyParser.json()); // Use body-parser to parse JSON requests
-
-app.use(bodyParser.json()); // Endpoint to handle incoming webhook events
+router.use(bodyParser.json()); // Endpoint to handle incoming webhook events
 
 router.post("/", function (req, res) {
   console.log(req.rawBody);

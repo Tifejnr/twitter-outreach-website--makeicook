@@ -24,9 +24,6 @@ router.use((req, res, next) => {
 
 router.use(bodyParser.json());
 
-// Use body-parser to parse JSON requests
-app.use(bodyParser.json());
-
 // Endpoint to handle incoming webhook events
 router.post("/", (req, res) => {
   console.log(req.rawBody);
