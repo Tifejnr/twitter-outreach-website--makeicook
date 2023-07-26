@@ -21,6 +21,7 @@ router.post("/", function _callee(req, res) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
+          console.log(req.body);
           rawData = "";
           req.on("data", function (chunk) {
             console.log(req.body); // Accumulate the raw data chunks
@@ -70,7 +71,7 @@ router.post("/", function _callee(req, res) {
             }
           });
 
-        case 3:
+        case 4:
         case "end":
           return _context.stop();
       }

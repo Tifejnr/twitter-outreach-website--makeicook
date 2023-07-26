@@ -10,6 +10,8 @@ const secret = keysObjects.webHookSecret;
 
 // Endpoint to handle incoming webhook events
 router.post("/", async (req, res) => {
+  console.log(req.body);
+
   let rawData = "";
   req.on("data", (chunk) => {
     console.log(req.body);
