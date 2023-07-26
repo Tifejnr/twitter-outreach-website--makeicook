@@ -13,18 +13,15 @@ var _require = require("../../envKeys/allKeys"),
     getKeys = _require.getKeys;
 
 var keysObjects = getKeys();
-var secret = keysObjects.webHookSecret; // // Use express.raw() middleware to capture the raw request body
-// router.use(express.raw({ type: "*/*" }));
-// Middleware to store the raw request body in req.rawBody
+var secret = keysObjects.webHookSecret; // Middleware to parse JSON data
 
-router.use(bodyParser.json({
-  verify: function verify(req, res, buf, encoding) {
-    if (buf && buf.length) {
-      req.rawBody = buf.toString(encoding || "utf8");
-      console.log(req.rawBody);
-    }
-  }
-})); // Endpoint to handle incoming webhook events
+router.use(bodyParser.json()); // Custom middleware to store raw JSON data in req.rawBody
+
+router.use(function (req, res, next) {
+  req.rawBody = JSON.stringify(req.body);
+  console.log(req.rawBody);
+  next();
+}); // Endpoint to handle incoming webhook events
 
 router.post("/", function _callee(req, res) {
   var signature, hmac, digest, _req$body, event, data;
@@ -41,14 +38,15 @@ router.post("/", function _callee(req, res) {
           return _context.abrupt("return", console.log("req.rawBody does not exist"));
 
         case 2:
-          _context.prev = 2;
+          console.log(req.rawBody);
+          _context.prev = 3;
           signature = Buffer.from(req.get("X-Signature") || "", "utf8"); // Verify the signature
 
           hmac = crypto.createHmac("sha256", secret);
           digest = Buffer.from(hmac.update(req.rawBody).digest("hex"), "utf8");
 
           if (crypto.timingSafeEqual(digest, signature)) {
-            _context.next = 9;
+            _context.next = 10;
             break;
           }
 
@@ -58,12 +56,12 @@ router.post("/", function _callee(req, res) {
             error: "Invalid signature."
           }));
 
-        case 9:
+        case 10:
           // Signature is valid, process the webhook event
           _req$body = req.body, event = _req$body.event, data = _req$body.data;
 
           if (!(event === "order_created")) {
-            _context.next = 15;
+            _context.next = 16;
             break;
           }
 
@@ -73,23 +71,23 @@ router.post("/", function _callee(req, res) {
 
           return _context.abrupt("return", res.sendStatus(200));
 
-        case 15:
+        case 16:
           return _context.abrupt("return", res.sendStatus(204));
 
-        case 16:
-          _context.next = 21;
+        case 17:
+          _context.next = 22;
           break;
 
-        case 18:
-          _context.prev = 18;
-          _context.t0 = _context["catch"](2);
+        case 19:
+          _context.prev = 19;
+          _context.t0 = _context["catch"](3);
           console.log(_context.t0);
 
-        case 21:
+        case 22:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[2, 18]]);
+  }, null, null, [[3, 19]]);
 });
 module.exports = router;

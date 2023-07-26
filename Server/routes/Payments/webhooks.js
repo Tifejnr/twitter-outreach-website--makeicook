@@ -8,25 +8,22 @@ const { getKeys } = require("../../envKeys/allKeys");
 const keysObjects = getKeys();
 const secret = keysObjects.webHookSecret;
 
-// // Use express.raw() middleware to capture the raw request body
-// router.use(express.raw({ type: "*/*" }));
+// Middleware to parse JSON data
+router.use(bodyParser.json());
 
-// Middleware to store the raw request body in req.rawBody
-router.use(
-  bodyParser.json({
-    verify: (req, res, buf, encoding) => {
-      if (buf && buf.length) {
-        req.rawBody = buf.toString(encoding || "utf8");
+// Custom middleware to store raw JSON data in req.rawBody
+router.use((req, res, next) => {
+  req.rawBody = JSON.stringify(req.body);
 
-        console.log(req.rawBody);
-      }
-    },
-  })
-);
+  console.log(req.rawBody);
+  next();
+});
 
 // Endpoint to handle incoming webhook events
 router.post("/", async (req, res) => {
   if (!req.rawBody) return console.log("req.rawBody does not exist");
+
+  console.log(req.rawBody);
   try {
     const signature = Buffer.from(req.get("X-Signature") || "", "utf8");
 
