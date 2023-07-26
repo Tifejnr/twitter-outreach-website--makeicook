@@ -22,8 +22,7 @@ router.use(bodyParser.json({
 })); // Endpoint to handle incoming webhook events
 
 router.post("/", function _callee(req, res) {
-  var headerSignarture, hmac, generatedSigFromBody, _req$body, event, data;
-
+  var headerSignarture, hmac, generatedSigFromBody, data;
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
@@ -53,8 +52,8 @@ router.post("/", function _callee(req, res) {
 
         case 8:
           // Signature is valid, process the webhook event
-          console.log(req.body);
-          _req$body = req.body, event = _req$body.event, data = _req$body.data;
+          console.log(req.body.meta);
+          data = req.body.data;
 
           if (!(event === "order_created")) {
             _context.next = 15;
