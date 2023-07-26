@@ -19,6 +19,7 @@ router.use(
 
 // Endpoint to handle incoming webhook events
 router.post("/", async (req, res) => {
+  console.log(req.rawBody);
   if (!req.rawBody) return console.log(" req.rawBody  does not exist");
   console.log(req.rawBody);
 

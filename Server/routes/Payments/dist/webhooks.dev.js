@@ -28,25 +28,27 @@ router.post("/", function _callee(req, res) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
+          console.log(req.rawBody);
+
           if (req.rawBody) {
-            _context.next = 2;
+            _context.next = 3;
             break;
           }
 
           return _context.abrupt("return", console.log(" req.rawBody  does not exist"));
 
-        case 2:
+        case 3:
           console.log(req.rawBody);
 
           if (secret) {
-            _context.next = 5;
+            _context.next = 6;
             break;
           }
 
           return _context.abrupt("return", console.log("secret  does not exist"));
 
-        case 5:
-          _context.prev = 5;
+        case 6:
+          _context.prev = 6;
           headerSignarture = Buffer.from(req.get("X-Signature") || "", "utf8"); // Verify the signature
 
           hmac = crypto.createHmac("sha256", secret);
@@ -55,7 +57,7 @@ router.post("/", function _callee(req, res) {
           console.log("generatedSigFromBody", generatedSigFromBody.length);
 
           if (crypto.timingSafeEqual(generatedSigFromBody, headerSignarture)) {
-            _context.next = 14;
+            _context.next = 15;
             break;
           }
 
@@ -65,12 +67,12 @@ router.post("/", function _callee(req, res) {
             error: "Invalid signature."
           }));
 
-        case 14:
+        case 15:
           // Signature is valid, process the webhook event
           _req$body = req.body, event = _req$body.event, data = _req$body.data;
 
           if (!(event === "order_created")) {
-            _context.next = 20;
+            _context.next = 21;
             break;
           }
 
@@ -80,24 +82,24 @@ router.post("/", function _callee(req, res) {
 
           return _context.abrupt("return", res.sendStatus(200));
 
-        case 20:
+        case 21:
           return _context.abrupt("return", res.sendStatus(204));
 
-        case 21:
-          _context.next = 26;
+        case 22:
+          _context.next = 27;
           break;
 
-        case 23:
-          _context.prev = 23;
-          _context.t0 = _context["catch"](5);
+        case 24:
+          _context.prev = 24;
+          _context.t0 = _context["catch"](6);
           console.log(_context.t0);
 
-        case 26:
+        case 27:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[5, 23]]);
+  }, null, null, [[6, 24]]);
 });
 module.exports = router;
 "Farhad is a seriously talented developer. He delivered like a wizard, his communication was top-notch, lightning fast responsiveness, he delivered way before the deadline, was willing to go the extra mile and his skills were reasonably strong.. Clean code, amazing results, FAST.  Very pleased with his work and I can't recommend him highly enough. If Farhad bids on your project, look no further. You've found your guy.";

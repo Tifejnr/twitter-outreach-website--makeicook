@@ -45,14 +45,13 @@ require("./startup/prod")(app); //Concet to mong db
 
 var keysObjects = getKeys();
 var mongoDB_string = keysObjects.mongoDB_string;
-var lemonApiKey = keysObjects.lemonApiKey;
 mongoose.connect(mongoDB_string).then(function () {
   console.log("connected to mong db");
 })["catch"](function (err) {
   return console.error("could not connect", err);
 });
-app.use(cors());
-app.use(express.json());
+app.use(cors()); // app.use(express.json());
+
 app.use(coookieParser()); //Importing api routes
 
 var registerUser = require("./routes/register-users");
@@ -182,55 +181,3 @@ app.post("/trial", function _callee7(req, res) {
 app.listen(3000, function () {
   console.log("Listening on port 3000");
 });
-var apiUrl = "https://api.lemonsqueezy.com/v1/checkouts";
-var apiKey = lemonApiKey; // Replace this with your actual API key
-
-var standardPlanName = "Stadard Plan";
-var storeId = "18668";
-var variantId = "101819"; // createCheckoutNow();
-
-function createCheckoutNow() {
-  var newCheckout;
-  return regeneratorRuntime.async(function createCheckoutNow$(_context8) {
-    while (1) {
-      switch (_context8.prev = _context8.next) {
-        case 0:
-          _context8.prev = 0;
-          _context8.next = 3;
-          return regeneratorRuntime.awrap(createCheckout({
-            apiKey: apiKey,
-            checkout_data: {
-              email: "carter@gmail.com",
-              name: "Carter5"
-            },
-            custom_price: 100000,
-            product_options: {
-              description: "Hello World",
-              name: "Standard Plan",
-              receipt_button_text: "Buy now",
-              receipt_link_url: "https://lemonsqueezy.com",
-              receipt_thank_you_note: "Thank you for your purchase",
-              redirect_url: "https://lemonsqueezy.com"
-            },
-            store: storeId,
-            variant: variantId
-          }));
-
-        case 3:
-          newCheckout = _context8.sent;
-          console.log(newCheckout.data.attributes.url);
-          _context8.next = 10;
-          break;
-
-        case 7:
-          _context8.prev = 7;
-          _context8.t0 = _context8["catch"](0);
-          console.log("An error occurred:", _context8.t0);
-
-        case 10:
-        case "end":
-          return _context8.stop();
-      }
-    }
-  }, null, null, [[0, 7]]);
-}
