@@ -31,9 +31,6 @@ router.post("/", async (req, res) => {
       "utf8"
     );
 
-    console.log(" headerSignarture ", headerSignarture.length);
-    console.log("generatedSigFromBody", generatedSigFromBody.length);
-
     if (!crypto.timingSafeEqual(generatedSigFromBody, headerSignarture))
       return res.status(403).json({ error: "Invalid signature." });
     // Signature is valid, process the webhook event

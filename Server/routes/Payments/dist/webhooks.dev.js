@@ -41,11 +41,9 @@ router.post("/", function _callee(req, res) {
 
           hmac = crypto.createHmac("sha256", secret);
           generatedSigFromBody = Buffer.from(hmac.update(req.rawBody).digest("hex"), "utf8");
-          console.log(" headerSignarture ", headerSignarture.length);
-          console.log("generatedSigFromBody", generatedSigFromBody.length);
 
           if (crypto.timingSafeEqual(generatedSigFromBody, headerSignarture)) {
-            _context.next = 10;
+            _context.next = 8;
             break;
           }
 
@@ -53,13 +51,13 @@ router.post("/", function _callee(req, res) {
             error: "Invalid signature."
           }));
 
-        case 10:
+        case 8:
           // Signature is valid, process the webhook event
           console.log(req.body);
           _req$body = req.body, event = _req$body.event, data = _req$body.data;
 
           if (!(event === "order_created")) {
-            _context.next = 17;
+            _context.next = 15;
             break;
           }
 
@@ -69,24 +67,24 @@ router.post("/", function _callee(req, res) {
 
           return _context.abrupt("return", res.sendStatus(200));
 
-        case 17:
+        case 15:
           return _context.abrupt("return", res.sendStatus(204));
 
-        case 18:
-          _context.next = 23;
+        case 16:
+          _context.next = 21;
           break;
 
-        case 20:
-          _context.prev = 20;
+        case 18:
+          _context.prev = 18;
           _context.t0 = _context["catch"](2);
           console.log(_context.t0);
 
-        case 23:
+        case 21:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[2, 20]]);
+  }, null, null, [[2, 18]]);
 });
 module.exports = router;
 "Farhad is a seriously talented developer. He delivered like a wizard, his communication was top-notch, lightning fast responsiveness, he delivered way before the deadline, was willing to go the extra mile and his skills were reasonably strong.. Clean code, amazing results, FAST.  Very pleased with his work and I can't recommend him highly enough. If Farhad bids on your project, look no further. You've found your guy.";
