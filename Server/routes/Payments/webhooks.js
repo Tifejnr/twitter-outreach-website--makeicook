@@ -8,15 +8,24 @@ const { getKeys } = require("../../envKeys/allKeys");
 const keysObjects = getKeys();
 const secret = keysObjects.webHookSecret;
 
-// Middleware to parse JSON data
-router.use(bodyParser.json());
+router.use(function (req, res, next) {
+  var contentType = req.headers["content-type"] || "",
+    mime = contentType.split(";")[0];
 
-// Custom middleware to store raw JSON data in req.rawBody
-router.use((req, res, next) => {
-  req.rawBody = JSON.stringify(req.body);
-  next();
+  if (mime != "text/plain") {
+    return next();
+  }
+
+  var data = "";
+  req.setEncoding("utf8");
+  req.on("data", function (chunk) {
+    data += chunk;
+  });
+  req.on("end", function () {
+    req.rawBody = data;
+    next();
+  });
 });
-
 // Endpoint to handle incoming webhook events
 router.post("/", async (req, res) => {
   if (!req.rawBody) return console.log("req.rawBody does not exist");

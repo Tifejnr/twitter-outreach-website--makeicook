@@ -13,13 +13,24 @@ var _require = require("../../envKeys/allKeys"),
     getKeys = _require.getKeys;
 
 var keysObjects = getKeys();
-var secret = keysObjects.webHookSecret; // Middleware to parse JSON data
-
-router.use(bodyParser.json()); // Custom middleware to store raw JSON data in req.rawBody
-
+var secret = keysObjects.webHookSecret;
 router.use(function (req, res, next) {
-  req.rawBody = JSON.stringify(req.body);
-  next();
+  var contentType = req.headers["content-type"] || "",
+      mime = contentType.split(";")[0];
+
+  if (mime != "text/plain") {
+    return next();
+  }
+
+  var data = "";
+  req.setEncoding("utf8");
+  req.on("data", function (chunk) {
+    data += chunk;
+  });
+  req.on("end", function () {
+    req.rawBody = data;
+    next();
+  });
 }); // Endpoint to handle incoming webhook events
 
 router.post("/", function _callee(req, res) {
