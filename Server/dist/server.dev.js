@@ -8,8 +8,6 @@ var cors = require("cors");
 
 var path = require("path");
 
-var bodyParser = require("body-parser");
-
 var ejs = require("ejs");
 
 var coookieParser = require("cookie-parser");
@@ -55,8 +53,7 @@ mongoose.connect(mongoDB_string).then(function () {
 });
 app.use(cors());
 app.use(express.json());
-app.use(coookieParser());
-app.use(bodyParser.json()); //Importing api routes
+app.use(coookieParser()); //Importing api routes
 
 var registerUser = require("./routes/register-users");
 

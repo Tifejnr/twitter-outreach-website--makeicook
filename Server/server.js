@@ -2,7 +2,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
-const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const coookieParser = require("cookie-parser");
 const app = express();
@@ -32,7 +31,6 @@ mongoose
 app.use(cors());
 app.use(express.json());
 app.use(coookieParser());
-app.use(bodyParser.json());
 
 //Importing api routes
 const registerUser = require("./routes/register-users");

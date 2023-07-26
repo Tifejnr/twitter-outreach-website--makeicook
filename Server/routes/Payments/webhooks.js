@@ -1,6 +1,6 @@
 //Lemon squuezy payment checkou url getting
 const express = require("express");
-const axios = require("axios");
+const bodyParser = require("body-parser");
 const crypto = require("crypto");
 const router = express.Router();
 const { getKeys } = require("../../envKeys/allKeys");
@@ -8,9 +8,29 @@ const { getKeys } = require("../../envKeys/allKeys");
 const keysObjects = getKeys();
 const secret = keysObjects.webHookSecret;
 
+// Middleware to store the raw request body in req.rawBody
+router.use((req, res, next) => {
+  let data = "";
+  req.setEncoding("utf8");
+  req.on("data", (chunk) => {
+    data += chunk;
+  });
+  req.on("end", () => {
+    req.rawBody = data;
+    console.log(req.rawBody);
+    next();
+  });
+});
+
+router.use(bodyParser.json());
+
+// Use body-parser to parse JSON requests
+app.use(bodyParser.json());
+
 // Endpoint to handle incoming webhook events
 router.post("/", (req, res) => {
   console.log(req.rawBody);
+  console.log(secret);
 
   try {
     const signature = Buffer.from(req.get("X-Signature") || "", "utf8");
