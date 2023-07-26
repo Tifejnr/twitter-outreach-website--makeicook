@@ -21,16 +21,17 @@ router.use((req, res, next) => {
 router.use(bodyParser.json());
 
 // Endpoint to handle incoming webhook events
-router.post("/", (req, res) => {
-  console.log(req.rawBody);
-  console.log(secret);
-
+router.post("/", async (req, res) => {
   try {
     const signature = Buffer.from(req.get("X-Signature") || "", "utf8");
 
     // Verify the signature
     const hmac = crypto.createHmac("sha256", secret);
     const digest = Buffer.from(hmac.update(req.rawBody).digest("hex"), "utf8");
+
+    const result = crypto.timingSafeEqual(digest, signature);
+
+    console.log(result);
 
     if (!crypto.timingSafeEqual(digest, signature)) {
       console.log("invalid signature ma g");
