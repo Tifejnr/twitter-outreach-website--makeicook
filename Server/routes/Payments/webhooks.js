@@ -5,27 +5,14 @@ const crypto = require("crypto");
 const router = express.Router();
 const { getKeys } = require("../../envKeys/allKeys");
 
-// Middleware to store the raw request body in req.rawBody
-router.use((req, res, next) => {
-  let data = "";
-  req.setEncoding("utf8");
-  req.on("data", (chunk) => {
-    data += chunk;
-  });
-  req.on("end", () => {
-    req.rawBody = data;
-    console.log(req.rawBody);
-    next();
-  });
-});
-
 const keysObjects = getKeys();
 const secret = keysObjects.webHookSecret;
 
 // Endpoint to handle incoming webhook events
 router.post("/", (req, res) => {
-  console.log("yeahaaaaaaaaaaaaaaaaaaaa");
   const signature = Buffer.from(req.get("X-Signature") || "", "utf8");
+
+  console.log(signature);
 
   // Verify the signature
   const hmac = crypto.createHmac("sha256", secret);
