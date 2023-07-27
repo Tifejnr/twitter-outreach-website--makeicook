@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import ToggleLabel from './ToggleLabel'
 
-export default function LandingPageToggle() {
+export default function LandingPageToggle(props) {
   return (
     <>
      <input type="checkbox" id="nav__checkbox" className="nav__checkbox" />
@@ -11,7 +11,7 @@ export default function LandingPageToggle() {
             
               <Link to="/register" >   
                     <button id="start-for-free-mobile-lp">
-                      <p>Free start</p>
+                      <p>{props.innerText}</p>
                     </button>
               </Link>
 

@@ -15,7 +15,7 @@ return (
 <>
   <nav className='nav'>
        
-       <LandingPageToggle/>
+       <LandingPageToggle innerText="Free start"/>
 
       <ul className="nav__menu">
 

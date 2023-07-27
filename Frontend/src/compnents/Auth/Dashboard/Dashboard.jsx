@@ -10,9 +10,9 @@ export default function Dashboard() {
 
   return (
     <>
-    <nav className='nav'>
+    <nav className='nav dashboard-nav'>
        
-       <LandingPageToggle/>
+       <LandingPageToggle innerText={"Credits: 500"}/>
 
       <ul className="nav__menu">
 

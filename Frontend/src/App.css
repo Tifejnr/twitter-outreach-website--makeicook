@@ -473,9 +473,11 @@ body {
 #start-for-free-mobile-lp {
   background-color: var(--deep-blue);
   border: 1px solid transparent;
-  border-radius: 1rem;
+  border-radius: 0.6rem;
   width: 7rem;
   cursor: pointer;
+  position: relative;
+  right: 0.5rem;
 }
 
 #start-for-free-mobile-lp:hover,

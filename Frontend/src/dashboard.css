@@ -1,3 +1,10 @@
+/* Dashboard Nav Design */
+.dashboard-nav #start-for-free-mobile-lp {
+  width: 8.5rem;
+  border-radius: 0.5rem;
+  right: 1.8rem;
+}
+
 .cartIcon,
 .logoutIcon {
   position: relative;
@@ -255,6 +262,55 @@ tr {
 
 tr:last-child td {
   border-color: transparent;
+}
+
+/* Buttons Design Block */
+.buy-credits-btn,
+.buy-btn-nav {
+  margin-top: 3rem;
+  display: grid;
+  justify-self: center;
+  width: 60%;
+  background-color: #101c77;
+  text-align: center;
+  padding: 1.5rem;
+  border-radius: 2rem;
+  font-size: 2rem;
+  font-weight: 600;
+  cursor: pointer;
+  max-width: 25rem;
+  color: #fff;
+  transition: 0.25s background-color linear;
+}
+
+.buy-credits-btn:hover,
+.buy-credits-btn:active,
+.buy-btn-nav:hover,
+.buy-btn-nav:active {
+  background-color: rgb(91, 91, 216);
+  color: #fff;
+  text-decoration: none;
+}
+
+.buy-btn-nav {
+  margin-top: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  width: 12rem;
+  padding: 0.8rem;
+  background-color: transparent;
+  border: 1px solid #101c77;
+  color: #101c77;
+}
+
+.change-password-btn {
+  margin: auto;
+  justify-self: center;
+  width: 65%;
+  font-size: 1.7rem;
+  max-width: none;
+  padding: 1rem;
+  margin-bottom: 6rem;
 }
 
 /* Change Password Block  */

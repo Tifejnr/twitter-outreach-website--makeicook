@@ -32,7 +32,7 @@ export default function ProfileDetails() {
               </tr>
 
               <tr>
-                <td>Plan</td>
+                <td>Current Plan</td>
                 <td className="value">{"Premium"}</td>
               </tr>
               <tr>
@@ -41,8 +41,6 @@ export default function ProfileDetails() {
               </tr>
             </tbody>
           </table>
-
-          <button>Buy Credits</button>
         </section>
       </section>
     </section>
