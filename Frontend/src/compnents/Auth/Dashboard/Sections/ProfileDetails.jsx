@@ -1,7 +1,9 @@
 import React from "react";
 import accountIcon from "../../../../assets/SVGs/account.svg"
 
-export default function ProfileDetails() {
+export default function ProfileDetails(props) {
+
+  const propObj = props.dashboardObj;
   return (
     <section className="profile">
       <section className="profileBlock">
@@ -15,29 +17,29 @@ export default function ProfileDetails() {
 
         <section className="profileDetails">
           <article className="name">
-            <h2>{"username"}</h2>
+            <h2>{propObj.name}</h2>
           </article>
           <article className="email">
-            <p>{"email"}</p>
+            <p>{propObj.email}</p>
           </article>
           <table>
             <tbody>
               <tr>
                 <td>Credits</td>
-                <td className="value">{"credits"}</td>
+                <td className="value">{propObj.credits}</td>
               </tr>
               <tr>
                 <td>Expiration</td>
-                <td className="value">{"creditsExpiration"}</td>
+                <td className="value">No expiration</td>
               </tr>
 
               <tr>
                 <td>Current Plan</td>
-                <td className="value">{"Premium"}</td>
+                <td className="value">{propObj.currentPlan}</td>
               </tr>
               <tr>
-                <td>Expiration</td>
-                <td className="value">{"creditsExpiration"}</td>
+                <td>Authorized</td>
+                <td className="value">{"Yes"}</td>
               </tr>
             </tbody>
           </table>

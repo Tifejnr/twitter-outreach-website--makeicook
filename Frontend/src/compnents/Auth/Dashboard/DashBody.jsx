@@ -6,11 +6,7 @@ import ProfileDetails from "./Sections/ProfileDetails";
 import Logout from "./Sections/Logout";
 import BuyCreditsButton from "./Sections/BuyCreditsButton";
 
-export default function DashBody() {
-  const [username, setUsername] = useState("username");
-  const [email, setEmail] = useState("email");
-  const [credits, setCredits] = useState(5);
-  const [creditsExpiration, setCreditsExpiration] = useState("Never");
+export default function DashBody(props) {
 
   return (
     <>
