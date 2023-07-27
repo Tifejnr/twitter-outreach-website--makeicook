@@ -32,14 +32,12 @@
 }
 
 /* User Account Design Block */
-main {
+.dashboard-container {
   margin-top: 8rem;
   display: grid;
   align-items: center;
   justify-items: center;
   padding: 0 2rem;
-  border-bottom: 1px solid #f2f2f2;
-  width: 100%;
 }
 
 .profileBlock {
@@ -47,6 +45,8 @@ main {
   flex-direction: column;
   align-items: center;
   justify-items: center;
+  border-bottom: 1px solid #f2f2f2;
+  padding-bottom: 1rem;
 }
 
 @media only screen and (min-width: 768px) {
@@ -61,15 +61,16 @@ main {
 .userAccountIconContainer {
   justify-self: left;
   text-align: left;
-  width: 100%;
+  width: 90%;
 }
 
 @media only screen and (min-width: 768px) {
   .userAccountIconContainer {
     grid-column: 2/6;
     justify-self: end;
-    margin: 0 2rem;
+    margin: 0 3rem;
     width: 20rem;
+    max-width: 25rem;
   }
 }
 
@@ -85,6 +86,10 @@ main {
   }
 }
 
+.profile {
+  width: 100%;
+}
+
 .profileDetails {
   justify-self: center;
   font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial,
@@ -92,6 +97,7 @@ main {
   font-size: 1.6rem;
   font-weight: 400;
   margin-bottom: 1rem;
+  width: 80%;
 }
 
 @media only screen and (min-width: 768px) {
@@ -222,15 +228,15 @@ td,
 tr {
   border-bottom: 1px solid #f2f2f2;
   border-collapse: collapse;
-  padding: 1rem;
+  padding: 1rem 0;
   color: var(--dark-des-blue);
   text-align: left;
   font-size: 1.6rem;
 }
 
-tr {
+/* tr {
   width: 100%;
-}
+} */
 
 tr td:first-child {
   font-weight: 500;
@@ -242,21 +248,24 @@ tr .value {
   padding-top: 0;
 }
 
-tr .jobRelatedKeyword {
+tr .jobRelatedKeyword,
+tr {
   min-width: 15rem;
-}
-
-.upLink {
-  width: 20rem;
-  max-width: 15rem;
-}
-
-@media only screen and (min-width: 768px) {
-  .upLink {
-    max-width: 40rem;
-  }
 }
 
 tr:last-child td {
   border-color: transparent;
+}
+
+/* Change Password Block  */
+
+.change-password-section h2 {
+  color: var(--dark-des-blue);
+  text-transform: lowercase;
+  margin: 2rem 0;
+  margin-top: 6rem;
+}
+
+.change-password-section h2::first-letter {
+  text-transform: capitalize;
 }

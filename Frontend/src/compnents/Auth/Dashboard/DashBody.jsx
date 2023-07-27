@@ -12,7 +12,7 @@ export default function DashBody() {
 
   return (
     <>
-      <main>
+      <main className="dashboard-container">
         <section className="profile">
           <section className="profileBlock">
             <picture className="userAccountIconContainer" title="My Profile">
@@ -32,38 +32,65 @@ export default function DashBody() {
               </article>
               <table>
                 <tbody>
-
                   <tr>
                     <td>Credits</td>
-                    <td className="value upLink">{credits}</td>
+                    <td className="value">{credits}</td>
                   </tr>
                   <tr>
-                    <td>Credits Expiration</td>
-                    <td className="value jobsPiadFor">{creditsExpiration}</td>
+                    <td>Expiration</td>
+                    <td className="value">{creditsExpiration}</td>
                   </tr>
 
-                </tbody>               
-              </table>
-
-              <button>Buy Credits</button>
-
-              <table>
-                 <tbody>
                   <tr>
-                    <td className="jobRelatedKeyword">Jobs Completed</td>
-                    <td className="value">kaka</td>
+                    <td>Plan</td>
+                    <td className="value">{"Premium"}</td>
                   </tr>
                   <tr>
-                    <td className="jobRelatedKeyword">To Be Completed</td>
-                    <td className="value">"jaj"</td>
+                    <td>Expiration</td>
+                    <td className="value">{creditsExpiration}</td>
                   </tr>
                 </tbody>
               </table>
+
+              <button>Buy Credits</button>
             </section>
           </section>
         </section>
+
+
+             <section className="change-password-section">
+        <h2>CHANGE ACCOUNT PASSWORD</h2>
+        <fieldset className="input-wrapper">
+          <label htmlFor="emailId">
+            <p>Old Password:</p>
+          </label>
+          <input
+            type="email"
+            placeholder="Enter your email"
+            id="emailId"
+            value={"email"}
+            //  onChange={(e)=> setEmail(e.target.value)}
+          />
+          <p className="error"></p>
+        </fieldset>
+        <fieldset className="input-wrapper">
+          <label htmlFor="passwordId">
+            <p>New Password:</p>
+          </label>
+          <input
+            type="password"
+            placeholder="Enter your password"
+            id="passwordId"
+            value={"password"}
+            //  onChange={(e)=> setPassword(e.target.value)}
+          />
+          <p className="error" id="regErrorDisplay"></p>
+        </fieldset>
+      </section>
+
       </main>
 
+ 
       <section
         className="logoutContainer"
         onClick={async (e) => {
