@@ -40,12 +40,12 @@ var userToken = require("./middlewares/token-safety/decryptToken");
 
 require("dotenv").config();
 
-require("./startup/prod")(app); //webhooks set here so reqbody does not get parsed before reaching the route.
+require("./startup/prod")(app); //webhooks set here so req.body does not get parsed into json before reaching the route. raw body is needed
 
 
 var webhooks = require("./routes/Payments/webhooks");
 
-app.use("/api/checkout/webhooks", webhooks); //Concet to mong db
+app.use("/api/checkout/webhooks", webhooks); //Connect to mong db
 
 var keysObjects = getKeys();
 var mongoDB_string = keysObjects.mongoDB_string;
@@ -62,11 +62,14 @@ var registerUser = require("./routes/register-users");
 
 var signInUser = require("./routes/auth");
 
-var paymentsHandling = require("./routes/Payments/checkout"); //api routes declaarations
+var paymentsHandling = require("./routes/Payments/checkout");
+
+var dashboard = require("./routes/dashboard"); //api routes declaarations
 
 
 app.use("/api/register-user", registerUser);
 app.use("/api/sign-in", signInUser);
+app.use("/api/dashboard", dashboard);
 app.use("/api/checkout", loginStatusChecker, paymentsHandling);
 app.use("/api/checkout/webhooks", webhooks);
 app.use(express["static"](path.join(__dirname, "../../Trello-Project-React/Frontend/dist"))); //Won't be accessible by React route, server owns this route

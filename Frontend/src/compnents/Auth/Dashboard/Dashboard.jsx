@@ -1,45 +1,53 @@
 import React, {useState, useEffect} from 'react'
+import { useNavigate} from 'react-router-dom'
+import axios from 'axios';
+import AuthFooter from '../AuthFooter';
+import LandingPageToggle from "../../Main-nav-bar/LandingPageToggle"
+import NavLogo from '../../Main-nav-bar/NavLogo';
+import NavItemsDashBoard from './NavItemsDashBoard';
+import ChangePassword from "./Sections/ChangePassword";
+import ProfileDetails from "./Sections/ProfileDetails";
+import Logout from "./Sections/Logout";
+import BuyCreditsButton from "./Sections/BuyCreditsButton";
 import { websiteUrl } from '../../../JS functions/websiteUrl';
+
+
+
+
 export default function Dashboard() { 
+  const [dashboardObj, setDashboardObj] = useState({
+    name: "Tifejnr",
+    email: "liltifejnr@gmail.com",
+    credits: 500,
+    currentPlan: "Trial"
 
-  const [username, setUsername] = useState("username");
-  const [email, setEmail] = useState("email");
-  const [credits, setCredits] = useState(5);
-  const [creditsExpiration, setCreditsExpiration] = useState("Never");
+  });
 
+
+ const navigate = useNavigate();
 
   useEffect(()=> {
-    
+  const url = `${websiteUrl}/api/dashboard`;
+
   const abortController = new AbortController();
 
     (async function () {
       try {
-        const url = `${websiteUrl}/start`;
-        const response = await fetch(url, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ true: true }),
-          signal: abortController.signal, // Pass the signal to the fetch call
-        });
+       const response = await axios.post(url, { true: true }, { signal: abortController.signal,});
 
-        const dataRaw = await response.json();
+       console.log(response)
 
-        if (!dataRaw) {
-          console.log("No data seen");
-          return;
-        }
+       if (response.unauthorizedToken) return ( navigate('/'))
 
-        if (dataRaw.error) {
-          if (dataRaw.error.code === "ENOTFOUND") {
+        if (response.error) {
+          if (response.error.code === "ENOTFOUND") {
             console.log("No internet network");
             return;
           }
         }
 
-        const data = dataRaw.boards;
-        setBoardsCollection(data);
+        const dashboardData = response.accountUser;
+        setDashboardObj(dashboardData);
       } catch (error) {
         console.log(error);
       }
@@ -55,7 +63,10 @@ export default function Dashboard() {
     <>
     <nav className='nav dashboard-nav'>
        
-       <LandingPageToggle innerText={"Credits: 500"}/>
+       <LandingPageToggle innerText={dashboardObj.credits==1 ? `Credit: ${dashboardObj.credits}` :
+       
+       `Credits: ${dashboardObj.credits}`
+       }/>
 
       <ul className="nav__menu">
 
@@ -67,9 +78,19 @@ export default function Dashboard() {
       </ul>
   </nav> 
 
-  <DashBody />
+  <main className="dashboard-container">
+       <ProfileDetails dashboardObj= {dashboardObj}/>
+        <BuyCreditsButton/>
+        <ChangePassword />
+  </main>
+
+
+  <Logout/>
 
   <AuthFooter/>
-    </>
+
+</>
   )
 }
+
+

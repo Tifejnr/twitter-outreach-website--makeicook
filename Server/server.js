@@ -17,11 +17,11 @@ const userToken = require("./middlewares/token-safety/decryptToken");
 require("dotenv").config();
 require("./startup/prod")(app);
 
-//webhooks set here so reqbody does not get parsed before reaching the route.
+//webhooks set here so req.body does not get parsed into json before reaching the route. raw body is needed
 const webhooks = require("./routes/Payments/webhooks");
 app.use("/api/checkout/webhooks", webhooks);
 
-//Concet to mong db
+//Connect to mong db
 const keysObjects = getKeys();
 const mongoDB_string = keysObjects.mongoDB_string;
 mongoose
@@ -39,10 +39,12 @@ app.use(coookieParser());
 const registerUser = require("./routes/register-users");
 const signInUser = require("./routes/auth");
 const paymentsHandling = require("./routes/Payments/checkout");
+const dashboard = require("./routes/dashboard");
 
 //api routes declaarations
 app.use("/api/register-user", registerUser);
 app.use("/api/sign-in", signInUser);
+app.use("/api/dashboard", dashboard);
 app.use("/api/checkout", loginStatusChecker, paymentsHandling);
 app.use("/api/checkout/webhooks", webhooks);
 app.use(
