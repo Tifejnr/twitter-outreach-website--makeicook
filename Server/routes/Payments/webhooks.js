@@ -47,10 +47,14 @@ router.post("/", async (req, res) => {
       const accountUser = await user.findById(user_id);
       if (!accountUser) return res.status(400).json({ invalid_User: true });
 
+      console.log(data);
+
       //destructuring data sent to get payment details
       const { status_formatted, attributes } = data;
       const { first_order_item } = attributes;
       const { product_name } = first_order_item;
+
+      console.log(product_name);
 
       if (!status_formatted != "Paid") return res.sendStatus(204);
       accountUser.isPaid = true;

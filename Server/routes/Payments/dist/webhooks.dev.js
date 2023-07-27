@@ -63,7 +63,7 @@ router.post("/", function _callee(req, res) {
           user_id = custom_data.user_id;
 
           if (!(event_name === orderCreatedEvent)) {
-            _context.next = 28;
+            _context.next = 30;
             break;
           }
 
@@ -83,19 +83,21 @@ router.post("/", function _callee(req, res) {
           }));
 
         case 17:
-          //destructuring data sent to get payment details
+          console.log(data); //destructuring data sent to get payment details
+
           status_formatted = data.status_formatted, attributes = data.attributes;
           first_order_item = attributes.first_order_item;
           product_name = first_order_item.product_name;
+          console.log(product_name);
 
           if (!(!status_formatted != "Paid")) {
-            _context.next = 22;
+            _context.next = 24;
             break;
           }
 
           return _context.abrupt("return", res.sendStatus(204));
 
-        case 22:
+        case 24:
           accountUser.isPaid = true;
           accountUser.credits = 460;
           console.log(accountUser); // You can perform any actions you want here, such as updating your database, sending notifications, etc.
@@ -103,23 +105,23 @@ router.post("/", function _callee(req, res) {
 
           return _context.abrupt("return", res.sendStatus(200));
 
-        case 28:
+        case 30:
           return _context.abrupt("return", res.sendStatus(204));
 
-        case 29:
-          _context.next = 34;
+        case 31:
+          _context.next = 36;
           break;
 
-        case 31:
-          _context.prev = 31;
+        case 33:
+          _context.prev = 33;
           _context.t0 = _context["catch"](2);
           console.log(_context.t0);
 
-        case 34:
+        case 36:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[2, 31]]);
+  }, null, null, [[2, 33]]);
 });
 module.exports = router;
