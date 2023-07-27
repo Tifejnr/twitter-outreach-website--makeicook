@@ -48,17 +48,16 @@ router.post("/", async (req, res) => {
       if (!accountUser) return res.status(400).json({ invalid_User: true });
 
       //destructuring data sent to get payment details
+      const { status_formatted, attributes } = data;
+      const { first_order_item } = attributes;
+      const { product_name } = first_order_item;
 
-      console.log(data);
-      // const { status_formatted, first_order_item } = data;
-      // const { product_name } = first_order_item;
+      if (!status_formatted != "Paid") return res.sendStatus(204);
+      accountUser.isPaid = true;
 
-      // if (!status_formatted != "Paid") return res.sendStatus(204);
-      // accountUser.isPaid = true;
+      accountUser.credits = 460;
 
-      // accountUser.credits = 460;
-
-      // console.log(accountUser);
+      console.log(accountUser);
 
       // You can perform any actions you want here, such as updating your database, sending notifications, etc.
       // Respond with a 200 status to acknowledge receipt of the webhook
