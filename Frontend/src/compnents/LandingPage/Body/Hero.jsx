@@ -7,8 +7,8 @@ export default function Hero() {
 <>
     <section className='hero-container'> 
      <div className='hero-inner-container'>
-      <h1>Automate Team Members Management in Trello!</h1>
-      <h3>Save time and stress of manual addition and removal of trello team members from multiple boards and workspaces</h3>
+      <h1>Automate Trello Team Members Addition and Removal</h1>
+      <h3>Save time and stress of manually adding and removing trello team members from multiple boards and workspaces</h3>
        
         <section className='call-to-action-cont'>
           <Link  to="/register" className='oauth-button'>
