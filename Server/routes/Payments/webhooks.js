@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const crypto = require("crypto");
 const { user } = require("../../models/users");
 const router = express.Router();
+const { allPlansArrayObj } = require("./allPlanDetails/allPlans");
 const { getKeys } = require("../../envKeys/allKeys");
 
 const keysObjects = getKeys();
@@ -47,19 +48,25 @@ router.post("/", async (req, res) => {
       const accountUser = await user.findById(user_id);
       if (!accountUser) return res.status(400).json({ invalid_User: true });
 
-      console.log(data);
-
       //destructuring data sent to get payment details
       const { status_formatted, attributes } = data;
       const { first_order_item } = attributes;
-      const { product_name } = first_order_item;
+      const { variant_id } = first_order_item;
 
-      console.log(product_name);
+      if (status_formatted != "Paid") return res.sendStatus(204);
+      //getting product details to update
+      const product = allPlansArrayObj.find(
+        (planObj) => planObj.variantId == variant_id
+      );
 
-      if (!status_formatted != "Paid") return res.sendStatus(204);
+      if (!product) {
+        console.log("product not found");
+        return res.status(402).json({ notFound: true });
+      }
+
       accountUser.isPaid = true;
 
-      accountUser.credits = 460;
+      accountUser.credits = product.credits;
 
       console.log(accountUser);
 

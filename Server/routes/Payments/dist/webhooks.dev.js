@@ -12,8 +12,11 @@ var _require = require("../../models/users"),
 
 var router = express.Router();
 
-var _require2 = require("../../envKeys/allKeys"),
-    getKeys = _require2.getKeys;
+var _require2 = require("./allPlanDetails/allPlans"),
+    allPlansArrayObj = _require2.allPlansArrayObj;
+
+var _require3 = require("../../envKeys/allKeys"),
+    getKeys = _require3.getKeys;
 
 var keysObjects = getKeys();
 var secret = keysObjects.webHookSecret;
@@ -26,7 +29,7 @@ router.use(bodyParser.json({
 })); // Endpoint to handle incoming webhook events
 
 router.post("/", function _callee(req, res) {
-  var headerSignarture, hmac, generatedSigFromBody, _req$body, data, meta, event_name, custom_data, user_id, accountUser, status_formatted, attributes, first_order_item, product_name;
+  var headerSignarture, hmac, generatedSigFromBody, _req$body, data, meta, event_name, custom_data, user_id, accountUser, status_formatted, attributes, first_order_item, variant_id, product;
 
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
@@ -63,7 +66,7 @@ router.post("/", function _callee(req, res) {
           user_id = custom_data.user_id;
 
           if (!(event_name === orderCreatedEvent)) {
-            _context.next = 30;
+            _context.next = 32;
             break;
           }
 
@@ -83,45 +86,59 @@ router.post("/", function _callee(req, res) {
           }));
 
         case 17:
-          console.log(data); //destructuring data sent to get payment details
-
+          //destructuring data sent to get payment details
           status_formatted = data.status_formatted, attributes = data.attributes;
           first_order_item = attributes.first_order_item;
-          product_name = first_order_item.product_name;
-          console.log(product_name);
+          variant_id = first_order_item.variant_id;
 
-          if (!(!status_formatted != "Paid")) {
-            _context.next = 24;
+          if (!(status_formatted != "Paid")) {
+            _context.next = 22;
             break;
           }
 
           return _context.abrupt("return", res.sendStatus(204));
 
-        case 24:
+        case 22:
+          //getting product details to update
+          product = allPlansArrayObj.find(function (planObj) {
+            return planObj.variantId == variant_id;
+          });
+
+          if (product) {
+            _context.next = 26;
+            break;
+          }
+
+          console.log("product not found");
+          return _context.abrupt("return", res.status(402).json({
+            notFound: true
+          }));
+
+        case 26:
           accountUser.isPaid = true;
-          accountUser.credits = 460;
+          accountUser.credits = product.credits;
           console.log(accountUser); // You can perform any actions you want here, such as updating your database, sending notifications, etc.
           // Respond with a 200 status to acknowledge receipt of the webhook
 
           return _context.abrupt("return", res.sendStatus(200));
 
-        case 30:
+        case 32:
           return _context.abrupt("return", res.sendStatus(204));
 
-        case 31:
-          _context.next = 36;
+        case 33:
+          _context.next = 38;
           break;
 
-        case 33:
-          _context.prev = 33;
+        case 35:
+          _context.prev = 35;
           _context.t0 = _context["catch"](2);
           console.log(_context.t0);
 
-        case 36:
+        case 38:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[2, 33]]);
+  }, null, null, [[2, 35]]);
 });
 module.exports = router;
