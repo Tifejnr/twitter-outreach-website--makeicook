@@ -18,7 +18,7 @@ function getCheckoutLink(planName) {
       switch (_context.prev = _context.next) {
         case 0:
           paramToServer = {
-            planName: planName
+            planName: planName.trim()
           };
           isUserLoggedInEndpoint = "".concat(_websiteUrl.websiteUrl, "/api/checkout");
           _context.prev = 2;

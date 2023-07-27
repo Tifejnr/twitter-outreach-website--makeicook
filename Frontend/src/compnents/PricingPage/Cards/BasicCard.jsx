@@ -73,7 +73,7 @@ export default function BasicCard(props) {
                   </li>
                 </ul>
               </div>
-              <Link htmlFor="/" onClick={planCheckout} >Get Plan</Link>
+              <button className='getPlanBtn' onClick={planCheckout} >Get Plan</button>
             </div>
     </div>
   )

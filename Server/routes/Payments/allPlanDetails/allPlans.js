@@ -1,21 +1,7 @@
 const { basicPlanObj } = require("./basic");
+const { standardPlanObj } = require("./standard");
+const { PremiumPlanObj } = require("./premium");
 
-const standardPlanObj = {
-  planName: "Standard",
-  planPrice: 19,
-  credits: 110,
-};
+const allPlansArrayObj = [basicPlanObj, standardPlanObj, PremiumPlanObj];
 
-const PremiumPlanObj = {
-  planName: "Premium",
-  planPrice: 49,
-  credits: 500,
-};
-
-const allPlansObj = {
-  basicPlanObj,
-  standardPlanObj,
-  PremiumPlanObj,
-};
-
-exports.allPlansObj = allPlansObj;
+exports.allPlansArrayObj = allPlansArrayObj;

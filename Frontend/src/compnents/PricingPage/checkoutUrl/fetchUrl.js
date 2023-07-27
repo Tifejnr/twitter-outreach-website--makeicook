@@ -3,7 +3,7 @@ import { websiteUrl } from "../../../JS functions/websiteUrl";
 
 export default async function getCheckoutLink(planName) {
   const paramToServer = {
-    planName,
+    planName: planName.trim(),
   };
   const isUserLoggedInEndpoint = `${websiteUrl}/api/checkout`;
   try {

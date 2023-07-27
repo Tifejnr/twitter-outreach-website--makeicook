@@ -1156,7 +1156,7 @@ img.faq-item__arrow-icon {
   margin-top: 0.7rem;
 }
 
-.card a {
+.card .getPlanBtn {
   position: relative;
   z-index: 2;
   background: #fff;
@@ -1176,12 +1176,11 @@ img.faq-item__arrow-icon {
   font-size: 1.6rem;
   cursor: pointer;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
-  text-decoration: none;
+  transition: 0.25s background-color linear;
 }
 
-.card a:hover {
+.card .getPlanBtn:hover {
   background-color: rgba(48, 11, 184, 0.6);
-  text-decoration: none;
   color: #fff;
 }
 
