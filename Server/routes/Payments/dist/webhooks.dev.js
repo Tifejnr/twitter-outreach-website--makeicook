@@ -66,7 +66,7 @@ router.post("/", function _callee(req, res) {
           user_id = custom_data.user_id;
 
           if (!(event_name === orderCreatedEvent)) {
-            _context.next = 32;
+            _context.next = 33;
             break;
           }
 
@@ -90,22 +90,23 @@ router.post("/", function _callee(req, res) {
           status_formatted = data.status_formatted, attributes = data.attributes;
           first_order_item = attributes.first_order_item;
           variant_id = first_order_item.variant_id;
+          console.log(status_formatted);
 
           if (!(status_formatted != "Paid")) {
-            _context.next = 22;
+            _context.next = 23;
             break;
           }
 
           return _context.abrupt("return", res.sendStatus(204));
 
-        case 22:
+        case 23:
           //getting product details to update
           product = allPlansArrayObj.find(function (planObj) {
             return planObj.variantId == variant_id;
           });
 
           if (product) {
-            _context.next = 26;
+            _context.next = 27;
             break;
           }
 
@@ -114,7 +115,7 @@ router.post("/", function _callee(req, res) {
             notFound: true
           }));
 
-        case 26:
+        case 27:
           accountUser.isPaid = true;
           accountUser.credits = product.credits;
           console.log(accountUser); // You can perform any actions you want here, such as updating your database, sending notifications, etc.
@@ -122,23 +123,23 @@ router.post("/", function _callee(req, res) {
 
           return _context.abrupt("return", res.sendStatus(200));
 
-        case 32:
+        case 33:
           return _context.abrupt("return", res.sendStatus(204));
 
-        case 33:
-          _context.next = 38;
+        case 34:
+          _context.next = 39;
           break;
 
-        case 35:
-          _context.prev = 35;
+        case 36:
+          _context.prev = 36;
           _context.t0 = _context["catch"](2);
           console.log(_context.t0);
 
-        case 38:
+        case 39:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[2, 35]]);
+  }, null, null, [[2, 36]]);
 });
 module.exports = router;

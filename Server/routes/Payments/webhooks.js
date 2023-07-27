@@ -52,6 +52,7 @@ router.post("/", async (req, res) => {
       const { status_formatted, attributes } = data;
       const { first_order_item } = attributes;
       const { variant_id } = first_order_item;
+      console.log(status_formatted);
 
       if (status_formatted != "Paid") return res.sendStatus(204);
       //getting product details to update
