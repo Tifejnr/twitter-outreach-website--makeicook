@@ -29,7 +29,7 @@ router.use(bodyParser.json({
 })); // Endpoint to handle incoming webhook events
 
 router.post("/", function _callee(req, res) {
-  var headerSignarture, hmac, generatedSigFromBody, _req$body, data, meta, event_name, custom_data, user_id, accountUser, status_formatted, attributes, first_order_item, variant_id, product;
+  var headerSignarture, hmac, generatedSigFromBody, _req$body, data, meta, event_name, custom_data, user_id, accountUser, attributes, first_order_item, status_formatted, variant_id, product;
 
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
@@ -87,8 +87,8 @@ router.post("/", function _callee(req, res) {
 
         case 17:
           //destructuring data sent to get payment details
-          status_formatted = data.status_formatted, attributes = data.attributes;
-          first_order_item = attributes.first_order_item;
+          attributes = data.attributes;
+          first_order_item = attributes.first_order_item, status_formatted = attributes.status_formatted;
           variant_id = first_order_item.variant_id;
           console.log(status_formatted);
 

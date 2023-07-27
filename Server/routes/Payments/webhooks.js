@@ -49,8 +49,8 @@ router.post("/", async (req, res) => {
       if (!accountUser) return res.status(400).json({ invalid_User: true });
 
       //destructuring data sent to get payment details
-      const { status_formatted, attributes } = data;
-      const { first_order_item } = attributes;
+      const { attributes } = data;
+      const { first_order_item, status_formatted } = attributes;
       const { variant_id } = first_order_item;
       console.log(status_formatted);
 
