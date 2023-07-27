@@ -26,7 +26,7 @@ router.use(bodyParser.json({
 })); // Endpoint to handle incoming webhook events
 
 router.post("/", function _callee(req, res) {
-  var headerSignarture, hmac, generatedSigFromBody, _req$body, data, meta, event_name, custom_data, user_id, accountUser, status_formatted, first_order_item, product_name;
+  var headerSignarture, hmac, generatedSigFromBody, _req$body, data, meta, event_name, custom_data, user_id, accountUser;
 
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
@@ -63,7 +63,7 @@ router.post("/", function _callee(req, res) {
           user_id = custom_data.user_id;
 
           if (!(event_name === orderCreatedEvent)) {
-            _context.next = 27;
+            _context.next = 21;
             break;
           }
 
@@ -84,42 +84,34 @@ router.post("/", function _callee(req, res) {
 
         case 17:
           //destructuring data sent to get payment details
-          status_formatted = data.status_formatted, first_order_item = data.first_order_item;
-          product_name = first_order_item.product_name;
-
-          if (!(!status_formatted != "Paid")) {
-            _context.next = 21;
-            break;
-          }
-
-          return _context.abrupt("return", res.sendStatus(204));
-
-        case 21:
-          accountUser.isPaid = true;
-          accountUser.credits = 460;
-          console.log(accountUser); // Handle the successful order payment event
+          console.log(data); // const { status_formatted, first_order_item } = data;
+          // const { product_name } = first_order_item;
+          // if (!status_formatted != "Paid") return res.sendStatus(204);
+          // accountUser.isPaid = true;
+          // accountUser.credits = 460;
+          // console.log(accountUser);
           // You can perform any actions you want here, such as updating your database, sending notifications, etc.
           // Respond with a 200 status to acknowledge receipt of the webhook
 
           return _context.abrupt("return", res.sendStatus(200));
 
-        case 27:
+        case 21:
           return _context.abrupt("return", res.sendStatus(204));
 
-        case 28:
-          _context.next = 33;
+        case 22:
+          _context.next = 27;
           break;
 
-        case 30:
-          _context.prev = 30;
+        case 24:
+          _context.prev = 24;
           _context.t0 = _context["catch"](2);
           console.log(_context.t0);
 
-        case 33:
+        case 27:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[2, 30]]);
+  }, null, null, [[2, 24]]);
 });
 module.exports = router;
