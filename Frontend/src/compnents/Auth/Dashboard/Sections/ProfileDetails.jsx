@@ -17,7 +17,7 @@ export default function ProfileDetails(props) {
 
         <section className="profileDetails">
           <article className="name">
-            <h2>{propObj.name}</h2>
+            <h2>{propObj.email}</h2>
           </article>
           <article className="email">
             <p>{propObj.email}</p>
@@ -35,7 +35,7 @@ export default function ProfileDetails(props) {
 
               <tr>
                 <td>Current Plan</td>
-                <td className="value">{propObj.currentPlan}</td>
+                <td className="value">{propObj.plan}</td>
               </tr>
               <tr>
                 <td>Authorized</td>

@@ -190,22 +190,30 @@ p {
   display: flex;
   width: 16rem;
   height: 7rem;
-  max-width: 30rem;
+  max-width: 32rem;
   justify-content: space-around;
   align-items: center;
   border: 1px solid red;
   border-radius: 0.6rem;
   padding: 0.4rem;
   color: var(--dark-des-blue);
+  background-color: transparent;
+  transition: 0.3s background-color ease-in-out;
+  cursor: pointer;
 }
 
 .logoutLink:hover {
-  background-color: rgba(44, 42, 42, 0.2);
-  color: red;
+  background-color: red;
+  color: #fff;
 }
 
 .logoutLink h3 {
   font-size: 1.6rem;
+  color: var(--dark-des-blue);
+}
+
+.logoutLink h3:hover {
+  color: #fff;
 }
 
 /* Circular Shadow on Logout Button */
@@ -253,6 +261,7 @@ tr td:first-child {
 tr .value {
   text-align: left;
   padding-top: 0;
+  font-weight: 600;
 }
 
 tr .jobRelatedKeyword,

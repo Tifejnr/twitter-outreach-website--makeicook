@@ -46,7 +46,7 @@ export default function Dashboard() {
           }
         }
 
-        const dashboardData = response.accountUser;
+        const dashboardData = response.data.accountUser;
         setDashboardObj(dashboardData);
       } catch (error) {
         console.log(error);
