@@ -69,9 +69,6 @@ router.post("/", async (req, res) => {
 
       accountUser.credits = product.credits;
 
-      console.log(accountUser);
-
-      // You can perform any actions you want here, such as updating your database, sending notifications, etc.
       // Respond with a 200 status to acknowledge receipt of the webhook
       return res.sendStatus(200);
     } else {
