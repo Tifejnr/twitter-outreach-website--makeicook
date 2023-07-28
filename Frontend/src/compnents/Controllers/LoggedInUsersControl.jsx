@@ -1,26 +1,28 @@
 import React, { useState, useEffect } from 'react'
-import {Navigate} from "react-router-dom";
-import isUserLoggedIn from '../../JS functions/Auth/is-user-logged-in';
+import {useNavigate, Navigate} from "react-router-dom";
+import isLoginAndAuthorized from './isLoginAndAuthorized';
 
 //This route protects both logged in an unauthorized users
 export default  function LoggedInUsersControl({children}) {
 const [isLoggedIn, setIsLoggedIn]= useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    checkIfLoggedIn();
-  }, []);
-
-
-  const checkIfLoggedIn = async () => {
+  const checkIsLoginAndAuthorized = async () => {
     try {
-      const response = await isUserLoggedIn();
-      if (!response) return setIsLoggedIn(true)
+      const response = await isLoginAndAuthorized();
+      if (response.authorized) return setIsLoggedIn(true)
+      if (response.isLoggedIn) return navigate('/authorize');
+
         return setIsLoggedIn(false)
     } catch (error) {
       console.error('Error fetching data:', error);
       return setIsLoggedIn(false)
     }
   };
+
+    checkIsLoginAndAuthorized();
+  }, []);
 
   if (isLoggedIn === undefined) return "";
 

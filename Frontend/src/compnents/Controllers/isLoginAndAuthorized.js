@@ -2,13 +2,16 @@ import axios from "axios";
 import { websiteUrl } from "../websiteUrl";
 
 export default async function isLoginAndAuthorized() {
-  const isUserLoggedInEndpoint = `${websiteUrl}/isloggedIn`;
+  const isUserAuthorized = `${websiteUrl}/isloggedIn`;
   try {
-    const response = await axios.post(isUserLoggedInEndpoint);
+    const response = await axios.post(isUserAuthorized);
     const data = await response.data;
 
-    if (!data.loggedIn) return false;
-    return true;
+    if (data.authorized) return data;
+
+    if (data.loggedIn) return data;
+
+    return false;
   } catch (error) {
     console.log(error.response.data);
     const errorMessage = error.response.data.unAuthorizedToken;

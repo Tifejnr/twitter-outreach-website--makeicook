@@ -12,15 +12,15 @@ var _websiteUrl = require("../websiteUrl");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function isLoginAndAuthorized() {
-  var isUserLoggedInEndpoint, response, data, errorMessage;
+  var isUserAuthorized, response, data, errorMessage;
   return regeneratorRuntime.async(function isLoginAndAuthorized$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          isUserLoggedInEndpoint = "".concat(_websiteUrl.websiteUrl, "/isloggedIn");
+          isUserAuthorized = "".concat(_websiteUrl.websiteUrl, "/isloggedIn");
           _context.prev = 1;
           _context.next = 4;
-          return regeneratorRuntime.awrap(_axios["default"].post(isUserLoggedInEndpoint));
+          return regeneratorRuntime.awrap(_axios["default"].post(isUserAuthorized));
 
         case 4:
           response = _context.sent;
@@ -30,27 +30,35 @@ function isLoginAndAuthorized() {
         case 7:
           data = _context.sent;
 
-          if (data.loggedIn) {
+          if (!data.authorized) {
             _context.next = 10;
             break;
           }
 
-          return _context.abrupt("return", false);
+          return _context.abrupt("return", data);
 
         case 10:
-          return _context.abrupt("return", true);
+          if (!data.loggedIn) {
+            _context.next = 12;
+            break;
+          }
 
-        case 13:
-          _context.prev = 13;
+          return _context.abrupt("return", data);
+
+        case 12:
+          return _context.abrupt("return", false);
+
+        case 15:
+          _context.prev = 15;
           _context.t0 = _context["catch"](1);
           console.log(_context.t0.response.data);
           errorMessage = _context.t0.response.data.unAuthorizedToken;
           return _context.abrupt("return", false);
 
-        case 18:
+        case 20:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[1, 13]]);
+  }, null, null, [[1, 15]]);
 }

@@ -15,6 +15,7 @@ const { getKeys } = require("./envKeys/allKeys");
 const loginStatusChecker = require("./middlewares/jwt-related/login-status-checker");
 const signatureChecker = require("./middlewares/signature/checkSignature");
 const userToken = require("./middlewares/token-safety/decryptToken");
+const isUserAuthorized = require("./middlewares/jwt-related/authorizedUserVerification");
 require("dotenv").config();
 require("./startup/prod")(app);
 
@@ -83,6 +84,13 @@ app.set(
 app.post("/isloggedIn", loginStatusChecker, async (req, res) => {
   res.json({ loggedIn: true });
 });
+app.post(
+  "/is-account-authorized",
+  [loginStatusChecker, isUserAuthorized],
+  async (req, res) => {
+    res.json({ authorized: true });
+  }
+);
 
 app.post("/authorize", loginStatusChecker, async (req, res) => {
   login(req, res);
