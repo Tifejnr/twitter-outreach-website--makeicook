@@ -1,8 +1,9 @@
 import React,  { useEffect } from 'react'
 import HomePageNavItems from './HomePageNavItems'
-import NavToggleIcon from '../Main-nav-bar/NavToggleIcon'
+import LandingPageToggle from '../Main-nav-bar/LandingPageToggle'
 import NavLogo from '../Main-nav-bar/NavLogo'
 import LoggedInUsersControl from '../Controllers/LoggedInUsersControl'
+import Boards from './Sections/BoardsTools/Boards'
 
 
 export default function HomePage() {
@@ -12,7 +13,7 @@ export default function HomePage() {
 <LoggedInUsersControl>
   
   <nav className='nav'>
-       <NavToggleIcon/>
+      <LandingPageToggle innerText="Credits: 0" pageLink="/register"/>
 
       <ul className="nav__menu">
 
@@ -23,6 +24,10 @@ export default function HomePage() {
         {<HomePageNavItems/>}     
       </ul>
   </nav>  
+
+  <main className='home-main-cont'>
+    <Boards/>
+  </main>
 
 </LoggedInUsersControl>  
 </>

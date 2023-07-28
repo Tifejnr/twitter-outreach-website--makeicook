@@ -13,6 +13,12 @@ body {
   font-family: "noto-sans", sans-serif;
 }
 
+/* Home Body Design Block */
+.home-main-cont {
+  position: relative;
+  top: 8rem;
+}
+
 .item {
   display: block;
   width: 100%;
