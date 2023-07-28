@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import {Navigate} from "react-router-dom";
 import isUserLoggedIn from '../../JS functions/Auth/is-user-logged-in';
 
-//This route protects both logged in an unauthorized users
-export default  function LoggedInUsersControl({children}) {
+
+export default  function LoginOnlyControl({children}) {
 const [isLoggedIn, setIsLoggedIn]= useState();
 
   useEffect(() => {

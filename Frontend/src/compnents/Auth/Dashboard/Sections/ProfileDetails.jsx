@@ -17,7 +17,7 @@ export default function ProfileDetails(props) {
 
         <section className="profileDetails">
           <article className="name">
-            <h2>{propObj.email}</h2>
+            <h2>{propObj.name}</h2>
           </article>
           <article className="email">
             <p>{propObj.email}</p>
