@@ -16,10 +16,10 @@ import { websiteUrl } from '../../../JS functions/websiteUrl';
 
 export default function Dashboard() { 
   const [dashboardObj, setDashboardObj] = useState({
-    name: "Tifejnr",
-    email: "liltifejnr@gmail.com",
-    credits: 500,
-    currentPlan: "Trial"
+    name: "",
+    email: "",
+    credits: null,
+    currentPlan: ""
 
   });
 
@@ -35,8 +35,6 @@ export default function Dashboard() {
       try {
        const response = await axios.post(url, { true: true }, { signal: abortController.signal,});
 
-       console.log(response)
-
        if (response.unauthorizedToken) return ( navigate('/'))
 
         if (response.error) {
@@ -48,6 +46,7 @@ export default function Dashboard() {
 
         const dashboardData = response.data.accountUser;
         setDashboardObj(dashboardData);
+
       } catch (error) {
         console.log(error);
       }
@@ -59,6 +58,9 @@ export default function Dashboard() {
     };
   }, []);
 
+
+  // if (dashboardObj.email === "") return  console.log("server error");
+
   return (
     <>
     <nav className='nav dashboard-nav'>
@@ -66,7 +68,7 @@ export default function Dashboard() {
        <LandingPageToggle innerText={dashboardObj.credits==1 ? `Credit: ${dashboardObj.credits}` :
        
        `Credits: ${dashboardObj.credits}`
-       }/>
+       } pageLink ="#"/>
 
       <ul className="nav__menu">
 
@@ -74,7 +76,7 @@ export default function Dashboard() {
           <NavLogo />
         </li>
        
-      <NavItemsDashBoard/>  
+      <NavItemsDashBoard dashboardObj= {dashboardObj}/>  
       </ul>
   </nav> 
 

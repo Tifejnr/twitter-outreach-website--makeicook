@@ -10,12 +10,13 @@ import FAQ from './FAQ/FAQ'
 import PricingPage from '../PricingPage/PricingPage'
 import ToolsSection from './Tools/Tools'
 
+
 export default function LandingPage() {
 return (
 <>
   <nav className='nav'>
        
-       <LandingPageToggle innerText="Free start"/>
+       <LandingPageToggle innerText="Free start" pageLink="/register"/>
 
       <ul className="nav__menu">
 

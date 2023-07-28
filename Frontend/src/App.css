@@ -966,7 +966,14 @@ img.faq-item__arrow-icon {
   row-gap: 1.3rem;
 }
 
-/* Pricing Block Design */
+/* Pricing Block Design Stand alone Page*/
+
+.main-pricing-section-alone {
+  position: relative;
+  top: 6rem;
+}
+
+/* Pricing Block Design Landing Page*/
 
 .pricing-section {
   margin: 2rem 0;

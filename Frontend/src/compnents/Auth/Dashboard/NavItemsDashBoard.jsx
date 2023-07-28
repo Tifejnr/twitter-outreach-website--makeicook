@@ -1,7 +1,12 @@
 import React from "react";
 import CustomLink from "../../CustomLink";
+import { Link } from "react-router-dom";
 
-export default function NavItemsDashBoard() {
+export default function NavItemsDashBoard(props) {
+
+  const dashboardObj= props.dashboardObj
+
+
   return (
     <>
       <li className="nav-list">
@@ -13,14 +18,17 @@ export default function NavItemsDashBoard() {
       </li>
 
       <li className="nav-list">
-        <h3 className="pricing">Credit Usage</h3>
+        <h3 className="pricing">Credits Usage</h3>
       </li>
 
-      <CustomLink to="/register" className="sign-up-cont">
-        <h4 className="sign-up">Credits: 500</h4>
-      </CustomLink>
+      <li  className="sign-up-cont" id="credits-no-large-screen">
+        <h4 className="sign-up">{dashboardObj.credits==1 ? `Credit: ${dashboardObj.credits}` :
+       
+       `Credits: ${dashboardObj.credits}`}
+       </h4>
+      </li>
 
-      <CustomLink to="/pricing">
+      <CustomLink to="/pricing" className="buybtn-nav-bar-large-screen">
         <button className="buy-btn-nav">Buy Credits</button>
       </CustomLink>
     </>

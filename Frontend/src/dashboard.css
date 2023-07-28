@@ -5,6 +5,15 @@
   right: 1.8rem;
 }
 
+#credits-no-large-screen {
+  cursor: none;
+}
+
+#credits-no-large-screen:hover {
+  text-decoration: none;
+  cursor: none;
+}
+
 .cartIcon,
 .logoutIcon {
   position: relative;
@@ -119,7 +128,12 @@
     width: 55rem;
     max-width: 60rem;
   }
+
+  .profileDetails .name {
+    margin: 2rem 0;
+  }
 }
+
 .profileDetails article {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
