@@ -36,6 +36,8 @@ var _require6 = require("./envKeys/allKeys"),
 
 var loginStatusChecker = require("./middlewares/jwt-related/login-status-checker");
 
+var signatureChecker = require("./middlewares/signature/checkSignature");
+
 var userToken = require("./middlewares/token-safety/decryptToken");
 
 require("dotenv").config();
@@ -72,7 +74,6 @@ var deductCredits = require("./routes/deductCredits"); //api routes declaaration
 app.use("/api/register-user", registerUser);
 app.use("/api/sign-in", signInUser);
 app.use("/api/dashboard", dashboard);
-app.use("/api/deduct-credits", deductCredits);
 app.use("/api/checkout", loginStatusChecker, paymentsHandling);
 app.use("/api/checkout/webhooks", webhooks);
 app.use(express["static"](path.join(__dirname, "../../Trello-Project-React/Frontend/dist"))); //Won't be accessible by React route, server owns this route
@@ -158,7 +159,7 @@ app.post("/add", function _callee5(req, res) {
     }
   });
 });
-app.post("/delete", [loginStatusChecker, userToken], function _callee6(req, res) {
+app.post("/delete", [loginStatusChecker, userToken, signatureChecker], function _callee6(req, res) {
   return regeneratorRuntime.async(function _callee6$(_context6) {
     while (1) {
       switch (_context6.prev = _context6.next) {

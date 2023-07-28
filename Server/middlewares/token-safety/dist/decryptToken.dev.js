@@ -33,9 +33,10 @@ module.exports = function _callee(req, res, next) {
           token = decryptedToken;
           key = keysObject.CLIENT_SECRET_KEY;
           signature = accountUser.sessionSignature;
+          creditsAvailable = accountUser.credits;
 
           if (!(!token && !key)) {
-            _context.next = 13;
+            _context.next = 14;
             break;
           }
 
@@ -43,13 +44,13 @@ module.exports = function _callee(req, res, next) {
             unauthorizedToken: true
           }));
 
-        case 13:
+        case 14:
           next();
-          _context.next = 21;
+          _context.next = 22;
           break;
 
-        case 16:
-          _context.prev = 16;
+        case 17:
+          _context.prev = 17;
           _context.t0 = _context["catch"](0);
           console.log(_context.t0);
           res.status(400).json({
@@ -57,10 +58,10 @@ module.exports = function _callee(req, res, next) {
           });
           return _context.abrupt("return", false);
 
-        case 21:
+        case 22:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[0, 16]]);
+  }, null, null, [[0, 17]]);
 };

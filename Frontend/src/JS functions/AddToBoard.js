@@ -26,6 +26,7 @@ export default async function AddToBoards(executionParams) {
   const timeIntervalValue = Number(executionParams.timeInterval);
   const timeIntervalRef = executionParams.timeIntervalRef;
   const pageContentElRef = executionParams.pageContentElRef;
+  const clientSignature = executionParams.clientSignature;
 
   if (!validateInput(emailInputs, textAreaRef)) return false;
   if (!timeIntervalSliderVal(timeIntervalValue, timeIntervalRef))
@@ -132,6 +133,7 @@ export default async function AddToBoards(executionParams) {
     const message = {
       email,
       boardId,
+      clientSignature,
     };
 
     (async () => {

@@ -34,9 +34,10 @@ export default function AddMember() {
     setT,
     timeIntervalRef,
   } = useContext(MyContext);
+
+  const [clientSignature, setClientSignature] = useState("")
   // const taskTitle = useStore((state) => state.taskTitle);
   // const setTaskTitle = useStore((state) => state.setTaskTitle);
-  // const [checkedCheckboxesLength, setCheckedLength] = useState(0)
   // const [executionObjs, setexecutionObjs] = useState([])
   const [pageContentElRef, setPageContentElRef]= useState(null)
 
@@ -81,7 +82,10 @@ export default function AddMember() {
         }
 
         const data = dataRaw.boards;
+        const signature = dataRaw.sessionSignature
         setBoardsCollection(data);
+        setClientSignature(signature)
+
       } catch (error) {
         console.log(error);
       }

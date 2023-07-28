@@ -24,7 +24,7 @@ var action = "adding";
 var isAddedTo = "Boards";
 
 function AddToBoards(executionParams) {
-  var boardsCollection, emailInputs, textAreaRef, timeIntervalValue, timeIntervalRef, pageContentElRef, allCheckboxesOnPage, emailListSplited, boardDetailsObj, timeInterval, Execution;
+  var boardsCollection, emailInputs, textAreaRef, timeIntervalValue, timeIntervalRef, pageContentElRef, clientSignature, allCheckboxesOnPage, emailListSplited, boardDetailsObj, timeInterval, Execution;
   return regeneratorRuntime.async(function AddToBoards$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
@@ -35,7 +35,8 @@ function AddToBoards(executionParams) {
             userDetail = email;
             var message = {
               email: email,
-              boardId: boardId
+              boardId: boardId,
+              clientSignature: clientSignature
             };
 
             (function _callee() {
@@ -116,31 +117,32 @@ function AddToBoards(executionParams) {
           timeIntervalValue = Number(executionParams.timeInterval);
           timeIntervalRef = executionParams.timeIntervalRef;
           pageContentElRef = executionParams.pageContentElRef;
+          clientSignature = executionParams.clientSignature;
 
           if ((0, _Input.validateInput)(emailInputs, textAreaRef)) {
-            _context2.next = 9;
+            _context2.next = 10;
             break;
           }
 
           return _context2.abrupt("return", false);
 
-        case 9:
+        case 10:
           if ((0, _sliderValidation.timeIntervalSliderVal)(timeIntervalValue, timeIntervalRef)) {
-            _context2.next = 11;
+            _context2.next = 12;
             break;
           }
 
           return _context2.abrupt("return", console.log("slider whaala"));
 
-        case 11:
+        case 12:
           if ((0, _Checkbox.isAnyCheckboxChecked)()) {
-            _context2.next = 13;
+            _context2.next = 14;
             break;
           }
 
           return _context2.abrupt("return", false);
 
-        case 13:
+        case 14:
           allCheckboxesOnPage = document.querySelectorAll(".board-checkbox");
           noOfCheckedCheckbox = document.querySelectorAll(".board-checkbox:checked").length;
           emailListSplited = emailInputs.split(",");
@@ -163,13 +165,13 @@ function AddToBoards(executionParams) {
           });
 
           if (boardDetailsObj) {
-            _context2.next = 21;
+            _context2.next = 22;
             break;
           }
 
           return _context2.abrupt("return", "");
 
-        case 21:
+        case 22:
           pageContentElRef.classList.add("blurred");
           timeInterval = timeIntervalValue * 1000;
           totalAttemptedArray = 0; // each email execution to server
@@ -218,7 +220,7 @@ function AddToBoards(executionParams) {
             }, index * noOfCheckedCheckbox * timeInterval * 1.35);
           });
 
-        case 25:
+        case 26:
         case "end":
           return _context2.stop();
       }

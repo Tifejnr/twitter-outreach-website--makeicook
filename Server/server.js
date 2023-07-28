@@ -13,6 +13,7 @@ const { callback } = require("./utilis/oauth/oauth-and-callback");
 const { deleteMemberFromBoard } = require("./utilis/boards/delete");
 const { getKeys } = require("./envKeys/allKeys");
 const loginStatusChecker = require("./middlewares/jwt-related/login-status-checker");
+const signatureChecker = require("./middlewares/signature/checkSignature");
 const userToken = require("./middlewares/token-safety/decryptToken");
 require("dotenv").config();
 require("./startup/prod")(app);
@@ -46,7 +47,6 @@ const deductCredits = require("./routes/deductCredits");
 app.use("/api/register-user", registerUser);
 app.use("/api/sign-in", signInUser);
 app.use("/api/dashboard", dashboard);
-app.use("/api/deduct-credits", deductCredits);
 app.use("/api/checkout", loginStatusChecker, paymentsHandling);
 app.use("/api/checkout/webhooks", webhooks);
 app.use(
@@ -97,9 +97,13 @@ app.post("/add", async (req, res) => {
   addMemberToBoard(req, res);
 });
 
-app.post("/delete", [loginStatusChecker, userToken], async (req, res) => {
-  deleteMemberFromBoard(req, res);
-});
+app.post(
+  "/delete",
+  [loginStatusChecker, userToken, signatureChecker],
+  async (req, res) => {
+    deleteMemberFromBoard(req, res);
+  }
+);
 app.post("/trial", async (req, res) => {
   console.log(req.body);
 });
