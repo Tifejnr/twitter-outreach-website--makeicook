@@ -41,7 +41,6 @@ const registerUser = require("./routes/register-users");
 const signInUser = require("./routes/auth");
 const paymentsHandling = require("./routes/Payments/checkout");
 const dashboard = require("./routes/dashboard");
-const deductCredits = require("./routes/deductCredits");
 
 //api routes declaarations
 app.use("/api/register-user", registerUser);

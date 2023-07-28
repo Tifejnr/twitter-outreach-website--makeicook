@@ -1,4 +1,4 @@
-const { user } = require("../models/users");
+const { user } = require("../../models/users");
 const creditsNoPerAction = 1;
 
 module.exports = async function (req, res, next) {

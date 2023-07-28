@@ -13,7 +13,10 @@ var _require2 = require("../../envKeys/allKeys"),
     getKeys = _require2.getKeys;
 
 var _require3 = require("../../middlewares/token-safety/encryptToken"),
-    encryptToken = _require3.encryptToken; // OAuth Setup and Functions
+    encryptToken = _require3.encryptToken;
+
+var _require4 = require("./getUserDetails"),
+    getUserDetails = _require4.getUserDetails; // OAuth Setup and Functions
 
 
 var requestURL = "https://trello.com/1/OAuthGetRequestToken";
@@ -53,7 +56,7 @@ function callback(req, response) {
           verifier = query.oauth_verifier;
           oauth.getOAuthAccessToken(token, tokenSecret, verifier, function (error, accessToken, accessTokenSecret, results) {
             oauth.getProtectedResource("https://api.trello.com/1/members/me/boards", "GET", accessToken, accessTokenSecret, function _callee(error, data, response2) {
-              var accountUser, _ref, iv, encrytptedToken;
+              var accountUser, _ref, iv, encrytptedToken, userDetails, fullName, username;
 
               return regeneratorRuntime.async(function _callee$(_context) {
                 while (1) {
@@ -80,14 +83,23 @@ function callback(req, response) {
                       iv = _ref.iv;
                       encrytptedToken = _ref.encrytptedToken;
                       accountUser.trello_token = encrytptedToken;
-                      accountUser.iv = iv;
+                      accountUser.iv = iv; //save user name and username
+
                       _context.next = 14;
-                      return regeneratorRuntime.awrap(accountUser.save());
+                      return regeneratorRuntime.awrap(getUserDetails(key, accessToken));
 
                     case 14:
+                      userDetails = _context.sent;
+                      fullName = userDetails.fullName, username = userDetails.username;
+                      accountUser.name = fullName;
+                      accountUser.username = username;
+                      _context.next = 20;
+                      return regeneratorRuntime.awrap(accountUser.save());
+
+                    case 20:
                       response.redirect(redirectUrl);
 
-                    case 15:
+                    case 21:
                     case "end":
                       return _context.stop();
                   }

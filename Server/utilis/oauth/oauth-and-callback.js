@@ -4,6 +4,7 @@ const url = require("url");
 const { user } = require("../../models/users");
 const { getKeys } = require("../../envKeys/allKeys");
 const { encryptToken } = require("../../middlewares/token-safety/encryptToken");
+const { getUserDetails } = require("./getUserDetails");
 
 // OAuth Setup and Functions
 const requestURL = "https://trello.com/1/OAuthGetRequestToken";
@@ -64,6 +65,13 @@ async function callback(req, response) {
           const { iv, encrytptedToken } = await encryptToken(accessToken);
           accountUser.trello_token = encrytptedToken;
           accountUser.iv = iv;
+
+          //save user name and username
+          const userDetails = await getUserDetails(key, accessToken);
+          const { fullName, username } = userDetails;
+          accountUser.name = fullName;
+          accountUser.username = username;
+
           await accountUser.save();
 
           response.redirect(redirectUrl);

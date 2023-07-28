@@ -66,9 +66,7 @@ var signInUser = require("./routes/auth");
 
 var paymentsHandling = require("./routes/Payments/checkout");
 
-var dashboard = require("./routes/dashboard");
-
-var deductCredits = require("./routes/deductCredits"); //api routes declaarations
+var dashboard = require("./routes/dashboard"); //api routes declaarations
 
 
 app.use("/api/register-user", registerUser);

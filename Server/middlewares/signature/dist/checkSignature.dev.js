@@ -1,6 +1,6 @@
 "use strict";
 
-var _require = require("../models/users"),
+var _require = require("../../models/users"),
     user = _require.user;
 
 var creditsNoPerAction = 1;
