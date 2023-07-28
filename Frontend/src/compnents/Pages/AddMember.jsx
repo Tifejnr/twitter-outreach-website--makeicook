@@ -49,7 +49,8 @@ export default function AddMember() {
     textAreaRefEl,
     timeInterval,
     timeIntervalRef,
-    pageContentElRef
+    pageContentElRef,
+    clientSignature
   };
 
   useEffect(() => {

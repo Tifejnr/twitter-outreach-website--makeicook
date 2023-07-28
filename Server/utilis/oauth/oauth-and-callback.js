@@ -19,7 +19,7 @@ const key = keysObj.CLIENT_SECRET_KEY;
 const secret = keysObj.SECRET;
 
 const loginCallback = "https://www.collabfortrello.com/callback";
-const redirectUrl = "https://www.collabfortrello.com/add-member";
+const redirectUrl = "https://www.collabfortrello.com/home";
 
 const oauth_secrets = {};
 
@@ -64,6 +64,7 @@ async function callback(req, response) {
           const { iv, encrytptedToken } = await encryptToken(accessToken);
           accountUser.trello_token = encrytptedToken;
           accountUser.iv = iv;
+          accountUser.credits = 5;
           await accountUser.save();
 
           response.redirect(redirectUrl);
