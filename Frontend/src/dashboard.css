@@ -306,6 +306,11 @@ tr:last-child td {
   transition: 0.25s background-color linear;
 }
 
+.buy-credits-btn a {
+  color: #fff;
+  text-decoration: none;
+}
+
 .buy-credits-btn:hover,
 .buy-credits-btn:active,
 .buy-btn-nav:hover,

@@ -18,7 +18,7 @@ export default function Dashboard() {
   const [dashboardObj, setDashboardObj] = useState({
     name: "",
     email: "",
-    credits: null,
+    credits: "null",
     currentPlan: ""
 
   });
@@ -59,7 +59,7 @@ export default function Dashboard() {
   }, []);
 
 
-  // if (dashboardObj.email === "") return  console.log("server error");
+  if (dashboardObj.email === "") return  console.log("server error");
 
   return (
     <>
