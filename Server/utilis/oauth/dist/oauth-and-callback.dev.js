@@ -81,14 +81,13 @@ function callback(req, response) {
                       encrytptedToken = _ref.encrytptedToken;
                       accountUser.trello_token = encrytptedToken;
                       accountUser.iv = iv;
-                      accountUser.credits = 5;
-                      _context.next = 15;
+                      _context.next = 14;
                       return regeneratorRuntime.awrap(accountUser.save());
 
-                    case 15:
+                    case 14:
                       response.redirect(redirectUrl);
 
-                    case 16:
+                    case 15:
                     case "end":
                       return _context.stop();
                   }

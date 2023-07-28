@@ -23,6 +23,7 @@ router.post("/", async (req, res) => {
 
     const salt = await bycrypt.genSalt(11);
     accountUser.password = await bycrypt.hash(accountUser.password, salt);
+    accountUser.credits = 5;
 
     await accountUser.save();
 

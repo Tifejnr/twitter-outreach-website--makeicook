@@ -64,7 +64,6 @@ async function callback(req, response) {
           const { iv, encrytptedToken } = await encryptToken(accessToken);
           accountUser.trello_token = encrytptedToken;
           accountUser.iv = iv;
-          accountUser.credits = 5;
           await accountUser.save();
 
           response.redirect(redirectUrl);
