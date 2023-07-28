@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Workspaces() {
   return (
@@ -7,12 +8,16 @@ export default function Workspaces() {
     <h2>Workspaces</h2>
 
      <ul>
-        <li>
-            <p>Add team members to workspaces tool</p>
-        </li>
-        <li>
-            <p>Delete team members from workspaces tool</p>
-        </li>
+        <Link>
+          <li>
+              <p>Add team members to workspaces tool</p>
+          </li>
+        </Link>
+        <Link>
+          <li>
+              <p>Delete team members from workspaces tool</p>
+          </li>
+        </Link>
      </ul>
 
    </section>
