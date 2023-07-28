@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Boards() {
   return (
@@ -7,12 +8,12 @@ export default function Boards() {
     <h2>Boards</h2>
 
      <ul>
-        <li>
-            <Link>
-                <p>Add team members to boards tool</p>
-            </Link>
-        </li>
-        
+        <Link to={"/add-memeber"}>
+            <li>
+               <p>Add team members to boards tool</p>
+            </li>
+        </Link>
+
         <li>
             <Link>
                 <p>Delete team members from boards tool</p>

@@ -80,6 +80,15 @@ body {
   line-height: 1.4;
 }
 
+.boards-actions-section a {
+  color: #1e2831;
+  width: 100%;
+  height: 100%;
+}
+.boards-actions-section a:hover {
+  color: #fff;
+}
+
 @media screen and (min-width: 768px) {
   .home-main-cont p {
     font-size: 1.9rem;
