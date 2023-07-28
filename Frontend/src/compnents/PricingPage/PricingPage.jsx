@@ -5,7 +5,7 @@ import { allPricingPlansObjArray } from './allPlansInfo'
 export default function PricingPage() {
   return (
       <>
-                <section className="pricing-section">
+             <section className="pricing-section">
                   <header>
                     <h2>Pricing</h2>
                     <p>Select plan tailored to your needs below.</p>
@@ -16,7 +16,7 @@ export default function PricingPage() {
                         <BasicCard key={index} planObjs={planObj} />
                       ))}
                   </section>
-                </section>
+            </section>
 
      </>
   )

@@ -11,7 +11,7 @@ export default function Pricing() {
     <>
   <nav className='nav'>
        
-       <LandingPageToggle innerText="Credist: 0" pageLink="/register"/>
+       <LandingPageToggle innerText="Credist: 0" pageLink="#"/>
 
       <ul className="nav__menu">
 
@@ -29,8 +29,6 @@ export default function Pricing() {
     <FAQ/>
   </section>
 
-
-    
     </>
   )
 }

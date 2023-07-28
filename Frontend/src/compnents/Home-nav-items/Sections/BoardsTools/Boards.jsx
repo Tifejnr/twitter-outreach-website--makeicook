@@ -8,17 +8,17 @@ export default function Boards() {
     <h2>Boards</h2>
 
      <ul>
-        <Link to={"/add-memeber"}>
+        <Link to={"/add-member"}>
             <li>
                <p>Add team members to boards tool</p>
             </li>
         </Link>
 
-        <li>
-            <Link>
-                <p>Delete team members from boards tool</p>
-            </Link>
-        </li>
+        <Link>
+          <li>
+              <p>Delete team members from boards tool</p>
+          </li>
+        </Link>
      </ul>
 
    </section>
