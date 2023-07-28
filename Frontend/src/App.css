@@ -385,7 +385,8 @@ body {
 }
 
 .hero-inner-container,
-.tools-section-cont {
+.tools-section-cont,
+.home-main-cont {
   position: relative;
   display: flex;
   justify-content: center;
@@ -398,27 +399,31 @@ body {
 
 @media only screen and (min-width: 480px) {
   .hero-inner-container,
-  .tools-section-cont {
+  .tools-section-cont,
+  .home-main-cont {
     margin: 0 4rem;
   }
 }
 @media only screen and (min-width: 768px) {
   .hero-inner-container,
-  .tools-section-cont {
+  .tools-section-cont,
+  .home-main-cont {
     margin: 0 3rem;
   }
 }
 
 @media only screen and (min-width: 960px) {
   .hero-inner-container,
-  .tools-section-cont {
+  .tools-section-cont,
+  .home-main-cont {
     margin: 0 10rem;
   }
 }
 
 @media only screen and (min-width: 1200px) {
   .hero-inner-container,
-  .tools-section-cont {
+  .tools-section-cont,
+  .home-main-cont {
     margin: 0 26rem;
   }
 }

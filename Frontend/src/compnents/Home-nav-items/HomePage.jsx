@@ -4,6 +4,7 @@ import LandingPageToggle from '../Main-nav-bar/LandingPageToggle'
 import NavLogo from '../Main-nav-bar/NavLogo'
 import LoggedInUsersControl from '../Controllers/LoggedInUsersControl'
 import Boards from './Sections/BoardsTools/Boards'
+import Workspaces from './Sections/Workspaces/Workspaces'
 
 
 export default function HomePage() {
@@ -26,7 +27,9 @@ export default function HomePage() {
   </nav>  
 
   <main className='home-main-cont'>
+    <h2>Select tool that matches the action you want to execute:</h2>
     <Boards/>
+    <Workspaces/>
   </main>
 
 </LoggedInUsersControl>  
