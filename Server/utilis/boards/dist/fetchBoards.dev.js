@@ -2,47 +2,69 @@
 
 var axios = require("axios");
 
-var _require = require("../../envKeys/allKeys"),
-    getKeys = _require.getKeys;
+var _require = require("../../models/users"),
+    user = _require.user;
+
+var _require2 = require("../../envKeys/allKeys"),
+    getKeys = _require2.getKeys;
+
+var _require3 = require("../../middlewares/signature/generateSignature"),
+    generateSignature = _require3.generateSignature;
 
 var keysObjects = getKeys();
 var key = keysObjects.CLIENT_SECRET_KEY;
 var token = keysObjects.ACCESS_TOKEN_SECRET;
 
 function fetchAllBoards(req, res) {
-  var boardsFetchingUrl, response, boards;
+  var userId, accountUser, sessionSignature, boardsFetchingUrl, response, boards;
   return regeneratorRuntime.async(function fetchAllBoards$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
+          userId = userDetails._id; // const userId = "64ad80b631825676a3fcec77";
+
+          _context.next = 3;
+          return regeneratorRuntime.awrap(user.findById(userId));
+
+        case 3:
+          accountUser = _context.sent;
+          sessionSignature = generateSignature(); //save user signature on every page load
+
+          accountUser.sessionSignature = sessionSignature;
+          _context.next = 8;
+          return regeneratorRuntime.awrap(accountUser.save());
+
+        case 8:
+          //fetch all boards
           boardsFetchingUrl = "https://api.trello.com/1/members/me/boards?key=".concat(key, "&token=").concat(token);
-          _context.prev = 1;
-          _context.next = 4;
+          _context.prev = 9;
+          _context.next = 12;
           return regeneratorRuntime.awrap(axios.get(boardsFetchingUrl));
 
-        case 4:
+        case 12:
           response = _context.sent;
           boards = response.data;
           res.status(200).json({
-            boards: boards
+            boards: boards,
+            sessionSignature: sessionSignature
           });
-          _context.next = 13;
+          _context.next = 21;
           break;
 
-        case 9:
-          _context.prev = 9;
-          _context.t0 = _context["catch"](1);
+        case 17:
+          _context.prev = 17;
+          _context.t0 = _context["catch"](9);
           console.error("Error:", _context.t0);
           res.status(500).json({
             error: _context.t0
           });
 
-        case 13:
+        case 21:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[1, 9]]);
+  }, null, null, [[9, 17]]);
 }
 
 exports.fetchAllBoards = fetchAllBoards;

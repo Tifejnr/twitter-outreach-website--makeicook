@@ -34,6 +34,12 @@ var userSchema = new mongoose.Schema({
     minlength: 4,
     maxlength: 1250
   },
+  sessionSignature: {
+    type: String,
+    minlength: 2,
+    maxlength: 50,
+    "default": "Trialsig"
+  },
   iv: {
     type: String,
     minlength: 1,
