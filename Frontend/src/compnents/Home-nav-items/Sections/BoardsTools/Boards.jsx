@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export default function Boards() {
   return (
-   <section className='boards-actions-section'>
+<section className='boards-actions-section'>
 
     <h2>Boards</h2>
 
@@ -21,6 +21,6 @@ export default function Boards() {
         </Link>
      </ul>
 
-   </section>
+  </section>
   )
 }

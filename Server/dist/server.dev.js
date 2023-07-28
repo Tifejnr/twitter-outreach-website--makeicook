@@ -64,12 +64,15 @@ var signInUser = require("./routes/auth");
 
 var paymentsHandling = require("./routes/Payments/checkout");
 
-var dashboard = require("./routes/dashboard"); //api routes declaarations
+var dashboard = require("./routes/dashboard");
+
+var deductCredits = require("./routes/deductCredits"); //api routes declaarations
 
 
 app.use("/api/register-user", registerUser);
 app.use("/api/sign-in", signInUser);
 app.use("/api/dashboard", dashboard);
+app.use("/api/deduct-credits", deductCredits);
 app.use("/api/checkout", loginStatusChecker, paymentsHandling);
 app.use("/api/checkout/webhooks", webhooks);
 app.use(express["static"](path.join(__dirname, "../../Trello-Project-React/Frontend/dist"))); //Won't be accessible by React route, server owns this route
