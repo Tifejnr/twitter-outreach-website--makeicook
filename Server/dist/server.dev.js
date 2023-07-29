@@ -120,7 +120,8 @@ app.post("/is-account-authorized", [loginStatusChecker, isUserAuthorized], funct
       switch (_context3.prev = _context3.next) {
         case 0:
           res.json({
-            authorized: true
+            authorized: true,
+            userCredits: userCredits
           });
 
         case 1:

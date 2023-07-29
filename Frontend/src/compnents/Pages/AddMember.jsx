@@ -42,6 +42,7 @@ export default function AddMember() {
   // const setTaskTitle = useStore((state) => state.setTaskTitle);
   // const [executionObjs, setexecutionObjs] = useState([])
   const [pageContentElRef, setPageContentElRef] = useState(null);
+  const creditsFromServer = useStore((state) => state.creditsFromServer);
 
   const pageContentRef = useRef(null);
     const navigate = useNavigate();
@@ -54,6 +55,7 @@ export default function AddMember() {
     timeIntervalRef,
     pageContentElRef,
     clientSignature,
+    
   };
 
   useEffect(() => {
@@ -101,7 +103,11 @@ export default function AddMember() {
 
   return (
     <> 
-      <HomeNavBar />
+      <HomeNavBar innerText={creditsFromServer==1 ? `Credit:${creditsFromServer}`: 
+      
+      `Credits:${creditsFromServer}`} pagelink="#" 
+      
+      />
 
       <section
         className="main-section-cont"

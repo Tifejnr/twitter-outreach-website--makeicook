@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, Navigate } from 'react-router-dom';
+import useStore from '../Hooks/Zustand/usersStore';
 import { websiteUrl } from '../../JS functions/websiteUrl';
 
 // This route protects both logged in and unauthorized users
 export default function OnlyAuthorizedUsers({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(null); 
   const [noTokenYet, setNoTokenYet] = useState(null); 
+  const setCreditsFromServer = useStore((state) => state.setCreditsFromServer);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,12 +24,17 @@ export default function OnlyAuthorizedUsers({ children }) {
 
         const dataRaw = await response.data;
 
-      if (dataRaw.authorized) return  setIsLoggedIn(true);
+        console.log(dataRaw)
+
+
+      if (dataRaw.authorized) return  (setCreditsFromServer(dataRaw.userCredits),setIsLoggedIn(true));
 
        return setIsLoggedIn(false);
      
       } catch (error) {
         //handle any error from server or internet
+
+        if(error.message=="Network Error") return console.log("Network Error");
         const errorMessage= error.response.data
         console.log(errorMessage)
 

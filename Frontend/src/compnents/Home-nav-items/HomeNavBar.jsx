@@ -14,7 +14,7 @@ export default function HomeNavBar(props) {
           <NavLogo />
         </li>
        
-        {<HomePageNavItems/>}     
+        {<HomePageNavItems showCredits={props.innerText}/>}     
       </ul>
   </nav>  
     </>

@@ -18,9 +18,10 @@ module.exports = function _callee(req, res, next) {
         case 4:
           accountUser = _context.sent;
           isAuthorized = accountUser.iv;
+          userCredits = accountUser.credits;
 
           if (!(isAuthorized == "NA")) {
-            _context.next = 8;
+            _context.next = 9;
             break;
           }
 
@@ -28,23 +29,23 @@ module.exports = function _callee(req, res, next) {
             backToOauthPage: true
           }));
 
-        case 8:
+        case 9:
           next();
-          _context.next = 15;
+          _context.next = 16;
           break;
 
-        case 11:
-          _context.prev = 11;
+        case 12:
+          _context.prev = 12;
           _context.t0 = _context["catch"](0);
           console.log(_context.t0);
           res.status(400).json({
             trelloTokenNotFoundError: _context.t0
           });
 
-        case 15:
+        case 16:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[0, 11]]);
+  }, null, null, [[0, 12]]);
 };

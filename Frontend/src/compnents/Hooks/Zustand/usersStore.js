@@ -1,9 +1,10 @@
 import { create } from "zustand";
 
 const useStore = create((set) => ({
-  taskTitle: "",
+  creditsFromServer: "",
 
-  setTaskTitle: (newTitle) => set((state) => ({ taskTitle: newTitle })),
+  setCreditsFromServer: (fetchedCredits) =>
+    set((state) => ({ creditsFromServer: fetchedCredits })),
 }));
 
 export default useStore;

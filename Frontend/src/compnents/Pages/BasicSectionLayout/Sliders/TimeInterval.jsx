@@ -51,7 +51,7 @@ export default function SliderTimeInterval() {
         value={timeInterval}
       />
       <p className="error">
-        Move the slider above to set desired time interval
+       Drag the slider to set desired time interval
       </p>
     </section>
   );

@@ -5,6 +5,7 @@ module.exports = async function (req, res, next) {
     const userId = userDetails._id;
     const accountUser = await user.findById(userId);
     const isAuthorized = accountUser.iv;
+    userCredits = accountUser.credits;
 
     if (isAuthorized == "NA")
       return res.status(402).json({ backToOauthPage: true });

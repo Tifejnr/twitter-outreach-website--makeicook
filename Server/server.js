@@ -86,7 +86,7 @@ app.post(
   "/is-account-authorized",
   [loginStatusChecker, isUserAuthorized],
   async (req, res) => {
-    res.json({ authorized: true });
+    res.json({ authorized: true, userCredits });
   }
 );
 
