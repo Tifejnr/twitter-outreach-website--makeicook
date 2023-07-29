@@ -11,7 +11,7 @@ var JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
 module.exports = function (req, res, next) {
   var token = req.cookies.cftAuth;
   if (!token) return res.status(401).json({
-    unauthorizedToken: true
+    invalidJWT: true
   });
 
   try {
@@ -22,7 +22,7 @@ module.exports = function (req, res, next) {
   } catch (error) {
     console.log(error);
     res.status(400).json({
-      jwtErrorVerification: error
+      invalidJWT: error
     });
   }
 };

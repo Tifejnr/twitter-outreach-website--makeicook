@@ -24,10 +24,10 @@ function isLoginAndAuthorized() {
 
         case 4:
           response = _context.sent;
+          console.log(response);
           data = response.data;
-          console.log(data);
 
-          if (!data.authorized) {
+          if (!data) {
             _context.next = 9;
             break;
           }
@@ -35,35 +35,19 @@ function isLoginAndAuthorized() {
           return _context.abrupt("return", data);
 
         case 9:
-          if (!data.loggedIn) {
-            _context.next = 11;
-            break;
-          }
-
-          return _context.abrupt("return", data);
-
-        case 11:
-          if (!data.backToOauthPage) {
-            _context.next = 13;
-            break;
-          }
-
-          return _context.abrupt("return", data);
-
-        case 13:
           return _context.abrupt("return", false);
 
-        case 16:
-          _context.prev = 16;
+        case 12:
+          _context.prev = 12;
           _context.t0 = _context["catch"](1);
-          console.log(_context.t0.response.data);
+          console.log(_context.t0.response);
           errorMessage = _context.t0.response.data.unAuthorizedToken;
           return _context.abrupt("return", false);
 
-        case 21:
+        case 17:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[1, 16]]);
+  }, null, null, [[1, 12]]);
 }
