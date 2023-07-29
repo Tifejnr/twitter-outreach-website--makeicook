@@ -7,7 +7,7 @@ exports["default"] = isLoginAndAuthorized;
 
 var _axios = _interopRequireDefault(require("axios"));
 
-var _websiteUrl = require("../websiteUrl");
+var _websiteUrl = require("../../JS functions/websiteUrl");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 

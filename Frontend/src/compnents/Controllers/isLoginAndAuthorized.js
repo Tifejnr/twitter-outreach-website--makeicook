@@ -1,5 +1,5 @@
 import axios from "axios";
-import { websiteUrl } from "../websiteUrl";
+import { websiteUrl } from "../../JS functions/websiteUrl";
 
 export default async function isLoginAndAuthorized() {
   const isUserAuthorized = `${websiteUrl}/is-account-authorized`;
