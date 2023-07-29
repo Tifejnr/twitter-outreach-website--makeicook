@@ -7,12 +7,12 @@ export default  function LoggedInUsersControl({children}) {
 const [isLoggedIn, setIsLoggedIn]= useState();
   const navigate = useNavigate();
 
-
-  
   useEffect(() => {
   const checkIsLoginAndAuthorized = async () => {
     try {
       const response = await isLoginAndAuthorized();
+
+      console.log(response)
       if (response.authorized) return setIsLoggedIn(true)
       if (response.backToOauthPage) return navigate('/authorize');
 
