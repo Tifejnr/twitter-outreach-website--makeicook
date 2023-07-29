@@ -100,8 +100,8 @@ export default function AddMember() {
     setPageContentElRef(pageContentRef.current);
   }, [boardsCollection]);
 
-  if (boardsCollection === null)
-    return console.log("boards not available");
+  // if (boardsCollection === null)
+  //   return console.log("boards not available");
 
   return (
     <>
