@@ -73,7 +73,7 @@ var dashboard = require("./routes/dashboard"); //api routes declaarations
 
 app.use("/api/register-user", registerUser);
 app.use("/api/sign-in", signInUser);
-app.use("/api/dashboard", dashboard);
+app.use("/api/dashboard", loginStatusChecker, isUserAuthorized, dashboard);
 app.use("/api/checkout", loginStatusChecker, paymentsHandling);
 app.use("/api/checkout/webhooks", webhooks);
 app.use(express["static"](path.join(__dirname, "../../Trello-Project-React/Frontend/dist"))); //Won't be accessible by React route, server owns this route
@@ -147,7 +147,7 @@ app.post("/authorize", loginStatusChecker, function _callee4(req, res) {
     }
   });
 });
-app.post("/start", function _callee5(req, res) {
+app.post("/start", [loginStatusChecker, isUserAuthorized, userToken], function _callee5(req, res) {
   return regeneratorRuntime.async(function _callee5$(_context5) {
     while (1) {
       switch (_context5.prev = _context5.next) {
@@ -161,7 +161,7 @@ app.post("/start", function _callee5(req, res) {
     }
   });
 });
-app.post("/add", function _callee6(req, res) {
+app.post("/add", [loginStatusChecker, isUserAuthorized, userToken, signatureChecker], function _callee6(req, res) {
   return regeneratorRuntime.async(function _callee6$(_context6) {
     while (1) {
       switch (_context6.prev = _context6.next) {
@@ -175,7 +175,7 @@ app.post("/add", function _callee6(req, res) {
     }
   });
 });
-app.post("/delete", [loginStatusChecker, userToken, signatureChecker], function _callee7(req, res) {
+app.post("/delete", [loginStatusChecker, isUserAuthorized, userToken, signatureChecker], function _callee7(req, res) {
   return regeneratorRuntime.async(function _callee7$(_context7) {
     while (1) {
       switch (_context7.prev = _context7.next) {
@@ -185,20 +185,6 @@ app.post("/delete", [loginStatusChecker, userToken, signatureChecker], function 
         case 1:
         case "end":
           return _context7.stop();
-      }
-    }
-  });
-});
-app.post("/trial", function _callee8(req, res) {
-  return regeneratorRuntime.async(function _callee8$(_context8) {
-    while (1) {
-      switch (_context8.prev = _context8.next) {
-        case 0:
-          console.log(req.body);
-
-        case 1:
-        case "end":
-          return _context8.stop();
       }
     }
   });

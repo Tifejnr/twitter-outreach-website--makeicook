@@ -17,7 +17,7 @@ module.exports = function _callee(req, res, next) {
           accountUser = _context.sent;
           isAuthorized = accountUser.iv;
 
-          if (!isAuthorized) {
+          if (!(isAuthorized == "NA")) {
             _context.next = 7;
             break;
           }

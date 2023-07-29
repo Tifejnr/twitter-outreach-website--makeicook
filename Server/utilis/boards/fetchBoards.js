@@ -1,17 +1,17 @@
 const axios = require("axios");
 const { user } = require("../../models/users");
-const { getKeys } = require("../../envKeys/allKeys");
 const {
   generateSignature,
 } = require("../../middlewares/signature/generateSignature");
-const keysObjects = getKeys();
 
-const key = keysObjects.CLIENT_SECRET_KEY;
-const token = keysObjects.ACCESS_TOKEN_SECRET;
+// const { getKeys } = require("../../envKeys/allKeys");
+// const keysObjects = getKeys();
+
+// const key = keysObjects.CLIENT_SECRET_KEY;
+// const token = keysObjects.ACCESS_TOKEN_SECRET;
 
 async function fetchAllBoards(req, res) {
   const userId = userDetails._id;
-  // const userId = "64ad80b631825676a3fcec77";
   const accountUser = await user.findById(userId);
   const sessionSignature = generateSignature();
 

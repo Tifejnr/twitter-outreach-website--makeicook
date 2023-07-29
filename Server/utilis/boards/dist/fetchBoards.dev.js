@@ -5,15 +5,12 @@ var axios = require("axios");
 var _require = require("../../models/users"),
     user = _require.user;
 
-var _require2 = require("../../envKeys/allKeys"),
-    getKeys = _require2.getKeys;
+var _require2 = require("../../middlewares/signature/generateSignature"),
+    generateSignature = _require2.generateSignature; // const { getKeys } = require("../../envKeys/allKeys");
+// const keysObjects = getKeys();
+// const key = keysObjects.CLIENT_SECRET_KEY;
+// const token = keysObjects.ACCESS_TOKEN_SECRET;
 
-var _require3 = require("../../middlewares/signature/generateSignature"),
-    generateSignature = _require3.generateSignature;
-
-var keysObjects = getKeys();
-var key = keysObjects.CLIENT_SECRET_KEY;
-var token = keysObjects.ACCESS_TOKEN_SECRET;
 
 function fetchAllBoards(req, res) {
   var userId, accountUser, sessionSignature, boardsFetchingUrl, response, boards;
@@ -21,8 +18,7 @@ function fetchAllBoards(req, res) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          userId = userDetails._id; // const userId = "64ad80b631825676a3fcec77";
-
+          userId = userDetails._id;
           _context.next = 3;
           return regeneratorRuntime.awrap(user.findById(userId));
 

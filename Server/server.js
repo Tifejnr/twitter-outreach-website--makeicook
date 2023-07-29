@@ -46,7 +46,7 @@ const dashboard = require("./routes/dashboard");
 //api routes declaarations
 app.use("/api/register-user", registerUser);
 app.use("/api/sign-in", signInUser);
-app.use("/api/dashboard", dashboard);
+app.use("/api/dashboard", loginStatusChecker, isUserAuthorized, dashboard);
 app.use("/api/checkout", loginStatusChecker, paymentsHandling);
 app.use("/api/checkout/webhooks", webhooks);
 app.use(
@@ -84,6 +84,7 @@ app.set(
 app.post("/isloggedIn", loginStatusChecker, async (req, res) => {
   res.json({ loggedIn: true });
 });
+
 app.post(
   "/is-account-authorized",
   [loginStatusChecker, isUserAuthorized],
@@ -96,24 +97,29 @@ app.post("/authorize", loginStatusChecker, async (req, res) => {
   login(req, res);
 });
 
-app.post("/start", async (req, res) => {
-  fetchAllBoards(req, res);
-});
+app.post(
+  "/start",
+  [loginStatusChecker, isUserAuthorized, userToken],
+  async (req, res) => {
+    fetchAllBoards(req, res);
+  }
+);
 
-app.post("/add", async (req, res) => {
-  addMemberToBoard(req, res);
-});
+app.post(
+  "/add",
+  [loginStatusChecker, isUserAuthorized, userToken, signatureChecker],
+  async (req, res) => {
+    addMemberToBoard(req, res);
+  }
+);
 
 app.post(
   "/delete",
-  [loginStatusChecker, userToken, signatureChecker],
+  [loginStatusChecker, isUserAuthorized, userToken, signatureChecker],
   async (req, res) => {
     deleteMemberFromBoard(req, res);
   }
 );
-app.post("/trial", async (req, res) => {
-  console.log(req.body);
-});
 
 app.listen(3000, function () {
   console.log("Listening on port 3000");

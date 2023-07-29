@@ -12,7 +12,7 @@ const [isLoggedIn, setIsLoggedIn]= useState();
     try {
       const response = await isLoginAndAuthorized();
       if (response.authorized) return setIsLoggedIn(true)
-      if (response.isLoggedIn) return navigate('/authorize');
+      if (response.backToOauthPage) return navigate('/authorize');
 
         return setIsLoggedIn(false)
     } catch (error) {
