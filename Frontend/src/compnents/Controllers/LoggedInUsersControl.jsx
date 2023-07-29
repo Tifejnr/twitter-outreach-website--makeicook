@@ -4,7 +4,8 @@ import isLoginAndAuthorized from './isLoginAndAuthorized';
 
 // This route protects both logged in and unauthorized users
 export default function LoggedInUsersControl({ children }) {
-  const [isLoggedIn, setIsLoggedIn] = useState(null); // Initialize as null instead of undefined
+  const [isLoggedIn, setIsLoggedIn] = useState(null); 
+  const [noTokenYet, setNoTokenYet] = useState(null); 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -14,9 +15,11 @@ export default function LoggedInUsersControl({ children }) {
   const checkIsLoginAndAuthorized = async () => {
       try {
         const response = await isLoginAndAuthorized();
-        
-        if (response.authorized)  setIsLoggedIn(true);
-        if (response.backToOauthPage)  navigate('/authorize');
+
+        console.log(response)
+
+        if (response.authorized) return setIsLoggedIn(true);
+        if (response.backToOauthPage) return setNoTokenYet(true)
 
         return setIsLoggedIn(false);
       } catch (error) {
