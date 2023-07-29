@@ -18,8 +18,7 @@ module.exports = function _callee(req, res, next) {
         case 0:
           clientSignature = req.body.clientSignature;
           _context.prev = 1;
-          // const userId = userDetails._id;
-          userId = "64ad80b631825676a3fcec77";
+          userId = userDetails._id;
           _context.next = 5;
           return regeneratorRuntime.awrap(user.findById(userId));
 
@@ -48,9 +47,11 @@ module.exports = function _callee(req, res, next) {
 
           remainingCredits = accountUser.credits - creditsNoPerAction;
           accountUser.credits = remainingCredits;
-          creditsDeducted = true;
-          _context.next = 18;
+          _context.next = 17;
           return regeneratorRuntime.awrap(accountUser.save());
+
+        case 17:
+          creditsDeducted = true;
 
         case 18:
           next();

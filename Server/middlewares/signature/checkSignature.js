@@ -8,8 +8,7 @@ module.exports = async function (req, res, next) {
   const { clientSignature } = req.body;
 
   try {
-    // const userId = userDetails._id;
-    const userId = "64ad80b631825676a3fcec77";
+    const userId = userDetails._id;
     const accountUser = await user.findById(userId);
     const serverSignature = accountUser.sessionSignature;
     const creditsAvailable = accountUser.credits;
@@ -26,9 +25,9 @@ module.exports = async function (req, res, next) {
 
       accountUser.credits = remainingCredits;
 
-      creditsDeducted = true;
-
       await accountUser.save();
+
+      creditsDeducted = true;
     }
 
     next();

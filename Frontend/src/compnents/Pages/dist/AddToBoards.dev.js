@@ -229,7 +229,7 @@ function AddToBoards(executionParams) {
                   new Execution(email, boardId, boardName);
                 }, index * timeInterval);
               });
-            }, index * noOfCheckedCheckbox * timeInterval * 1.36);
+            }, index * noOfCheckedCheckbox * timeInterval * 1.35);
           });
 
         case 25:
