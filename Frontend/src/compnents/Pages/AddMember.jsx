@@ -76,6 +76,7 @@ export default function AddMember() {
         }
 
         if (dataRaw.error) {
+          
           if (dataRaw.error.code === "ENOTFOUND") {
             console.log("No internet network");
             return;
@@ -102,8 +103,8 @@ export default function AddMember() {
    setPageContentElRef(pageContentRef.current)
   }, [boardsCollection]);
 
-  if (boardsCollection === undefined)
-    return console.log("boards not available");
+  // if (boardsCollection === [])
+  //   return console.log("boards not available");
 
   return (
     <>

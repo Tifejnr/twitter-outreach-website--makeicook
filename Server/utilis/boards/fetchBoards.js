@@ -12,6 +12,7 @@ const {
 
 async function fetchAllBoards(req, res) {
   const userId = userDetails._id;
+  // const userId = "64ad80b631825676a3fcec77";
   const accountUser = await user.findById(userId);
   const sessionSignature = generateSignature();
 

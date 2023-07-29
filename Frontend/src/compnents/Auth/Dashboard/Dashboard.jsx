@@ -10,7 +10,7 @@ import ProfileDetails from "./Sections/ProfileDetails";
 import Logout from "./Sections/Logout";
 import BuyCreditsButton from "./Sections/BuyCreditsButton";
 import { websiteUrl } from '../../../JS functions/websiteUrl';
-import LoggedInUsersControl from '../../Controllers/isLoginAndAuthorized';
+import LoggedInUsersControl from '../../Controllers/LoggedInUsersControl';
 
 
 

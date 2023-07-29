@@ -18,7 +18,8 @@ function fetchAllBoards(req, res) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          userId = userDetails._id;
+          userId = userDetails._id; // const userId = "64ad80b631825676a3fcec77";
+
           _context.next = 3;
           return regeneratorRuntime.awrap(user.findById(userId));
 

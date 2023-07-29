@@ -24,13 +24,17 @@ function isLoginAndAuthorized() {
 
         case 4:
           response = _context.sent;
-          _context.next = 7;
-          return regeneratorRuntime.awrap(response.data);
-
-        case 7:
-          data = _context.sent;
+          data = response.data;
 
           if (!data.authorized) {
+            _context.next = 8;
+            break;
+          }
+
+          return _context.abrupt("return", data);
+
+        case 8:
+          if (!data.loggedIn) {
             _context.next = 10;
             break;
           }
@@ -38,7 +42,7 @@ function isLoginAndAuthorized() {
           return _context.abrupt("return", data);
 
         case 10:
-          if (!data.loggedIn) {
+          if (!data.backToOauthPage) {
             _context.next = 12;
             break;
           }
@@ -46,27 +50,19 @@ function isLoginAndAuthorized() {
           return _context.abrupt("return", data);
 
         case 12:
-          if (!data.backToOauthPage) {
-            _context.next = 14;
-            break;
-          }
-
-          return _context.abrupt("return", data);
-
-        case 14:
           return _context.abrupt("return", false);
 
-        case 17:
-          _context.prev = 17;
+        case 15:
+          _context.prev = 15;
           _context.t0 = _context["catch"](1);
           console.log(_context.t0.response.data);
           errorMessage = _context.t0.response.data.unAuthorizedToken;
           return _context.abrupt("return", false);
 
-        case 22:
+        case 20:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[1, 17]]);
+  }, null, null, [[1, 15]]);
 }

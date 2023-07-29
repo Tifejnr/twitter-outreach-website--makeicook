@@ -13,8 +13,8 @@ router.post("/", function _callee(req, res) {
       switch (_context.prev = _context.next) {
         case 0:
           _context.prev = 0;
-          userId = userDetails._id; // const userId = "64ad80b631825676a3fcec77";
-
+          // const userId = userDetails._id;
+          userId = "64ad80b631825676a3fcec77";
           _context.next = 4;
           return regeneratorRuntime.awrap(user.findById(userId));
 

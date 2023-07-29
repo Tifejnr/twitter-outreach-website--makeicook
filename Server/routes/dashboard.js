@@ -9,8 +9,8 @@ router.post("/", async (req, res) => {
   //     return res.status(400).json({ joiError: error.details[0].message });
 
   try {
-    const userId = userDetails._id;
-    // const userId = "64ad80b631825676a3fcec77";
+    // const userId = userDetails._id;
+    const userId = "64ad80b631825676a3fcec77";
     const accountUser = await user.findById(userId);
 
     console.log(accountUser);
