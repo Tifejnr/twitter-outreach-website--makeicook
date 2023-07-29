@@ -16,10 +16,8 @@ export default function LoggedInUsersControl({ children }) {
       try {
         const response = await isLoginAndAuthorized();
 
-        console.log(response)
-
-        if (response.authorized) return setIsLoggedIn(true);
-        if (response.backToOauthPage) return setNoTokenYet(true)
+        if (response.authorized) return  setIsLoggedIn(true);
+        if (response.backToOauthPage) return navigate('/authorize');
 
         return setIsLoggedIn(false);
       } catch (error) {
@@ -28,7 +26,6 @@ export default function LoggedInUsersControl({ children }) {
       }
     };
 
-  // Include navigate in the dependency array
 
   // Use a conditional rendering based on isLoggedIn
   if (isLoggedIn === null) return null; // Return null while waiting for the Promise

@@ -7,6 +7,8 @@ export default async function isLoginAndAuthorized() {
     const response = await axios.post(isUserAuthorized);
     const data = response.data;
 
+    console.log(data);
+
     if (data.authorized) return data;
 
     if (data.loggedIn) return data;

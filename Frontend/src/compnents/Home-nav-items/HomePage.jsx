@@ -1,4 +1,5 @@
 import React,  { useEffect } from 'react'
+import HomeNavBar from './HomeNavBar'
 import HomePageNavItems from './HomePageNavItems'
 import LandingPageToggle from '../Main-nav-bar/LandingPageToggle'
 import NavLogo from '../Main-nav-bar/NavLogo'
@@ -13,18 +14,7 @@ export default function HomePage() {
 <>
 <LoggedInUsersControl>
   
-  <nav className='nav'>
-      <LandingPageToggle innerText="Credits: 0" pageLink="/register"/>
-
-      <ul className="nav__menu">
-
-        <li>
-          <NavLogo />
-        </li>
-       
-        {<HomePageNavItems/>}     
-      </ul>
-  </nav>  
+  <HomeNavBar/>
 
   <main className='home-main-cont'>
     <h2>Select tool that matches the action you want to execute:</h2>

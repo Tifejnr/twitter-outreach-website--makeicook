@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useContext , useRef} from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
+import axios from "axios";
 import { MyContext } from "../Hooks/Contexts/UserContext";
 import Input from "./BasicSectionLayout/Input";
 import SearchBoards from "./BasicSectionLayout/SearchBoards";
 import SelectAll from "./BasicSectionLayout/SelectAll";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import AddToBoard from "../../JS functions/AddToBoard";
-import HomePage from "../Home-nav-items/HomePage";
+import HomeNavBar from "../Home-nav-items/HomeNavBar";
 import LoggedInUsersControl from "../Controllers/LoggedInUsersControl";
 import BoardsDisplaySection from "./BasicSectionLayout/BoardsDisplaySection";
 import { websiteUrl } from "../../JS functions/websiteUrl";
@@ -24,7 +25,7 @@ const pageTitle = "Add Members Via Email";
 const action = "adding";
 
 export default function AddMember() {
-  const [boardsCollection, setBoardsCollection] = useState([]);
+  const [boardsCollection, setBoardsCollection] = useState(null);
   const {
     textAreaValue,
     setc,
@@ -35,11 +36,11 @@ export default function AddMember() {
     timeIntervalRef,
   } = useContext(MyContext);
 
-  const [clientSignature, setClientSignature] = useState("")
+  const [clientSignature, setClientSignature] = useState("");
   // const taskTitle = useStore((state) => state.taskTitle);
   // const setTaskTitle = useStore((state) => state.setTaskTitle);
   // const [executionObjs, setexecutionObjs] = useState([])
-  const [pageContentElRef, setPageContentElRef]= useState(null)
+  const [pageContentElRef, setPageContentElRef] = useState(null);
 
   const pageContentRef = useRef(null);
 
@@ -50,7 +51,7 @@ export default function AddMember() {
     timeInterval,
     timeIntervalRef,
     pageContentElRef,
-    clientSignature
+    clientSignature,
   };
 
   useEffect(() => {
@@ -59,16 +60,12 @@ export default function AddMember() {
     (async function () {
       try {
         const url = `${websiteUrl}/start`;
-        const response = await fetch(url, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ true: true }),
-          signal: abortController.signal, // Pass the signal to the fetch call
-        });
+        const response = await axios.post(
+          url,
+          { signal: abortController.signal } // Pass the signal to the fetch call
+        );
 
-        const dataRaw = await response.json();
+        const dataRaw = await response.data;
 
         if (!dataRaw) {
           console.log("No data seen");
@@ -76,7 +73,8 @@ export default function AddMember() {
         }
 
         if (dataRaw.error) {
-          
+          console.log(dataRaw.error);
+
           if (dataRaw.error.code === "ENOTFOUND") {
             console.log("No internet network");
             return;
@@ -84,10 +82,9 @@ export default function AddMember() {
         }
 
         const data = dataRaw.boards;
-        const signature = dataRaw.sessionSignature
+        const signature = dataRaw.sessionSignature;
         setBoardsCollection(data);
-        setClientSignature(signature)
-
+        setClientSignature(signature);
       } catch (error) {
         console.log(error);
       }
@@ -100,47 +97,46 @@ export default function AddMember() {
   }, []);
 
   useEffect(() => {
-   setPageContentElRef(pageContentRef.current)
+    setPageContentElRef(pageContentRef.current);
   }, [boardsCollection]);
 
-  // if (boardsCollection === [])
-  //   return console.log("boards not available");
+  if (boardsCollection === null)
+    return console.log("boards not available");
 
   return (
     <>
       <LoggedInUsersControl>
-        <HomePage />
+      <HomeNavBar />
 
-        <section className="main-section-cont" id="mainContentCont" ref={pageContentRef}>
-          <h1 id="toolInstruction">{pageTitle}</h1>
+      <section
+        className="main-section-cont"
+        id="mainContentCont"
+        ref={pageContentRef}>
+        <h1 id="toolInstruction">{pageTitle}</h1>
 
-          <section className="inner-main-cont" id="innerMainContentCont">
-            <Input
-              inputLabel={inputLabel}
-              inputPlaceholderText={inputPlaceholderText}
-            />
-            <SelectAll
-              labelTitle={labelTitle}
-              selectInstructionText={selectInstructionText}
-              action={(e) => {
-                AddToBoard(executionParams);
-              }}
-            />
+        <section className="inner-main-cont" id="innerMainContentCont">
+          <Input
+            inputLabel={inputLabel}
+            inputPlaceholderText={inputPlaceholderText}
+          />
+          <SelectAll
+            labelTitle={labelTitle}
+            selectInstructionText={selectInstructionText}
+            action={(e) => {
+              AddToBoard(executionParams);
+            }}
+          />
 
-            <SearchBoards searchPlaceholderTitle={searchPlaceholderTitle} />
+          <SearchBoards searchPlaceholderTitle={searchPlaceholderTitle} />
 
-            {boardsCollection.map((board, index) => {
-              return (
-                <BoardsDisplaySection
-                  key={index}
-                  board={board}
-                  indexNo={index}
-                />
-              );
-            })}
-          </section>
+          {boardsCollection.map((board, index) => {
+            return (
+              <BoardsDisplaySection key={index} board={board} indexNo={index} />
+            );
+          })}
         </section>
-        <ProgressBar pageName={pageName} />
+      </section>
+      <ProgressBar pageName={pageName} />
       </LoggedInUsersControl>
     </>
   );
