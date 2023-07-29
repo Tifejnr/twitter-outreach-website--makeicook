@@ -1,11 +1,8 @@
 import React from 'react'
 import CustomLink from '../CustomLink'
 
-export default function PagesNavItems() {
+export default function PagesNavItems(props) {
 
-    const dashboardObj= {
-        credits:10
-    }
  return (
       <>
       <CustomLink className="nav-list" >
@@ -26,9 +23,7 @@ export default function PagesNavItems() {
         </CustomLink>
 
        <li  className="sign-up-cont" id="credits-no-large-screen">
-         <h4 className="sign-up">{dashboardObj.credits==1 ? `Credit: ${dashboardObj.credits}` :
-       
-       `Credits: ${dashboardObj.credits}`}
+         <h4 className="sign-up">{props.showCredits}
          </h4>
       </li>
 

@@ -4,14 +4,20 @@ import LandingPageToggle from '../Main-nav-bar/LandingPageToggle'
 import NavLogo from '../Main-nav-bar/NavLogo'
 import PagesNavItems from '../Main-nav-bar/PagesNavItems'
 import FAQ from '../LandingPage/FAQ/FAQ'
+import useStore from '../Hooks/Zustand/usersStore'
 
 
 export default function Pricing() {
+  const creditsFromServer = useStore((state) => state.creditsFromServer);
   return (
     <>
   <nav className='nav'>
-       
-       <LandingPageToggle innerText="Credist: 0" pageLink="#"/>
+
+       <LandingPageToggle  innerText={creditsFromServer==1 ? `Credit:${creditsFromServer}`: 
+      
+      `Credits:${creditsFromServer}`} pagelink="#" 
+      
+      />
 
       <ul className="nav__menu">
 
@@ -19,7 +25,11 @@ export default function Pricing() {
           <NavLogo />
         </li>
        
-      <PagesNavItems/>  
+      <PagesNavItems showCredits={creditsFromServer==1 ? `Credit:${creditsFromServer}`: 
+      
+      `Credits:${creditsFromServer}`}
+      
+      />  
       </ul>
   </nav>
 
