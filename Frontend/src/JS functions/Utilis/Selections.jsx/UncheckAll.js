@@ -1,9 +1,8 @@
 import { showCountsOfChecked } from "../EleDisplay";
 
-export default function UncheckAll() {
-  const checkboxes = document.querySelectorAll(".board-checkbox");
-  checkboxes.forEach((checkbox) => {
+export default function UncheckAll(checkboxesArray) {
+  checkboxesArray.forEach((checkbox) => {
     checkbox.checked = false;
-    showCountsOfChecked();
+    showCountsOfChecked(checkboxesArray);
   });
 }

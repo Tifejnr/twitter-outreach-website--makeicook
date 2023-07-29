@@ -1,9 +1,11 @@
 import React, {useState} from 'react'
+import useStore from '../../Hooks/Zustand/usersStore'
 import CheckAll from '../../../JS functions/Utilis/Selections.jsx/CheckAll'
 import UncheckAll from '../../../JS functions/Utilis/Selections.jsx/UncheckAll'
 
 export default function SelectAll(props) {
   const [isAllChecked, setIsAllChecked] =  useState(false)
+  const checkboxesArray = useStore((state) => state.checkboxesArray);
   return (
        <section className='selectionCont' id="selective-btn">
 
@@ -12,13 +14,13 @@ export default function SelectAll(props) {
           {
             isAllChecked ? <button id="clear-select" onClick={()=>{
 
-              UncheckAll()
+              UncheckAll(checkboxesArray)
               setIsAllChecked(false)
 
             }}>Deselect All</button> :
 
             <button id="select-all" onClick={()=> {
-                    CheckAll()
+                    CheckAll(checkboxesArray)
                     setIsAllChecked(true)
              } }
            >Select All</button>

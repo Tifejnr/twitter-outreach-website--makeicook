@@ -17,11 +17,11 @@ function displayForms(forms) {
   }
 }
 
-function showCountsOfChecked() {
+function showCountsOfChecked(checkboxesArray) {
   const noOfCheckedDisplayCont = document.getElementById("para");
-  const totalCheckboxes = document.querySelectorAll(".board-checkbox").length;
-  const noOfChecked = document.querySelectorAll(
-    ".board-checkbox:checked"
+  const totalCheckboxes = checkboxesArray.length;
+  const noOfChecked = checkboxesArray.filter(
+    (checkbox) => checkbox.checked
   ).length;
   noOfCheckedDisplayCont.innerHTML = `${noOfChecked} of ${totalCheckboxes}`;
 }

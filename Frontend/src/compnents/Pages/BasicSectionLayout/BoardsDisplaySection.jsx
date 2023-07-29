@@ -13,24 +13,16 @@ export default function BoardsDisplaySection (props) {
   const pushCheckboxesArray = useStore((state) => state.pushCheckboxesArray);
 
   const handleCheckBoxClick = ()=> {
-    showCountsOfChecked()
+    showCountsOfChecked(checkboxesArray)
     // increment() 
-    // pushCheckboxesArray(checkboxRef.current)
+   // pushCheckboxesArray(checkboxRef.current)
 }
-
-
-
 
   useEffect(() => {
   const checkboxEle = checkboxRef.current;
-
    pushCheckboxesArray(checkboxEle)
-
    
   }, []);
-
-
-  console.log(checkboxesArray)
 
 
   return (
