@@ -18,7 +18,7 @@ var _require3 = require("../Joi-Validations/register-validation"),
     validateRegsiterParams = _require3.validateRegsiterParams;
 
 router.post("/", function _callee(req, res) {
-  var _validateRegsiterPara, error, accountUser, salt, token, cookieOptions;
+  var _validateRegsiterPara, error, accountUserExists, accountUser, salt, token, cookieOptions;
 
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
@@ -43,9 +43,9 @@ router.post("/", function _callee(req, res) {
           }));
 
         case 6:
-          accountUser = _context.sent;
+          accountUserExists = _context.sent;
 
-          if (!accountUser) {
+          if (!accountUserExists) {
             _context.next = 9;
             break;
           }
@@ -71,10 +71,11 @@ router.post("/", function _callee(req, res) {
           return regeneratorRuntime.awrap(accountUser.save());
 
         case 19:
-          _context.next = 21;
+          console.log(accountUser);
+          _context.next = 22;
           return regeneratorRuntime.awrap(signJwt(accountUser));
 
-        case 21:
+        case 22:
           token = _context.sent;
           cookieOptions = {
             maxAge: 1209600000,
@@ -85,22 +86,22 @@ router.post("/", function _callee(req, res) {
             registered: true
           });
           console.log("registered");
-          _context.next = 31;
+          _context.next = 32;
           break;
 
-        case 27:
-          _context.prev = 27;
+        case 28:
+          _context.prev = 28;
           _context.t0 = _context["catch"](3);
           console.log(_context.t0);
           res.json({
             error: _context.t0
           });
 
-        case 31:
+        case 32:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[3, 27]]);
+  }, null, null, [[3, 28]]);
 });
 module.exports = router;

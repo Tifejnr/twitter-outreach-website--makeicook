@@ -14,18 +14,20 @@ router.post("/", async (req, res) => {
     return res.status(400).json({ emailError: error.details[0].message });
 
   try {
-    let accountUser = await user.findOne({ email: req.body.email });
-    if (accountUser)
+    const accountUserExists = await user.findOne({ email: req.body.email });
+    if (accountUserExists)
       return res
         .status(409)
         .json({ alreadyRegistered: "User already registered" });
-    accountUser = new user(_.pick(req.body, ["email", "password"]));
+    const accountUser = new user(_.pick(req.body, ["email", "password"]));
 
     const salt = await bycrypt.genSalt(11);
     accountUser.password = await bycrypt.hash(accountUser.password, salt);
     accountUser.credits = 5;
 
     await accountUser.save();
+
+    console.log(accountUser);
 
     const token = await signJwt(accountUser);
 
