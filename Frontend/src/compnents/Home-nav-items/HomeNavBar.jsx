@@ -2,11 +2,11 @@ import React from 'react'
 import LandingPageToggle from '../Main-nav-bar/LandingPageToggle'
 import NavLogo from '../Main-nav-bar/NavLogo'
 import HomePageNavItems from './HomePageNavItems'
-export default function HomeNavBar() {
+export default function HomeNavBar(props) {
   return (
     <>
  <nav className='nav'>
-      <LandingPageToggle innerText="Credits: 0" pageLink="/register"/>
+      <LandingPageToggle innerText={props.innerText} pageLink={props.pageLink}/>
 
       <ul className="nav__menu">
 

@@ -11,8 +11,7 @@ module.exports = function _callee(req, res, next) {
         case 0:
           _context.prev = 0;
           //check if user has trello token stored or iv
-          // const userId = userDetails._id;
-          userId = "64ad80b631825676a3fcec77";
+          userId = userDetails._id;
           _context.next = 4;
           return regeneratorRuntime.awrap(user.findById(userId));
 

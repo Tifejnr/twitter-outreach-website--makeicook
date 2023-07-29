@@ -3,7 +3,6 @@ import HomeNavBar from './HomeNavBar'
 import HomePageNavItems from './HomePageNavItems'
 import LandingPageToggle from '../Main-nav-bar/LandingPageToggle'
 import NavLogo from '../Main-nav-bar/NavLogo'
-import LoggedInUsersControl from '../Controllers/OnlyAuthorizedUsers'
 import Boards from './Sections/BoardsTools/Boards'
 import Workspaces from './Sections/Workspaces/Workspaces'
 
@@ -12,8 +11,6 @@ export default function HomePage() {
 
   return (
 <>
-<LoggedInUsersControl>
-  
   <HomeNavBar/>
 
   <main className='home-main-cont'>
@@ -21,8 +18,6 @@ export default function HomePage() {
     <Boards/>
     <Workspaces/>
   </main>
-
-</LoggedInUsersControl>  
 </>
   )
 }

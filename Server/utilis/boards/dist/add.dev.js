@@ -1,10 +1,6 @@
 "use strict";
 
-var axios = require("axios"); // const { getKeys } = require("../../envKeys/allKeys");
-// const keysObjects = getKeys();
-// const key = keysObjects.CLIENT_SECRET_KEY;
-// const token = keysObjects.ACCESS_TOKEN_SECRET;
-
+var axios = require("axios");
 
 function addMemberToBoard(req, res) {
   var _req$body, email, boardId, memberAddingUrl, response, success;
