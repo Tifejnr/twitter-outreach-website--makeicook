@@ -1,7 +1,7 @@
 "use strict";
 
 function generateSignature() {
-  var length = 17;
+  var length = 18;
   var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   var signature = ""; // Get the current date and time as a string
 

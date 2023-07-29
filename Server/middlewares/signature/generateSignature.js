@@ -1,5 +1,5 @@
 function generateSignature() {
-  const length = 17;
+  const length = 18;
   const characters =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   let signature = "";

@@ -89,6 +89,8 @@ export default function AddMember() {
         //handle any error from server or internet
         console.log(error);
         console.log(error.message)
+        console.log(error.statusText)
+        if (error.statusText==="Unauthorized") return console.log("unauthorized")
       }
     })();
 

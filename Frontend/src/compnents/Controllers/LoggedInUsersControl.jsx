@@ -8,12 +8,14 @@ export default function LoggedInUsersControl({ children }) {
   const [noTokenYet, setNoTokenYet] = useState(null); 
 
   useEffect(() => {
-    checkIsLoginAndAuthorized();
+    isUserAuthorized();
   }, []); 
   
-  const checkIsLoginAndAuthorized = async () => {
+  const isUserAuthorized = async () => {
       try {
         const response = await isLoginAndAuthorized();
+
+        console.log(response)
 
         if (response.authorized) return  setIsLoggedIn(true);
         if (response.backToOauthPage) return setNoTokenYet(true);
