@@ -9,7 +9,6 @@ export default function Input(props) {
   // Function to handle textarea value changes
   const handleTextareaChange = (event) => {
     setTextAreaValue(event.target.value);
-
   };
 
   useEffect(() => {
