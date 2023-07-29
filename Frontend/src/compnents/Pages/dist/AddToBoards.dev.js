@@ -5,17 +5,19 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = AddToBoards;
 
-var _ProgressBarExecution = _interopRequireDefault(require("./progressBar/ProgressBarExecution"));
+var _axios = _interopRequireDefault(require("axios"));
 
-var _Input = require("./Utilis/Validations/Input");
+var _ProgressBarExecution = _interopRequireDefault(require("../../JS functions/progressBar/ProgressBarExecution"));
 
-var _sliderValidation = require("./Utilis/Validations/sliderValidation");
+var _Input = require("../../JS functions/Utilis/Validations/Input");
 
-var _Checkbox = require("./Utilis/Validations/Checkbox");
+var _sliderValidation = require("../../JS functions/Utilis/Validations/sliderValidation");
 
-var _byName = require("./Utilis/FindBoardId/byName");
+var _Checkbox = require("../../JS functions/Utilis/Validations/Checkbox");
 
-var _websiteUrl = require("./websiteUrl");
+var _byName = require("../../JS functions/Utilis/FindBoardId/byName");
+
+var _websiteUrl = require("../../JS functions/websiteUrl");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -31,7 +33,6 @@ function AddToBoards(executionParams) {
         case 0:
           Execution = function _ref(email, boardId, boardName) {
             if (!boardName) return console.log("boardname does not exist");
-            console.log(boardName, roundIndex);
             userDetail = email;
             var message = {
               email: email,
@@ -40,32 +41,30 @@ function AddToBoards(executionParams) {
             };
 
             (function _callee() {
-              var response, data, showSuccessParams;
+              var addMembersUrl, response, data, errorObj, errorMessage, showSuccessParams;
               return regeneratorRuntime.async(function _callee$(_context) {
                 while (1) {
                   switch (_context.prev = _context.next) {
                     case 0:
-                      _context.prev = 0;
-                      _context.next = 3;
-                      return regeneratorRuntime.awrap(fetch("".concat(_websiteUrl.websiteUrl, "/add"), {
-                        method: "POST",
-                        headers: {
-                          "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify(message)
-                      }));
+                      addMembersUrl = "".concat(_websiteUrl.websiteUrl, "/add");
+                      _context.prev = 1;
+                      _context.next = 4;
+                      return regeneratorRuntime.awrap(_axios["default"].post(addMembersUrl, message));
 
-                    case 3:
+                    case 4:
                       response = _context.sent;
-                      _context.next = 6;
-                      return regeneratorRuntime.awrap(response.json());
+                      data = response.data;
 
-                    case 6:
-                      data = _context.sent;
-                      console.log(data.status);
+                      if (!data.success) {
+                        _context.next = 8;
+                        break;
+                      }
 
+                      return _context.abrupt("return", succes += 1);
+
+                    case 8:
                       if (data.error) {
-                        console.log(data);
+                        console.log(data.error);
                         failuresArray += 1;
 
                         if (data.error.cause.code == "ECONNRESET") {
@@ -73,18 +72,26 @@ function AddToBoards(executionParams) {
                         }
                       }
 
-                      console.log(data);
-                      succes += 1;
-                      _context.next = 16;
+                      _context.next = 19;
                       break;
 
-                    case 13:
-                      _context.prev = 13;
-                      _context.t0 = _context["catch"](0);
-                      console.log(_context.t0);
+                    case 11:
+                      _context.prev = 11;
+                      _context.t0 = _context["catch"](1);
+                      //handling error and failures
+                      console.log("eror", _context.t0);
+                      failuresArray += 1;
+                      errorObj = _context.t0.response;
+                      errorMessage = errorObj.data;
 
-                    case 16:
-                      _context.prev = 16;
+                      if (errorMessage.insufficientCredits) {
+                        console.log("Error", "insufficientCredits");
+                      }
+
+                      console.log(errorMessage);
+
+                    case 19:
+                      _context.prev = 19;
                       totalAttemptedArray += 1;
                       showSuccessParams = {
                         userDetail: userDetail,
@@ -99,16 +106,21 @@ function AddToBoards(executionParams) {
                         totalDurationLength: totalDurationLength,
                         roundIndex: roundIndex
                       };
-                      (0, _ProgressBarExecution["default"])(showSuccessParams);
-                      console.log(totalDurationLength, totalAttemptedArray, succes, failuresArray);
-                      return _context.finish(16);
+                      (0, _ProgressBarExecution["default"])(showSuccessParams); // console.log(
+                      //   totalDurationLength,
+                      //   totalAttemptedArray,
+                      //   succes,
+                      //   failuresArray
+                      // );
 
-                    case 22:
+                      return _context.finish(19);
+
+                    case 24:
                     case "end":
                       return _context.stop();
                   }
                 }
-              }, null, null, [[0, 13, 16, 22]]);
+              }, null, null, [[1, 11, 19, 24]]);
             })();
           };
 
@@ -217,7 +229,7 @@ function AddToBoards(executionParams) {
                   new Execution(email, boardId, boardName);
                 }, index * timeInterval);
               });
-            }, index * noOfCheckedCheckbox * timeInterval * 1.35);
+            }, index * noOfCheckedCheckbox * timeInterval * 1.36);
           });
 
         case 25:

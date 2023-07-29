@@ -5,17 +5,19 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = AddToBoards;
 
-var _ProgressBarExecution = _interopRequireDefault(require("./progressBar/ProgressBarExecution"));
+var _axios = _interopRequireDefault(require("axios"));
 
-var _Input = require("./Utilis/Validations/Input");
+var _ProgressBarExecution = _interopRequireDefault(require("../../JS functions/progressBar/ProgressBarExecution"));
 
-var _sliderValidation = require("./Utilis/Validations/sliderValidation");
+var _Input = require("../../JS functions/Utilis/Validations/Input");
 
-var _Checkbox = require("./Utilis/Validations/Checkbox");
+var _sliderValidation = require("../../JS functions/Utilis/Validations/sliderValidation");
 
-var _byName = require("./Utilis/FindBoardId/byName");
+var _Checkbox = require("../../JS functions/Utilis/Validations/Checkbox");
 
-var _websiteUrl = require("./websiteUrl");
+var _byName = require("../../JS functions/Utilis/FindBoardId/byName");
+
+var _websiteUrl = require("../../JS functions/websiteUrl");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -40,28 +42,20 @@ function AddToBoards(executionParams) {
             };
 
             (function _callee() {
-              var response, data, showSuccessParams;
+              var addMembersUrl, response, data, showSuccessParams;
               return regeneratorRuntime.async(function _callee$(_context) {
                 while (1) {
                   switch (_context.prev = _context.next) {
                     case 0:
-                      _context.prev = 0;
-                      _context.next = 3;
-                      return regeneratorRuntime.awrap(fetch("".concat(_websiteUrl.websiteUrl, "/add"), {
-                        method: "POST",
-                        headers: {
-                          "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify(message)
-                      }));
+                      addMembersUrl = "".concat(_websiteUrl.websiteUrl, "/add");
+                      _context.prev = 1;
+                      _context.next = 4;
+                      return regeneratorRuntime.awrap(_axios["default"].post(addMembersUrl, message));
 
-                    case 3:
+                    case 4:
                       response = _context.sent;
-                      _context.next = 6;
-                      return regeneratorRuntime.awrap(response.json());
-
-                    case 6:
-                      data = _context.sent;
+                      console.log(response.status);
+                      data = response;
                       console.log(data.status);
 
                       if (data.error) {
@@ -80,7 +74,7 @@ function AddToBoards(executionParams) {
 
                     case 13:
                       _context.prev = 13;
-                      _context.t0 = _context["catch"](0);
+                      _context.t0 = _context["catch"](1);
                       console.log(_context.t0);
 
                     case 16:
@@ -108,7 +102,7 @@ function AddToBoards(executionParams) {
                       return _context.stop();
                   }
                 }
-              }, null, null, [[0, 13, 16, 22]]);
+              }, null, null, [[1, 13, 16, 22]]);
             })();
           };
 
@@ -217,7 +211,7 @@ function AddToBoards(executionParams) {
                   new Execution(email, boardId, boardName);
                 }, index * timeInterval);
               });
-            }, index * noOfCheckedCheckbox * timeInterval * 1.35);
+            }, index * noOfCheckedCheckbox * timeInterval * 1.36);
           });
 
         case 25:

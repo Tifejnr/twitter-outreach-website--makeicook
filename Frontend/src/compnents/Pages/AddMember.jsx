@@ -5,7 +5,7 @@ import Input from "./BasicSectionLayout/Input";
 import SearchBoards from "./BasicSectionLayout/SearchBoards";
 import SelectAll from "./BasicSectionLayout/SelectAll";
 import ProgressBar from "../ProgressBar/ProgressBar";
-import AddToBoard from "../../JS functions/AddToBoard";
+import AddToBoards from "./AddToBoards";
 import HomeNavBar from "../Home-nav-items/HomeNavBar";
 import LoggedInUsersControl from "../Controllers/LoggedInUsersControl";
 import BoardsDisplaySection from "./BasicSectionLayout/BoardsDisplaySection";
@@ -86,7 +86,9 @@ export default function AddMember() {
         setBoardsCollection(data);
         setClientSignature(signature);
       } catch (error) {
+        //handle any error from server or internet
         console.log(error);
+        console.log(error.message)
       }
     })();
 
@@ -123,7 +125,7 @@ export default function AddMember() {
             labelTitle={labelTitle}
             selectInstructionText={selectInstructionText}
             action={(e) => {
-              AddToBoard(executionParams);
+              AddToBoards(executionParams);
             }}
           />
 

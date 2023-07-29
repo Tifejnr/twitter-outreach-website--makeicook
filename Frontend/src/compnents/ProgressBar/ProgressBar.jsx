@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useContext } from 'react'
 import { ProgressBarContext } from '../Hooks/Contexts/ProgressBarContext';
-import AddToBoard from '../../JS functions/AddToBoard';
+import AddToBoards from '../Pages/AddToBoards';
 import useStore from '../Hooks/Zustand/usersStore';
 
 export default function ProgressBar(props) {

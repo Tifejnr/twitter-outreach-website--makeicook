@@ -77,9 +77,6 @@ app.set(
 );
 
 // Routes Handling Section
-// app.get("/", async (req, res) => {
-//   res.render("trelloAdd");
-// });
 
 app.post("/isloggedIn", loginStatusChecker, async (req, res) => {
   res.json({ loggedIn: true });
@@ -87,7 +84,7 @@ app.post("/isloggedIn", loginStatusChecker, async (req, res) => {
 
 app.post(
   "/is-account-authorized",
-  [loginStatusChecker, isUserAuthorized],
+  // [loginStatusChecker, isUserAuthorized],
   async (req, res) => {
     res.json({ authorized: true });
   }
@@ -99,19 +96,15 @@ app.post("/authorize", loginStatusChecker, async (req, res) => {
 
 app.post(
   "/start",
-  [loginStatusChecker, isUserAuthorized, userToken],
+  // [loginStatusChecker, isUserAuthorized, userToken],
   async (req, res) => {
     fetchAllBoards(req, res);
   }
 );
 
-app.post(
-  "/add",
-  [loginStatusChecker, isUserAuthorized, userToken, signatureChecker],
-  async (req, res) => {
-    addMemberToBoard(req, res);
-  }
-);
+app.post("/add", [signatureChecker], async (req, res) => {
+  addMemberToBoard(req, res);
+});
 
 app.post(
   "/delete",

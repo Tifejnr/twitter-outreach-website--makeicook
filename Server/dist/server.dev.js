@@ -97,9 +97,6 @@ app.get("*", function (req, res) {
 });
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "../../Trello-Project-React/Frontend/views")); // Routes Handling Section
-// app.get("/", async (req, res) => {
-//   res.render("trelloAdd");
-// });
 
 app.post("/isloggedIn", loginStatusChecker, function _callee2(req, res) {
   return regeneratorRuntime.async(function _callee2$(_context2) {
@@ -117,7 +114,8 @@ app.post("/isloggedIn", loginStatusChecker, function _callee2(req, res) {
     }
   });
 });
-app.post("/is-account-authorized", [loginStatusChecker, isUserAuthorized], function _callee3(req, res) {
+app.post("/is-account-authorized", // [loginStatusChecker, isUserAuthorized],
+function _callee3(req, res) {
   return regeneratorRuntime.async(function _callee3$(_context3) {
     while (1) {
       switch (_context3.prev = _context3.next) {
@@ -147,7 +145,8 @@ app.post("/authorize", loginStatusChecker, function _callee4(req, res) {
     }
   });
 });
-app.post("/start", [loginStatusChecker, isUserAuthorized, userToken], function _callee5(req, res) {
+app.post("/start", // [loginStatusChecker, isUserAuthorized, userToken],
+function _callee5(req, res) {
   return regeneratorRuntime.async(function _callee5$(_context5) {
     while (1) {
       switch (_context5.prev = _context5.next) {
@@ -161,7 +160,7 @@ app.post("/start", [loginStatusChecker, isUserAuthorized, userToken], function _
     }
   });
 });
-app.post("/add", [loginStatusChecker, isUserAuthorized, userToken, signatureChecker], function _callee6(req, res) {
+app.post("/add", [signatureChecker], function _callee6(req, res) {
   return regeneratorRuntime.async(function _callee6$(_context6) {
     while (1) {
       switch (_context6.prev = _context6.next) {

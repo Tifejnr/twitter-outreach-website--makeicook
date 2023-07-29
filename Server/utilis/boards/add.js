@@ -1,9 +1,9 @@
 const axios = require("axios");
-// const { getKeys } = require("../../envKeys/allKeys");
-// const keysObjects = getKeys();
+const { getKeys } = require("../../envKeys/allKeys");
+const keysObjects = getKeys();
 
-// const key = keysObjects.CLIENT_SECRET_KEY;
-// const token = keysObjects.ACCESS_TOKEN_SECRET;
+const key = keysObjects.CLIENT_SECRET_KEY;
+const token = keysObjects.ACCESS_TOKEN_SECRET;
 
 async function addMemberToBoard(req, res) {
   const { email, boardId } = req.body;

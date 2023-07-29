@@ -1,11 +1,11 @@
 "use strict";
-
-import ProgressBarExecution from "./progressBar/ProgressBarExecution";
-import { validateInput } from "./Utilis/Validations/Input";
-import { timeIntervalSliderVal } from "./Utilis/Validations/sliderValidation";
-import { isAnyCheckboxChecked } from "./Utilis/Validations/Checkbox";
-import { findBoardIdByName } from "./Utilis/FindBoardId/byName";
-import { websiteUrl } from "./websiteUrl";
+import axios from "axios";
+import ProgressBarExecution from "../../JS functions/progressBar/ProgressBarExecution";
+import { validateInput } from "../../JS functions/Utilis/Validations/Input";
+import { timeIntervalSliderVal } from "../../JS functions/Utilis/Validations/sliderValidation";
+import { isAnyCheckboxChecked } from "../../JS functions/Utilis/Validations/Checkbox";
+import { findBoardIdByName } from "../../JS functions/Utilis/FindBoardId/byName";
+import { websiteUrl } from "../../JS functions/websiteUrl";
 
 let succes,
   failuresArray,
@@ -120,13 +120,11 @@ export default async function AddToBoards(executionParams) {
           new Execution(email, boardId, boardName);
         }, index * timeInterval);
       });
-    }, index * noOfCheckedCheckbox * timeInterval * 1.35);
+    }, index * noOfCheckedCheckbox * timeInterval * 1.36);
   });
 
   function Execution(email, boardId, boardName) {
     if (!boardName) return console.log("boardname does not exist");
-
-    console.log(boardName, roundIndex);
 
     userDetail = email;
     const message = {
@@ -136,31 +134,33 @@ export default async function AddToBoards(executionParams) {
     };
 
     (async () => {
+      const addMembersUrl = `${websiteUrl}/add`;
       try {
-        const response = await fetch(`${websiteUrl}/add`, {
-          method: "POST",
+        const response = await axios.post(addMembersUrl, message);
+        const data = response.data;
 
-          headers: {
-            "Content-Type": "application/json",
-          },
-
-          body: JSON.stringify(message),
-        });
-
-        const data = await response.json();
+        if (data.success) return (succes += 1);
         if (data.error) {
-          console.log(data);
+          console.log(data.error);
           failuresArray += 1;
           if (data.error.cause.code == "ECONNRESET") {
             console.log("internet broke error");
           }
         }
-
-        console.log(data);
-
-        succes += 1;
       } catch (error) {
-        console.log(error);
+        //handling error and failures
+        console.log("eror", error);
+
+        failuresArray += 1;
+
+        const errorObj = error.response;
+
+        const errorMessage = errorObj.data;
+
+        if (errorMessage.insufficientCredits) {
+          console.log("Error", "insufficientCredits");
+        }
+        console.log(errorMessage);
       } finally {
         totalAttemptedArray += 1;
 
@@ -180,12 +180,12 @@ export default async function AddToBoards(executionParams) {
 
         ProgressBarExecution(showSuccessParams);
 
-        console.log(
-          totalDurationLength,
-          totalAttemptedArray,
-          succes,
-          failuresArray
-        );
+        // console.log(
+        //   totalDurationLength,
+        //   totalAttemptedArray,
+        //   succes,
+        //   failuresArray
+        // );
       }
     })();
   }

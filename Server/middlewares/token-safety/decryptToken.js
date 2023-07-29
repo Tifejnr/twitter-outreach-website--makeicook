@@ -21,8 +21,6 @@ module.exports = async function (req, res, next) {
     const decryptedToken = decryptedData.toString(CryptoJS.enc.Utf8);
     token = decryptedToken;
     key = keysObject.CLIENT_SECRET_KEY;
-    signature = accountUser.sessionSignature;
-    creditsAvailable = accountUser.credits;
 
     if (!token && !key)
       return res.status(401).json({ unauthorizedToken: true });

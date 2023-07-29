@@ -3,19 +3,33 @@
 var _require = require("../../models/users"),
     user = _require.user;
 
+var _require2 = require("../../envKeys/allKeys"),
+    getKeys = _require2.getKeys;
+
+var keysObject = getKeys();
+var JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
 var creditsNoPerAction = 1;
 
 module.exports = function _callee(req, res, next) {
-  var clientSignature, userId, accountUser, remainingCredits;
+  var clientSignature, userId, accountUser, serverSignature, creditsAvailable, newSessionSignature, remainingCredits;
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
           clientSignature = req.body.clientSignature;
           _context.prev = 1;
+          // const userId = userDetails._id;
+          userId = "64ad80b631825676a3fcec77";
+          _context.next = 5;
+          return regeneratorRuntime.awrap(user.findById(userId));
+
+        case 5:
+          accountUser = _context.sent;
+          serverSignature = accountUser.sessionSignature;
+          creditsAvailable = accountUser.credits;
 
           if (!(creditsAvailable < 1)) {
-            _context.next = 4;
+            _context.next = 10;
             break;
           }
 
@@ -23,46 +37,40 @@ module.exports = function _callee(req, res, next) {
             insufficientCredits: true
           }));
 
-        case 4:
-          if (!(!clientSignature === serverSignature)) {
-            _context.next = 15;
+        case 10:
+          if (!(clientSignature == serverSignature)) {
+            _context.next = 18;
             break;
           }
 
-          userId = userDetails._id; // const userId = "64ad80b631825676a3fcec77";
+          newSessionSignature = "".concat(clientSignature).concat(JWT_PRIVATE_KEY);
+          accountUser.sessionSignature = newSessionSignature; //deduct a credit since it's a new session
 
-          _context.next = 8;
-          return regeneratorRuntime.awrap(user.findById(userId));
-
-        case 8:
-          accountUser = _context.sent;
-          console.log(accountUser.credits);
           remainingCredits = accountUser.credits - creditsNoPerAction;
           accountUser.credits = remainingCredits;
-          _context.next = 14;
+          _context.next = 17;
           return regeneratorRuntime.awrap(accountUser.save());
 
-        case 14:
+        case 17:
           console.log(accountUser.credits);
 
-        case 15:
+        case 18:
           next();
-          _context.next = 23;
+          _context.next = 25;
           break;
 
-        case 18:
-          _context.prev = 18;
+        case 21:
+          _context.prev = 21;
           _context.t0 = _context["catch"](1);
           console.log(_context.t0);
-          res.status(400).json({
-            somethingWentWrong: true
-          });
-          return _context.abrupt("return", false);
+          return _context.abrupt("return", res.status(400).json({
+            error: _context.t0
+          }));
 
-        case 23:
+        case 25:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[1, 18]]);
+  }, null, null, [[1, 21]]);
 };
