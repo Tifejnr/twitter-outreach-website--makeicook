@@ -6,7 +6,7 @@ import SelectAll from './BasicSectionLayout/SelectAll'
 import ProgressBar from '../ProgressBar/ProgressBar'
 import DeleteMemberFromBoard from '../../../../../Trello-Project-React/Frontend/src/JS functions/DeleteFromBoard';
 import HomePage from '../Home-nav-items/HomePage';
-import LoggedInUsersControl from '../Controllers/LoggedInUsersControl';
+import LoggedInUsersControl from '../Controllers/OnlyAuthorizedUsers';
 import BoardsDisplaySection from './BasicSectionLayout/BoardsDisplaySection';
 import { websiteUrl } from '../../JS functions/websiteUrl';
 

@@ -34,6 +34,6 @@ module.exports = async function (req, res, next) {
     next();
   } catch (error) {
     console.log(error);
-    return res.status(400).json({ error: error });
+    return res.status(400).json({ signatureCheckError: error });
   }
 };

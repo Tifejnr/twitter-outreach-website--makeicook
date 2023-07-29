@@ -3,7 +3,7 @@ import HomeNavBar from './HomeNavBar'
 import HomePageNavItems from './HomePageNavItems'
 import LandingPageToggle from '../Main-nav-bar/LandingPageToggle'
 import NavLogo from '../Main-nav-bar/NavLogo'
-import LoggedInUsersControl from '../Controllers/LoggedInUsersControl'
+import LoggedInUsersControl from '../Controllers/OnlyAuthorizedUsers'
 import Boards from './Sections/BoardsTools/Boards'
 import Workspaces from './Sections/Workspaces/Workspaces'
 

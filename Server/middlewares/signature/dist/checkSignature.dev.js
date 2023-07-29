@@ -62,7 +62,7 @@ module.exports = function _callee(req, res, next) {
           _context.t0 = _context["catch"](1);
           console.log(_context.t0);
           return _context.abrupt("return", res.status(400).json({
-            error: _context.t0
+            signatureCheckError: _context.t0
           }));
 
         case 25:

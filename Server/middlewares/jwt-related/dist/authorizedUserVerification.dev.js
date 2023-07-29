@@ -39,7 +39,7 @@ module.exports = function _callee(req, res, next) {
           _context.t0 = _context["catch"](0);
           console.log(_context.t0);
           res.status(400).json({
-            unauthorizedToken: true
+            trelloTokenNotFoundError: _context.t0
           });
 
         case 15:

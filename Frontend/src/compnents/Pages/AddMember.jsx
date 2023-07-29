@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { MyContext } from "../Hooks/Contexts/UserContext";
 import Input from "./BasicSectionLayout/Input";
@@ -7,7 +8,7 @@ import SelectAll from "./BasicSectionLayout/SelectAll";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import AddToBoards from "./AddToBoards";
 import HomeNavBar from "../Home-nav-items/HomeNavBar";
-import LoggedInUsersControl from "../Controllers/LoggedInUsersControl";
+import LoggedInUsersControl from "../Controllers/OnlyAuthorizedUsers";
 import BoardsDisplaySection from "./BasicSectionLayout/BoardsDisplaySection";
 import { websiteUrl } from "../../JS functions/websiteUrl";
 import useStore from "../Hooks/Zustand/usersStore";
@@ -43,6 +44,7 @@ export default function AddMember() {
   const [pageContentElRef, setPageContentElRef] = useState(null);
 
   const pageContentRef = useRef(null);
+    const navigate = useNavigate();
 
   const executionParams = {
     boardsCollection,
@@ -72,25 +74,15 @@ export default function AddMember() {
           return;
         }
 
-        if (dataRaw.error) {
-          console.log(dataRaw.error);
-
-          if (dataRaw.error.code === "ENOTFOUND") {
-            console.log("No internet network");
-            return;
-          }
-        }
-
         const data = dataRaw.boards;
         const signature = dataRaw.sessionSignature;
         setBoardsCollection(data);
         setClientSignature(signature);
       } catch (error) {
         //handle any error from server or internet
-        console.log(error);
-        console.log(error.message)
-        console.log(error.statusText)
-        if (error.statusText==="Unauthorized") return console.log("unauthorized")
+        const errorMessage= error.response.data
+        //Unauthorized handling
+        if (errorMessage.unauthorizedToken) return navigate('/');
       }
     })();
 
@@ -102,14 +94,13 @@ export default function AddMember() {
 
   useEffect(() => {
     setPageContentElRef(pageContentRef.current);
-  }, [boardsCollection]);
+  }, []);
 
   if (boardsCollection === null)
     return "";
 
   return (
-    <>
-      <LoggedInUsersControl>
+    <> 
       <HomeNavBar />
 
       <section
@@ -141,7 +132,6 @@ export default function AddMember() {
         </section>
       </section>
       <ProgressBar pageName={pageName} />
-      </LoggedInUsersControl>
     </>
   );
 }

@@ -11,8 +11,8 @@ module.exports = async function (req, res, next) {
       return res.status(402).json({ backToOauthPage: true });
 
     next();
-  } catch (ex) {
-    console.log(ex);
-    res.status(400).json({ unauthorizedToken: true });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ trelloTokenNotFoundError: error });
   }
 };

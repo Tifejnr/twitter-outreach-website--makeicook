@@ -52,7 +52,7 @@ module.exports = function _callee(req, res, next) {
           _context.t0 = _context["catch"](0);
           console.log(_context.t0);
           res.status(400).json({
-            unauthorizedToken: true
+            tokenDecryptionError: _context.t0
           });
           return _context.abrupt("return", false);
 

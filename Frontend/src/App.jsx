@@ -17,6 +17,8 @@ import HomePage from './compnents/Home-nav-items/HomePage'
 import Dashboard from './compnents/Auth/Dashboard/Dashboard'
 import { MyProvider } from './compnents/Hooks/Contexts/UserContext'
 import { ProgressBarProvider } from './compnents/Hooks/Contexts/ProgressBarContext'
+import LoginOnlyControl from './compnents/Controllers/LoginOnlyControl'
+import OnlyAuthorizedUsers from './compnents/Controllers/OnlyAuthorizedUsers'
 
 
 
@@ -30,8 +32,8 @@ function App() {
         <Route path='/home' element={<HomePage/>}/>
         <Route path='/sign-in' element={<SignIn/>}/>
         <Route path='/register' element={<Register/>}/>
-        <Route path='/dashboard' element={<Dashboard/>}/>
-        <Route path='/add-member' element={<AddMember/>}/>
+        <Route path='/dashboard' element={<OnlyAuthorizedUsers><Dashboard/></OnlyAuthorizedUsers>}/>
+        <Route path='/add-member' element={<OnlyAuthorizedUsers><AddMember/></OnlyAuthorizedUsers>}/>
         <Route path='/delete-member' element={<Delete/>}/>
         <Route path='/pricing' element={<Pricing/>}/>
         <Route path='/authorize' element={<OauthPage />}/>

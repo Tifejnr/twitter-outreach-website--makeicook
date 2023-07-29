@@ -19,10 +19,10 @@ module.exports = function (req, res, next) {
     req.user = decodedPayload;
     userDetails = decodedPayload;
     next();
-  } catch (ex) {
-    console.log(ex);
+  } catch (error) {
+    console.log(error);
     res.status(400).json({
-      unauthorizedToken: true
+      jwtErrorVerification: error
     });
   }
 };

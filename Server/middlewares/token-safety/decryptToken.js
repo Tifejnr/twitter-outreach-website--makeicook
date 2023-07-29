@@ -28,7 +28,7 @@ module.exports = async function (req, res, next) {
     next();
   } catch (error) {
     console.log(error);
-    res.status(400).json({ unauthorizedToken: true });
+    res.status(400).json({ tokenDecryptionError: error });
     return false;
   }
 };
