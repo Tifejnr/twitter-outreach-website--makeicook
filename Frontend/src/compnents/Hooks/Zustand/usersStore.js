@@ -6,17 +6,28 @@ const useStore = create((set) => ({
   setCreditsFromServer: (fetchedCredits) =>
     set((state) => ({ creditsFromServer: fetchedCredits })),
 
-  count: 0,
-  // Function to increment the count
-  increment: () => set((state) => ({ count: state.count + 1 })),
-
+  // Function to push each checkbox ele into the checkboxesArray
   checkboxesArray: [],
 
-  // Function to push a new string into the checkboxesArray
   pushCheckboxesArray: (newString) =>
     set((state) => ({
       checkboxesArray: [...state.checkboxesArray, newString],
     })),
+
+  // Incremeenting Functions
+  count: 0,
+  increment: () => set((state) => ({ count: state.count + 1 })),
+
+  // Incremeenting Functions
+  // Incrementing Success Length
+  sucessLength: 0,
+  incrementSucessLength: () =>
+    set((state) => ({ sucessLength: state.sucessLength + 1 })),
+
+  // Incrementing FailureLength
+  failureLength: 0,
+  incrementFailureLength: () =>
+    set((state) => ({ failureLength: state.failureLength + 1 })),
 }));
 
 export default useStore;

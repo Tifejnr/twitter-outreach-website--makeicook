@@ -25,8 +25,17 @@ var useStore = (0, _zustand.create)(function (set) {
         };
       });
     },
+    // Function to push each checkbox ele into the checkboxesArray
+    checkboxesArray: [],
+    pushCheckboxesArray: function pushCheckboxesArray(newString) {
+      return set(function (state) {
+        return {
+          checkboxesArray: [].concat(_toConsumableArray(state.checkboxesArray), [newString])
+        };
+      });
+    },
+    // Incremeenting Functions
     count: 0,
-    // Function to increment the count
     increment: function increment() {
       return set(function (state) {
         return {
@@ -34,12 +43,22 @@ var useStore = (0, _zustand.create)(function (set) {
         };
       });
     },
-    checkboxesArray: [],
-    // Function to push a new string into the checkboxesArray
-    pushCheckboxesArray: function pushCheckboxesArray(newString) {
+    // Incremeenting Functions
+    // Incrementing Success Length
+    sucessLength: 0,
+    incrementSucessLength: function incrementSucessLength() {
       return set(function (state) {
         return {
-          checkboxesArray: [].concat(_toConsumableArray(state.checkboxesArray), [newString])
+          sucessLength: state.sucessLength + 1
+        };
+      });
+    },
+    // Incrementing FailureLength
+    failureLength: 0,
+    incrementFailureLength: function incrementFailureLength() {
+      return set(function (state) {
+        return {
+          failureLength: state.failureLength + 1
         };
       });
     }
