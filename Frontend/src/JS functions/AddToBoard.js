@@ -73,7 +73,6 @@ export default async function AddToBoards(executionParams) {
 
   if (!boardDetailsObj) return "";
 
-  pageContentElRef.classList.add("blurred");
   const timeInterval = timeIntervalValue * 1000;
 
   totalAttemptedArray = 0;

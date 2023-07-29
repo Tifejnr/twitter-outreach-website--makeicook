@@ -172,7 +172,6 @@ function AddToBoards(executionParams) {
           return _context2.abrupt("return", "");
 
         case 22:
-          pageContentElRef.classList.add("blurred");
           timeInterval = timeIntervalValue * 1000;
           totalAttemptedArray = 0; // each email execution to server
 
@@ -220,7 +219,7 @@ function AddToBoards(executionParams) {
             }, index * noOfCheckedCheckbox * timeInterval * 1.35);
           });
 
-        case 26:
+        case 25:
         case "end":
           return _context2.stop();
       }

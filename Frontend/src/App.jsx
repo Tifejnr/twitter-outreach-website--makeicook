@@ -1,9 +1,10 @@
 import { useState,  createContext } from 'react'
 import './App.css'
+import './main.css'
 import './auth.css'
 import './dashboard.css'
 import './home.css'
-import './main.css'
+
 import {Route, Routes} from "react-router-dom"
 import Register from './compnents/Auth/Register/Register'
 import SignIn from './compnents/Auth/SignIn/SignIn'
