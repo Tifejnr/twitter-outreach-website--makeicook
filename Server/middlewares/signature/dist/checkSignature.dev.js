@@ -48,11 +48,9 @@ module.exports = function _callee(req, res, next) {
 
           remainingCredits = accountUser.credits - creditsNoPerAction;
           accountUser.credits = remainingCredits;
-          _context.next = 17;
+          creditsDeducted = true;
+          _context.next = 18;
           return regeneratorRuntime.awrap(accountUser.save());
-
-        case 17:
-          console.log(accountUser.credits);
 
         case 18:
           next();

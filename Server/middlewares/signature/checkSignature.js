@@ -26,9 +26,9 @@ module.exports = async function (req, res, next) {
 
       accountUser.credits = remainingCredits;
 
-      await accountUser.save();
+      creditsDeducted = true;
 
-      console.log(accountUser.credits);
+      await accountUser.save();
     }
 
     next();
