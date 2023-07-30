@@ -1,17 +1,12 @@
-import React, { useEffect, useRef, useContext } from "react";
-import { MyContext } from "../../../Hooks/Contexts/UserContext";
+import React, { useEffect, useRef} from "react";
+import useStore from "../../../Hooks/Zustand/usersStore";
 
 export default function SliderTimeInterval() {
-  const {
-    t,
-    setT,
-    tRefEl,
-    setTec,
-    timeInterval,
-    setTimeInterval,
-    timeIntervalRef,
-    setTimeIntervalRef,
-  } = useContext(MyContext);
+
+const timeInterval = useStore((state) => state.timeInterval);
+const setTimeInterval = useStore((state) => state.setTimeInterval);
+const timeIntervalRef = useStore((state) => state.timeIntervalRef);
+const setTimeIntervalRef = useStore((state) => state.setTimeIntervalRef);
 
   const timeIntervalSliderRef = useRef(null);
   const handleSliderChange = (event) => {

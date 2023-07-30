@@ -1,9 +1,13 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import SliderTimeInterval from './Sliders/TimeInterval';
-import { MyContext } from '../../Hooks/Contexts/UserContext';
+import useStore from '../../Hooks/Zustand/usersStore';
+
+
 
 export default function Input(props) {
-    const { textAreaValue, setTextAreaValue, textAreaRefEl, setTextAreaRefEl } = useContext(MyContext);
+    const setTextAreaRefEl = useStore((state) => state.setTextAreaRefEl);
+    const setTextAreaValue = useStore((state) => state.setTextAreaValue);
+    const textAreaValue = useStore((state) => state.textAreaValue);
     const textareaRef = useRef(null);
 
   // Function to handle textarea value changes

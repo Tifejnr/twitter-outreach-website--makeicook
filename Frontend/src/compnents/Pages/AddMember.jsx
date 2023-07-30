@@ -1,19 +1,14 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { MyContext } from "../Hooks/Contexts/UserContext";
 import Input from "./BasicSectionLayout/Input";
 import SearchBoards from "./BasicSectionLayout/SearchBoards";
 import SelectAll from "./BasicSectionLayout/SelectAll";
-import ProgressBar from "../ProgressBar/ProgressBar";
-import AddToBoards from "./AddToBoards";
 import HomeNavBar from "../Home-nav-items/HomeNavBar";
-import LoggedInUsersControl from "../Controllers/OnlyAuthorizedUsers";
 import BoardsDisplaySection from "./BasicSectionLayout/BoardsDisplaySection";
 import { websiteUrl } from "../../JS functions/websiteUrl";
 import useStore from "../Hooks/Zustand/usersStore";
 import ProgressExceution from "../ProgressBar/ProgressExceution.jsx";
-import { findBoardIdByName } from "../../JS functions/Utilis/FindBoardId/byName";
 import validateAddToBoard from "./Validations/validateAddToBoard";
 
 const labelTitle = "Add Members";
@@ -29,23 +24,16 @@ const action = "adding";
 export default function AddMember() {
   const [boardsCollection, setBoardsCollection] = useState(null);
   const [openProgressBar, setOpenProgressBar] = useState(false);
-  const {
-    textAreaValue,
-    setc,
-    textAreaRefEl,
-    setd,
-    timeInterval,
-    setT,
-    timeIntervalRef,
-  } = useContext(MyContext);
 
   const [clientSignature, setClientSignature] = useState("");
-  // const taskTitle = useStore((state) => state.taskTitle);
-  // const setTaskTitle = useStore((state) => state.setTaskTitle);
   const [boardDetailsObj, setBoardDetailsObj] = useState([])
   const [pageContentElRef, setPageContentElRef] = useState(null);
   const creditsFromServer = useStore((state) => state.creditsFromServer);
   const checkboxesArray = useStore((state) => state.checkboxesArray);
+  const textAreaValue = useStore((state) => state.textAreaValue);
+  const textAreaRefEl = useStore((state) => state.textAreaRefEl);
+  const timeInterval = useStore((state) => state.timeInterval);
+  const timeIntervalRef = useStore((state) => state.timeIntervalRef);
 
   const pageContentRef = useRef(null);
   const navigate = useNavigate();

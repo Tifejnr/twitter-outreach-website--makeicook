@@ -17,6 +17,42 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 var useStore = (0, _zustand.create)(function (set) {
   return {
+    //set textareaValue
+    textAreaValue: "",
+    setTextAreaValue: function setTextAreaValue(updatedTextArea) {
+      return set(function (state) {
+        return {
+          textAreaValue: updatedTextArea
+        };
+      });
+    },
+    //set TextAreaRefEl
+    textAreaRefEl: "",
+    setTextAreaRefEl: function setTextAreaRefEl(updatedTextAreaRefEl) {
+      return set(function (state) {
+        return {
+          textAreaRefEl: updatedTextAreaRefEl
+        };
+      });
+    },
+    //set timeInterval
+    timeInterval: 1,
+    setTimeInterval: function setTimeInterval(updatedTimeInterval) {
+      return set(function (state) {
+        return {
+          timeInterval: updatedTimeInterval
+        };
+      });
+    },
+    //set TimeIntervalRef
+    timeIntervalRef: "",
+    setTimeIntervalRef: function setTimeIntervalRef(updatedTimeIntervalRef) {
+      return set(function (state) {
+        return {
+          timeIntervalRef: updatedTimeIntervalRef
+        };
+      });
+    },
     //set credits no
     creditsFromServer: "",
     setCreditsFromServer: function setCreditsFromServer(fetchedCredits) {

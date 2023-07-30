@@ -1,6 +1,30 @@
 import { create } from "zustand";
 
 const useStore = create((set) => ({
+  //set textareaValue
+  textAreaValue: "",
+
+  setTextAreaValue: (updatedTextArea) =>
+    set((state) => ({ textAreaValue: updatedTextArea })),
+
+  //set TextAreaRefEl
+  textAreaRefEl: "",
+
+  setTextAreaRefEl: (updatedTextAreaRefEl) =>
+    set((state) => ({ textAreaRefEl: updatedTextAreaRefEl })),
+
+  //set timeInterval
+  timeInterval: 1,
+
+  setTimeInterval: (updatedTimeInterval) =>
+    set((state) => ({ timeInterval: updatedTimeInterval })),
+
+  //set TimeIntervalRef
+  timeIntervalRef: "",
+
+  setTimeIntervalRef: (updatedTimeIntervalRef) =>
+    set((state) => ({ timeIntervalRef: updatedTimeIntervalRef })),
+
   //set credits no
   creditsFromServer: "",
 
