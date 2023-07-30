@@ -14,6 +14,7 @@ import { websiteUrl } from "../../JS functions/websiteUrl";
 import useStore from "../Hooks/Zustand/usersStore";
 import ProgressExceution from "../ProgressBar/ProgressExceution.jsx";
 import { findBoardIdByName } from "../../JS functions/Utilis/FindBoardId/byName";
+import validateAddToBoard from "./Validations/validateAddToBoard";
 
 const labelTitle = "Add Members";
 const inputLabel = "Members' Emails:";
@@ -43,9 +44,10 @@ export default function AddMember() {
   // const [executionObjs, setexecutionObjs] = useState([])
   const [pageContentElRef, setPageContentElRef] = useState(null);
   const creditsFromServer = useStore((state) => state.creditsFromServer);
+  const checkboxesArray = useStore((state) => state.checkboxesArray);
 
   const pageContentRef = useRef(null);
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const executionParams = {
     boardsCollection,
@@ -55,8 +57,19 @@ export default function AddMember() {
     timeIntervalRef,
     pageContentElRef,
     clientSignature,
+    checkboxesArray
     
   };
+
+
+  function validateParams(executionParams) {
+
+   const response=  validateAddToBoard(executionParams)
+
+   console.log(response)
+
+   if (response.goOn) setPageContentElRef(true)
+  }
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -123,9 +136,10 @@ export default function AddMember() {
           <SelectAll
             labelTitle={labelTitle}
             selectInstructionText={selectInstructionText}
-            action={(e) => {
-              AddToBoards(executionParams);
-            }}
+            action={ (e)=> {
+             e.preventDefault()
+              validateParams(executionParams)
+            } }
           />
 
           <SearchBoards searchPlaceholderTitle={searchPlaceholderTitle} />

@@ -1,6 +1,6 @@
 "use strict";
 import axios from "axios";
-import ProgressBarExecution from "../../JS functions/progressBar/ProgressBarExecution";
+// import ProgressBarExecution from "../../JS functions/progressBar/ProgressBarExecution";
 import { validateInput } from "../../JS functions/Utilis/Validations/Input";
 import { timeIntervalSliderVal } from "../../JS functions/Utilis/Validations/sliderValidation";
 import { isAnyCheckboxChecked } from "../../JS functions/Utilis/Validations/Checkbox";

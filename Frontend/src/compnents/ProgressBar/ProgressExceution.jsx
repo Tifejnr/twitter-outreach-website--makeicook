@@ -1,95 +1,196 @@
-import React, { useState, useEffect, useContext } from "react";
+"use strict";
+import axios from "axios";
+import ProgressBarExecution from "../../JS functions/progressBar/ProgressBarExecution";
+import { validateInput } from "../../JS functions/Utilis/Validations/Input";
+import { timeIntervalSliderVal } from "../../JS functions/Utilis/Validations/sliderValidation";
+import { isAnyCheckboxChecked } from "../../JS functions/Utilis/Validations/Checkbox";
+import { findBoardIdByName } from "../../JS functions/Utilis/FindBoardId/byName";
 import { websiteUrl } from "../../JS functions/websiteUrl";
-import useStore from "../Hooks/Zustand/usersStore";
-import ProgressBar from "./ProgressBar";
 
-let totalAttemptedArray,
-  userDetailsLength,
+let succes,
+  failuresArray,
+  totalAttemptedArray,
   totalDurationLength,
-  successLength
+  userDetail,
+  noOfCheckedCheckbox,
+  userDetailsLength,
+  roundIndex;
 
-const action = "Addition";
-const actionTitle = "Adding";
-const section = "boards";
-const pageName = "add-member";
+const action = "adding";
+const isAddedTo = "Boards";
 
-export default function ProgressExceution(props) {
-  const [userDetail, setUserDetail] = useState("");
-  const [failuresLength, setFailuresLength] = useState(0);
-  const [sucessLength, setSucessLength] = useState(0);
-  const [totalAttemptedLength, setTotalAttemptedLength] = useState(0);
-  const [barWidth, setBarWidth] = useState(0);
+export default function AddToBoardsProgress(executionParams) {
+  const boardsCollection = executionParams.boardsCollection;
+  const emailInputs = executionParams.textAreaValue;
+  const textAreaRef = executionParams.textAreaRefEl;
+  const timeIntervalValue = Number(executionParams.timeInterval);
+  const timeIntervalRef = executionParams.timeIntervalRef;
+  const pageContentElRef = executionParams.pageContentElRef;
+  const clientSignature = executionParams.clientSignature;
 
-  //props collections
-  const emailInputs = props.executionParams.textAreaValue;
-  const boardDetailsObj = props.executionParams.executionObjs;
-  const checkedCheckboxesLength = props.executionParams.checkedCheckboxesLength;
+  if (!validateInput(emailInputs, textAreaRef)) return false;
+  if (!timeIntervalSliderVal(timeIntervalValue, timeIntervalRef))
+    return console.log("slider whaala");
+
+  if (!isAnyCheckboxChecked()) return false;
+
+  const allCheckboxesOnPage = document.querySelectorAll(".board-checkbox");
+
+  noOfCheckedCheckbox = document.querySelectorAll(
+    ".board-checkbox:checked"
+  ).length;
 
   const emailListSplited = emailInputs.split(",");
-  const flattenedEmailList =  [emailInputs];
 
-  console.log(flattenedEmailList)
   userDetailsLength = Number(emailListSplited.length);
-  totalDurationLength = Number(checkedCheckboxesLength) * userDetailsLength;
+  totalDurationLength = Number(noOfCheckedCheckbox) * userDetailsLength;
 
-  const serverParams= {
-        flattenedEmailList,
-        boardDetailsObj
-      }
-  console.log(serverParams)
-    addMember()
-    async function addMember() {
+  const boardDetailsObj = Array.from(allCheckboxesOnPage).map(
+    (checkbox, index) => {
+      if (!checkbox.checked) return false;
 
-      const response = await fetch(`${websiteUrl}/add`, {
-        method: "POST",
+      const checkboxId = checkbox.id;
 
-        headers: {
-          "Content-Type": "application/json",
-        },
+      const arrayNoFromId = Number(checkboxId.replace(/\D/g, ""));
 
-        body: JSON.stringify(serverParams),
+      const boardEl = document.getElementById(`labelcheck${arrayNoFromId}`);
+
+      const boardName = boardEl.innerHTML;
+
+      const foundBoard = findBoardIdByName(boardsCollection, boardName);
+
+      if (!foundBoard) return console.log("board not found");
+      const boardId = foundBoard.id;
+
+      const neededObj = {
+        boardId,
+        boardName,
+      };
+
+      return neededObj;
+    }
+  );
+
+  if (!boardDetailsObj) return "";
+
+  const timeInterval = timeIntervalValue * 1000;
+
+  totalAttemptedArray = 0;
+  // each email execution to server
+  emailListSplited.map((eachEmail, index) => {
+    const email = eachEmail.trim();
+    roundIndex = index + 1;
+
+    setTimeout(() => {
+      roundIndex = index + 1;
+    }, index * noOfCheckedCheckbox * timeInterval * 1.35);
+
+    if (totalAttemptedArray === 0) {
+      let boardName = "...";
+      userDetail = "...";
+      succes = 0;
+      failuresArray = 0;
+      roundIndex = 1;
+
+      let showSuccessParams = {
+        userDetail,
+        boardName,
+        isAddedTo,
+        noOfCheckedCheckbox,
+        succes,
+        action,
+        failuresArray,
+        totalAttemptedArray,
+        totalDurationLength,
+        roundIndex,
+        userDetailsLength,
+      };
+
+      ProgressBarExecution(showSuccessParams);
+    }
+    //loop through all checked boards
+    setTimeout(() => {
+      boardDetailsObj.map((boardObj, index) => {
+        const boardId = boardObj.boardId;
+        let boardName = boardObj.boardName;
+        if (!boardId && !boardName) return console.log("board id not found");
+        succes = 0;
+        failuresArray = 0;
+        setTimeout(() => {
+          new Execution(email, boardId, boardName);
+        }, index * timeInterval);
       });
+    }, index * noOfCheckedCheckbox * timeInterval * 1.35);
+  });
 
-      setTotalAttemptedLength((prev) => prev+1)
-      const data = await response.json();
+  function Execution(email, boardId, boardName) {
+    if (!boardName) return console.log("boardname does not exist");
 
-      console.log(data)
-  //     if (data.error) {
-  //       console.log(data.error);
-  //       if (data.error.cause.code == "ECONNRESET") {
-  //         console.log("internet broke error");
-  //       }
+    userDetail = email;
+    const message = {
+      email,
+      boardId,
+      clientSignature,
+    };
 
-  //       // Increment failuresLength and update progress
-  //   return( setFailuresLength((prevValue)=>prevValue+1),     
-  //             setBarWidth((Number(totalAttemptedLength) / Number(totalDurationLength)) * 100)
-  //     )
-  //     }
+    (async () => {
+      const addMembersUrl = `${websiteUrl}/add`;
+      try {
+        const response = await axios.post(addMembersUrl, message);
+        const data = response.data;
 
-  //     // Increment successLength and update progress
-  // return( setSucessLength((prevValue)=>prevValue + 1),     
-  //             setBarWidth((Number(totalAttemptedLength) / Number(totalDurationLength)) * 100)
-  //     )
-    }   
+        if (data.success) return (succes += 1);
+        if (data.error) {
+          console.log(data.error);
+          failuresArray += 1;
+          if (data.error.cause.code == "ECONNRESET") {
+            console.log("internet broke error");
+          }
+        }
+      } catch (error) {
+        //handling error and failures
+        console.log("eror", error);
 
-    addMember().catch((error) => {
-      console.log(error);
-    });
+        failuresArray += 1;
 
+        const errorObj = error.response;
 
+        const errorMessage = errorObj.data;
 
-  const objToBar = {
-    action,
-    actionTitle,
-    section,
-    userDetail,
-    userDetailsLength,
-    pageName,
-    failuresLength,
-    sucessLength,
-    checkedCheckboxesLength,
-    barWidth,
-  };
+        if (errorMessage.insufficientCredits) {
+          console.log("Error", "insufficientCredits");
+        }
+        console.log(errorMessage);
+      } finally {
+        totalAttemptedArray += 1;
 
-  return <ProgressBar progressProps={objToBar} />;
+        let showSuccessParams = {
+          userDetail,
+          boardName,
+          isAddedTo,
+          noOfCheckedCheckbox,
+          userDetailsLength,
+          succes,
+          action,
+          failuresArray,
+          totalAttemptedArray,
+          totalDurationLength,
+          roundIndex,
+        };
+
+        ProgressBarExecution(showSuccessParams);
+
+        // console.log(
+        //   totalDurationLength,
+        //   totalAttemptedArray,
+        //   succes,
+        //   failuresArray
+        // );
+      }
+    })();
+  }
 }
+
+
+  // return <ProgressBar progressProps={objToBar} />;
+

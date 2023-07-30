@@ -7,8 +7,6 @@ exports["default"] = AddToBoards;
 
 var _axios = _interopRequireDefault(require("axios"));
 
-var _ProgressBarExecution = _interopRequireDefault(require("../../JS functions/progressBar/ProgressBarExecution"));
-
 var _Input = require("../../JS functions/Utilis/Validations/Input");
 
 var _sliderValidation = require("../../JS functions/Utilis/Validations/sliderValidation");
@@ -21,6 +19,7 @@ var _websiteUrl = require("../../JS functions/websiteUrl");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
+// import ProgressBarExecution from "../../JS functions/progressBar/ProgressBarExecution";
 var succes, failuresArray, totalAttemptedArray, totalDurationLength, userDetail, noOfCheckedCheckbox, userDetailsLength, roundIndex;
 var action = "adding";
 var isAddedTo = "Boards";
@@ -106,7 +105,7 @@ function AddToBoards(executionParams) {
                         totalDurationLength: totalDurationLength,
                         roundIndex: roundIndex
                       };
-                      (0, _ProgressBarExecution["default"])(showSuccessParams); // console.log(
+                      ProgressBarExecution(showSuccessParams); // console.log(
                       //   totalDurationLength,
                       //   totalAttemptedArray,
                       //   succes,
@@ -214,7 +213,7 @@ function AddToBoards(executionParams) {
                 roundIndex: roundIndex,
                 userDetailsLength: userDetailsLength
               };
-              (0, _ProgressBarExecution["default"])(showSuccessParams);
+              ProgressBarExecution(showSuccessParams);
             } //loop through all checked boards
 
 
