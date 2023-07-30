@@ -70,7 +70,6 @@ export default function AddMember() {
 
    console.log(response)
    if (response.boardDetailsObj )  {
-
     const boardIdAndNameObj= response.boardDetailsObj
     setBoardDetailsObj(boardIdAndNameObj)
 
@@ -78,7 +77,6 @@ export default function AddMember() {
 
    }
 
-   if (response.goOn) setPageContentElRef(true)
   }
 
   useEffect(() => {
@@ -127,7 +125,7 @@ export default function AddMember() {
   return (
     <> 
      {
-      openProgressBar ? <ProgressBar pageName={pageName} /> :
+      openProgressBar ? <ProgressExceution executionParams={executionParams} /> :
      <> <HomeNavBar innerText={creditsFromServer==1 ? `Credit:${creditsFromServer}`: 
       
       `Credits:${creditsFromServer}`} pagelink="#" 

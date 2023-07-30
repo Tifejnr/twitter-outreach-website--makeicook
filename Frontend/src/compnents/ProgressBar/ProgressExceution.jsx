@@ -1,7 +1,9 @@
 "use strict";
 import axios from "axios";
-import ProgressBarExecution from "../../JS functions/progressBar/ProgressBarExecution";
+import ProgressBar from "./ProgressBar";
+// import ProgressBarExecution from "../../JS functions/progressBar/ProgressBarExecution";
 import { websiteUrl } from "../../JS functions/websiteUrl";
+import useStore from "../Hooks/Zustand/usersStore";
 
 let succes,
   failuresArray,
@@ -15,7 +17,15 @@ let succes,
 const action = "adding";
 const isAddedTo = "Boards";
 
-export default function AddToBoardsProgress(executionParams) {
+export default function AddToBoardsProgress(props) {
+  const incrementSucessLength = useStore((state) => state.incrementSucessLength);
+  const incrementFailureLength = useStore((state) => state.incrementFailureLength);
+  const incrementTotalAttemptLength = useStore((state) => state.incrementTotalAttemptLength);
+  const setuserDetails = useStore((state) => state.setuserDetails);
+  const setSectionName = useStore((state) => state.setSectionName);
+
+
+  const executionParams= props.executionParams
   const emailInputs = executionParams.textAreaValue;
   const boardDetailsObj = executionParams.boardDetailsObj;
   const clientSignature = executionParams.clientSignature;
@@ -23,7 +33,7 @@ export default function AddToBoardsProgress(executionParams) {
   const timeIntervalValue = Number(executionParams.timeInterval);
 
 
-  noOfCheckedCheckbox = checkboxesArray.filter(
+   noOfCheckedCheckbox = checkboxesArray.filter(
     (checkbox) => checkbox.checked
   ).length;
   const emailListSplited = emailInputs.split(",");
@@ -38,6 +48,7 @@ export default function AddToBoardsProgress(executionParams) {
   // each email execution to server
   emailListSplited.map((eachEmail, index) => {
     const email = eachEmail.trim();
+    setuserDetails(email)
     roundIndex = index + 1;
 
     setTimeout(() => {
@@ -65,7 +76,6 @@ export default function AddToBoardsProgress(executionParams) {
         userDetailsLength,
       };
 
-      ProgressBarExecution(showSuccessParams);
     }
     //loop through all checked boards
     setTimeout(() => {
@@ -73,8 +83,9 @@ export default function AddToBoardsProgress(executionParams) {
         const boardId = boardObj.boardId;
         let boardName = boardObj.boardName;
         if (!boardId && !boardName) return console.log("board id not found");
-        succes = 0;
-        failuresArray = 0;
+
+        setSectionName(boardName);
+
         setTimeout(() => {
           new Execution(email, boardId, boardName);
         }, index * timeInterval);
@@ -98,7 +109,7 @@ export default function AddToBoardsProgress(executionParams) {
         const response = await axios.post(addMembersUrl, message);
         const data = response.data;
 
-        if (data.success) return (succes += 1);
+        if (data.success) return (incrementSucessLength());
         if (data.error) {
           console.log(data.error);
           failuresArray += 1;
@@ -109,8 +120,7 @@ export default function AddToBoardsProgress(executionParams) {
       } catch (error) {
         //handling error and failures
         console.log("eror", error);
-
-        failuresArray += 1;
+        incrementFailureLength() 
 
         const errorObj = error.response;
 
@@ -119,9 +129,10 @@ export default function AddToBoardsProgress(executionParams) {
         if (errorMessage.insufficientCredits) {
           console.log("Error", "insufficientCredits");
         }
+        if(errorMessage.error.message=='Request failed with status code 429') return console.log("Invite limit rached, wait 60 mins");
         console.log(errorMessage);
       } finally {
-        totalAttemptedArray += 1;
+       incrementTotalAttemptLength()
 
         let showSuccessParams = {
           userDetail,
@@ -137,19 +148,14 @@ export default function AddToBoardsProgress(executionParams) {
           roundIndex,
         };
 
-        ProgressBarExecution(showSuccessParams);
 
-        // console.log(
-        //   totalDurationLength,
-        //   totalAttemptedArray,
-        //   succes,
-        //   failuresArray
-        // );
       }
     })();
   }
+
+  return <ProgressBar pageName="add-member" />;
 }
 
 
-  // return <ProgressBar progressProps={objToBar} />;
+
 

@@ -3,14 +3,11 @@ import { showCountsOfChecked } from "../../../JS functions/Utilis/EleDisplay";
 import useStore from "../../Hooks/Zustand/usersStore";
 
 export default function BoardsDisplaySection (props) {
-  const [checkboxEle, setCheckboxEle]= useState([]);
-  // const checkboxesArray = useStore(state => state.checkboxesArray);
-  const setCheckboxes = useStore(state => state.setCheckboxes);
   const increment = useStore((state) => state.increment);
-  const count = useStore((state) => state.count);
   const checkboxRef = useRef(null);
   const checkboxesArray = useStore((state) => state.checkboxesArray);
   const pushCheckboxesArray = useStore((state) => state.pushCheckboxesArray);
+  
 
   const handleCheckBoxClick = ()=> {
     showCountsOfChecked(checkboxesArray)

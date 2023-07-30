@@ -25,6 +25,24 @@ var useStore = (0, _zustand.create)(function (set) {
         };
       });
     },
+    //change members and boards names while being added
+    userDetails: "",
+    setuserDetails: function setuserDetails(updatedDetails) {
+      return set(function (state) {
+        return {
+          userDetails: updatedDetails
+        };
+      });
+    },
+    //change boards names while being added
+    sectionName: "",
+    setSectionName: function setSectionName(updatedSectionName) {
+      return set(function (state) {
+        return {
+          sectionName: updatedSectionName
+        };
+      });
+    },
     // Function to push each checkbox ele into the checkboxesArray
     checkboxesArray: [],
     pushCheckboxesArray: function pushCheckboxesArray(newString) {
@@ -59,6 +77,15 @@ var useStore = (0, _zustand.create)(function (set) {
       return set(function (state) {
         return {
           failureLength: state.failureLength + 1
+        };
+      });
+    },
+    // Incrementing Total attempts length
+    totalAttemptLength: 0,
+    incrementTotalAttemptLength: function incrementTotalAttemptLength() {
+      return set(function (state) {
+        return {
+          totalAttemptLength: state.totalAttemptLength + 1
         };
       });
     }

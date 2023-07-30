@@ -4,6 +4,10 @@ import { ProgressBarContext } from '../Hooks/Contexts/ProgressBarContext';
 import useStore from '../Hooks/Zustand/usersStore';
 
 export default function ProgressBar(props) {
+  const failureLength = useStore((state) => state.failureLength);
+  const sucessLength = useStore((state) => state.sucessLength);
+  const userDetails = useStore((state) => state.userDetails);
+  const sectionName = useStore((state) => state.sectionName);
 
   return (
     <div className="loading" id="loading">
@@ -11,11 +15,11 @@ export default function ProgressBar(props) {
         <div id="bar"></div>
       </div>
       <section className="changing-ele-on-bar">
-        <h2 id="progressBarTitle" className="title" ></h2>
+        <h2 id="progressBarTitle" className="title" >Adding {userDetails} to {sectionName}</h2>
         <h2 id="totalRoundsEl" className="title" ></h2>
         <h2 id="noOfRounds" className="title" ></h2>
-        <h3 id="successStatusTitle" className="title successTitle">Succes: </h3>
-        <h3 id="failureTitle" className="title failureTitle"></h3>
+        <h3 id="successStatusTitle" className="title successTitle">Succes: {sucessLength}</h3>
+        <h3 id="failureTitle" className="title failureTitle">Failure: {failureLength}</h3>
         <h3 id="completedStatus" className="title"></h3>
       </section>
         <section className="btn-section" id="btnSection">
