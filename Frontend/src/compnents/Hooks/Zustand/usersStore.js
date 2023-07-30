@@ -7,11 +7,6 @@ const useStore = create((set) => ({
   setCreditsFromServer: (fetchedCredits) =>
     set((state) => ({ creditsFromServer: fetchedCredits })),
 
-  //set credits no
-  barWidth: "",
-
-  setBarWidth: (updatedWidth) => set((state) => ({ barWidth: updatedWidth })),
-
   //change members and boards names while being added
   userDetails: "",
 
@@ -36,18 +31,27 @@ const useStore = create((set) => ({
   count: 0,
   increment: () => set((state) => ({ count: state.count + 1 })),
 
-  // Incremeenting Functions
   // Incrementing Success Length and reseting when necessary
   sucessLength: 0,
   incrementSucessLength: () =>
     set((state) => ({ sucessLength: state.sucessLength + 1 })),
   resetSucessLength: () => set({ sucessLength: 0 }), // New action to reset sucessLength to 0
 
+  // Incrementing total Success Length only
+  totalSucessLength: 0,
+  incrementTotalSucessLength: () =>
+    set((state) => ({ totalSucessLength: state.totalSucessLength + 1 })),
+
   // Incrementing FailureLength and reseting when necessary
   failureLength: 0,
   incrementFailureLength: () =>
     set((state) => ({ failureLength: state.failureLength + 1 })),
   resetFailureLength: () => set({ failureLength: 0 }),
+
+  // Incrementing total failure Length only
+  totalFailureLength: 0,
+  incrementTotalFailureLength: () =>
+    set((state) => ({ totalFailureLength: state.totalFailureLength + 1 })),
 
   // Incrementing Total attempts length
   totalAttemptLength: 0,

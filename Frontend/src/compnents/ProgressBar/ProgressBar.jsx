@@ -30,13 +30,20 @@ export default function ProgressBar(props) {
         <h2 id="noOfRounds" className="title" >Current Round: {currentRound}</h2>
         <h3 id="successStatusTitle" className="title successTitle">Succes: {sucessLength}</h3>
         <h3 id="failureTitle" className="title failureTitle">Failure: {failureLength}</h3>
-        <h3 id="completedStatus" className="title"></h3>
+       {
+       percentLoaded==100 && <h3 id="completedStatus" className="title">addition Completed</h3>
+       } 
       </section>
-        <section className="btn-section" id="btnSection">
-          <a href={`/${props.pageName}`}> <button className="okay-btn" id="okay">Okay</button></a>
-          <a href={`/${props.pageName}`}>
-            <button className="cancel-btn" id="cancelBtn">Cancel</button>
-          </a>
+        <section className="btn-section" id="btnSection"> {
+
+     percentLoaded == 100 ? 
+     <a href={`/${props.pageName}`}> <button className="okay-btn" id="okay">Okay</button></a>   
+     :
+      <a href={`/${props.pageName}`}>
+        <button className="cancel-btn" id="cancelBtn">Cancel</button>
+      </a>
+
+      }
         </section>
     </div>
   )

@@ -224,7 +224,6 @@ button:hover {
 }
 
 .btn-section {
-  display: none;
   position: relative;
   transform: translate(-50%, -50%);
   top: 50%;

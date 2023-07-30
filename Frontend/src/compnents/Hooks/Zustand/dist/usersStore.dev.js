@@ -26,15 +26,6 @@ var useStore = (0, _zustand.create)(function (set) {
         };
       });
     },
-    //set credits no
-    barWidth: "",
-    setBarWidth: function setBarWidth(updatedWidth) {
-      return set(function (state) {
-        return {
-          barWidth: updatedWidth
-        };
-      });
-    },
     //change members and boards names while being added
     userDetails: "",
     setuserDetails: function setuserDetails(updatedDetails) {
@@ -71,7 +62,6 @@ var useStore = (0, _zustand.create)(function (set) {
         };
       });
     },
-    // Incremeenting Functions
     // Incrementing Success Length and reseting when necessary
     sucessLength: 0,
     incrementSucessLength: function incrementSucessLength() {
@@ -87,6 +77,15 @@ var useStore = (0, _zustand.create)(function (set) {
       });
     },
     // New action to reset sucessLength to 0
+    // Incrementing total Success Length only
+    totalSucessLength: 0,
+    incrementTotalSucessLength: function incrementTotalSucessLength() {
+      return set(function (state) {
+        return {
+          totalSucessLength: state.totalSucessLength + 1
+        };
+      });
+    },
     // Incrementing FailureLength and reseting when necessary
     failureLength: 0,
     incrementFailureLength: function incrementFailureLength() {
@@ -99,6 +98,15 @@ var useStore = (0, _zustand.create)(function (set) {
     resetFailureLength: function resetFailureLength() {
       return set({
         failureLength: 0
+      });
+    },
+    // Incrementing total failure Length only
+    totalFailureLength: 0,
+    incrementTotalFailureLength: function incrementTotalFailureLength() {
+      return set(function (state) {
+        return {
+          totalFailureLength: state.totalFailureLength + 1
+        };
       });
     },
     // Incrementing Total attempts length
