@@ -30,9 +30,7 @@ export default function AddToBoardsProgress(props) {
   const incrementTotalAttemptLength = useStore(
     (state) => state.incrementTotalAttemptLength
   );
-  const incrementCurrentRound = useStore(
-    (state) => state.incrementCurrentRound
-  );
+  const totalAttemptLength = useStore((state) => state.totalAttemptLength);
   const setuserDetails = useStore((state) => state.setuserDetails);
   const setSectionName = useStore((state) => state.setSectionName);
   const setBarWidth = useStore((state) => state.setBarWidth);
@@ -54,13 +52,15 @@ export default function AddToBoardsProgress(props) {
 
   const timeInterval = timeIntervalValue * 1000;
 
+  totalAttemptedArray = 0;
   // each email execution to server
   emailListSplited.map((eachEmail, index) => {
     const email = eachEmail.trim();
     setuserDetails(email);
+    roundIndex = index + 1;
 
     setTimeout(() => {
-     incrementCurrentRound() 
+      roundIndex = index + 1;
     }, index * noOfCheckedCheckbox * timeInterval * 1.35);
 
     //loop through all checked boards
@@ -70,9 +70,9 @@ export default function AddToBoardsProgress(props) {
         let boardName = boardObj.boardName;
         if (!boardId && !boardName) return console.log("board id not found");
 
-         resetSucessLength()
-         resetFailureLength()
-         setSectionName(boardName);
+        //  resetSucessLength()
+        //  resetFailureLength()
+        //  setSectionName(boardName);
 
         setTimeout(() => {
           new Execution(email, boardId, boardName);
@@ -125,6 +125,14 @@ export default function AddToBoardsProgress(props) {
         setSectionName(boardName);
         setuserDetails(email);
 
+        let percentLoaded =
+          (Number(totalAttemptLength) / Number(totalDurationLength)) * 100;
+
+        console.log(totalAttemptLength);
+
+        setBarWidth(percentLoaded);
+
+        // if (percentLoaded === 100) return succesMess(action, totalRounds);
 
         let showSuccessParams = {
           userDetail,
@@ -143,7 +151,5 @@ export default function AddToBoardsProgress(props) {
     })();
   }
 
-  return <ProgressBar pageName="add-member" totalDurationLength={totalDurationLength} 
-  
-  totalRounds={userDetailsLength } />;
+  return <ProgressBar pageName="add-member" />;
 }

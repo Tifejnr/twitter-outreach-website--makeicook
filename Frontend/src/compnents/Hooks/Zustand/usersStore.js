@@ -1,10 +1,16 @@
 import { create } from "zustand";
 
 const useStore = create((set) => ({
+  //set credits no
   creditsFromServer: "",
 
   setCreditsFromServer: (fetchedCredits) =>
     set((state) => ({ creditsFromServer: fetchedCredits })),
+
+  //set credits no
+  barWidth: "",
+
+  setBarWidth: (updatedWidth) => set((state) => ({ barWidth: updatedWidth })),
 
   //change members and boards names while being added
   userDetails: "",
@@ -47,6 +53,11 @@ const useStore = create((set) => ({
   totalAttemptLength: 0,
   incrementTotalAttemptLength: () =>
     set((state) => ({ totalAttemptLength: state.totalAttemptLength + 1 })),
+
+  // Incrementing currentRound  when necessary
+  currentRound: 0,
+  incrementCurrentRound: () =>
+    set((state) => ({ currentRound: state.currentRound + 1 })),
 }));
 
 export default useStore;

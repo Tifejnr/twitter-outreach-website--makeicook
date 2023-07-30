@@ -4,20 +4,30 @@ import { ProgressBarContext } from '../Hooks/Contexts/ProgressBarContext';
 import useStore from '../Hooks/Zustand/usersStore';
 
 export default function ProgressBar(props) {
+  const totalDurationLength= props.totalDurationLength
+  const totalRounds= props.totalRounds
   const failureLength = useStore((state) => state.failureLength);
   const sucessLength = useStore((state) => state.sucessLength);
   const userDetails = useStore((state) => state.userDetails);
   const sectionName = useStore((state) => state.sectionName);
+  const totalAttemptLength = useStore((state) => state.totalAttemptLength);
+  const currentRound = useStore((state) => state.currentRound);
+
+ let percentLoaded =
+          (Number(totalAttemptLength) / Number(totalDurationLength)) * 100;
+
+
+  let updateBarWidth= {width: `${percentLoaded}%`};
 
   return (
     <div className="loading" id="loading">
       <div className="barHolder">
-        <div id="bar"></div>
+        <div id="bar" style={updateBarWidth}></div>
       </div>
       <section className="changing-ele-on-bar">
         <h2 id="progressBarTitle" className="title" >Adding {userDetails} to {sectionName}</h2>
-        <h2 id="totalRoundsEl" className="title" ></h2>
-        <h2 id="noOfRounds" className="title" ></h2>
+        <h2 id="totalRoundsEl" className="title" >Total Rounds : {totalRounds}</h2>
+        <h2 id="noOfRounds" className="title" >Current Round: {currentRound}</h2>
         <h3 id="successStatusTitle" className="title successTitle">Succes: {sucessLength}</h3>
         <h3 id="failureTitle" className="title failureTitle">Failure: {failureLength}</h3>
         <h3 id="completedStatus" className="title"></h3>

@@ -18,24 +18,17 @@ const action = "adding";
 const isAddedTo = "Boards";
 
 export default function AddToBoardsProgress(props) {
-  //using useStore to manage states cause useState cant work with multiple map methods, runs into infinite loop.
   const incrementSucessLength = useStore(
     (state) => state.incrementSucessLength
   );
-  const resetSucessLength = useStore((state) => state.resetSucessLength);
   const incrementFailureLength = useStore(
     (state) => state.incrementFailureLength
   );
-  const resetFailureLength = useStore((state) => state.resetFailureLength);
   const incrementTotalAttemptLength = useStore(
     (state) => state.incrementTotalAttemptLength
   );
-  const incrementCurrentRound = useStore(
-    (state) => state.incrementCurrentRound
-  );
   const setuserDetails = useStore((state) => state.setuserDetails);
   const setSectionName = useStore((state) => state.setSectionName);
-  const setBarWidth = useStore((state) => state.setBarWidth);
 
   const executionParams = props.executionParams;
   const emailInputs = executionParams.textAreaValue;
@@ -54,15 +47,38 @@ export default function AddToBoardsProgress(props) {
 
   const timeInterval = timeIntervalValue * 1000;
 
+  totalAttemptedArray = 0;
   // each email execution to server
   emailListSplited.map((eachEmail, index) => {
     const email = eachEmail.trim();
     setuserDetails(email);
+    roundIndex = index + 1;
 
     setTimeout(() => {
-     incrementCurrentRound() 
+      roundIndex = index + 1;
     }, index * noOfCheckedCheckbox * timeInterval * 1.35);
 
+    if (totalAttemptedArray === 0) {
+      let boardName = "...";
+      userDetail = "...";
+      succes = 0;
+      failuresArray = 0;
+      roundIndex = 1;
+
+      let showSuccessParams = {
+        userDetail,
+        boardName,
+        isAddedTo,
+        noOfCheckedCheckbox,
+        succes,
+        action,
+        failuresArray,
+        totalAttemptedArray,
+        totalDurationLength,
+        roundIndex,
+        userDetailsLength,
+      };
+    }
     //loop through all checked boards
     setTimeout(() => {
       boardDetailsObj.map((boardObj, index) => {
@@ -70,9 +86,7 @@ export default function AddToBoardsProgress(props) {
         let boardName = boardObj.boardName;
         if (!boardId && !boardName) return console.log("board id not found");
 
-         resetSucessLength()
-         resetFailureLength()
-         setSectionName(boardName);
+        setSectionName(boardName);
 
         setTimeout(() => {
           new Execution(email, boardId, boardName);
@@ -125,7 +139,6 @@ export default function AddToBoardsProgress(props) {
         setSectionName(boardName);
         setuserDetails(email);
 
-
         let showSuccessParams = {
           userDetail,
           boardName,
@@ -143,7 +156,5 @@ export default function AddToBoardsProgress(props) {
     })();
   }
 
-  return <ProgressBar pageName="add-member" totalDurationLength={totalDurationLength} 
-  
-  totalRounds={userDetailsLength } />;
+  return <ProgressBar pageName="add-member" />;
 }

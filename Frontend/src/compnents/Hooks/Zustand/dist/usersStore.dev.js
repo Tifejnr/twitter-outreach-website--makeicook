@@ -17,11 +17,21 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 var useStore = (0, _zustand.create)(function (set) {
   return {
+    //set credits no
     creditsFromServer: "",
     setCreditsFromServer: function setCreditsFromServer(fetchedCredits) {
       return set(function (state) {
         return {
           creditsFromServer: fetchedCredits
+        };
+      });
+    },
+    //set credits no
+    barWidth: "",
+    setBarWidth: function setBarWidth(updatedWidth) {
+      return set(function (state) {
+        return {
+          barWidth: updatedWidth
         };
       });
     },
@@ -97,6 +107,15 @@ var useStore = (0, _zustand.create)(function (set) {
       return set(function (state) {
         return {
           totalAttemptLength: state.totalAttemptLength + 1
+        };
+      });
+    },
+    // Incrementing currentRound  when necessary
+    currentRound: 0,
+    incrementCurrentRound: function incrementCurrentRound() {
+      return set(function (state) {
+        return {
+          currentRound: state.currentRound + 1
         };
       });
     }
