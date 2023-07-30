@@ -19,7 +19,9 @@ const isAddedTo = "Boards";
 
 export default function AddToBoardsProgress(props) {
   const incrementSucessLength = useStore((state) => state.incrementSucessLength);
+  const resetSucessLength = useStore((state) => state.resetSucessLength); 
   const incrementFailureLength = useStore((state) => state.incrementFailureLength);
+  const resetFailureLength = useStore((state) => state.resetFailureLength); 
   const incrementTotalAttemptLength = useStore((state) => state.incrementTotalAttemptLength);
   const setuserDetails = useStore((state) => state.setuserDetails);
   const setSectionName = useStore((state) => state.setSectionName);
@@ -83,7 +85,8 @@ export default function AddToBoardsProgress(props) {
         const boardId = boardObj.boardId;
         let boardName = boardObj.boardName;
         if (!boardId && !boardName) return console.log("board id not found");
-
+         resetSucessLength()
+         resetFailureLength()
         setSectionName(boardName);
 
         setTimeout(() => {
@@ -133,6 +136,8 @@ export default function AddToBoardsProgress(props) {
         console.log(errorMessage);
       } finally {
        incrementTotalAttemptLength()
+        setSectionName(boardName);
+        setuserDetails(email)
 
         let showSuccessParams = {
           userDetail,

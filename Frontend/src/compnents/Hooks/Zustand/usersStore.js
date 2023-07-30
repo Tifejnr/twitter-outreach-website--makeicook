@@ -31,15 +31,17 @@ const useStore = create((set) => ({
   increment: () => set((state) => ({ count: state.count + 1 })),
 
   // Incremeenting Functions
-  // Incrementing Success Length
+  // Incrementing Success Length and reseting when necessary
   sucessLength: 0,
   incrementSucessLength: () =>
     set((state) => ({ sucessLength: state.sucessLength + 1 })),
+  resetSucessLength: () => set({ sucessLength: 0 }), // New action to reset sucessLength to 0
 
-  // Incrementing FailureLength
+  // Incrementing FailureLength and reseting when necessary
   failureLength: 0,
   incrementFailureLength: () =>
     set((state) => ({ failureLength: state.failureLength + 1 })),
+  resetFailureLength: () => set({ failureLength: 0 }),
 
   // Incrementing Total attempts length
   totalAttemptLength: 0,

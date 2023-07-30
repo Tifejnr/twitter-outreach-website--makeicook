@@ -62,7 +62,7 @@ var useStore = (0, _zustand.create)(function (set) {
       });
     },
     // Incremeenting Functions
-    // Incrementing Success Length
+    // Incrementing Success Length and reseting when necessary
     sucessLength: 0,
     incrementSucessLength: function incrementSucessLength() {
       return set(function (state) {
@@ -71,13 +71,24 @@ var useStore = (0, _zustand.create)(function (set) {
         };
       });
     },
-    // Incrementing FailureLength
+    resetSucessLength: function resetSucessLength() {
+      return set({
+        sucessLength: 0
+      });
+    },
+    // New action to reset sucessLength to 0
+    // Incrementing FailureLength and reseting when necessary
     failureLength: 0,
     incrementFailureLength: function incrementFailureLength() {
       return set(function (state) {
         return {
           failureLength: state.failureLength + 1
         };
+      });
+    },
+    resetFailureLength: function resetFailureLength() {
+      return set({
+        failureLength: 0
       });
     },
     // Incrementing Total attempts length
