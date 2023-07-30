@@ -185,7 +185,7 @@ button:hover {
   color: purple;
   font-size: 1.7rem;
   font-weight: 600;
-  display: none;
+  /* display: none; */
   width: 60%;
 }
 

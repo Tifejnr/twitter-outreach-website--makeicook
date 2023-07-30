@@ -28,6 +28,7 @@ const action = "adding";
 
 export default function AddMember() {
   const [boardsCollection, setBoardsCollection] = useState(null);
+  const [openProgressBar, setOpenProgressBar] = useState(false);
   const {
     textAreaValue,
     setc,
@@ -41,7 +42,7 @@ export default function AddMember() {
   const [clientSignature, setClientSignature] = useState("");
   // const taskTitle = useStore((state) => state.taskTitle);
   // const setTaskTitle = useStore((state) => state.setTaskTitle);
-  // const [executionObjs, setexecutionObjs] = useState([])
+  const [boardDetailsObj, setBoardDetailsObj] = useState([])
   const [pageContentElRef, setPageContentElRef] = useState(null);
   const creditsFromServer = useStore((state) => state.creditsFromServer);
   const checkboxesArray = useStore((state) => state.checkboxesArray);
@@ -57,7 +58,8 @@ export default function AddMember() {
     timeIntervalRef,
     pageContentElRef,
     clientSignature,
-    checkboxesArray
+    checkboxesArray,
+    boardDetailsObj
     
   };
 
@@ -67,6 +69,14 @@ export default function AddMember() {
    const response=  validateAddToBoard(executionParams)
 
    console.log(response)
+   if (response.boardDetailsObj )  {
+
+    const boardIdAndNameObj= response.boardDetailsObj
+    setBoardDetailsObj(boardIdAndNameObj)
+
+    setOpenProgressBar(true)
+
+   }
 
    if (response.goOn) setPageContentElRef(true)
   }
@@ -116,7 +126,9 @@ export default function AddMember() {
 
   return (
     <> 
-      <HomeNavBar innerText={creditsFromServer==1 ? `Credit:${creditsFromServer}`: 
+     {
+      openProgressBar ? <ProgressBar pageName={pageName} /> :
+     <> <HomeNavBar innerText={creditsFromServer==1 ? `Credit:${creditsFromServer}`: 
       
       `Credits:${creditsFromServer}`} pagelink="#" 
       
@@ -151,7 +163,8 @@ export default function AddMember() {
           })}
         </section>
       </section>
-      <ProgressBar pageName={pageName} />
+         </>
+         }
     </>
   );
 }

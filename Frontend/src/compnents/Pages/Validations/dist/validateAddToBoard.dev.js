@@ -44,7 +44,6 @@ function validateAddToBoard(executionParams) {
   });
   if (!boardDetailsObj) return "";
   var validationComplete = {
-    startProcess: true,
     boardDetailsObj: boardDetailsObj
   };
   return validationComplete;

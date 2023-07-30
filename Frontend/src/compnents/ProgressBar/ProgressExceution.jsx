@@ -1,10 +1,6 @@
 "use strict";
 import axios from "axios";
 import ProgressBarExecution from "../../JS functions/progressBar/ProgressBarExecution";
-import { validateInput } from "../../JS functions/Utilis/Validations/Input";
-import { timeIntervalSliderVal } from "../../JS functions/Utilis/Validations/sliderValidation";
-import { isAnyCheckboxChecked } from "../../JS functions/Utilis/Validations/Checkbox";
-import { findBoardIdByName } from "../../JS functions/Utilis/FindBoardId/byName";
 import { websiteUrl } from "../../JS functions/websiteUrl";
 
 let succes,
@@ -20,58 +16,21 @@ const action = "adding";
 const isAddedTo = "Boards";
 
 export default function AddToBoardsProgress(executionParams) {
-  const boardsCollection = executionParams.boardsCollection;
   const emailInputs = executionParams.textAreaValue;
-  const textAreaRef = executionParams.textAreaRefEl;
-  const timeIntervalValue = Number(executionParams.timeInterval);
-  const timeIntervalRef = executionParams.timeIntervalRef;
-  const pageContentElRef = executionParams.pageContentElRef;
+  const boardDetailsObj = executionParams.boardDetailsObj;
   const clientSignature = executionParams.clientSignature;
+  const checkboxesArray = executionParams.checkboxesArray;
+  const timeIntervalValue = Number(executionParams.timeInterval);
 
-  if (!validateInput(emailInputs, textAreaRef)) return false;
-  if (!timeIntervalSliderVal(timeIntervalValue, timeIntervalRef))
-    return console.log("slider whaala");
 
-  if (!isAnyCheckboxChecked()) return false;
-
-  const allCheckboxesOnPage = document.querySelectorAll(".board-checkbox");
-
-  noOfCheckedCheckbox = document.querySelectorAll(
-    ".board-checkbox:checked"
+  noOfCheckedCheckbox = checkboxesArray.filter(
+    (checkbox) => checkbox.checked
   ).length;
-
   const emailListSplited = emailInputs.split(",");
 
   userDetailsLength = Number(emailListSplited.length);
   totalDurationLength = Number(noOfCheckedCheckbox) * userDetailsLength;
 
-  const boardDetailsObj = Array.from(allCheckboxesOnPage).map(
-    (checkbox, index) => {
-      if (!checkbox.checked) return false;
-
-      const checkboxId = checkbox.id;
-
-      const arrayNoFromId = Number(checkboxId.replace(/\D/g, ""));
-
-      const boardEl = document.getElementById(`labelcheck${arrayNoFromId}`);
-
-      const boardName = boardEl.innerHTML;
-
-      const foundBoard = findBoardIdByName(boardsCollection, boardName);
-
-      if (!foundBoard) return console.log("board not found");
-      const boardId = foundBoard.id;
-
-      const neededObj = {
-        boardId,
-        boardName,
-      };
-
-      return neededObj;
-    }
-  );
-
-  if (!boardDetailsObj) return "";
 
   const timeInterval = timeIntervalValue * 1000;
 

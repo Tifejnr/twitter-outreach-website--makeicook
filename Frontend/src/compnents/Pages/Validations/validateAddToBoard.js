@@ -45,7 +45,6 @@ export default function validateAddToBoard(executionParams) {
   if (!boardDetailsObj) return "";
 
   const validationComplete = {
-    startProcess: true,
     boardDetailsObj,
   };
 
