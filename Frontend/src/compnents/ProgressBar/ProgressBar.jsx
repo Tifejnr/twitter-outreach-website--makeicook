@@ -7,7 +7,9 @@ export default function ProgressBar(props) {
   const totalDurationLength= props.totalDurationLength
   const totalRounds= props.totalRounds
   const failureLength = useStore((state) => state.failureLength);
+  const totalFailureLength = useStore((state) => state.totalFailureLength);
   const sucessLength = useStore((state) => state.sucessLength);
+  const totalSucessLength = useStore((state) => state.totalSucessLength);
   const userDetails = useStore((state) => state.userDetails);
   const sectionName = useStore((state) => state.sectionName);
   const totalAttemptLength = useStore((state) => state.totalAttemptLength);
@@ -28,10 +30,21 @@ export default function ProgressBar(props) {
         <h2 id="progressBarTitle" className="title" >Adding {userDetails} to {sectionName}</h2>
         <h2 id="totalRoundsEl" className="title" >Total Rounds : {totalRounds}</h2>
         <h2 id="noOfRounds" className="title" >Current Round: {currentRound}</h2>
-        <h3 id="successStatusTitle" className="title successTitle">Succes: {sucessLength}</h3>
-        <h3 id="failureTitle" className="title failureTitle">Failure: {failureLength}</h3>
+        {
+    percentLoaded == 100 ?      
+    <h3 id="successStatusTitle" className="title successTitle">Total Successfull Additions: {totalSucessLength}</h3> 
+    :
+    <h3 id="successStatusTitle" className="title successTitle">Successfull Additions: {sucessLength}</h3>
+    }
+    {
+   percentLoaded == 100 ?  
+        <h3 id="failureTitle" className="title failureTitle">Total Failed Additions: {totalFailureLength}</h3> 
+        :
+        <h3 id="failureTitle" className="title failureTitle">Failed Additions: {failureLength}</h3>
+       }
+
        {
-       percentLoaded==100 && <h3 id="completedStatus" className="title">addition Completed</h3>
+       percentLoaded==100 && <h3 id="completedStatus" className="title">Addition Completed</h3>
        } 
       </section>
         <section className="btn-section" id="btnSection"> {

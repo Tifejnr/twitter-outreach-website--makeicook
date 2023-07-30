@@ -23,10 +23,16 @@ export default function AddToBoardsProgress(props) {
     (state) => state.incrementSucessLength
   );
   const resetSucessLength = useStore((state) => state.resetSucessLength);
+  const incrementTotalSucessLength = useStore((state) => state.incrementTotalSucessLength);
+
+
   const incrementFailureLength = useStore(
     (state) => state.incrementFailureLength
   );
   const resetFailureLength = useStore((state) => state.resetFailureLength);
+  const incrementTotalFailureLength = useStore((state) => state.incrementTotalFailureLength);
+
+
   const incrementTotalAttemptLength = useStore(
     (state) => state.incrementTotalAttemptLength
   );
@@ -96,7 +102,7 @@ export default function AddToBoardsProgress(props) {
         const response = await axios.post(addMembersUrl, message);
         const data = response.data;
 
-        if (data.success) return incrementSucessLength();
+        if (data.success) return ( incrementSucessLength(), incrementTotalSucessLength());
         if (data.error) {
           console.log(data.error);
           failuresArray += 1;
@@ -108,6 +114,7 @@ export default function AddToBoardsProgress(props) {
         //handling error and failures
         console.log("eror", error);
         incrementFailureLength();
+        incrementTotalFailureLength()
 
         const errorObj = error.response;
 

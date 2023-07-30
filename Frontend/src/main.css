@@ -374,6 +374,8 @@ form:last-child {
 textarea {
   outline: none;
   width: 100%;
+  padding: 0.5rem;
+  font-size: 1.5rem;
 }
 
 textarea::placeholder {
