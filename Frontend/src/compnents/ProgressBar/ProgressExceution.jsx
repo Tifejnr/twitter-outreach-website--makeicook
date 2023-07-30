@@ -35,7 +35,6 @@ export default function AddToBoardsProgress(props) {
   );
   const setuserDetails = useStore((state) => state.setuserDetails);
   const setSectionName = useStore((state) => state.setSectionName);
-  const setBarWidth = useStore((state) => state.setBarWidth);
 
   const executionParams = props.executionParams;
   const emailInputs = executionParams.textAreaValue;
