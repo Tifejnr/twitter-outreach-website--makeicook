@@ -6,6 +6,18 @@ const useStore = create((set) => ({
   setCreditsFromServer: (fetchedCredits) =>
     set((state) => ({ creditsFromServer: fetchedCredits })),
 
+  //change members and boards names while being added
+  userDetails: "",
+
+  setuserDetails: (updatedDetails) =>
+    set((state) => ({ userDetails: updatedDetails })),
+
+  //change boards names while being added
+  sectionName: "",
+
+  setSectionName: (updatedSectionName) =>
+    set((state) => ({ sectionName: updatedSectionName })),
+
   // Function to push each checkbox ele into the checkboxesArray
   checkboxesArray: [],
 
@@ -28,6 +40,11 @@ const useStore = create((set) => ({
   failureLength: 0,
   incrementFailureLength: () =>
     set((state) => ({ failureLength: state.failureLength + 1 })),
+
+  // Incrementing Total attempts length
+  totalAttemptLength: 0,
+  incrementTotalAttemptLength: () =>
+    set((state) => ({ totalAttemptLength: state.totalAttemptLength + 1 })),
 }));
 
 export default useStore;
