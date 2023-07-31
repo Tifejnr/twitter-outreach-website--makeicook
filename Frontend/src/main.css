@@ -88,6 +88,7 @@ body {
     font-size: 1.9rem;
   }
 }
+
 /* Functionlity Pages Design */
 .item {
   display: block;
@@ -182,11 +183,16 @@ button:hover {
   transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
-  color: purple;
   font-size: 1.7rem;
   font-weight: 600;
-  /* display: none; */
   width: 60%;
+  max-width: 57rem;
+}
+
+@media only screen and (min-width: 480px) {
+  .loading {
+    font-size: 200%;
+  }
 }
 
 .changing-ele-on-bar {
@@ -207,20 +213,53 @@ button:hover {
   color: #ff3860;
 }
 
-.barHolder {
-  background-color: #ffe629;
-  width: 100%;
-  height: 1.7rem;
-  border-radius: 0.4rem;
-  position: absolute;
-  top: -2rem;
+.loading .successTitle {
+  color: #101c77;
 }
 
-#bar {
-  background-color: purple;
-  width: 0%;
+.barHolder {
+  background: rgba(247, 93, 0, 0.6);
+  width: 100%;
+  height: 2.5rem;
+  border-radius: 0.4rem;
+  position: absolute;
+  top: -3rem;
+  margin-bottom: 1rem;
+  transform-origin: 50% 100%;
+  border-radius: 50% 50% 20% 20%;
+  animation: moveFlame 3s linear infinite;
+}
+
+.barHolder *,
+.barHolder *:before,
+.barHolder *:after {
+  position: absolute;
+  content: "";
+}
+
+.progressing-bar {
+  position: absolute;
+  width: 100%;
   height: 100%;
-  /* transition: width 0.3s ease-in-out; */
+  transform-origin: 50% 100%;
+  border-radius: 50% 50% 20% 20%;
+  background-color: #101c77;
+  transition: width 0.3s ease-in-out;
+  animation: moveFlame 3s linear infinite;
+}
+
+@keyframes moveFlame {
+  0%,
+  100% {
+    transform: rotate(-0.5deg);
+  }
+  50% {
+    transform: rotate(0.5deg);
+  }
+}
+
+.progressbar-btn {
+  margin-top: 2rem;
 }
 
 .btn-section {
@@ -236,7 +275,6 @@ button:hover {
 .selecting-btn-cont {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 2.5rem;
   /* padding: 0 3rem; */
 }
 
@@ -268,19 +306,31 @@ input {
 }
 
 .selecting-btn-cont .execution-btn {
-  font-size: 1.6rem;
+  font-size: 2rem;
   font-weight: 700;
   border-radius: 0.6rem;
   cursor: pointer;
   border: none;
   height: 3rem;
+  width: 60%;
   background-color: #3e1fde;
   color: white;
+  padding: 2rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .selecting-btn-cont .execution-btn:hover {
   color: #ffffff;
   background: #001b40;
+}
+
+.execution-btn-error {
+  padding-top: 0.5rem;
+  margin-bottom: 2rem;
+  color: #db2626;
 }
 
 /* Selction Container */
@@ -454,8 +504,3 @@ textarea::placeholder {
 }
 
 /* Blur page  */
-
-.blurred {
-  filter: blur(0.5rem);
-  pointer-events: none;
-}

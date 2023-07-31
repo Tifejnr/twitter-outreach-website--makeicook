@@ -1,18 +1,10 @@
 "use strict";
 import axios from "axios";
 import ProgressBar from "./ProgressBar";
-// import ProgressBarExecution from "../../JS functions/progressBar/ProgressBarExecution";
 import { websiteUrl } from "../../JS functions/websiteUrl";
 import useStore from "../Hooks/Zustand/usersStore";
 
-let succes,
-  failuresArray,
-  totalAttemptedArray,
-  totalDurationLength,
-  userDetail,
-  noOfCheckedCheckbox,
-  userDetailsLength,
-  roundIndex;
+let totalDurationLength, userDetailsLength
 
 const action = "adding";
 const isAddedTo = "Boards";
@@ -49,13 +41,14 @@ export default function AddToBoardsProgress(props) {
   const checkboxesArray = executionParams.checkboxesArray;
   const timeIntervalValue = Number(executionParams.timeInterval);
 
-  noOfCheckedCheckbox = checkboxesArray.filter(
+  const noOfCheckedCheckbox = checkboxesArray.filter(
     (checkbox) => checkbox.checked
   ).length;
   const emailListSplited = emailInputs.split(",");
 
   userDetailsLength = Number(emailListSplited.length);
   totalDurationLength = Number(noOfCheckedCheckbox) * userDetailsLength;
+
 
   const timeInterval = timeIntervalValue * 1000;
 
@@ -105,6 +98,9 @@ export default function AddToBoardsProgress(props) {
         if (data.success) return ( incrementSucessLength(), incrementTotalSucessLength());
         if (data.error) {
           console.log(data.error);
+         incrementFailureLength();
+        incrementTotalFailureLength()
+
           failuresArray += 1;
           if (data.error.cause.code == "ECONNRESET") {
             console.log("internet broke error");
@@ -122,6 +118,9 @@ export default function AddToBoardsProgress(props) {
 
         if (errorMessage.insufficientCredits) {
           console.log("Error", "insufficientCredits");
+
+          // return navigate("/add-member")
+
         }
         if (errorMessage.error.message == "Request failed with status code 429")
           return console.log("Invite limit rached, wait 60 mins");
@@ -131,23 +130,10 @@ export default function AddToBoardsProgress(props) {
         setSectionName(boardName);
         setuserDetails(email);
 
-
-        let showSuccessParams = {
-          userDetail,
-          boardName,
-          isAddedTo,
-          noOfCheckedCheckbox,
-          userDetailsLength,
-          succes,
-          action,
-          failuresArray,
-          totalAttemptedArray,
-          totalDurationLength,
-          roundIndex,
-        };
       }
     })();
   }
+
 
   return <ProgressBar pageName="add-member" totalDurationLength={totalDurationLength} 
   

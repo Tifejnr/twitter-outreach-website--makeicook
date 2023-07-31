@@ -26,6 +26,5 @@ function timeIntervalSliderVal(value, timeIntervalEl) {
     return false;
   }
 
-  (0, _setSucess.setSliderSuccess)(timeIntervalEl);
   return true;
 }

@@ -53,6 +53,15 @@ var useStore = (0, _zustand.create)(function (set) {
         };
       });
     },
+    //set ExecutionErrorBtnRefEl
+    executionErrorBtn: "",
+    setExecutionErrorBtn: function setExecutionErrorBtn(updatedExecutionErrorBtn) {
+      return set(function (state) {
+        return {
+          executionErrorBtn: updatedExecutionErrorBtn
+        };
+      });
+    },
     //set credits no
     creditsFromServer: "",
     setCreditsFromServer: function setCreditsFromServer(fetchedCredits) {

@@ -24,12 +24,27 @@ export default function ProgressBar(props) {
   return (
     <div className="loading" id="loading">
       <div className="barHolder">
-        <div id="bar" style={updateBarWidth}></div>
+        <div  className='progressing-bar' style={updateBarWidth}></div>
       </div>
       <section className="changing-ele-on-bar">
-        <h2 id="progressBarTitle" className="title" >Adding {userDetails} to {sectionName}</h2>
-        <h2 id="totalRoundsEl" className="title" >Total Rounds : {totalRounds}</h2>
-        <h2 id="noOfRounds" className="title" >Current Round: {currentRound}</h2>
+        <h2 id="progressBarTitle" className="title" >{
+       !percentLoaded == 100 ? `Adding ${userDetails} to ${sectionName}` :
+       `Addition to Boards Completed`
+        }</h2>
+        <h2 id="totalRoundsEl" className="title" >
+          
+          {
+          !percentLoaded == 100 ?
+          `Total Rounds : ${totalRounds}` :
+          `Completed Rounds : ${totalRounds}`
+           }
+          </h2>
+
+
+       {
+   !percentLoaded == 100  &&   <h2 id="noOfRounds" className="title" >Round: {currentRound}</h2>
+
+       }
         {
     percentLoaded == 100 ?      
     <h3 id="successStatusTitle" className="title successTitle">Total Successfull Additions: {totalSucessLength}</h3> 
@@ -43,17 +58,14 @@ export default function ProgressBar(props) {
         <h3 id="failureTitle" className="title failureTitle">Failed Additions: {failureLength}</h3>
        }
 
-       {
-       percentLoaded==100 && <h3 id="completedStatus" className="title">Addition Completed</h3>
-       } 
       </section>
         <section className="btn-section" id="btnSection"> {
 
      percentLoaded == 100 ? 
-     <a href={`/${props.pageName}`}> <button className="okay-btn" id="okay">Okay</button></a>   
+     <a href={`/${props.pageName}`}> <button className="okay-btn progressbar-btn" id="okay">Okay</button></a>   
      :
       <a href={`/${props.pageName}`}>
-        <button className="cancel-btn" id="cancelBtn">Cancel</button>
+        <button className="cancel-btn progressbar-btn" id="cancelBtn">Cancel</button>
       </a>
 
       }

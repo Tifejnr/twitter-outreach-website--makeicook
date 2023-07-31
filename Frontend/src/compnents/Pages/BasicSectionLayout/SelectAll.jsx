@@ -6,6 +6,8 @@ import UncheckAll from '../../../JS functions/Utilis/Selections.jsx/UncheckAll'
 export default function SelectAll(props) {
   const [isAllChecked, setIsAllChecked] =  useState(false)
   const checkboxesArray = useStore((state) => state.checkboxesArray);
+  const executionErrorBtn = useStore((state) => state.executionErrorBtn);
+
   return (
        <section className='selectionCont' id="selective-btn">
 
@@ -28,6 +30,7 @@ export default function SelectAll(props) {
 
              <button className="execution-btn" id="deleting-btn" onClick={props.action}>{props.labelTitle}</button>
           </section>
+          <p className='execution-btn-error'>{executionErrorBtn}</p>
           <p id='para'></p>
        </section>
   )

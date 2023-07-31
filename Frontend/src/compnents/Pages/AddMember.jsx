@@ -34,6 +34,7 @@ export default function AddMember() {
   const textAreaRefEl = useStore((state) => state.textAreaRefEl);
   const timeInterval = useStore((state) => state.timeInterval);
   const timeIntervalRef = useStore((state) => state.timeIntervalRef);
+  const  setExecutionErrorBtn = useStore((state) => state. setExecutionErrorBtn);
 
   const pageContentRef = useRef(null);
   const navigate = useNavigate();
@@ -47,16 +48,22 @@ export default function AddMember() {
     pageContentElRef,
     clientSignature,
     checkboxesArray,
-    boardDetailsObj
-    
+    boardDetailsObj,
+    creditsFromServer  
   };
 
+  const insufficietCreditsMess= "Please buy credits to use this tool"
+  const checkboxMustBeCheckedMess= "Please check at least a board below to continue"
 
   function validateParams(executionParams) {
 
+    if (creditsFromServer <1) return  setExecutionErrorBtn(insufficietCreditsMess) 
+   setExecutionErrorBtn("")
    const response=  validateAddToBoard(executionParams)
 
-   console.log(response)
+   if (response.noCheckboxChecked) return setExecutionErrorBtn(checkboxMustBeCheckedMess);
+  setExecutionErrorBtn("")
+
    if (response.boardDetailsObj )  {
     const boardIdAndNameObj= response.boardDetailsObj
     setBoardDetailsObj(boardIdAndNameObj)

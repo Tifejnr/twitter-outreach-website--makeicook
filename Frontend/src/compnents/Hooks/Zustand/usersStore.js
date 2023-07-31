@@ -25,6 +25,12 @@ const useStore = create((set) => ({
   setTimeIntervalRef: (updatedTimeIntervalRef) =>
     set((state) => ({ timeIntervalRef: updatedTimeIntervalRef })),
 
+  //set ExecutionErrorBtnRefEl
+  executionErrorBtn: "",
+
+  setExecutionErrorBtn: (updatedExecutionErrorBtn) =>
+    set((state) => ({ executionErrorBtn: updatedExecutionErrorBtn })),
+
   //set credits no
   creditsFromServer: "",
 

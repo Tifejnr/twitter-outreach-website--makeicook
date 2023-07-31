@@ -30,7 +30,7 @@ export default function Input(props) {
             ref={textareaRef}
             id="memberDetailTextArea"
             cols="40"
-            rows="10"
+            rows="6"
             placeholder={props.inputPlaceholderText}></textarea>
           <p className="error"></p>
         </section>

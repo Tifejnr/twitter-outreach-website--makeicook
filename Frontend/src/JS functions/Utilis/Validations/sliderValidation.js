@@ -16,8 +16,6 @@ function timeIntervalSliderVal(value, timeIntervalEl) {
     return false;
   }
 
-  setSliderSuccess(timeIntervalEl);
-
   return true;
 }
 
