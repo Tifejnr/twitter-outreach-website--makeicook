@@ -9,6 +9,7 @@ import Testimonials from './Body/Testimonials'
 import FAQ from './FAQ/FAQ'
 import PricingPage from '../PricingPage/PricingPage'
 import ToolsSection from './Tools/Tools'
+import FooterPages from '../Pages/Footer/FooterPages'
 
 
 export default function LandingPage() {
@@ -35,6 +36,7 @@ return (
   <FAQ/>
   <Testimonials/>
   <BelowTestimonials/>
+  <FooterPages />
 
 </>
   )

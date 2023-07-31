@@ -1267,3 +1267,35 @@ li img {
   display: grid;
   row-gap: 1rem;
 }
+
+/* Footer Section */
+
+.pages-footer {
+  display: grid;
+  padding-top: 6rem;
+  margin: 3rem;
+  row-gap: 3rem;
+  justify-content: left;
+  justify-items: left;
+}
+
+.pages-footer h3 {
+  color: var(--dark-des-blue);
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: 500;
+  text-align: left;
+}
+
+.pages-footer a {
+  text-decoration: none;
+  text-align: left;
+}
+
+.pages-footer ul {
+  text-decoration: none;
+  display: grid;
+  justify-content: left;
+  justify-items: left;
+  row-gap: 1rem;
+}
