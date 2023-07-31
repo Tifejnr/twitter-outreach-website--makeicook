@@ -1273,10 +1273,29 @@ li img {
 .pages-footer {
   display: grid;
   padding-top: 6rem;
-  margin: 3rem;
+  margin: 2rem;
   row-gap: 3rem;
   justify-content: left;
   justify-items: left;
+
+  width: 100%;
+}
+
+.pages-footer picture img {
+  width: 2.8rem;
+  height: 2.8rem;
+}
+.pages-footer picture {
+  cursor: pointer;
+}
+
+.footer-page-links-cont {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  row-gap: 3rem;
+  column-gap: 4rem;
+  border: 2px solid red;
 }
 
 .pages-footer h3 {
@@ -1290,6 +1309,7 @@ li img {
 .pages-footer a {
   text-decoration: none;
   text-align: left;
+  color: var(--dark-des-blue);
 }
 
 .pages-footer ul {
@@ -1298,4 +1318,13 @@ li img {
   justify-content: left;
   justify-items: left;
   row-gap: 1rem;
+}
+
+.socials-icon-cont {
+  justify-self: center;
+}
+
+.socials-icon-cont ul {
+  display: flex;
+  column-gap: 3rem;
 }

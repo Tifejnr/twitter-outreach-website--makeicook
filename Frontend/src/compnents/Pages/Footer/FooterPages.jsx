@@ -3,15 +3,19 @@ import BrandLogo from './Sections/BrandLogo'
 import ProductDetails from './Sections/ProductDetails'
 import ResourcesSection from './Sections/ResourcesSection'
 import Company from './Sections/Company'
+import SocialMediaIcons from './Sections/SocialMediaIcons'
 
 export default function FooterPages() {
   return (
     <footer className='pages-footer'>
-    <BrandLogo/>
-    <ProductDetails/>
-    <ResourcesSection/>
+        <BrandLogo/>
+    <section className='footer-page-links-cont'>
+        <ProductDetails/>
+        <ResourcesSection/>
+        <Company/>
+    </section>
 
-    <Company/>
+    <SocialMediaIcons/>
 
     </footer>
   )
