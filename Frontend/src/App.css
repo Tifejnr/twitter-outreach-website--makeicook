@@ -1278,14 +1278,11 @@ li img {
   display: grid;
   padding: 2rem;
   padding-top: 6rem;
-  row-gap: 5rem;
+  row-gap: 4rem;
   justify-content: stretch;
   justify-items: stretch;
   align-items: center;
   align-content: center;
-
-  border: 2px solid red;
-
   width: 100%;
 }
 
@@ -1297,8 +1294,6 @@ li img {
     grid-template-rows: 1fr;
     row-gap: 8rem;
     column-gap: 6rem;
-    /* place-content: center; */
-    border: 2px solid red;
   }
 }
 
