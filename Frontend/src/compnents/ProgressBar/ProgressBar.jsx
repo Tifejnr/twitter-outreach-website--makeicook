@@ -14,6 +14,9 @@ export default function ProgressBar(props) {
   const sectionName = useStore((state) => state.sectionName);
   const totalAttemptLength = useStore((state) => state.totalAttemptLength);
   const currentRound = useStore((state) => state.currentRound);
+  const failureReason = useStore((state) => state.failureReason);
+
+console.log(failureReason)
 
  let percentLoaded =
           (Number(totalAttemptLength) / Number(totalDurationLength)) * 100;
@@ -24,13 +27,16 @@ export default function ProgressBar(props) {
   return (
     <div className="loading" id="loading">
       <div className="barHolder">
+         <p>{ Math.round(percentLoaded)}%</p> 
         <div  className='progressing-bar' style={updateBarWidth}></div>
       </div>
       <section className="changing-ele-on-bar">
         <h2 id="progressBarTitle" className="title" >{
-       !percentLoaded == 100 ? `Adding ${userDetails} to ${sectionName}` :
-       `Addition to Boards Completed`
-        }</h2>
+          percentLoaded == 100 ?  `Addition to Boards Completed` :
+          
+          `Adding ${userDetails} to ${sectionName}`
+            }
+        </h2>
         <h2 id="totalRoundsEl" className="title" >
           
           {
@@ -56,20 +62,32 @@ export default function ProgressBar(props) {
         <h3 id="failureTitle" className="title failureTitle">Total Failed Additions: {totalFailureLength}</h3> 
         :
         <h3 id="failureTitle" className="title failureTitle">Failed Additions: {failureLength}</h3>
-       }
-
+    }
+ 
+   <section className='failureReasonsDisplay'>
+    <h3 className="title failureReasonsDisplayTitle" >See Failure Details</h3>
+    <ul className='main-failure-details-cont'>
+      <p>lima@gmail.com Failed</p>
+      <ul className='detailedReasonsCont'>
+        <li><p>Reason: inite limit reached</p></li>
+        <li><p>Board: Jesus walks</p></li>
+      </ul>
+    </ul>
+   </section>
+     
+   { percentLoaded >0 && <h3 className='title'>Credit Charged: 1</h3> }
+    
       </section>
-        <section className="btn-section" id="btnSection"> {
+    <section className="btn-section" id="btnSection"> {
 
-     percentLoaded == 100 ? 
-     <a href={`/${props.pageName}`}> <button className="okay-btn progressbar-btn" id="okay">Okay</button></a>   
-     :
-      <a href={`/${props.pageName}`}>
-        <button className="cancel-btn progressbar-btn" id="cancelBtn">Cancel</button>
-      </a>
-
-      }
-        </section>
+        percentLoaded == 100 ? 
+        <a href={`/${props.pageName}`}> <button className="okay-btn progressbar-btn" id="okay">Okay</button></a>   
+        :
+          <a href={`/${props.pageName}`}>
+            <button className="cancel-btn progressbar-btn" id="cancelBtn">Cancel</button>
+          </a>
+    }
+   </section>
     </div>
   )
 }

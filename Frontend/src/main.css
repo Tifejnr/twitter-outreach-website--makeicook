@@ -275,6 +275,47 @@ button:hover {
   color: #101c77;
 }
 
+/* Failure Deatisl Design Block */
+
+.failureReasonsDisplay {
+  position: relative;
+  border: 2px solid red;
+  cursor: pointer;
+  display: grid;
+  place-content: center;
+}
+
+.failureReasonsDisplay h3,
+.failureReasonsDisplay p {
+  font-size: 1.5rem;
+  color: #1e2831;
+}
+
+.failureReasonsDisplay p,
+.failureReasonsDisplay li {
+  text-align: left;
+}
+
+.failureReasonsDisplay ul {
+  display: none;
+}
+
+.failureReasonsDisplay:hover ul {
+  display: grid;
+  row-gap: 0.5rem;
+}
+
+.main-failure-details-cont .detailedReasonsCont li {
+  display: none;
+}
+
+.main-failure-details-cont:hover .detailedReasonsCont li {
+  display: grid;
+  row-gap: 0.5rem;
+}
+
+/* Progress bar dsign block*/
+
 .barHolder {
   background: rgba(247, 93, 0, 0.6);
   width: 100%;
@@ -295,6 +336,16 @@ button:hover {
   content: "";
 }
 
+.barHolder p {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  color: #fff;
+  z-index: 400;
+  font-size: 1.7rem;
+}
+
 .progressing-bar {
   position: absolute;
   width: 100%;
@@ -309,10 +360,10 @@ button:hover {
 @keyframes moveFlame {
   0%,
   100% {
-    transform: rotate(-0.5deg);
+    transform: rotate(-0.4deg);
   }
-  50% {
-    transform: rotate(0.5deg);
+  40% {
+    transform: rotate(0.4deg);
   }
 }
 

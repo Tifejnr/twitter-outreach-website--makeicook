@@ -107,6 +107,15 @@ var useStore = (0, _zustand.create)(function (set) {
         };
       });
     },
+    // Function to Failures and reasons for failures
+    failureReason: [],
+    pushFailureReason: function pushFailureReason(newString) {
+      return set(function (state) {
+        return {
+          failureReason: [].concat(_toConsumableArray(state.failureReason), [newString])
+        };
+      });
+    },
     // Incremeenting Functions
     count: 0,
     increment: function increment() {

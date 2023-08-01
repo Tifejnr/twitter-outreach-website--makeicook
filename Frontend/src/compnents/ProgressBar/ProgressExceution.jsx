@@ -17,7 +17,6 @@ export default function AddToBoardsProgress(props) {
   const resetSucessLength = useStore((state) => state.resetSucessLength);
   const incrementTotalSucessLength = useStore((state) => state.incrementTotalSucessLength);
 
-
   const incrementFailureLength = useStore(
     (state) => state.incrementFailureLength
   );
@@ -33,6 +32,7 @@ export default function AddToBoardsProgress(props) {
   );
   const setuserDetails = useStore((state) => state.setuserDetails);
   const setSectionName = useStore((state) => state.setSectionName);
+  const pushFailureReason = useStore((state) => state.pushFailureReason);
 
   const executionParams = props.executionParams;
   const emailInputs = executionParams.textAreaValue;
@@ -82,7 +82,6 @@ export default function AddToBoardsProgress(props) {
   function Execution(email, boardId, boardName) {
     if (!boardName) return console.log("boardname does not exist");
 
-    userDetail = email;
     const message = {
       email,
       boardId,
@@ -117,13 +116,23 @@ export default function AddToBoardsProgress(props) {
         const errorMessage = errorObj.data;
 
         if (errorMessage.insufficientCredits) {
-          console.log("Error", "insufficientCredits");
-
-          // return navigate("/add-member")
+          console.log("Error", "insufficientCredits")
 
         }
-        if (errorMessage.error.message == "Request failed with status code 429")
-          return console.log("Invite limit rached, wait 60 mins");
+        if (errorMessage.error.message == "Request failed with status code 429") {
+          const limitReachedError = "Invite limit rached, wait 60 mins"
+          const failedSectionName= boardName;
+          const failedMemberDetails= email;
+
+          const failureObj = {
+              reason: limitReachedError,
+              failedSectionName,
+              failedMemberDetails
+          }
+
+       return (pushFailureReason(failureObj), console.log(limitReachedError)) ;
+      }
+
         console.log(errorMessage);
       } finally {
         incrementTotalAttemptLength();

@@ -65,6 +65,14 @@ const useStore = create((set) => ({
       checkboxesArray: [...state.checkboxesArray, newString],
     })),
 
+  // Function to Failures and reasons for failures
+  failureReason: [],
+
+  pushFailureReason: (newString) =>
+    set((state) => ({
+      failureReason: [...state.failureReason, newString],
+    })),
+
   // Incremeenting Functions
   count: 0,
   increment: () => set((state) => ({ count: state.count + 1 })),
