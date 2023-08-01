@@ -110,13 +110,38 @@ export default function AddToBoardsProgress(props) {
         console.log("eror", error);
         incrementFailureLength();
         incrementTotalFailureLength()
+        
+       if (error.message=="Network Error") {
+             console.log("No internet")
+          const unstableInteretError = "No internet Error"
+          const failedSectionName= boardName;
+          const failedMemberDetails= email;
+        
+           const failureObj = {
+             reason: unstableInteretError,
+             failedSectionName,
+            failedMemberDetails
+         }
+        
+      return (pushFailureReason(failureObj), console.log(unstableInteretError)) ;
+    }
 
         const errorObj = error.response;
 
         const errorMessage = errorObj.data;
+        if (errorMessage.trelloTokenNotFoundError) {
+          console.log("Error unstable internet")
+          const unstableInteretError = "Unstable Internet Error"
+          const failedSectionName= boardName;
+          const failedMemberDetails= email;
 
-        if (errorMessage.insufficientCredits) {
-          console.log("Error", "insufficientCredits")
+          const failureObj = {
+              reason: unstableInteretError,
+              failedSectionName,
+              failedMemberDetails
+          }
+
+       return (pushFailureReason(failureObj), console.log(unstableInteretError)) ;
 
         }
         if (errorMessage.error.message == "Request failed with status code 429") {

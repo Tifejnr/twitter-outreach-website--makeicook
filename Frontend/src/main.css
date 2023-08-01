@@ -282,20 +282,28 @@ button:hover {
   cursor: pointer;
   display: grid;
   place-content: center;
-  max-height: 30rem;
-  overflow: auto;
+  /* margin: 1rem 0; */
+  max-height: 20rem;
+  z-index: 40000;
+  background-color: #fff;
+  /* overflow: auto; */
 }
 
 .failureReasonsDisplay img {
-  width: 1.5rem;
+  width: 1.4rem;
   height: 1.2rem;
   transition: 0.3s rotate ease-in-out;
 }
 
-.failureReasonsDisplayTitle {
+.failureReasonsDisplay .failureReasonsDisplayTitle {
+  position: relative;
   display: flex;
   flex-direction: row;
   column-gap: 0.3rem;
+  cursor: pointer;
+  background-color: #fff;
+  padding: 1rem;
+  color: purple;
 }
 
 .failureReasonsDisplay h3,
@@ -309,7 +317,7 @@ button:hover {
   text-align: left;
 }
 
-.whatFailedCont,
+.main-failure-details-cont,
 .detailedReasonsCont {
   font-size: 1.5rem;
   line-height: 1.4;
@@ -317,39 +325,34 @@ button:hover {
   overflow: hidden;
   max-height: 0;
   transition: max-height 250ms ease, margin-top 250ms;
+  background-color: #fff;
+  z-index: 30000;
+  padding-left: 0.5rem;
 }
-
-/* .failureReasonsDisplay:hover ul {
-  display: grid;
-  row-gap: 0.5rem;
-} */
 
 .main-failure-details-cont {
   border: 1px solid grey;
   padding: 0.5rem 0;
   border-left: none;
   border-right: none;
+  border-top: 0;
+  cursor: pointer;
 }
 
-/* .main-failure-details-cont .detailedReasonsCont li {
-  display: none;
+.main-failure-details-cont:first-child {
+  border-bottom: 0;
 }
-
-.main-failure-details-cont:hover .detailedReasonsCont li {
-  display: grid;
-  row-gap: 0.5rem;
-}
-.main-failure-details-cont:hover .detailedReasonsCont img {
-  rotate: 180deg;
-  transition: 0.3s rotate linear;
-} */
 
 .whatFailedCont {
   display: flex;
   align-items: center;
   column-gap: 0.3rem;
+  padding-left: 0.3rem;
 }
 
+.failureReasonsDisplay .main-failure-details-cont span.reason {
+  color: #ff3860;
+}
 /* Progress bar dsign block*/
 
 .barHolder {
