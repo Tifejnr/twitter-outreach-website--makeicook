@@ -282,11 +282,14 @@ button:hover {
   cursor: pointer;
   display: grid;
   place-content: center;
+  max-height: 30rem;
+  overflow: auto;
 }
 
 .failureReasonsDisplay img {
   width: 1.5rem;
   height: 1.2rem;
+  transition: 0.3s rotate ease-in-out;
 }
 
 .failureReasonsDisplayTitle {
@@ -306,14 +309,20 @@ button:hover {
   text-align: left;
 }
 
-.failureReasonsDisplay ul {
-  display: none;
+.whatFailedCont,
+.detailedReasonsCont {
+  font-size: 1.5rem;
+  line-height: 1.4;
+  height: 100%;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 250ms ease, margin-top 250ms;
 }
 
-.failureReasonsDisplay:hover ul {
+/* .failureReasonsDisplay:hover ul {
   display: grid;
   row-gap: 0.5rem;
-}
+} */
 
 .main-failure-details-cont {
   border: 1px solid grey;
@@ -322,7 +331,7 @@ button:hover {
   border-right: none;
 }
 
-.main-failure-details-cont .detailedReasonsCont li {
+/* .main-failure-details-cont .detailedReasonsCont li {
   display: none;
 }
 
@@ -332,7 +341,8 @@ button:hover {
 }
 .main-failure-details-cont:hover .detailedReasonsCont img {
   rotate: 180deg;
-}
+  transition: 0.3s rotate linear;
+} */
 
 .whatFailedCont {
   display: flex;

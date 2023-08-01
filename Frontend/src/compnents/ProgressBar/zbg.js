@@ -149,3 +149,15 @@
 
 //   return <ProgressBar progressProps={objToBar} />;
 // }
+
+<ul className="main-failure-details-cont">
+  <p className="whatFailedCont">
+    `tolu to jesusawalks "Failed
+    <img src={failureToggleIcon} alt="togle icon" />
+  </p>
+  <ul className="detailedReasonsCont">
+    <li>
+      <p>Reason: "Limit reached"</p>
+    </li>
+  </ul>
+</ul>;

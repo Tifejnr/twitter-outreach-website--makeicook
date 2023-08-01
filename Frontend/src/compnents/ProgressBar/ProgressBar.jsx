@@ -15,8 +15,32 @@ export default function ProgressBar(props) {
   const totalAttemptLength = useStore((state) => state.totalAttemptLength);
   const currentRound = useStore((state) => state.currentRound);
   const failureReason = useStore((state) => state.failureReason);
+  const [isClicked, setIsClicked] = useState(false);
+  const [isInnerListClicked, setIsInnerListClicked] = useState(false);
 
-console.log(failureReason)
+    const handleToggle= ()=> {
+         setIsClicked((prevState)=>!prevState)
+    }
+
+    const handleInnerListToggle= ()=> {
+         setIsInnerListClicked((prevState)=>!prevState)
+    }
+
+   const rotateOnToggle = {
+    transform: isClicked && "rotate(180deg)"
+  };
+
+ const openFaqDetailsStyle= {
+        maxHeight: isClicked &&  "100%",
+        // marginTop: isClicked && '1.2rem',
+        overflow: isClicked &&  'visible',
+      }
+ const innerListToggleStyle= {
+        maxHeight: isInnerListClicked &&  "100%",
+        // marginTop: isInnerListClicked && '1.2rem',
+        overflow: isInnerListClicked &&  'visible',
+      }
+
 
  let percentLoaded =
           (Number(totalAttemptLength) / Number(totalDurationLength)) * 100;
@@ -40,14 +64,14 @@ console.log(failureReason)
         <h2 id="totalRoundsEl" className="title" >
           
           {
-          !percentLoaded == 100 ?
-          `Total Rounds : ${totalRounds}` :
-          `Completed Rounds : ${totalRounds}`
+          percentLoaded == 100 ?
+          `Completed Rounds : ${totalRounds}` :
+          `Total Rounds to go: ${totalRounds}`
            }
           </h2>
 
        {
-   !percentLoaded == 100  &&   <h2 id="noOfRounds" className="title" >Round: {currentRound}</h2>
+   percentLoaded != 100  &&   <h2 id="noOfRounds" className="title" >Round: {currentRound}</h2>
 
        }
         {
@@ -64,10 +88,23 @@ console.log(failureReason)
     }
  
    <section className='failureReasonsDisplay'>
-    <h3 className="title failureReasonsDisplayTitle" >See Failure Details <img src={failureToggleIcon} alt="failure toggle icon" /></h3>
-     {failureReason.map((failureObj, index) => (
+    <h3 onClick={handleToggle} className="title failureReasonsDisplayTitle" >See Failure Details <img style={rotateOnToggle} src={failureToggleIcon} alt="failure toggle icon" /></h3>
+     {/* {failureReason.map((failureObj, index) => (
               <FailureDetails key={index} failureObj={failureObj} failureToggleIcon={failureToggleIcon} />
-            ))}
+            ))} */}
+
+  <ul className="main-failure-details-cont">
+  <p className="whatFailedCont" onClick={handleInnerListToggle} style={openFaqDetailsStyle} >
+    tolu to jesusawalks Failed
+    {/* <img src={failureToggleIcon} alt="togle icon" /> */}
+  </p>
+  <ul className="detailedReasonsCont" style={innerListToggleStyle}>
+    <li>
+      <p>Reason: "Limit reached"</p>
+    </li>
+  </ul>
+</ul>;
+
   
    </section>
      
