@@ -89,6 +89,49 @@ body {
   }
 }
 
+/* Show the dropdown content on hover and focus */
+
+.tools-dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  position: absolute;
+  display: grid;
+  row-gap: 2rem;
+  display: none;
+  left: -2rem;
+}
+
+.dropdown-content li a {
+  color: #101c77;
+}
+
+.dropdown-content li {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #101c77;
+}
+
+.dropdown-content li:hover {
+  background-color: #101c77;
+  color: #fff;
+}
+
+.tools-dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* li:hover .dropdown-content,
+li:focus-within .dropdown-content {
+  display: block;
+}
+
+.dropdown-content li {
+  border-bottom: 1px solid #333;
+}
+
+
 /* Functionlity Pages Design */
 .item {
   display: block;
