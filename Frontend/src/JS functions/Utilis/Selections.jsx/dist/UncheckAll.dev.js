@@ -5,11 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = UncheckAll;
 
-var _EleDisplay = require("../EleDisplay");
-
 function UncheckAll(checkboxesArray) {
   checkboxesArray.forEach(function (checkbox) {
     checkbox.checked = false;
-    (0, _EleDisplay.showCountsOfChecked)(checkboxesArray);
   });
 }

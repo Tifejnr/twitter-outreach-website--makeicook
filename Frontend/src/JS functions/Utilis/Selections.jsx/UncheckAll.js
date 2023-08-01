@@ -1,8 +1,5 @@
-import { showCountsOfChecked } from "../EleDisplay";
-
 export default function UncheckAll(checkboxesArray) {
   checkboxesArray.forEach((checkbox) => {
     checkbox.checked = false;
-    showCountsOfChecked(checkboxesArray);
   });
 }

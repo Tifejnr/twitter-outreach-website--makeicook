@@ -18,6 +18,15 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 var useStore = (0, _zustand.create)(function (set) {
   return {
     //set textareaValue
+    checkboxRatioNotifierDisplay: "",
+    setCheckboxRatioNotifierDisplay: function setCheckboxRatioNotifierDisplay(updatedCheckboxRatioNotifierDisplay) {
+      return set(function (state) {
+        return {
+          checkboxRatioNotifierDisplay: updatedCheckboxRatioNotifierDisplay
+        };
+      });
+    },
+    //set textareaValue
     textAreaValue: "",
     setTextAreaValue: function setTextAreaValue(updatedTextArea) {
       return set(function (state) {

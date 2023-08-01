@@ -17,13 +17,4 @@ function displayForms(forms) {
   }
 }
 
-function showCountsOfChecked(checkboxesArray) {
-  const noOfCheckedDisplayCont = document.getElementById("para");
-  const totalCheckboxes = checkboxesArray.length;
-  const noOfChecked = checkboxesArray.filter(
-    (checkbox) => checkbox.checked
-  ).length;
-  noOfCheckedDisplayCont.innerHTML = `${noOfChecked} of ${totalCheckboxes}`;
-}
-
-export { display, hide, hideForms, displayForms, showCountsOfChecked };
+export { display, hide, hideForms, displayForms };

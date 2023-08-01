@@ -2,6 +2,14 @@ import { create } from "zustand";
 
 const useStore = create((set) => ({
   //set textareaValue
+  checkboxRatioNotifierDisplay: "",
+
+  setCheckboxRatioNotifierDisplay: (updatedCheckboxRatioNotifierDisplay) =>
+    set((state) => ({
+      checkboxRatioNotifierDisplay: updatedCheckboxRatioNotifierDisplay,
+    })),
+
+  //set textareaValue
   textAreaValue: "",
 
   setTextAreaValue: (updatedTextArea) =>
