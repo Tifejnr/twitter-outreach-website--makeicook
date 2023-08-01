@@ -12,11 +12,11 @@ export default function Company() {
     <section>
        <h3>Company</h3>
        <ul>
-        <li>< Link   htmlFor={aboutPageLink}><p>About</p></ Link  ></li>
-        <li>< Link   htmlFor={contactPageLink}><p>Contact</p></ Link  ></li>
-        <li>< Link   htmlFor={mediaPageLink}><p>Media</p></ Link  ></li>
-        <li>< Link   htmlFor={termsPageLink}><p>Terms</p></ Link  ></li>
-        <li>< Link   htmlFor={privacyPolicyPageLink}> <p>Privacy Policy</p> </ Link  ></li>
+        <li>< Link   to={aboutPageLink}><p>About us</p></ Link  ></li>
+        <li>< Link   to={contactPageLink}><p>Contact us</p></ Link  ></li>
+        <li>< Link   to={mediaPageLink}><p>Media</p></ Link  ></li>
+        <li>< Link   to={termsPageLink}><p>Terms</p></ Link  ></li>
+        <li>< Link   to={privacyPolicyPageLink}> <p>Privacy Policy</p> </ Link  ></li>
        </ul>
    </section>
   )

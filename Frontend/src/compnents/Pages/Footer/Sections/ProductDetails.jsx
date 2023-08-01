@@ -13,11 +13,11 @@ export default function ProductDetails() {
    <section>
        <h3>Product</h3>
        <ul>
-        <li>< Link   htmlFor={toolsPageLink}><p>Tools</p></ Link  ></li>
-        <li>< Link   htmlFor={faqPageLink}><p>FAQ</p></ Link  ></li>
-        <li>< Link   htmlFor={reviewsPageLink}><p>Reviews</p></ Link  ></li>
-        <li>< Link   htmlFor={pricingPageLink}><p>Pricing</p></ Link  ></li>
-        <li>< Link   htmlFor=""></ Link  ></li>
+        <li>< Link   to={toolsPageLink}><p>Tools</p></ Link  ></li>
+        <li>< Link   to={faqPageLink}><p>FAQ</p></ Link  ></li>
+        <li>< Link   to={reviewsPageLink}><p>Reviews</p></ Link  ></li>
+        <li>< Link   to={pricingPageLink}><p>Pricing</p></ Link  ></li>
+        {/* <li>< Link   to=""></ Link  ></li> */}
        </ul>
    </section>
    

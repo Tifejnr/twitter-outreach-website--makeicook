@@ -94,43 +94,58 @@ body {
 .tools-dropdown {
   position: relative;
 }
-
-.dropdown-content {
+.tools-dropdown .dropdown-content {
   position: absolute;
+  top: 95%;
   display: grid;
   row-gap: 2rem;
   display: none;
-  left: -2rem;
+  left: -100%;
+  transition: 5.3s display ease-in-out;
 }
 
+/* 
+Display Dropdwon menu */
+.tools-dropdown:hover .dropdown-content,
+.tools-dropdown:active .dropdown-content {
+  display: block;
+}
+
+/* REmoving text decoration from a so everything is set by li */
 .dropdown-content li a {
-  color: #101c77;
+  color: inherit;
+}
+.dropdown-content li a:hover {
+  text-decoration: none;
 }
 
 .dropdown-content li {
-  width: 100%;
+  width: 20rem;
   padding: 1rem;
   border: 1px solid #101c77;
+  text-align: center;
+  cursor: pointer;
+  line-height: 1.4;
+  transition: 0.3s background-color linear, 0.3s color linear,
+    0.3s text-decoration ease-in;
 }
 
-.dropdown-content li:hover {
+.dropdown-content li:hover,
+.dropdown-content li:active {
   background-color: #101c77;
   color: #fff;
+  text-decoration: underline;
 }
 
-.tools-dropdown:hover .dropdown-content {
-  display: block;
+/* rotate toggle icon */
+.tools-dropdown img {
+  transition: 0.3s rotate ease-in-out;
 }
 
-/* li:hover .dropdown-content,
-li:focus-within .dropdown-content {
-  display: block;
+.tools-dropdown:hover img,
+.tools-dropdown:active img {
+  rotate: 180deg;
 }
-
-.dropdown-content li {
-  border-bottom: 1px solid #333;
-}
-
 
 /* Functionlity Pages Design */
 .item {

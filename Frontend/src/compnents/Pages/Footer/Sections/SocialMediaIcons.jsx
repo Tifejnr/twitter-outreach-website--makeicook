@@ -10,17 +10,17 @@ export default function SocialMediaIcons() {
         <ul>
             <li>
                 <picture>
-                    <img src={twitterIcon} alt="twitter icon" />
+                    <img src={twitterIcon} alt="twitter icon"  title='Our Twitter'/>
                 </picture>
 
             </li>
 
             <li>
-                <picture><img src={instagramIcon} alt="instagram icon" /></picture>
+                <picture><img src={instagramIcon} alt="instagram icon" title='Our Instagram' /></picture>
             </li>
 
             <li>
-                <picture><img src={facebookIcon} alt="facebook icon" /></picture>
+                <picture><img src={facebookIcon} alt="facebook icon" title='Our Facebook'/></picture>
             </li>
         </ul>
 
