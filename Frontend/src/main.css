@@ -279,10 +279,20 @@ button:hover {
 
 .failureReasonsDisplay {
   position: relative;
-  border: 2px solid red;
   cursor: pointer;
   display: grid;
   place-content: center;
+}
+
+.failureReasonsDisplay img {
+  width: 1.5rem;
+  height: 1.2rem;
+}
+
+.failureReasonsDisplayTitle {
+  display: flex;
+  flex-direction: row;
+  column-gap: 0.3rem;
 }
 
 .failureReasonsDisplay h3,
@@ -305,6 +315,13 @@ button:hover {
   row-gap: 0.5rem;
 }
 
+.main-failure-details-cont {
+  border: 1px solid grey;
+  padding: 0.5rem 0;
+  border-left: none;
+  border-right: none;
+}
+
 .main-failure-details-cont .detailedReasonsCont li {
   display: none;
 }
@@ -312,6 +329,15 @@ button:hover {
 .main-failure-details-cont:hover .detailedReasonsCont li {
   display: grid;
   row-gap: 0.5rem;
+}
+.main-failure-details-cont:hover .detailedReasonsCont img {
+  rotate: 180deg;
+}
+
+.whatFailedCont {
+  display: flex;
+  align-items: center;
+  column-gap: 0.3rem;
 }
 
 /* Progress bar dsign block*/

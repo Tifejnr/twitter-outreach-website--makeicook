@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useContext } from 'react'
-import { ProgressBarContext } from '../Hooks/Contexts/ProgressBarContext';
-// import AddToBoards from '../Pages/AddToBoards';
 import useStore from '../Hooks/Zustand/usersStore';
+import FailureDetails from './FailureDetails';
+import failureToggleIcon from "../../assets/SVGs/failure-toggle.svg"
 
 export default function ProgressBar(props) {
   const totalDurationLength= props.totalDurationLength
@@ -46,7 +46,6 @@ console.log(failureReason)
            }
           </h2>
 
-
        {
    !percentLoaded == 100  &&   <h2 id="noOfRounds" className="title" >Round: {currentRound}</h2>
 
@@ -65,14 +64,11 @@ console.log(failureReason)
     }
  
    <section className='failureReasonsDisplay'>
-    <h3 className="title failureReasonsDisplayTitle" >See Failure Details</h3>
-    <ul className='main-failure-details-cont'>
-      <p>lima@gmail.com Failed</p>
-      <ul className='detailedReasonsCont'>
-        <li><p>Reason: inite limit reached</p></li>
-        <li><p>Board: Jesus walks</p></li>
-      </ul>
-    </ul>
+    <h3 className="title failureReasonsDisplayTitle" >See Failure Details <img src={failureToggleIcon} alt="failure toggle icon" /></h3>
+     {failureReason.map((failureObj, index) => (
+              <FailureDetails key={index} failureObj={failureObj} failureToggleIcon={failureToggleIcon} />
+            ))}
+  
    </section>
      
    { percentLoaded >0 && <h3 className='title'>Credit Charged: 1</h3> }
