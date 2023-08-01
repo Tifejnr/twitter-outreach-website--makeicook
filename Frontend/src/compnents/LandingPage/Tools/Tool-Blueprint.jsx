@@ -27,7 +27,7 @@ export default function ToolBlueprint(props) {
         <ul>
             {props.toolDetails.email && <li>Email</li>}   
             {props.toolDetails.username && <li>Username</li>}   
-            {props.toolDetails.name && <li>Name - <b>Note:</b> Member must be on one of your boards already to use their Name.</li>}   
+            {props.toolDetails.name && <li>Full name - <b>Note:</b> Member must be on one of your boards already to use their Full name.</li>}   
         
         </ul>
         

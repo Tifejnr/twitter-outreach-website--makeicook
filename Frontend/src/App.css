@@ -982,6 +982,19 @@ img.faq-item__arrow-icon {
 
 /* Pricing Block Design Stand alone Page*/
 
+/*buy btn in home design*/
+
+a .buy-credits-nav-home {
+  border: 1px solid #101c77;
+  border-radius: 1rem;
+  padding: 0.6rem;
+  transition: 0.3s background-color linear;
+}
+
+a .buy-credits-nav-home:hover {
+  background-color: #bbc1ee;
+}
+
 .main-pricing-section-alone {
   position: relative;
   top: 6rem;

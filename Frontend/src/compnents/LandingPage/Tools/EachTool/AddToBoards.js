@@ -1,4 +1,4 @@
-const heading = "Members Addition to Multiple Boards";
+const heading = "Add team members to boards tool";
 const overview =
   "This tool allows addition of Trello team members to multiple Trello boards at once, eliminating the need to perform the task manually for each board.";
 const howItWorks =

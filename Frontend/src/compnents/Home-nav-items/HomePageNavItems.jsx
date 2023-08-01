@@ -26,7 +26,7 @@ export default function HomePageNavItems(props) {
       </li>
 
         <CustomLink to={"/pricing"} className="nav-list" >
-          <h3 className="pricing">Buy Credits</h3>
+          <h3 className="buy-credits-nav-home">Buy Credits</h3>
         </CustomLink>
 </>
 )
