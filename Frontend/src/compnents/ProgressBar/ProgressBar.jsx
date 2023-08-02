@@ -72,13 +72,16 @@ export default function ProgressBar(props) {
         <h3 id="failureTitle" className="title failureTitle">Round Failed Additions: {failureLength}</h3>
     }
  
-   <section className='failureReasonsDisplay'>
-    <h3 onClick={handleToggle} className="title failureReasonsDisplayTitle" >See Failure Details <img style={rotateOnToggle} src={failureToggleIcon} alt="failure toggle icon" /></h3>
+   { failureReason.length >0 &&
+   
+    <section className='failureReasonsDisplay'>
+    <h3 title='Click to see details if any' onClick={handleToggle} className="title failureReasonsDisplayTitle" >See Failure Details <img style={rotateOnToggle} src={failureToggleIcon} alt="failure toggle icon" /></h3>
      {failureReason.map((failureObj, index) => (
               <FailureDetails key={index} failureObj={failureObj} failureToggleIcon={failureToggleIcon} isClicked={isClicked} />
             ))}
 
    </section>
+ }
      
    { percentLoaded >0 && <h3 className='title'>Credit Charged: 1</h3> }
     

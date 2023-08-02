@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import useStore from "../../Hooks/Zustand/usersStore";
-import CheckAll from "../../../JS functions/Utilis/Selections.jsx/CheckAll";
-import UncheckAll from "../../../JS functions/Utilis/Selections.jsx/UncheckAll";
 
 export default function SelectAll(props) {
   const [isAllChecked, setIsAllChecked] = useState(false);
@@ -14,7 +12,9 @@ export default function SelectAll(props) {
   const checkboxesArray = useStore((state) => state.checkboxesArray);
   const executionErrorBtn = useStore((state) => state.executionErrorBtn);
 
-  const checkboxRatioNotifier = () => {
+
+ //display counts of checked to uncheck
+   const checkboxRatioNotifier = () => {
     const totalCheckboxes = checkboxesArray.length;
     const noOfChecked = checkboxesArray.filter(
       (checkbox) => checkbox.checked
@@ -22,7 +22,27 @@ export default function SelectAll(props) {
 
     const checkboxRatioNotifierValue = `${noOfChecked} of ${totalCheckboxes}`;
     setCheckboxRatioNotifierDisplay(checkboxRatioNotifierValue);
-  };
+  }; 
+
+  //select all checkbox function
+ function CheckAll() {
+  checkboxesArray.forEach((checkbox) => {
+    checkbox.checked = true;
+  });
+
+ checkboxRatioNotifier();
+}
+
+//deselect all checkbox function
+ function UncheckAll() {
+  checkboxesArray.forEach((checkbox) => {
+    checkbox.checked = false;
+  });
+
+ checkboxRatioNotifier();
+}
+
+
 
   return (
     <section className="selectionCont" id="selective-btn">
@@ -32,8 +52,7 @@ export default function SelectAll(props) {
           <button
             id="clear-select"
             onClick={() => {
-              UncheckAll(checkboxesArray);
-              checkboxRatioNotifier();
+              UncheckAll();
               setIsAllChecked(false);
             }}>
             Deselect All
@@ -42,8 +61,7 @@ export default function SelectAll(props) {
           <button
             id="select-all"
             onClick={() => {
-              CheckAll(checkboxesArray);
-              checkboxRatioNotifier();
+              CheckAll();
               setIsAllChecked(true);
             }}>
             Select All
