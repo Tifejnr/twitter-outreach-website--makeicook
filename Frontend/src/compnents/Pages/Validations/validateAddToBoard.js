@@ -21,7 +21,7 @@ export default function validateAddToBoard(executionParams) {
   if (!timeIntervalSliderVal(timeIntervalValue, timeIntervalRef))
     return console.log("slider whaala");
 
-  // if (!isAnyCheckboxChecked()) return { noCheckboxChecked: true };
+  if (!isAnyCheckboxChecked()) return { noCheckboxChecked: true };
 
   const boardDetailsObj = checkboxesArray.map((checkbox, index) => {
     if (!checkbox.checked) return false;

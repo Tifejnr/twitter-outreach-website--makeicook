@@ -31,13 +31,13 @@ export default function ProgressBar(props) {
           (Number(totalAttemptLength) / Number(totalDurationLength)) * 100;
 
 
-  let updateBarWidth= {width: `${percentLoaded}%`};
+  let updateBarWidth= {width: `${percentLoaded}%`, aimation: percentLoaded==100 && 'none'};
 
   return (
     <div className="loading" id="loading">
-      <div className="barHolder">
+      <div className={`barHolder ${percentLoaded < 100 ? "moveFlame-animation" : ""}`}>
          <p>{ Math.round(percentLoaded)}%</p> 
-        <div  className='progressing-bar' style={updateBarWidth}></div>
+        <div  className={`progressing-bar ${percentLoaded < 100 ? "moveFlame-animation" : ""}`} style={updateBarWidth}></div>
       </div>
       <section className="changing-ele-on-bar">
         <h2 id="progressBarTitle" className="title" >{
@@ -73,7 +73,7 @@ export default function ProgressBar(props) {
     }
  
    { failureReason.length >0 &&
-   
+
     <section className='failureReasonsDisplay'>
     <h3 title='Click to see details if any' onClick={handleToggle} className="title failureReasonsDisplayTitle" >See Failure Details <img style={rotateOnToggle} src={failureToggleIcon} alt="failure toggle icon" /></h3>
      {failureReason.map((failureObj, index) => (

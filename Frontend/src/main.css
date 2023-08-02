@@ -365,9 +365,11 @@ button:hover {
   margin-bottom: 1rem;
   transform-origin: 50% 100%;
   border-radius: 50% 50% 20% 20%;
-  animation: moveFlame 3s linear infinite;
 }
 
+.moveFlame-animation {
+  animation: moveFlame 3s linear infinite;
+}
 .barHolder *,
 .barHolder *:before,
 .barHolder *:after {
@@ -393,7 +395,6 @@ button:hover {
   border-radius: 50% 50% 20% 20%;
   background-color: #101c77;
   transition: width 0.3s ease-in-out;
-  animation: moveFlame 3s linear infinite;
 }
 
 @keyframes moveFlame {
