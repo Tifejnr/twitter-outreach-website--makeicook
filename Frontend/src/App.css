@@ -1284,6 +1284,56 @@ li img {
   row-gap: 1rem;
 }
 
+.each-tool-section picture {
+  display: grid;
+  row-gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  align-content: center;
+  margin-top: 1.3rem;
+  place-self: center;
+}
+
+@media screen and (min-width: 1050px) {
+  .each-tool-section picture {
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 2rem;
+  }
+}
+
+.each-tool-section img {
+  width: 90%;
+  height: 100%;
+  border: 1px solid gray;
+  max-width: 43rem;
+  max-height: 40rem;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 1050px) {
+  .each-tool-section img {
+    width: 24rem;
+    height: 100%;
+  }
+}
+
+.each-tool-section .image-arrow-icon {
+  width: 7rem;
+  rotate: 90deg;
+  height: 3rem;
+  border-left: none;
+  border-right: none;
+  cursor: none;
+}
+
+@media screen and (min-width: 1050px) {
+  .each-tool-section .image-arrow-icon {
+    rotate: 0deg;
+    border: 0;
+  }
+}
+
 /* Footer Section */
 
 .pages-footer {

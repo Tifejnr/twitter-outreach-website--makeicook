@@ -20,9 +20,9 @@ export default function ToolBlueprint(props) {
             </section>
 
             <picture>
-            <div><img src={addToBoardEmailImage} alt="add to board by email ui photo" /></div>
-            <div><img src={arrowIcon} alt="arrow pointing icon" /></div>
-            <div><img src={completedAddByEmail} alt="add to board completed photo" /></div>
+            <img src={addToBoardEmailImage} alt="add to board by email ui photo" />
+            <img className="image-arrow-icon"  src={arrowIcon} alt="" />
+            <img src={completedAddByEmail} alt="add to board completed photo" />
             </picture>
         </article>
 

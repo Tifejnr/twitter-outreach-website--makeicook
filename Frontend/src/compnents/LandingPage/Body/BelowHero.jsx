@@ -1,5 +1,3 @@
-import addingStartPage from "../../../assets/Images/adding-start-page-400x300.png"
-import addingCompleted from "../../../assets/Images/adding-sucess-400x300.png"
 
 export default function BelowHero() {
   return (
