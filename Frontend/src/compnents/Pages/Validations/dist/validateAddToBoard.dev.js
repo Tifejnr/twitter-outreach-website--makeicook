@@ -25,10 +25,11 @@ function validateAddToBoard(executionParams) {
   var timeIntervalRef = executionParams.timeIntervalRef;
   var checkboxesArray = executionParams.checkboxesArray;
   if (!(0, _Input.validateInput)(emailInputs, textAreaRef)) return false;
-  if (!(0, _sliderValidation.timeIntervalSliderVal)(timeIntervalValue, timeIntervalRef)) return console.log("slider whaala");
-  if (!(0, _Checkbox.isAnyCheckboxChecked)()) return {
-    noCheckboxChecked: true
-  };
+  var response = (0, _Input.validateInput)(emailInputs, textAreaRef);
+  if (response.inputValError) return response;
+  if (!response) return console.log("stop");
+  if (!(0, _sliderValidation.timeIntervalSliderVal)(timeIntervalValue, timeIntervalRef)) return console.log("slider whaala"); // if (!isAnyCheckboxChecked()) return { noCheckboxChecked: true };
+
   var boardDetailsObj = checkboxesArray.map(function (checkbox, index) {
     if (!checkbox.checked) return false;
     var checkboxId = checkbox.id;

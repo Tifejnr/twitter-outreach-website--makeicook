@@ -59,7 +59,10 @@ export default function AddMember() {
 
     if (creditsFromServer <1) return  setExecutionErrorBtn(insufficietCreditsMess) 
    setExecutionErrorBtn("")
+
    const response=  validateAddToBoard(executionParams)
+   if (response.inputValError) return setExecutionErrorBtn(response.inputValError);
+  setExecutionErrorBtn("")
 
    if (response.noCheckboxChecked) return setExecutionErrorBtn(checkboxMustBeCheckedMess);
   setExecutionErrorBtn("")

@@ -13,10 +13,15 @@ export default function validateAddToBoard(executionParams) {
   const checkboxesArray = executionParams.checkboxesArray;
 
   if (!validateInput(emailInputs, textAreaRef)) return false;
+  const response = validateInput(emailInputs, textAreaRef);
+
+  if (response.inputValError) return response;
+
+  if (!response) return console.log("stop");
   if (!timeIntervalSliderVal(timeIntervalValue, timeIntervalRef))
     return console.log("slider whaala");
 
-  if (!isAnyCheckboxChecked()) return { noCheckboxChecked: true };
+  // if (!isAnyCheckboxChecked()) return { noCheckboxChecked: true };
 
   const boardDetailsObj = checkboxesArray.map((checkbox, index) => {
     if (!checkbox.checked) return false;
