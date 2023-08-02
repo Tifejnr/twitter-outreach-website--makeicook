@@ -1,4 +1,7 @@
 import React from 'react'
+import addToBoardEmailImage from "../../../assets/Images/add-by-email-trello-pic.png"
+import completedAddByEmail from "../../../assets/Images/completd-mail-addition-trello'.png"
+import arrowIcon from "../../../assets/SVGs/thin-long-arrow-right-icon.svg"
 
 export default function ToolBlueprint(props) {
   return (
@@ -17,7 +20,9 @@ export default function ToolBlueprint(props) {
             </section>
 
             <picture>
-
+            <div><img src={addToBoardEmailImage} alt="add to board by email ui photo" /></div>
+            <div><img src={arrowIcon} alt="arrow pointing icon" /></div>
+            <div><img src={completedAddByEmail} alt="add to board completed photo" /></div>
             </picture>
         </article>
 
