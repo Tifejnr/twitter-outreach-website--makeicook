@@ -13,7 +13,7 @@ export default function SelectAll(props) {
   const executionErrorBtn = useStore((state) => state.executionErrorBtn);
 
 
- //display counts of checked to uncheck
+ //display counts of checked to unchecked checkboxes
    const checkboxRatioNotifier = () => {
     const totalCheckboxes = checkboxesArray.length;
     const noOfChecked = checkboxesArray.filter(
@@ -41,8 +41,6 @@ export default function SelectAll(props) {
 
  checkboxRatioNotifier();
 }
-
-
 
   return (
     <section className="selectionCont" id="selective-btn">

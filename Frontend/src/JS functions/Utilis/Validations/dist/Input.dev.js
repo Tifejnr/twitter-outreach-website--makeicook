@@ -5,6 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.validateInput = validateInput;
 
+var _usersStore = _interopRequireDefault(require("../../../compnents/Hooks/Zustand/usersStore"));
+
 var _Email = require("./Email");
 
 var _commaSeperationRegex = require("./commaSeperationRegex");
@@ -13,11 +15,24 @@ var _setError = require("./setError");
 
 var _setSucess = require("./setSucess");
 
-function validateInput(input, textAreaRef) {
-  // Check if input is empty or contains only whitespace
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function validateInput() {
+  var textAreaRefEl = (0, _usersStore["default"])(function (state) {
+    return state.textAreaRefEl;
+  });
+  var textAreaValue = (0, _usersStore["default"])(function (state) {
+    return state.textAreaValue;
+  });
+  var setExecutionErrorBtn = (0, _usersStore["default"])(function (state) {
+    return state.setExecutionErrorBtn;
+  });
+  var input = textAreaValue;
+  var textAreaRef = textAreaRefEl; // Check if input is empty or contains only whitespace
+
   var isEmpty = input.trim() === "";
   var isEmptyMessage = "Members' emails cannot be empty";
-  if (isEmpty) return (0, _setError.setErrorTextarea)(textAreaRef, isEmptyMessage); //Check if all are separated by commas
+  if (isEmpty) return (0, _setError.setErrorTextarea)(textAreaRef, isEmptyMessage), setExecutionErrorBtn(isEmptyMessage); //Check if all are separated by commas
 
   var inputsSplitted = input.split(",");
   var isValid = (0, _commaSeperationRegex.commaSeperationRegex)(input);

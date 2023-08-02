@@ -1,14 +1,25 @@
+import useStore from "../../../compnents/Hooks/Zustand/usersStore";
 import { validateEmail } from "./Email";
 import { commaSeperationRegex } from "./commaSeperationRegex";
 import { setErrorTextarea } from "./setError";
 import { setSuccess } from "./setSucess";
 
-function validateInput(input, textAreaRef) {
+function validateInput() {
+  const textAreaRefEl = useStore((state) => state.textAreaRefEl);
+  const textAreaValue = useStore((state) => state.textAreaValue);
+  const setExecutionErrorBtn = useStore((state) => state.setExecutionErrorBtn);
+
+  const input = textAreaValue;
+  const textAreaRef = textAreaRefEl;
   // Check if input is empty or contains only whitespace
   const isEmpty = input.trim() === "";
   const isEmptyMessage = "Members' emails cannot be empty";
 
-  if (isEmpty) return setErrorTextarea(textAreaRef, isEmptyMessage);
+  if (isEmpty)
+    return (
+      setErrorTextarea(textAreaRef, isEmptyMessage),
+      setExecutionErrorBtn(isEmptyMessage)
+    );
 
   //Check if all are separated by commas
   const inputsSplitted = input.split(",");
