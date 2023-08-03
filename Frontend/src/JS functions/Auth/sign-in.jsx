@@ -13,7 +13,7 @@ export default async function signInUser(signInParams) {
     console.log(error);
     console.log(error.response.data);
     const errorMessage = error.response.data.invalidLoginDetails;
-    displayErrorMessage(errorMessage);
+    // displayErrorMessage(errorMessage);
     return false;
   }
 }

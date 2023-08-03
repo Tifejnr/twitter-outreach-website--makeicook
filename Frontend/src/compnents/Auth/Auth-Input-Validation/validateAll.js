@@ -9,15 +9,13 @@ export default function validateAll(paramsObj) {
   //run validation all at once to display all errors to users
   const emailValResponse = validateEmailInput(email);
 
-  if (emailValResponse.emailErrorMessage)
-    return { emailValResponse: emailValResponse.emailErrorMessage };
-
   const passwordValResponse = validatePassword(password);
 
-  if (passwordValResponse.passwordError)
-    return { passwordValResponse: passwordValResponse.passwordError };
+  const resultofValidation = {
+    passwordValResponse: passwordValResponse.passwordError,
+    emailValResponse: emailValResponse.emailErrorMessage,
+  };
 
-  if (validatePassword(password) && validateEmailInput(email)) return true;
-
-  return false;
+  console.log(resultofValidation);
+  return resultofValidation;
 }

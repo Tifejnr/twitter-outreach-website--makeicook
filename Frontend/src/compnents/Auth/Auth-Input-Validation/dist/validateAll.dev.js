@@ -17,13 +17,11 @@ function validateAll(paramsObj) {
   var password = paramsObj.password; //run validation all at once to display all errors to users
 
   var emailValResponse = (0, _validateEmailInput["default"])(email);
-  if (emailValResponse.emailErrorMessage) return {
+  var passwordValResponse = (0, _passwordValidation["default"])(password);
+  var resultofValidation = {
+    passwordValResponse: passwordValResponse.passwordError,
     emailValResponse: emailValResponse.emailErrorMessage
   };
-  var passwordValResponse = (0, _passwordValidation["default"])(password);
-  if (passwordValResponse.passwordError) return {
-    passwordValResponse: passwordValResponse.passwordError
-  };
-  if ((0, _passwordValidation["default"])(password) && (0, _validateEmailInput["default"])(email)) return true;
-  return false;
+  console.log(resultofValidation);
+  return resultofValidation;
 }

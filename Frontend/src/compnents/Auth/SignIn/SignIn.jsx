@@ -55,9 +55,8 @@ const sendInfoToServer = async (e)=> {
     passwordId
     }
 
-const validateFunctionResponse= (validateAll(paramsObj))
+const validateFunctionResponse= (validateAll(paramsObj));
 
-    setPasswordError("baola");
   if (validateFunctionResponse.emailValResponse) 
    {  
     setEmailError(validateFunctionResponse.emailValResponse), 
@@ -66,10 +65,11 @@ const validateFunctionResponse= (validateAll(paramsObj))
    else{
     setEmailError("");     
     setEmailBorderColor(true)
-    
-    if (validateFunctionResponse.passwordValResponse) {
+   }
 
-      console.log(passwordError)
+  
+  if (validateFunctionResponse.passwordValResponse) {
+
       setPasswordError(validateFunctionResponse.passwordValResponse);
       setPasswordBorderColor(false)
    }
@@ -79,21 +79,18 @@ const validateFunctionResponse= (validateAll(paramsObj))
       setPasswordBorderColor(true)
     }
 
-   }
-
-
-
-
-    if(validateAll(paramsObj)) {
+    if(!validateFunctionResponse.emailValResponse && !validateFunctionResponse.passwordValResponse) {
       const signInParam = {
         email,
         password
       }
-    const signedIn = await signInUser(signInParam)
 
-    if (signedIn) return (navigate('/home'))
+      console.log("yeah")
+    // const signedIn = await signInUser(signInParam)
 
-    return false
+    // if (signedIn) return (navigate('/home'))
+
+    // return false
     }
 
     } catch (error) {
@@ -124,17 +121,15 @@ const validateFunctionResponse= (validateAll(paramsObj))
 
       <fieldset className="input-wrapper">
         <label htmlFor="passwordId"><p>Password</p></label>
-        <section className="innerInputWrapper">
-           <input type={passwordVisible ? "password": "text"} placeholder="Enter your password" id="passwordId" value={password} 
+        <section className="innerInputWrapper"   style={passwordBorderStyle}>
+           <input type={passwordVisible ? "text" : "password"} placeholder="Enter your password" id="passwordId" value={password} 
                  onChange={(e)=> setPassword(e.target.value)} 
-                 style={passwordBorderStyle}
         />
 
            { passwordVisible ?
-  
+
+            <picture title="Hide password" onClick={handleShowPassword} className="toggle-password-visisbiilty"><img src={hidePasswordIcon} alt="hide password icon" /></picture> :
             <picture title="Show password" onClick={handleShowPassword} className="toggle-password-visisbiilty"><img src={showPasswordIcon} alt="show password icon" /></picture>  
-              :
-            <picture title="Hide password" onClick={handleShowPassword} className="toggle-password-visisbiilty"><img src={hidePasswordIcon} alt="hide password icon" /></picture>
            }    
 
          </section>

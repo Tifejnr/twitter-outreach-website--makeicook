@@ -236,7 +236,7 @@ input,
 
 .input-wrapper {
   display: block;
-  margin-bottom: 4rem;
+  margin-bottom: 5rem;
   background-color: #fff;
   width: 97%;
   height: 4rem;
@@ -309,6 +309,12 @@ input,
   background-color: rgba(128, 128, 128, 0.5);
 }
 
+.input-wrapper label p {
+  position: static;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
 /* Button Design Block */
 
 .submit-btn {
@@ -336,12 +342,6 @@ label {
   background-color: transparent;
   text-align: left;
   color: var(--dark-des-blue);
-}
-
-.input-wrapper label p {
-  position: static;
-  margin-bottom: 0.3rem;
-  text-align: left;
 }
 
 .main__title {
