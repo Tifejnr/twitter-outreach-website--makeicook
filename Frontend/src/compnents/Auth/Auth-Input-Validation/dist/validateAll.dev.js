@@ -24,7 +24,6 @@ function validateAll(paramsObj) {
   if (passwordValResponse.passwordError) return {
     passwordValResponse: passwordValResponse.passwordError
   };
-  console.log("we back");
   if ((0, _passwordValidation["default"])(password) && (0, _validateEmailInput["default"])(email)) return true;
   return false;
 }

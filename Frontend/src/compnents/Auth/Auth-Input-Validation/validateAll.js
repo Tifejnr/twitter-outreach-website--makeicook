@@ -17,8 +17,6 @@ export default function validateAll(paramsObj) {
   if (passwordValResponse.passwordError)
     return { passwordValResponse: passwordValResponse.passwordError };
 
-  console.log("we back");
-
   if (validatePassword(password) && validateEmailInput(email)) return true;
 
   return false;

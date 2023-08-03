@@ -20,11 +20,21 @@ export default function SignIn() {
   const navigate = useNavigate();
 
   const emailBorderStyle = {
-    borderColor: emailBorderColor ? successColor : errorColor,
+      borderColor:
+      emailBorderColor === null
+        ? 'grey'
+        : emailBorderColor
+        ? successColor
+        : errorColor,
   };
 
   const passwordBorderStyle = {
-    borderColor: passwordBorderColor ? successColor : errorColor,
+    borderColor: 
+          passwordBorderColor === null
+        ? 'grey'
+        : passwordBorderColor
+        ? successColor
+        : errorColor,
   };
 
   const handleShowPassword = ()=> {
@@ -47,24 +57,31 @@ const sendInfoToServer = async (e)=> {
 
 const validateFunctionResponse= (validateAll(paramsObj))
 
-console.log(validateFunctionResponse)
-
+    setPasswordError("baola");
   if (validateFunctionResponse.emailValResponse) 
    {  
     setEmailError(validateFunctionResponse.emailValResponse), 
     setEmailBorderColor(false);
    }
-   
-  setEmailError("");     
-  setEmailBorderColor(true)
-
-  if (validateFunctionResponse.passwordValResponse) {
-    setPasswordError(validateFunctionResponse.passwordValResponse);
-   }
-
    else{
-  setPasswordError("")
+    setEmailError("");     
+    setEmailBorderColor(true)
+    
+    if (validateFunctionResponse.passwordValResponse) {
+
+      console.log(passwordError)
+      setPasswordError(validateFunctionResponse.passwordValResponse);
+      setPasswordBorderColor(false)
    }
+
+    else{
+      setPasswordError("")
+      setPasswordBorderColor(true)
+    }
+
+   }
+
+
 
 
     if(validateAll(paramsObj)) {
