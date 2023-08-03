@@ -6,14 +6,26 @@ import AuthNav from "../AuthNav";
 import hidePasswordIcon from "../../../assets/SVGs/PasswordRelated/hide-password-eye.svg"
 import showPasswordIcon from "../../../assets/SVGs/PasswordRelated/show-password-eye.svg"
 
+const successColor = "#09c372";
+const errorColor = "#ff3860";
 
 export default function SignIn() {
   const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
   const [emailError, setEmailError] = useState("")
+  const [emailBorderColor, setEmailBorderColor]= useState(null)
+  const [password, setPassword] = useState("")
   const [passwordError, setPasswordError] = useState("")
+  const [passwordBorderColor, setPasswordBorderColor]= useState(null)
   const [passwordVisible, setPasswordVisible] = useState(false);
   const navigate = useNavigate();
+
+  const emailBorderStyle = {
+    borderColor: emailBorderColor ? successColor : errorColor,
+  };
+
+  const passwordBorderStyle = {
+    borderColor: passwordBorderColor ? successColor : errorColor,
+  };
 
   const handleShowPassword = ()=> {
     setPasswordVisible(prevState=>!prevState)
@@ -35,8 +47,25 @@ const sendInfoToServer = async (e)=> {
 
 const validateFunctionResponse= (validateAll(paramsObj))
 
+console.log(validateFunctionResponse)
+
   if (validateFunctionResponse.emailValResponse) 
-     return setEmailError(validateFunctionResponse.emailValResponse);
+   {  
+    setEmailError(validateFunctionResponse.emailValResponse), 
+    setEmailBorderColor(false);
+   }
+   
+  setEmailError("");     
+  setEmailBorderColor(true)
+
+  if (validateFunctionResponse.passwordValResponse) {
+    setPasswordError(validateFunctionResponse.passwordValResponse);
+   }
+
+   else{
+  setPasswordError("")
+   }
+
 
     if(validateAll(paramsObj)) {
       const signInParam = {
@@ -71,6 +100,7 @@ const validateFunctionResponse= (validateAll(paramsObj))
         <label htmlFor="emailId"><p>Email</p></label>
         <input type="email" placeholder="Enter your email" id="emailId" value={email}
            onChange={(e)=> setEmail(e.target.value)} 
+           style={emailBorderStyle}
         />
         <p className="error">{emailError}</p>
       </fieldset>
@@ -80,6 +110,7 @@ const validateFunctionResponse= (validateAll(paramsObj))
         <section className="innerInputWrapper">
            <input type={passwordVisible ? "password": "text"} placeholder="Enter your password" id="passwordId" value={password} 
                  onChange={(e)=> setPassword(e.target.value)} 
+                 style={passwordBorderStyle}
         />
 
            { passwordVisible ?

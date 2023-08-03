@@ -14,14 +14,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 //combining both email validation and password validation into one function.
 function validateAll(paramsObj) {
   var email = paramsObj.email;
-  var password = paramsObj.password;
-  var passwordId = paramsObj.passwordId; //run validation all at once to display all errors to users
+  var password = paramsObj.password; //run validation all at once to display all errors to users
 
   var emailValResponse = (0, _validateEmailInput["default"])(email);
-  if (emailValResponse.emailErrorMessage) return false, {
+  if (emailValResponse.emailErrorMessage) return {
     emailValResponse: emailValResponse.emailErrorMessage
-  }; //   validatePassword(password, passwordId);
-  //   if (validatePassword(password, passwordId) && validatEmailId(email, emailId))
-  //     return true;
-  //   return false;
+  };
+  var passwordValResponse = (0, _passwordValidation["default"])(password);
+  if (passwordValResponse.passwordError) return {
+    passwordValResponse: passwordValResponse.passwordError
+  };
+  console.log("we back");
+  if ((0, _passwordValidation["default"])(password) && (0, _validateEmailInput["default"])(email)) return true;
+  return false;
 }

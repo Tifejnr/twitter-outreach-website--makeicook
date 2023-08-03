@@ -8,9 +8,10 @@ const isValidEmailId = (email) => {
 
 export default function validateEmailInput(email) {
   if (email === "") {
-    emailErrorMessage = "Email is required";
+    emailErrorMessage = "Email cannot be empty";
     return { emailErrorMessage };
   }
+
   if (!isValidEmailId(email)) {
     emailErrorMessage = "Provide a valid email address";
     return { emailErrorMessage };

@@ -13,7 +13,7 @@ var isValidEmailId = function isValidEmailId(email) {
 
 function validateEmailInput(email) {
   if (email === "") {
-    emailErrorMessage = "Email is required";
+    emailErrorMessage = "Email cannot be empty";
     return {
       emailErrorMessage: emailErrorMessage
     };
