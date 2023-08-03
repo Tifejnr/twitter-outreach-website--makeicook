@@ -1,4 +1,4 @@
-let errorMess;
+let emailErrorMessage;
 
 const isValidEmailId = (email) => {
   const re =
@@ -8,12 +8,12 @@ const isValidEmailId = (email) => {
 
 export default function validateEmailInput(email) {
   if (email === "") {
-    errorMess = "Email is required";
-    return { errorMess };
+    emailErrorMessage = "Email is required";
+    return { emailErrorMessage };
   }
   if (!isValidEmailId(email)) {
-    errorMess = "Provide a valid email address";
-    return { errorMess };
+    emailErrorMessage = "Provide a valid email address";
+    return { emailErrorMessage };
   }
 
   return true;

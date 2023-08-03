@@ -19,6 +19,7 @@ export default function SignIn() {
     setPasswordVisible(prevState=>!prevState)
   }
 
+
 const sendInfoToServer = async (e)=> {
     e.preventDefault();
     
@@ -32,20 +33,23 @@ const sendInfoToServer = async (e)=> {
     passwordId
     }
 
-const validationRes= (validateAll(paramsObj))
-console.log(validationRes)
+const validateFunctionResponse= (validateAll(paramsObj))
 
-if(validateAll(paramsObj)) {
-  const signInParam = {
-    email,
-    password
-  }
- const signedIn = await signInUser(signInParam)
+  if (validateFunctionResponse.emailValResponse) 
+     return setEmailError(validateFunctionResponse.emailValResponse);
 
- if (signedIn) return (navigate('/home'))
+    if(validateAll(paramsObj)) {
+      const signInParam = {
+        email,
+        password
+      }
+    const signedIn = await signInUser(signInParam)
 
- return false
-}
+    if (signedIn) return (navigate('/home'))
+
+    return false
+    }
+
     } catch (error) {
       console.log(error.message)
     }

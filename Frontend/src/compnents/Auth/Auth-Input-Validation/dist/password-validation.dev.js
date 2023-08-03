@@ -13,13 +13,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 function validatePassword(password, passwordId) {
   if (password === "") {
-    (0, _setErrorNoti["default"])(passwordId, "Password is required");
+    // setError(passwordId, "Password is required");
     return false;
   } else if (password.length < 4) {
-    (0, _setErrorNoti["default"])(passwordId, "Password must be at least 4 characters.");
+    // setError(passwordId, "Password must be at least 4 characters.");
     return false;
   } else {
-    (0, _setSuccessNoti["default"])(passwordId);
+    // setSuccess(passwordId);
     return true;
   }
 }
