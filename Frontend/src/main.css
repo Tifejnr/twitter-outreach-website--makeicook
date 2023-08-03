@@ -263,7 +263,7 @@ button:hover {
 }
 
 .loading .title {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   color: #1e2831;
 }
 
@@ -358,11 +358,11 @@ button:hover {
 .barHolder {
   background: rgba(247, 93, 0, 0.6);
   width: 100%;
-  height: 2.5rem;
+  height: 3.5rem;
   border-radius: 0.4rem;
   position: absolute;
-  top: -3rem;
-  margin-bottom: 1rem;
+  top: -4rem;
+  margin-bottom: 2rem;
   transform-origin: 50% 100%;
   border-radius: 50% 50% 20% 20%;
 }

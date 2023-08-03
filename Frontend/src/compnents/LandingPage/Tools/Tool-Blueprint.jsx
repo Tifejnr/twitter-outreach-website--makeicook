@@ -1,6 +1,6 @@
 import React from 'react'
 import addToBoardEmailImage from "../../../assets/Images/add-by-email-trello-pic.png"
-import completedAddByEmail from "../../../assets/Images/completd-mail-addition-trello'.png"
+import completedAddByEmail from "../../../assets/Images/completd-mail-addition-trello.png"
 import arrowIcon from "../../../assets/SVGs/thin-long-arrow-right-icon.svg"
 
 export default function ToolBlueprint(props) {
