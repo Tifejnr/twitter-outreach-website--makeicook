@@ -5,18 +5,21 @@ import validatePassword from "./password-validation";
 export default function validateAll(paramsObj) {
   const email = paramsObj.email;
   const password = paramsObj.password;
-  const passwordId = paramsObj.passwordId;
 
   //run validation all at once to display all errors to users
   const emailValResponse = validateEmailInput(email);
 
   if (emailValResponse.emailErrorMessage)
-    return false, { emailValResponse: emailValResponse.emailErrorMessage };
+    return { emailValResponse: emailValResponse.emailErrorMessage };
 
-  //   validatePassword(password, passwordId);
+  const passwordValResponse = validatePassword(password);
 
-  //   if (validatePassword(password, passwordId) && validatEmailId(email, emailId))
-  //     return true;
+  if (passwordValResponse.passwordError)
+    return { passwordValResponse: passwordValResponse.passwordError };
 
-  //   return false;
+  console.log("we back");
+
+  if (validatePassword(password) && validateEmailInput(email)) return true;
+
+  return false;
 }
