@@ -1,15 +1,21 @@
-import React , {useEffect, useState} from "react";
+import React , {useEffect, useState, useRef} from "react";
 import { Link, useNavigate} from "react-router-dom";
 import validateInputs from "../../../JS functions/inputs-validations/overall-val-func";
 import signInUser from "../../../JS functions/Auth/sign-in";
 import AuthNav from "../AuthNav";
+import hidePasswordIcon from "../../../assets/SVGs/PasswordRelated/hide-password-eye.svg"
 import showPasswordIcon from "../../../assets/SVGs/PasswordRelated/show-password-eye.svg"
 
 
 export default function SignIn() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const navigate = useNavigate();
+
+  const handleShowPassword = ()=> {
+    setPasswordVisible(prevState=>!prevState)
+  }
 
 
 const sendInfoToServer = async (e)=> {
@@ -50,29 +56,32 @@ if(validateInputs(paramsObj)) {
 
     <article className="main__title">
         <h2>Log in</h2>
-    </article>
-
+      </article>
    <section>
     <form action="" className="reg-form" onSubmit={sendInfoToServer}>
 
       <fieldset className="input-wrapper">
         <label htmlFor="emailId"><p>Email</p></label>
-
-        <section className="innerInputWrapper">
-          <input type="email" placeholder="Enter your email" id="emailId" value={email}
-             onChange={(e)=> setEmail(e.target.value)}
-          />
-
-          <button className="toggle-password-visisbiilty"><img src={showPasswordIcon} alt="" /></button>
-        </section>
-
+        <input type="email" placeholder="Enter your email" id="emailId" value={email}
+           onChange={(e)=> setEmail(e.target.value)} 
+        />
         <p className="error"></p>
       </fieldset>
       <fieldset className="input-wrapper">
         <label htmlFor="passwordId"><p>Password</p></label>
-        <input type="password" placeholder="Enter your password" id="passwordId" value={password} 
+        <section className="innerInputWrapper">
+           <input type={passwordVisible ? "password": "text"} placeholder="Enter your password" id="passwordId" value={password} 
                  onChange={(e)=> setPassword(e.target.value)} 
         />
+
+           { passwordVisible ?
+  
+            <picture title="Show password" onClick={handleShowPassword} className="toggle-password-visisbiilty"><img src={showPasswordIcon} alt="show password icon" /></picture>  
+              :
+            <picture title="Hide password" onClick={handleShowPassword} className="toggle-password-visisbiilty"><img src={hidePasswordIcon} alt="hide password icon" /></picture>
+           }    
+
+         </section>
         <p className="error" id="regErrorDisplay"></p>
       </fieldset>
 

@@ -286,20 +286,27 @@ input,
   justify-content: space-between;
   align-items: center;
   border: 1px solid gray;
-  padding: 0 0.5rem;
 }
 
 .innerInputWrapper input {
   border: 0;
 }
 
-.innerInputWrapper button img {
-  width: 2.3rem;
+.innerInputWrapper picture {
+  width: 2.8rem;
   cursor: pointer;
   height: 100%;
+  padding: 0.3rem;
+  display: flex;
+  justify-items: center;
+  align-items: center;
 }
-.innerInputWrapper button img:hover button {
-  background-color: gray;
+.innerInputWrapper picture img {
+  width: 100%;
+  height: 100%;
+}
+.innerInputWrapper picture:hover {
+  background-color: rgba(128, 128, 128, 0.5);
 }
 
 /* Button Design Block */
