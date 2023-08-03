@@ -1,5 +1,5 @@
-import validatEmailId from "./email-validation";
-import validatePassword from "./password-validation";
+import validatEmailId from "../../compnents/Auth/Auth-Input-Validation/validateEmailInput";
+import validatePassword from "../../compnents/Auth/Auth-Input-Validation/password-validation";
 
 //combining both email validation and password validation into one function.
 export default function validateInputs(paramsObj) {

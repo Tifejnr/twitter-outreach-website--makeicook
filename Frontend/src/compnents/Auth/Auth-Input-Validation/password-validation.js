@@ -1,5 +1,5 @@
 import setSuccess from "./set-success-noti";
-import setError from "./set-error-noti";
+import setError from "../../../JS functions/inputs-validations/set-error-noti";
 
 export default function validatePassword(password, passwordId) {
   if (password === "") {

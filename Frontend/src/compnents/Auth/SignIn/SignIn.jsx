@@ -1,6 +1,6 @@
 import React , {useEffect, useState, useRef} from "react";
 import { Link, useNavigate} from "react-router-dom";
-import validateInputs from "../../../JS functions/inputs-validations/overall-val-func";
+import validateAll from "../Auth-Input-Validation/validateAll";
 import signInUser from "../../../JS functions/Auth/sign-in";
 import AuthNav from "../AuthNav";
 import hidePasswordIcon from "../../../assets/SVGs/PasswordRelated/hide-password-eye.svg"
@@ -10,13 +10,14 @@ import showPasswordIcon from "../../../assets/SVGs/PasswordRelated/show-password
 export default function SignIn() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [emailError, setEmailError] = useState("")
+  const [passwordError, setPasswordError] = useState("")
   const [passwordVisible, setPasswordVisible] = useState(false);
   const navigate = useNavigate();
 
   const handleShowPassword = ()=> {
     setPasswordVisible(prevState=>!prevState)
   }
-
 
 const sendInfoToServer = async (e)=> {
     e.preventDefault();
@@ -31,7 +32,10 @@ const sendInfoToServer = async (e)=> {
     passwordId
     }
 
-if(validateInputs(paramsObj)) {
+const validationRes= (validateAll(paramsObj))
+console.log(validationRes)
+
+if(validateAll(paramsObj)) {
   const signInParam = {
     email,
     password
@@ -45,7 +49,6 @@ if(validateInputs(paramsObj)) {
     } catch (error) {
       console.log(error.message)
     }
-
 }
 
   return (
@@ -65,8 +68,9 @@ if(validateInputs(paramsObj)) {
         <input type="email" placeholder="Enter your email" id="emailId" value={email}
            onChange={(e)=> setEmail(e.target.value)} 
         />
-        <p className="error"></p>
+        <p className="error">{emailError}</p>
       </fieldset>
+
       <fieldset className="input-wrapper">
         <label htmlFor="passwordId"><p>Password</p></label>
         <section className="innerInputWrapper">
@@ -82,7 +86,7 @@ if(validateInputs(paramsObj)) {
            }    
 
          </section>
-        <p className="error" id="regErrorDisplay"></p>
+        <p className="error" id="regErrorDisplay">{passwordError}</p>
       </fieldset>
 
        <section className="forgot-password">
