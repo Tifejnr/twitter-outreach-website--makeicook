@@ -3,6 +3,7 @@ import { Link, useNavigate} from "react-router-dom";
 import validateInputs from "../../../JS functions/inputs-validations/overall-val-func";
 import signInUser from "../../../JS functions/Auth/sign-in";
 import AuthNav from "../AuthNav";
+import showPasswordIcon from "../../../assets/SVGs/PasswordRelated/show-password-eye.svg"
 
 
 export default function SignIn() {
@@ -49,15 +50,22 @@ if(validateInputs(paramsObj)) {
 
     <article className="main__title">
         <h2>Log in</h2>
-      </article>
+    </article>
+
    <section>
     <form action="" className="reg-form" onSubmit={sendInfoToServer}>
 
       <fieldset className="input-wrapper">
         <label htmlFor="emailId"><p>Email</p></label>
-        <input type="email" placeholder="Enter your email" id="emailId" value={email}
-           onChange={(e)=> setEmail(e.target.value)} 
-        />
+
+        <section className="innerInputWrapper">
+          <input type="email" placeholder="Enter your email" id="emailId" value={email}
+             onChange={(e)=> setEmail(e.target.value)}
+          />
+
+          <button className="toggle-password-visisbiilty"><img src={showPasswordIcon} alt="" /></button>
+        </section>
+
         <p className="error"></p>
       </fieldset>
       <fieldset className="input-wrapper">

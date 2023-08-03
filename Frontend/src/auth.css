@@ -229,7 +229,8 @@ form {
 }
 
 input,
-.input-wrapper {
+.input-wrapper,
+.innerInputWrapper {
   border-radius: 0.5rem;
 }
 
@@ -239,7 +240,6 @@ input,
   background-color: #fff;
   width: 97%;
   height: 4rem;
-  border: 1px solid transparent;
   outline: 0;
   rotate: 0.6deg;
 }
@@ -258,7 +258,6 @@ input,
   padding: 0.4rem 0.5rem;
   font-size: 1.5rem;
   font-weight: 300;
-  border: 1px solid gainsboro;
   height: 100%;
   letter-spacing: 0.5px;
   color: var(--dark-des-blue);
@@ -269,9 +268,9 @@ input,
   rotate: -0.6deg;
 }
 
-.input-wrapper input:focus {
+.innerInputWrapper input:focus {
   outline: none;
-  border: 0.2rem solid gray;
+  border: none;
 }
 
 .input-wrapper .error {
@@ -279,6 +278,28 @@ input,
   color: #ff3860;
   font-size: 1.5rem;
   margin-top: 0.4rem;
+}
+
+.innerInputWrapper {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid gray;
+  padding: 0 0.5rem;
+}
+
+.innerInputWrapper input {
+  border: 0;
+}
+
+.innerInputWrapper button img {
+  width: 2.3rem;
+  cursor: pointer;
+  height: 100%;
+}
+.innerInputWrapper button img:hover button {
+  background-color: gray;
 }
 
 /* Button Design Block */

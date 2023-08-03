@@ -1287,6 +1287,7 @@ li img {
 .each-tool-section ul {
   display: grid;
   row-gap: 1rem;
+  list-style: disc;
 }
 
 .each-tool-section picture {
@@ -1298,6 +1299,7 @@ li img {
   align-content: center;
   margin-top: 1.3rem;
   place-self: center;
+  margin-bottom: 3rem;
 }
 
 @media screen and (min-width: 768px) {
@@ -1339,8 +1341,14 @@ li img {
   }
 }
 
-article .detailsNeededListCont li {
-  list-style: disc;
+.creditsNeededCont:last-child {
+  margin-bottom: 2rem;
+}
+
+article.creditsNeededCont {
+  display: flex;
+  column-gap: 1rem;
+  flex-wrap: wrap;
 }
 
 /* Footer Section */

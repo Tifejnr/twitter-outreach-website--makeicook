@@ -38,10 +38,10 @@ export default function ToolBlueprint(props) {
         
        </article>
 
-       <article>
+       <article className='creditsNeededCont'>
 
-        <p>Credits needed to use this tool :</p>
-        <p><b>1</b> Credit</p>
+          <p>Credits needed to use this tool :</p>
+          <p><b>1</b> Credit</p>
 
        </article>
         
