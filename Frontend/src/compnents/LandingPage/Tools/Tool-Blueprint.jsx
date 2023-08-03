@@ -29,7 +29,7 @@ export default function ToolBlueprint(props) {
        <article>
          <p>To use this tool, you must have one of these details about the member :</p>
 
-        <ul>
+        <ul className='detailsNeededListCont'>
             {props.toolDetails.email && <li>Email</li>}   
             {props.toolDetails.username && <li>Username</li>}   
             {props.toolDetails.name && <li>Full name - <b>Note:</b> Member must be on one of your boards already to use their Full name.</li>}   
