@@ -128,11 +128,11 @@ if(!validateFunctionResponse.emailValResponse && !validateFunctionResponse.passw
                  onChange={(e)=> setPassword(e.target.value)} 
         />
 
-           { passwordVisible ?
+          { passwordVisible ?
 
             <picture title="Hide password" onClick={handleShowPassword} className="toggle-password-visisbiilty"><img src={hidePasswordIcon} alt="hide password icon" /></picture> :
             <picture title="Show password" onClick={handleShowPassword} className="toggle-password-visisbiilty"><img src={showPasswordIcon} alt="show password icon" /></picture>  
-           }    
+          }    
 
          </section>
         <p className="error" id="regErrorDisplay">{passwordError}</p>
