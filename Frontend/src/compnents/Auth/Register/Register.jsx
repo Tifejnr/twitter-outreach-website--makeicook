@@ -3,15 +3,46 @@ import { useNavigate, Link} from "react-router-dom";
 import validateInputs from "../../../JS functions/inputs-validations/overall-val-func";
 import registerUser from "../../../JS functions/Auth/register";
 import AuthNav from "../AuthNav";
+import hidePasswordIcon from "../../../assets/SVGs/PasswordRelated/hide-password-eye.svg"
+import showPasswordIcon from "../../../assets/SVGs/PasswordRelated/show-password-eye.svg"
+import validateAll from "../Auth-Input-Validation/validateAll";
 
 
 
+const successColor = "#09c372";
+const errorColor = "#ff3860"
 
 export default function Register() {
   const [email, setEmail] = useState("")
+  const [emailError, setEmailError] = useState("")
+  const [emailBorderColor, setEmailBorderColor]= useState(null)
   const [password, setPassword] = useState("")
+  const [passwordError, setPasswordError] = useState("")
+  const [passwordBorderColor, setPasswordBorderColor]= useState(null)
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const navigate = useNavigate();
 
+  const emailBorderStyle = {
+      borderColor:
+      emailBorderColor === null
+        ? 'grey'
+        : emailBorderColor
+        ? successColor
+        : errorColor,
+  };
+
+  const passwordBorderStyle = {
+    borderColor: 
+          passwordBorderColor === null
+        ? 'grey'
+        : passwordBorderColor
+        ? successColor
+        : errorColor,
+  };
+
+  const handleShowPassword = ()=> {
+    setPasswordVisible(prevState=>!prevState)
+  }
 
 const sendInfoToServer = async (e)=> {
     e.preventDefault();
@@ -25,13 +56,38 @@ const sendInfoToServer = async (e)=> {
     password,
     passwordId
     }
+const validateFunctionResponse= (validateAll(paramsObj));
 
-if(validateInputs(paramsObj)) {
+  if (validateFunctionResponse.emailValResponse) 
+   {  
+    setEmailError(validateFunctionResponse.emailValResponse), 
+    setEmailBorderColor(false);
+   }
+   else{
+    setEmailError("");     
+    setEmailBorderColor(true)
+   }
+
+  
+  if (validateFunctionResponse.passwordValResponse) {
+
+      setPasswordError(validateFunctionResponse.passwordValResponse);
+      setPasswordBorderColor(false)
+   }
+
+    else{
+      setPasswordError("")
+      setPasswordBorderColor(true)
+    }
+
+if(!validateFunctionResponse.emailValResponse && !validateFunctionResponse.passwordValResponse) {
   const regParam = {
     email,
     password
   }
  const regUser = await registerUser(regParam)
+
+ if (regUser.errorMessage) return setPasswordError(regUser.errorMessage);
 
  if (regUser) return ( navigate('/authorize'))
 
@@ -45,7 +101,7 @@ if(validateInputs(paramsObj)) {
   return (
   <>
   <AuthNav/>
-<section className="main-container reg-container" id="form">
+<section className="main-container reg-container" id="register-main-cont">
 
     <article className="main__title">
         <h2>Get Started
@@ -56,19 +112,30 @@ if(validateInputs(paramsObj)) {
    <section>
     <form action="" className="reg-form" onSubmit={sendInfoToServer} >
 
-      <fieldset className="input-wrapper">
+     <fieldset className="input-wrapper">
         <label htmlFor="emailId"><p>Email</p></label>
-        <input type="email" placeholder="Please enter an email you can access" id="emailId" value={email}
+        <input type="email" placeholder="Enter your email" id="emailId" value={email}
            onChange={(e)=> setEmail(e.target.value)} 
+           style={emailBorderStyle}
         />
-        <p className="error"></p>
+        <p className="error">{emailError}</p>
       </fieldset>
+
       <fieldset className="input-wrapper">
         <label htmlFor="passwordId"><p>Password</p></label>
-        <input type="password" placeholder="Minimum of 6 characters" id="passwordId" value={password} 
+        <section className="innerInputWrapper"   style={passwordBorderStyle}>
+           <input type={passwordVisible ? "text" : "password"} placeholder="Enter your password" id="passwordId" value={password} 
                  onChange={(e)=> setPassword(e.target.value)} 
         />
-        <p className="error" id="regErrorDisplay"></p>
+
+           { passwordVisible ?
+
+            <picture title="Hide password" onClick={handleShowPassword} className="toggle-password-visisbiilty"><img src={hidePasswordIcon} alt="hide password icon" /></picture> :
+            <picture title="Show password" onClick={handleShowPassword} className="toggle-password-visisbiilty"><img src={showPasswordIcon} alt="show password icon" /></picture>  
+           }    
+
+         </section>
+        <p className="error" id="regErrorDisplay">{passwordError}</p>
       </fieldset>
 
        <h3 className="policy-agreement-text">
@@ -81,7 +148,7 @@ if(validateInputs(paramsObj)) {
     </form>
    </section>
 
-    <aside className="prompt-message">
+    <aside className="prompt-message register-prompt-message">
         <h3>
           Already have an account? <Link to="/sign-in"><b>Login</b></Link>
         </h3>

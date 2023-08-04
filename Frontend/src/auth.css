@@ -220,6 +220,10 @@ h3 {
     margin: 1rem auto;
     position: relative;
   }
+  .main-container#register-main-cont {
+    height: 49rem;
+    max-height: 49rem;
+  }
 }
 
 /* Input Form Design Block */
@@ -438,6 +442,10 @@ a:hover {
     font-weight: 300;
     font-size: 1.6rem;
     padding-bottom: 2rem;
+  }
+
+  .prompt-message.register-prompt-message h3 {
+    padding-bottom: 3rem;
   }
 }
 /* Footer Block */
