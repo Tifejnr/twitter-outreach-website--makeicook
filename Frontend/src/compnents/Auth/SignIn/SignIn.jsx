@@ -1,7 +1,7 @@
 import React , {useEffect, useState, useRef} from "react";
 import { Link, useNavigate} from "react-router-dom";
 import validateAll from "../Auth-Input-Validation/validateAll";
-import signInUser from "../../../JS functions/Auth/sign-in";
+import signInUser from "./sign-in";
 import AuthNav from "../AuthNav";
 import hidePasswordIcon from "../../../assets/SVGs/PasswordRelated/hide-password-eye.svg"
 import showPasswordIcon from "../../../assets/SVGs/PasswordRelated/show-password-eye.svg"
@@ -85,12 +85,14 @@ const validateFunctionResponse= (validateAll(paramsObj));
         password
       }
 
-      console.log("yeah")
-    // const signedIn = await signInUser(signInParam)
 
-    // if (signedIn) return (navigate('/home'))
+    const signedIn = await signInUser(signInParam)
 
-    // return false
+    if (signedIn.errorMessage) return setPasswordError(signedIn.errorMessage)
+
+    if (signedIn) return (navigate('/home'))
+
+    return false
     }
 
     } catch (error) {
