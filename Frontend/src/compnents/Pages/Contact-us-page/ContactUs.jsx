@@ -23,7 +23,7 @@ export default function ContactUs() {
 
   const [textarea, setTextarea] = useState("");
   const [textareaInstruction, setTextareaInstruction] = useState(
-    "Must be minimum of 5 words"
+    "Minimum of 5 words"
   );
   const [textareaBorderColor, setTextareaBorderColor] = useState(null);
 
@@ -44,7 +44,7 @@ export default function ContactUs() {
         ? successColor
         : errorColor,
     visibility: fullNameBorderColor === null
-        ? hideVisiblilty
+        ? showVisibilty
         : fullNameBorderColor
         ? hideVisiblilty
         : showVisibilty,
@@ -68,7 +68,7 @@ export default function ContactUs() {
         : errorColor,
    visibility: 
       emailBorderColor === null
-        ? hideVisiblilty
+        ? showVisibilty
         : emailBorderColor
         ? hideVisiblilty
         : showVisibilty,
@@ -94,25 +94,17 @@ export default function ContactUs() {
 
    visibility: 
       textareaBorderColor === null
-        ? hideVisiblilty
+        ? showVisibilty
         : textareaBorderColor
         ? hideVisiblilty
         : showVisibilty,    
   };
 
-  //   const passwordBorderStyle = {
-  //     borderColor:
-  //           passwordBorderColor === null
-  //         ? 'grey'
-  //         : passwordBorderColor
-  //         ? successColor
-  //         : errorColor,
-  //   };
 
   function sendToServer() {
     const isNameValidationOkay = fullNameValidation(fullName);
     const fullNameErrorMess =
-      "Please enter in this format: Firstname  Lastname";
+      "Please enter in this format: First name  Last name";
 
     if (!isNameValidationOkay) {
       setFullNameBorderColor(false),
@@ -157,7 +149,7 @@ export default function ContactUs() {
     <>
       <section className="contact-us-form">
         <section className="main-wrapper">
-          <h2 className="form-head">Contact us</h2>
+          <h2 className="form-head">Got Questions? Ask us</h2>
 
           <form className="form-wrapper">
             <section className="form-card">

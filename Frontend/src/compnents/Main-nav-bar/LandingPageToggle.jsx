@@ -8,7 +8,9 @@ export default function LandingPageToggle(props) {
     <>
      <input type="checkbox" id="nav__checkbox" className="nav__checkbox" />
       <section className="mainNavIcons">
-            <article className="myProfileIcon"> 
+          {
+          props.noCredits ? "" :
+        <article className="myProfileIcon"> 
             
               <Link to={props.pageLink} >   
                     <button id="start-for-free-mobile-lp">
@@ -17,7 +19,7 @@ export default function LandingPageToggle(props) {
               </Link>
 
             </article>
-
+         } 
             <ToggleLabel/>
       </section>
    </>

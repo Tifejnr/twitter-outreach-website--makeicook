@@ -8,16 +8,11 @@ import useStore from '../Hooks/Zustand/usersStore'
 
 
 export default function Pricing() {
-  const creditsFromServer = useStore((state) => state.creditsFromServer);
   return (
     <>
   <nav className='nav'>
 
-       <LandingPageToggle  innerText={creditsFromServer==1 ? `Credit:${creditsFromServer}`: 
-      
-      `Credits:${creditsFromServer}`} pagelink="#" 
-      
-      />
+       <LandingPageToggle  pagelink="#" />
 
       <ul className="nav__menu">
 

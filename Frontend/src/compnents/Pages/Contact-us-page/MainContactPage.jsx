@@ -5,6 +5,8 @@ import LandingPageToggle from '../../Main-nav-bar/LandingPageToggle';
 import PagesNavItems from '../../Main-nav-bar/PagesNavItems';
 import NavLogo from '../../Main-nav-bar/NavLogo';
 
+import FooterPages from '../Footer/FooterPages';
+
 export default function MainContactPage() {
 
     const creditsFromServer = useStore((state) => state.creditsFromServer);
@@ -12,11 +14,7 @@ export default function MainContactPage() {
     <>
   <nav className='nav'>
 
-       <LandingPageToggle  innerText={creditsFromServer==1 ? `Credit:${creditsFromServer}`: 
-      
-      `Credits:${creditsFromServer}`} pagelink="#" 
-      
-      />
+       <LandingPageToggle pagelink="#" noCredits={true}/>
 
       <ul className="nav__menu">
 
@@ -36,7 +34,7 @@ export default function MainContactPage() {
  <section className="main-pricing-section-alone">
     <ContactUs/>
   </section>
-
+<FooterPages/>
     </>
   )
 }
