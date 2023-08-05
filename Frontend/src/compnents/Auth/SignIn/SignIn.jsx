@@ -5,9 +5,11 @@ import signInUser from "./sign-in";
 import AuthNav from "../AuthNav";
 import hidePasswordIcon from "../../../assets/SVGs/PasswordRelated/hide-password-eye.svg"
 import showPasswordIcon from "../../../assets/SVGs/PasswordRelated/show-password-eye.svg"
+import { changeTabTitle } from "../../utilis/changeTabTitle";
 
 const successColor = "#09c372";
 const errorColor = "#ff3860";
+const logInTabTitle= "Log in- CollabforTrello"
 
 export default function SignIn() {
   const [email, setEmail] = useState("")
@@ -18,6 +20,8 @@ export default function SignIn() {
   const [passwordBorderColor, setPasswordBorderColor]= useState(null)
   const [passwordVisible, setPasswordVisible] = useState(false);
   const navigate = useNavigate();
+
+  changeTabTitle(logInTabTitle)
 
   const emailBorderStyle = {
       borderColor:

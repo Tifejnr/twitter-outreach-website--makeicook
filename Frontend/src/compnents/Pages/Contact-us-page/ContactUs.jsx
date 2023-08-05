@@ -10,9 +10,7 @@ const showVisibilty = "visible"
 
 export default function ContactUs() {
   const [fullName, setFullName] = useState("");
-  const [fullNameInstruction, setFullNameInstruction] = useState(
-    "First name  Last name"
-  );
+  const [fullNameInstruction, setFullNameInstruction] = useState("First name  Last name");
   const [fullNameBorderColor, setFullNameBorderColor] = useState(null);
 
   const [email, setEmail] = useState("");
@@ -132,7 +130,7 @@ export default function ContactUs() {
     }
 
     const isTextAreaValid = textAreaValidation(textarea);
-    const textAreaErrorMessage= "Query must be minimum of 5 words"
+    const textAreaErrorMessage= "Question must be minimum of 5 words"
 
     if (!isTextAreaValid) {
     setTextareaBorderColor(false)
@@ -191,7 +189,7 @@ export default function ContactUs() {
               <label
                 className="form-textarea-label"
                 htmlFor="ContactUsTextArea">
-                My query
+                My question
               </label>
 
               <p style={textareaErrorStyle}>{textareaInstruction}</p>

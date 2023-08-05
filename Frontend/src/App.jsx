@@ -34,7 +34,7 @@ function App() {
         <Route path='/dashboard' element={<OnlyAuthorizedUsers><Dashboard/></OnlyAuthorizedUsers>}/>
         <Route path='/add-member' element={<OnlyAuthorizedUsers><AddMember/></OnlyAuthorizedUsers>}/>
         <Route path='/delete-member' element={<Delete/>}/>
-        <Route path='/pricing' element={<OnlyAuthorizedUsers><Pricing/></OnlyAuthorizedUsers>}/>
+        <Route path='/pricing' element={<Pricing/>}/>
         <Route path='/authorize' element={<OauthPage/>}/>
         <Route path='/contact-us' element={<MainContactPage/>}/>
       </Routes>

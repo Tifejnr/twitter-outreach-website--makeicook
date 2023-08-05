@@ -1363,6 +1363,7 @@ article.creditsNeededCont {
   align-items: center;
   align-content: center;
   width: 100%;
+  margin-top: 6rem;
 }
 
 @media screen and (min-width: 768px) {

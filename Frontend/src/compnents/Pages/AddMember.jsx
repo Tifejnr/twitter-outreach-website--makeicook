@@ -10,6 +10,7 @@ import { websiteUrl } from "../../JS functions/websiteUrl";
 import useStore from "../Hooks/Zustand/usersStore";
 import ProgressExceution from "../ProgressBar/ProgressExceution.jsx";
 import validateAddToBoard from "./Validations/validateAddToBoard";
+import { changeTabTitle } from "../utilis/changeTabTitle";
 
 const labelTitle = "Add Members";
 const inputLabel = "Members' Emails:";
@@ -20,6 +21,7 @@ const inputPlaceholderText =
 const pageName = "add-member";
 const pageTitle = "Add Members Via Email";
 const action = "adding";
+const addToBoardsTabTitle= "Add to Boards- CollabforTrello"
 
 export default function AddMember() {
   const [boardsCollection, setBoardsCollection] = useState(null);
@@ -38,6 +40,7 @@ export default function AddMember() {
 
   const pageContentRef = useRef(null);
   const navigate = useNavigate();
+  changeTabTitle(addToBoardsTabTitle)
 
   const executionParams = {
     boardsCollection,

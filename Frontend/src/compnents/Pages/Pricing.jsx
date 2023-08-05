@@ -4,15 +4,17 @@ import LandingPageToggle from '../Main-nav-bar/LandingPageToggle'
 import NavLogo from '../Main-nav-bar/NavLogo'
 import PagesNavItems from '../Main-nav-bar/PagesNavItems'
 import FAQ from '../LandingPage/FAQ/FAQ'
-import useStore from '../Hooks/Zustand/usersStore'
-
+import FooterPages from './Footer/FooterPages'
+import { changeTabTitle } from '../utilis/changeTabTitle'
+const pricingTabTitle= "Pricing- CollabforTrello"
 
 export default function Pricing() {
+  changeTabTitle(pricingTabTitle)
   return (
     <>
   <nav className='nav'>
 
-       <LandingPageToggle  pagelink="#" />
+       <LandingPageToggle noCredits={true} pagelink="#" />
 
       <ul className="nav__menu">
 
@@ -20,11 +22,7 @@ export default function Pricing() {
           <NavLogo />
         </li>
        
-      <PagesNavItems showCredits={creditsFromServer==1 ? `Credit:${creditsFromServer}`: 
-      
-      `Credits:${creditsFromServer}`}
-      
-      />  
+      <PagesNavItems />  
       </ul>
   </nav>
 
@@ -33,7 +31,8 @@ export default function Pricing() {
 
     <FAQ/>
   </section>
-
+ 
+ <FooterPages/>
     </>
   )
 }

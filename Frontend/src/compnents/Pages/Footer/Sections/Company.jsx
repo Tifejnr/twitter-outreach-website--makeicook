@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const aboutPageLink= "/about"
-const contactPageLink= "/contact"
+const contactPageLink= "/contact-us"
 const mediaPageLink= "/media"
 const privacyPolicyPageLink= "/privacy-policy"
 const termsPageLink= "/terms"

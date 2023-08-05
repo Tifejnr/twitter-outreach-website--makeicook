@@ -6,11 +6,12 @@ import AuthNav from "../AuthNav";
 import hidePasswordIcon from "../../../assets/SVGs/PasswordRelated/hide-password-eye.svg"
 import showPasswordIcon from "../../../assets/SVGs/PasswordRelated/show-password-eye.svg"
 import validateAll from "../Auth-Input-Validation/validateAll";
-
+import { changeTabTitle } from "../../utilis/changeTabTitle";
 
 
 const successColor = "#09c372";
 const errorColor = "#ff3860"
+const signUpTabTitle= "Sign up- CollabforTrello"
 
 export default function Register() {
   const [email, setEmail] = useState("")
@@ -21,6 +22,8 @@ export default function Register() {
   const [passwordBorderColor, setPasswordBorderColor]= useState(null)
   const [passwordVisible, setPasswordVisible] = useState(false);
   const navigate = useNavigate();
+
+  changeTabTitle(signUpTabTitle)
 
   const emailBorderStyle = {
       borderColor:

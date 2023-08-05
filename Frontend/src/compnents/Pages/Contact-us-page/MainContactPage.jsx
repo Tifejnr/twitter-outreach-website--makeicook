@@ -4,12 +4,14 @@ import useStore from '../../Hooks/Zustand/usersStore';
 import LandingPageToggle from '../../Main-nav-bar/LandingPageToggle';
 import PagesNavItems from '../../Main-nav-bar/PagesNavItems';
 import NavLogo from '../../Main-nav-bar/NavLogo';
-
 import FooterPages from '../Footer/FooterPages';
+import { changeTabTitle } from '../../utilis/changeTabTitle';
+
+const contactUsTabTitle= "Contact us- CollabforTrello"
 
 export default function MainContactPage() {
 
-    const creditsFromServer = useStore((state) => state.creditsFromServer);
+  changeTabTitle(contactUsTabTitle)
   return (
     <>
   <nav className='nav'>
@@ -22,11 +24,7 @@ export default function MainContactPage() {
           <NavLogo />
         </li>
        
-      <PagesNavItems showCredits={creditsFromServer==1 ? `Credit:${creditsFromServer}`: 
-      
-      `Credits:${creditsFromServer}`}
-      
-      />  
+      <PagesNavItems/>  
 
       </ul>
   </nav>
