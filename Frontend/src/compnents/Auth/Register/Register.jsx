@@ -11,7 +11,7 @@ import { changeTabTitle } from "../../utilis/changeTabTitle";
 
 const successColor = "#09c372";
 const errorColor = "#ff3860"
-const signUpTabTitle= "Sign up- CollabforTrello"
+const signUpTabTitle= "Sign up – CollabforTrello"
 
 export default function Register() {
   const [email, setEmail] = useState("")

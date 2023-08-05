@@ -6,7 +6,7 @@ import PagesNavItems from '../Main-nav-bar/PagesNavItems'
 import FAQ from '../LandingPage/FAQ/FAQ'
 import FooterPages from './Footer/FooterPages'
 import { changeTabTitle } from '../utilis/changeTabTitle'
-const pricingTabTitle= "Pricing- CollabforTrello"
+const pricingTabTitle= "Pricing – CollabforTrello"
 
 export default function Pricing() {
   changeTabTitle(pricingTabTitle)

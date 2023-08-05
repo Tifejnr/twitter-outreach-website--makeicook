@@ -21,7 +21,7 @@ const inputPlaceholderText =
 const pageName = "add-member";
 const pageTitle = "Add Members Via Email";
 const action = "adding";
-const addToBoardsTabTitle= "Add to Boards- CollabforTrello"
+const addToBoardsTabTitle= "Add Members to Boards — CollabforTrello"
 
 export default function AddMember() {
   const [boardsCollection, setBoardsCollection] = useState(null);

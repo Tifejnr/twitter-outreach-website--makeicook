@@ -7,7 +7,7 @@ import NavLogo from '../../Main-nav-bar/NavLogo';
 import FooterPages from '../Footer/FooterPages';
 import { changeTabTitle } from '../../utilis/changeTabTitle';
 
-const contactUsTabTitle= "Contact us- CollabforTrello"
+const contactUsTabTitle= "Contact us – CollabforTrello"
 
 export default function MainContactPage() {
 

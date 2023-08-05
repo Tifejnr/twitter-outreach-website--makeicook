@@ -10,9 +10,13 @@ import FAQ from './FAQ/FAQ'
 import PricingPage from '../PricingPage/PricingPage'
 import ToolsSection from './Tools/Tools'
 import FooterPages from '../Pages/Footer/FooterPages'
+import { changeTabTitle } from '../utilis/changeTabTitle'
+
+const landingPageTabTitle= "CollabforTrello – Trello Members Addition and Removal Automation";
 
 
 export default function LandingPage() {
+  changeTabTitle(landingPageTabTitle)
 return (
 <>
   <nav className='nav'>

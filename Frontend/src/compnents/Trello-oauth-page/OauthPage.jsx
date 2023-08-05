@@ -5,10 +5,15 @@ import GetStartedIcon from "./GetStartedIcon"
 import trelloIcon from "../../assets/SVGs/trello-icon.svg"
 import forwardArrow from "../../assets/SVGs/thin-long-arrow-right-icon.svg"
 import LoginOnlyControl from "../Controllers/LoginOnlyControl"
+import { changeTabTitle } from "../utilis/changeTabTitle"
 
+const oauthPageTabTitle= "Authorize your account – CollabforTrello"
 
 
 export default function OauthPage() {
+
+  changeTabTitle( oauthPageTabTitle)
+
   return (
    <>
  <LoginOnlyControl>

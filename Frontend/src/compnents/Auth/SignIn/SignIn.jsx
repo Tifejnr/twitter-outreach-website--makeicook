@@ -9,7 +9,7 @@ import { changeTabTitle } from "../../utilis/changeTabTitle";
 
 const successColor = "#09c372";
 const errorColor = "#ff3860";
-const logInTabTitle= "Log in- CollabforTrello"
+const logInTabTitle= "Log in – CollabforTrello"
 
 export default function SignIn() {
   const [email, setEmail] = useState("")
