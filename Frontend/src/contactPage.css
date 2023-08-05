@@ -9,43 +9,43 @@ body {
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
 }
-.form-main {
-  background: linear-gradient(to bottom, #00000024, #00000024),
-    url(https://res.cloudinary.com/dqifboxk5/image/upload/v1686209968/contact-us-2_y8zzx7.jpg)
-      no-repeat center;
-  background-size: cover;
-  min-height: 100vh;
+.contact-us-form {
+  background: rgb(16, 27, 105, 0.8);
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-.form-main .main-wrapper {
+.contact-us-form .main-wrapper {
   border-radius: 10px;
   padding: 4.5rem;
   width: 40%;
-  box-shadow: 0 0 5px 5px #00000020;
+  box-shadow: 0 0 5px 5px rgb(16, 27, 105, 0.8);
   backdrop-filter: blur(5px);
-  background-color: #ffffff85;
+  background-color: #fff;
 }
+
 @media screen and (max-width: 991px) {
-  .form-main .main-wrapper {
+  .contact-us-form .main-wrapper {
     width: 70%;
   }
 }
+
 @media screen and (max-width: 767px) {
-  .form-main .main-wrapper {
+  .contact-us-form .main-wrapper {
     width: 90%;
   }
 }
-.form-main .main-wrapper .form-head {
-  font-size: 30px;
-  line-height: 40px;
+.contact-us-form h2 {
+  font-size: 3rem;
+  line-height: 1.4;
   font-weight: 600;
   text-align: center;
-  margin: 0px 0 25px;
+  color: #000;
+  margin-bottom: 3rem;
 }
-.form-main .main-wrapper .form-wrapper {
+.contact-us-form .form-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -53,13 +53,13 @@ body {
   gap: 15px;
 }
 
-.form-main .main-wrapper .form-wrapper .form-card {
+.contact-us-form .form-card {
   position: relative;
   width: 100%;
 }
 
-.form-main .form-input {
-  padding: 1.5rem 0.5rem;
+.contact-us-form .form-input {
+  padding: 2rem 0.5rem;
   width: 100%;
   border: 1px solid #000;
   border-radius: 5px;
@@ -71,84 +71,56 @@ body {
   box-sizing: border-box;
   height: 110%;
 }
-.form-main .form-input:valid,
-.form-main .form-input:focus {
+
+.contact-us-form .form-input:focus {
   border: 1px solid #515151;
 }
-.form-main
-  .main-wrapper
-  .form-wrapper
-  .form-card
-  .form-input:valid
-  ~ .form-label,
-.form-main
-  .main-wrapper
-  .form-wrapper
-  .form-card
-  .form-input:focus
-  ~ .form-label {
+
+.contact-us-form .form-input:focus ~ label {
   color: #515151;
-  top: 30%;
+  top: 20%;
   transform: translateY(-70%);
-  font-size: 13px;
-  line-height: 23px;
+  font-size: 1.4rem;
+  line-height: 1.5;
 }
-.form-main .main-wrapper .form-wrapper .form-card .form-input:-webkit-autofill,
-.form-main
-  .main-wrapper
-  .form-wrapper
-  .form-card
-  .form-input:-webkit-autofill:hover,
-.form-main
-  .main-wrapper
-  .form-wrapper
-  .form-card
-  .form-input:-webkit-autofill:focus,
-.form-main
-  .main-wrapper
-  .form-wrapper
-  .form-card
-  .form-input:-webkit-autofill:active {
+
+.contact-us-form .form-input:-webkit-autofill,
+.contact-us-form .form-input:-webkit-autofill:hover,
+.contact-us-form .form-input:-webkit-autofill:focus,
+.contact-us-form .main-wrapper .form-input:-webkit-autofill:active {
   transition: background-color 9999s ease-in-out 0s;
 }
-.form-main
-  .main-wrapper
-  .form-wrapper
-  .form-card
-  .form-input::-webkit-outer-spin-button,
-.form-main
-  .main-wrapper
-  .form-wrapper
-  .form-card
-  .form-input::-webkit-inner-spin-button {
+
+.contact-us-form .form-input::-webkit-outer-spin-button,
+.contact-us-form .form-input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-.form-main input {
+.contact-us-form input {
   padding: 0;
 }
-.form-main .form-label {
+.contact-us-form label {
   position: absolute;
   left: 0.5rem;
-  top: 50%;
+  top: 15%;
   transform: translateY(-50%);
   pointer-events: none;
   transition: 0.3s;
   margin: 0;
   font-size: 18px;
-  line-height: 28px;
+  line-height: 1.3;
   font-weight: 500;
 }
 
-.form-main textarea {
-  padding: 1.3rem 0.5rem;
+.contact-us-form textarea {
+  padding: 1.8rem 0.5rem;
   width: 100%;
   border: 1px solid #000;
   border-radius: 5px;
   background: transparent;
   outline: none;
-  font-size: 20px;
+  font-size: 1.8rem;
   line-height: 1.3;
   font-weight: 400;
   display: -webkit-box;
@@ -158,57 +130,33 @@ body {
   box-sizing: border-box;
 }
 
-.form-main .main-wrapper .form-wrapper .form-card .form-textarea:valid,
-.form-main .main-wrapper .form-wrapper .form-card .form-textarea:focus {
+.contact-us-form .form-textarea:valid,
+.contact-us-form .form-textarea:focus {
   border: 1px solid #515151;
 }
-.form-main
-  .main-wrapper
-  .form-wrapper
-  .form-card
-  .form-textarea:valid
-  ~ .form-textarea-label,
-.form-main
-  .main-wrapper
-  .form-wrapper
-  .form-card
-  .form-textarea:focus
-  ~ .form-textarea-label {
+
+.contact-us-form .form-textarea:focus ~ .form-textarea-label {
   color: #515151;
   transform: translateY(-82%);
   font-size: 13px;
   line-height: 23px;
 }
-.form-main
-  .main-wrapper
-  .form-wrapper
-  .form-card
-  .form-textarea:-webkit-autofill,
-.form-main
-  .main-wrapper
-  .form-wrapper
-  .form-card
-  .form-textarea:-webkit-autofill:hover,
-.form-main
-  .main-wrapper
-  .form-wrapper
-  .form-card
-  .form-textarea:-webkit-autofill:focus,
-.form-main
-  .main-wrapper
-  .form-wrapper
-  .form-card
-  .form-textarea:-webkit-autofill:active {
+
+.contact-us-form .form-textarea:-webkit-autofill,
+.contact-us-form .form-textarea:-webkit-autofill:hover,
+.contact-us-form .form-textarea:-webkit-autofill:focus,
+.contact-us-form .form-textarea:-webkit-autofill:active {
   transition: background-color 9999s ease-in-out 0s;
 }
-.form-main .main-wrapper .form-wrapper .form-card .form-textarea-label {
+
+.contact-us-form .form-textarea-label {
   position: absolute;
   top: 10%;
   transform: translateY(-70%);
   pointer-events: none;
   transition: 0.3s;
   margin: 0;
-  font-size: 18px;
+  font-size: 1.8rem;
   line-height: 28px;
   font-weight: 500;
 }
@@ -234,33 +182,24 @@ body {
   background: transparent;
 }
 
-/* Contact Text area Design Block*/
-
-.form-main p {
+.contact-us-form p {
   text-align: left;
+  font-size: 1.5rem;
+  color: #515151;
+  padding-top: 0.2rem;
 }
 
-.form-main .main-wrapper .form-wrapper .form-card .form-textarea:focus ~ p {
+/* Contact Input field Instruction Design Block*/
+.contact-us-form .form-textarea:focus ~ p {
   visibility: visible;
 }
-.form-main .main-wrapper .form-wrapper .form-card .form-textarea ~ p {
+.contact-us-form .form-textarea ~ p {
   visibility: hidden;
 }
 
-/* .form-main
-  .main-wrapper
-  .form-wrapper
-  .form-card
-  .form-textarea:valid
-  ~ .form-textarea-label,
-.form-main
-  .main-wrapper
-  .form-wrapper
-  .form-card
-  .form-textarea:focus
-  ~ .form-textarea-label {
-  color: #515151;
-  transform: translateY(-82%);
-  font-size: 13px;
-  line-height: 23px;
-} */
+.contact-us-form input:focus ~ p {
+  visibility: visible;
+}
+.contact-us-form input ~ p {
+  visibility: hidden;
+}
