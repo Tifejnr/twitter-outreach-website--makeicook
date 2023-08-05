@@ -19,24 +19,25 @@ body {
 }
 .contact-us-form .main-wrapper {
   border-radius: 10px;
-  padding: 4.5rem;
-  width: 40%;
+  padding: 0 1.5rem;
+  width: 100%;
   box-shadow: 0 0 5px 5px rgb(16, 27, 105, 0.8);
   backdrop-filter: blur(5px);
   background-color: #fff;
 }
 
-@media screen and (max-width: 991px) {
+@media screen and (min-width: 580px) {
   .contact-us-form .main-wrapper {
-    width: 70%;
+    padding: 0 3.5rem;
+  }
+}
+@media screen and (min-width: 760px) {
+  .contact-us-form .main-wrapper {
+    width: 60%;
+    max-width: 60rem;
   }
 }
 
-@media screen and (max-width: 767px) {
-  .contact-us-form .main-wrapper {
-    width: 90%;
-  }
-}
 .contact-us-form h2 {
   font-size: 3rem;
   line-height: 1.4;
@@ -50,7 +51,7 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 15px;
+  gap: 1.5rem;
 }
 
 .contact-us-form .form-card {

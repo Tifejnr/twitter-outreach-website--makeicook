@@ -17,7 +17,7 @@ import LandingPage from './compnents/LandingPage/LandingPage'
 import HomePage from './compnents/Home-nav-items/HomePage'
 import Dashboard from './compnents/Auth/Dashboard/Dashboard'
 import LoginOnlyControl from './compnents/Controllers/LoginOnlyControl'
-import ContactUs from './compnents/Pages/Contact-us-page/ContactUs'
+import MainContactPage from './compnents/Pages/Contact-us-page/MainContactPage'
 import OnlyAuthorizedUsers from './compnents/Controllers/OnlyAuthorizedUsers'
 
 
@@ -36,7 +36,7 @@ function App() {
         <Route path='/delete-member' element={<Delete/>}/>
         <Route path='/pricing' element={<OnlyAuthorizedUsers><Pricing/></OnlyAuthorizedUsers>}/>
         <Route path='/authorize' element={<OauthPage/>}/>
-        <Route path='/contact-us' element={<ContactUs/>}/>
+        <Route path='/contact-us' element={<MainContactPage/>}/>
       </Routes>
 
     </>

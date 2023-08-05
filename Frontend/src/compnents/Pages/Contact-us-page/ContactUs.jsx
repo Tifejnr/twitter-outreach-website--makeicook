@@ -5,6 +5,8 @@ import textAreaValidation from "./Contact-Input-Validations/textAreaVal";
 
 const successColor = "#09c372";
 const errorColor = "#ff3860";
+const hideVisiblilty = "hidden"
+const showVisibilty = "visible"
 
 export default function ContactUs() {
   const [fullName, setFullName] = useState("");
@@ -21,7 +23,7 @@ export default function ContactUs() {
 
   const [textarea, setTextarea] = useState("");
   const [textareaInstruction, setTextareaInstruction] = useState(
-    "Must be more than 5 words"
+    "Must be minimum of 5 words"
   );
   const [textareaBorderColor, setTextareaBorderColor] = useState(null);
 
@@ -41,6 +43,11 @@ export default function ContactUs() {
         : fullNameBorderColor
         ? successColor
         : errorColor,
+    visibility: fullNameBorderColor === null
+        ? hideVisiblilty
+        : fullNameBorderColor
+        ? hideVisiblilty
+        : showVisibilty,
   };
 
   const emailBorderStyle = {
@@ -59,6 +66,12 @@ export default function ContactUs() {
         : emailBorderColor
         ? successColor
         : errorColor,
+   visibility: 
+      emailBorderColor === null
+        ? hideVisiblilty
+        : emailBorderColor
+        ? hideVisiblilty
+        : showVisibilty,
   };
 
 //Text area styles when there is error
@@ -78,6 +91,13 @@ export default function ContactUs() {
         : textareaBorderColor
         ? successColor
         : errorColor,
+
+   visibility: 
+      textareaBorderColor === null
+        ? hideVisiblilty
+        : textareaBorderColor
+        ? hideVisiblilty
+        : showVisibilty,    
   };
 
   //   const passwordBorderStyle = {
@@ -92,7 +112,7 @@ export default function ContactUs() {
   function sendToServer() {
     const isNameValidationOkay = fullNameValidation(fullName);
     const fullNameErrorMess =
-      "Please enter in this format: firstname  lastname";
+      "Please enter in this format: Firstname  Lastname";
 
     if (!isNameValidationOkay) {
       setFullNameBorderColor(false),
@@ -120,9 +140,11 @@ export default function ContactUs() {
     }
 
     const isTextAreaValid = textAreaValidation(textarea);
+    const textAreaErrorMessage= "Query must be minimum of 5 words"
 
     if (!isTextAreaValid) {
     setTextareaBorderColor(false)
+    setTextareaInstruction(textAreaErrorMessage)
     }
 
     else{
