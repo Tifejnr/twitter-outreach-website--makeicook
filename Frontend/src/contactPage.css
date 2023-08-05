@@ -1,0 +1,266 @@
+:root {
+  font-size: 62.5%;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@200&display=swap");
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+.form-main {
+  background: linear-gradient(to bottom, #00000024, #00000024),
+    url(https://res.cloudinary.com/dqifboxk5/image/upload/v1686209968/contact-us-2_y8zzx7.jpg)
+      no-repeat center;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.form-main .main-wrapper {
+  border-radius: 10px;
+  padding: 4.5rem;
+  width: 40%;
+  box-shadow: 0 0 5px 5px #00000020;
+  backdrop-filter: blur(5px);
+  background-color: #ffffff85;
+}
+@media screen and (max-width: 991px) {
+  .form-main .main-wrapper {
+    width: 70%;
+  }
+}
+@media screen and (max-width: 767px) {
+  .form-main .main-wrapper {
+    width: 90%;
+  }
+}
+.form-main .main-wrapper .form-head {
+  font-size: 30px;
+  line-height: 40px;
+  font-weight: 600;
+  text-align: center;
+  margin: 0px 0 25px;
+}
+.form-main .main-wrapper .form-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-main .main-wrapper .form-wrapper .form-card {
+  position: relative;
+  width: 100%;
+}
+
+.form-main .form-input {
+  padding: 1.5rem 0.5rem;
+  width: 100%;
+  border: 1px solid #000;
+  border-radius: 5px;
+  background: transparent;
+  outline: none;
+  font-size: 1.8rem;
+  line-height: 1.4;
+  font-weight: 400;
+  box-sizing: border-box;
+  height: 110%;
+}
+.form-main .form-input:valid,
+.form-main .form-input:focus {
+  border: 1px solid #515151;
+}
+.form-main
+  .main-wrapper
+  .form-wrapper
+  .form-card
+  .form-input:valid
+  ~ .form-label,
+.form-main
+  .main-wrapper
+  .form-wrapper
+  .form-card
+  .form-input:focus
+  ~ .form-label {
+  color: #515151;
+  top: 30%;
+  transform: translateY(-70%);
+  font-size: 13px;
+  line-height: 23px;
+}
+.form-main .main-wrapper .form-wrapper .form-card .form-input:-webkit-autofill,
+.form-main
+  .main-wrapper
+  .form-wrapper
+  .form-card
+  .form-input:-webkit-autofill:hover,
+.form-main
+  .main-wrapper
+  .form-wrapper
+  .form-card
+  .form-input:-webkit-autofill:focus,
+.form-main
+  .main-wrapper
+  .form-wrapper
+  .form-card
+  .form-input:-webkit-autofill:active {
+  transition: background-color 9999s ease-in-out 0s;
+}
+.form-main
+  .main-wrapper
+  .form-wrapper
+  .form-card
+  .form-input::-webkit-outer-spin-button,
+.form-main
+  .main-wrapper
+  .form-wrapper
+  .form-card
+  .form-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.form-main input {
+  padding: 0;
+}
+.form-main .form-label {
+  position: absolute;
+  left: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: 0.3s;
+  margin: 0;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 500;
+}
+
+.form-main textarea {
+  padding: 1.3rem 0.5rem;
+  width: 100%;
+  border: 1px solid #000;
+  border-radius: 5px;
+  background: transparent;
+  outline: none;
+  font-size: 20px;
+  line-height: 1.3;
+  font-weight: 400;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: auto;
+  box-sizing: border-box;
+}
+
+.form-main .main-wrapper .form-wrapper .form-card .form-textarea:valid,
+.form-main .main-wrapper .form-wrapper .form-card .form-textarea:focus {
+  border: 1px solid #515151;
+}
+.form-main
+  .main-wrapper
+  .form-wrapper
+  .form-card
+  .form-textarea:valid
+  ~ .form-textarea-label,
+.form-main
+  .main-wrapper
+  .form-wrapper
+  .form-card
+  .form-textarea:focus
+  ~ .form-textarea-label {
+  color: #515151;
+  transform: translateY(-82%);
+  font-size: 13px;
+  line-height: 23px;
+}
+.form-main
+  .main-wrapper
+  .form-wrapper
+  .form-card
+  .form-textarea:-webkit-autofill,
+.form-main
+  .main-wrapper
+  .form-wrapper
+  .form-card
+  .form-textarea:-webkit-autofill:hover,
+.form-main
+  .main-wrapper
+  .form-wrapper
+  .form-card
+  .form-textarea:-webkit-autofill:focus,
+.form-main
+  .main-wrapper
+  .form-wrapper
+  .form-card
+  .form-textarea:-webkit-autofill:active {
+  transition: background-color 9999s ease-in-out 0s;
+}
+.form-main .main-wrapper .form-wrapper .form-card .form-textarea-label {
+  position: absolute;
+  top: 10%;
+  transform: translateY(-70%);
+  pointer-events: none;
+  transition: 0.3s;
+  margin: 0;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 500;
+}
+.btn-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 0 0;
+}
+.btn-wrap button {
+  padding: 0 32px;
+  font-size: 18px;
+  line-height: 48px;
+  border: 1px solid transparent;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: all 0.5s ease;
+  cursor: pointer;
+  box-shadow: 0 0 5px 5px #00000020;
+}
+.btn-wrap button:hover {
+  border: 1px solid #000;
+  background: transparent;
+}
+
+/* Contact Text area Design Block*/
+
+.form-main p {
+  text-align: left;
+}
+
+.form-main .main-wrapper .form-wrapper .form-card .form-textarea:focus ~ p {
+  visibility: visible;
+}
+.form-main .main-wrapper .form-wrapper .form-card .form-textarea ~ p {
+  visibility: hidden;
+}
+
+/* .form-main
+  .main-wrapper
+  .form-wrapper
+  .form-card
+  .form-textarea:valid
+  ~ .form-textarea-label,
+.form-main
+  .main-wrapper
+  .form-wrapper
+  .form-card
+  .form-textarea:focus
+  ~ .form-textarea-label {
+  color: #515151;
+  transform: translateY(-82%);
+  font-size: 13px;
+  line-height: 23px;
+} */
