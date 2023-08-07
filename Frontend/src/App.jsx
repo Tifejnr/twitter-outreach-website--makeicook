@@ -7,6 +7,7 @@ import './home.css'
 import "./contactPage.css"
 
 import {Route, Routes} from "react-router-dom"
+import ReactGA from "react-ga4";
 import Register from './compnents/Auth/Register/Register'
 import SignIn from './compnents/Auth/SignIn/SignIn'
 import AddMember from './compnents/Pages/AddMember'
@@ -21,6 +22,9 @@ import MainContactPage from './compnents/Pages/Contact-us-page/MainContactPage'
 import OnlyAuthorizedUsers from './compnents/Controllers/OnlyAuthorizedUsers'
 
 
+const trackingId = "G-67WKHKMDEH";
+
+ReactGA.initialize(trackingId);
 
 
 function App() {
