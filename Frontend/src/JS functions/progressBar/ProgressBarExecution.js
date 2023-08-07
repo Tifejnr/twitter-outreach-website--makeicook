@@ -20,7 +20,7 @@ export default function ProgressBarExecution(progressBarParams) {
   const noOfCheckedCheckbox = progressBarParams.noOfCheckedCheckbox;
   const successLength = progressBarParams.succes;
   const action = progressBarParams.action;
-  const failuresArrayLength = progressBarParams.failuresArray;
+  // const failuresArrayLength = progressBarParams.failuresArray;
   const totalAttemptedArrayLength = progressBarParams.totalAttemptedArray;
   const totalDurationLength = progressBarParams.totalDurationLength;
   const roundIndex = progressBarParams.roundIndex;

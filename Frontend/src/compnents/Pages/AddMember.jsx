@@ -22,6 +22,7 @@ const pageName = "add-member";
 const pageTitle = "Add Members Via Email";
 const action = "adding";
 const addToBoardsTabTitle= "Add Members to Boards — CollabforTrello"
+ const timeInterval= 1;
 
 export default function AddMember() {
   const [boardsCollection, setBoardsCollection] = useState(null);
@@ -34,8 +35,8 @@ export default function AddMember() {
   const checkboxesArray = useStore((state) => state.checkboxesArray);
   const textAreaValue = useStore((state) => state.textAreaValue);
   const textAreaRefEl = useStore((state) => state.textAreaRefEl);
-  const timeInterval = useStore((state) => state.timeInterval);
-  const timeIntervalRef = useStore((state) => state.timeIntervalRef);
+  // const timeInterval = useStore((state) => state.timeInterval);
+  // const timeIntervalRef = useStore((state) => state.timeIntervalRef);
   const  setExecutionErrorBtn = useStore((state) => state. setExecutionErrorBtn);
 
   const pageContentRef = useRef(null);
@@ -47,7 +48,7 @@ export default function AddMember() {
     textAreaValue,
     textAreaRefEl,
     timeInterval,
-    timeIntervalRef,
+    // timeIntervalRef,
     pageContentElRef,
     clientSignature,
     checkboxesArray,

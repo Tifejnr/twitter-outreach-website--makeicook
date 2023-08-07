@@ -23,7 +23,6 @@ export default function FooterPages() {
         </section>
       <section className='footer-page-links-cont'>
           <ProductDetails/>
-          <ResourcesSection/>
           <Company/>
       </section>
 

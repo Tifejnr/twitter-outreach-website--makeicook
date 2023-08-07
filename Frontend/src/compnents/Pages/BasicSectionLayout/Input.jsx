@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import SliderTimeInterval from './Sliders/TimeInterval';
+// import SliderTimeInterval from './Sliders/TimeInterval';
 import useStore from '../../Hooks/Zustand/usersStore';
 
 
@@ -33,10 +33,6 @@ export default function Input(props) {
             rows="6"
             placeholder={props.inputPlaceholderText}></textarea>
           <p className="error"></p>
-        </section>
-
-        <section>
-          <SliderTimeInterval />
         </section>
         
     </>

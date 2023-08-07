@@ -8,8 +8,6 @@ export default function validateAddToBoard(executionParams) {
   const boardsCollection = executionParams.boardsCollection;
   const emailInputs = executionParams.textAreaValue;
   const textAreaRef = executionParams.textAreaRefEl;
-  const timeIntervalValue = Number(executionParams.timeInterval);
-  const timeIntervalRef = executionParams.timeIntervalRef;
   const checkboxesArray = executionParams.checkboxesArray;
 
   if (!validateInput(emailInputs, textAreaRef)) return false;
@@ -18,8 +16,6 @@ export default function validateAddToBoard(executionParams) {
   if (response.inputValError) return response;
 
   if (!response) return console.log("stop");
-  if (!timeIntervalSliderVal(timeIntervalValue, timeIntervalRef))
-    return console.log("slider whaala");
 
   if (!isAnyCheckboxChecked()) return { noCheckboxChecked: true };
 
