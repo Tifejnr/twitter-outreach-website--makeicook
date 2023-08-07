@@ -5,12 +5,19 @@ const path = require("path");
 const ejs = require("ejs");
 const coookieParser = require("cookie-parser");
 const app = express();
-const session = require("express-session");
+
+// functions boards
 const { addMemberToBoard } = require("./utilis/boards/add");
+const { deleteMemberFromBoard } = require("./utilis/boards/delete");
 const { fetchAllBoards } = require("./utilis/boards/fetchBoards");
+
+//functions oauth
 const { login } = require("./utilis/oauth/oauth-and-callback");
 const { callback } = require("./utilis/oauth/oauth-and-callback");
-const { deleteMemberFromBoard } = require("./utilis/boards/delete");
+
+//functions workspaces
+const { getWorkspaceName } = require("./utilis/workspaces/workspacesNames");
+
 const { getKeys } = require("./envKeys/allKeys");
 const loginStatusChecker = require("./middlewares/jwt-related/login-status-checker");
 const signatureChecker = require("./middlewares/signature/checkSignature");
@@ -115,6 +122,15 @@ app.post(
   [loginStatusChecker, isUserAuthorized, userToken, signatureChecker],
   async (req, res) => {
     deleteMemberFromBoard(req, res);
+  }
+);
+
+//workspaces routes
+app.post(
+  "/get-workspace-name",
+  [loginStatusChecker, isUserAuthorized, userToken, signatureChecker],
+  async (req, res) => {
+    getWorkspaceName(req, res);
   }
 );
 
