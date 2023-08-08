@@ -2,9 +2,9 @@ import { useState } from "react";
 import useStore from "../../../Hooks/Zustand/usersStore";
 import toggleIcon from "../../../../assets/SVGs/faq-toggle-icon.svg"
 
-const emailMeans = "email";
-const usernameMeans= "username"
-const fullNameMeans= "fullname"
+const emailMeans = "Email";
+const usernameMeans= "Username"
+const fullNameMeans= "Fullname"
 
 export default function SelectMeans() {
 const [isClicked, setIsClicked] = useState(false);
@@ -18,22 +18,25 @@ const setMeansOfExceution = useStore((state) => state.setMeansOfExceution);
     transform: isClicked && "rotate(180deg)"
   };
 
+  //open and closing list
  const openMeansAvailableStyle= {
-        maxHeight: isClicked &&  "100%",
-        marginTop: isClicked && '0rem',
-        overflow: isClicked &&  'visible',
+        maxHeight: isClicked ? "100%" : null,
+        overflow: isClicked ?  'visible' : "hidden",
       }
 
 function handleEmailMeansSelection () {
   setMeansOfExceution(emailMeans)
+  setIsClicked(false)
 }
 
 function handleUsernameMeansSelection () {
   setMeansOfExceution(usernameMeans)
+    setIsClicked(false)
 }
 
 function handleFullnameMeansSelection () {
   setMeansOfExceution(fullNameMeans)
+    setIsClicked(false)
 }
 
   return (

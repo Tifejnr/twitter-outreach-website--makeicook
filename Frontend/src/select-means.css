@@ -245,7 +245,11 @@ textarea:focus {
   position: relative;
   transition: 0.35s;
   border-top: 1px solid transparent;
-  border-color: #bbb transparent transparent transparent;
+  border-color: #101c77 transparent transparent transparent;
+}
+
+.options:last-child {
+  border-bottom: 1px solid #101c77;
 }
 
 .options:hover {

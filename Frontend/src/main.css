@@ -557,6 +557,7 @@ input {
   top: 7rem;
   width: 60rem;
   margin: 0 auto;
+  height: 100vh;
 }
 
 .main-section-cont h1 {

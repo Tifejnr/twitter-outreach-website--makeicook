@@ -15,19 +15,34 @@ import SelectMeans from "./BasicSectionLayout/mean-of-execution/SelectMeans";
 import getWorkspacesName from "./getWorkspacesName";
 
 const labelTitle = "Add Members";
-const inputLabel = "Members' Emails:";
+
+//email means
+const emailMeansInputLabel = "Members' Emails:";
+const emailMeansInputPlaceholderText =
+  "Input emails of members to be added, each separated with a comma.";
+
+//username means
+const usernameMeansInputLabel = "Members' Usernames:";
+const usernameMeansInputPlaceholderText =
+  "Input usernames of members to be added, each separated with a comma.";
+
+//fullname means
+const fullnameMeansInputLabel = "Members' Fullnames:";
+const fullnameMeansInputPlaceholderText =
+  "Input fullnames of members to be added, each separated with a comma.";
+
 const searchPlaceholderTitle = "Search Boards ...";
 const selectInstructionText = "Select Boards to Add Members to";
-const inputPlaceholderText =
-  "Input emails of members to be added, each separated with a comma.";
+
 const pageName = "add-member";
-const pageTitle = "Add Members";
+const pageTitle = "Add Members Via";
 const action = "adding";
 const addToBoardsTabTitle= "Add Members to Boards – CollabforTrello"
 const timeInterval= 1;
-const emailMeans = "email";
-const usernameMeans= "username"
-const fullNameMeans= "fullname"
+const emailMeans = "Email";
+const usernameMeans= "Username"
+const fullNameMeans= "Fullname"
+const unknowMeansYet="..."
 
 export default function AddMember() {
   const [boardsCollection, setBoardsCollection] = useState([{}]);
@@ -82,7 +97,6 @@ export default function AddMember() {
     setBoardDetailsObj(boardIdAndNameObj)
 
     setOpenProgressBar(true)
-
    }
 
   }
@@ -156,15 +170,26 @@ export default function AddMember() {
         className="main-section-cont"
         id="mainContentCont"
         ref={pageContentRef}>
-        <h1 id="toolInstruction">{pageTitle}</h1>
+        <h1 id="toolInstruction">{pageTitle} {meansOfExceution? meansOfExceution: unknowMeansYet}</h1>
         <SelectMeans/>
 
-        <section className="inner-main-cont" id="innerMainContentCont">
+      { meansOfExceution && <section className="inner-main-cont" id="innerMainContentCont">
         { meansOfExceution == emailMeans ? <Input
-            inputLabel={inputLabel}
-            inputPlaceholderText={inputPlaceholderText}
-          /> : 
-          ""
+            inputLabel={emailMeansInputLabel}
+            inputPlaceholderText={emailMeansInputPlaceholderText}
+          /> :  
+          
+           meansOfExceution == usernameMeans ? 
+          <Input
+            inputLabel={usernameMeansInputLabel}
+            inputPlaceholderText={usernameMeansInputPlaceholderText}
+          /> :   
+          
+          meansOfExceution == fullNameMeans ?  
+             <Input
+            inputLabel={fullnameMeansInputLabel}
+            inputPlaceholderText={fullnameMeansInputPlaceholderText}
+          /> :    ""
         } 
           <SelectAll
             labelTitle={labelTitle}
@@ -188,6 +213,7 @@ export default function AddMember() {
           }
           </section>
         </section>
+}
       </section>
          </>
          }
