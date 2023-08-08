@@ -9,6 +9,12 @@ const useStore = create((set) => ({
       checkboxRatioNotifierDisplay: updatedCheckboxRatioNotifierDisplay,
     })),
 
+  //set Means of execution
+  meansOfExceution: false,
+
+  setMeansOfExceution: (updatedmeansOfExceution) =>
+    set((state) => ({ meansOfExceution: updatedmeansOfExceution })),
+
   //set textareaValue
   textAreaValue: "",
 

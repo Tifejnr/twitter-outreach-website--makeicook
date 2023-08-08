@@ -24,7 +24,10 @@ const pageName = "add-member";
 const pageTitle = "Add Members";
 const action = "adding";
 const addToBoardsTabTitle= "Add Members to Boards – CollabforTrello"
- const timeInterval= 1;
+const timeInterval= 1;
+const emailMeans = "email";
+const usernameMeans= "username"
+const fullNameMeans= "fullname"
 
 export default function AddMember() {
   const [boardsCollection, setBoardsCollection] = useState([{}]);
@@ -39,7 +42,9 @@ export default function AddMember() {
   const textAreaRefEl = useStore((state) => state.textAreaRefEl);
   const  setExecutionErrorBtn = useStore((state) => state.setExecutionErrorBtn);
   const  pushWorkspaceObjDetails = useStore((state) => state.pushWorkspaceObjDetails);
-  const   workspaceObjDetails = useStore((state) => state. workspaceObjDetails);
+  const  workspaceObjDetails = useStore((state) => state.workspaceObjDetails);
+  const  meansOfExceution = useStore((state) => state.meansOfExceution);
+
 
   const pageContentRef = useRef(null);
   const navigate = useNavigate();
@@ -155,10 +160,12 @@ export default function AddMember() {
         <SelectMeans/>
 
         <section className="inner-main-cont" id="innerMainContentCont">
-          <Input
+        { meansOfExceution == emailMeans ? <Input
             inputLabel={inputLabel}
             inputPlaceholderText={inputPlaceholderText}
-          />
+          /> : 
+          ""
+        } 
           <SelectAll
             labelTitle={labelTitle}
             selectInstructionText={selectInstructionText}
