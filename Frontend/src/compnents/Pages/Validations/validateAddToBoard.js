@@ -1,4 +1,3 @@
-import React from "react";
 import { isAnyCheckboxChecked } from "../../../JS functions/Utilis/Validations/Checkbox";
 import { validateInput } from "../../../JS functions/Utilis/Validations/Input";
 import { findBoardIdByName } from "../../../JS functions/Utilis/FindBoardId/byName";

@@ -8,6 +8,7 @@ const fullNameMeans= "Fullname"
 
 export default function SelectMeans() {
 const [isClicked, setIsClicked] = useState(false);
+const [selectLabel, setSelectLabel] = useState("Select Means of Addition");
 const setMeansOfExceution = useStore((state) => state.setMeansOfExceution);
 
     const handleToggle= ()=> {
@@ -27,16 +28,19 @@ const setMeansOfExceution = useStore((state) => state.setMeansOfExceution);
 function handleEmailMeansSelection () {
   setMeansOfExceution(emailMeans)
   setIsClicked(false)
+  setSelectLabel(emailMeans)
 }
 
 function handleUsernameMeansSelection () {
   setMeansOfExceution(usernameMeans)
-    setIsClicked(false)
+  setIsClicked(false)
+  setSelectLabel(usernameMeans)
 }
 
 function handleFullnameMeansSelection () {
   setMeansOfExceution(fullNameMeans)
     setIsClicked(false)
+  setSelectLabel(fullNameMeans)
 }
 
   return (
@@ -45,8 +49,8 @@ function handleFullnameMeansSelection () {
         <div className="selector">
           <label>Select Means of Addition</label>
 
-          <div id="selectField" onClick={handleToggle}>
-            <p id="selectText">Select Means of Addition</p>
+          <div id="selectField" onClick={handleToggle} title="Click to select preferred means of addition">
+            <p id="selectText">{selectLabel}</p>
             <span id="arrowIcon" className="arrow"
               ><div className="faq-item__arrow-container">
                 <img
