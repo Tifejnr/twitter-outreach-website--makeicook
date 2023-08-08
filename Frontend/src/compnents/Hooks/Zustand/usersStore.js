@@ -57,6 +57,14 @@ const useStore = create((set) => ({
   setSectionName: (updatedSectionName) =>
     set((state) => ({ sectionName: updatedSectionName })),
 
+  // Function to push each workspaceObjDetails ele into the array
+  workspaceObjDetails: [],
+
+  pushWorkspaceObjDetails: (newString) =>
+    set((state) => ({
+      workspaceObjDetails: [...state.workspaceObjDetails, newString],
+    })),
+
   // Function to push each checkbox ele into the checkboxesArray
   checkboxesArray: [],
 

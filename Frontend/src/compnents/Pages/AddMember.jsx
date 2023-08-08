@@ -11,6 +11,7 @@ import useStore from "../Hooks/Zustand/usersStore";
 import ProgressExceution from "../ProgressBar/ProgressExceution.jsx";
 import validateAddToBoard from "./Validations/validateAddToBoard";
 import { changeTabTitle } from "../utilis/changeTabTitle";
+import getWorkspacesName from "./getWorkspacesName";
 
 const labelTitle = "Add Members";
 const inputLabel = "Members' Emails:";
@@ -21,11 +22,12 @@ const inputPlaceholderText =
 const pageName = "add-member";
 const pageTitle = "Add Members Via Email";
 const action = "adding";
-const addToBoardsTabTitle= "Add Members to Boards — CollabforTrello"
+const addToBoardsTabTitle= "Add Members to Boards – CollabforTrello"
  const timeInterval= 1;
 
 export default function AddMember() {
-  const [boardsCollection, setBoardsCollection] = useState(null);
+  const [boardsCollection, setBoardsCollection] = useState([{}]);
+  const [workspaceIdsCollection, setWorkspaceIdsCollection] = useState([{}]);
   const [openProgressBar, setOpenProgressBar] = useState(false);
 
   const [clientSignature, setClientSignature] = useState("");
@@ -35,9 +37,9 @@ export default function AddMember() {
   const checkboxesArray = useStore((state) => state.checkboxesArray);
   const textAreaValue = useStore((state) => state.textAreaValue);
   const textAreaRefEl = useStore((state) => state.textAreaRefEl);
-  // const timeInterval = useStore((state) => state.timeInterval);
-  // const timeIntervalRef = useStore((state) => state.timeIntervalRef);
-  const  setExecutionErrorBtn = useStore((state) => state. setExecutionErrorBtn);
+  const  setExecutionErrorBtn = useStore((state) => state.setExecutionErrorBtn);
+  const  pushWorkspaceObjDetails = useStore((state) => state.pushWorkspaceObjDetails);
+  const   workspaceObjDetails = useStore((state) => state. workspaceObjDetails);
 
   const pageContentRef = useRef(null);
   const navigate = useNavigate();
@@ -48,7 +50,6 @@ export default function AddMember() {
     textAreaValue,
     textAreaRefEl,
     timeInterval,
-    // timeIntervalRef,
     pageContentElRef,
     clientSignature,
     checkboxesArray,
@@ -86,9 +87,9 @@ export default function AddMember() {
 
     (async function () {
       try {
-        const url = `${websiteUrl}/start`;
+        const fetcbBoardsUrl = `${websiteUrl}/start`;
         const response = await axios.post(
-          url,
+          fetcbBoardsUrl,
           { signal: abortController.signal } // Pass the signal to the fetch call
         );
 
@@ -99,15 +100,30 @@ export default function AddMember() {
           return;
         }
 
+
         const data = dataRaw.boards;
         const signature = dataRaw.sessionSignature;
+        const workspaceIdArray = [...new Set(data.map(boardsDetail => boardsDetail.idOrganization).filter(Boolean))];
         setBoardsCollection(data);
         setClientSignature(signature);
+        setWorkspaceIdsCollection(workspaceIdArray)
+        
+        workspaceIdArray.map(async (workspaceId, index)=> {
+        const workspaceName =  await getWorkspacesName(workspaceId)
+        const  workspaceDetails= {
+          workspaceName,
+          workspaceId
+        }
+       console.log(workspaceDetails)
+        return pushWorkspaceObjDetails(workspaceDetails);
+        })
+
       } catch (error) {
         //handle any error from server or internet
+        console.log(error)
         const errorMessage= error.response.data
         //Unauthorized handling
-        if (errorMessage.unauthorizedToken) return navigate('/');
+      
       }
     })();
 
@@ -117,18 +133,17 @@ export default function AddMember() {
     };
   }, []);
 
-  useEffect(() => {
-    setPageContentElRef(pageContentRef.current);
-  }, []);
 
-  if (boardsCollection === null)
-    return "";
+  useEffect(()=> {    
+        setPageContentElRef(pageContentRef.current);
+  }, [])
+
 
   return (
     <> 
      {
       openProgressBar ? <ProgressExceution executionParams={executionParams} /> :
-     <> <HomeNavBar innerText={creditsFromServer==1 ? `Credit:${creditsFromServer}`: 
+     <> <HomeNavBar innerText={creditsFromServer==1 ? `Credit:${creditsFromServer}` : 
       
       `Credits:${creditsFromServer}`} pagelink="#" 
       
@@ -158,7 +173,7 @@ export default function AddMember() {
 
           {boardsCollection.map((board, index) => {
             return (
-              <BoardsDisplaySection key={index} board={board} indexNo={index} />
+              <BoardsDisplaySection key={index} board={board} indexNo={index} workspaceObjDetails={workspaceObjDetails}/>
             );
           })}
         </section>

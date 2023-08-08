@@ -2,12 +2,17 @@ import { useState, useEffect, useRef } from "react";
 import useStore from "../../Hooks/Zustand/usersStore";
 
 export default function BoardsDisplaySection(props) {
+  const [workspaceName, setWorkspaceName] =useState("");
   const checkboxRef = useRef(null);
   const checkboxesArray = useStore((state) => state.checkboxesArray);
   const pushCheckboxesArray = useStore((state) => state.pushCheckboxesArray);
   const setCheckboxRatioNotifierDisplay = useStore(
     (state) => state.setCheckboxRatioNotifierDisplay
   );
+
+  const workspaceObjDetails= props.workspaceObjDetails
+  const board = props.board
+
 
   const checkboxRatioNotifier = () => {
     const totalCheckboxes = checkboxesArray.length;
@@ -18,6 +23,12 @@ export default function BoardsDisplaySection(props) {
     const checkboxRatioNotifierValue = `${noOfChecked} of ${totalCheckboxes}`;
     setCheckboxRatioNotifierDisplay(checkboxRatioNotifierValue);
   };
+
+      //getting product details first
+    const isWorkspaceDetailsValid = workspaceObjDetails.find(
+      (workspaceDetail) => workspaceDetail.workspaceId == board.idOrganization
+    );  
+
 
   useEffect(() => {
     const checkboxEle = checkboxRef.current;
@@ -38,9 +49,10 @@ export default function BoardsDisplaySection(props) {
         <label
           htmlFor={`check${props.indexNo}`}
           id={`labelcheck${props.indexNo}`}>
-          {props.board.name}
+          {board.name}
         </label>
       </article>
+      <p>{ isWorkspaceDetailsValid ? isWorkspaceDetailsValid.workspaceName: "Not under any workspace yet"}</p>
     </form>
   );
 }
