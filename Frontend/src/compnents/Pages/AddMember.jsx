@@ -27,7 +27,6 @@ const addToBoardsTabTitle= "Add Members to Boards – CollabforTrello"
 
 export default function AddMember() {
   const [boardsCollection, setBoardsCollection] = useState([{}]);
-  const [workspaceIdsCollection, setWorkspaceIdsCollection] = useState([{}]);
   const [openProgressBar, setOpenProgressBar] = useState(false);
 
   const [clientSignature, setClientSignature] = useState("");
@@ -106,7 +105,6 @@ export default function AddMember() {
         const workspaceIdArray = [...new Set(data.map(boardsDetail => boardsDetail.idOrganization).filter(Boolean))];
         setBoardsCollection(data);
         setClientSignature(signature);
-        setWorkspaceIdsCollection(workspaceIdArray)
         
         workspaceIdArray.map(async (workspaceId, index)=> {
         const workspaceName =  await getWorkspacesName(workspaceId)

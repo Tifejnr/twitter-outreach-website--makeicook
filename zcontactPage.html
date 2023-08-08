@@ -4,286 +4,265 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@200&display=swap");
-      body {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Roboto", sans-serif;
-      }
-      .form-main {
-        background: linear-gradient(to bottom, #00000024, #00000024),
-          url(https://res.cloudinary.com/dqifboxk5/image/upload/v1686209968/contact-us-2_y8zzx7.jpg)
-            no-repeat center;
-        background-size: cover;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-      }
-      .form-main .main-wrapper {
-        border-radius: 10px;
-        padding: 45px;
-        width: 40%;
-        box-shadow: 0 0 5px 5px #00000020;
-        backdrop-filter: blur(5px);
-        background-color: #ffffff85;
-      }
-      @media screen and (max-width: 991px) {
-        .form-main .main-wrapper {
-          width: 70%;
-        }
-      }
-      @media screen and (max-width: 767px) {
-        .form-main .main-wrapper {
-          width: 90%;
-        }
-      }
-      .form-main .main-wrapper .form-head {
-        font-size: 30px;
-        line-height: 40px;
-        font-weight: 600;
-        text-align: center;
-        margin: 0px 0 25px;
-      }
-      .form-main .main-wrapper .form-wrapper {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        gap: 15px;
-      }
-      .form-main .main-wrapper .form-wrapper .form-card {
-        position: relative;
-        width: 100%;
-      }
-      .form-main .main-wrapper .form-wrapper .form-card .form-input {
-        padding: 20px 25px 15px;
-        width: 100%;
-        border: 1px solid #000;
-        border-radius: 5px;
-        background: transparent;
-        outline: none;
-        font-size: 20px;
-        line-height: 30px;
-        font-weight: 400;
-        box-sizing: border-box;
-      }
-      .form-main .main-wrapper .form-wrapper .form-card .form-input:valid,
-      .form-main .main-wrapper .form-wrapper .form-card .form-input:focus {
-        border: 1px solid #515151;
-      }
-      .form-main
-        .main-wrapper
-        .form-wrapper
-        .form-card
-        .form-input:valid
-        ~ .form-label,
-      .form-main
-        .main-wrapper
-        .form-wrapper
-        .form-card
-        .form-input:focus
-        ~ .form-label {
-        color: #515151;
-        top: 30%;
-        transform: translateY(-70%);
-        font-size: 13px;
-        line-height: 23px;
-      }
-      .form-main
-        .main-wrapper
-        .form-wrapper
-        .form-card
-        .form-input:-webkit-autofill,
-      .form-main
-        .main-wrapper
-        .form-wrapper
-        .form-card
-        .form-input:-webkit-autofill:hover,
-      .form-main
-        .main-wrapper
-        .form-wrapper
-        .form-card
-        .form-input:-webkit-autofill:focus,
-      .form-main
-        .main-wrapper
-        .form-wrapper
-        .form-card
-        .form-input:-webkit-autofill:active {
-        transition: background-color 9999s ease-in-out 0s;
-      }
-      .form-main
-        .main-wrapper
-        .form-wrapper
-        .form-card
-        .form-input::-webkit-outer-spin-button,
-      .form-main
-        .main-wrapper
-        .form-wrapper
-        .form-card
-        .form-input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-      }
-      .form-main .main-wrapper .form-wrapper .form-card .form-label {
-        position: absolute;
-        left: 25px;
-        top: 50%;
-        transform: translateY(-50%);
-        pointer-events: none;
-        transition: 0.3s;
-        margin: 0;
-        font-size: 18px;
-        line-height: 28px;
-        font-weight: 500;
-      }
-      .form-main .main-wrapper .form-wrapper .form-card .form-textarea {
-        padding: 20px 25px 15px;
-        width: 100%;
-        border: 1px solid #000;
-        border-radius: 5px;
-        background: transparent;
-        outline: none;
-        font-size: 20px;
-        line-height: 30px;
-        font-weight: 400;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        resize: none;
-        box-sizing: border-box;
-      }
-      .form-main .main-wrapper .form-wrapper .form-card .form-textarea:valid,
-      .form-main .main-wrapper .form-wrapper .form-card .form-textarea:focus {
-        border: 1px solid #515151;
-      }
-      .form-main
-        .main-wrapper
-        .form-wrapper
-        .form-card
-        .form-textarea:valid
-        ~ .form-textarea-label,
-      .form-main
-        .main-wrapper
-        .form-wrapper
-        .form-card
-        .form-textarea:focus
-        ~ .form-textarea-label {
-        color: #515151;
-        top: 18%;
-        transform: translateY(-82%);
-        font-size: 13px;
-        line-height: 23px;
-      }
-      .form-main
-        .main-wrapper
-        .form-wrapper
-        .form-card
-        .form-textarea:-webkit-autofill,
-      .form-main
-        .main-wrapper
-        .form-wrapper
-        .form-card
-        .form-textarea:-webkit-autofill:hover,
-      .form-main
-        .main-wrapper
-        .form-wrapper
-        .form-card
-        .form-textarea:-webkit-autofill:focus,
-      .form-main
-        .main-wrapper
-        .form-wrapper
-        .form-card
-        .form-textarea:-webkit-autofill:active {
-        transition: background-color 9999s ease-in-out 0s;
-      }
-      .form-main .main-wrapper .form-wrapper .form-card .form-textarea-label {
-        position: absolute;
-        left: 25px;
-        top: 30%;
-        transform: translateY(-70%);
-        pointer-events: none;
-        transition: 0.3s;
-        margin: 0;
-        font-size: 18px;
-        line-height: 28px;
-        font-weight: 500;
-      }
-      .btn-wrap {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 16px 0 0;
-      }
-      .btn-wrap button {
-        padding: 0 32px;
-        font-size: 18px;
-        line-height: 48px;
-        border: 1px solid transparent;
-        font-weight: 600;
-        border-radius: 6px;
-        transition: all 0.5s ease;
-        cursor: pointer;
-        box-shadow: 0 0 5px 5px #00000020;
-      }
-      .btn-wrap button:hover {
-        border: 1px solid #000;
-        background: transparent;
-      }
-    </style>
+    <link rel="stylesheet" href="zstyles.css" />
   </head>
   <body>
-    <div class="form-main">
-      <div class="main-wrapper">
-        <h2 class="form-head">Contact From</h2>
-        <form class="form-wrapper">
-          <div class="form-card">
-            <input
-              class="form-input"
-              type="text"
-              name="full_name"
-              required="required" />
-            <label class="form-label" for="full_name">Full Name</label>
+    <section class="requestSection" id="requestSection">
+      <h2 class="requestTitle">Make Request</h2>
+      <form action="" class="text-area-form" id="form">
+        <div class="selector">
+          <label>Select Request Heading</label>
+          <div id="selectField">
+            <p id="selectText">Select Request Heading</p>
+            <span id="arrowIcon" class="arrow"
+              ><div class="faq-item__arrow-container">
+                <img
+                  src="/images/icon-arrow-down.svg"
+                  alt="arrow"
+                  class="faq-item__arrow-icon" /></div
+            ></span>
           </div>
 
-          <div class="form-card">
-            <input
-              class="form-input"
-              type="email"
-              name="email"
-              required="required" />
-            <label class="form-label" for="email">Email</label>
-          </div>
+          <p id="selectReqError"></p>
 
-          <div class="form-card">
-            <input
-              class="form-input"
-              type="number"
-              name="phone_number"
-              required="required" />
-            <label class="form-label" for="phone_number">Phone number</label>
-          </div>
+          <ul id="list" class="hide">
+            <li class="options"><p>Request Niches I want Jobs on</p></li>
+            <li class="options"><p>Request Robertson Task Solution</p></li>
+            <li class="options"><p>Request Runge Task Solution</p></li>
+            <li class="options"><p>Request Ruud Task Solution</p></li>
+            <li class="options"><p>Request Yidarmys Task Solution</p></li>
+          </ul>
+        </div>
+        <section class="textArea">
+          <label for="messageId">Enter Niches you want jobs on below</label>
+          <textarea
+            maxlength="550"
+            placeholder="
+job 1 - [Niche]
+job 2 - [Niche]
+job 3 - [Niche]
+job 4 - [Niche]
+"
+            id="messageId"></textarea>
+          <p id="textAreaError" class="error"></p>
+        </section>
 
-          <div class="form-card">
-            <textarea
-              class="form-textarea"
-              maxlength="420"
-              rows="3"
-              name="phone_number"
-              required="required"></textarea>
-            <label class="form-textarea-label" for="phone_number"
-              >Address</label
-            >
-          </div>
-          <div class="btn-wrap">
-            <button>Submit</button>
-          </div>
-        </form>
-      </div>
-    </div>
+        <article class="messageReceived" id="messageReceived">
+          <h1>Thank You!</h1>
+          <p>Your Request has Been Received.</p>
+          <p id="infoOnDeliveryTime"></p>
+        </article>
+
+        <button id="submitRequestBtn">Submit</button>
+      </form>
+    </section>
+
+    <script>
+      const messageId = document.getElementById("messageId");
+      const form = document.getElementById("form");
+      const textAreaError = document.getElementById("textAreaError");
+      const messageReceived = document.getElementById("messageReceived");
+      const selectReqError = document.getElementById("selectReqError");
+      const selectField = document.getElementById("selectField");
+      const selectText = document.getElementById("selectText");
+      const list = document.getElementById("list");
+      const arrowIcon = document.getElementById("arrowIcon");
+      const infoOnDeliveryTimeEl =
+        document.getElementById("infoOnDeliveryTime");
+      const options = document.getElementsByClassName("options");
+      const websiteUrl = "https://workforreputation.com";
+
+      let deliveryTime;
+
+      // logoutBtn.addEventListener("click", logout);
+
+      const setError = (messageId, message) => {
+        textAreaError.innerText = message;
+        messageId.classList.add("error");
+      };
+
+      const setSuccess = (messageId) => {
+        textAreaError.innerText = "";
+        messageId.classList.add("success");
+      };
+
+      const MessageReceivedVisibilty = (element) => {
+        element.style.visibility = "visible";
+        infoOnDeliveryTimeEl.innerHTML = `${deliveryTime}`;
+      };
+
+      function validateRequestHeading() {
+        const selectTextValue = selectText.textContent;
+        console.log(selectTextValue);
+        if (selectTextValue == "Select Request Heading") {
+          selectReqError.innerHTML = "You Must Select a Request Heading";
+          selectField.style.borderColor = "#ff3860";
+          return false;
+        } else {
+          selectField.classList.add("success");
+          selectReqError.innerHTML = "";
+          return true;
+        }
+      }
+      function validateTextArea() {
+        const messageValue = messageId.value.trim();
+        if (messageValue === "") {
+          setError(messageId, "Request cannot be empty");
+          return false;
+        } else if (messageValue.length < 4) {
+          setError(messageId, "Request must be at least 4 characters.");
+          return false;
+        } else {
+          setSuccess(messageId);
+          return true;
+        }
+      }
+
+      function textAreaValidity() {
+        if (validateTextArea() && validateRequestHeading()) {
+          sendRequest();
+        } else return false;
+      }
+      function headerValidity() {
+        if (validateRequestHeading()) {
+          sendRequest();
+        } else return false;
+      }
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (selectField.textContent.trim() == "Request Niches I want Jobs on") {
+          textAreaValidity();
+        } else if (
+          selectField.textContent.trim() != "Request Niches I want Jobs on"
+        ) {
+          headerValidity();
+        } else return false;
+      });
+
+      function sendRequest() {
+        async function sendUserRequest() {
+          let message;
+
+          if (
+            selectField.textContent.trim() == "Request Niches I want Jobs on"
+          ) {
+            message = messageId.value;
+            deliveryTime = "You will get your first invite in 6 hours.";
+          } else {
+            message = `I hereby ${selectField.textContent}`;
+            deliveryTime = "The solution will be mailed to you in 6 hours.";
+          }
+
+          const requestHeader = selectField.textContent;
+
+          const res = await fetch(`${websiteUrl}/api/requests-made`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+
+            body: JSON.stringify({
+              message,
+              requestHeader,
+            }),
+          });
+
+          const data = await res.json();
+          console.log(data);
+
+          if (data.messageError) {
+            return setError(
+              messageId,
+              "Request must be at least 3 characters long"
+            );
+          }
+
+          if (data.emailSent) {
+            MessageReceivedVisibilty(messageReceived);
+          }
+        }
+
+        sendUserRequest().catch((error) => {
+          console.log("error");
+          console.log(error);
+        });
+      }
+
+      // Selection Menu Block
+
+      selectField.onclick = function () {
+        list.classList.toggle("hide");
+        arrowIcon.classList.toggle("rotate");
+      };
+
+      const textArea = document.querySelector(".textArea");
+
+      for (option of options) {
+        option.onclick = function () {
+          selectText.innerHTML = this.textContent;
+          list.classList.toggle("hide");
+          arrowIcon.classList.toggle("rotate");
+
+          if (selectText.textContent != "Select Request Heading") {
+            selectReqError.innerHTML = "";
+            selectField.style.borderColor = "#14a800";
+          }
+
+          if (selectText.textContent == "Request Niches I want Jobs on") {
+            textArea.style.display = "block";
+          } else return (textArea.style.display = "none");
+        };
+      }
+
+      // Menu Bar Scrolling and Display Fix
+      const rules = document.querySelector(".rules");
+      const makeRequest = document.querySelector(".makeRequest");
+      const faq = document.querySelector(".faq");
+
+      function closeMenuBar() {
+        document.getElementById("nav__checkbox").checked = false;
+      }
+
+      rules.addEventListener("click", () => {
+        closeMenuBar();
+        smoothScroll(".safety-rules-container", 1000, 140);
+      });
+
+      makeRequest.addEventListener("click", () => {
+        closeMenuBar();
+        smoothScroll(".requestSection", 1000, 60);
+      });
+      faq.addEventListener("click", () => {
+        closeMenuBar();
+        smoothScroll(".faq__text-container", 1000, 100);
+      });
+
+      function smoothScroll(target, duration, heightAdjuster) {
+        var target = document.querySelector(target);
+        var targetPosition = target.getBoundingClientRect().top;
+        var startPosition = window.pageYOffset;
+        var distance = targetPosition - heightAdjuster; // - startPosition;
+        var startTime = null;
+
+        function animation(currentTime) {
+          if (startTime === null) startTime = currentTime;
+          var timeElapsed = currentTime - startTime;
+          var run = ease(timeElapsed, startPosition, distance, duration);
+          window.scrollTo(0, run);
+          if (timeElapsed < duration) requestAnimationFrame(animation);
+        }
+
+        // http://www.gizma.com/easing/
+        function ease(t, b, c, d) {
+          t /= d / 2;
+          if (t < 1) return (c / 2) * t * t + b;
+          t--;
+          return (-c / 2) * (t * (t - 2) - 1) + b;
+        }
+
+        requestAnimationFrame(animation);
+      }
+    </script>
   </body>
 </html>

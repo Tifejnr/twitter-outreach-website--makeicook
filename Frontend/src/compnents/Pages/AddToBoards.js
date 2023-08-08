@@ -23,8 +23,6 @@ export default async function AddToBoards(executionParams) {
   const boardsCollection = executionParams.boardsCollection;
   const emailInputs = executionParams.textAreaValue;
   const textAreaRef = executionParams.textAreaRefEl;
-  const timeIntervalValue = Number(executionParams.timeInterval);
-  const timeIntervalRef = executionParams.timeIntervalRef;
   const clientSignature = executionParams.clientSignature;
 
   console.log(boardsCollection);
