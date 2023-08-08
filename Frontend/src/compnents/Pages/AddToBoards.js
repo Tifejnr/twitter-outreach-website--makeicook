@@ -25,12 +25,11 @@ export default async function AddToBoards(executionParams) {
   const textAreaRef = executionParams.textAreaRefEl;
   const timeIntervalValue = Number(executionParams.timeInterval);
   const timeIntervalRef = executionParams.timeIntervalRef;
-  const pageContentElRef = executionParams.pageContentElRef;
   const clientSignature = executionParams.clientSignature;
 
+  console.log(boardsCollection);
+
   if (!validateInput(emailInputs, textAreaRef)) return false;
-  if (!timeIntervalSliderVal(timeIntervalValue, timeIntervalRef))
-    return console.log("slider whaala");
 
   if (!isAnyCheckboxChecked()) return false;
 
@@ -55,7 +54,11 @@ export default async function AddToBoards(executionParams) {
 
       const boardEl = document.getElementById(`labelcheck${arrayNoFromId}`);
 
+      console.log(boardEl);
+
       const boardName = boardEl.innerHTML;
+
+      console.log(boardName);
 
       const foundBoard = findBoardIdByName(boardsCollection, boardName);
 

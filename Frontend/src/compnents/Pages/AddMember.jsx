@@ -114,7 +114,6 @@ export default function AddMember() {
           workspaceName,
           workspaceId
         }
-       console.log(workspaceDetails)
         return pushWorkspaceObjDetails(workspaceDetails);
         })
 
@@ -171,8 +170,8 @@ export default function AddMember() {
 
           <SearchBoards searchPlaceholderTitle={searchPlaceholderTitle} />
 
-          {boardsCollection.length<2 && <p className="loading-your-boards-text">Loading your boards...</p>}
-          
+          {boardsCollection.length <2 && <p className="loading-your-boards-text">Loading your boards...</p>}
+
           <section className="all-boardnames-container">
           { boardsCollection.length>1 &&  boardsCollection.map((board, index) => {
               return (

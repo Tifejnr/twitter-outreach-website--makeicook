@@ -305,7 +305,7 @@ body {
   }
 
   nav .nav-list {
-    padding: 0 2.6rem;
+    padding: 0 0.8rem;
   }
 }
 
@@ -1042,7 +1042,7 @@ a .buy-credits-nav-home:hover {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 4rem;
+  gap: 5rem;
   margin: 2rem;
   margin-top: 0;
 }
@@ -1161,6 +1161,7 @@ a .buy-credits-nav-home:hover {
   padding-top: 2rem;
   color: #fff;
   font-size: 6rem;
+  margin-bottom: 4.5rem;
 }
 
 .price p {

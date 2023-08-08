@@ -10,9 +10,9 @@ export default function HomePage() {
 
   return (
 <>
-  <HomeNavBar innerText={creditsFromServer==1 ? `Credit:${creditsFromServer}`: 
+  <HomeNavBar  innerText={creditsFromServer==1 ? `Credit:${creditsFromServer} `: 
       
- `Credits:${creditsFromServer}`} pagelink="#" 
+ `Credits:${creditsFromServer}`} pagelink="#"  noTools={true}
   />
 
   <main className='home-main-cont'>

@@ -7,7 +7,7 @@ export default function HomePageNavItems(props) {
 
  return (
       <>
-        <ToolsDropdown/>
+       {props.noTools ? "" : <ToolsDropdown/> }
         
         <CustomLink className="nav-list">
             <h3 className="creditsUsage">Credits Usage</h3>

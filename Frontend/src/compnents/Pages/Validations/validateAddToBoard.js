@@ -1,5 +1,4 @@
 import React from "react";
-import { timeIntervalSliderVal } from "../../../JS functions/Utilis/Validations/sliderValidation";
 import { isAnyCheckboxChecked } from "../../../JS functions/Utilis/Validations/Checkbox";
 import { validateInput } from "../../../JS functions/Utilis/Validations/Input";
 import { findBoardIdByName } from "../../../JS functions/Utilis/FindBoardId/byName";
@@ -28,7 +27,7 @@ export default function validateAddToBoard(executionParams) {
 
     const boardEl = document.getElementById(`labelcheck${arrayNoFromId}`);
 
-    const boardName = boardEl.innerHTML;
+    const boardName = boardEl.textContent;
 
     const foundBoard = findBoardIdByName(boardsCollection, boardName);
 

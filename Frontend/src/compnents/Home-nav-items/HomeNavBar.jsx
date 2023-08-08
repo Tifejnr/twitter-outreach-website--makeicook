@@ -6,7 +6,7 @@ export default function HomeNavBar(props) {
   return (
     <>
  <nav className='nav'>
-      <LandingPageToggle innerText={props.innerText} pageLink={props.pageLink}/>
+      <LandingPageToggle  innerText={props.innerText} pageLink={props.pageLink}/>
 
       <ul className="nav__menu">
 
@@ -14,7 +14,7 @@ export default function HomeNavBar(props) {
           <NavLogo />
         </li>
        
-        {<HomePageNavItems showCredits={props.innerText}/>}     
+        {<HomePageNavItems showCredits={props.innerText} noTools={props.noTools}/>}     
       </ul>
   </nav>  
     </>
