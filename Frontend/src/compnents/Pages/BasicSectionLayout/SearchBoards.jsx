@@ -8,6 +8,7 @@ export default function SearchBoards(props) {
             id="search"
             type="text"
             placeholder={props.searchPlaceholderTitle} />
+            
      </section>
   )
 }

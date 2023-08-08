@@ -171,11 +171,16 @@ export default function AddMember() {
 
           <SearchBoards searchPlaceholderTitle={searchPlaceholderTitle} />
 
-          {boardsCollection.map((board, index) => {
-            return (
-              <BoardsDisplaySection key={index} board={board} indexNo={index} workspaceObjDetails={workspaceObjDetails}/>
-            );
-          })}
+          {boardsCollection.length<2 && <p className="loading-your-boards-text">Loading your boards...</p>}
+          
+          <section className="all-boardnames-container">
+          { boardsCollection.length>1 &&  boardsCollection.map((board, index) => {
+              return (
+                <BoardsDisplaySection key={index} board={board} indexNo={index} workspaceObjDetails={workspaceObjDetails}/>
+              );
+            })
+          }
+          </section>
         </section>
       </section>
          </>

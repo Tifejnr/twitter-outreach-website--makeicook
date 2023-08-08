@@ -13,7 +13,7 @@ function searchInput() {
     if (searchText.length === 0) {
       recipe.style.display = "block";
     } else {
-      var nameElement = recipe.getElementsByTagName("label")[0];
+      var nameElement = recipe.getElementsByTagName("h5")[0];
 
       if (
         nameElement &&
