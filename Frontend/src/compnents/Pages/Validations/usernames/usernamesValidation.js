@@ -1,31 +1,26 @@
-import { validateEmail } from "./Email";
-import { commaSeperationRegex } from "./commaSeperationRegex";
-import { setErrorTextarea } from "./setError";
-import { setSuccess } from "./setSucess";
+import React from "react";
+import { commaSeperationRegex } from "../../../../JS functions/Utilis/Validations/commaSeperationRegex";
+import atSymbolValidationPrefix from "./atSymbolValidationPrefix";
 
-function validateInput(input, textAreaRef) {
+export default function usernamesValidation(input) {
   let inputValError;
   // Check if input is empty or contains only whitespace
   const isEmpty = input.trim() === "";
-  const isEmptyMessage = "Members' emails cannot be empty";
+  const isEmptyMessage = "Members' usernames cannot be empty";
   inputValError = isEmptyMessage;
   if (isEmpty)
     return setErrorTextarea(textAreaRef, isEmptyMessage), { inputValError };
 
   //Check if all are separated by commas
   const inputsSplitted = input.split(",");
-
   const isValid = commaSeperationRegex(input);
 
-  const ifOneInputError = "You don't need a comma if it's one detail";
+  const ifOneInputError = "You don't need a comma if it's one username";
   inputValError = ifOneInputError;
-
   if (!isValid && inputsSplitted.length == 2)
     return setErrorTextarea(textAreaRef, ifOneInputError), { inputValError };
-
-  const commaErrorMultipleInputs = "Emails must be seperated by commas";
+  const commaErrorMultipleInputs = "Usernames must be seperated by commas";
   inputValError = commaErrorMultipleInputs;
-
   if (!isValid)
     return (
       setErrorTextarea(textAreaRef, commaErrorMultipleInputs), { inputValError }
@@ -33,7 +28,7 @@ function validateInput(input, textAreaRef) {
 
   const isEmailsValid = validateEmail(input);
 
-  const oneOnlyInvalidMessage = "Invalid email";
+  const oneOnlyInvalidMessage = "Invalid username";
 
   inputValError = oneOnlyInvalidMessage;
 
@@ -42,7 +37,7 @@ function validateInput(input, textAreaRef) {
       setErrorTextarea(textAreaRef, oneOnlyInvalidMessage), { inputValError }
     );
 
-  const invalidEmailMessage = "At least one of the emails is Invalid";
+  const invalidEmailMessage = "At least one of the usernames is Invalid";
   inputValError = invalidEmailMessage;
   if (!isEmailsValid)
     return (

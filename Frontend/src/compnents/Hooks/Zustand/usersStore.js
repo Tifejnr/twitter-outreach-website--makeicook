@@ -21,11 +21,11 @@ const useStore = create((set) => ({
   setTextAreaValue: (updatedTextArea) =>
     set((state) => ({ textAreaValue: updatedTextArea })),
 
-  //set TextAreaRefEl
-  textAreaRefEl: "",
+  //set TextAreaError
+  textAreaError: null,
 
-  setTextAreaRefEl: (updatedTextAreaRefEl) =>
-    set((state) => ({ textAreaRefEl: updatedTextAreaRefEl })),
+  setTextAreaError: (updatedTextAreaError) =>
+    set((state) => ({ textAreaError: updatedTextAreaError })),
 
   //set timeInterval
   timeInterval: 1,

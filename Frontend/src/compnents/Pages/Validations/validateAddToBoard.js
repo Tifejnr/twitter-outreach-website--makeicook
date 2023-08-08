@@ -1,12 +1,17 @@
 import { isAnyCheckboxChecked } from "../../../JS functions/Utilis/Validations/Checkbox";
 import { validateInput } from "../../../JS functions/Utilis/Validations/Input";
 import { findBoardIdByName } from "../../../JS functions/Utilis/FindBoardId/byName";
+import atSymbolValidationPrefix from "./usernames/atSymbolValidationPrefix";
 
 export default function validateAddToBoard(executionParams) {
   const boardsCollection = executionParams.boardsCollection;
   const emailInputs = executionParams.textAreaValue;
   const textAreaRef = executionParams.textAreaRefEl;
   const checkboxesArray = executionParams.checkboxesArray;
+  const input = "@tayo, @tolu, @loal, @123, tayo@, @t, @";
+  const inputs = input.split(/\s*,\s*/);
+
+  atSymbolValidationPrefix(inputs);
 
   if (!validateInput(emailInputs, textAreaRef)) return false;
   const response = validateInput(emailInputs, textAreaRef);
