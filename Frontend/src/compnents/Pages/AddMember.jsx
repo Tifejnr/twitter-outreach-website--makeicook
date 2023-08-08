@@ -11,6 +11,7 @@ import useStore from "../Hooks/Zustand/usersStore";
 import ProgressExceution from "../ProgressBar/ProgressExceution.jsx";
 import validateAddToBoard from "./Validations/validateAddToBoard";
 import { changeTabTitle } from "../utilis/changeTabTitle";
+import SelectMeans from "./BasicSectionLayout/mean-of-execution/SelectMeans";
 import getWorkspacesName from "./getWorkspacesName";
 
 const labelTitle = "Add Members";
@@ -20,7 +21,7 @@ const selectInstructionText = "Select Boards to Add Members to";
 const inputPlaceholderText =
   "Input emails of members to be added, each separated with a comma.";
 const pageName = "add-member";
-const pageTitle = "Add Members Via Email";
+const pageTitle = "Add Members";
 const action = "adding";
 const addToBoardsTabTitle= "Add Members to Boards – CollabforTrello"
  const timeInterval= 1;
@@ -56,8 +57,8 @@ export default function AddMember() {
     creditsFromServer  
   };
 
-  const insufficietCreditsMess= "Please buy credits to use this tool"
-  const checkboxMustBeCheckedMess= "Please check at least a board below to continue"
+  const insufficietCreditsMess= "Please buy credits to use this tool";
+  const checkboxMustBeCheckedMess= "Please check at least a board below to continue";
 
   function validateParams(executionParams) {
 
@@ -151,6 +152,7 @@ export default function AddMember() {
         id="mainContentCont"
         ref={pageContentRef}>
         <h1 id="toolInstruction">{pageTitle}</h1>
+        <SelectMeans/>
 
         <section className="inner-main-cont" id="innerMainContentCont">
           <Input
