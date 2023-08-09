@@ -87,7 +87,9 @@ export default function AddMember() {
    setExecutionErrorBtn("")
 
    const response=  validateAddToBoard(executionParams)
+   
    if (response.inputValError) return setExecutionErrorBtn(response.inputValError), setTextAreaError(response.inputValError);
+   if (response.usernameValError) return setExecutionErrorBtn(response.usernameValError), setTextAreaError(response.usernameValError);
   setExecutionErrorBtn("")
   setTextAreaError(false)
    if (response.noCheckboxChecked) return setExecutionErrorBtn(checkboxMustBeCheckedMess);
@@ -199,7 +201,7 @@ export default function AddMember() {
             selectInstructionText={selectInstructionText}
             action={ (e)=> {
              e.preventDefault()
-              usernamesValidation(executionParams)
+              validateParams(executionParams)
             } }
           />
 

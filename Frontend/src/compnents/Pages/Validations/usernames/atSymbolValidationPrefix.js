@@ -11,7 +11,7 @@ export default function atSymbolValidationPrefix(input) {
     }
   });
 
-  if (invalidDetailsIndexArray.length > 0) return invalidDetailsIndexArray;
+  if (invalidDetailsIndexArray.length > 0) return { invalidDetailsIndexArray };
 
   return { usernamesValidationSucess: true };
 }

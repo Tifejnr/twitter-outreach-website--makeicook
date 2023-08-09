@@ -1,7 +1,7 @@
 import { validateEmail } from "./Email";
 import { commaSeperationRegex } from "./commaSeperationRegex";
 
-function validateInput(input, textAreaRef) {
+function validateInput(input) {
   let inputValError;
   // Check if input is empty or contains only whitespace
   const isEmpty = input.trim() === "";

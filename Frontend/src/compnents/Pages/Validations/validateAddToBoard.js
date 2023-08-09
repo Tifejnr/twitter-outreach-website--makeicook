@@ -1,7 +1,6 @@
 import { isAnyCheckboxChecked } from "../../../JS functions/Utilis/Validations/Checkbox";
 import { validateInput } from "../../../JS functions/Utilis/Validations/Input";
 import { findBoardIdByName } from "../../../JS functions/Utilis/FindBoardId/byName";
-import atSymbolValidationPrefix from "./usernames/atSymbolValidationPrefix";
 import usernamesValidation from "./usernames/usernamesValidation";
 
 const emailMeans = "Email";
@@ -11,15 +10,27 @@ const fullNameMeans = "Fullname";
 export default function validateAddToBoard(executionParams) {
   const boardsCollection = executionParams.boardsCollection;
   const emailInputs = executionParams.textAreaValue;
+  const textareaInputs = executionParams.textAreaValue;
   const checkboxesArray = executionParams.checkboxesArray;
-  const meansOfExecution = executionParams.meansOfExecution;
+  const meansOfExceution = executionParams.meansOfExceution;
 
-  if (!validateInput(emailInputs)) return false;
-  const response = validateInput(emailInputs);
+  //validating if it's username
+  if (meansOfExceution == usernameMeans) {
+    const response = usernamesValidation(textareaInputs);
 
-  if (response.inputValError) return response;
+    console.log(response);
 
-  if (!response) return console.log("stop");
+    if (response.usernameValError) return response;
+  }
+
+  //validating if it's email entered
+  if (meansOfExceution == emailMeans) {
+    const response = validateInput(emailInputs);
+
+    if (response.inputValError) return response;
+
+    if (!response) return console.log("stop");
+  }
 
   if (!isAnyCheckboxChecked()) return { noCheckboxChecked: true };
 
