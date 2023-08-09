@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-async function getMemberId(req, res) {
+async function getMemberId(memberUsername, boardId) {
   const { memberUsername, boardId } = req.body;
 
   const boardsDetailsUrl = `https://api.trello.com/1/boards/${boardId}/members?key=${key}&token=${token}`;
@@ -14,13 +14,13 @@ async function getMemberId(req, res) {
       (member) => member.username === memberUsername
     );
 
-    if (!desiredMember) return res.status(402).json({ usernameNotFound: true });
+    if (!desiredMember) return { usernameNotFound: true };
 
     const memberId = desiredMember.id;
-    return res.status(200).json({ memberId });
+    return { memberId };
   } catch (error) {
     console.error("Error:", error);
-    return res.status(400).json({ boardDetailsFetchingError: error });
+    return { boardDetailsFetchingError: error };
   }
 }
 

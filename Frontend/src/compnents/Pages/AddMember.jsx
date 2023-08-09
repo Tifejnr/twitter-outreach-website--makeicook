@@ -200,8 +200,8 @@ export default function AddMember() {
             labelTitle={labelTitle}
             selectInstructionText={selectInstructionText}
             action={ (e)=> {
-             e.preventDefault()
-              validateParams(executionParams)
+             e.preventDefault();
+            validateParams(executionParams);
             } }
           />
 

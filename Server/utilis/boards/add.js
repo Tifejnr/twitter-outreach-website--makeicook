@@ -1,4 +1,5 @@
 const axios = require("axios");
+const { getMemberId } = require("./getMemberId/getMembersId");
 
 let addingUrl;
 
@@ -11,6 +12,7 @@ async function addMemberToBoard(req, res) {
   if (email) {
     addingUrl = memberEmailAddingUrl;
   }
+
   if (memberId) {
     addingUrl = memberIdAddingUrl;
   }

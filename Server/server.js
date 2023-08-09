@@ -10,7 +10,7 @@ const app = express();
 const { addMemberToBoard } = require("./utilis/boards/add");
 const { deleteMemberFromBoard } = require("./utilis/boards/delete");
 const { fetchAllBoards } = require("./utilis/boards/fetchBoards");
-const { getMemberId } = require("./utilis/boards/getMembersId");
+const { getMemberId } = require("./utilis/boards/getMemberId/getMembersId");
 
 //functions oauth
 const { login } = require("./utilis/oauth/oauth-and-callback");
