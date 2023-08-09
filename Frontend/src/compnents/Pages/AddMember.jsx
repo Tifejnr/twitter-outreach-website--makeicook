@@ -12,6 +12,7 @@ import validateAddToBoard from "./Validations/validateAddToBoard";
 import { changeTabTitle } from "../utilis/changeTabTitle";
 import SelectMeans from "./BasicSectionLayout/mean-of-execution/SelectMeans";
 import getWorkspacesName from "./getWorkspacesName";
+import usernamesValidation from "./Validations/usernames/usernamesValidation";
 
 const labelTitle = "Add Members";
 
@@ -198,7 +199,7 @@ export default function AddMember() {
             selectInstructionText={selectInstructionText}
             action={ (e)=> {
              e.preventDefault()
-              validateParams(executionParams)
+              usernamesValidation(executionParams)
             } }
           />
 

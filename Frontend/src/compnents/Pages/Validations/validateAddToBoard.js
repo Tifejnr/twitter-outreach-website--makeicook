@@ -6,11 +6,10 @@ import atSymbolValidationPrefix from "./usernames/atSymbolValidationPrefix";
 export default function validateAddToBoard(executionParams) {
   const boardsCollection = executionParams.boardsCollection;
   const emailInputs = executionParams.textAreaValue;
-  const textAreaRef = executionParams.textAreaRefEl;
   const checkboxesArray = executionParams.checkboxesArray;
 
-  if (!validateInput(emailInputs, textAreaRef)) return false;
-  const response = validateInput(emailInputs, textAreaRef);
+  if (!validateInput(emailInputs)) return false;
+  const response = validateInput(emailInputs);
 
   if (response.inputValError) return response;
 
