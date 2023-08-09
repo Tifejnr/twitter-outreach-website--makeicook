@@ -5,10 +5,8 @@ export default function atSymbolValidationPrefix(input) {
   const inputs = input.split(/\s*,\s*/);
 
   inputs.forEach((input, index) => {
-    if (regex.test(input)) {
-      console.log(`Input at index ${index} "${input}" is valid`);
-    } else {
-      console.log(`Input at index ${index} "${input}" is not valid`);
+    //push to array of failed validation if invalid
+    if (!regex.test(input)) {
       invalidDetailsIndexArray.push(index);
     }
   });

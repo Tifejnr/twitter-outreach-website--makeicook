@@ -2,11 +2,17 @@ import { isAnyCheckboxChecked } from "../../../JS functions/Utilis/Validations/C
 import { validateInput } from "../../../JS functions/Utilis/Validations/Input";
 import { findBoardIdByName } from "../../../JS functions/Utilis/FindBoardId/byName";
 import atSymbolValidationPrefix from "./usernames/atSymbolValidationPrefix";
+import usernamesValidation from "./usernames/usernamesValidation";
+
+const emailMeans = "Email";
+const usernameMeans = "Username";
+const fullNameMeans = "Fullname";
 
 export default function validateAddToBoard(executionParams) {
   const boardsCollection = executionParams.boardsCollection;
   const emailInputs = executionParams.textAreaValue;
   const checkboxesArray = executionParams.checkboxesArray;
+  const meansOfExecution = executionParams.meansOfExecution;
 
   if (!validateInput(emailInputs)) return false;
   const response = validateInput(emailInputs);

@@ -60,7 +60,6 @@ export default function AddMember() {
   const  workspaceObjDetails = useStore((state) => state.workspaceObjDetails);
   const  meansOfExceution = useStore((state) => state.meansOfExceution);
   const  setTextAreaError = useStore((state) => state.setTextAreaError);
-  const   invalidMemberDetailsArray = useStore((state) => state. invalidMemberDetailsArray);
 
 
   const pageContentRef = useRef(null);
@@ -75,7 +74,8 @@ export default function AddMember() {
     clientSignature,
     checkboxesArray,
     boardDetailsObj,
-    creditsFromServer  
+    creditsFromServer,
+    meansOfExceution
   };
 
   const insufficietCreditsMess= "Please buy credits to use this tool";
