@@ -1,7 +1,5 @@
 import { validateEmail } from "./Email";
 import { commaSeperationRegex } from "./commaSeperationRegex";
-import { setErrorTextarea } from "./setError";
-import { setSuccess } from "./setSucess";
 
 function validateInput(input, textAreaRef) {
   let inputValError;
@@ -9,8 +7,7 @@ function validateInput(input, textAreaRef) {
   const isEmpty = input.trim() === "";
   const isEmptyMessage = "Members' emails cannot be empty";
   inputValError = isEmptyMessage;
-  if (isEmpty)
-    return setErrorTextarea(textAreaRef, isEmptyMessage), { inputValError };
+  if (isEmpty) return { inputValError };
 
   //Check if all are separated by commas
   const inputsSplitted = input.split(",");
@@ -20,16 +17,12 @@ function validateInput(input, textAreaRef) {
   const ifOneInputError = "You don't need a comma if it's one detail";
   inputValError = ifOneInputError;
 
-  if (!isValid && inputsSplitted.length == 2)
-    return setErrorTextarea(textAreaRef, ifOneInputError), { inputValError };
+  if (!isValid && inputsSplitted.length == 2) return { inputValError };
 
   const commaErrorMultipleInputs = "Emails must be seperated by commas";
   inputValError = commaErrorMultipleInputs;
 
-  if (!isValid)
-    return (
-      setErrorTextarea(textAreaRef, commaErrorMultipleInputs), { inputValError }
-    );
+  if (!isValid) return { inputValError };
 
   const isEmailsValid = validateEmail(input);
 
@@ -37,19 +30,12 @@ function validateInput(input, textAreaRef) {
 
   inputValError = oneOnlyInvalidMessage;
 
-  if (!isEmailsValid && inputsSplitted.length == 1)
-    return (
-      setErrorTextarea(textAreaRef, oneOnlyInvalidMessage), { inputValError }
-    );
+  if (!isEmailsValid && inputsSplitted.length == 1) return { inputValError };
 
   const invalidEmailMessage = "At least one of the emails is Invalid";
   inputValError = invalidEmailMessage;
-  if (!isEmailsValid)
-    return (
-      setErrorTextarea(textAreaRef, invalidEmailMessage), { inputValError }
-    );
+  if (!isEmailsValid) return { inputValError };
 
-  setSuccess(textAreaRef);
   return true;
 }
 

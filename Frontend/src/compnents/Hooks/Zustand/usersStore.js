@@ -63,6 +63,17 @@ const useStore = create((set) => ({
   setSectionName: (updatedSectionName) =>
     set((state) => ({ sectionName: updatedSectionName })),
 
+  // Function to push each index of memeber details invalid entry ele an array
+  invalidMemberDetailsArray: [],
+
+  pushInvalidMemberDetailsArray: (newString) =>
+    set((state) => ({
+      invalidMemberDetailsArray: [
+        ...state.invalidMemberDetailsArray,
+        newString,
+      ],
+    })),
+
   // Function to push each workspaceObjDetails ele into the array
   workspaceObjDetails: [],
 

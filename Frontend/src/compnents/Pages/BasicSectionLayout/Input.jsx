@@ -2,10 +2,11 @@ import React, { useEffect, useRef } from 'react';
 // import SliderTimeInterval from './Sliders/TimeInterval';
 import useStore from '../../Hooks/Zustand/usersStore';
 
-
+const successColor = "#09c372";
+const errorColor = "#ff3860";
 
 export default function Input(props) {
-    const setTextAreaRefEl = useStore((state) => state.setTextAreaRefEl);
+    const textAreaError = useStore((state) => state.textAreaError);
     const setTextAreaValue = useStore((state) => state.setTextAreaValue);
     const textAreaValue = useStore((state) => state.textAreaValue);
     const textareaRef = useRef(null);
@@ -15,16 +16,21 @@ export default function Input(props) {
     setTextAreaValue(event.target.value);
   };
 
-  useEffect(() => {
-   setTextAreaRefEl(textareaRef.current)
-  }, []);
+    //text area border when error ocuurs
+     const textareaStyle= {
+        borderColor: textAreaError== null ? "" :  textAreaError ?  errorColor : successColor,
+      }
+
+     const textareaErrorStyle= {
+        color: textAreaError== null ? "" :  textAreaError && errorColor 
+      }
 
   return (
-
     <>
         <section className="memberDetailsCont">
           <label htmlFor='memberDetailTextArea'><p>{props.inputLabel}</p></label>
           <textarea
+            style={textareaStyle}
             value={textAreaValue}
             onChange={handleTextareaChange}
             ref={textareaRef}
@@ -32,9 +38,8 @@ export default function Input(props) {
             cols="40"
             rows="6"
             placeholder={props.inputPlaceholderText}></textarea>
-          <p className="error"></p>
-        </section>
-        
+          <p className="error" style={textareaErrorStyle}>{textAreaError}</p>
+        </section>       
     </>
 
   )

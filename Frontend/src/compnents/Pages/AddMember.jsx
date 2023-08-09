@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import Input from "./BasicSectionLayout/Input";
 import SearchBoards from "./BasicSectionLayout/SearchBoards";
@@ -59,10 +58,11 @@ export default function AddMember() {
   const  pushWorkspaceObjDetails = useStore((state) => state.pushWorkspaceObjDetails);
   const  workspaceObjDetails = useStore((state) => state.workspaceObjDetails);
   const  meansOfExceution = useStore((state) => state.meansOfExceution);
+  const  setTextAreaError = useStore((state) => state.setTextAreaError);
+  const   invalidMemberDetailsArray = useStore((state) => state. invalidMemberDetailsArray);
 
 
   const pageContentRef = useRef(null);
-  const navigate = useNavigate();
   changeTabTitle(addToBoardsTabTitle)
 
   const executionParams = {
@@ -86,9 +86,9 @@ export default function AddMember() {
    setExecutionErrorBtn("")
 
    const response=  validateAddToBoard(executionParams)
-   if (response.inputValError) return setExecutionErrorBtn(response.inputValError);
+   if (response.inputValError) return setExecutionErrorBtn(response.inputValError), setTextAreaError(response.inputValError);
   setExecutionErrorBtn("")
-
+  setTextAreaError(false)
    if (response.noCheckboxChecked) return setExecutionErrorBtn(checkboxMustBeCheckedMess);
   setExecutionErrorBtn("")
 
@@ -100,6 +100,9 @@ export default function AddMember() {
    }
 
   }
+
+
+  
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -118,7 +121,6 @@ export default function AddMember() {
           console.log("No data seen");
           return;
         }
-
 
         const data = dataRaw.boards;
         const signature = dataRaw.sessionSignature;
