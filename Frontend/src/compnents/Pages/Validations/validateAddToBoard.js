@@ -8,10 +8,6 @@ export default function validateAddToBoard(executionParams) {
   const emailInputs = executionParams.textAreaValue;
   const textAreaRef = executionParams.textAreaRefEl;
   const checkboxesArray = executionParams.checkboxesArray;
-  const input = "@tayo, @tolu, @loal, @123, tayo@, @t, @";
-  const inputs = input.split(/\s*,\s*/);
-
-  atSymbolValidationPrefix(inputs);
 
   if (!validateInput(emailInputs, textAreaRef)) return false;
   const response = validateInput(emailInputs, textAreaRef);
