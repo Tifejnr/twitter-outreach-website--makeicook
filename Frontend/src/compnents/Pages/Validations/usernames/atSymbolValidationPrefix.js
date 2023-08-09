@@ -9,8 +9,6 @@ export default function atSymbolValidationPrefix(inputs) {
     } else {
       console.log(`Input at index ${index} "${input}" is not valid`);
       invalidDetailsIndexArray.push(index);
-
-      console.log(invalidDetailsIndexArray);
     }
   });
 
