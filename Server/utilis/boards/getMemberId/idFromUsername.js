@@ -1,15 +1,19 @@
 const { getMemberId } = require("./getMembersId");
 
 function findMemberId(req, res) {
+  console.log(req.body);
   const { memberUsername, boardCollection } = req.body;
 
-  const boardDetailsObj = boardCollection.map(async (board, index) => {
+  const memberId = boardCollection.map(async (board, index) => {
     const boardId = board.id;
+    const isMemberPresent = await getMemberId(memberUsername, boardId);
 
-    const foundBoard = getMemberId(memberUsername, boardId);
+    if (isMemberPresent.memberId) return { isMemberPresent };
 
-    return neededObj;
+    return false;
   });
 
-  if (!boardDetailsObj) return "";
+  console.log(memberId);
 }
+
+exports.findMemberId = findMemberId;

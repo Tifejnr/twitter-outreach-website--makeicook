@@ -10,7 +10,7 @@ const app = express();
 const { addMemberToBoard } = require("./utilis/boards/add");
 const { deleteMemberFromBoard } = require("./utilis/boards/delete");
 const { fetchAllBoards } = require("./utilis/boards/fetchBoards");
-const { getMemberId } = require("./utilis/boards/getMemberId/getMembersId");
+const { findMemberId } = require("./utilis/boards/getMemberId/idFromUsername");
 
 //functions oauth
 const { login } = require("./utilis/oauth/oauth-and-callback");
@@ -119,10 +119,10 @@ app.post(
 );
 
 app.post(
-  "/get-member-id",
+  "/find-member-id",
   [loginStatusChecker, isUserAuthorized, userToken, signatureChecker],
   async (req, res) => {
-    getMemberId(req, res);
+    findMemberId(req, res);
   }
 );
 

@@ -9,9 +9,9 @@ export default function FailureDetails(props) {
   const isClicked=  props.isClicked
 
 
-    const handleInnerListToggle= ()=> {
-         setIsInnerListClicked((prevState)=>!prevState)
-    }
+  const handleInnerListToggle= ()=> {
+      setIsInnerListClicked((prevState)=>!prevState)
+   }
 
    const rotateOnToggle = {
     transform: isInnerListClicked && "rotate(180deg)"
@@ -19,13 +19,11 @@ export default function FailureDetails(props) {
 
  const openFaqDetailsStyle= {
         maxHeight: isClicked &&  "100%",
-        // marginTop: isClicked && '1.2rem',
         overflow: isClicked &&  'visible',
       }
 
  const innerListToggleStyle= {
         maxHeight: isInnerListClicked &&  "100%",
-        // marginTop: isInnerListClicked && '1.2rem',
         overflow: isInnerListClicked &&  'visible',
       }
 

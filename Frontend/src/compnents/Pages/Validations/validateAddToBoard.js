@@ -55,6 +55,19 @@ export default function validateAddToBoard(executionParams) {
 
   if (!boardDetailsObj) return "";
 
+  if (meansOfExceution == usernameMeans) {
+    const usernameSplitted = textareaInputs.split(",");
+
+    usernameSplitted.map(async (memberUsername) => {
+      const getMemberIdServer = await getMemberIdByUsername(
+        memberUsername,
+        boardsCollection
+      );
+
+      console.log(getMemberIdServer);
+    });
+  }
+
   const validationComplete = {
     boardDetailsObj,
   };

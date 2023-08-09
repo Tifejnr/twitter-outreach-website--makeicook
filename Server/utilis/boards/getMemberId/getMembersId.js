@@ -1,8 +1,6 @@
 const axios = require("axios");
 
 async function getMemberId(memberUsername, boardId) {
-  const { memberUsername, boardId } = req.body;
-
   const boardsDetailsUrl = `https://api.trello.com/1/boards/${boardId}/members?key=${key}&token=${token}`;
   try {
     // Fetch list of members on the board
