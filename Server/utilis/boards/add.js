@@ -1,12 +1,21 @@
 const axios = require("axios");
 
-async function addMemberToBoard(req, res) {
-  const { email, boardId } = req.body;
+let addingUrl;
 
-  const memberAddingUrl = `https://api.trello.com/1/boards/${boardId}/members?email=${email}&key=${key}&token=${token}`;
+async function addMemberToBoard(req, res) {
+  const { email, memberId, boardId } = req.body;
+  const memberIdAddingUrl = `https://api.trello.com/1/boards/${boardId}/members/${memberId}?type={type}&key=${key}&token=${token}`;
+  const memberEmailAddingUrl = `https://api.trello.com/1/boards/${boardId}/members?email=${email}&key=${key}&token=${token}`;
+
+  if (email) {
+    addingUrl = memberEmailAddingUrl;
+  }
+  if (memberId) {
+    addingUrl = memberIdAddingUrl;
+  }
 
   try {
-    const response = await axios.put(memberAddingUrl);
+    const response = await axios.put(addingUrl);
 
     if (response.status === 200) {
       console.log("Member added successfully");

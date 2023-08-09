@@ -1,4 +1,3 @@
-import React from "react";
 import { commaSeperationRegex } from "../../../../JS functions/Utilis/Validations/commaSeperationRegex";
 import atSymbolValidationPrefix from "./atSymbolValidationPrefix";
 
@@ -21,15 +20,21 @@ export default function usernamesValidation(input) {
   if (!isValid) return { usernameValError: commaErrorMultipleInputs };
 
   const areUsernamesValid = atSymbolValidationPrefix(input);
+
+  if (!areUsernamesValid.invalidDetailsIndexArray) return true;
+
   const oneOnlyInvalidMessage = "Invalid username";
 
   if (areUsernamesValid.invalidDetailsIndexArray && inputsSplitted.length == 1)
     return { usernameValError: oneOnlyInvalidMessage };
 
-  const invalidIndexesJoined =
-    areUsernamesValid.invalidDetailsIndexArray.join(", ");
+  //add 1 to all the indexes to make users know it's on no 1 instead if 0
+  const oneAddedToAllIndexes = areUsernamesValid.invalidDetailsIndexArray.map(
+    (value) => value + 1
+  );
+  const invalidIndexesJoined = oneAddedToAllIndexes.join(", ");
 
-  const invalidEmailMessage = `Usernames ${invalidIndexesJoined} are Invalid`;
+  const invalidUsernamesMessage = `Usernames ${invalidIndexesJoined} are Invalid`;
   if (areUsernamesValid.invalidDetailsIndexArray && inputsSplitted.length > 1)
-    return { usernameValError: invalidEmailMessage };
+    return { usernameValError: invalidUsernamesMessage };
 }

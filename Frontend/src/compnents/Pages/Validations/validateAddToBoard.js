@@ -17,19 +17,13 @@ export default function validateAddToBoard(executionParams) {
   //validating if it's username
   if (meansOfExceution == usernameMeans) {
     const response = usernamesValidation(textareaInputs);
-
-    console.log(response);
-
     if (response.usernameValError) return response;
   }
 
   //validating if it's email entered
   if (meansOfExceution == emailMeans) {
     const response = validateInput(emailInputs);
-
     if (response.inputValError) return response;
-
-    if (!response) return console.log("stop");
   }
 
   if (!isAnyCheckboxChecked()) return { noCheckboxChecked: true };

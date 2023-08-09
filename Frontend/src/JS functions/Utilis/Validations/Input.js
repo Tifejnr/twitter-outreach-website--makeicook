@@ -1,4 +1,4 @@
-import { validateEmail } from "./Email";
+import validateEmail from "./Email";
 import { commaSeperationRegex } from "./commaSeperationRegex";
 
 function validateInput(input) {
@@ -26,17 +26,22 @@ function validateInput(input) {
 
   const isEmailsValid = validateEmail(input);
 
+  if (!isEmailsValid.invalidDetailsIndexArray) return true;
+
   const oneOnlyInvalidMessage = "Invalid email";
 
-  inputValError = oneOnlyInvalidMessage;
+  if (isEmailsValid.invalidDetailsIndexArray && inputsSplitted.length == 1)
+    return { inputValError: oneOnlyInvalidMessage };
 
-  if (!isEmailsValid && inputsSplitted.length == 1) return { inputValError };
+  //add 1 to all the indexes to make users know it's on no 1 instead if 0
+  const oneAddedToAllIndexes = isEmailsValid.invalidDetailsIndexArray.map(
+    (value) => value + 1
+  );
+  const invalidIndexesJoined = oneAddedToAllIndexes.join(", ");
 
-  const invalidEmailMessage = "At least one of the emails is Invalid";
-  inputValError = invalidEmailMessage;
-  if (!isEmailsValid) return { inputValError };
-
-  return true;
+  const invalidEmailMessage = `Email ${invalidIndexesJoined} are Invalid`;
+  if (isEmailsValid.invalidDetailsIndexArray && inputsSplitted.length > 1)
+    return { inputValError: invalidEmailMessage };
 }
 
 export { validateInput };
