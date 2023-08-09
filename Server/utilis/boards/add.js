@@ -4,6 +4,7 @@ let addingUrl;
 
 async function addMemberToBoard(req, res) {
   const { email, memberId, boardId } = req.body;
+
   const memberIdAddingUrl = `https://api.trello.com/1/boards/${boardId}/members/${memberId}?type={type}&key=${key}&token=${token}`;
   const memberEmailAddingUrl = `https://api.trello.com/1/boards/${boardId}/members?email=${email}&key=${key}&token=${token}`;
 
