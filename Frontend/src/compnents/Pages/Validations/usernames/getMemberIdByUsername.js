@@ -3,13 +3,13 @@ import { websiteUrl } from "../../../../JS functions/websiteUrl";
 
 export default async function getMemberIdByUsername(
   memberUsername,
-  boardsCollection
+  boardIdsObj
 ) {
   const getMemberIdUrl = `${websiteUrl}/find-member-id`;
 
   const paramToServer = {
     memberUsername,
-    boardsCollection,
+    boardIdsObj,
   };
 
   try {

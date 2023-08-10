@@ -13,6 +13,7 @@ import { changeTabTitle } from "../utilis/changeTabTitle";
 import SelectMeans from "./BasicSectionLayout/mean-of-execution/SelectMeans";
 import getWorkspacesName from "./getWorkspacesName";
 import usernamesValidation from "./Validations/usernames/usernamesValidation";
+import getAllBoardsId from "./Validations/getBoardIdOnly/getAllBoardsId";
 
 const labelTitle = "Add Members";
 
@@ -50,7 +51,9 @@ export default function AddMember() {
 
   const [clientSignature, setClientSignature] = useState("");
   const [boardDetailsObj, setBoardDetailsObj] = useState([])
+  const [boardIdsObj, setBoardIdsObj] = useState([])
   const [pageContentElRef, setPageContentElRef] = useState(null);
+
   const creditsFromServer = useStore((state) => state.creditsFromServer);
   const checkboxesArray = useStore((state) => state.checkboxesArray);
   const textAreaValue = useStore((state) => state.textAreaValue);
@@ -74,7 +77,7 @@ export default function AddMember() {
     clientSignature,
     checkboxesArray,
     boardDetailsObj,
-    creditsFromServer,
+    boardIdsObj,
     meansOfExceution
   };
 
@@ -82,7 +85,9 @@ export default function AddMember() {
   const checkboxMustBeCheckedMess= "Please check at least a board below to continue";
 
   function validateParams(executionParams) {
-
+//fetch all board ids for usernames and fullnames method of addition
+    const allBoardsId= getAllBoardsId(boardsCollection)
+    setBoardIdsObj(allBoardsId)
     if (creditsFromServer <1) return  setExecutionErrorBtn(insufficietCreditsMess) 
    setExecutionErrorBtn("")
 
@@ -102,10 +107,7 @@ export default function AddMember() {
     setOpenProgressBar(true)
    }
 
-  }
-
-
-  
+  } 
 
   useEffect(() => {
     const abortController = new AbortController();

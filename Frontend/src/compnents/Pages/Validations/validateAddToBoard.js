@@ -10,6 +10,7 @@ const fullNameMeans = "Fullname";
 
 export default function validateAddToBoard(executionParams) {
   const boardsCollection = executionParams.boardsCollection;
+  const boardIdsObj = executionParams.boardIdsObj;
   const emailInputs = executionParams.textAreaValue;
   const textareaInputs = executionParams.textAreaValue;
   const checkboxesArray = executionParams.checkboxesArray;
@@ -19,9 +20,20 @@ export default function validateAddToBoard(executionParams) {
   if (meansOfExceution == usernameMeans) {
     const response = usernamesValidation(textareaInputs);
     if (response.usernameValError) return response;
+
+    const usernameSplitted = textareaInputs.split(",");
+    usernameSplitted.map(async (memberUsername) => {
+      console.log(memberUsername);
+      const getMemberIdServer = await getMemberIdByUsername(
+        memberUsername,
+        boardIdsObj
+      );
+
+      console.log(getMemberIdServer);
+    });
   }
 
-  //validating if it's email entered
+  //validating if it's email means entered
   if (meansOfExceution == emailMeans) {
     const response = validateInput(emailInputs);
     if (response.inputValError) return response;
@@ -54,19 +66,6 @@ export default function validateAddToBoard(executionParams) {
   });
 
   if (!boardDetailsObj) return "";
-
-  if (meansOfExceution == usernameMeans) {
-    const usernameSplitted = textareaInputs.split(",");
-
-    usernameSplitted.map(async (memberUsername) => {
-      const getMemberIdServer = await getMemberIdByUsername(
-        memberUsername,
-        boardsCollection
-      );
-
-      console.log(getMemberIdServer);
-    });
-  }
 
   const validationComplete = {
     boardDetailsObj,
