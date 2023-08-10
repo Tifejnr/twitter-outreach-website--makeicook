@@ -1,4 +1,6 @@
-const regex = /^@[a-zA-Z]+$/;
+//anything can follow after the @ symbol
+
+const regex = /^@[a-zA-Z0-9!@#$%^&*()_+{}\[\]:;<>,.?~\/\-\\]+$/;
 
 export default function atSymbolValidationPrefix(input) {
   let invalidDetailsIndexArray = [];

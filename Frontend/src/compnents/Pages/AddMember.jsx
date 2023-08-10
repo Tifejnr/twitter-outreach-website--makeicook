@@ -52,7 +52,6 @@ export default function AddMember() {
   const [clientSignature, setClientSignature] = useState("");
   const [boardDetailsObj, setBoardDetailsObj] = useState([])
   const [boardIdsObj, setBoardIdsObj] = useState([])
-  const [pageContentElRef, setPageContentElRef] = useState(null);
 
   const creditsFromServer = useStore((state) => state.creditsFromServer);
   const checkboxesArray = useStore((state) => state.checkboxesArray);
@@ -64,8 +63,6 @@ export default function AddMember() {
   const  meansOfExceution = useStore((state) => state.meansOfExceution);
   const  setTextAreaError = useStore((state) => state.setTextAreaError);
 
-
-  const pageContentRef = useRef(null);
   changeTabTitle(addToBoardsTabTitle)
 
   const executionParams = {
@@ -73,7 +70,6 @@ export default function AddMember() {
     textAreaValue,
     textAreaRefEl,
     timeInterval,
-    pageContentElRef,
     clientSignature,
     checkboxesArray,
     boardDetailsObj,
@@ -159,7 +155,6 @@ export default function AddMember() {
 
 
   useEffect(()=> {    
-        setPageContentElRef(pageContentRef.current);
   }, [])
 
 
@@ -175,8 +170,7 @@ export default function AddMember() {
 
       <section
         className="main-section-cont"
-        id="mainContentCont"
-        ref={pageContentRef}>
+        id="mainContentCont">
         <h1 id="toolInstruction">{pageTitle} {meansOfExceution? meansOfExceution: unknowMeansYet}</h1>
         <SelectMeans/>
 

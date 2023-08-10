@@ -1,8 +1,8 @@
 const axios = require("axios");
 
-async function getMemberId(memberUsername, boardId) {
+async function getMemberId(paramToGetUsernameIds) {
   const boardId = paramToGetUsernameIds.boardId;
-  const memberUsername = paramToGetUsernameIds.memberUsername;
+  const desiredUsername = paramToGetUsernameIds.desiredUsername;
   const key = paramToGetUsernameIds.key;
   const token = paramToGetUsernameIds.token;
 
@@ -10,16 +10,17 @@ async function getMemberId(memberUsername, boardId) {
   try {
     // Fetch list of members on the board
     const response = await axios.get(boardsDetailsUrl);
-    const members = response.data;
+    const boardMembersDetails = response.data;
 
     // Search for the desired member by username
-    const desiredMember = members.find(
-      (member) => member.username === memberUsername
+    const desiredMember = boardMembersDetails.find(
+      (member) => member.username === desiredUsername
     );
 
-    if (!desiredMember) return { usernameNotFound: true };
+    if (!desiredMember) return;
 
     const memberId = desiredMember.id;
+    console.log(memberId);
     return { memberId };
   } catch (error) {
     console.error("Error:", error);

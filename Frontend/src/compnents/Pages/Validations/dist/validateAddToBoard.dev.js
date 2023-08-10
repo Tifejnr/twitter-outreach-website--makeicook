@@ -39,15 +39,14 @@ function validateAddToBoard(executionParams) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              console.log(memberUsername);
-              _context.next = 3;
+              _context.next = 2;
               return regeneratorRuntime.awrap((0, _getMemberIdByUsername["default"])(memberUsername, boardIdsObj));
 
-            case 3:
+            case 2:
               getMemberIdServer = _context.sent;
               console.log(getMemberIdServer);
 
-            case 5:
+            case 4:
             case "end":
               return _context.stop();
           }

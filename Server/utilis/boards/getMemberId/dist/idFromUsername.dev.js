@@ -4,11 +4,14 @@ var _require = require("./getMembersId"),
     getMemberId = _require.getMemberId;
 
 function findMemberId(req, res) {
+  var memberIdFound = [];
   var _req$body = req.body,
       memberUsername = _req$body.memberUsername,
-      boardIdsObj = _req$body.boardIdsObj;
+      boardIdsObj = _req$body.boardIdsObj; //to remove @ symbol from
+
+  var desiredUsername = memberUsername.slice(1);
   var mainBoardsIdObj = boardIdsObj.boardsIdOnly;
-  var memberId = mainBoardsIdObj.map(function _callee(board, index) {
+  var memberId = mainBoardsIdObj.forEach(function _callee(board, index) {
     var boardId, paramToGetUsernameIds, isMemberPresent;
     return regeneratorRuntime.async(function _callee$(_context) {
       while (1) {
@@ -17,7 +20,7 @@ function findMemberId(req, res) {
             boardId = board.boardId;
             paramToGetUsernameIds = {
               boardId: boardId,
-              memberUsername: memberUsername,
+              desiredUsername: desiredUsername,
               key: key,
               token: token
             };
@@ -28,41 +31,43 @@ function findMemberId(req, res) {
           case 5:
             isMemberPresent = _context.sent;
 
-            if (!isMemberPresent.memberId) {
+            if (isMemberPresent) {
               _context.next = 8;
               break;
             }
 
-            return _context.abrupt("return", {
-              isMemberPresent: isMemberPresent
-            });
+            return _context.abrupt("return", console.log("username not found"));
 
           case 8:
-            return _context.abrupt("return", false);
+            if (!isMemberPresent.memberId) {
+              _context.next = 10;
+              break;
+            }
 
-          case 11:
-            _context.prev = 11;
+            return _context.abrupt("return", memberIdFound.push(isMemberPresent.memberId));
+
+          case 10:
+            _context.next = 15;
+            break;
+
+          case 12:
+            _context.prev = 12;
             _context.t0 = _context["catch"](2);
             console.log(_context.t0);
 
-          case 14:
+          case 15:
           case "end":
             return _context.stop();
         }
       }
-    }, null, null, [[2, 11]]);
+    }, null, null, [[2, 12]]);
   });
-  console.log(memberId); // let memberUsernameFound = [];
-  // const inputs = input.split(/\s*,\s*/);
-  // mainBoardsIdObj.forEach(async(board, index) => {
-  //   const boardId = board.boardId;
-  //   //push to array of failed validation if invalid
-  //   if (!regex.test(input)) {
-  //     memberUsernameFound.push(index);
-  //   }
-  // });
-  // if (memberUsernameFound.length > 0) return { memberUsernameFound };
-  // return { usernamesValidationSucess: true };
+  if (memberIdFound.length > 0) return res.status(200).json({
+    memberIdFound: memberIdFound
+  });
+  return res.status(400).json({
+    usernameNotFound: true
+  });
 }
 
 exports.findMemberId = findMemberId;

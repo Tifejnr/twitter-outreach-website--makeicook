@@ -23,7 +23,6 @@ export default function validateAddToBoard(executionParams) {
 
     const usernameSplitted = textareaInputs.split(",");
     usernameSplitted.map(async (memberUsername) => {
-      console.log(memberUsername);
       const getMemberIdServer = await getMemberIdByUsername(
         memberUsername,
         boardIdsObj
