@@ -16,6 +16,11 @@ export default async function validateAddToBoard(executionParams) {
   const checkboxesArray = executionParams.checkboxesArray;
   const meansOfExceution = executionParams.meansOfExceution;
 
+  const usernamesIntoArray = textareaInputs.split(/\s*,\s*/);
+  const usernamesAtRemoved = usernamesIntoArray.map((username) => {
+    return username.slice(1);
+  });
+
   //validating checkbox
 
   if (!isAnyCheckboxChecked()) return { noCheckboxChecked: true };
@@ -30,7 +35,8 @@ export default async function validateAddToBoard(executionParams) {
 
     usernameAddingObjArray = [];
     // Create an array to hold promises
-    const promises = usernameSplitted.map(async (memberUsername) => {
+    const promises = usernamesAtRemoved.map(async (memberUsername) => {
+      console.log(memberUsername);
       const getMemberIdServer = await getMemberIdByUsername(
         memberUsername,
         boardIdsObj

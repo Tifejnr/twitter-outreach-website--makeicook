@@ -2,7 +2,7 @@ const axios = require("axios");
 
 async function getMemberId(paramToGetUsernameIds) {
   const boardId = paramToGetUsernameIds.boardId;
-  const desiredUsername = paramToGetUsernameIds.desiredUsername;
+  const memberUsername = paramToGetUsernameIds.memberUsername;
   const key = paramToGetUsernameIds.key;
   const token = paramToGetUsernameIds.token;
 
@@ -14,7 +14,7 @@ async function getMemberId(paramToGetUsernameIds) {
 
     // Search for the desired member by username
     const desiredMember = boardMembersDetails.find(
-      (member) => member.username === desiredUsername
+      (member) => member.username === memberUsername
     );
 
     if (!desiredMember) return;

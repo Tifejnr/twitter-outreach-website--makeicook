@@ -78,32 +78,39 @@ export default function AddMember() {
   };
 
   const insufficietCreditsMess= "Please buy credits to use this tool";
-  const checkboxMustBeCheckedMess= "Please check at least a board below to continue";
+  const checkboxMustBeCheckedMess= "Please check at least a board below";
 
  async function validateParams(executionParams) {
-//fetch all board ids for usernames and fullnames method of addition
-    const allBoardsId= getAllBoardsId(boardsCollection)
-    setBoardIdsObj(allBoardsId)
+
     if (creditsFromServer <1) return  setExecutionErrorBtn(insufficietCreditsMess) 
    setExecutionErrorBtn("")
 
    const response = await validateAddToBoard(executionParams)
-   
+
+  if (response.noCheckboxChecked) return setExecutionErrorBtn(checkboxMustBeCheckedMess);
+  setExecutionErrorBtn("")
    if (response.inputValError) return setExecutionErrorBtn(response.inputValError), setTextAreaError(response.inputValError);
    if (response.usernameValError) return setExecutionErrorBtn(response.usernameValError), setTextAreaError(response.usernameValError);
-  setExecutionErrorBtn("")
-  setTextAreaError(false)
+    setTextAreaError(false)
+   setExecutionErrorBtn("")
 
-   if (response.noCheckboxChecked) return setExecutionErrorBtn(checkboxMustBeCheckedMess);
-  setExecutionErrorBtn("")
+   //if it's email means use board id only
 
-   if (response.boardDetailsObj )  {
-    setBoardDetailsObj(response.boardDetailsObj)
-
+  if (meansOfExceution==emailMeans) {
+      if (response.boardDetailsObj )  {
+    setBoardDetailsObj(response)
     setOpenProgressBar(true)
    }
+  }
 
-  } 
+   if (meansOfExceution==usernameMeans) {
+      
+    if (response.usernameAddingObjArray )  {
+      setBoardDetailsObj(response)
+      setOpenProgressBar(true)
+      }
+    }
+ } 
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -128,7 +135,12 @@ export default function AddMember() {
         const workspaceIdArray = [...new Set(data.map(boardsDetail => boardsDetail.idOrganization).filter(Boolean))];
         setBoardsCollection(data);
         setClientSignature(signature);
-        
+
+    //fetch all board ids for usernames and fullnames method of addition
+        const allBoardsId = getAllBoardsId(data)
+         setBoardIdsObj(allBoardsId)
+     
+    //fetch workspace names for each boards
         workspaceIdArray.map(async (workspaceId, index)=> {
         const workspaceName =  await getWorkspacesName(workspaceId)
         const  workspaceDetails= {
@@ -199,15 +211,15 @@ export default function AddMember() {
 
           <SearchBoards searchPlaceholderTitle={searchPlaceholderTitle} />
 
-          {boardsCollection.length <2 && <p className="loading-your-boards-text">Loading your boards...</p>}
+          {boardsCollection.length <2 && <p className="loading-your-boards-text">Loading your boards and their workspaces...</p>}
 
           <section className="all-boardnames-container">
-          { boardsCollection.length>1 &&  boardsCollection.map((board, index) => {
-              return (
-                <BoardsDisplaySection key={index} board={board} indexNo={index} workspaceObjDetails={workspaceObjDetails}/>
-              );
-            })
-          }
+            { boardsCollection.length>1 &&  boardsCollection.map((board, index) => {
+                return (
+                  <BoardsDisplaySection key={index} board={board} indexNo={index} workspaceObjDetails={workspaceObjDetails}/>
+                );
+              })
+            }
           </section>
         </section>
 }

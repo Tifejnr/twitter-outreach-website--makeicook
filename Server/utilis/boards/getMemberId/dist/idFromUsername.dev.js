@@ -4,16 +4,15 @@ var _require = require("./getMembersId"),
     getMemberId = _require.getMemberId;
 
 function findMemberId(req, res) {
-  var memberIdFound, _req$body, memberUsername, boardIdsObj, desiredUsername, mainBoardsIdObj, promises;
+  var memberIdFound, _req$body, memberUsername, boardIdsObj, mainBoardsIdObj, promises;
 
   return regeneratorRuntime.async(function findMemberId$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
         case 0:
           memberIdFound = [];
-          _req$body = req.body, memberUsername = _req$body.memberUsername, boardIdsObj = _req$body.boardIdsObj; // Remove @ symbol from the incoming username
-
-          desiredUsername = memberUsername.slice(1);
+          _req$body = req.body, memberUsername = _req$body.memberUsername, boardIdsObj = _req$body.boardIdsObj;
+          console.log(memberUsername);
           mainBoardsIdObj = boardIdsObj.boardsIdOnly; // Create an array to hold promises
 
           promises = mainBoardsIdObj.map(function _callee(board, index) {
@@ -25,7 +24,7 @@ function findMemberId(req, res) {
                     boardId = board.boardId;
                     paramToGetUsernameIds = {
                       boardId: boardId,
-                      desiredUsername: desiredUsername,
+                      memberUsername: memberUsername,
                       key: key,
                       token: token
                     };
@@ -46,7 +45,7 @@ function findMemberId(req, res) {
                   case 9:
                     _context.prev = 9;
                     _context.t0 = _context["catch"](2);
-                    console.log(_context.t0);
+                    console.log("error", _context.t0);
 
                   case 12:
                   case "end":

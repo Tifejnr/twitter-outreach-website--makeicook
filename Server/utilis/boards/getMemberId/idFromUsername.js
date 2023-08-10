@@ -4,15 +4,14 @@ async function findMemberId(req, res) {
   const memberIdFound = [];
   const { memberUsername, boardIdsObj } = req.body;
 
-  // Remove @ symbol from the incoming username
-  const desiredUsername = memberUsername.slice(1);
+  console.log(memberUsername);
 
   const mainBoardsIdObj = boardIdsObj.boardsIdOnly;
 
   // Create an array to hold promises
   const promises = mainBoardsIdObj.map(async (board, index) => {
     const boardId = board.boardId;
-    const paramToGetUsernameIds = { boardId, desiredUsername, key, token };
+    const paramToGetUsernameIds = { boardId, memberUsername, key, token };
 
     try {
       const isMemberPresent = await getMemberId(paramToGetUsernameIds);
@@ -21,7 +20,7 @@ async function findMemberId(req, res) {
         memberIdFound.push(isMemberPresent);
       }
     } catch (error) {
-      console.log(error);
+      console.log("error", error);
     }
   });
 

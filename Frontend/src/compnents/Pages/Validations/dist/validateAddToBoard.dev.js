@@ -22,7 +22,7 @@ var usernameMeans = "Username";
 var fullNameMeans = "Fullname";
 
 function validateAddToBoard(executionParams) {
-  var boardsCollection, boardIdsObj, emailInputs, textareaInputs, checkboxesArray, meansOfExceution, usernameAddingObjArray, response, usernameSplitted, promises, _response, boardDetailsObj, validationComplete;
+  var boardsCollection, boardIdsObj, emailInputs, textareaInputs, checkboxesArray, meansOfExceution, usernamesIntoArray, usernamesAtRemoved, usernameAddingObjArray, response, usernameSplitted, promises, _response, boardDetailsObj, validationComplete;
 
   return regeneratorRuntime.async(function validateAddToBoard$(_context2) {
     while (1) {
@@ -33,10 +33,14 @@ function validateAddToBoard(executionParams) {
           emailInputs = executionParams.textAreaValue;
           textareaInputs = executionParams.textAreaValue;
           checkboxesArray = executionParams.checkboxesArray;
-          meansOfExceution = executionParams.meansOfExceution; //validating checkbox
+          meansOfExceution = executionParams.meansOfExceution;
+          usernamesIntoArray = textareaInputs.split(/\s*,\s*/);
+          usernamesAtRemoved = usernamesIntoArray.map(function (username) {
+            return username.slice(1);
+          }); //validating checkbox
 
           if ((0, _Checkbox.isAnyCheckboxChecked)()) {
-            _context2.next = 8;
+            _context2.next = 10;
             break;
           }
 
@@ -44,52 +48,53 @@ function validateAddToBoard(executionParams) {
             noCheckboxChecked: true
           });
 
-        case 8:
+        case 10:
           usernameAddingObjArray = []; //validating if it's username
 
           if (!(meansOfExceution == usernameMeans)) {
-            _context2.next = 18;
+            _context2.next = 20;
             break;
           }
 
           response = (0, _usernamesValidation["default"])(textareaInputs);
 
           if (!response.usernameValError) {
-            _context2.next = 13;
+            _context2.next = 15;
             break;
           }
 
           return _context2.abrupt("return", response);
 
-        case 13:
+        case 15:
           usernameSplitted = textareaInputs.split(",");
           usernameAddingObjArray = []; // Create an array to hold promises
 
-          promises = usernameSplitted.map(function _callee(memberUsername) {
+          promises = usernamesAtRemoved.map(function _callee(memberUsername) {
             var getMemberIdServer, memberIdFound, memberId, usernameAddingObj;
             return regeneratorRuntime.async(function _callee$(_context) {
               while (1) {
                 switch (_context.prev = _context.next) {
                   case 0:
-                    _context.next = 2;
+                    console.log(memberUsername);
+                    _context.next = 3;
                     return regeneratorRuntime.awrap((0, _getMemberIdByUsername["default"])(memberUsername, boardIdsObj));
 
-                  case 2:
+                  case 3:
                     getMemberIdServer = _context.sent;
-                    _context.next = 5;
+                    _context.next = 6;
                     return regeneratorRuntime.awrap(getMemberIdServer);
 
-                  case 5:
+                  case 6:
                     memberIdFound = _context.sent;
 
                     if (!memberIdFound.error) {
-                      _context.next = 8;
+                      _context.next = 9;
                       break;
                     }
 
                     return _context.abrupt("return", console.log("member not found"));
 
-                  case 8:
+                  case 9:
                     memberId = memberIdFound.memberIdFound[0].memberId;
                     usernameAddingObj = {
                       memberId: memberId,
@@ -97,32 +102,32 @@ function validateAddToBoard(executionParams) {
                     };
                     usernameAddingObjArray.push(usernameAddingObj);
 
-                  case 11:
+                  case 12:
                   case "end":
                     return _context.stop();
                 }
               }
             });
           });
-          _context2.next = 18;
+          _context2.next = 20;
           return regeneratorRuntime.awrap(Promise.all(promises));
 
-        case 18:
+        case 20:
           if (!(meansOfExceution == emailMeans)) {
-            _context2.next = 22;
+            _context2.next = 24;
             break;
           }
 
           _response = (0, _Input.validateInput)(emailInputs);
 
           if (!_response.inputValError) {
-            _context2.next = 22;
+            _context2.next = 24;
             break;
           }
 
           return _context2.abrupt("return", _response);
 
-        case 22:
+        case 24:
           boardDetailsObj = checkboxesArray.map(function (checkbox, index) {
             if (!checkbox.checked) return false;
             var checkboxId = checkbox.id;
@@ -140,20 +145,20 @@ function validateAddToBoard(executionParams) {
           });
 
           if (boardDetailsObj) {
-            _context2.next = 25;
+            _context2.next = 27;
             break;
           }
 
           return _context2.abrupt("return", "");
 
-        case 25:
+        case 27:
           validationComplete = {
             boardDetailsObj: boardDetailsObj,
             usernameAddingObjArray: usernameAddingObjArray
           };
           return _context2.abrupt("return", validationComplete);
 
-        case 27:
+        case 29:
         case "end":
           return _context2.stop();
       }

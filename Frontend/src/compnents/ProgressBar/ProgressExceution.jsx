@@ -9,6 +9,10 @@ let totalDurationLength, userDetailsLength
 const action = "adding";
 const isAddedTo = "Boards";
 
+const emailMeans = "Email";
+const usernameMeans= "Username"
+const fullNameMeans= "Fullname"
+
 export default function AddToBoardsProgress(props) {
   //using useStore to manage states cause useState cant work with multiple map methods, runs into infinite loop.
   const incrementSucessLength = useStore(
@@ -36,12 +40,15 @@ export default function AddToBoardsProgress(props) {
 
   const executionParams = props.executionParams;
   const emailInputs = executionParams.textAreaValue;
-  const boardDetailsObj = executionParams.boardDetailsObj;
+  const boardDetailsObj = executionParams.boardDetailsObj.boardDetailsObj
+  const usernameAddingObjArray = executionParams.boardDetailsObj.usernameAddingObjArray
   const clientSignature = executionParams.clientSignature;
   const checkboxesArray = executionParams.checkboxesArray;
+  const meansOfExceution = executionParams.meansOfExceution;
   const timeIntervalValue = Number(executionParams.timeInterval);
 
-  console.log(boardDetailsObj)
+  console.log(usernameAddingObjArray)
+
 
   const noOfCheckedCheckbox = checkboxesArray.filter(
     (checkbox) => checkbox.checked
@@ -53,7 +60,7 @@ export default function AddToBoardsProgress(props) {
 
 
   const timeInterval = timeIntervalValue * 1000;
-
+if (meansOfExceution==emailMeans) {
   // each email execution to server
   emailListSplited.map((eachEmail, index) => {
     const email = eachEmail.trim();
@@ -63,30 +70,61 @@ export default function AddToBoardsProgress(props) {
      incrementCurrentRound() 
     }, index * noOfCheckedCheckbox * timeInterval * 1.35);
 
-    //loop through all checked boards
-    // setTimeout(() => {
-    //   boardDetailsObj.map((boardObj, index) => {
-    //     const boardId = boardObj.boardId;
-    //     let boardName = boardObj.boardName;
-    //     if (!boardId && !boardName) return console.log("board id not found");
+    // loop through all checked boards and execute
+    setTimeout(() => {
+      boardDetailsObj.map((boardObj, index) => {
+        const boardId = boardObj.boardId;
+        let boardName = boardObj.boardName;
+        if (!boardId && !boardName) return console.log("board id not found");
 
-    //      resetSucessLength()
-    //      resetFailureLength()
-    //      setSectionName(boardName);
+         resetSucessLength()
+         resetFailureLength()
+         setSectionName(boardName);
 
-    //     setTimeout(() => {
-    //       new Execution(email, boardId, boardName);
-    //     }, index * timeInterval);
-    //   });
-    // }, index * noOfCheckedCheckbox * timeInterval * 1.35);
+        setTimeout(() => {
+          new Execution(email, boardId, boardName);
+        }, index * timeInterval);
+      });
+    }, index * noOfCheckedCheckbox * timeInterval * 1.35);
   });
+}
 
+//username means of execution
+if (meansOfExceution==usernameMeans) {
+  // each email execution to server
+  usernameAddingObjArray.map((usernameDetails, index) => {
+    const {memberId, memberUsername}= usernameDetails;
+    setuserDetails(memberUsername);
+
+    setTimeout(() => {
+     incrementCurrentRound() 
+    }, index * noOfCheckedCheckbox * timeInterval * 1.35);
+
+    // loop through all checked boards and execute
+    setTimeout(() => {
+      boardDetailsObj.map((boardObj, index) => {
+        const boardId = boardObj.boardId;
+        let boardName = boardObj.boardName;
+        if (!boardId && !boardName) return console.log("board id not found");
+
+         resetSucessLength()
+         resetFailureLength()
+         setSectionName(boardName);
+
+        setTimeout(() => {
+          new Execution(memberId, boardId, boardName);
+        }, index * timeInterval);
+      });
+    }, index * noOfCheckedCheckbox * timeInterval * 1.35);
+  });
+}
   function Execution(email, boardId, boardName) {
     if (!boardName) return console.log("boardname does not exist");
 
     const message = {
       email,
       boardId,
+      memberId,
       clientSignature,
     };
 
