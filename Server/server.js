@@ -122,7 +122,7 @@ app.post(
   "/find-member-id",
   [loginStatusChecker, isUserAuthorized, userToken, signatureChecker],
   async (req, res) => {
-    findMemberId(req, res);
+    await findMemberId(req, res);
   }
 );
 

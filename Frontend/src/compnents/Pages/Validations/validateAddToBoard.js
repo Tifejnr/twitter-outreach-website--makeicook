@@ -28,7 +28,8 @@ export default function validateAddToBoard(executionParams) {
         boardIdsObj
       );
 
-      console.log(getMemberIdServer);
+      const memberId = await getMemberIdServer;
+      console.log(memberId);
     });
   }
 

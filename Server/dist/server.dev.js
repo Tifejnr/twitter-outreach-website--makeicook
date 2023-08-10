@@ -12,27 +12,33 @@ var ejs = require("ejs");
 
 var coookieParser = require("cookie-parser");
 
-var app = express();
-
-var session = require("express-session");
+var app = express(); // functions boards
 
 var _require = require("./utilis/boards/add"),
     addMemberToBoard = _require.addMemberToBoard;
 
-var _require2 = require("./utilis/boards/fetchBoards"),
-    fetchAllBoards = _require2.fetchAllBoards;
+var _require2 = require("./utilis/boards/delete"),
+    deleteMemberFromBoard = _require2.deleteMemberFromBoard;
 
-var _require3 = require("./utilis/oauth/oauth-and-callback"),
-    login = _require3.login;
+var _require3 = require("./utilis/boards/fetchBoards"),
+    fetchAllBoards = _require3.fetchAllBoards;
 
-var _require4 = require("./utilis/oauth/oauth-and-callback"),
-    callback = _require4.callback;
+var _require4 = require("./utilis/boards/getMemberId/idFromUsername"),
+    findMemberId = _require4.findMemberId; //functions oauth
 
-var _require5 = require("./utilis/boards/delete"),
-    deleteMemberFromBoard = _require5.deleteMemberFromBoard;
 
-var _require6 = require("./envKeys/allKeys"),
-    getKeys = _require6.getKeys;
+var _require5 = require("./utilis/oauth/oauth-and-callback"),
+    login = _require5.login;
+
+var _require6 = require("./utilis/oauth/oauth-and-callback"),
+    callback = _require6.callback; //functions workspaces
+
+
+var _require7 = require("./utilis/workspaces/workspacesNames"),
+    getWorkspaceName = _require7.getWorkspaceName;
+
+var _require8 = require("./envKeys/allKeys"),
+    getKeys = _require8.getKeys;
 
 var loginStatusChecker = require("./middlewares/jwt-related/login-status-checker");
 
@@ -173,16 +179,46 @@ app.post("/add", [loginStatusChecker, isUserAuthorized, userToken, signatureChec
     }
   });
 });
-app.post("/delete", [loginStatusChecker, isUserAuthorized, userToken, signatureChecker], function _callee7(req, res) {
+app.post("/find-member-id", [loginStatusChecker, isUserAuthorized, userToken, signatureChecker], function _callee7(req, res) {
   return regeneratorRuntime.async(function _callee7$(_context7) {
     while (1) {
       switch (_context7.prev = _context7.next) {
+        case 0:
+          _context7.next = 2;
+          return regeneratorRuntime.awrap(findMemberId(req, res));
+
+        case 2:
+        case "end":
+          return _context7.stop();
+      }
+    }
+  });
+});
+app.post("/delete", [loginStatusChecker, isUserAuthorized, userToken, signatureChecker], function _callee8(req, res) {
+  return regeneratorRuntime.async(function _callee8$(_context8) {
+    while (1) {
+      switch (_context8.prev = _context8.next) {
         case 0:
           deleteMemberFromBoard(req, res);
 
         case 1:
         case "end":
-          return _context7.stop();
+          return _context8.stop();
+      }
+    }
+  });
+}); //workspaces routes
+
+app.post("/get-workspace-name", [loginStatusChecker, isUserAuthorized, userToken, signatureChecker], function _callee9(req, res) {
+  return regeneratorRuntime.async(function _callee9$(_context9) {
+    while (1) {
+      switch (_context9.prev = _context9.next) {
+        case 0:
+          getWorkspaceName(req, res);
+
+        case 1:
+        case "end":
+          return _context9.stop();
       }
     }
   });

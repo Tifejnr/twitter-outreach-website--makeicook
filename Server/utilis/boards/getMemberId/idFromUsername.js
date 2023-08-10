@@ -1,32 +1,37 @@
 const { getMemberId } = require("./getMembersId");
 
-function findMemberId(req, res) {
-  let memberIdFound = [];
+async function findMemberId(req, res) {
+  const memberIdFound = [];
   const { memberUsername, boardIdsObj } = req.body;
 
-  //to remove @ symbol from
+  // Remove @ symbol from the incoming username
   const desiredUsername = memberUsername.slice(1);
 
   const mainBoardsIdObj = boardIdsObj.boardsIdOnly;
 
-  const memberId = mainBoardsIdObj.forEach(async (board, index) => {
+  // Create an array to hold promises
+  const promises = mainBoardsIdObj.map(async (board, index) => {
     const boardId = board.boardId;
     const paramToGetUsernameIds = { boardId, desiredUsername, key, token };
 
     try {
       const isMemberPresent = await getMemberId(paramToGetUsernameIds);
 
-      if (!isMemberPresent) return console.log("username not found");
-      if (isMemberPresent.memberId)
-        return memberIdFound.push(isMemberPresent.memberId);
+      if (isMemberPresent && isMemberPresent.memberId) {
+        memberIdFound.push(isMemberPresent);
+      }
     } catch (error) {
       console.log(error);
     }
   });
 
+  // Wait for all promises to resolve
+  await Promise.all(promises);
+  console.log(memberIdFound.length);
+
   if (memberIdFound.length > 0) return res.status(200).json({ memberIdFound });
 
-  return res.status(400).json({ usernameNotFound: true });
+  return res.status(402).json({ usernameIdNotFound: true });
 }
 
 exports.findMemberId = findMemberId;

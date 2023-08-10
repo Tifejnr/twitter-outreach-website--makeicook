@@ -34,25 +34,24 @@ function getMemberId(paramToGetUsernameIds) {
 
         case 13:
           memberId = desiredMember.id;
-          console.log(memberId);
           return _context.abrupt("return", {
             memberId: memberId
           });
 
-        case 18:
-          _context.prev = 18;
+        case 17:
+          _context.prev = 17;
           _context.t0 = _context["catch"](5);
           console.error("Error:", _context.t0);
           return _context.abrupt("return", {
             boardDetailsFetchingError: _context.t0
           });
 
-        case 22:
+        case 21:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[5, 18]]);
+  }, null, null, [[5, 17]]);
 }
 
 exports.getMemberId = getMemberId;

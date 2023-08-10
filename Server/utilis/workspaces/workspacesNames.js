@@ -7,9 +7,7 @@ async function getWorkspaceName(req, res) {
 
   try {
     const response = await axios.get(workspaceNameGettingUrl);
-    console.log(response);
     if (response.status === 200) {
-      console.log("Workspace  Name gotten");
       const workspaceName = response.data.displayName;
       return res.status(200).json({ workspaceName });
     }

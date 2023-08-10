@@ -20,7 +20,6 @@ async function getMemberId(paramToGetUsernameIds) {
     if (!desiredMember) return;
 
     const memberId = desiredMember.id;
-    console.log(memberId);
     return { memberId };
   } catch (error) {
     console.error("Error:", error);

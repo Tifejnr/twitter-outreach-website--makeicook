@@ -34,7 +34,7 @@ function validateAddToBoard(executionParams) {
     if (response.usernameValError) return response;
     var usernameSplitted = textareaInputs.split(",");
     usernameSplitted.map(function _callee(memberUsername) {
-      var getMemberIdServer;
+      var getMemberIdServer, memberId;
       return regeneratorRuntime.async(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -44,9 +44,14 @@ function validateAddToBoard(executionParams) {
 
             case 2:
               getMemberIdServer = _context.sent;
-              console.log(getMemberIdServer);
+              _context.next = 5;
+              return regeneratorRuntime.awrap(getMemberIdServer);
 
-            case 4:
+            case 5:
+              memberId = _context.sent;
+              console.log(memberId);
+
+            case 7:
             case "end":
               return _context.stop();
           }
