@@ -23,7 +23,7 @@ export default function usernamesValidation(input) {
 
   if (!areUsernamesValid.invalidDetailsIndexArray) return true;
 
-  const oneOnlyInvalidMessage = "Invalid username";
+  const oneOnlyInvalidMessage = `Username must start with "@" symbol`;
 
   if (areUsernamesValid.invalidDetailsIndexArray && inputsSplitted.length == 1)
     return { usernameValError: oneOnlyInvalidMessage };
@@ -34,7 +34,7 @@ export default function usernamesValidation(input) {
   );
   const invalidIndexesJoined = oneAddedToAllIndexes.join(", ");
 
-  const invalidUsernamesMessage = `Usernames ${invalidIndexesJoined} are Invalid`;
+  const invalidUsernamesMessage = `Usernames ${invalidIndexesJoined} must start with "@" symbol`;
   if (areUsernamesValid.invalidDetailsIndexArray && inputsSplitted.length > 1)
     return { usernameValError: invalidUsernamesMessage };
 }

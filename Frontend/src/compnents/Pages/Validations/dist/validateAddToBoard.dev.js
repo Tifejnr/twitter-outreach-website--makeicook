@@ -33,24 +33,35 @@ function validateAddToBoard(executionParams) {
           emailInputs = executionParams.textAreaValue;
           textareaInputs = executionParams.textAreaValue;
           checkboxesArray = executionParams.checkboxesArray;
-          meansOfExceution = executionParams.meansOfExceution;
+          meansOfExceution = executionParams.meansOfExceution; //validating checkbox
+
+          if ((0, _Checkbox.isAnyCheckboxChecked)()) {
+            _context2.next = 8;
+            break;
+          }
+
+          return _context2.abrupt("return", {
+            noCheckboxChecked: true
+          });
+
+        case 8:
           usernameAddingObjArray = []; //validating if it's username
 
           if (!(meansOfExceution == usernameMeans)) {
-            _context2.next = 17;
+            _context2.next = 18;
             break;
           }
 
           response = (0, _usernamesValidation["default"])(textareaInputs);
 
           if (!response.usernameValError) {
-            _context2.next = 11;
+            _context2.next = 13;
             break;
           }
 
           return _context2.abrupt("return", response);
 
-        case 11:
+        case 13:
           usernameSplitted = textareaInputs.split(",");
           usernameAddingObjArray = []; // Create an array to hold promises
 
@@ -71,12 +82,12 @@ function validateAddToBoard(executionParams) {
                   case 5:
                     memberIdFound = _context.sent;
 
-                    if (memberIdFound) {
+                    if (!memberIdFound.error) {
                       _context.next = 8;
                       break;
                     }
 
-                    return _context.abrupt("return");
+                    return _context.abrupt("return", console.log("member not found"));
 
                   case 8:
                     memberId = memberIdFound.memberIdFound[0].memberId;
@@ -93,38 +104,25 @@ function validateAddToBoard(executionParams) {
               }
             });
           });
-          _context2.next = 16;
+          _context2.next = 18;
           return regeneratorRuntime.awrap(Promise.all(promises));
 
-        case 16:
-          console.log(usernameAddingObjArray);
-
-        case 17:
+        case 18:
           if (!(meansOfExceution == emailMeans)) {
-            _context2.next = 21;
+            _context2.next = 22;
             break;
           }
 
           _response = (0, _Input.validateInput)(emailInputs);
 
           if (!_response.inputValError) {
-            _context2.next = 21;
+            _context2.next = 22;
             break;
           }
 
           return _context2.abrupt("return", _response);
 
-        case 21:
-          if ((0, _Checkbox.isAnyCheckboxChecked)()) {
-            _context2.next = 23;
-            break;
-          }
-
-          return _context2.abrupt("return", {
-            noCheckboxChecked: true
-          });
-
-        case 23:
+        case 22:
           boardDetailsObj = checkboxesArray.map(function (checkbox, index) {
             if (!checkbox.checked) return false;
             var checkboxId = checkbox.id;
@@ -142,20 +140,20 @@ function validateAddToBoard(executionParams) {
           });
 
           if (boardDetailsObj) {
-            _context2.next = 26;
+            _context2.next = 25;
             break;
           }
 
           return _context2.abrupt("return", "");
 
-        case 26:
+        case 25:
           validationComplete = {
             boardDetailsObj: boardDetailsObj,
             usernameAddingObjArray: usernameAddingObjArray
           };
           return _context2.abrupt("return", validationComplete);
 
-        case 28:
+        case 27:
         case "end":
           return _context2.stop();
       }

@@ -87,18 +87,18 @@ export default function AddMember() {
     if (creditsFromServer <1) return  setExecutionErrorBtn(insufficietCreditsMess) 
    setExecutionErrorBtn("")
 
-   const response= await validateAddToBoard(executionParams)
+   const response = await validateAddToBoard(executionParams)
    
    if (response.inputValError) return setExecutionErrorBtn(response.inputValError), setTextAreaError(response.inputValError);
    if (response.usernameValError) return setExecutionErrorBtn(response.usernameValError), setTextAreaError(response.usernameValError);
   setExecutionErrorBtn("")
   setTextAreaError(false)
+
    if (response.noCheckboxChecked) return setExecutionErrorBtn(checkboxMustBeCheckedMess);
   setExecutionErrorBtn("")
 
    if (response.boardDetailsObj )  {
-    const boardIdAndNameObj= response.boardDetailsObj
-    setBoardDetailsObj(boardIdAndNameObj)
+    setBoardDetailsObj(response.boardDetailsObj)
 
     setOpenProgressBar(true)
    }

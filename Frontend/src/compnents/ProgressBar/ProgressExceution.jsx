@@ -41,6 +41,8 @@ export default function AddToBoardsProgress(props) {
   const checkboxesArray = executionParams.checkboxesArray;
   const timeIntervalValue = Number(executionParams.timeInterval);
 
+  console.log(boardDetailsObj)
+
   const noOfCheckedCheckbox = checkboxesArray.filter(
     (checkbox) => checkbox.checked
   ).length;
@@ -62,21 +64,21 @@ export default function AddToBoardsProgress(props) {
     }, index * noOfCheckedCheckbox * timeInterval * 1.35);
 
     //loop through all checked boards
-    setTimeout(() => {
-      boardDetailsObj.map((boardObj, index) => {
-        const boardId = boardObj.boardId;
-        let boardName = boardObj.boardName;
-        if (!boardId && !boardName) return console.log("board id not found");
+    // setTimeout(() => {
+    //   boardDetailsObj.map((boardObj, index) => {
+    //     const boardId = boardObj.boardId;
+    //     let boardName = boardObj.boardName;
+    //     if (!boardId && !boardName) return console.log("board id not found");
 
-         resetSucessLength()
-         resetFailureLength()
-         setSectionName(boardName);
+    //      resetSucessLength()
+    //      resetFailureLength()
+    //      setSectionName(boardName);
 
-        setTimeout(() => {
-          new Execution(email, boardId, boardName);
-        }, index * timeInterval);
-      });
-    }, index * noOfCheckedCheckbox * timeInterval * 1.35);
+    //     setTimeout(() => {
+    //       new Execution(email, boardId, boardName);
+    //     }, index * timeInterval);
+    //   });
+    // }, index * noOfCheckedCheckbox * timeInterval * 1.35);
   });
 
   function Execution(email, boardId, boardName) {
