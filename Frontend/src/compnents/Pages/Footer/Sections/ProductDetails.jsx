@@ -14,19 +14,43 @@ export default function ProductDetails() {
    <>
    <section>
        <h3>Product</h3>
+
        <ul>
-          <li><CustomLink to={toolsPageLink}><p>Tools</p></CustomLink></li>
-          <li><CustomLink to={faqPageLink}><p>FAQ</p></CustomLink></li>
-          <li><CustomLink to={reviewsPageLink}><p>Reviews</p></CustomLink></li>
-          <li>
-              <CustomLink to={pricingPageLink}  onClick={(e) => {
+          <CustomLink to={toolsPageLink}
+              onClick={(e) => {
+                  e.preventDefault()
+                handlePageRefreshOnLoad(toolsPageLink)
+                }}
+              >
+              <p>Tools</p>
+          </CustomLink>
+
+          <CustomLink to={faqPageLink}
+            onClick={(e) => {
+                e.preventDefault()
+                handlePageRefreshOnLoad(faqPageLink)
+                }}
+            >            
+              <p>FAQ</p>
+          </CustomLink>
+
+          <CustomLink to={reviewsPageLink}
+            onClick={(e) => {
+                e.preventDefault()
+              handlePageRefreshOnLoad(reviewsPageLink)
+              }}
+            >
+            <p>Reviews</p>
+          </CustomLink>
+
+          <CustomLink to={pricingPageLink}  onClick={(e) => {
                 e.preventDefault()
               handlePageRefreshOnLoad(pricingPageLink)
               }}>
               <p>Pricing</p>
-              </CustomLink>
-          </li>
-          {/* <li><CustomLink to=""></CustomLink></li> */}
+          </CustomLink>
+          
+          {/* <CustomLink to=""></CustomLink> */}
        </ul>
    </section>
    

@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import CustomLink from '../../../CustomLink'
+import handlePageRefreshOnLoad from '../../../utilis/refreshPageOnLoad'
 
 const aboutPageLink= "/about"
 const contactPageLink= "/contact-us"
@@ -12,11 +13,47 @@ export default function Company() {
     <section>
        <h3>Company</h3>
        <ul>
-        <li>< Link   to={aboutPageLink}><p>About us</p></ Link  ></li>
-        <li>< Link   to={contactPageLink}><p>Contact us</p></ Link  ></li>
-        <li>< Link   to={mediaPageLink}><p>Media</p></ Link  ></li>
-        <li>< Link   to={termsPageLink}><p>Terms</p></ Link  ></li>
-        <li>< Link   to={privacyPolicyPageLink}> <p>Privacy Policy</p> </ Link  ></li>
+          <CustomLink to={aboutPageLink}
+            onClick={(e) => {
+                e.preventDefault()
+                handlePageRefreshOnLoad(aboutPageLink)
+             }}
+              >
+            <p>About us</p>
+          </CustomLink>
+          
+          <CustomLink to={contactPageLink}
+            onClick={(e) => {
+              e.preventDefault();
+              handlePageRefreshOnLoad(contactPageLink);
+            }}>
+            <p>Contact us</p>
+          </CustomLink>
+
+          <CustomLink to={mediaPageLink}
+            onClick={(e) => {
+              e.preventDefault();
+              handlePageRefreshOnLoad(mediaPageLink);
+            }}>
+            <p>Media</p>
+          </CustomLink>
+
+          <CustomLink to={termsPageLink}
+            onClick={(e) => {
+              e.preventDefault();
+              handlePageRefreshOnLoad(termsPageLink);
+            }}>
+            <p>Terms</p>
+          </CustomLink>
+
+          <CustomLink to={privacyPolicyPageLink}
+            onClick={(e) => {
+              e.preventDefault();
+              handlePageRefreshOnLoad(privacyPolicyPageLink);
+            }}>
+            <p>Privacy Policy</p>
+          </CustomLink>
+
        </ul>
    </section>
   )
