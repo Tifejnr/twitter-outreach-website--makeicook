@@ -80,14 +80,14 @@ export default function AddMember() {
   const insufficietCreditsMess= "Please buy credits to use this tool";
   const checkboxMustBeCheckedMess= "Please check at least a board below to continue";
 
-  function validateParams(executionParams) {
+ async function validateParams(executionParams) {
 //fetch all board ids for usernames and fullnames method of addition
     const allBoardsId= getAllBoardsId(boardsCollection)
     setBoardIdsObj(allBoardsId)
     if (creditsFromServer <1) return  setExecutionErrorBtn(insufficietCreditsMess) 
    setExecutionErrorBtn("")
 
-   const response=  validateAddToBoard(executionParams)
+   const response= await validateAddToBoard(executionParams)
    
    if (response.inputValError) return setExecutionErrorBtn(response.inputValError), setTextAreaError(response.inputValError);
    if (response.usernameValError) return setExecutionErrorBtn(response.usernameValError), setTextAreaError(response.usernameValError);
@@ -154,10 +154,6 @@ export default function AddMember() {
   }, []);
 
 
-  useEffect(()=> {    
-  }, [])
-
-
   return (
     <> 
      {
@@ -195,9 +191,9 @@ export default function AddMember() {
           <SelectAll
             labelTitle={labelTitle}
             selectInstructionText={selectInstructionText}
-            action={ (e)=> {
+            action={ async (e)=> {
              e.preventDefault();
-            validateParams(executionParams);
+           await validateParams(executionParams);
             } }
           />
 

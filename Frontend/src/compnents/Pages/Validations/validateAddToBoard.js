@@ -8,7 +8,7 @@ const emailMeans = "Email";
 const usernameMeans = "Username";
 const fullNameMeans = "Fullname";
 
-export default function validateAddToBoard(executionParams) {
+export default async function validateAddToBoard(executionParams) {
   const boardsCollection = executionParams.boardsCollection;
   const boardIdsObj = executionParams.boardIdsObj;
   const emailInputs = executionParams.textAreaValue;
@@ -16,21 +16,37 @@ export default function validateAddToBoard(executionParams) {
   const checkboxesArray = executionParams.checkboxesArray;
   const meansOfExceution = executionParams.meansOfExceution;
 
+  let usernameAddingObjArray = [];
   //validating if it's username
   if (meansOfExceution == usernameMeans) {
     const response = usernamesValidation(textareaInputs);
     if (response.usernameValError) return response;
 
     const usernameSplitted = textareaInputs.split(",");
-    usernameSplitted.map(async (memberUsername) => {
+
+    usernameAddingObjArray = [];
+    // Create an array to hold promises
+    const promises = usernameSplitted.map(async (memberUsername) => {
       const getMemberIdServer = await getMemberIdByUsername(
         memberUsername,
         boardIdsObj
       );
 
-      const memberId = await getMemberIdServer;
-      console.log(memberId);
+      const memberIdFound = await getMemberIdServer;
+
+      if (!memberIdFound) return;
+      const memberId = memberIdFound.memberIdFound[0].memberId;
+      const usernameAddingObj = {
+        memberId,
+        memberUsername,
+      };
+
+      usernameAddingObjArray.push(usernameAddingObj);
     });
+
+    await Promise.all(promises);
+
+    console.log(usernameAddingObjArray);
   }
 
   //validating if it's email means entered
@@ -69,6 +85,7 @@ export default function validateAddToBoard(executionParams) {
 
   const validationComplete = {
     boardDetailsObj,
+    usernameAddingObjArray,
   };
 
   return validationComplete;

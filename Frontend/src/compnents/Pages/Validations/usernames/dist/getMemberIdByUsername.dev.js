@@ -28,20 +28,29 @@ function getMemberIdByUsername(memberUsername, boardIdsObj) {
 
         case 5:
           response = _context.sent;
-          console.log(response); // return response.data;
 
-          _context.next = 12;
-          break;
+          if (response) {
+            _context.next = 8;
+            break;
+          }
 
-        case 9:
-          _context.prev = 9;
+          return _context.abrupt("return", console.log("no response"));
+
+        case 8:
+          return _context.abrupt("return", response.data);
+
+        case 11:
+          _context.prev = 11;
           _context.t0 = _context["catch"](2);
           console.error("Error:", _context.t0);
+          return _context.abrupt("return", {
+            error: _context.t0
+          });
 
-        case 12:
+        case 15:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[2, 9]]);
+  }, null, null, [[2, 11]]);
 }

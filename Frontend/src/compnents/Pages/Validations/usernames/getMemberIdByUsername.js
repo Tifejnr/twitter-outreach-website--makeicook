@@ -13,9 +13,13 @@ export default async function getMemberIdByUsername(
 
   try {
     const response = await axios.post(getMemberIdUrl, paramToServer);
-    console.log(response);
-    // return response.data;
+
+    if (!response) return console.log("no response");
+
+    return response.data;
   } catch (error) {
     console.error("Error:", error);
+
+    return { error };
   }
 }
