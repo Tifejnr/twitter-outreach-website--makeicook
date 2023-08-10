@@ -1,15 +1,19 @@
 const { getMemberId } = require("./getMembersId");
 
 async function findMemberId(req, res) {
-  const memberIdFound = [];
   const { memberUsername, boardIdsObj } = req.body;
-
-  console.log(memberUsername);
+  let noOfAttemptsArray = [],
+    memberIdFound = [];
 
   const mainBoardsIdObj = boardIdsObj.boardsIdOnly;
 
-  // Create an array to hold promises
-  const promises = mainBoardsIdObj.map(async (board, index) => {
+  for (const board of mainBoardsIdObj) {
+    noOfAttemptsArray.push(1);
+    if (memberIdFound.length > 0) {
+      console.log("already found it,", noOfAttemptsArray.length);
+      break;
+    }
+
     const boardId = board.boardId;
     const paramToGetUsernameIds = { boardId, memberUsername, key, token };
 
@@ -22,15 +26,18 @@ async function findMemberId(req, res) {
     } catch (error) {
       console.log("error", error);
     }
-  });
+  }
 
-  // Wait for all promises to resolve
-  await Promise.all(promises);
-  console.log(memberIdFound.length);
+  if (memberIdFound.length > 0) {
+    return res.status(200).json({ memberIdFound });
+  }
 
-  if (memberIdFound.length > 0) return res.status(200).json({ memberIdFound });
-
-  return res.status(402).json({ usernameIdNotFound: true });
+  if (
+    noOfAttemptsArray.length === mainBoardsIdObj.length &&
+    memberIdFound.length === 0
+  ) {
+    return res.status(402).json({ usernameIdNotFound: true });
+  }
 }
 
 exports.findMemberId = findMemberId;

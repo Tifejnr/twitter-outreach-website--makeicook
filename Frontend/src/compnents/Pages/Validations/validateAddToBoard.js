@@ -31,8 +31,6 @@ export default async function validateAddToBoard(executionParams) {
     const response = usernamesValidation(textareaInputs);
     if (response.usernameValError) return response;
 
-    const usernameSplitted = textareaInputs.split(",");
-
     usernameAddingObjArray = [];
     // Create an array to hold promises
     const promises = usernamesAtRemoved.map(async (memberUsername) => {

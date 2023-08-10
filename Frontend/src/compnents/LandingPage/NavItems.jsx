@@ -1,6 +1,10 @@
 import CustomLink from '../CustomLink'
 import { smoothScroll } from '../../JS functions/Utilis/SmoothScrolling/scroll'
 import { closeMenuBar } from '../../JS functions/Utilis/SmoothScrolling/scroll'
+import handlePageRefreshOnLoad from '../utilis/refreshPageOnLoad';
+
+const registerPageLink ="/register"
+const signInPageLink ="/sign-in"
 
 export default function NavItemsLandingPage() {
 const faqSection = "#faq__text-container";
@@ -38,11 +42,17 @@ const toolsClick = ()=> {
             <h3 className="reviews">Reviews</h3>
         </li>
 
-        <CustomLink to="/sign-in">
+        <CustomLink to={signInPageLink} onClick={(e)=> {
+          e.preventDefault();
+          handlePageRefreshOnLoad(signInPageLink)
+        }}>
          <h3 className="login">Log In</h3> 
         </CustomLink>
 
-        <CustomLink to="/register" className="sign-up-cont">
+        <CustomLink to={registerPageLink} className="sign-up-cont" onClick={(e)=> {
+          e.preventDefault();
+          handlePageRefreshOnLoad(registerPageLink)
+        }}>
         <h4 className='sign-up'>Start for free</h4> 
         </CustomLink>
 </>
