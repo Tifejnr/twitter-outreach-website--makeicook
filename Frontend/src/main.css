@@ -154,7 +154,6 @@ Display Dropdwon menu */
   margin-left: 0.3rem;
   font-size: 1.5rem;
   margin-top: 0.5rem;
-  height: 3rem;
   border-bottom: 1px solid hsl(240, 5%, 91%);
 }
 
@@ -169,6 +168,7 @@ Display Dropdwon menu */
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 3rem;
 }
 
 .item article h5 {
@@ -191,8 +191,8 @@ Display Dropdwon menu */
   cursor: pointer;
 }
 .item article img {
-  height: 1rem;
-  width: 1rem;
+  height: 0.9rem;
+  width: 0.9rem;
 }
 
 .item p {
@@ -202,6 +202,7 @@ Display Dropdwon menu */
 .item .workspaceName {
   color: grey;
   text-align: left;
+  padding-bottom: 0.3rem;
   height: 100%;
   overflow: hidden;
   max-height: 0;
