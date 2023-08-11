@@ -99,10 +99,17 @@ export default function AddToBoardsProgress(props) {
 
   //username means of execution
   if (meansOfExceution == usernameMeans) {
-    // each email execution to server
+    // each name or username execution to server
     nameAddingObjArray.map((nameDetails, index) => {
-      const { memberId, memberUsername } = nameDetails;
-      setuserDetails(`@${memberUsername}`);
+      const { memberId, memberUsername , isUsernameInput} = nameDetails;
+
+      if (isUsernameInput) {
+         setuserDetails(`@${memberUsername}`);
+      }
+
+      else{
+        setuserDetails(memberUsername);
+      }
 
       setTimeout(() => {
         incrementCurrentRound();
@@ -124,6 +131,7 @@ export default function AddToBoardsProgress(props) {
             boardId,
             boardName,
             memberUsername,
+            isUsernameInput
           };
 
           setTimeout(() => {
@@ -139,6 +147,7 @@ export default function AddToBoardsProgress(props) {
     const memberId = paramsForExecution.memberId;
     const memberUsername = paramsForExecution.memberUsername;
     const email = paramsForExecution.email;
+    const isUsernameInput = paramsForExecution.isUsernameInput;
 
     let userDetail;
 
@@ -147,7 +156,14 @@ export default function AddToBoardsProgress(props) {
     }
 
     if (memberUsername) {
-      userDetail = `@${memberUsername}`;
+      if (isUsernameInput) {
+         setuserDetails(`@${memberUsername}`);
+      }
+
+      else{
+        setuserDetails(memberUsername);
+      }
+
     }
 
     if (!boardName) return console.log("boardname does not exist");

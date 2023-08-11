@@ -2,7 +2,7 @@ import { isAnyCheckboxChecked } from "../../../JS functions/Utilis/Validations/C
 import { validateInput } from "../../../JS functions/Utilis/Validations/Input";
 import { findBoardIdByName } from "../../../JS functions/Utilis/FindBoardId/byName";
 import usernamesValidation from "./usernames/usernamesValidation";
-import fullNameValidation from "./full-name/fullNamesValidation";
+import validateFullName from "./full-name/validateFullName";
 import getMemberIdByUsername from "./usernames/getMemberIdByUsername";
 
 const emailMeans = "Email";
@@ -39,8 +39,7 @@ export default async function validateAddToBoard(executionParams) {
       if (response.usernameValError) return response;
       itemsIntoArray = usernamesAtRemoved;
     } else {
-      const response = fullNameValidation(textareaInputs);
-      console.log(response);
+      const response = validateFullName(textareaInputs);
       if (response.fullNameValError) return response;
       itemsIntoArray = fullNamesIntoArray;
     }
@@ -48,11 +47,14 @@ export default async function validateAddToBoard(executionParams) {
     nameAddingObjArray = [];
     // Create an array to hold promises
     const promises = itemsIntoArray.map(async (memberUsername) => {
-      console.log(memberUsername);
+      const memberDetailsForIdGetting = {
+        memberUsername,
+        boardIdsObj,
+        isUsernameInput,
+      };
 
       const getMemberIdServer = await getMemberIdByUsername(
-        memberUsername,
-        boardIdsObj
+        memberDetailsForIdGetting
       );
 
       const memberIdFound = await getMemberIdServer;

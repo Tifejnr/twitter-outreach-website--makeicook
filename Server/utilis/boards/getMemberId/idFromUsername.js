@@ -1,7 +1,8 @@
 const { getMemberId } = require("./getMembersId");
 
 async function findMemberId(req, res) {
-  const { memberUsername, boardIdsObj } = req.body;
+  const { memberUsername, isUsernameInput, boardIdsObj } = req.body;
+
   let noOfAttemptsArray = [],
     memberIdFound = [];
 
@@ -15,7 +16,13 @@ async function findMemberId(req, res) {
     }
 
     const boardId = board.boardId;
-    const paramToGetUsernameIds = { boardId, memberUsername, key, token };
+    const paramToGetUsernameIds = {
+      boardId,
+      memberUsername,
+      isUsernameInput,
+      key,
+      token,
+    };
 
     try {
       const isMemberPresent = await getMemberId(paramToGetUsernameIds);

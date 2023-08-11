@@ -5,6 +5,8 @@ async function getMemberId(paramToGetUsernameIds) {
   const memberUsername = paramToGetUsernameIds.memberUsername;
   const key = paramToGetUsernameIds.key;
   const token = paramToGetUsernameIds.token;
+  const isUsernameInput = paramToGetUsernameIds.isUsernameInput;
+  let desiredMember;
 
   const boardsDetailsUrl = `https://api.trello.com/1/boards/${boardId}/members?key=${key}&token=${token}`;
   try {
@@ -12,10 +14,16 @@ async function getMemberId(paramToGetUsernameIds) {
     const response = await axios.get(boardsDetailsUrl);
     const boardMembersDetails = response.data;
 
-    // Search for the desired member by username
-    const desiredMember = boardMembersDetails.find(
-      (member) => member.username === memberUsername
-    );
+    if (isUsernameInput) {
+      // Search for the desired member by username
+      desiredMember = boardMembersDetails.find(
+        (member) => member.username === memberUsername
+      );
+    } else {
+      desiredMember = boardMembersDetails.find(
+        (member) => member.fullName === memberUsername
+      );
+    }
 
     if (!desiredMember) return;
 

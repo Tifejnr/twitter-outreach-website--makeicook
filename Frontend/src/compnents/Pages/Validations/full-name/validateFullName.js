@@ -1,11 +1,20 @@
 import fullNamesValidation from "./fullNamesValidation";
 
 export default function validateFullName(input) {
+  // Check if input is empty or contains only whitespace
+  const isEmpty = input.trim() === "";
+
+  const isEmptyMessage = "Members' fullnames cannot be empty";
+
+  if (isEmpty) return { fullNameValError: isEmptyMessage };
+
+  const inputsSplitted = input.split(",");
+
   const areFullnamesValid = fullNamesValidation(input);
 
   if (!areFullnamesValid.invalidDetailsIndexArray) return true;
 
-  const oneOnlyInvalidMessage = `Fullname must start with "@" symbol`;
+  const oneOnlyInvalidMessage = `Fullname is invalid`;
 
   if (areFullnamesValid.invalidDetailsIndexArray && inputsSplitted.length == 1)
     return { fullnameValError: oneOnlyInvalidMessage };
@@ -16,7 +25,7 @@ export default function validateFullName(input) {
   );
   const invalidIndexesJoined = oneAddedToAllIndexes.join(", ");
 
-  const invalidFullnamesMessage = `Fullnames ${invalidIndexesJoined} must start with "@" symbol`;
+  const invalidFullnamesMessage = `Fullnames ${invalidIndexesJoined} is invalid`;
   if (areFullnamesValid.invalidDetailsIndexArray && inputsSplitted.length > 1)
     return { fullnameValError: invalidFullnamesMessage };
 }

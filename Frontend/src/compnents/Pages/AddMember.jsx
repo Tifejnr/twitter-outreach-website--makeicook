@@ -99,8 +99,6 @@ export default function AddMember() {
     setTextAreaError(false)
    setExecutionErrorBtn("")
 
-   console.log(textAreaError)
-
 
    //if it's email means use board id only
 

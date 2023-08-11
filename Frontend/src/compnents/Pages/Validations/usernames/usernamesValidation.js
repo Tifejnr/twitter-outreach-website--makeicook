@@ -8,8 +8,6 @@ export default function usernamesValidation(input) {
   const isEmptyMessage = "Members' usernames cannot be empty";
   if (isEmpty) return { usernameValError: isEmptyMessage };
 
-  console.log(isEmpty);
-
   //Check if all are separated by commas
   const inputsSplitted = input.split(",");
   const isValid = commaSeperationRegex(input);

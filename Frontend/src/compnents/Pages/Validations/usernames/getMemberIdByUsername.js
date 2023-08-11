@@ -1,18 +1,14 @@
 import axios from "axios";
 import { websiteUrl } from "../../../../JS functions/websiteUrl";
 
-export default async function getMemberIdByUsername(
-  memberUsername,
-  boardIdsObj
-) {
+export default async function getMemberIdByUsername(memberDetailsForIdGetting) {
   const getMemberIdUrl = `${websiteUrl}/find-member-id`;
-  const paramToServer = {
-    memberUsername,
-    boardIdsObj,
-  };
 
   try {
-    const response = await axios.post(getMemberIdUrl, paramToServer);
+    const response = await axios.post(
+      getMemberIdUrl,
+      memberDetailsForIdGetting
+    );
 
     if (!response) return console.log("no response");
 
