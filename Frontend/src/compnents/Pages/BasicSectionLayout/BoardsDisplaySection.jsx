@@ -52,7 +52,7 @@ export default function BoardsDisplaySection(props) {
       }
 
   return (
-    <form className="item" name="main">
+    <form className="item eachBoardSection" name="main">
       <article className="label-article">
         <input
           onClick={checkboxRatioNotifier}

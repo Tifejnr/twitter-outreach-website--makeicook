@@ -6,10 +6,12 @@ import AuthNav from "../AuthNav";
 import hidePasswordIcon from "../../../assets/SVGs/PasswordRelated/hide-password-eye.svg"
 import showPasswordIcon from "../../../assets/SVGs/PasswordRelated/show-password-eye.svg"
 import { changeTabTitle } from "../../utilis/changeTabTitle";
+import handlePageRefreshOnLoad from "../../utilis/refreshPageOnLoad";
 
 const successColor = "#09c372";
 const errorColor = "#ff3860";
 const logInTabTitle= "Log in – CollabforTrello"
+const registerPageLink= "/register"
 
 export default function SignIn() {
   const [email, setEmail] = useState("")
@@ -153,7 +155,11 @@ const validateFunctionResponse= (validateAll(paramsObj));
     </form>
     <aside className="prompt-message">
         <h3>
-          Don't have an account? <Link to="/register"><b>Register</b></Link>
+          Don't have an account? <Link to={registerPageLink} onClick={(e)=> {
+            e.preventDefault();
+            handlePageRefreshOnLoad(registerPageLink)
+          }}><b>Register</b>
+          </Link>
         </h3>
     </aside>
    </section>

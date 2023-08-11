@@ -216,13 +216,14 @@ h3 {
     border-radius: 0.4rem;
     box-shadow: 0 0 0.5rem 0 rgba(42, 45, 48, 0.12);
     transition: all 0.3s ease;
-    margin: 1rem auto;
     position: relative;
     margin: auto;
+    margin-top: -4rem;
   }
   .main-container#register-main-cont {
     height: 49rem;
     max-height: 49rem;
+    margin-top: 0;
   }
 }
 
@@ -433,6 +434,22 @@ a:hover {
   font-weight: 300;
   font-size: 1.6rem;
   margin-top: 1.5rem;
+}
+
+/* Links style*/
+
+.prompt-message h3 a b,
+.forgot-password a b {
+  color: #101c77;
+  text-decoration: underline;
+  transition: 0.25s color linear;
+}
+
+.prompt-message h3 a b:hover,
+.prompt-message h3 a b:active,
+.forgot-password a b:hover,
+.forgot-password a b:active {
+  color: var(--dark-des-blue);
 }
 
 @media screen and (min-width: 768px) {

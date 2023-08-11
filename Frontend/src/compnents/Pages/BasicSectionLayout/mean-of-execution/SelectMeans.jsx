@@ -22,7 +22,7 @@ const setMeansOfExceution = useStore((state) => state.setMeansOfExceution);
   //open and closing list
  const openMeansAvailableStyle= {
         maxHeight: isClicked ? "100%" : null,
-        marginTop: isClicked ? "0" : "0.7rem",
+        marginTop: isClicked ? "0" : "1rem",
         overflow: isClicked ?  'visible' : "hidden",
       }
 

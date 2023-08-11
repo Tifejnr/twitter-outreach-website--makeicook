@@ -98,17 +98,21 @@ export default function AddToBoardsProgress(props) {
   }
 
   //username means of execution
-  if (meansOfExceution == usernameMeans) {
+  if (meansOfExceution == usernameMeans || meansOfExceution == fullNameMeans) {
+    let nameDisplayed = ""
     // each name or username execution to server
     nameAddingObjArray.map((nameDetails, index) => {
       const { memberId, memberUsername , isUsernameInput} = nameDetails;
 
       if (isUsernameInput) {
-         setuserDetails(`@${memberUsername}`);
+        //put @ to display username like to users
+        nameDisplayed =`@${memberUsername}`
+         setuserDetails(nameDisplayed);
       }
 
       else{
-        setuserDetails(memberUsername);
+        nameDisplayed= memberUsername
+        setuserDetails(nameDisplayed);
       }
 
       setTimeout(() => {
@@ -130,7 +134,7 @@ export default function AddToBoardsProgress(props) {
             memberId,
             boardId,
             boardName,
-            memberUsername,
+            nameDisplayed,
             isUsernameInput
           };
 
@@ -145,7 +149,7 @@ export default function AddToBoardsProgress(props) {
     const boardName = paramsForExecution.boardName;
     const boardId = paramsForExecution.boardId;
     const memberId = paramsForExecution.memberId;
-    const memberUsername = paramsForExecution.memberUsername;
+    const nameDisplayed = paramsForExecution.nameDisplayed;
     const email = paramsForExecution.email;
     const isUsernameInput = paramsForExecution.isUsernameInput;
 
@@ -155,15 +159,8 @@ export default function AddToBoardsProgress(props) {
       userDetail = email;
     }
 
-    if (memberUsername) {
-      if (isUsernameInput) {
-         setuserDetails(`@${memberUsername}`);
-      }
-
-      else{
-        setuserDetails(memberUsername);
-      }
-
+    if (memberId) {
+      userDetail = nameDisplayed;
     }
 
     if (!boardName) return console.log("boardname does not exist");
@@ -253,9 +250,10 @@ export default function AddToBoardsProgress(props) {
 
         console.log(errorMessage);
       } finally {
+        setuserDetails(userDetail);
         incrementTotalAttemptLength();
         setSectionName(boardName);
-        setuserDetails(userDetail);
+      
       }
     })();
   }
