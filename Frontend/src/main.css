@@ -202,7 +202,7 @@ Display Dropdwon menu */
 .item .workspaceName {
   color: grey;
   text-align: left;
-  padding-bottom: 0.3rem;
+  margin-bottom: 0.4rem;
   height: 100%;
   overflow: hidden;
   max-height: 0;
