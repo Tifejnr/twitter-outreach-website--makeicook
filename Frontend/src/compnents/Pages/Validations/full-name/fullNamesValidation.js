@@ -1,40 +1,18 @@
-import { commaSeperationRegex } from "../../../../JS functions/Utilis/Validations/commaSeperationRegex";
-import atSymbolValidationPrefix from "./atSymbolValidationPrefix";
+const regex = /^[a-zA-Z\d\s,]+$/g;
 
-export default function usernamesValidation(input) {
-  // Check if input is empty or contains only whitespace
-  const isEmpty = input.trim() === "";
+export default function fullNamesValidation(input) {
+  let invalidDetailsIndexArray = [];
+  //convert to an array []
+  const inputs = input.split(/\s*,\s*/);
 
-  const isEmptyMessage = "Members' fullnames cannot be empty";
-  if (isEmpty) return { usernameValError: isEmptyMessage };
+  inputs.forEach((input, index) => {
+    //push to array of failed validation if invalid
+    if (!regex.test(input)) {
+      invalidDetailsIndexArray.push(index);
+    }
+  });
 
-  //Check if all are separated by commas
-  const inputsSplitted = input.split(",");
-  const isValid = commaSeperationRegex(input);
+  if (invalidDetailsIndexArray.length > 0) return { invalidDetailsIndexArray };
 
-  const ifOneInputError = "You don't need a comma if it's one fullname";
-  if (!isValid && inputsSplitted.length == 2)
-    return { usernameValError: ifOneInputError };
-
-  const commaErrorMultipleInputs = "Fullnames must be seperated by commas";
-  if (!isValid) return { usernameValError: commaErrorMultipleInputs };
-
-  const areUsernamesValid = atSymbolValidationPrefix(input);
-
-  if (!areUsernamesValid.invalidDetailsIndexArray) return true;
-
-  const oneOnlyInvalidMessage = `Full names must start with "@" symbol`;
-
-  if (areUsernamesValid.invalidDetailsIndexArray && inputsSplitted.length == 1)
-    return { usernameValError: oneOnlyInvalidMessage };
-
-  //add 1 to all the indexes to make users know it's on no 1 instead if 0
-  const oneAddedToAllIndexes = areUsernamesValid.invalidDetailsIndexArray.map(
-    (value) => value + 1
-  );
-  const invalidIndexesJoined = oneAddedToAllIndexes.join(", ");
-
-  const invalidUsernamesMessage = `Usernames ${invalidIndexesJoined} must start with "@" symbol`;
-  if (areUsernamesValid.invalidDetailsIndexArray && inputsSplitted.length > 1)
-    return { usernameValError: invalidUsernamesMessage };
+  return { usernamesValidationSucess: true };
 }

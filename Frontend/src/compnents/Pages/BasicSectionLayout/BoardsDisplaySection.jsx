@@ -14,7 +14,6 @@ export default function BoardsDisplaySection(props) {
   const workspaceObjDetails= props.workspaceObjDetails
   const board = props.board
 
-
   const checkboxRatioNotifier = () => {
     const totalCheckboxes = checkboxesArray.length;
     const noOfChecked = checkboxesArray.filter(

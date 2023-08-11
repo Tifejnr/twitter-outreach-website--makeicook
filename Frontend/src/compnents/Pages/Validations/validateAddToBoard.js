@@ -2,6 +2,7 @@ import { isAnyCheckboxChecked } from "../../../JS functions/Utilis/Validations/C
 import { validateInput } from "../../../JS functions/Utilis/Validations/Input";
 import { findBoardIdByName } from "../../../JS functions/Utilis/FindBoardId/byName";
 import usernamesValidation from "./usernames/usernamesValidation";
+import fullNameValidation from "./full-name/fullNamesValidation";
 import getMemberIdByUsername from "./usernames/getMemberIdByUsername";
 
 const emailMeans = "Email";
@@ -17,24 +18,38 @@ export default async function validateAddToBoard(executionParams) {
   const meansOfExceution = executionParams.meansOfExceution;
 
   const usernamesIntoArray = textareaInputs.split(/\s*,\s*/);
+  const fullNamesIntoArray = textareaInputs.split(/\s*,\s*/);
   const usernamesAtRemoved = usernamesIntoArray.map((username) => {
     return username.slice(1);
   });
+  const isUsernameInput = usernamesIntoArray.some((input) =>
+    input.startsWith("@")
+  );
 
   //validating checkbox
-
   if (!isAnyCheckboxChecked()) return { noCheckboxChecked: true };
 
-  let usernameAddingObjArray = [];
-  //validating if it's username
-  if (meansOfExceution == usernameMeans) {
-    const response = usernamesValidation(textareaInputs);
-    if (response.usernameValError) return response;
+  let nameAddingObjArray = [];
 
-    usernameAddingObjArray = [];
+  //validating if it's username means or fullname means
+  if (meansOfExceution == usernameMeans || meansOfExceution == fullNameMeans) {
+    let itemsIntoArray;
+    if (meansOfExceution == usernameMeans) {
+      const response = usernamesValidation(textareaInputs);
+      if (response.usernameValError) return response;
+      itemsIntoArray = usernamesAtRemoved;
+    } else {
+      const response = fullNameValidation(textareaInputs);
+      console.log(response);
+      if (response.fullNameValError) return response;
+      itemsIntoArray = fullNamesIntoArray;
+    }
+
+    nameAddingObjArray = [];
     // Create an array to hold promises
-    const promises = usernamesAtRemoved.map(async (memberUsername) => {
+    const promises = itemsIntoArray.map(async (memberUsername) => {
       console.log(memberUsername);
+
       const getMemberIdServer = await getMemberIdByUsername(
         memberUsername,
         boardIdsObj
@@ -45,12 +60,13 @@ export default async function validateAddToBoard(executionParams) {
       if (memberIdFound.error) return console.log("member not found");
 
       const memberId = memberIdFound.memberIdFound[0].memberId;
-      const usernameAddingObj = {
+      const nameAddingObj = {
         memberId,
         memberUsername,
+        isUsernameInput,
       };
 
-      usernameAddingObjArray.push(usernameAddingObj);
+      nameAddingObjArray.push(nameAddingObj);
     });
 
     await Promise.all(promises);
@@ -90,7 +106,7 @@ export default async function validateAddToBoard(executionParams) {
 
   const validationComplete = {
     boardDetailsObj,
-    usernameAddingObjArray,
+    nameAddingObjArray,
   };
 
   return validationComplete;

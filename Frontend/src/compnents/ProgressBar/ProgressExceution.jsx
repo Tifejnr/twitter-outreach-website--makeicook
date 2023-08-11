@@ -44,14 +44,13 @@ export default function AddToBoardsProgress(props) {
   const executionParams = props.executionParams;
   const emailInputs = executionParams.textAreaValue;
   const boardDetailsObj = executionParams.boardDetailsObj.boardDetailsObj;
-  const usernameAddingObjArray =
-    executionParams.boardDetailsObj.usernameAddingObjArray;
+  const nameAddingObjArray =
+    executionParams.boardDetailsObj.nameAddingObjArray;
   const clientSignature = executionParams.clientSignature;
   const checkboxesArray = executionParams.checkboxesArray;
   const meansOfExceution = executionParams.meansOfExceution;
   const timeIntervalValue = Number(executionParams.timeInterval);
 
-  console.log(usernameAddingObjArray);
 
   const noOfCheckedCheckbox = checkboxesArray.filter(
     (checkbox) => checkbox.checked
@@ -101,8 +100,8 @@ export default function AddToBoardsProgress(props) {
   //username means of execution
   if (meansOfExceution == usernameMeans) {
     // each email execution to server
-    usernameAddingObjArray.map((usernameDetails, index) => {
-      const { memberId, memberUsername } = usernameDetails;
+    nameAddingObjArray.map((nameDetails, index) => {
+      const { memberId, memberUsername } = nameDetails;
       setuserDetails(`@${memberUsername}`);
 
       setTimeout(() => {

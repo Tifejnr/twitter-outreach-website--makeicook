@@ -62,6 +62,7 @@ export default function AddMember() {
   const  workspaceObjDetails = useStore((state) => state.workspaceObjDetails);
   const  meansOfExceution = useStore((state) => state.meansOfExceution);
   const  setTextAreaError = useStore((state) => state.setTextAreaError);
+      const textAreaError = useStore((state) => state.textAreaError);
 
   changeTabTitle(addToBoardsTabTitle)
 
@@ -94,6 +95,13 @@ export default function AddMember() {
     setTextAreaError(false)
    setExecutionErrorBtn("")
 
+   if (response.fullNameValError) return setExecutionErrorBtn(response.fullNameValError), setTextAreaError(response.fullNameValError);
+    setTextAreaError(false)
+   setExecutionErrorBtn("")
+
+   console.log(textAreaError)
+
+
    //if it's email means use board id only
 
   if (meansOfExceution==emailMeans) {
@@ -103,9 +111,15 @@ export default function AddMember() {
    }
   }
 
-   if (meansOfExceution==usernameMeans) {
-      
-    if (response.usernameAddingObjArray )  {
+   if (meansOfExceution==usernameMeans) {    
+    if (response.nameAddingObjArray )  {
+      setBoardDetailsObj(response)
+      setOpenProgressBar(true)
+      }
+    }
+
+   if (meansOfExceution==fullNameMeans) {    
+    if (response.nameAddingObjArray )  {
       setBoardDetailsObj(response)
       setOpenProgressBar(true)
       }
