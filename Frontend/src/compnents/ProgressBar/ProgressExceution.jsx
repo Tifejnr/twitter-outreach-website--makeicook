@@ -26,7 +26,7 @@ export default function AddToBoardsProgress(props) {
   const incrementFailureLength = useStore(
     (state) => state.incrementFailureLength
   );
-  const resetFailureLength = useStore((state) => state.resetFailureLength);
+  const resetFailureLength = useStore((state) => state.resetFailureLength);  
   const incrementTotalFailureLength = useStore(
     (state) => state.incrementTotalFailureLength
   );
@@ -146,6 +146,7 @@ export default function AddToBoardsProgress(props) {
     if (email) {
       userDetail = email;
     }
+
     if (memberUsername) {
       userDetail = `@${memberUsername}`;
     }
