@@ -12,10 +12,9 @@ import validateAddToBoard from "./Validations/validateAddToBoard";
 import { changeTabTitle } from "../utilis/changeTabTitle";
 import SelectMeans from "./BasicSectionLayout/mean-of-execution/SelectMeans";
 import getWorkspacesName from "./getWorkspacesName";
-import usernamesValidation from "./Validations/usernames/usernamesValidation";
 import getAllBoardsId from "./Validations/getBoardIdOnly/getAllBoardsId";
 
-const labelTitle = "Add Members";
+
 
 //email means
 const emailMeansInputLabel = "Members' Emails:";
@@ -48,6 +47,8 @@ const unknowMeansYet="..."
 export default function AddMember() {
   const [boardsCollection, setBoardsCollection] = useState([{}]);
   const [openProgressBar, setOpenProgressBar] = useState(false);
+ const [labelTitle, setLabelTitle] = useState("Add Members");
+ const [ executionBtnClicked , setExecutionBtnClicked ] = useState(false);
 
   const [clientSignature, setClientSignature] = useState("");
   const [boardDetailsObj, setBoardDetailsObj] = useState([])
@@ -62,7 +63,7 @@ export default function AddMember() {
   const  workspaceObjDetails = useStore((state) => state.workspaceObjDetails);
   const  meansOfExceution = useStore((state) => state.meansOfExceution);
   const  setTextAreaError = useStore((state) => state.setTextAreaError);
-      const textAreaError = useStore((state) => state.textAreaError);
+
 
   changeTabTitle(addToBoardsTabTitle)
 
@@ -88,7 +89,7 @@ export default function AddMember() {
 
    const response = await validateAddToBoard(executionParams)
 
-  if (response.noCheckboxChecked) return setExecutionErrorBtn(checkboxMustBeCheckedMess);
+  if (response.noCheckboxChecked) return ({error: true}, setExecutionErrorBtn(checkboxMustBeCheckedMess));
   setExecutionErrorBtn("")
    if (response.inputValError) return setExecutionErrorBtn(response.inputValError), setTextAreaError(response.inputValError);
    if (response.usernameValError) return setExecutionErrorBtn(response.usernameValError), setTextAreaError(response.usernameValError);
@@ -98,7 +99,6 @@ export default function AddMember() {
    if (response.fullNameValError) return setExecutionErrorBtn(response.fullNameValError), setTextAreaError(response.fullNameValError);
     setTextAreaError(false)
    setExecutionErrorBtn("")
-
 
    //if it's email means use board id only
 
@@ -214,10 +214,14 @@ export default function AddMember() {
         } 
           <SelectAll
             labelTitle={labelTitle}
+            executionBtnClicked ={executionBtnClicked}
             selectInstructionText={selectInstructionText}
             action={ async (e)=> {
              e.preventDefault();
-           await validateParams(executionParams);
+        setExecutionBtnClicked(!executionBtnClicked)
+         const response =   await validateParams(executionParams);
+
+         console.log(response)
             } }
           />
 
