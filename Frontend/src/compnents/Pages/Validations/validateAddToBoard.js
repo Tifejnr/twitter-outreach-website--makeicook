@@ -18,8 +18,6 @@ export default async function validateAddToBoard(executionParams) {
   const meansOfExceution = executionParams.meansOfExceution;
   const executionBtnClicked = executionParams.executionBtnClicked;
 
-  if (executionBtnClicked) return { stop: true };
-
   const usernamesIntoArray = textareaInputs.split(/\s*,\s*/);
   const fullNamesIntoArray = textareaInputs.split(/\s*,\s*/);
   const usernamesAtRemoved = usernamesIntoArray.map((username) => {
@@ -64,6 +62,8 @@ export default async function validateAddToBoard(executionParams) {
 
       const memberIdFound = await getMemberIdServer;
 
+      if (executionBtnClicked) return { stop: true }, console.log("stopped");
+
       if (memberIdFound.error)
         return errorNameAddingObjArray.push(memberUsername);
 
@@ -77,7 +77,11 @@ export default async function validateAddToBoard(executionParams) {
       nameAddingObjArray.push(nameAddingObj);
     });
 
+    if (executionBtnClicked) return { stop: true };
+
     await Promise.all(promises);
+
+    if (executionBtnClicked) return { stop: true };
 
     if (errorNameAddingObjArray.length > 0) return { errorNameAddingObjArray };
   }

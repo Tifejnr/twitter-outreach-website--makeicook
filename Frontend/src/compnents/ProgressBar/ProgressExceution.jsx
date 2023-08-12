@@ -46,10 +46,13 @@ export default function AddToBoardsProgress(props) {
   const boardDetailsObj = executionParams.boardDetailsObj.boardDetailsObj;
   const nameAddingObjArray =
     executionParams.boardDetailsObj.nameAddingObjArray;
+  const stop = executionParams.stop;
   const clientSignature = executionParams.clientSignature;
   const checkboxesArray = executionParams.checkboxesArray;
   const meansOfExceution = executionParams.meansOfExceution;
   const timeIntervalValue = Number(executionParams.timeInterval);
+
+
 
 
   const noOfCheckedCheckbox = checkboxesArray.filter(

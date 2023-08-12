@@ -94,10 +94,6 @@ export default function AddMember() {
 
    const response = await validateAddToBoard(executionParams)
 
-   if (response.stop) {
-    return  setExecutionBtnClicked(false), setLabelTitle(addMemberTitle)
-   }
-
   if (response.noCheckboxChecked) {
     return  setExecutionBtnClicked(false), 
     setLabelTitle(addMemberTitle), 
@@ -164,7 +160,22 @@ export default function AddMember() {
       setExecutionErrorBtn(errorMessage) )
   }
 
-    if (response.nameAddingObjArray )  {
+
+  
+   if (response.stop) {
+    const stoppedMessage = "Action Stopped"
+    
+    console.log("tried here stop")
+    return  (
+      setExecutionBtnClicked(false), 
+      setLabelTitle(addMemberTitle),
+      setExecutionErrorBtn(stoppedMessage),
+       setTextAreaError(stoppedMessage)
+    )
+   }
+
+
+   else if (response.nameAddingObjArray )  {
      setLabelTitle("Starting...") 
       setBoardDetailsObj(response)
       setOpenProgressBar(true)
@@ -172,7 +183,19 @@ export default function AddMember() {
     }
     
 
-   if (meansOfExceution==fullNameMeans) {   
+   if (meansOfExceution==fullNameMeans) {  
+  
+   if (response.stop) {
+    const stoppedMessage = "Action Stopped"
+
+    console.log("tried here stop")
+    return  (
+      setExecutionBtnClicked(false), 
+      setLabelTitle(addMemberTitle),
+      setExecutionErrorBtn(stoppedMessage),
+       setTextAreaError(stoppedMessage)
+    )
+   } 
      if (response.errorNameAddingObjArray )  {
       const notFoundNamesArray = response.errorNameAddingObjArray 
       let  errorMessage
