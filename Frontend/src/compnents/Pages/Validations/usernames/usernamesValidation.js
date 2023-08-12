@@ -34,7 +34,19 @@ export default function usernamesValidation(input) {
   );
   const invalidIndexesJoined = oneAddedToAllIndexes.join(", ");
 
-  const invalidUsernamesMessage = `Usernames ${invalidIndexesJoined} must start with "@" symbol`;
-  if (areUsernamesValid.invalidDetailsIndexArray && inputsSplitted.length > 1)
-    return { usernameValError: invalidUsernamesMessage };
+  const invalidUsernamesMessageSingular = `Username ${invalidIndexesJoined} must start with "@" symbol`;
+  const invalidUsernamesMessagePlural = `Usernames ${invalidIndexesJoined} must start with "@" symbol`;
+  if (
+    areUsernamesValid.invalidDetailsIndexArray &&
+    inputsSplitted.length > 1 &&
+    oneAddedToAllIndexes.length === 1
+  )
+    return { usernameValError: invalidUsernamesMessageSingular };
+
+  if (
+    areUsernamesValid.invalidDetailsIndexArray &&
+    inputsSplitted.length > 1 &&
+    oneAddedToAllIndexes.length > 1
+  )
+    return { usernameValError: invalidUsernamesMessagePlural };
 }

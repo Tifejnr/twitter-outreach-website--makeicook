@@ -26,22 +26,30 @@ const setMeansOfExceution = useStore((state) => state.setMeansOfExceution);
         overflow: isClicked ?  'visible' : "hidden",
       }
 
+  function storeMeansInStorage (meansChosenAddToBoards) {
+    localStorage.setItem('meansChosenAddToBoards', meansChosenAddToBoards);
+ }
+
 function handleEmailMeansSelection () {
   setMeansOfExceution(emailMeans)
   setIsClicked(false)
   setSelectLabel(emailMeans)
+  storeMeansInStorage(emailMeans)
 }
 
 function handleUsernameMeansSelection () {
   setMeansOfExceution(usernameMeans)
   setIsClicked(false)
   setSelectLabel(usernameMeans)
+  storeMeansInStorage(usernameMeans)
 }
 
 function handleFullnameMeansSelection () {
-  setMeansOfExceution(fullNameMeans)
-    setIsClicked(false)
-  setSelectLabel(fullNameMeans)
+   setMeansOfExceution(fullNameMeans)
+   setIsClicked(false)
+   setSelectLabel(fullNameMeans)
+   storeMeansInStorage(fullNameMeans)
+
 }
 
   return (
@@ -63,8 +71,8 @@ function handleFullnameMeansSelection () {
           <p id="selectReqError"></p>
 
           <ul style={openMeansAvailableStyle}>
-            <li className="options" onClick={handleUsernameMeansSelection}><p>Username</p></li>
             <li className="options" onClick={handleEmailMeansSelection}><p>Email</p></li>
+            <li className="options" onClick={handleUsernameMeansSelection}><p>Username</p></li>
             <li className="options" onClick={handleFullnameMeansSelection}><p>Full name</p></li>
           </ul>
         </div>

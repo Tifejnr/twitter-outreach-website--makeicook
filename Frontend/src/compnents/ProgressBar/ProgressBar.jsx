@@ -59,13 +59,13 @@ export default function ProgressBar(props) {
               ? `Member Addition Completed`
               : ` ${totalRounds} Members Addition Completed`
             : totalRounds === 1
-            ? ``
+            ? ''
             : `Adding ${totalRounds} Members...`}
         </h2>
 
         {percentLoaded != 100 && (
           <h2 id="noOfRounds" className="title">
-            Adding Member {currentRound}
+            Adding Member {totalRounds >1 && currentRound}
           </h2>
         )}
         {percentLoaded == 100 ? (
@@ -74,7 +74,7 @@ export default function ProgressBar(props) {
           </h3>
         ) : (
           <h3 id="successStatusTitle" className="title successTitle">
-              Member {currentRound} Successfull Additions: {sucessLength}
+              Member {totalRounds >1 && currentRound} Successfull Additions: {sucessLength}
           </h3>
         )}
         {percentLoaded == 100 ? (
@@ -83,7 +83,7 @@ export default function ProgressBar(props) {
           </h3>
         ) : (
           <h3 id="failureTitle" className="title failureTitle">
-           Member {currentRound} Failed Additions: {failureLength}
+           Member {totalRounds >1 && currentRound} Failed Additions: {failureLength}
           </h3>
         )}
 
