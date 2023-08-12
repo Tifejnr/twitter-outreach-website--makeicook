@@ -53,6 +53,7 @@ export default function AddMember() {
   const [boardsCollection, setBoardsCollection] = useState([{}]);
   const [openProgressBar, setOpenProgressBar] = useState(false);
  const [labelTitle, setLabelTitle] = useState(addMemberTitle);
+const [selectLabel, setSelectLabel] = useState("Select Means of Addition");
  const [executionBtnClicked , setExecutionBtnClicked ] = useState(false);
  const [textAreaError, setTextAreaError ] = useState("");
 
@@ -68,6 +69,7 @@ export default function AddMember() {
   const  pushWorkspaceObjDetails = useStore((state) => state.pushWorkspaceObjDetails);
   const  workspaceObjDetails = useStore((state) => state.workspaceObjDetails);
   const  meansOfExceution = useStore((state) => state.meansOfExceution);
+  const setMeansOfExceution = useStore((state) => state.setMeansOfExceution);
 
 
   changeTabTitle(addToBoardsTabTitle)
@@ -244,6 +246,14 @@ export default function AddMember() {
       abortController.abort();
     };
   }, []);
+
+  useEffect(()=> {
+     // auto pick means picked previously for users
+    const meansChosenAddToBoards = localStorage.getItem('meansChosenAddToBoards');
+    if (meansChosenAddToBoards) {
+   setMeansOfExceution(meansChosenAddToBoards)
+    }
+  })
 
 
   return (
