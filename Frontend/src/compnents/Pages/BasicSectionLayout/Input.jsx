@@ -12,8 +12,6 @@ export default function Input(props) {
     //props
     const textAreaError= props.textAreaError
 
-    console.log(textAreaError)
-
   // Function to handle textarea value changes
   const handleTextareaChange = (event) => {
     setTextAreaValue(event.target.value);
@@ -21,11 +19,11 @@ export default function Input(props) {
 
     //text area border when error ocuurs
      const textareaStyle= {
-        borderColor: textAreaError== null ? "" :  textAreaError ?  errorColor : successColor,
+        borderColor: textAreaError== "" ? "" :  textAreaError ?  errorColor : successColor,
       }
 
      const textareaErrorStyle= {
-        color: textAreaError== null ? "" :  textAreaError && errorColor 
+        color: textAreaError== "" ? "" :  textAreaError && errorColor 
       }
 
   return (
@@ -40,7 +38,7 @@ export default function Input(props) {
             cols="40"
             rows="6"
             placeholder={props.inputPlaceholderText}></textarea>
-          <p className="error" style={textareaErrorStyle}>{ textAreaError== null ? "" :  textAreaError ? textAreaError: ""}</p>
+          <p className="error" style={textareaErrorStyle}>{ textAreaError ? textAreaError: ""}</p>
         </section>       
     </>
 

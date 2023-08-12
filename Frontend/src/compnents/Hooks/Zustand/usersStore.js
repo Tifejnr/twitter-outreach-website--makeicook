@@ -1,14 +1,6 @@
 import { create } from "zustand";
 
 const useStore = create((set) => ({
-  //set execution button state when clcked
-  executionBtnClicked: "",
-
-  setExecutionBtnClicked: (updatedexecutionBtnClicked) =>
-    set((state) => ({
-      executionBtnClicked: updatedexecutionBtnClicked,
-    })),
-
   //set checkboxRatioNotifierDisplay
   checkboxRatioNotifierDisplay: "",
 
@@ -28,12 +20,6 @@ const useStore = create((set) => ({
 
   setTextAreaValue: (updatedTextArea) =>
     set((state) => ({ textAreaValue: updatedTextArea })),
-
-  //set TextAreaError
-  textAreaError: null,
-
-  setTextAreaError: (updatedTextAreaError) =>
-    set((state) => ({ textAreaError: updatedTextAreaError })),
 
   //set timeInterval
   timeInterval: 1,

@@ -34,6 +34,7 @@ const fullnameMeansInputPlaceholderText =
 const searchPlaceholderTitle = "Search Boards ...";
 const selectInstructionText = "Select Boards to Add Members to";
 
+
 const pageName = "add-member";
 const pageTitle = "Add Members Via";
 const action = "adding";
@@ -45,12 +46,15 @@ const fullNameMeans= "Fullname"
 const unknowMeansYet="..."
 const addMemberTitle= "Add Members"
 
+const insufficietCreditsMess= "Please buy credits to use this tool";
+const checkboxMustBeCheckedMess= "Please check at least a board below";
+
 export default function AddMember() {
   const [boardsCollection, setBoardsCollection] = useState([{}]);
   const [openProgressBar, setOpenProgressBar] = useState(false);
  const [labelTitle, setLabelTitle] = useState(addMemberTitle);
- const [ executionBtnClicked , setExecutionBtnClicked ] = useState(false);
- const [ textAreaError , setTextAreaError ] = useState(null);
+ const [executionBtnClicked , setExecutionBtnClicked ] = useState(false);
+ const [textAreaError, setTextAreaError ] = useState("");
 
   const [clientSignature, setClientSignature] = useState("");
   const [boardDetailsObj, setBoardDetailsObj] = useState([])
@@ -80,51 +84,53 @@ export default function AddMember() {
     meansOfExceution
   };
 
-  const insufficietCreditsMess= "Please buy credits to use this tool";
-  const checkboxMustBeCheckedMess= "Please check at least a board below";
 
  async function validateParams(executionParams) {
 
-    if (creditsFromServer <1) return  setExecutionErrorBtn(insufficietCreditsMess) 
+    if (creditsFromServer <1) return  setExecutionErrorBtn(insufficietCreditsMess) , setLabelTitle(addMemberTitle);
    setExecutionErrorBtn("")
 
    const response = await validateAddToBoard(executionParams)
 
   if (response.noCheckboxChecked) {
-    return  setExecutionBtnClicked(false), setExecutionErrorBtn(checkboxMustBeCheckedMess);
+    return  setExecutionBtnClicked(false), 
+    setLabelTitle(addMemberTitle), 
+    setExecutionErrorBtn(checkboxMustBeCheckedMess);
   }
 
   else{
   setExecutionErrorBtn("")
   }
 
-
-
    if (response.inputValError) {
     return setExecutionBtnClicked(false), 
+           setLabelTitle(addMemberTitle),
            setExecutionErrorBtn(response.inputValError), 
            setTextAreaError(response.inputValError);
     }
 
   if (response.usernameValError) {
     return setExecutionBtnClicked(false),  
+           setLabelTitle(addMemberTitle),
            setExecutionErrorBtn(response.usernameValError), 
            setTextAreaError(response.usernameValError);
   }
 
    if (response.fullNameValError) {
     return setExecutionBtnClicked(false), 
+           setLabelTitle(addMemberTitle),
            setExecutionErrorBtn(response.fullNameValError), 
            setTextAreaError(response.fullNameValError);
    }
 
-   setTextAreaError(false)
+   setTextAreaError("")
    setExecutionErrorBtn("")
 
    //if it's email means use board id only
 
   if (meansOfExceution==emailMeans) {
       if (response.boardDetailsObj )  {
+   setLabelTitle("Starting...") 
     setBoardDetailsObj(response)
     setOpenProgressBar(true)
    }

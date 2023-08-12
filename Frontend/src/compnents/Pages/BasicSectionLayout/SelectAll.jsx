@@ -12,7 +12,6 @@ export default function SelectAll(props) {
   const checkboxesArray = useStore((state) => state.checkboxesArray);
   const executionErrorBtn = useStore((state) => state.executionErrorBtn);
 
-console.log(props.executionBtnClicked)
  //display counts of checked to unchecked checkboxes
    const checkboxRatioNotifier = () => {
     const totalCheckboxes = checkboxesArray.length;
