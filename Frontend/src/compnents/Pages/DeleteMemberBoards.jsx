@@ -15,41 +15,34 @@ import getWorkspacesName from "./getWorkspacesName";
 import getAllBoardsId from "./Validations/getBoardIdOnly/getAllBoardsId";
 
 
-
-//email means
-const emailMeansInputLabel = "Members' Emails:";
-const emailMeansInputPlaceholderText =
-  "Input emails of members to be added, each separated with a comma.";
-
 //username means
 const usernameMeansInputLabel = "Members' Usernames:";
 const usernameMeansInputPlaceholderText =
-  "Input usernames of members to be added, each separated with a comma.";
+  "Input usernames of members to be deleted, each separated with a comma.";
 
 //fullname means
 const fullnameMeansInputLabel = "Members' Fullnames:";
 const fullnameMeansInputPlaceholderText =
-  "Input fullnames of members to be added, each separated with a comma.";
+  "Input fullnames of members to be deleted, each separated with a comma.";
 
 const searchPlaceholderTitle = "Search Boards ...";
-const selectInstructionText = "Select Boards to Add Members to";
+const selectInstructionText = "Select Boards to Delete Members from";
 
 
 const pageName = "add-member";
-const pageTitle = "Add Members Via";
-const action = "Addition";
-const addToBoardsTabTitle= "Add Members to Boards – CollabforTrello"
+const pageTitle = "Delete Members Via";
+const action = "Deletion";
+const addToBoardsTabTitle= "Delete Members from Boards – CollabforTrello"
 const timeInterval= 1;
-const emailMeans = "Email";
 const usernameMeans= "Username"
 const fullNameMeans= "Fullname"
 const unknowMeansYet="..."
-const addMemberTitle= "Add Members"
+const addMemberTitle= "Delete Members"
 
 const insufficietCreditsMess= "Please buy credits to use this tool";
 const checkboxMustBeCheckedMess= "Please check at least a board below";
 
-export default function AddMember() {
+export default function DeleteMemberBoards() {
   const [boardsCollection, setBoardsCollection] = useState([{}]);
   const [openProgressBar, setOpenProgressBar] = useState(false);
  const [labelTitle, setLabelTitle] = useState(addMemberTitle);
@@ -59,7 +52,7 @@ export default function AddMember() {
   const [clientSignature, setClientSignature] = useState("");
   const [boardDetailsObj, setBoardDetailsObj] = useState([])
   const [boardIdsObj, setBoardIdsObj] = useState([])
-  const [selectLabel, setSelectLabel] = useState("Select Means of Addition");
+  const [selectLabel, setSelectLabel] = useState("Select Means of Deletion");
 
   const creditsFromServer = useStore((state) => state.creditsFromServer);
   const checkboxesArray = useStore((state) => state.checkboxesArray);
@@ -106,13 +99,6 @@ export default function AddMember() {
    setLabelTitle("Verifying Inputs...") 
   }
 
-   if (response.inputValError) {
-    return setExecutionBtnClicked(false), 
-           setLabelTitle(addMemberTitle),
-           setExecutionErrorBtn(response.inputValError), 
-           setTextAreaError(response.inputValError);
-    }
-
   if (response.usernameValError) {
     return setExecutionBtnClicked(false),  
            setLabelTitle(addMemberTitle),
@@ -129,16 +115,6 @@ export default function AddMember() {
 
    setTextAreaError("")
    setExecutionErrorBtn("")
-
-   //if it's email means use board id only
-
-  if (meansOfExceution==emailMeans) {
-      if (response.boardDetailsObj )  {
-   setLabelTitle("Starting...") 
-    setBoardDetailsObj(response)
-    setOpenProgressBar(true)
-   }
-  }
 
    if (meansOfExceution==usernameMeans) {   
      if (response.errorNameAddingObjArray )  {
@@ -161,8 +137,6 @@ export default function AddMember() {
       setExecutionErrorBtn(errorMessage) )
   }
 
-
-  
    if (response.stop) {
     const stoppedMessage = "Action Stopped"
     
@@ -302,12 +276,7 @@ export default function AddMember() {
         <SelectMeans actionToBePerformed={action} selectLabel={selectLabel}/>
 
       { meansOfExceution && <section className="inner-main-cont" id="innerMainContentCont">
-        { meansOfExceution == emailMeans ? <Input
-            inputLabel={emailMeansInputLabel}
-            inputPlaceholderText={emailMeansInputPlaceholderText}
-            textAreaError={textAreaError}
-          /> :  
-          
+        {
            meansOfExceution == usernameMeans ? 
           <Input
             inputLabel={usernameMeansInputLabel}

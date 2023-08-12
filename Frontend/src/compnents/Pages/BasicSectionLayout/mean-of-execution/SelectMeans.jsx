@@ -5,10 +5,10 @@ import toggleIcon from "../../../../assets/SVGs/faq-toggle-icon.svg"
 const emailMeans = "Email";
 const usernameMeans= "Username"
 const fullNameMeans= "Fullname"
+const meansOfAddition=  "Select Means of Addition"
 
-export default function SelectMeans() {
+export default function SelectMeans(props) {
 const [isClicked, setIsClicked] = useState(false);
-const [selectLabel, setSelectLabel] = useState("Select Means of Addition");
 const setMeansOfExceution = useStore((state) => state.setMeansOfExceution);
 
     const handleToggle= ()=> {
@@ -33,33 +33,29 @@ const setMeansOfExceution = useStore((state) => state.setMeansOfExceution);
 function handleEmailMeansSelection () {
   setMeansOfExceution(emailMeans)
   setIsClicked(false)
-  setSelectLabel(emailMeans)
   storeMeansInStorage(emailMeans)
 }
 
 function handleUsernameMeansSelection () {
   setMeansOfExceution(usernameMeans)
   setIsClicked(false)
-  setSelectLabel(usernameMeans)
   storeMeansInStorage(usernameMeans)
 }
 
 function handleFullnameMeansSelection () {
    setMeansOfExceution(fullNameMeans)
    setIsClicked(false)
-   setSelectLabel(fullNameMeans)
    storeMeansInStorage(fullNameMeans)
-
 }
 
   return (
     <section className="meansofAdditionSection" id="meansofAdditionSection">
       <form action="" className="text-area-form" id="form">
         <div className="selector">
-          <label>Select Means of Addition</label>
+          <label>Select Means of {props.actionToBePerformed}</label>
 
           <div id="selectField" onClick={handleToggle} title="Click to select preferred means of addition">
-            <p id="selectText">{selectLabel}</p>
+            <p id="selectText">{props.selectLabel}</p>
             <span id="arrowIcon" className="arrow"
               ><div className="faq-item__arrow-container">
                 <img
@@ -71,7 +67,8 @@ function handleFullnameMeansSelection () {
           <p id="selectReqError"></p>
 
           <ul style={openMeansAvailableStyle}>
-            <li className="options" onClick={handleEmailMeansSelection}><p>Email</p></li>
+          { props.selectLabel== meansOfAddition && <li className="options" onClick={handleEmailMeansSelection}><p>Email</p></li>
+           }
             <li className="options" onClick={handleUsernameMeansSelection}><p>Username</p></li>
             <li className="options" onClick={handleFullnameMeansSelection}><p>Full name</p></li>
           </ul>
