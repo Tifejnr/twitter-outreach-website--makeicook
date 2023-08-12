@@ -1,15 +1,14 @@
 "use strict";
 import axios from "axios";
-import ProgressBar from "./ProgressBar";
-import { websiteUrl } from "../../JS functions/websiteUrl";
-import useStore from "../Hooks/Zustand/usersStore";
+import ProgressBar from "../ProgressBar";
+import { websiteUrl } from "../../../JS functions/websiteUrl";
+import useStore from "../../Hooks/Zustand/usersStore";
 
 let totalDurationLength, userDetailsLength;
 
 const action = "adding";
 const isAddedTo = "Boards";
 
-const emailMeans = "Email";
 const usernameMeans = "Username";
 const fullNameMeans = "Fullname";
 
@@ -53,8 +52,6 @@ export default function AddToBoardsProgress(props) {
   const timeIntervalValue = Number(executionParams.timeInterval);
 
 
-
-
   const noOfCheckedCheckbox = checkboxesArray.filter(
     (checkbox) => checkbox.checked
   ).length;
@@ -64,44 +61,6 @@ export default function AddToBoardsProgress(props) {
   totalDurationLength = Number(noOfCheckedCheckbox) * userDetailsLength;
   const timeInterval = timeIntervalValue * 1000;
 
-  //email means
-  if (meansOfExceution == emailMeans) {
-    // each email execution to server
-    emailListSplited.map((eachEmail, index) => {
-      const email = eachEmail.trim();
-      setuserDetails(email);
-
-      setTimeout(() => {
-        incrementCurrentRound();
-      }, index * noOfCheckedCheckbox * timeInterval * 1.35);
-
-      // loop through all checked boards and execute
-      setTimeout(() => {
-        boardDetailsObj.map((boardObj, index) => {
-          const boardId = boardObj.boardId;
-          let boardName = boardObj.boardName;
-          if (!boardId && !boardName) return console.log("board id not found");
-
-          resetSucessLength();
-          resetFailureLength();
-          setSectionName(boardName);
-
-          const paramsForExecution = {
-            email,
-            boardId,
-            boardName,
-          };
-
-          setTimeout(() => {
-            new Execution(paramsForExecution);
-          }, index * timeInterval);
-        });
-      }, index * noOfCheckedCheckbox * timeInterval * 1.35);
-    });
-  }
-
-  //username means of execution
-  if (meansOfExceution == usernameMeans || meansOfExceution == fullNameMeans) {
     let nameDisplayed = ""
     // each name or username execution to server
     nameAddingObjArray.map((nameDetails, index) => {
@@ -147,13 +106,12 @@ export default function AddToBoardsProgress(props) {
         });
       }, index * noOfCheckedCheckbox * timeInterval * 1.35);
     });
-  }
+
   function Execution(paramsForExecution) {
     const boardName = paramsForExecution.boardName;
     const boardId = paramsForExecution.boardId;
     const memberId = paramsForExecution.memberId;
     const nameDisplayed = paramsForExecution.nameDisplayed;
-    const email = paramsForExecution.email;
 
     let userDetail;
 
