@@ -6,10 +6,13 @@ const successColor = "#09c372";
 const errorColor = "#ff3860";
 
 export default function Input(props) {
-    const textAreaError = useStore((state) => state.textAreaError);
     const setTextAreaValue = useStore((state) => state.setTextAreaValue);
     const textAreaValue = useStore((state) => state.textAreaValue);
-    const textareaRef = useRef(null);
+
+    //props
+    const textAreaError= props.textAreaError
+
+    console.log(textAreaError)
 
   // Function to handle textarea value changes
   const handleTextareaChange = (event) => {
@@ -33,12 +36,11 @@ export default function Input(props) {
             style={textareaStyle}
             value={textAreaValue}
             onChange={handleTextareaChange}
-            ref={textareaRef}
             id="memberDetailTextArea"
             cols="40"
             rows="6"
             placeholder={props.inputPlaceholderText}></textarea>
-          <p className="error" style={textareaErrorStyle}>{textAreaError && textAreaError}</p>
+          <p className="error" style={textareaErrorStyle}>{ textAreaError== null ? "" :  textAreaError ? textAreaError: ""}</p>
         </section>       
     </>
 

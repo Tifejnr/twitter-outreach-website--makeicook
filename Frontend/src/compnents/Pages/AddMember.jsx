@@ -43,12 +43,14 @@ const emailMeans = "Email";
 const usernameMeans= "Username"
 const fullNameMeans= "Fullname"
 const unknowMeansYet="..."
+const addMemberTitle= "Add Members"
 
 export default function AddMember() {
   const [boardsCollection, setBoardsCollection] = useState([{}]);
   const [openProgressBar, setOpenProgressBar] = useState(false);
- const [labelTitle, setLabelTitle] = useState("Add Members");
+ const [labelTitle, setLabelTitle] = useState(addMemberTitle);
  const [ executionBtnClicked , setExecutionBtnClicked ] = useState(false);
+ const [ textAreaError , setTextAreaError ] = useState(null);
 
   const [clientSignature, setClientSignature] = useState("");
   const [boardDetailsObj, setBoardDetailsObj] = useState([])
@@ -62,7 +64,6 @@ export default function AddMember() {
   const  pushWorkspaceObjDetails = useStore((state) => state.pushWorkspaceObjDetails);
   const  workspaceObjDetails = useStore((state) => state.workspaceObjDetails);
   const  meansOfExceution = useStore((state) => state.meansOfExceution);
-  const  setTextAreaError = useStore((state) => state.setTextAreaError);
 
 
   changeTabTitle(addToBoardsTabTitle)
@@ -89,15 +90,35 @@ export default function AddMember() {
 
    const response = await validateAddToBoard(executionParams)
 
-  if (response.noCheckboxChecked) return ({error: true}, setExecutionErrorBtn(checkboxMustBeCheckedMess));
-  setExecutionErrorBtn("")
-   if (response.inputValError) return setExecutionErrorBtn(response.inputValError), setTextAreaError(response.inputValError);
-   if (response.usernameValError) return setExecutionErrorBtn(response.usernameValError), setTextAreaError(response.usernameValError);
-    setTextAreaError(false)
-   setExecutionErrorBtn("")
+  if (response.noCheckboxChecked) {
+    return  setExecutionBtnClicked(false), setExecutionErrorBtn(checkboxMustBeCheckedMess);
+  }
 
-   if (response.fullNameValError) return setExecutionErrorBtn(response.fullNameValError), setTextAreaError(response.fullNameValError);
-    setTextAreaError(false)
+  else{
+  setExecutionErrorBtn("")
+  }
+
+
+
+   if (response.inputValError) {
+    return setExecutionBtnClicked(false), 
+           setExecutionErrorBtn(response.inputValError), 
+           setTextAreaError(response.inputValError);
+    }
+
+  if (response.usernameValError) {
+    return setExecutionBtnClicked(false),  
+           setExecutionErrorBtn(response.usernameValError), 
+           setTextAreaError(response.usernameValError);
+  }
+
+   if (response.fullNameValError) {
+    return setExecutionBtnClicked(false), 
+           setExecutionErrorBtn(response.fullNameValError), 
+           setTextAreaError(response.fullNameValError);
+   }
+
+   setTextAreaError(false)
    setExecutionErrorBtn("")
 
    //if it's email means use board id only
@@ -109,15 +130,56 @@ export default function AddMember() {
    }
   }
 
-   if (meansOfExceution==usernameMeans) {    
+   if (meansOfExceution==usernameMeans) {   
+     if (response.errorNameAddingObjArray )  {
+  const usernamesAtAdded = response.errorNameAddingObjArray.map((username) => {
+    return `@${username}`
+  });
+    let  errorMessage
+
+      if(usernamesAtAdded.length==1) {
+        errorMessage = `Username ${usernamesAtAdded[0]} is not found.`
+      }
+
+      if(usernamesAtAdded.length>1) {
+        errorMessage = `Usernames ${usernamesAtAdded.join(", ")} are not found.`
+      }
+
+  return ( setExecutionBtnClicked(false),
+      setLabelTitle(addMemberTitle),
+      setTextAreaError(errorMessage),
+      setExecutionErrorBtn(errorMessage) )
+  }
+
     if (response.nameAddingObjArray )  {
+     setLabelTitle("Starting...") 
       setBoardDetailsObj(response)
       setOpenProgressBar(true)
       }
     }
+    
 
-   if (meansOfExceution==fullNameMeans) {    
+   if (meansOfExceution==fullNameMeans) {   
+     if (response.errorNameAddingObjArray )  {
+      const notFoundNamesArray = response.errorNameAddingObjArray 
+      let  errorMessage
+
+      if(notFoundNamesArray.length==1) {
+        errorMessage = `Full name ${notFoundNamesArray[0]} is not found.`
+      }
+
+      if(notFoundNamesArray.length>1) {
+        errorMessage = `Full names ${notFoundNamesArray.join(", ")} are not found.`
+      }
+
+  return ( setExecutionBtnClicked(false),
+      setLabelTitle(addMemberTitle),
+      setTextAreaError(errorMessage),
+      setExecutionErrorBtn(errorMessage) )
+  }
+
     if (response.nameAddingObjArray )  {
+     setLabelTitle("Starting...") 
       setBoardDetailsObj(response)
       setOpenProgressBar(true)
       }
@@ -198,18 +260,21 @@ export default function AddMember() {
         { meansOfExceution == emailMeans ? <Input
             inputLabel={emailMeansInputLabel}
             inputPlaceholderText={emailMeansInputPlaceholderText}
+            textAreaError={textAreaError}
           /> :  
           
            meansOfExceution == usernameMeans ? 
           <Input
             inputLabel={usernameMeansInputLabel}
             inputPlaceholderText={usernameMeansInputPlaceholderText}
+            textAreaError={textAreaError}
           /> :   
           
           meansOfExceution == fullNameMeans ?  
              <Input
             inputLabel={fullnameMeansInputLabel}
             inputPlaceholderText={fullnameMeansInputPlaceholderText}
+            textAreaError={textAreaError}
           /> :    ""
         } 
           <SelectAll
@@ -218,10 +283,9 @@ export default function AddMember() {
             selectInstructionText={selectInstructionText}
             action={ async (e)=> {
              e.preventDefault();
-        setExecutionBtnClicked(!executionBtnClicked)
-         const response =   await validateParams(executionParams);
-
-         console.log(response)
+           setLabelTitle("Verifying Inputs...") 
+      setExecutionBtnClicked(!executionBtnClicked)
+           await validateParams(executionParams);
             } }
           />
 

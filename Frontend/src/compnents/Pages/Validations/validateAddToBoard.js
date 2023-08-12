@@ -29,7 +29,8 @@ export default async function validateAddToBoard(executionParams) {
   //validating checkbox
   if (!isAnyCheckboxChecked()) return { noCheckboxChecked: true };
 
-  let nameAddingObjArray = [];
+  let nameAddingObjArray = [],
+    errorNameAddingObjArray = [];
 
   //validating if it's username means or fullname means
   if (meansOfExceution == usernameMeans || meansOfExceution == fullNameMeans) {
@@ -45,6 +46,7 @@ export default async function validateAddToBoard(executionParams) {
     }
 
     nameAddingObjArray = [];
+    errorNameAddingObjArray = [];
     // Create an array to hold promises
     const promises = itemsIntoArray.map(async (memberUsername) => {
       const memberDetailsForIdGetting = {
@@ -59,7 +61,8 @@ export default async function validateAddToBoard(executionParams) {
 
       const memberIdFound = await getMemberIdServer;
 
-      if (memberIdFound.error) return console.log("member not found");
+      if (memberIdFound.error)
+        return errorNameAddingObjArray.push(memberUsername);
 
       const memberId = memberIdFound.memberIdFound[0].memberId;
       const nameAddingObj = {
@@ -72,6 +75,8 @@ export default async function validateAddToBoard(executionParams) {
     });
 
     await Promise.all(promises);
+
+    if (errorNameAddingObjArray.length > 0) return { errorNameAddingObjArray };
   }
 
   //validating if it's email means entered
