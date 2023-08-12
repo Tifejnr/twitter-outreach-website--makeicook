@@ -12,6 +12,9 @@ export default function SelectAll(props) {
   const checkboxesArray = useStore((state) => state.checkboxesArray);
   const executionErrorBtn = useStore((state) => state.executionErrorBtn);
 
+    const verifying= props.verifying
+    const executionBtnClicked= props.executionBtnClicked
+
  //display counts of checked to unchecked checkboxes
    const checkboxRatioNotifier = () => {
     const totalCheckboxes = checkboxesArray.length;
@@ -68,7 +71,7 @@ export default function SelectAll(props) {
         <button
           className={`execution-btn ${props.executionBtnClicked && "spinning"} `}
           onClick={props.action}>
-          {props.labelTitle}
+          { executionBtnClicked ? verifying : props.labelTitle}
         </button>
       </section>
       <p className="execution-btn-error">{executionErrorBtn}</p>

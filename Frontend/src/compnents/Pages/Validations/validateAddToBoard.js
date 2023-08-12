@@ -16,6 +16,9 @@ export default async function validateAddToBoard(executionParams) {
   const textareaInputs = executionParams.textAreaValue;
   const checkboxesArray = executionParams.checkboxesArray;
   const meansOfExceution = executionParams.meansOfExceution;
+  const executionBtnClicked = executionParams.executionBtnClicked;
+
+  if (executionBtnClicked) return { stop: true };
 
   const usernamesIntoArray = textareaInputs.split(/\s*,\s*/);
   const fullNamesIntoArray = textareaInputs.split(/\s*,\s*/);

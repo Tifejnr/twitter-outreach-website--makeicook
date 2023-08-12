@@ -53,7 +53,6 @@ export default function AddMember() {
   const [boardsCollection, setBoardsCollection] = useState([{}]);
   const [openProgressBar, setOpenProgressBar] = useState(false);
  const [labelTitle, setLabelTitle] = useState(addMemberTitle);
-const [selectLabel, setSelectLabel] = useState("Select Means of Addition");
  const [executionBtnClicked , setExecutionBtnClicked ] = useState(false);
  const [textAreaError, setTextAreaError ] = useState("");
 
@@ -83,7 +82,8 @@ const [selectLabel, setSelectLabel] = useState("Select Means of Addition");
     checkboxesArray,
     boardDetailsObj,
     boardIdsObj,
-    meansOfExceution
+    meansOfExceution,
+    executionBtnClicked
   };
 
 
@@ -94,6 +94,10 @@ const [selectLabel, setSelectLabel] = useState("Select Means of Addition");
 
    const response = await validateAddToBoard(executionParams)
 
+   if (response.stop) {
+    return  setExecutionBtnClicked(false), setLabelTitle(addMemberTitle)
+   }
+
   if (response.noCheckboxChecked) {
     return  setExecutionBtnClicked(false), 
     setLabelTitle(addMemberTitle), 
@@ -102,6 +106,7 @@ const [selectLabel, setSelectLabel] = useState("Select Means of Addition");
 
   else{
   setExecutionErrorBtn("")
+   setLabelTitle("Verifying Inputs...") 
   }
 
    if (response.inputValError) {
@@ -295,19 +300,19 @@ const [selectLabel, setSelectLabel] = useState("Select Means of Addition");
         } 
           <SelectAll
             labelTitle={labelTitle}
+            verifying = "Verifying Inputs..."
             executionBtnClicked ={executionBtnClicked}
             selectInstructionText={selectInstructionText}
             action={ async (e)=> {
              e.preventDefault();
-           setLabelTitle("Verifying Inputs...") 
-      setExecutionBtnClicked(!executionBtnClicked)
+      setExecutionBtnClicked(executionBtnClicked=>!executionBtnClicked)
            await validateParams(executionParams);
             } }
           />
 
           <SearchBoards searchPlaceholderTitle={searchPlaceholderTitle} />
 
-          {boardsCollection.length <2 && <p className="loading-your-boards-text">Loading your boards and their workspaces...</p>}
+          {boardsCollection.length < 2 && <p className="loading-your-boards-text">Loading your boards and their workspaces...</p>}
 
           <section className="all-boardnames-container">
             { boardsCollection.length>1 &&  boardsCollection.map((board, index) => {

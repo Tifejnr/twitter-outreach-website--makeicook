@@ -8,7 +8,7 @@ export default function atSymbolValidationPrefix(input) {
 
   inputs.forEach((input, index) => {
     //push to array of failed validation if invalid
-    if (!regex.test(input)) {
+    if (!regex.test(input.trim())) {
       invalidDetailsIndexArray.push(index);
     }
   });
