@@ -1,3 +1,5 @@
+import { findBoardIdByName } from "./FindBoardId/byName";
+
 export default function boardIdAndName(paramsForboardIdAndName) {
   const checkboxesArray = paramsForboardIdAndName.checkboxesArray;
   const boardsCollection = paramsForboardIdAndName.boardsCollection;
