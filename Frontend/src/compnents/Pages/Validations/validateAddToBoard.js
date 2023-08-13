@@ -1,7 +1,8 @@
 import { isAnyCheckboxChecked } from "../../../JS functions/Utilis/Validations/Checkbox";
 import { validateInput } from "../../../JS functions/Utilis/Validations/Input";
 import { findBoardIdByName } from "../../../JS functions/Utilis/FindBoardId/byName";
-import memberIdSearch from "./MemberIds/multi-boards-check";
+import memberIdSearch from "./memberIdSearch/multi-boards-check";
+import boardIdAndName from "./board-id-and-name/boardIdName";
 
 const emailMeans = "Email";
 const usernameMeans = "Username";
@@ -49,6 +50,8 @@ export default async function validateAddToBoard(executionParams) {
     if (response.fullNameValError) return response;
     if (response.errorNameAddingObjArray) return response;
 
+    console.log(response);
+
     nameAddingObjArray = response.nameAddingObjArray;
 
     console.log(nameAddingObjArray);
@@ -60,31 +63,8 @@ export default async function validateAddToBoard(executionParams) {
     if (response.inputValError) return response;
   }
 
-  const boardDetailsObj = checkboxesArray.map((checkbox, index) => {
-    if (!checkbox.checked) return false;
-
-    const checkboxId = checkbox.id;
-
-    const arrayNoFromId = Number(checkboxId.replace(/\D/g, ""));
-
-    const boardEl = document.getElementById(`labelcheck${arrayNoFromId}`);
-
-    const boardName = boardEl.textContent;
-
-    const foundBoard = findBoardIdByName(boardsCollection, boardName);
-
-    if (!foundBoard) return console.log("board not found");
-    const boardId = foundBoard.id;
-
-    const neededObj = {
-      boardId,
-      boardName,
-    };
-
-    return neededObj;
-  });
-
-  if (!boardDetailsObj) return "";
+  //get checked boards id and their names for action
+  const boardDetailsObj = boardIdAndName(executionParams);
 
   const validationComplete = {
     boardDetailsObj,
