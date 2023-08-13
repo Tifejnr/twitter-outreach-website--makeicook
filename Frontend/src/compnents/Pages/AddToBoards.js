@@ -4,7 +4,7 @@ import axios from "axios";
 import { validateInput } from "../../JS functions/Utilis/Validations/Input";
 import { timeIntervalSliderVal } from "../../JS functions/Utilis/Validations/sliderValidation";
 import { isAnyCheckboxChecked } from "../../JS functions/Utilis/Validations/Checkbox";
-import { findBoardIdByName } from "../../JS functions/Utilis/FindBoardId/byName";
+import { findBoardIdByName } from "./Validations/board-id-and-name/FindBoardId/byName";
 import { websiteUrl } from "../../JS functions/websiteUrl";
 
 let succes,

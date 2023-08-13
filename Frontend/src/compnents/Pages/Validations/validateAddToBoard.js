@@ -1,6 +1,6 @@
 import { isAnyCheckboxChecked } from "../../../JS functions/Utilis/Validations/Checkbox";
 import { validateInput } from "../../../JS functions/Utilis/Validations/Input";
-import { findBoardIdByName } from "../../../JS functions/Utilis/FindBoardId/byName";
+import { findBoardIdByName } from "./board-id-and-name/FindBoardId/byName";
 import memberIdSearch from "./memberIdSearch/multi-boards-check";
 import boardIdAndName from "./board-id-and-name/boardIdName";
 
