@@ -4,7 +4,7 @@ import toggleIcon from "../../../../assets/SVGs/faq-toggle-icon.svg"
 
 const emailMeans = "Email";
 const usernameMeans= "Username"
-const fullNameMeans= "Fullname"
+const fullNameMeans= "Full name"
 const meansOfAddition=  "Select Means of Addition"
 
 const additionAction = "Addition";
