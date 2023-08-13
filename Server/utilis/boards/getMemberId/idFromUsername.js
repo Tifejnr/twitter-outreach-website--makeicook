@@ -30,6 +30,7 @@ async function findMemberId(req, res) {
     }
 
     const boardId = board.boardId;
+
     const paramToGetUsernameIds = {
       boardId,
       memberUsername,

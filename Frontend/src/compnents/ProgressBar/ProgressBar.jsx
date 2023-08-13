@@ -4,8 +4,6 @@ import FailureDetails from "./FailureDetails";
 import failureToggleIcon from "../../assets/SVGs/failure-toggle.svg";
 
 export default function ProgressBar(props) {
-  const totalDurationLength = props.totalDurationLength;
-  const totalRounds = props.totalRounds;
   const failureLength = useStore((state) => state.failureLength);
   const totalFailureLength = useStore((state) => state.totalFailureLength);
   const sucessLength = useStore((state) => state.sucessLength);
@@ -16,6 +14,13 @@ export default function ProgressBar(props) {
   const currentRound = useStore((state) => state.currentRound);
   const failureReason = useStore((state) => state.failureReason);
   const [isClicked, setIsClicked] = useState(false);
+
+  //props from execution
+  const labellingObj= props.labellingObj
+  const totalDurationLength = labellingObj.totalDurationLength;
+  const totalRounds = labellingObj.totalRounds;
+  const continuousAction = labellingObj.continuousAction;
+  const action = labellingObj.action;
 
   const handleToggle = () => {
     setIsClicked((prevState) => !prevState);
@@ -56,34 +61,34 @@ export default function ProgressBar(props) {
         <h2 id="totalRoundsEl" className="title">
           {percentLoaded === 100
             ? totalRounds === 1
-              ? `Member Addition Completed`
-              : ` ${totalRounds} Members Addition Completed`
+              ? `Member ${action} Completed`
+              : ` ${totalRounds} Members ${action} Completed`
             : totalRounds === 1
             ? ''
-            : `Adding ${totalRounds} Members...`}
+            : `${continuousAction} ${totalRounds} Members...`}
         </h2>
 
         {percentLoaded != 100 && (
           <h2 id="noOfRounds" className="title">
-            Adding Member {totalRounds >1 && currentRound}
+            {continuousAction} Member {totalRounds >1 && currentRound}
           </h2>
         )}
         {percentLoaded == 100 ? (
           <h3 id="successStatusTitle" className="title successTitle">
-             Total Successfull Additions: {totalSucessLength}
+             Total Successfull {action}s: {totalSucessLength}
           </h3>
         ) : (
           <h3 id="successStatusTitle" className="title successTitle">
-              Member {totalRounds >1 && currentRound} Successfull Additions: {sucessLength}
+              Member {totalRounds >1 && currentRound} Successfull {action}s: {sucessLength}
           </h3>
         )}
         {percentLoaded == 100 ? (
           <h3 id="failureTitle" className="title failureTitle">
-            Total Failed Additions: {totalFailureLength}
+            Total Failed {action}s: {totalFailureLength}
           </h3>
         ) : (
           <h3 id="failureTitle" className="title failureTitle">
-           Member {totalRounds >1 && currentRound} Failed Additions: {failureLength}
+           Member {totalRounds >1 && currentRound} Failed {action}s: {failureLength}
           </h3>
         )}
 
@@ -93,7 +98,7 @@ export default function ProgressBar(props) {
               title="Click to see details if any"
               onClick={handleToggle}
               className="title failureReasonsDisplayTitle">
-              See Failure Details{" "}
+              See Failure Details
               <img
                 style={rotateOnToggle}
                 src={failureToggleIcon}
@@ -114,10 +119,10 @@ export default function ProgressBar(props) {
         {percentLoaded > 0 && <h3 className="title">Credit Charged: 1</h3>}
       </section>
       <section className="btn-section" id="btnSection">
-        {" "}
+        
         {percentLoaded == 100 ? (
           <a href={`/${props.pageName}`}>
-            {" "}
+            
             <button className="okay-btn progressbar-btn" id="okay">
               Okay
             </button>

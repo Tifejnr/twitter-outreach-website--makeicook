@@ -22,7 +22,7 @@ const usernameMeansInputPlaceholderText =
   "Input usernames of members to be deleted, each separated with a comma.";
 
 //fullname means input params
-const fullnameMeansInputLabel = "Members' Fullnames:";
+const fullnameMeansInputLabel = "Members' Full names:";
 const fullnameMeansInputPlaceholderText =
   "Input fullnames of members to be deleted, each separated with a comma.";
 
@@ -33,6 +33,7 @@ const selectInstructionText = "Select Boards to Delete Members from";
 const pageName = "add-member";
 const pageTitle = "Delete Members Via";
 const action = "Deletion";
+const continuousAction = "Deleting"
 const addToBoardsTabTitle= "Delete Members from Boards – Collab for Trello"
 const timeInterval= 1;
 const usernameMeans= "Username"
@@ -79,7 +80,9 @@ export default function DeleteMemberBoards() {
     boardDetailsObj,
     boardIdsObj,
     meansOfExceution,
-    executionBtnClicked
+    executionBtnClicked,
+    action,
+    continuousAction
   };
 
 

@@ -27,7 +27,7 @@ const usernameMeansInputPlaceholderText =
   "Input usernames of members to be added, each separated with a comma.";
 
 //fullname means
-const fullnameMeansInputLabel = "Members' Fullnames:";
+const fullnameMeansInputLabel = "Members' Full names:";
 const fullnameMeansInputPlaceholderText =
   "Input fullnames of members to be added, each separated with a comma.";
 
@@ -37,6 +37,7 @@ const selectInstructionText = "Select Boards to Add Members to";
 
 const pageTitle = "Add Members Via";
 const action = "Addition";
+const continuousAction = "Adding"
 const addToBoardsTabTitle= "Add Members to Boards – Collab for Trello"
 const timeInterval= 1;
 const emailMeans = "Email";
@@ -84,7 +85,8 @@ export default function AddMember() {
     boardIdsObj,
     meansOfExceution,
     executionBtnClicked,
-    action
+    action,
+    continuousAction
   };
 
 

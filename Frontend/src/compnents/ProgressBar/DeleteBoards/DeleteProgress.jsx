@@ -46,6 +46,8 @@ export default function DeleteProgress(props) {
   const clientSignature = executionParams.clientSignature;
   const checkboxesArray = executionParams.checkboxesArray;
   const meansOfExceution = executionParams.meansOfExceution;
+  const continuousAction = executionParams.continuousAction;
+  const action = executionParams.action;
   const timeIntervalValue = Number(executionParams.timeInterval);
 
 
@@ -182,19 +184,20 @@ export default function DeleteProgress(props) {
             pushFailureReason(failureObj), console.log(unstableInteretError)
           );
         }
-        else 
+
+        if (errorMessage.memberNotFoundError)
          {
-          const unkownErrorMessage = "Unknown error occured";
+          const memberNotFoundMessage = "Member not found";
           const failedSectionName = boardName;
           const failedMemberDetails = userDetail;
 
           const failureObj = {
-            reason: unkownErrorMessage,
+            reason: memberNotFoundMessage,
             failedSectionName,
             failedMemberDetails,
           };
 
-          return pushFailureReason(failureObj), console.log(unkownErrorMessage);
+          return pushFailureReason(failureObj), console.log(memberNotFoundMessage);
         }
 
         console.log(errorMessage);
@@ -207,11 +210,17 @@ export default function DeleteProgress(props) {
     })();
   }
 
+ const deleteLabelingObj= {
+    action,
+    continuousAction,
+    totalDurationLength,
+    totalRounds: userDetailsLength    
+  }
+
   return (
     <ProgressBar
-      pageName="add-member"
-      totalDurationLength={totalDurationLength}
-      totalRounds={userDetailsLength}
+      labellingObj= {deleteLabelingObj}
+      pageName="delete-member"
     />
   );
 }

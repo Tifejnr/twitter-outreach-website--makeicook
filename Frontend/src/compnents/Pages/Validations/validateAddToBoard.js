@@ -1,6 +1,5 @@
 import { isAnyCheckboxChecked } from "../../../JS functions/Utilis/Validations/Checkbox";
 import { validateInput } from "../../../JS functions/Utilis/Validations/Input";
-import { findBoardIdByName } from "./board-id-and-name/FindBoardId/byName";
 import memberIdSearch from "./memberIdSearch/multi-boards-check";
 import boardIdAndName from "./board-id-and-name/boardIdName";
 
@@ -31,7 +30,7 @@ export default async function validateAddToBoard(executionParams) {
   //validating checkbox to ensure at least one is checked
   if (!isAnyCheckboxChecked()) return { noCheckboxChecked: true };
 
-  //get checked boards id and their names for action
+  //get checked boards id and their names for action in future
   const boardDetailsObj = boardIdAndName(executionParams);
 
   //validating if it's username means or fullname means
@@ -54,14 +53,10 @@ export default async function validateAddToBoard(executionParams) {
     if (response.fullNameValError) return response;
     if (response.errorNameAddingObjArray) return response;
 
-    console.log(response);
-
     nameAddingObjArray = response.nameAddingObjArray;
-
-    console.log(nameAddingObjArray);
   }
 
-  //validating if it's email means entered
+  //validating if it's email means
   if (meansOfExceution == emailMeans) {
     const response = validateInput(emailInputs);
     if (response.inputValError) return response;

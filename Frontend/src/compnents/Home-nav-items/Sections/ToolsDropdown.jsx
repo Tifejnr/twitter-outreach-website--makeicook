@@ -11,14 +11,18 @@ export default function ToolsDropdown() {
       <li className='tools-dropdown'>
               <Link to="#">Tools <img src={toggleIcon} alt="toggle-icon" /></Link>
               <ul className="dropdown-content">
-                <li><Link to={addMemberPageLink} onClick={(e)=> {
+                <li  onClick={(e)=> {
                   handlePageRefreshOnLoad(addMemberPageLink)
-                }}>Add to boards</Link></li>
+                }}>
+                <Link to={addMemberPageLink}>Add to boards</Link>
+                </li>
 
-                <li><Link to={removeMemberPageLink} onClick={(e)=> {
+                <li onClick={(e)=> {
                     handlePageRefreshOnLoad(removeMemberPageLink)
-                  }}
-                  >Remove from boards</Link>
+                  }}>
+                    
+                  <Link to={removeMemberPageLink} >Remove from boards</Link>
+
                 </li>
 
                 <li><Link to="#">Add to workspaces</Link></li>

@@ -50,8 +50,9 @@ export default function AddToBoardsProgress(props) {
   const clientSignature = executionParams.clientSignature;
   const checkboxesArray = executionParams.checkboxesArray;
   const meansOfExceution = executionParams.meansOfExceution;
+  const action = executionParams.action;
+  const continuousAction = executionParams.continuousAction;
   const timeIntervalValue = Number(executionParams.timeInterval);
-
 
 
 
@@ -260,11 +261,18 @@ export default function AddToBoardsProgress(props) {
     })();
   }
 
+  const additionLabelingObj={
+    action,
+    continuousAction,
+    totalDurationLength,
+    totalRounds: userDetailsLength
+    
+  }
+
   return (
     <ProgressBar
+      labellingObj={additionLabelingObj}
       pageName="add-member"
-      totalDurationLength={totalDurationLength}
-      totalRounds={userDetailsLength}
     />
   );
 }
