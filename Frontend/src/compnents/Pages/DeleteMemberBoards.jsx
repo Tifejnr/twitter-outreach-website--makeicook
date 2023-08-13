@@ -29,13 +29,11 @@ const fullnameMeansInputPlaceholderText =
 const searchPlaceholderTitle = "Search Boards ...";
 const selectInstructionText = "Select Boards to Delete Members from";
 
-
-const pageName = "add-member";
 const pageTitle = "Delete Members Via";
 const action = "Deletion";
 const continuousAction = "Deleting"
 const addToBoardsTabTitle= "Delete Members from Boards – Collab for Trello"
-const timeInterval= 1;
+const timeInterval= 0;
 const usernameMeans= "Username"
 const fullNameMeans= "Full name"
 const unknowMeansYet="..."

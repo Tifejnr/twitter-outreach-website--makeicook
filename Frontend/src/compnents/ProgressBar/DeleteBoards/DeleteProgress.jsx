@@ -209,7 +209,7 @@ export default function DeleteProgress(props) {
       }
     })();
   }
-
+//progress bar display params
  const deleteLabelingObj= {
     action,
     continuousAction,
