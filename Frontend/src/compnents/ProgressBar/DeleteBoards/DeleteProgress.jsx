@@ -41,7 +41,7 @@ export default function AddToBoardsProgress(props) {
   const pushFailureReason = useStore((state) => state.pushFailureReason);
 
   const executionParams = props.executionParams;
-  const emailInputs = executionParams.textAreaValue;
+  const textaraInputs = executionParams.textAreaValue;
   const boardDetailsObj = executionParams.boardDetailsObj.boardDetailsObj;
   const nameAddingObjArray =
     executionParams.boardDetailsObj.nameAddingObjArray;
@@ -55,11 +55,12 @@ export default function AddToBoardsProgress(props) {
   const noOfCheckedCheckbox = checkboxesArray.filter(
     (checkbox) => checkbox.checked
   ).length;
-  const emailListSplited = emailInputs.split(",");
+  const textaraListSplited = textaraInputs.split(",");
 
-  userDetailsLength = Number(emailListSplited.length);
+  userDetailsLength = Number(textaraListSplited.length);
   totalDurationLength = Number(noOfCheckedCheckbox) * userDetailsLength;
   const timeInterval = timeIntervalValue * 1000;
+
 
     let nameDisplayed = ""
     // each name or username execution to server
@@ -67,7 +68,7 @@ export default function AddToBoardsProgress(props) {
       const { memberId, memberUsername , isUsernameInput} = nameDetails;
 
       if (isUsernameInput) {
-        //put @ to display username like to users
+        //put @ to display "username like" details to users
         nameDisplayed =`@${memberUsername}`
          setuserDetails(nameDisplayed);
       }
@@ -115,8 +116,8 @@ export default function AddToBoardsProgress(props) {
 
     let userDetail;
 
-    if (email) {
-      userDetail = email;
+    if (textara) {
+      userDetail = textara;
     }
 
     if (memberId) {
@@ -126,7 +127,7 @@ export default function AddToBoardsProgress(props) {
     if (!boardName) return console.log("boardname does not exist");
 
     const message = {
-      email,
+      textara,
       boardId,
       memberId,
       clientSignature,
@@ -160,7 +161,7 @@ export default function AddToBoardsProgress(props) {
           console.log("No internet");
           const unstableInteretError = "No internet Error";
           const failedSectionName = boardName;
-          const failedMemberDetails = email;
+          const failedMemberDetails = textara;
 
           const failureObj = {
             reason: unstableInteretError,

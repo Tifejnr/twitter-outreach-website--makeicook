@@ -72,7 +72,6 @@ export default function AddMember() {
   const  meansOfExceution = useStore((state) => state.meansOfExceution);
   const setMeansOfExceution = useStore((state) => state.setMeansOfExceution);
 
-
   changeTabTitle(addToBoardsTabTitle)
 
   const executionParams = {

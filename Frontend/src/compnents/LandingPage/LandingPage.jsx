@@ -12,7 +12,7 @@ import ToolsSection from './Tools/Tools'
 import FooterPages from '../Pages/Footer/FooterPages'
 import { changeTabTitle } from '../utilis/changeTabTitle'
 
-const landingPageTabTitle= "CollabforTrello – Trello Members Addition and Removal Automation";
+const landingPageTabTitle= "Automate Trello Members Addition and Removal – Collab for Trello";
 
 
 export default function LandingPage() {

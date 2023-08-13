@@ -31,7 +31,7 @@ export default function ToolBlueprint(props) {
 
         <ul className='detailsNeededListCont'>
             {props.toolDetails.email && <li>Email</li>}   
-            {props.toolDetails.username && <li>Username</li>}   
+            {props.toolDetails.username && <li>Username - <b>Note:</b> Member must be on one of your boards already to use their Username. </li>}   
             {props.toolDetails.name && <li>Full name - <b>Note:</b> Member must be on one of your boards already to use their Full name.</li>}   
         
         </ul>
