@@ -45,6 +45,7 @@ const usernameMeans= "Username"
 const fullNameMeans= "Fullname"
 const unknowMeansYet="..."
 const addMemberTitle= "Add Members"
+const defaultMeansMessage= "Select Means of Addition"
 
 const insufficietCreditsMess= "Please buy credits to use this tool";
 const checkboxMustBeCheckedMess= "Please check at least a board below";
@@ -277,38 +278,33 @@ export default function AddMember() {
   }, []);
 
   useEffect(()=> {
-     // auto pick means picked previously for users
+     // auto pick means picked previously for users by checking local storage
     const meansChosenAddToBoards = localStorage.getItem('meansChosenAddToBoards');
-    if (meansChosenAddToBoards) {
-   setMeansOfExceution(meansChosenAddToBoards)
-    }
+    if (meansChosenAddToBoards) return setMeansOfExceution(meansChosenAddToBoards), setSelectLabel(meansChosenAddToBoards);
+   return setSelectLabel(defaultMeansMessage), setMeansOfExceution(defaultMeansMessage);
   })
-
 
   return (
     <> 
      {
       openProgressBar ? <ProgressExceution executionParams={executionParams} /> :
      <> <HomeNavBar innerText={creditsFromServer==1 ? `Credit:${creditsFromServer}` : 
-      
       `Credits:${creditsFromServer}`} pagelink="#" 
-      
       />
-
       <section
         className="main-section-cont"
         id="mainContentCont">
-        <h1 id="toolInstruction">{pageTitle} {meansOfExceution? meansOfExceution: unknowMeansYet}</h1>
+        <h1 id="toolInstruction">{pageTitle} {meansOfExceution==defaultMeansMessage ? unknowMeansYet: meansOfExceution}</h1>
         <SelectMeans actionToBePerformed={action} selectLabel={selectLabel}/>
 
-      { meansOfExceution && <section className="inner-main-cont" id="innerMainContentCont">
+      {!meansOfExceution? "" : meansOfExceution==defaultMeansMessage ? "" : <section className="inner-main-cont" id="innerMainContentCont">
         { meansOfExceution == emailMeans ? <Input
             inputLabel={emailMeansInputLabel}
             inputPlaceholderText={emailMeansInputPlaceholderText}
             textAreaError={textAreaError}
           /> :  
           
-           meansOfExceution == usernameMeans ? 
+          meansOfExceution == usernameMeans ? 
           <Input
             inputLabel={usernameMeansInputLabel}
             inputPlaceholderText={usernameMeansInputPlaceholderText}
@@ -329,7 +325,7 @@ export default function AddMember() {
             selectInstructionText={selectInstructionText}
             action={ async (e)=> {
              e.preventDefault();
-      setExecutionBtnClicked(executionBtnClicked=>!executionBtnClicked)
+            setExecutionBtnClicked(executionBtnClicked=>!executionBtnClicked)
            await validateParams(executionParams);
             } }
           />
@@ -339,7 +335,7 @@ export default function AddMember() {
           {boardsCollection.length < 2 && <p className="loading-your-boards-text">Loading your boards and their workspaces...</p>}
 
           <section className="all-boardnames-container">
-            { boardsCollection.length>1 &&  boardsCollection.map((board, index) => {
+            { boardsCollection.length >1 &&  boardsCollection.map((board, index) => {
                 return (
                   <BoardsDisplaySection key={index} board={board} indexNo={index} workspaceObjDetails={workspaceObjDetails}/>
                 );

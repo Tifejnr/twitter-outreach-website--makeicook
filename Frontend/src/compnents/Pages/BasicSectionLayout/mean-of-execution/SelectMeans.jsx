@@ -7,9 +7,15 @@ const usernameMeans= "Username"
 const fullNameMeans= "Fullname"
 const meansOfAddition=  "Select Means of Addition"
 
+const additionAction = "Addition";
+const deletionAction = "Deletion"
+
 export default function SelectMeans(props) {
 const [isClicked, setIsClicked] = useState(false);
 const setMeansOfExceution = useStore((state) => state.setMeansOfExceution);
+const  meansOfExceution = useStore((state) => state.meansOfExceution);
+
+const actionToBePerformed = props.actionToBePerformed
 
     const handleToggle= ()=> {
       setIsClicked((prevState)=>!prevState)
@@ -26,8 +32,9 @@ const setMeansOfExceution = useStore((state) => state.setMeansOfExceution);
         overflow: isClicked ?  'visible' : "hidden",
       }
 
-  function storeMeansInStorage (meansChosenAddToBoards) {
-    localStorage.setItem('meansChosenAddToBoards', meansChosenAddToBoards);
+  function storeMeansInStorage (meansChosen) {
+ if (actionToBePerformed==additionAction) return  localStorage.setItem('meansChosenAddToBoards', meansChosen);
+ if (actionToBePerformed==deletionAction) return  localStorage.setItem('meansChosenDeleteFromBoards', meansChosen);
  }
 
 function handleEmailMeansSelection () {
@@ -52,10 +59,10 @@ function handleFullnameMeansSelection () {
     <section className="meansofAdditionSection" id="meansofAdditionSection">
       <form action="" className="text-area-form" id="form">
         <div className="selector">
-          <label>Select Means of {props.actionToBePerformed}</label>
+          <label>Select Means of {actionToBePerformed}</label>
 
           <div id="selectField" onClick={handleToggle} title="Click to select preferred means of addition">
-            <p id="selectText">{props.selectLabel}</p>
+            <p id="selectText">{meansOfExceution}</p>
             <span id="arrowIcon" className="arrow"
               ><div className="faq-item__arrow-container">
                 <img
@@ -67,7 +74,8 @@ function handleFullnameMeansSelection () {
           <p id="selectReqError"></p>
 
           <ul style={openMeansAvailableStyle}>
-          { props.selectLabel== meansOfAddition && <li className="options" onClick={handleEmailMeansSelection}><p>Email</p></li>
+          { 
+          actionToBePerformed == additionAction && <li className="options" onClick={handleEmailMeansSelection}><p>Email</p></li>
            }
             <li className="options" onClick={handleUsernameMeansSelection}><p>Username</p></li>
             <li className="options" onClick={handleFullnameMeansSelection}><p>Full name</p></li>

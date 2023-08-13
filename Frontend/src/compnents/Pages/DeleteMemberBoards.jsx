@@ -15,12 +15,12 @@ import getWorkspacesName from "./getWorkspacesName";
 import getAllBoardsId from "./Validations/getBoardIdOnly/getAllBoardsId";
 
 
-//username means
+//username means  input params
 const usernameMeansInputLabel = "Members' Usernames:";
 const usernameMeansInputPlaceholderText =
   "Input usernames of members to be deleted, each separated with a comma.";
 
-//fullname means
+//fullname means input params
 const fullnameMeansInputLabel = "Members' Fullnames:";
 const fullnameMeansInputPlaceholderText =
   "Input fullnames of members to be deleted, each separated with a comma.";
@@ -38,6 +38,7 @@ const usernameMeans= "Username"
 const fullNameMeans= "Fullname"
 const unknowMeansYet="..."
 const addMemberTitle= "Delete Members"
+const defaultMeansMessage= "Select Means of Deletion"
 
 const insufficietCreditsMess= "Please buy credits to use this tool";
 const checkboxMustBeCheckedMess= "Please check at least a board below";
@@ -52,7 +53,7 @@ export default function DeleteMemberBoards() {
   const [clientSignature, setClientSignature] = useState("");
   const [boardDetailsObj, setBoardDetailsObj] = useState([])
   const [boardIdsObj, setBoardIdsObj] = useState([])
-  const [selectLabel, setSelectLabel] = useState("Select Means of Deletion");
+  const [selectLabel, setSelectLabel] = useState(defaultMeansMessage);
 
   const creditsFromServer = useStore((state) => state.creditsFromServer);
   const checkboxesArray = useStore((state) => state.checkboxesArray);
@@ -252,17 +253,18 @@ export default function DeleteMemberBoards() {
 
   useEffect(()=> {
      // auto pick means picked previously for users
-    const meansChosenAddToBoards = localStorage.getItem('meansChosenAddToBoards');
-    if (meansChosenAddToBoards) {
-   setMeansOfExceution(meansChosenAddToBoards)
-    }
+    const meansChosenDeleteFromBoards= localStorage.getItem('meansChosenDeleteFromBoards');
+    if (meansChosenDeleteFromBoards) 
+   return setMeansOfExceution(meansChosenDeleteFromBoards), setSelectLabel(meansChosenDeleteFromBoards);
+   return setSelectLabel(defaultMeansMessage), setMeansOfExceution(defaultMeansMessage);
+    
   })
-
 
   return (
     <> 
      {
-      openProgressBar ? <ProgressExceution executionParams={executionParams} /> :
+      openProgressBar ? <ProgressExceution executionParams={executionParams} /> 
+      :
      <> <HomeNavBar innerText={creditsFromServer==1 ? `Credit:${creditsFromServer}` : 
       
       `Credits:${creditsFromServer}`} pagelink="#" 
@@ -272,10 +274,10 @@ export default function DeleteMemberBoards() {
       <section
         className="main-section-cont"
         id="mainContentCont">
-        <h1 id="toolInstruction">{pageTitle} {meansOfExceution? meansOfExceution: unknowMeansYet}</h1>
+        <h1 id="toolInstruction">{pageTitle} {meansOfExceution==defaultMeansMessage ? unknowMeansYet: meansOfExceution}</h1>
         <SelectMeans actionToBePerformed={action} selectLabel={selectLabel}/>
 
-      { meansOfExceution && <section className="inner-main-cont" id="innerMainContentCont">
+      { meansOfExceution == defaultMeansMessage ? "" :  <section className="inner-main-cont" id="innerMainContentCont">
         {
            meansOfExceution == usernameMeans ? 
           <Input
