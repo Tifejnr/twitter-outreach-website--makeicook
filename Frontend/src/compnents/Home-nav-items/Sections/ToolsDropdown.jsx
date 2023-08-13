@@ -4,6 +4,7 @@ import toggleIcon from "../../../assets/SVGs/faq-toggle-icon.svg"
 import handlePageRefreshOnLoad from '../../utilis/refreshPageOnLoad'
 
 const addMemberPageLink= "/add-member"
+const removeMemberPageLink= "/delete-member"
 
 export default function ToolsDropdown() {
   return (
@@ -13,7 +14,13 @@ export default function ToolsDropdown() {
                 <li><Link to={addMemberPageLink} onClick={(e)=> {
                   handlePageRefreshOnLoad(addMemberPageLink)
                 }}>Add to boards</Link></li>
-                <li><Link to="#">Remove from boards</Link></li>
+
+                <li><Link to={removeMemberPageLink} onClick={(e)=> {
+                    handlePageRefreshOnLoad(removeMemberPageLink)
+                  }}
+                  >Remove from boards</Link>
+                </li>
+
                 <li><Link to="#">Add to workspaces</Link></li>
                 <li><Link to="#">Remove from workspaces</Link></li>
               </ul>

@@ -11,6 +11,8 @@ export default async function memberIdSearch(paramsForGettingMemberIds) {
   const usernamesAtRemoved = paramsForGettingMemberIds.usernamesAtRemoved;
   const isUsernameInput = paramsForGettingMemberIds.isUsernameInput;
   const executionBtnClicked = paramsForGettingMemberIds.executionBtnClicked;
+  const checkedBoardsObj = paramsForGettingMemberIds.boardDetailsObj;
+  const action = paramsForGettingMemberIds.action;
 
   let itemsIntoArray,
     nameAddingObjArray = [],
@@ -19,10 +21,12 @@ export default async function memberIdSearch(paramsForGettingMemberIds) {
   if (meansOfExceution == usernameMeans) {
     const response = usernamesValidation(textareaInputs);
     if (response.usernameValError) return response;
+
     itemsIntoArray = usernamesAtRemoved;
   } else {
     const response = validateFullName(textareaInputs);
     if (response.fullNameValError) return response;
+
     itemsIntoArray = fullNamesIntoArray;
   }
 
@@ -32,6 +36,8 @@ export default async function memberIdSearch(paramsForGettingMemberIds) {
       memberUsername,
       boardIdsObj,
       isUsernameInput,
+      checkedBoardsObj,
+      action,
     };
 
     const getMemberIdServer = await getMemberId(memberDetailsForIdGetting);

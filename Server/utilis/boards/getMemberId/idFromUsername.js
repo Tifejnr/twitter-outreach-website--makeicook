@@ -1,14 +1,28 @@
 const { getMemberId } = require("./getMembersId");
+const additionAction = "Addition";
 
 async function findMemberId(req, res) {
-  const { memberUsername, isUsernameInput, boardIdsObj } = req.body;
+  const {
+    memberUsername,
+    isUsernameInput,
+    boardIdsObj,
+    checkedBoardsObj,
+    action,
+  } = req.body;
 
   let noOfAttemptsArray = [],
-    memberIdFound = [];
+    memberIdFound = [],
+    boardObjToSearch;
 
   const mainBoardsIdObj = boardIdsObj.boardsIdOnly;
 
-  for (const board of mainBoardsIdObj) {
+  if (action == additionAction) {
+    boardObjToSearch = mainBoardsIdObj;
+  } else {
+    boardObjToSearch = checkedBoardsObj;
+  }
+
+  for (const board of boardObjToSearch) {
     noOfAttemptsArray.push(1);
     if (memberIdFound.length > 0) {
       console.log("already found it,", noOfAttemptsArray.length);
