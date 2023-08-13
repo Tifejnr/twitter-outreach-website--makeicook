@@ -6,13 +6,10 @@ import useStore from "../../Hooks/Zustand/usersStore";
 
 let totalDurationLength, userDetailsLength;
 
-const action = "adding";
+const action = "deleting";
 const isAddedTo = "Boards";
 
-const usernameMeans = "Username";
-const fullNameMeans = "Fullname";
-
-export default function AddToBoardsProgress(props) {
+export default function DeleteProgress(props) {
   //using useStore to manage states cause useState cant work with multiple map methods, runs into infinite loop.
   const incrementSucessLength = useStore(
     (state) => state.incrementSucessLength
@@ -41,7 +38,7 @@ export default function AddToBoardsProgress(props) {
   const pushFailureReason = useStore((state) => state.pushFailureReason);
 
   const executionParams = props.executionParams;
-  const textaraInputs = executionParams.textAreaValue;
+  const textareaInputs = executionParams.textAreaValue;
   const boardDetailsObj = executionParams.boardDetailsObj.boardDetailsObj;
   const nameAddingObjArray =
     executionParams.boardDetailsObj.nameAddingObjArray;
@@ -55,9 +52,9 @@ export default function AddToBoardsProgress(props) {
   const noOfCheckedCheckbox = checkboxesArray.filter(
     (checkbox) => checkbox.checked
   ).length;
-  const textaraListSplited = textaraInputs.split(",");
+  const textareaListSplited = textareaInputs.split(",");
 
-  userDetailsLength = Number(textaraListSplited.length);
+  userDetailsLength = Number(textareaListSplited.length);
   totalDurationLength = Number(noOfCheckedCheckbox) * userDetailsLength;
   const timeInterval = timeIntervalValue * 1000;
 
@@ -115,31 +112,23 @@ export default function AddToBoardsProgress(props) {
     const nameDisplayed = paramsForExecution.nameDisplayed;
 
     let userDetail;
-
-    if (textara) {
-      userDetail = textara;
-    }
-
-    if (memberId) {
-      userDetail = nameDisplayed;
-    }
+    userDetail = nameDisplayed;
 
     if (!boardName) return console.log("boardname does not exist");
 
     const message = {
-      textara,
       boardId,
       memberId,
       clientSignature,
     };
 
     (async () => {
-      const addMembersUrl = `${websiteUrl}/add`;
+      const deleteMembersUrl = `${websiteUrl}/delete-from-boards`;
       try {
-        const response = await axios.post(addMembersUrl, message);
+        const response = await axios.post(deleteMembersUrl, message);
         const data = response.data;
 
-        if (data.success)
+        if (data.deleteSucessfull)
           return incrementSucessLength(), incrementTotalSucessLength();
         if (data.error) {
           console.log(data.error);
@@ -161,7 +150,7 @@ export default function AddToBoardsProgress(props) {
           console.log("No internet");
           const unstableInteretError = "No internet Error";
           const failedSectionName = boardName;
-          const failedMemberDetails = textara;
+          const failedMemberDetails = userDetail;
 
           const failureObj = {
             reason: unstableInteretError,
@@ -193,20 +182,19 @@ export default function AddToBoardsProgress(props) {
             pushFailureReason(failureObj), console.log(unstableInteretError)
           );
         }
-        if (
-          errorMessage.error.message == "Request failed with status code 429"
-        ) {
-          const limitReachedError = "Invite limit rached, wait 60 mins";
+        else 
+         {
+          const unkownErrorMessage = "Unknown error occured";
           const failedSectionName = boardName;
           const failedMemberDetails = userDetail;
 
           const failureObj = {
-            reason: limitReachedError,
+            reason: unkownErrorMessage,
             failedSectionName,
             failedMemberDetails,
           };
 
-          return pushFailureReason(failureObj), console.log(limitReachedError);
+          return pushFailureReason(failureObj), console.log(unkownErrorMessage);
         }
 
         console.log(errorMessage);

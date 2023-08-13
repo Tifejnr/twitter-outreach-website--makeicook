@@ -8,6 +8,7 @@ import BoardsDisplaySection from "./BasicSectionLayout/BoardsDisplaySection";
 import { websiteUrl } from "../../JS functions/websiteUrl";
 import useStore from "../Hooks/Zustand/usersStore";
 import ProgressExceution from "../ProgressBar/ProgressExceution.jsx";
+import DeleteProgress from "../ProgressBar/DeleteBoards/DeleteProgress";
 import validateAddToBoard from "./Validations/validateAddToBoard";
 import { changeTabTitle } from "../utilis/changeTabTitle";
 import SelectMeans from "./BasicSectionLayout/mean-of-execution/SelectMeans";
@@ -263,7 +264,7 @@ export default function DeleteMemberBoards() {
   return (
     <> 
      {
-      openProgressBar ? <ProgressExceution executionParams={executionParams} /> 
+      openProgressBar ? <DeleteProgress executionParams={executionParams} /> 
       :
      <> <HomeNavBar innerText={creditsFromServer==1 ? `Credit:${creditsFromServer}` : 
       

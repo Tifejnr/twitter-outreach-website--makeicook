@@ -127,7 +127,7 @@ app.post(
 );
 
 app.post(
-  "/delete",
+  "/delete-from-boards",
   [loginStatusChecker, isUserAuthorized, userToken, signatureChecker],
   async (req, res) => {
     deleteMemberFromBoard(req, res);
