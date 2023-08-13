@@ -25,11 +25,6 @@ export default function BasicCard(props) {
 <div className="col-sm-4">
             <div className="card text-center">
               <picture className="title">
-                {/* <img
-                  className="fa"
-                  src={props.planObjs.planPic}
-                  alt="basic plan icon" /> */}
-
                 <h2 ref={planNameRef}> {props.planObjs.planName} </h2>
               </picture>
               <div className="price">
