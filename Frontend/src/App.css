@@ -1007,7 +1007,17 @@ a .buy-credits-nav-home:hover {
 /* Pricing Block Design Landing Page*/
 
 .pricing-section {
-  margin: 2rem 0;
+  margin: 5rem 0;
+  background-color: #101c77;
+  background: rgb(16, 28, 119);
+  background: linear-gradient(
+    90deg,
+    rgba(16, 28, 119, 1) 15%,
+    rgb(45, 45, 199) 55%,
+    rgba(16, 28, 119, 1) 85%,
+    rgb(36, 50, 158) 98%
+  );
+  padding: 2rem 0;
 }
 
 .pricing-section header {
@@ -1026,13 +1036,14 @@ a .buy-credits-nav-home:hover {
 
 .pricing-section h2,
 .tools-section-cont h2 {
-  color: var(--dark-des-blue);
-  font-size: 4rem;
+  color: #fff;
+  font-size: 6rem;
+  letter-spacing: 0.5px;
 }
 
 .pricing-section header p {
   font-size: 1.8rem;
-  color: var(--dark-des-blue);
+  color: #fff;
   font-weight: 400;
 }
 
@@ -1051,7 +1062,7 @@ a .buy-credits-nav-home:hover {
   position: relative;
   max-width: 90%;
   height: auto;
-  background: linear-gradient(-45deg, #c4103d, #9b5a00);
+  background: linear-gradient(-45deg, #fff, #fff);
   border-radius: 1.5rem;
   -webkit-border-radius: 1.5rem;
   -moz-border-radius: 1.5rem;
@@ -1083,21 +1094,6 @@ a .buy-credits-nav-home:hover {
   -o-transform: scale(1.1);
 }
 
-.col-sm-4:nth-child(1) .card,
-.col-sm-4:nth-child(1) .card .title .fa {
-  background: linear-gradient(-45deg, #014b86, #f403d0b0);
-}
-
-.col-sm-4:nth-child(2) .card,
-.col-sm-4:nth-child(2) .card .title .fa {
-  background: linear-gradient(-45deg, #5a004e, #726500);
-}
-
-.col-sm-4:nth-child(3) .card,
-.col-sm-4:nth-child(3) .card .title .fa {
-  background: linear-gradient(-45deg, #260058, #01772b);
-}
-
 .card:before {
   content: "";
   position: absolute;
@@ -1121,31 +1117,11 @@ a .buy-credits-nav-home:hover {
   align-items: center;
 }
 
-.aeroplane-icon {
-  background-color: #fff;
-  color: #fff;
-}
-
-.title .fa {
-  color: #fff;
-  font-size: 6rem;
-  width: 10rem;
-  height: 10rem;
-  border-radius: 50%;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
-  text-align: center;
-  line-height: 10rem;
-  box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.2);
-}
-
 .title h2 {
   position: relative;
   margin: 2rem 0 0;
   padding: 0;
-  color: #fff;
+  color: var(--dark-des-blue);
   font-size: 2.8rem;
   z-index: 2;
 }
@@ -1159,14 +1135,14 @@ a .buy-credits-nav-home:hover {
 .price h4 {
   margin: 0;
   padding-top: 2rem;
-  color: #fff;
+  color: var(--dark-des-blue);
   font-size: 6rem;
   margin-bottom: 4.5rem;
 }
 
 .price p {
   font-size: 1.5rem;
-  color: #fff;
+  color: var(--dark-des-blue);
   /* font-weight: 300; */
   padding: 0;
   line-height: 1.3;
@@ -1189,7 +1165,7 @@ a .buy-credits-nav-home:hover {
   margin: 0;
   padding: 0;
   list-style: none;
-  color: #fff;
+  color: var(--dark-des-blue);
   font-size: 1.5rem;
   display: flex;
   align-items: center;
@@ -1200,8 +1176,8 @@ a .buy-credits-nav-home:hover {
 .card .getPlanBtn {
   position: relative;
   z-index: 2;
-  background: #fff;
-  color: #262626;
+  background-color: rgba(48, 11, 184, 1);
+  color: #fff;
   width: 90%;
   height: 4rem;
   line-height: 4rem;

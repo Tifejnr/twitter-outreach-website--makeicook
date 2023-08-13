@@ -1,5 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import handlePageRefreshOnLoad from '../../utilis/refreshPageOnLoad';
+
+const registerLink= "/register"
 
 export default function BelowTestimonials() {
   return (
@@ -9,7 +12,10 @@ export default function BelowTestimonials() {
        <h3>Eliminate manual addition and removal of members from boards and workspaces</h3>
 
         <section className='call-to-action-cont'>
-          <Link  to="/register" className='oauth-button'>
+          <Link  to={registerLink} className='oauth-button' onClick={(e)=> {
+            e.preventDefault()
+            handlePageRefreshOnLoad(registerLink)
+             }}>
               <h2>Start for free  <span className='floating-arrow'>&#8594;</span> </h2>
           </Link>
                  <ul>
