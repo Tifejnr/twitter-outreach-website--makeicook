@@ -7,7 +7,7 @@ import getMemberIdByUsername from "./usernames/getMemberIdByUsername";
 
 const emailMeans = "Email";
 const usernameMeans = "Username";
-const fullNameMeans = "Fullname";
+const fullNameMeans = "Full name";
 
 export default async function validateAddToBoard(executionParams) {
   const boardsCollection = executionParams.boardsCollection;
@@ -27,63 +27,31 @@ export default async function validateAddToBoard(executionParams) {
     input.startsWith("@")
   );
 
-  //validating checkbox
+  //validating checkbox to ensure at least one is checked
   if (!isAnyCheckboxChecked()) return { noCheckboxChecked: true };
-
-  let nameAddingObjArray = [],
-    errorNameAddingObjArray = [];
 
   //validating if it's username means or fullname means
   if (meansOfExceution == usernameMeans || meansOfExceution == fullNameMeans) {
-    let itemsIntoArray;
-    if (meansOfExceution == usernameMeans) {
-      const response = usernamesValidation(textareaInputs);
-      if (response.usernameValError) return response;
-      itemsIntoArray = usernamesAtRemoved;
-    } else {
-      const response = validateFullName(textareaInputs);
-      if (response.fullNameValError) return response;
-      itemsIntoArray = fullNamesIntoArray;
-    }
+    const paramsForGettingMemberIds = {
+      usernameMeans,
+      meansOfExceution,
+      textareaInputs,
+      fullNamesIntoArray,
+      usernamesAtRemoved,
+      executionBtnClicked,
+      boardIdsObj,
+      isUsernameInput,
+    };
 
-    nameAddingObjArray = [];
-    errorNameAddingObjArray = [];
-    // Create an array to hold promises
-    const promises = itemsIntoArray.map(async (memberUsername) => {
-      const memberDetailsForIdGetting = {
-        memberUsername,
-        boardIdsObj,
-        isUsernameInput,
-      };
+    const response = await nameMeansOfIdGetting(paramsForGettingMemberIds);
 
-      const getMemberIdServer = await getMemberIdByUsername(
-        memberDetailsForIdGetting
-      );
+    console.log(response);
 
-      const memberIdFound = await getMemberIdServer;
+    if (response.usernameValError) return response;
+    if (response.fullNameValError) return response;
+    if (response.errorNameAddingObjArray) return response;
 
-      if (executionBtnClicked) return { stop: true }, console.log("stopped");
-
-      if (memberIdFound.error)
-        return errorNameAddingObjArray.push(memberUsername);
-
-      const memberId = memberIdFound.memberIdFound[0].memberId;
-      const nameAddingObj = {
-        memberId,
-        memberUsername,
-        isUsernameInput,
-      };
-
-      nameAddingObjArray.push(nameAddingObj);
-    });
-
-    if (executionBtnClicked) return { stop: true };
-
-    await Promise.all(promises);
-
-    if (executionBtnClicked) return { stop: true };
-
-    if (errorNameAddingObjArray.length > 0) return { errorNameAddingObjArray };
+    console.log(response);
   }
 
   //validating if it's email means entered
@@ -120,7 +88,7 @@ export default async function validateAddToBoard(executionParams) {
 
   const validationComplete = {
     boardDetailsObj,
-    nameAddingObjArray,
+    // nameAddingObjArray,
   };
 
   return validationComplete;
