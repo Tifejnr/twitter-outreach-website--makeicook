@@ -1,13 +1,13 @@
 import { isAnyCheckboxChecked } from "../../../JS functions/Utilis/Validations/Checkbox";
 import { validateInput } from "../../../JS functions/Utilis/Validations/Input";
 import { findBoardIdByName } from "../../../JS functions/Utilis/FindBoardId/byName";
-import usernamesValidation from "./usernames/usernamesValidation";
-import validateFullName from "./full-name/validateFullName";
-import getMemberIdByUsername from "./usernames/getMemberIdByUsername";
+import memberIdSearch from "./MemberIds/multi-boards-check";
 
 const emailMeans = "Email";
 const usernameMeans = "Username";
 const fullNameMeans = "Full name";
+
+let nameAddingObjArray;
 
 export default async function validateAddToBoard(executionParams) {
   const boardsCollection = executionParams.boardsCollection;
@@ -43,15 +43,15 @@ export default async function validateAddToBoard(executionParams) {
       isUsernameInput,
     };
 
-    const response = await nameMeansOfIdGetting(paramsForGettingMemberIds);
-
-    console.log(response);
+    const response = await memberIdSearch(paramsForGettingMemberIds);
 
     if (response.usernameValError) return response;
     if (response.fullNameValError) return response;
     if (response.errorNameAddingObjArray) return response;
 
-    console.log(response);
+    nameAddingObjArray = response.nameAddingObjArray;
+
+    console.log(nameAddingObjArray);
   }
 
   //validating if it's email means entered
@@ -88,7 +88,7 @@ export default async function validateAddToBoard(executionParams) {
 
   const validationComplete = {
     boardDetailsObj,
-    // nameAddingObjArray,
+    nameAddingObjArray,
   };
 
   return validationComplete;

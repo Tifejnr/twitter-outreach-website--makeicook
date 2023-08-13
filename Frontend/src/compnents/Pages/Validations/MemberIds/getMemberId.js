@@ -1,7 +1,7 @@
 import axios from "axios";
 import { websiteUrl } from "../../../../JS functions/websiteUrl";
 
-export default async function getMemberIdByUsername(memberDetailsForIdGetting) {
+export default async function getMemberId(memberDetailsForIdGetting) {
   const getMemberIdUrl = `${websiteUrl}/find-member-id`;
 
   try {
@@ -14,7 +14,7 @@ export default async function getMemberIdByUsername(memberDetailsForIdGetting) {
 
     return response.data;
   } catch (error) {
-    console.error("Error:", error);
+    console.error("Error now:", error);
 
     return { error };
   }

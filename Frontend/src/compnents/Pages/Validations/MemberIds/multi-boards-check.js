@@ -1,5 +1,6 @@
 import validateFullName from "../full-name/validateFullName";
 import usernamesValidation from "../usernames/usernamesValidation";
+import getMemberId from "./getMemberId";
 
 export default async function memberIdSearch(paramsForGettingMemberIds) {
   const usernameMeans = paramsForGettingMemberIds.usernameMeans;
@@ -33,9 +34,7 @@ export default async function memberIdSearch(paramsForGettingMemberIds) {
       isUsernameInput,
     };
 
-    const getMemberIdServer = await getMemberIdByUsername(
-      memberDetailsForIdGetting
-    );
+    const getMemberIdServer = await getMemberId(memberDetailsForIdGetting);
 
     const memberIdFound = await getMemberIdServer;
 
@@ -61,4 +60,6 @@ export default async function memberIdSearch(paramsForGettingMemberIds) {
   if (executionBtnClicked) return { stop: true };
 
   if (errorNameAddingObjArray.length > 0) return { errorNameAddingObjArray };
+
+  return { nameAddingObjArray };
 }
