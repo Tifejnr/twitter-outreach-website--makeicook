@@ -758,8 +758,9 @@ textarea::placeholder {
 
 /*Means Note Style*/
 
-.name-means-note {
+p.name-means-note {
   margin-top: 1.5rem;
   text-align: left;
   font-size: 1.4rem;
+  line-height: 1.3;
 }

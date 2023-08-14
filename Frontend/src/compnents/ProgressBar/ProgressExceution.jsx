@@ -26,7 +26,7 @@ export default function AddToBoardsProgress(props) {
   const incrementFailureLength = useStore(
     (state) => state.incrementFailureLength
   );
-  const resetFailureLength = useStore((state) => state.resetFailureLength);  
+  const resetFailureLength = useStore((state) => state.resetFailureLength);
   const incrementTotalFailureLength = useStore(
     (state) => state.incrementTotalFailureLength
   );
@@ -44,8 +44,7 @@ export default function AddToBoardsProgress(props) {
   const executionParams = props.executionParams;
   const emailInputs = executionParams.textAreaValue;
   const boardDetailsObj = executionParams.boardDetailsObj.boardDetailsObj;
-  const nameAddingObjArray =
-    executionParams.boardDetailsObj.nameAddingObjArray;
+  const nameAddingObjArray = executionParams.boardDetailsObj.nameAddingObjArray;
   const stop = executionParams.stop;
   const clientSignature = executionParams.clientSignature;
   const checkboxesArray = executionParams.checkboxesArray;
@@ -54,8 +53,6 @@ export default function AddToBoardsProgress(props) {
   const continuousAction = executionParams.continuousAction;
   const proposition = executionParams.proposition;
   const timeIntervalValue = Number(executionParams.timeInterval);
-
-
 
   const noOfCheckedCheckbox = checkboxesArray.filter(
     (checkbox) => checkbox.checked
@@ -104,24 +101,21 @@ export default function AddToBoardsProgress(props) {
 
   //username means of execution
   if (meansOfExceution == usernameMeans || meansOfExceution == fullNameMeans) {
-    let nameDisplayed = ""
+    let nameDisplayed = "";
     // each name or username execution to server
     nameAddingObjArray.map((nameDetails, index) => {
-      const { memberId, memberUsername , isUsernameInput} = nameDetails;
-
-      if (isUsernameInput) {
-        //put @ to display username like to users
-        nameDisplayed =`@${memberUsername}`
-         setuserDetails(nameDisplayed);
-      }
-
-      else{
-        nameDisplayed= memberUsername
-        setuserDetails(nameDisplayed);
-      }
+      const { memberId, memberUsername, isUsernameInput } = nameDetails;
 
       setTimeout(() => {
         incrementCurrentRound();
+        if (isUsernameInput) {
+          //put @ to display "username like" details to users
+          nameDisplayed = `@${memberUsername}`;
+          setuserDetails(nameDisplayed);
+        } else {
+          nameDisplayed = memberUsername;
+          setuserDetails(nameDisplayed);
+        }
       }, index * noOfCheckedCheckbox * timeInterval * 1.35);
 
       // loop through all checked boards and execute
@@ -140,7 +134,7 @@ export default function AddToBoardsProgress(props) {
             boardId,
             boardName,
             nameDisplayed,
-            isUsernameInput
+            isUsernameInput,
           };
 
           setTimeout(() => {
@@ -257,24 +251,19 @@ export default function AddToBoardsProgress(props) {
         setuserDetails(userDetail);
         incrementTotalAttemptLength();
         setSectionName(boardName);
-      
       }
     })();
   }
 
-  const additionLabelingObj={
+  const additionLabelingObj = {
     action,
     continuousAction,
     proposition,
     totalDurationLength,
-    totalRounds: userDetailsLength
-    
-  }
+    totalRounds: userDetailsLength,
+  };
 
   return (
-    <ProgressBar
-      labellingObj={additionLabelingObj}
-      pageName="add-member"
-    />
+    <ProgressBar labellingObj={additionLabelingObj} pageName="add-member" />
   );
 }

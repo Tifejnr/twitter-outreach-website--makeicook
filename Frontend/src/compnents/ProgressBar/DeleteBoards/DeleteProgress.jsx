@@ -22,7 +22,7 @@ export default function DeleteProgress(props) {
   const incrementFailureLength = useStore(
     (state) => state.incrementFailureLength
   );
-  const resetFailureLength = useStore((state) => state.resetFailureLength);  
+  const resetFailureLength = useStore((state) => state.resetFailureLength);
   const incrementTotalFailureLength = useStore(
     (state) => state.incrementTotalFailureLength
   );
@@ -40,8 +40,7 @@ export default function DeleteProgress(props) {
   const executionParams = props.executionParams;
   const textareaInputs = executionParams.textAreaValue;
   const boardDetailsObj = executionParams.boardDetailsObj.boardDetailsObj;
-  const nameAddingObjArray =
-    executionParams.boardDetailsObj.nameAddingObjArray;
+  const nameAddingObjArray = executionParams.boardDetailsObj.nameAddingObjArray;
   const stop = executionParams.stop;
   const clientSignature = executionParams.clientSignature;
   const checkboxesArray = executionParams.checkboxesArray;
@@ -50,7 +49,6 @@ export default function DeleteProgress(props) {
   const action = executionParams.action;
   const proposition = executionParams.proposition;
   const timeIntervalValue = Number(executionParams.timeInterval);
-
 
   const noOfCheckedCheckbox = checkboxesArray.filter(
     (checkbox) => checkbox.checked
@@ -61,52 +59,48 @@ export default function DeleteProgress(props) {
   totalDurationLength = Number(noOfCheckedCheckbox) * userDetailsLength;
   const timeInterval = timeIntervalValue * 1000;
 
+  let nameDisplayed = "";
+  // each name or username execution to server
+  nameAddingObjArray.map((nameDetails, index) => {
+    const { memberId, memberUsername, isUsernameInput } = nameDetails;
 
-    let nameDisplayed = ""
-    // each name or username execution to server
-    nameAddingObjArray.map((nameDetails, index) => {
-      const { memberId, memberUsername , isUsernameInput} = nameDetails;
-
+    setTimeout(() => {
+      incrementCurrentRound();
       if (isUsernameInput) {
         //put @ to display "username like" details to users
-        nameDisplayed =`@${memberUsername}`
-         setuserDetails(nameDisplayed);
-      }
-
-      else{
-        nameDisplayed= memberUsername
+        nameDisplayed = `@${memberUsername}`;
+        setuserDetails(nameDisplayed);
+      } else {
+        nameDisplayed = memberUsername;
         setuserDetails(nameDisplayed);
       }
+    }, index * noOfCheckedCheckbox * timeInterval * 1.35);
 
-      setTimeout(() => {
-        incrementCurrentRound();
-      }, index * noOfCheckedCheckbox * timeInterval * 1.35);
+    // loop through all checked boards and execute
+    setTimeout(() => {
+      boardDetailsObj.map((boardObj, index) => {
+        const boardId = boardObj.boardId;
+        let boardName = boardObj.boardName;
+        if (!boardId && !boardName) return console.log("board id not found");
 
-      // loop through all checked boards and execute
-      setTimeout(() => {
-        boardDetailsObj.map((boardObj, index) => {
-          const boardId = boardObj.boardId;
-          let boardName = boardObj.boardName;
-          if (!boardId && !boardName) return console.log("board id not found");
+        resetSucessLength();
+        resetFailureLength();
+        setSectionName(boardName);
 
-          resetSucessLength();
-          resetFailureLength();
-          setSectionName(boardName);
+        const paramsForExecution = {
+          memberId,
+          boardId,
+          boardName,
+          nameDisplayed,
+          isUsernameInput,
+        };
 
-          const paramsForExecution = {
-            memberId,
-            boardId,
-            boardName,
-            nameDisplayed,
-            isUsernameInput
-          };
-
-          setTimeout(() => {
-            new Execution(paramsForExecution);
-          }, index * timeInterval);
-        });
-      }, index * noOfCheckedCheckbox * timeInterval * 1.35);
-    });
+        setTimeout(() => {
+          new Execution(paramsForExecution);
+        }, index * timeInterval);
+      });
+    }, index * noOfCheckedCheckbox * timeInterval * 1.35);
+  });
 
   function Execution(paramsForExecution) {
     const boardName = paramsForExecution.boardName;
@@ -132,7 +126,11 @@ export default function DeleteProgress(props) {
         const data = response.data;
 
         if (data.deleteSucessfull)
-          return incrementSucessLength(), incrementTotalSucessLength();
+          return (
+            incrementSucessLength(),
+            incrementTotalSucessLength(),
+            setuserDetails(nameDisplayed)
+          );
         if (data.error) {
           console.log(data.error);
           incrementFailureLength();
@@ -148,6 +146,7 @@ export default function DeleteProgress(props) {
         console.log("eror", error);
         incrementFailureLength();
         incrementTotalFailureLength();
+        setuserDetails(nameDisplayed);
 
         if (error.message == "Network Error") {
           console.log("No internet");
@@ -186,8 +185,7 @@ export default function DeleteProgress(props) {
           );
         }
 
-        if (errorMessage.memberNotFoundError)
-         {
+        if (errorMessage.memberNotFoundError) {
           const memberNotFoundMessage = "Member not found";
           const failedSectionName = boardName;
           const failedMemberDetails = userDetail;
@@ -198,7 +196,9 @@ export default function DeleteProgress(props) {
             failedMemberDetails,
           };
 
-          return pushFailureReason(failureObj), console.log(memberNotFoundMessage);
+          return (
+            pushFailureReason(failureObj), console.log(memberNotFoundMessage)
+          );
         }
 
         console.log(errorMessage);
@@ -206,23 +206,19 @@ export default function DeleteProgress(props) {
         setuserDetails(userDetail);
         incrementTotalAttemptLength();
         setSectionName(boardName);
-      
       }
     })();
   }
-//progress bar display params
- const deleteLabelingObj= {
+  //progress bar display params
+  const deleteLabelingObj = {
     action,
     proposition,
     continuousAction,
     totalDurationLength,
-    totalRounds: userDetailsLength    
-  }
+    totalRounds: userDetailsLength,
+  };
 
   return (
-    <ProgressBar
-      labellingObj= {deleteLabelingObj}
-      pageName="delete-member"
-    />
+    <ProgressBar labellingObj={deleteLabelingObj} pageName="delete-member" />
   );
 }

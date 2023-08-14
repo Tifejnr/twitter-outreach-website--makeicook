@@ -20,7 +20,7 @@ export default function LandingPage() {
 return (
 <>
   <nav className='nav'>
-       
+        
        <LandingPageToggle innerText="Free start" pageLink="/register"/>
 
       <ul className="nav__menu">
