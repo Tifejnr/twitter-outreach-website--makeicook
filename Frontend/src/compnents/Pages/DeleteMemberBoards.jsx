@@ -32,6 +32,7 @@ const selectInstructionText = "Select Boards to Delete Members from";
 const pageTitle = "Delete Members Via";
 const action = "Deletion";
 const continuousAction = "Deleting"
+const proposition= "from"
 const addToBoardsTabTitle= "Delete Members from Boards – Collab for Trello"
 const timeInterval= 0;
 const usernameMeans= "Username"
@@ -80,7 +81,8 @@ export default function DeleteMemberBoards() {
     meansOfExceution,
     executionBtnClicked,
     action,
-    continuousAction
+    continuousAction,
+    proposition
   };
 
 

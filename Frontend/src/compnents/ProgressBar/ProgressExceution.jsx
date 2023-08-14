@@ -52,6 +52,7 @@ export default function AddToBoardsProgress(props) {
   const meansOfExceution = executionParams.meansOfExceution;
   const action = executionParams.action;
   const continuousAction = executionParams.continuousAction;
+  const proposition = executionParams.proposition;
   const timeIntervalValue = Number(executionParams.timeInterval);
 
 
@@ -264,6 +265,7 @@ export default function AddToBoardsProgress(props) {
   const additionLabelingObj={
     action,
     continuousAction,
+    proposition,
     totalDurationLength,
     totalRounds: userDetailsLength
     

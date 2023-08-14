@@ -61,7 +61,7 @@ function handleFullnameMeansSelection () {
         <div className="selector">
           <label>Select Means of {actionToBePerformed}</label>
 
-          <div id="selectField" onClick={handleToggle} title="Click to select preferred means of addition">
+          <div id="selectField" onClick={handleToggle} title="Click to select preferred means">
             <p id="selectText">{meansOfExceution}</p>
             <span id="arrowIcon" className="arrow"
               ><div className="faq-item__arrow-container">

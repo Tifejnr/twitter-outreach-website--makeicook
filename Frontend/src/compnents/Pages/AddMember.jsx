@@ -38,6 +38,7 @@ const selectInstructionText = "Select Boards to Add Members to";
 const pageTitle = "Add Members Via";
 const action = "Addition";
 const continuousAction = "Adding"
+const proposition= "to"
 const addToBoardsTabTitle= "Add Members to Boards – Collab for Trello"
 const timeInterval= 0;
 const emailMeans = "Email";
@@ -86,7 +87,8 @@ export default function AddMember() {
     meansOfExceution,
     executionBtnClicked,
     action,
-    continuousAction
+    continuousAction,
+    proposition
   };
 
 

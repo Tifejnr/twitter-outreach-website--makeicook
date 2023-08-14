@@ -21,6 +21,7 @@ export default function ProgressBar(props) {
   const totalRounds = labellingObj.totalRounds;
   const continuousAction = labellingObj.continuousAction;
   const action = labellingObj.action;
+  const proposition = labellingObj.proposition;
 
   const handleToggle = () => {
     setIsClicked((prevState) => !prevState);
@@ -54,8 +55,8 @@ export default function ProgressBar(props) {
       <section className="changing-ele-on-bar">
         <h2 id="progressBarTitle" className="title">
           {percentLoaded == 100
-            ? `Addition to Boards Completed`
-            : `Adding ${userDetails} to ${sectionName}`}
+            ? `${action} ${proposition} Boards Completed`
+            : `${continuousAction} ${userDetails} ${proposition} ${sectionName}`}
         </h2>
 
         <h2 id="totalRoundsEl" className="title">

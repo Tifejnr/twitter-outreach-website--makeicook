@@ -48,6 +48,7 @@ export default function DeleteProgress(props) {
   const meansOfExceution = executionParams.meansOfExceution;
   const continuousAction = executionParams.continuousAction;
   const action = executionParams.action;
+  const proposition = executionParams.proposition;
   const timeIntervalValue = Number(executionParams.timeInterval);
 
 
@@ -212,6 +213,7 @@ export default function DeleteProgress(props) {
 //progress bar display params
  const deleteLabelingObj= {
     action,
+    proposition,
     continuousAction,
     totalDurationLength,
     totalRounds: userDetailsLength    
