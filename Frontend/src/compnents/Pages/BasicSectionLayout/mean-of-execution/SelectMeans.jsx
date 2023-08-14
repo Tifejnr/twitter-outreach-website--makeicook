@@ -5,7 +5,6 @@ import toggleIcon from "../../../../assets/SVGs/faq-toggle-icon.svg"
 const emailMeans = "Email";
 const usernameMeans= "Username"
 const fullNameMeans= "Full name"
-const meansOfAddition=  "Select Means of Addition"
 
 const additionAction = "Addition";
 const deletionAction = "Deletion"
@@ -82,11 +81,11 @@ function handleFullnameMeansSelection () {
           </ul>
         </div>
 
-   {actionToBePerformed === additionAction && meansOfExceution != emailMeans && (
-      <p className="name-means-note">
-        <b>Note:</b> Member must be on one of your boards already to use their {meansOfExceution}
-      </p>
-    )}
+      {actionToBePerformed === additionAction && meansOfExceution != emailMeans && (
+          <p className="name-means-note">
+            <b>Note:</b> Member must be on one of your boards already to use their {meansOfExceution}
+          </p>
+      )}
 
      </form>
     </section> 
