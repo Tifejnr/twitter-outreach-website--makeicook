@@ -10,7 +10,7 @@ import handlePageRefreshOnLoad from "../../utilis/refreshPageOnLoad";
 
 const successColor = "#09c372";
 const errorColor = "#ff3860";
-const logInTabTitle= "Log in – CollabforTrello"
+const logInTabTitle= "Log in – Collab for Trello"
 const registerPageLink= "/register"
 
 export default function SignIn() {

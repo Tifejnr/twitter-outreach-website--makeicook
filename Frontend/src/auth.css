@@ -439,7 +439,8 @@ a:hover {
 /* Links style*/
 
 .prompt-message h3 a b,
-.forgot-password a b {
+.forgot-password a b,
+h3.policy-agreement-text a {
   color: #101c77;
   text-decoration: underline;
   transition: 0.25s color linear;
@@ -448,7 +449,9 @@ a:hover {
 .prompt-message h3 a b:hover,
 .prompt-message h3 a b:active,
 .forgot-password a b:hover,
-.forgot-password a b:active {
+.forgot-password a b:active,
+h3.policy-agreement-text a:hover,
+h3.policy-agreement-text a:active {
   color: var(--dark-des-blue);
 }
 

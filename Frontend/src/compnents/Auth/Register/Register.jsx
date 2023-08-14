@@ -9,10 +9,9 @@ import validateAll from "../Auth-Input-Validation/validateAll";
 import { changeTabTitle } from "../../utilis/changeTabTitle";
 import handlePageRefreshOnLoad from "../../utilis/refreshPageOnLoad";
 
-
 const successColor = "#09c372";
 const errorColor = "#ff3860"
-const signUpTabTitle= "Sign up – CollabforTrello"
+const signUpTabTitle= "Sign up – Collab for Trello"
 const signUpPageLink = "/sign-in"
 
 export default function Register() {
