@@ -193,7 +193,6 @@ export default function AddMember() {
    if (response.stop) {
     const stoppedMessage = "Action Stopped"
 
-    console.log("tried here stop")
     return  (
       setExecutionBtnClicked(false), 
       setLabelTitle(addMemberTitle),

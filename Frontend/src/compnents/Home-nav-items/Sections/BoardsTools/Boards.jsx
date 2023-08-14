@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import handlePageRefreshOnLoad from '../../../utilis/refreshPageOnLoad'
 
 const addToBoardsLink="/add-member"
-const deleteFromBoardsLink="/add-member"
+const deleteFromBoardsLink="/delete-member"
 
 export default function Boards() {
   return (

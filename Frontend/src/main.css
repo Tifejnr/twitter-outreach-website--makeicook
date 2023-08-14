@@ -755,3 +755,11 @@ textarea::placeholder {
 }
 
 /* Blur page  */
+
+/*Means Note Style*/
+
+.name-means-note {
+  margin-top: 1.5rem;
+  text-align: left;
+  font-size: 1.4rem;
+}

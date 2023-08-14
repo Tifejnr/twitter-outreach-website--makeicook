@@ -15,7 +15,7 @@ const [isClicked, setIsClicked] = useState(false);
 const setMeansOfExceution = useStore((state) => state.setMeansOfExceution);
 const  meansOfExceution = useStore((state) => state.meansOfExceution);
 
-const actionToBePerformed = props.actionToBePerformed
+const actionToBePerformed = props.actionToBePerformed;
 
     const handleToggle= ()=> {
       setIsClicked((prevState)=>!prevState)
@@ -81,7 +81,14 @@ function handleFullnameMeansSelection () {
             <li className="options" onClick={handleFullnameMeansSelection}><p>Full name</p></li>
           </ul>
         </div>
-      </form>
+
+   {actionToBePerformed === additionAction && meansOfExceution != emailMeans && (
+      <p className="name-means-note">
+        <b>Note:</b> Member must be on one of your boards already to use their {meansOfExceution}
+      </p>
+    )}
+
+     </form>
     </section> 
   )
 }
