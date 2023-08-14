@@ -1,0 +1,17 @@
+
+{
+    "name": "Collab for Trello",
+      "permissions": ["activeTab", "scripting","tabs", "sidePanel"],
+      "background": {
+        "service_worker": "background.js"
+      },
+    "version": "1",
+    "manifest_version": 3,
+
+     "action": {},
+
+    "side_panel": {
+      "default_path": "./index.html"
+    }
+    
+}

@@ -1041,6 +1041,11 @@ a .buy-credits-nav-home:hover {
   letter-spacing: 0.5px;
 }
 
+.tools-section-cont h2 {
+  font-size: 4rem;
+  color: var(--dark-des-blue);
+}
+
 .pricing-section header p {
   font-size: 1.8rem;
   color: #fff;
