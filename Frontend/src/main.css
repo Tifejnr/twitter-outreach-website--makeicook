@@ -182,7 +182,7 @@ Display Dropdwon menu */
   display: flex;
   align-items: center;
   justify-content: left;
-  width: 10rem;
+  width: 90rem;
   max-width: 100%;
   column-gap: 0.7rem;
 }
