@@ -16,11 +16,15 @@ import getWorkspacesName from "./getWorkspacesName";
 import getAllBoardsId from "./Validations/getBoardIdOnly/getAllBoardsId";
 
 
+//username means  input params
+const usernameMeansInputLabel = "Members' Usernames:";
+const usernameMeansInputPlaceholderText =
+  "Input usernames of members to be deleted, each separated with a comma.";
 
-//name means input params
-const fullnameMeansInputLabel = "Members' Usernames or Full names:";
+//fullname means input params
+const fullnameMeansInputLabel = "Members' Full names:";
 const fullnameMeansInputPlaceholderText =
-  "Input usernames or fullnames of members to be deleted, each separated with a comma.";
+  "Input fullnames of members to be deleted, each separated with a comma.";
 
 const searchPlaceholderTitle = "Search Boards ...";
 const selectInstructionText = "Select Boards to Delete Members from";
@@ -59,7 +63,8 @@ export default function DeleteMemberBoards() {
   const  setExecutionErrorBtn = useStore((state) => state.setExecutionErrorBtn);
   const  pushWorkspaceObjDetails = useStore((state) => state.pushWorkspaceObjDetails);
   const  workspaceObjDetails = useStore((state) => state.workspaceObjDetails);
-
+  const  meansOfExceution = useStore((state) => state.meansOfExceution);
+  const setMeansOfExceution = useStore((state) => state.setMeansOfExceution);
 
 
   changeTabTitle(addToBoardsTabTitle)
@@ -73,6 +78,7 @@ export default function DeleteMemberBoards() {
     checkboxesArray,
     boardDetailsObj,
     boardIdsObj,
+    meansOfExceution,
     executionBtnClicked,
     action,
     continuousAction,
@@ -115,7 +121,7 @@ export default function DeleteMemberBoards() {
    setTextAreaError("")
    setExecutionErrorBtn("")
 
-   if (response.isusernameInput) {   
+   if (meansOfExceution==usernameMeans) {   
      if (response.errorNameAddingObjArray )  {
   const usernamesAtAdded = response.errorNameAddingObjArray.map((username) => {
     return `@${username}`
@@ -157,7 +163,7 @@ export default function DeleteMemberBoards() {
     }
     
 
-  else {  
+   if (meansOfExceution==fullNameMeans) {  
   
    if (response.stop) {
     const stoppedMessage = "Action Stopped"
@@ -250,7 +256,11 @@ export default function DeleteMemberBoards() {
   }, []);
 
   useEffect(()=> {
-   
+     // auto pick means picked previously for users
+    const meansChosenDeleteFromBoards= localStorage.getItem('meansChosenDeleteFromBoards');
+    if (meansChosenDeleteFromBoards) 
+   return setMeansOfExceution(meansChosenDeleteFromBoards), setSelectLabel(meansChosenDeleteFromBoards);
+   return setSelectLabel(defaultMeansMessage), setMeansOfExceution(defaultMeansMessage);
     
   })
 
@@ -268,15 +278,25 @@ export default function DeleteMemberBoards() {
       <section
         className="main-section-cont"
         id="mainContentCont">
-        <h1 id="toolInstruction">{pageTitle} Username or Full name</h1>
+        <h1 id="toolInstruction">{pageTitle} {meansOfExceution==defaultMeansMessage ? unknowMeansYet: meansOfExceution}</h1>
+        <SelectMeans actionToBePerformed={action} selectLabel={selectLabel}/>
 
-      <section className="inner-main-cont" id="innerMainContentCont">
+      { meansOfExceution == defaultMeansMessage ? "" :  <section className="inner-main-cont" id="innerMainContentCont">
+        {
+           meansOfExceution == usernameMeans ? 
           <Input
+            inputLabel={usernameMeansInputLabel}
+            inputPlaceholderText={usernameMeansInputPlaceholderText}
+            textAreaError={textAreaError}
+          /> :   
+          
+          meansOfExceution == fullNameMeans ?  
+             <Input
             inputLabel={fullnameMeansInputLabel}
             inputPlaceholderText={fullnameMeansInputPlaceholderText}
             textAreaError={textAreaError}
-          />   
-
+          /> :    ""
+        } 
           <SelectAll
             labelTitle={labelTitle}
             verifying = "Verifying Inputs..."
@@ -302,8 +322,9 @@ export default function DeleteMemberBoards() {
             }
           </section>
         </section>
+}
       </section>
-    </>
+         </>
          }
     </>
   );

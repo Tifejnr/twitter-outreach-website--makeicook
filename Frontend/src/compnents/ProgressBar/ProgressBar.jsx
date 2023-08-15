@@ -112,6 +112,7 @@ export default function ProgressBar(props) {
                 failureObj={failureObj}
                 failureToggleIcon={failureToggleIcon}
                 isClicked={isClicked}
+                proposition={proposition}
               />
             ))}
           </section>

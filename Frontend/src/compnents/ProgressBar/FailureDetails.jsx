@@ -7,6 +7,7 @@ export default function FailureDetails(props) {
   const failureObj=  props.failureObj
   const failureToggleIcon=  props.failureToggleIcon
   const isClicked=  props.isClicked
+  const proposition=  props.proposition
 
 
   const handleInnerListToggle= ()=> {
@@ -32,7 +33,7 @@ export default function FailureDetails(props) {
     <ul className='main-failure-details-cont' style={openFaqDetailsStyle}>
       <p title="Click to see why" onClick={handleInnerListToggle} className='whatFailedCont' >
         
-        {failureObj.failedMemberDetails} to {failureObj.failedSectionName} Failed 
+        {failureObj.failedMemberDetails} {proposition} {failureObj.failedSectionName} Failed 
       
       <img src={failureToggleIcon} alt="togle icon" style={rotateOnToggle} />
  
