@@ -11,6 +11,7 @@ export default function LandingPageToggle(props) {
       <section className="mainNavIcons">
           {
           props.noCredits ? "" :
+          
         <article className="myProfileIcon"> 
               <Link to={props.pageLink} onClick={(e)=> {
                       e.preventDefault()

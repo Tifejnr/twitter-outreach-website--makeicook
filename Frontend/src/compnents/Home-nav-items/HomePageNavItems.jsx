@@ -6,7 +6,7 @@ import ToolsDropdown from './Sections/ToolsDropdown'
 export default function HomePageNavItems(props) {
 
  return (
-      <>
+    <>
        {props.noTools ? "" : <ToolsDropdown/> }
         
         <CustomLink className="nav-list">
