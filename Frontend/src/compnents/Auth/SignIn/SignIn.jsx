@@ -91,7 +91,6 @@ const validateFunctionResponse= (validateAll(paramsObj));
         password
       }
 
-
     const signedIn = await signInUser(signInParam)
 
     if (signedIn.errorMessage) return setPasswordError(signedIn.errorMessage)
