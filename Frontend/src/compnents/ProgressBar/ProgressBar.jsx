@@ -30,6 +30,10 @@ export default function ProgressBar(props) {
   const rotateOnToggle = {
     transform: isClicked && "rotate(180deg)",
   };
+  const expandFailureDetails = {
+    overflow: isClicked && "visible",
+    maxHeight : isClicked && "100vh"
+  };
 
   let percentLoaded =
     (Number(totalAttemptLength) / Number(totalDurationLength)) * 100;
@@ -41,7 +45,7 @@ export default function ProgressBar(props) {
 
   return (
     <div className="loading" id="loading">
-      <div
+     { isClicked? "" : <div
         className={`barHolder ${
           percentLoaded < 100 ? "moveFlame-animation" : ""
         }`}>
@@ -52,7 +56,10 @@ export default function ProgressBar(props) {
           }`}
           style={updateBarWidth}></div>
       </div>
-      <section className="changing-ele-on-bar">
+  }
+    <section >
+
+      {isClicked? "" : <section className="changing-ele-on-bar">
         <h2 id="progressBarTitle" className="title">
           {percentLoaded == 100
             ? `${action} ${proposition} Boards Completed`
@@ -62,7 +69,7 @@ export default function ProgressBar(props) {
         <h2 id="totalRoundsEl" className="title">
           {percentLoaded === 100
             ? totalRounds === 1
-              ? `Member ${action} Completed`
+              ? ` ${userDetails} ${action} Completed`
               : ` ${totalRounds} Members ${action} Completed`
             : totalRounds === 1
             ? ''
@@ -92,20 +99,22 @@ export default function ProgressBar(props) {
            Member {totalRounds >1 && currentRound} Failed {action}s: {failureLength}
           </h3>
         )}
-
-        {failureReason.length > 0 && (
-          <section className="failureReasonsDisplay">
+    </section>     
+    }  
+     {failureReason.length > 0 && (
+          <section className="failureReasonsDisplay" style={expandFailureDetails}>
             <h3
-              title="Click to see details if any"
+              title="Click to see details"
               onClick={handleToggle}
               className="title failureReasonsDisplayTitle">
-              See Failure Details
+             { isClicked ? "Back to View Progress" : "See Failure Details" }
               <img
                 style={rotateOnToggle}
                 src={failureToggleIcon}
                 alt="failure toggle icon"
               />
             </h3>
+
             {failureReason.map((failureObj, index) => (
               <FailureDetails
                 key={index}
@@ -118,9 +127,11 @@ export default function ProgressBar(props) {
           </section>
         )}
 
-        {percentLoaded > 0 && <h3 className="title">Credit Charged: 1</h3>}
+    {percentLoaded > 0 && !isClicked && <h3 className="title">Credit Charged: 1</h3>}
+
       </section>
-      <section className="btn-section" id="btnSection">
+
+      { isClicked? "" : <section className="btn-section" id="btnSection">
         
         {percentLoaded == 100 ? (
           <a href={`/${props.pageName}`}>
@@ -137,6 +148,7 @@ export default function ProgressBar(props) {
           </a>
         )}
       </section>
+  }
     </div>
   );
 }
