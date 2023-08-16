@@ -107,12 +107,13 @@ export default function ProgressBar(props) {
               title="Click to see details"
               onClick={handleToggle}
               className="title failureReasonsDisplayTitle">
-             { isClicked ? "Back to View Progress" : "See Failure Details" }
-              <img
+             { isClicked ? <button title="close" className="back-to-progress-btn">Close</button> : "See Failure Details" }
+              { isClicked ? "" :  <img
                 style={rotateOnToggle}
                 src={failureToggleIcon}
                 alt="failure toggle icon"
               />
+                  }
             </h3>
 
             {failureReason.map((failureObj, index) => (

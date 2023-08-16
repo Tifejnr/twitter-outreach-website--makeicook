@@ -416,8 +416,45 @@ button:hover {
   padding-left: 0.3rem;
 }
 
+.main-failure-details-cont p {
+  font-size: 1.5rem;
+  color: #17252a;
+  font-size: 1.6rem;
+  line-height: 1.3;
+}
+
+.detailedReasonsCont {
+  display: flex;
+  align-items: center;
+}
+
 .failureReasonsDisplay .main-failure-details-cont span.reason {
   color: #ff3860;
+}
+
+.back-to-progress-btn {
+  background-color: #ff3860;
+  border: 1px solid transparent;
+  border-radius: 0.6rem;
+  width: 7.5rem;
+  height: 3.5rem;
+  cursor: pointer;
+  position: relative;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 600;
+  transition: 0.3s color linear, 0.3s background-color linear;
+}
+
+.back-to-progress-btn:hover,
+.back-to-progress-btn:active {
+  background-color: #df1a41;
+  color: #fff;
+}
+
+.failedSuffix {
+  color: #df1a41;
+  font-weight: 600;
 }
 
 /* Progress bar dsign block*/
