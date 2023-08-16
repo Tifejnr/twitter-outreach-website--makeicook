@@ -350,11 +350,10 @@ button:hover {
   display: grid;
   place-content: center;
   /* margin: 1rem 0; */
-  height: 20rem;
-  max-height: 20rem;
+  max-height: 10rem;
   z-index: 40000;
   background-color: #fff;
-  /* overflow: auto; */
+  overflow: auto;
 }
 
 .failureReasonsDisplay img {
@@ -373,6 +372,7 @@ button:hover {
   background-color: #fff;
   padding: 1rem;
   color: purple;
+  font-size: 9rem;
 }
 
 .failureReasonsDisplay h3,

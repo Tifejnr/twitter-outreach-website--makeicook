@@ -4,9 +4,8 @@ import memberIdSearch from "./memberIdSearch/multi-boards-check";
 import boardIdAndName from "./board-id-and-name/boardIdName";
 
 const emailMeans = "Email";
-const usernameMeans = "Username";
-const fullNameMeans = "Full name";
-
+const usernameMeans = "Username - 100% Efficient";
+const fullNameMeans = "Full name - 60% Efficient";
 let nameAddingObjArray;
 
 export default async function validateAddToBoard(executionParams) {

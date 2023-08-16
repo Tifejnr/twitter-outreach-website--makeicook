@@ -9,158 +9,124 @@ var _Checkbox = require("../../../JS functions/Utilis/Validations/Checkbox");
 
 var _Input = require("../../../JS functions/Utilis/Validations/Input");
 
-var _byName = require("../../../JS functions/Utilis/FindBoardId/byName");
+var _multiBoardsCheck = _interopRequireDefault(require("./memberIdSearch/multi-boards-check"));
 
-var _usernamesValidation = _interopRequireDefault(require("./usernames/usernamesValidation"));
-
-var _getMemberIdByUsername = _interopRequireDefault(require("./usernames/getMemberIdByUsername"));
+var _boardIdName = _interopRequireDefault(require("./board-id-and-name/boardIdName"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var emailMeans = "Email";
-var usernameMeans = "Username";
-var fullNameMeans = "Fullname";
+var usernameMeans = "Username - 100% Efficient";
+var fullNameMeans = "Full name - 60% Efficient";
+var nameAddingObjArray;
 
 function validateAddToBoard(executionParams) {
-  var boardsCollection, boardIdsObj, emailInputs, textareaInputs, checkboxesArray, meansOfExceution, usernamesIntoArray, usernamesAtRemoved, usernameAddingObjArray, response, usernameSplitted, promises, _response, boardDetailsObj, validationComplete;
+  var boardIdsObj, emailInputs, textareaInputs, meansOfExceution, executionBtnClicked, usernamesIntoArray, fullNamesIntoArray, usernamesAtRemoved, isUsernameInput, boardDetailsObj, paramsForGettingMemberIds, response, _response, validationComplete;
 
-  return regeneratorRuntime.async(function validateAddToBoard$(_context2) {
+  return regeneratorRuntime.async(function validateAddToBoard$(_context) {
     while (1) {
-      switch (_context2.prev = _context2.next) {
+      switch (_context.prev = _context.next) {
         case 0:
-          boardsCollection = executionParams.boardsCollection;
           boardIdsObj = executionParams.boardIdsObj;
           emailInputs = executionParams.textAreaValue;
           textareaInputs = executionParams.textAreaValue;
-          checkboxesArray = executionParams.checkboxesArray;
           meansOfExceution = executionParams.meansOfExceution;
+          executionBtnClicked = executionParams.executionBtnClicked;
           usernamesIntoArray = textareaInputs.split(/\s*,\s*/);
+          fullNamesIntoArray = textareaInputs.split(/\s*,\s*/);
           usernamesAtRemoved = usernamesIntoArray.map(function (username) {
             return username.slice(1);
-          }); //validating checkbox
+          });
+          isUsernameInput = usernamesIntoArray.some(function (input) {
+            return input.startsWith("@");
+          }); //validating checkbox to ensure at least one is checked
 
           if ((0, _Checkbox.isAnyCheckboxChecked)()) {
-            _context2.next = 10;
+            _context.next = 11;
             break;
           }
 
-          return _context2.abrupt("return", {
+          return _context.abrupt("return", {
             noCheckboxChecked: true
           });
 
-        case 10:
-          usernameAddingObjArray = []; //validating if it's username
+        case 11:
+          //get checked boards id and their names for action in future
+          boardDetailsObj = (0, _boardIdName["default"])(executionParams); //validating if it's username means or fullname means
 
-          if (!(meansOfExceution == usernameMeans)) {
-            _context2.next = 20;
+          if (!(meansOfExceution == usernameMeans || meansOfExceution == fullNameMeans)) {
+            _context.next = 24;
             break;
           }
 
-          response = (0, _usernamesValidation["default"])(textareaInputs);
+          paramsForGettingMemberIds = {
+            usernameMeans: usernameMeans,
+            meansOfExceution: meansOfExceution,
+            textareaInputs: textareaInputs,
+            fullNamesIntoArray: fullNamesIntoArray,
+            usernamesAtRemoved: usernamesAtRemoved,
+            executionBtnClicked: executionBtnClicked,
+            boardIdsObj: boardIdsObj,
+            isUsernameInput: isUsernameInput,
+            boardDetailsObj: boardDetailsObj
+          };
+          _context.next = 16;
+          return regeneratorRuntime.awrap((0, _multiBoardsCheck["default"])(paramsForGettingMemberIds));
+
+        case 16:
+          response = _context.sent;
 
           if (!response.usernameValError) {
-            _context2.next = 15;
+            _context.next = 19;
             break;
           }
 
-          return _context2.abrupt("return", response);
+          return _context.abrupt("return", response);
 
-        case 15:
-          usernameSplitted = textareaInputs.split(",");
-          usernameAddingObjArray = []; // Create an array to hold promises
+        case 19:
+          if (!response.fullNameValError) {
+            _context.next = 21;
+            break;
+          }
 
-          promises = usernamesAtRemoved.map(function _callee(memberUsername) {
-            var getMemberIdServer, memberIdFound, memberId, usernameAddingObj;
-            return regeneratorRuntime.async(function _callee$(_context) {
-              while (1) {
-                switch (_context.prev = _context.next) {
-                  case 0:
-                    console.log(memberUsername);
-                    _context.next = 3;
-                    return regeneratorRuntime.awrap((0, _getMemberIdByUsername["default"])(memberUsername, boardIdsObj));
+          return _context.abrupt("return", response);
 
-                  case 3:
-                    getMemberIdServer = _context.sent;
-                    _context.next = 6;
-                    return regeneratorRuntime.awrap(getMemberIdServer);
+        case 21:
+          if (!response.errorNameAddingObjArray) {
+            _context.next = 23;
+            break;
+          }
 
-                  case 6:
-                    memberIdFound = _context.sent;
+          return _context.abrupt("return", response);
 
-                    if (!memberIdFound.error) {
-                      _context.next = 9;
-                      break;
-                    }
+        case 23:
+          nameAddingObjArray = response.nameAddingObjArray;
 
-                    return _context.abrupt("return", console.log("member not found"));
-
-                  case 9:
-                    memberId = memberIdFound.memberIdFound[0].memberId;
-                    usernameAddingObj = {
-                      memberId: memberId,
-                      memberUsername: memberUsername
-                    };
-                    usernameAddingObjArray.push(usernameAddingObj);
-
-                  case 12:
-                  case "end":
-                    return _context.stop();
-                }
-              }
-            });
-          });
-          _context2.next = 20;
-          return regeneratorRuntime.awrap(Promise.all(promises));
-
-        case 20:
+        case 24:
           if (!(meansOfExceution == emailMeans)) {
-            _context2.next = 24;
+            _context.next = 28;
             break;
           }
 
           _response = (0, _Input.validateInput)(emailInputs);
 
           if (!_response.inputValError) {
-            _context2.next = 24;
+            _context.next = 28;
             break;
           }
 
-          return _context2.abrupt("return", _response);
+          return _context.abrupt("return", _response);
 
-        case 24:
-          boardDetailsObj = checkboxesArray.map(function (checkbox, index) {
-            if (!checkbox.checked) return false;
-            var checkboxId = checkbox.id;
-            var arrayNoFromId = Number(checkboxId.replace(/\D/g, ""));
-            var boardEl = document.getElementById("labelcheck".concat(arrayNoFromId));
-            var boardName = boardEl.textContent;
-            var foundBoard = (0, _byName.findBoardIdByName)(boardsCollection, boardName);
-            if (!foundBoard) return console.log("board not found");
-            var boardId = foundBoard.id;
-            var neededObj = {
-              boardId: boardId,
-              boardName: boardName
-            };
-            return neededObj;
-          });
-
-          if (boardDetailsObj) {
-            _context2.next = 27;
-            break;
-          }
-
-          return _context2.abrupt("return", "");
-
-        case 27:
+        case 28:
           validationComplete = {
             boardDetailsObj: boardDetailsObj,
-            usernameAddingObjArray: usernameAddingObjArray
+            nameAddingObjArray: nameAddingObjArray
           };
-          return _context2.abrupt("return", validationComplete);
+          return _context.abrupt("return", validationComplete);
 
-        case 29:
+        case 30:
         case "end":
-          return _context2.stop();
+          return _context.stop();
       }
     }
   });

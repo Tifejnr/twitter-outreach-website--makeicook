@@ -3,8 +3,8 @@ import useStore from "../../../Hooks/Zustand/usersStore";
 import toggleIcon from "../../../../assets/SVGs/faq-toggle-icon.svg"
 
 const emailMeans = "Email";
-const usernameMeans= "Username"
-const fullNameMeans= "Full name"
+const usernameMeans= "Username - 100% Efficient"
+const fullNameMeans= "Full name - 60% Efficient"
 
 const additionAction = "Addition";
 const deletionAction = "Deletion"
@@ -76,8 +76,8 @@ function handleFullnameMeansSelection () {
           { 
           actionToBePerformed == additionAction && <li className="options" onClick={handleEmailMeansSelection}><p>Email</p></li>
            }
-            <li className="options" onClick={handleUsernameMeansSelection}><p>Username</p></li>
-            <li className="options" onClick={handleFullnameMeansSelection}><p>Full name</p></li>
+            <li className="options" onClick={handleUsernameMeansSelection}><p>{usernameMeans}</p></li>
+            <li className="options" onClick={handleFullnameMeansSelection}><p>{fullNameMeans}</p></li>
           </ul>
         </div>
 
