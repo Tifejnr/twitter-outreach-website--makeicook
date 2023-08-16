@@ -350,7 +350,6 @@ button:hover {
   z-index: 40000;
   background-color: #fff;
   overflow: auto;
-  height: 100vh;
 }
 
 .failureReasonsDisplay img {
