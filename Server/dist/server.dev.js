@@ -194,7 +194,7 @@ app.post("/find-member-id", [loginStatusChecker, isUserAuthorized, userToken, si
     }
   });
 });
-app.post("/delete", [loginStatusChecker, isUserAuthorized, userToken, signatureChecker], function _callee8(req, res) {
+app.post("/delete-from-boards", [loginStatusChecker, isUserAuthorized, userToken, signatureChecker], function _callee8(req, res) {
   return regeneratorRuntime.async(function _callee8$(_context8) {
     while (1) {
       switch (_context8.prev = _context8.next) {
@@ -226,3 +226,4 @@ app.post("/get-workspace-name", [loginStatusChecker, isUserAuthorized, userToken
 app.listen(3000, function () {
   console.log("Listening on port 3000");
 });
+"\nHe is a Gem of a person. Very humble, responsible, quite flexible and cooperative. He does what he commits. We are taking a small break with the project but will not hesitate to reach out again in the near future. \nDon't hesitate in hiring him. Hopefully, we will work again together. \nI wish him all the best for his future\n";

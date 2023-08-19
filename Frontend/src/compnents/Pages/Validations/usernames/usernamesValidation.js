@@ -1,9 +1,12 @@
 import { commaSeperationRegex } from "../../../../JS functions/Utilis/Validations/commaSeperationRegex";
 import atSymbolValidationPrefix from "./atSymbolValidationPrefix";
 
-export default function usernamesValidation(input) {
+export default function usernamesValidation(inputValue) {
   // Check if input is empty or contains only whitespace
-  const isEmpty = input.trim() === "";
+  const input = inputValue.trim();
+  const isEmpty = input === "";
+
+  console.log(input);
 
   const isEmptyMessage = "Members' usernames cannot be empty";
   if (isEmpty) return { usernameValError: isEmptyMessage };

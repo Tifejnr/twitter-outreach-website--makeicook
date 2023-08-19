@@ -7,8 +7,6 @@ exports["default"] = ProgressBarExecution;
 
 var _EleDisplay = require("../Utilis/EleDisplay");
 
-function _readOnlyError(name) { throw new Error("\"" + name + "\" is read-only"); }
-
 function ProgressBarExecution(progressBarParams) {
   //Getting ele to manipulate
   var progressBarTitle = document.getElementById("progressBarTitle");
@@ -27,15 +25,15 @@ function ProgressBarExecution(progressBarParams) {
   var isAddedTo = progressBarParams.isAddedTo;
   var noOfCheckedCheckbox = progressBarParams.noOfCheckedCheckbox;
   var successLength = progressBarParams.succes;
-  var action = progressBarParams.action;
-  var failuresArrayLength = progressBarParams.failuresArray;
+  var action = progressBarParams.action; // const failuresArrayLength = progressBarParams.failuresArray;
+
   var totalAttemptedArrayLength = progressBarParams.totalAttemptedArray;
   var totalDurationLength = progressBarParams.totalDurationLength;
   var roundIndex = progressBarParams.roundIndex;
   var totalRounds = progressBarParams.userDetailsLength;
 
   if (failuresArrayLength == undefined) {
-    failuresArrayLength = (_readOnlyError("failuresArrayLength"), 0);
+    failuresArrayLength = 0;
   } //Hide main ele
 
 

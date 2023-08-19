@@ -11,9 +11,11 @@ var _atSymbolValidationPrefix = _interopRequireDefault(require("./atSymbolValida
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function usernamesValidation(input) {
+function usernamesValidation(inputValue) {
   // Check if input is empty or contains only whitespace
-  var isEmpty = input.trim() === "";
+  var input = inputValue.trim();
+  var isEmpty = input === "";
+  console.log(input);
   var isEmptyMessage = "Members' usernames cannot be empty";
   if (isEmpty) return {
     usernameValError: isEmptyMessage
@@ -40,8 +42,12 @@ function usernamesValidation(input) {
     return value + 1;
   });
   var invalidIndexesJoined = oneAddedToAllIndexes.join(", ");
-  var invalidUsernamesMessage = "Usernames ".concat(invalidIndexesJoined, " must start with \"@\" symbol");
-  if (areUsernamesValid.invalidDetailsIndexArray && inputsSplitted.length > 1) return {
-    usernameValError: invalidUsernamesMessage
+  var invalidUsernamesMessageSingular = "Username ".concat(invalidIndexesJoined, " must start with \"@\" symbol");
+  var invalidUsernamesMessagePlural = "Usernames ".concat(invalidIndexesJoined, " must start with \"@\" symbol");
+  if (areUsernamesValid.invalidDetailsIndexArray && inputsSplitted.length > 1 && oneAddedToAllIndexes.length === 1) return {
+    usernameValError: invalidUsernamesMessageSingular
+  };
+  if (areUsernamesValid.invalidDetailsIndexArray && inputsSplitted.length > 1 && oneAddedToAllIndexes.length > 1) return {
+    usernameValError: invalidUsernamesMessagePlural
   };
 }
