@@ -10,7 +10,6 @@ let nameAddingObjArray;
 
 export default async function validateAddToBoard(executionParams) {
   const boardIdsObj = executionParams.boardIdsObj;
-  const emailInputs = executionParams.textAreaValue;
   const textareaInputs = executionParams.textAreaValue;
   const meansOfExceution = executionParams.meansOfExceution;
   const executionBtnClicked = executionParams.executionBtnClicked;
@@ -18,8 +17,11 @@ export default async function validateAddToBoard(executionParams) {
   //remove whitespaces from if it's username
   const whiteSpaceRemoved = textareaInputs.replace(/ /g, "");
 
+  //remove whitespaces from  beginning and end of a string
+  const whiteSpaceEndAndBeginningRemoved = textareaInputs.replace(/ /g, "");
+
   const usernamesIntoArray = whiteSpaceRemoved.split(/\s*,\s*/);
-  const fullNamesIntoArray = textareaInputs.split(/\s*,\s*/);
+  const fullNamesIntoArray = whiteSpaceEndAndBeginningRemoved.split(/\s*,\s*/);
 
   const usernamesAtRemoved = usernamesIntoArray.map((username) => {
     return username.slice(1);
@@ -41,6 +43,8 @@ export default async function validateAddToBoard(executionParams) {
       usernameMeans,
       meansOfExceution,
       textareaInputs,
+      whiteSpaceRemoved,
+      whiteSpaceEndAndBeginningRemoved,
       fullNamesIntoArray,
       usernamesAtRemoved,
       executionBtnClicked,

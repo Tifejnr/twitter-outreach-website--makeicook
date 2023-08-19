@@ -20,12 +20,12 @@ import getAllBoardsId from "./Validations/getBoardIdOnly/getAllBoardsId";
 //username means  input params
 const usernameMeansInputLabel = "Members' Usernames:";
 const usernameMeansInputPlaceholderText =
-  "Input usernames of members to be deleted, each separated with a comma.";
+  "Input usernames of members to be deleted, each separated with comma if more than one.";
 
 //fullname means input params
 const fullnameMeansInputLabel = "Members' Full names:";
 const fullnameMeansInputPlaceholderText =
-  "Input fullnames of members to be deleted, each separated with a comma.";
+  "Input fullnames of members to be deleted, each separated with comma if more than one.";
 
 const searchPlaceholderTitle = "Search Boards ...";
 const selectInstructionText = "Select Boards to Delete Members from";
@@ -103,6 +103,7 @@ export default function DeleteMemberBoards() {
   else{
   setExecutionErrorBtn("")
    setLabelTitle("Verifying Inputs...") 
+   setTextAreaError("")
   }
 
   if (response.usernameValError) {
@@ -112,11 +113,19 @@ export default function DeleteMemberBoards() {
            setTextAreaError(response.usernameValError);
   }
 
+  else{
+   setTextAreaError("")
+  }
+
    if (response.fullNameValError) {
     return setExecutionBtnClicked(false), 
            setLabelTitle(addMemberTitle),
            setExecutionErrorBtn(response.fullNameValError), 
            setTextAreaError(response.fullNameValError);
+   }
+
+   else{
+       setTextAreaError("")
    }
 
    setTextAreaError("")
@@ -306,6 +315,7 @@ export default function DeleteMemberBoards() {
             action={ async (e)=> {
              e.preventDefault();
       setExecutionBtnClicked(executionBtnClicked=>!executionBtnClicked)
+        setTextAreaError("")
            await validateParams(executionParams);
             } }
           />

@@ -5,10 +5,12 @@ import getMemberId from "./getMemberId";
 export default async function memberIdSearch(paramsForGettingMemberIds) {
   const usernameMeans = paramsForGettingMemberIds.usernameMeans;
   const meansOfExceution = paramsForGettingMemberIds.meansOfExceution;
-  const textareaInputs = paramsForGettingMemberIds.textareaInputs;
+  const whiteSpaceRemoved = paramsForGettingMemberIds.whiteSpaceRemoved;
   const boardIdsObj = paramsForGettingMemberIds.boardIdsObj;
   const fullNamesIntoArray = paramsForGettingMemberIds.fullNamesIntoArray;
   const usernamesAtRemoved = paramsForGettingMemberIds.usernamesAtRemoved;
+  const whiteSpaceEndAndBeginningRemoved =
+    paramsForGettingMemberIds.whiteSpaceEndAndBeginningRemoved;
   const isUsernameInput = paramsForGettingMemberIds.isUsernameInput;
   const executionBtnClicked = paramsForGettingMemberIds.executionBtnClicked;
   const checkedBoardsObj = paramsForGettingMemberIds.boardDetailsObj;
@@ -19,12 +21,12 @@ export default async function memberIdSearch(paramsForGettingMemberIds) {
     errorNameAddingObjArray = [];
 
   if (meansOfExceution == usernameMeans) {
-    const response = usernamesValidation(textareaInputs);
+    const response = usernamesValidation(whiteSpaceRemoved);
     if (response.usernameValError) return response;
 
     itemsIntoArray = usernamesAtRemoved;
   } else {
-    const response = validateFullName(textareaInputs);
+    const response = validateFullName(whiteSpaceEndAndBeginningRemoved);
     if (response.fullNameValError) return response;
 
     itemsIntoArray = fullNamesIntoArray;

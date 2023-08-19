@@ -38,7 +38,7 @@ export default function Input(props) {
             cols="40"
             rows="6"
             placeholder={props.inputPlaceholderText}></textarea>
-          <p className="error" style={textareaErrorStyle}>{ textAreaError ? textAreaError: ""}</p>
+          <p className="error" style={textareaErrorStyle}>{textAreaError}</p>
         </section>       
     </>
 

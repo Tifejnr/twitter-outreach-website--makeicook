@@ -19,17 +19,17 @@ import getAllBoardsId from "./Validations/getBoardIdOnly/getAllBoardsId";
 //email means
 const emailMeansInputLabel = "Members' Emails:";
 const emailMeansInputPlaceholderText =
-  "Input emails of members to be added, each separated with a comma.";
+  "Input emails of members to be added, each separated with comma if more than one.";
 
 //username means
 const usernameMeansInputLabel = "Members' Usernames:";
 const usernameMeansInputPlaceholderText =
-  "Input usernames of members to be added, each separated with a comma.";
+  "Input usernames of members to be added, each separated with comma if more than one.";
 
 //fullname means
 const fullnameMeansInputLabel = "Members' Full names:";
 const fullnameMeansInputPlaceholderText =
-  "Input fullnames of members to be added, each separated with a comma.";
+  "Input fullnames of members to be added, each separated with comma if more than one.";
 
 const searchPlaceholderTitle = "Search Boards ...";
 const selectInstructionText = "Select Boards to Add Members to";

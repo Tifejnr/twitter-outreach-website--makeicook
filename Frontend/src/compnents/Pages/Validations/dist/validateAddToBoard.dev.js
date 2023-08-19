@@ -21,21 +21,22 @@ var fullNameMeans = "Full name - 60% Efficient";
 var nameAddingObjArray;
 
 function validateAddToBoard(executionParams) {
-  var boardIdsObj, emailInputs, textareaInputs, meansOfExceution, executionBtnClicked, whiteSpaceRemoved, usernamesIntoArray, fullNamesIntoArray, usernamesAtRemoved, isUsernameInput, boardDetailsObj, paramsForGettingMemberIds, response, _response, validationComplete;
+  var boardIdsObj, textareaInputs, meansOfExceution, executionBtnClicked, whiteSpaceRemoved, whiteSpaceEndAndBeginningRemoved, usernamesIntoArray, fullNamesIntoArray, usernamesAtRemoved, isUsernameInput, boardDetailsObj, paramsForGettingMemberIds, response, _response, validationComplete;
 
   return regeneratorRuntime.async(function validateAddToBoard$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
           boardIdsObj = executionParams.boardIdsObj;
-          emailInputs = executionParams.textAreaValue;
           textareaInputs = executionParams.textAreaValue;
           meansOfExceution = executionParams.meansOfExceution;
           executionBtnClicked = executionParams.executionBtnClicked; //remove whitespaces from if it's username
 
-          whiteSpaceRemoved = textareaInputs.replace(/ /g, "");
+          whiteSpaceRemoved = textareaInputs.replace(/ /g, ""); //remove whitespaces from  beginning and end of a string
+
+          whiteSpaceEndAndBeginningRemoved = textareaInputs.replace(/ /g, "");
           usernamesIntoArray = whiteSpaceRemoved.split(/\s*,\s*/);
-          fullNamesIntoArray = textareaInputs.split(/\s*,\s*/);
+          fullNamesIntoArray = whiteSpaceEndAndBeginningRemoved.split(/\s*,\s*/);
           usernamesAtRemoved = usernamesIntoArray.map(function (username) {
             return username.slice(1);
           });
@@ -65,6 +66,8 @@ function validateAddToBoard(executionParams) {
             usernameMeans: usernameMeans,
             meansOfExceution: meansOfExceution,
             textareaInputs: textareaInputs,
+            whiteSpaceRemoved: whiteSpaceRemoved,
+            whiteSpaceEndAndBeginningRemoved: whiteSpaceEndAndBeginningRemoved,
             fullNamesIntoArray: fullNamesIntoArray,
             usernamesAtRemoved: usernamesAtRemoved,
             executionBtnClicked: executionBtnClicked,

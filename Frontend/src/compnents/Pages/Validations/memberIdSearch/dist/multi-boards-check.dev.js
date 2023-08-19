@@ -14,7 +14,7 @@ var _getMemberId = _interopRequireDefault(require("./getMemberId"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function memberIdSearch(paramsForGettingMemberIds) {
-  var usernameMeans, meansOfExceution, textareaInputs, boardIdsObj, fullNamesIntoArray, usernamesAtRemoved, isUsernameInput, executionBtnClicked, checkedBoardsObj, action, itemsIntoArray, nameAddingObjArray, errorNameAddingObjArray, response, _response, promises;
+  var usernameMeans, meansOfExceution, whiteSpaceRemoved, boardIdsObj, fullNamesIntoArray, usernamesAtRemoved, whiteSpaceEndAndBeginningRemoved, isUsernameInput, executionBtnClicked, checkedBoardsObj, action, itemsIntoArray, nameAddingObjArray, errorNameAddingObjArray, response, _response, promises;
 
   return regeneratorRuntime.async(function memberIdSearch$(_context2) {
     while (1) {
@@ -22,10 +22,11 @@ function memberIdSearch(paramsForGettingMemberIds) {
         case 0:
           usernameMeans = paramsForGettingMemberIds.usernameMeans;
           meansOfExceution = paramsForGettingMemberIds.meansOfExceution;
-          textareaInputs = paramsForGettingMemberIds.textareaInputs;
+          whiteSpaceRemoved = paramsForGettingMemberIds.whiteSpaceRemoved;
           boardIdsObj = paramsForGettingMemberIds.boardIdsObj;
           fullNamesIntoArray = paramsForGettingMemberIds.fullNamesIntoArray;
           usernamesAtRemoved = paramsForGettingMemberIds.usernamesAtRemoved;
+          whiteSpaceEndAndBeginningRemoved = paramsForGettingMemberIds.whiteSpaceEndAndBeginningRemoved;
           isUsernameInput = paramsForGettingMemberIds.isUsernameInput;
           executionBtnClicked = paramsForGettingMemberIds.executionBtnClicked;
           checkedBoardsObj = paramsForGettingMemberIds.boardDetailsObj;
@@ -33,38 +34,38 @@ function memberIdSearch(paramsForGettingMemberIds) {
           nameAddingObjArray = [], errorNameAddingObjArray = [];
 
           if (!(meansOfExceution == usernameMeans)) {
-            _context2.next = 18;
+            _context2.next = 19;
             break;
           }
 
-          response = (0, _usernamesValidation["default"])(textareaInputs);
+          response = (0, _usernamesValidation["default"])(whiteSpaceRemoved);
 
           if (!response.usernameValError) {
-            _context2.next = 15;
+            _context2.next = 16;
             break;
           }
 
           return _context2.abrupt("return", response);
 
-        case 15:
+        case 16:
           itemsIntoArray = usernamesAtRemoved;
-          _context2.next = 22;
+          _context2.next = 23;
           break;
 
-        case 18:
-          _response = (0, _validateFullName["default"])(textareaInputs);
+        case 19:
+          _response = (0, _validateFullName["default"])(whiteSpaceEndAndBeginningRemoved);
 
           if (!_response.fullNameValError) {
-            _context2.next = 21;
+            _context2.next = 22;
             break;
           }
 
           return _context2.abrupt("return", _response);
 
-        case 21:
+        case 22:
           itemsIntoArray = fullNamesIntoArray;
 
-        case 22:
+        case 23:
           // Create an array to hold promises so that all pomises are executed before moving on wt=ith the process
           promises = itemsIntoArray.map(function _callee(memberUsername) {
             var memberDetailsForIdGetting, getMemberIdServer, memberIdFound, memberId, nameAddingObj;
@@ -125,7 +126,7 @@ function memberIdSearch(paramsForGettingMemberIds) {
           });
 
           if (!executionBtnClicked) {
-            _context2.next = 25;
+            _context2.next = 26;
             break;
           }
 
@@ -133,13 +134,13 @@ function memberIdSearch(paramsForGettingMemberIds) {
             stop: true
           });
 
-        case 25:
-          _context2.next = 27;
+        case 26:
+          _context2.next = 28;
           return regeneratorRuntime.awrap(Promise.all(promises));
 
-        case 27:
+        case 28:
           if (!executionBtnClicked) {
-            _context2.next = 29;
+            _context2.next = 30;
             break;
           }
 
@@ -147,9 +148,9 @@ function memberIdSearch(paramsForGettingMemberIds) {
             stop: true
           });
 
-        case 29:
+        case 30:
           if (!(errorNameAddingObjArray.length > 0)) {
-            _context2.next = 31;
+            _context2.next = 32;
             break;
           }
 
@@ -157,12 +158,12 @@ function memberIdSearch(paramsForGettingMemberIds) {
             errorNameAddingObjArray: errorNameAddingObjArray
           });
 
-        case 31:
+        case 32:
           return _context2.abrupt("return", {
             nameAddingObjArray: nameAddingObjArray
           });
 
-        case 32:
+        case 33:
         case "end":
           return _context2.stop();
       }
