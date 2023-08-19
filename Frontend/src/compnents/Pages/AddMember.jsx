@@ -253,6 +253,7 @@ export default function AddMember() {
     //fetch all board ids for usernames and fullnames method of addition
         const allBoardsId = getAllBoardsId(data)
          setBoardIdsObj(allBoardsId)
+         
      
     //fetch workspace names for each boards
         workspaceIdArray.map(async (workspaceId, index)=> {
