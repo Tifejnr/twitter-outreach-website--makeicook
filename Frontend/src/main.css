@@ -346,10 +346,10 @@ button:hover {
 
 .failureReasonsDisplay {
   position: relative;
-  max-height: 9rem;
+  max-height: 3rem;
   z-index: 40000;
   background-color: #fff;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .failureReasonsDisplay img {
@@ -365,8 +365,7 @@ button:hover {
   column-gap: 0.6rem;
   cursor: pointer;
   background-color: #fff;
-  padding: 1rem;
-  padding-top: 2rem;
+
   color: purple;
   z-index: 70000;
   width: 100%;

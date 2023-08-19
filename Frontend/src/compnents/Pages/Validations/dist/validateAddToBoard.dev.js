@@ -31,7 +31,8 @@ function validateAddToBoard(executionParams) {
           emailInputs = executionParams.textAreaValue;
           textareaInputs = executionParams.textAreaValue;
           meansOfExceution = executionParams.meansOfExceution;
-          executionBtnClicked = executionParams.executionBtnClicked;
+          executionBtnClicked = executionParams.executionBtnClicked; //remove whitespaces from if it's username
+
           whiteSpaceRemoved = textareaInputs.replace(/ /g, "");
           usernamesIntoArray = whiteSpaceRemoved.split(/\s*,\s*/);
           fullNamesIntoArray = textareaInputs.split(/\s*,\s*/);
@@ -109,7 +110,7 @@ function validateAddToBoard(executionParams) {
             break;
           }
 
-          _response = (0, _Input.validateInput)(emailInputs);
+          _response = (0, _Input.validateInput)(whiteSpaceRemoved);
 
           if (!_response.inputValError) {
             _context.next = 29;

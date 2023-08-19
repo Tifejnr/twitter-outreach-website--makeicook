@@ -15,6 +15,7 @@ export default async function validateAddToBoard(executionParams) {
   const meansOfExceution = executionParams.meansOfExceution;
   const executionBtnClicked = executionParams.executionBtnClicked;
 
+  //remove whitespaces from if it's username
   const whiteSpaceRemoved = textareaInputs.replace(/ /g, "");
 
   const usernamesIntoArray = whiteSpaceRemoved.split(/\s*,\s*/);
@@ -59,7 +60,7 @@ export default async function validateAddToBoard(executionParams) {
 
   //validating if it's email means
   if (meansOfExceution == emailMeans) {
-    const response = validateInput(emailInputs);
+    const response = validateInput(whiteSpaceRemoved);
     if (response.inputValError) return response;
   }
 
