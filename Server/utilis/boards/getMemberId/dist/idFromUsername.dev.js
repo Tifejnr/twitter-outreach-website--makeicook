@@ -6,16 +6,16 @@ var _require = require("./getMembersId"),
 var additionAction = "Addition";
 
 function findMemberId(req, res) {
-  var boardIdsObj, mainBoardsIdObj, boardId;
+  var allBoardsId, mainBoardsIdObj, allMembersDetails;
   return regeneratorRuntime.async(function findMemberId$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
         case 0:
-          boardIdsObj = req.body.boardIdsObj;
-          mainBoardsIdObj = boardIdsObj.boardsIdOnly;
-          boardId = board.boardId; //fetch workspace names for each boards
+          allBoardsId = req.body.allBoardsId;
+          mainBoardsIdObj = allBoardsId.boardsIdOnly; // Create an array to hold promises so that all promises are executed before moving on with the process
 
-          mainBoardsIdObj.map(function _callee(board, index) {
+          _context2.next = 4;
+          return regeneratorRuntime.awrap(Promise.all(mainBoardsIdObj.map(function _callee(board) {
             var boardId, paramToGetUsernameIds, memberDetails;
             return regeneratorRuntime.async(function _callee$(_context) {
               while (1) {
@@ -40,12 +40,16 @@ function findMemberId(req, res) {
                 }
               }
             });
-          });
+          })));
+
+        case 4:
+          allMembersDetails = _context2.sent;
+          console.log(allMembersDetails);
           return _context2.abrupt("return", res.status(200).json({
-            allMembersDetails: mainBoardsIdObj
+            allMembersDetails: allMembersDetails
           }));
 
-        case 5:
+        case 7:
         case "end":
           return _context2.stop();
       }

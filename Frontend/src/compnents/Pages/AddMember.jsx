@@ -135,7 +135,6 @@ export default function AddMember() {
    setExecutionErrorBtn("")
 
    //if it's email means use board id only
-
   if (meansOfExceution==emailMeans) {
       if (response.boardDetailsObj )  {
    setLabelTitle("Starting...") 
@@ -149,7 +148,7 @@ export default function AddMember() {
   const usernamesAtAdded = response.errorNameAddingObjArray.map((username) => {
     return `@${username}`
   });
-    let  errorMessage
+    let errorMessage
 
       if(usernamesAtAdded.length==1) {
         errorMessage = `Username ${usernamesAtAdded[0]} is not found.`

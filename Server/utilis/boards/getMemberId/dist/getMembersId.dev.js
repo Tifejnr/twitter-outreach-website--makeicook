@@ -33,9 +33,7 @@ function getMemberId(paramToGetUsernameIds) {
           // if (!desiredMember) return;
           // const memberId = desiredMember.id;
 
-          return _context.abrupt("return", {
-            boardMembersDetails: boardMembersDetails
-          });
+          return _context.abrupt("return", boardMembersDetails);
 
         case 14:
           _context.prev = 14;

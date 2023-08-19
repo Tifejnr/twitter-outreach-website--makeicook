@@ -2,26 +2,25 @@ const { getMemberId } = require("./getMembersId");
 const additionAction = "Addition";
 
 async function findMemberId(req, res) {
-  const { boardIdsObj } = req.body;
+  const { allBoardsId } = req.body;
 
-  const mainBoardsIdObj = boardIdsObj.boardsIdOnly;
+  const mainBoardsIdObj = allBoardsId.boardsIdOnly;
+  // Create an array to hold promises so that all promises are executed before moving on with the process
+  const allMembersDetails = await Promise.all(
+    mainBoardsIdObj.map(async (board) => {
+      const boardId = board.boardId;
+      const paramToGetUsernameIds = {
+        boardId,
+        key,
+        token,
+      };
+      const memberDetails = await getMemberId(paramToGetUsernameIds);
+      return memberDetails;
+    })
+  );
 
-  const boardId = board.boardId;
-
-  //fetch workspace names for each boards
-  mainBoardsIdObj.map(async (board, index) => {
-    const boardId = board.boardId;
-    const paramToGetUsernameIds = {
-      boardId,
-      key,
-      token,
-    };
-    const memberDetails = await getMemberId(paramToGetUsernameIds);
-
-    return memberDetails;
-  });
-
-  return res.status(200).json({ allMembersDetails: mainBoardsIdObj });
+  console.log(allMembersDetails);
+  return res.status(200).json({ allMembersDetails });
 }
 
 exports.findMemberId = findMemberId;

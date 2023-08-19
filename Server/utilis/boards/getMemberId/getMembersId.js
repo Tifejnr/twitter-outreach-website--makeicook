@@ -28,7 +28,7 @@ async function getMemberId(paramToGetUsernameIds) {
     // if (!desiredMember) return;
 
     // const memberId = desiredMember.id;
-    return { boardMembersDetails };
+    return boardMembersDetails;
   } catch (error) {
     console.error("Error:", error);
     return { boardDetailsFetchingError: error };
