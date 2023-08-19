@@ -15,13 +15,12 @@ function usernamesValidation(inputValue) {
   // Check if input is empty or contains only whitespace
   var input = inputValue.trim();
   var isEmpty = input === "";
-  console.log(input);
   var isEmptyMessage = "Members' usernames cannot be empty";
   if (isEmpty) return {
     usernameValError: isEmptyMessage
   }; //Check if all are separated by commas
 
-  var inputsSplitted = input.split(",");
+  var inputsSplitted = input.split(/\s*,\s*/);
   var isValid = (0, _commaSeperationRegex.commaSeperationRegex)(input);
   var ifOneInputError = "You don't need a comma if it's one username";
   if (!isValid && inputsSplitted.length == 2) return {

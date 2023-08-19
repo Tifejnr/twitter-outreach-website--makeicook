@@ -6,13 +6,11 @@ export default function usernamesValidation(inputValue) {
   const input = inputValue.trim();
   const isEmpty = input === "";
 
-  console.log(input);
-
   const isEmptyMessage = "Members' usernames cannot be empty";
   if (isEmpty) return { usernameValError: isEmptyMessage };
 
   //Check if all are separated by commas
-  const inputsSplitted = input.split(",");
+  const inputsSplitted = input.split(/\s*,\s*/);
   const isValid = commaSeperationRegex(input);
 
   const ifOneInputError = "You don't need a comma if it's one username";
