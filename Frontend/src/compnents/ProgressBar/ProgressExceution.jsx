@@ -10,8 +10,8 @@ const action = "adding";
 const isAddedTo = "Boards";
 
 const emailMeans = "Email";
-const usernameMeans = "Username";
-const fullNameMeans = "Fullname";
+const usernameMeans= "Username - 100% Efficient"
+const fullNameMeans= "Full name - 60% Efficient"
 
 export default function AddToBoardsProgress(props) {
   //using useStore to manage states cause useState cant work with multiple map methods, runs into infinite loop.

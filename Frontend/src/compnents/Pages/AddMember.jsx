@@ -13,6 +13,7 @@ import { changeTabTitle } from "../utilis/changeTabTitle";
 import SelectMeans from "./BasicSectionLayout/mean-of-execution/SelectMeans";
 import getWorkspacesName from "./getWorkspacesName";
 import getAllBoardsId from "./Validations/getBoardIdOnly/getAllBoardsId";
+import getMemberId from "./Validations/memberIdSearch/getMemberId";
 
 
 
@@ -57,6 +58,7 @@ export default function AddMember() {
  const [labelTitle, setLabelTitle] = useState(addMemberTitle);
  const [executionBtnClicked , setExecutionBtnClicked ] = useState(false);
  const [textAreaError, setTextAreaError ] = useState("");
+ const [allUserMemberDetail, setAllUserMemberDetail] = useState([]);
 
   const [clientSignature, setClientSignature] = useState("");
   const [boardDetailsObj, setBoardDetailsObj] = useState([])
@@ -86,6 +88,7 @@ export default function AddMember() {
     boardIdsObj,
     meansOfExceution,
     executionBtnClicked,
+    allUserMemberDetail,
     action,
     continuousAction,
     proposition
@@ -249,10 +252,28 @@ export default function AddMember() {
         setBoardsCollection(data);
         setClientSignature(signature);
 
-    //fetch all board ids for usernames and fullnames method of addition
-        const allBoardsId = getAllBoardsId(data)
-         setBoardIdsObj(allBoardsId)
-         
+        //fetch all board ids for usernames and fullnames method of addition
+        const allBoardsId = getAllBoardsId(data);
+        const memberDetailsResponse = await getMemberId(allBoardsId);
+
+        const memberRawArray = memberDetailsResponse.allMembersDetails;
+
+        const uniqueIds = new Set();
+        const uniqueMainMemberDetails = [];
+
+      //fetch and get all unique memebers ids and details
+        memberRawArray.forEach((memberDetail) => {
+          memberDetail.forEach((mainMemberDetail) => {
+            if (!uniqueIds.has(mainMemberDetail.id)) {
+              uniqueIds.add(mainMemberDetail.id);
+              uniqueMainMemberDetails.push(mainMemberDetail);
+            }
+          });
+        });
+
+       setAllUserMemberDetail(uniqueMainMemberDetails);
+       setBoardIdsObj(allBoardsId);
+
      
     //fetch workspace names for each boards
         workspaceIdArray.map(async (workspaceId, index)=> {
@@ -327,17 +348,18 @@ export default function AddMember() {
             selectInstructionText={selectInstructionText}
             action={ async (e)=> {
              e.preventDefault();
-            setExecutionBtnClicked(executionBtnClicked=>!executionBtnClicked)
+            setExecutionBtnClicked(executionBtnClicked=>!executionBtnClicked);
+            setTextAreaError("");
            await validateParams(executionParams);
             } }
           />
 
           <SearchBoards searchPlaceholderTitle={searchPlaceholderTitle} />
 
-          {boardsCollection.length < 2 && <p className="loading-your-boards-text">Loading your boards and their workspaces...</p>}
+          {allUserMemberDetail.length < 2 && <p className="loading-your-boards-text">Loading your boards and their workspaces...</p>}
 
           <section className="all-boardnames-container">
-            { boardsCollection.length >1 &&  boardsCollection.map((board, index) => {
+            { allUserMemberDetail.length >1 &&  boardsCollection.map((board, index) => {
                 return (
                   <BoardsDisplaySection key={index} board={board} indexNo={index} workspaceObjDetails={workspaceObjDetails}/>
                 );

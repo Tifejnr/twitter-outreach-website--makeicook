@@ -22,7 +22,7 @@ export default async function validateAddToBoard(executionParams) {
   const whiteSpaceEndAndBeginningRemoved = textareaInputs.replace(/ /g, "");
 
   const usernamesIntoArray = whiteSpaceRemoved.split(/\s*,\s*/);
-  const fullNamesIntoArray = whiteSpaceEndAndBeginningRemoved.split(/\s*,\s*/);
+  const fullNamesIntoArray = whiteSpaceRemoved.split(/\s*,\s*/);
 
   const usernamesAtRemoved = usernamesIntoArray.map((username) => {
     return username.slice(1);

@@ -37,7 +37,7 @@ function validateAddToBoard(executionParams) {
 
           whiteSpaceEndAndBeginningRemoved = textareaInputs.replace(/ /g, "");
           usernamesIntoArray = whiteSpaceRemoved.split(/\s*,\s*/);
-          fullNamesIntoArray = whiteSpaceEndAndBeginningRemoved.split(/\s*,\s*/);
+          fullNamesIntoArray = whiteSpaceRemoved.split(/\s*,\s*/);
           usernamesAtRemoved = usernamesIntoArray.map(function (username) {
             return username.slice(1);
           });
