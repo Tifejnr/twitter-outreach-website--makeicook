@@ -4,7 +4,7 @@ export default function validateFullName(input) {
   // Check if input is empty or contains only whitespace
   const isEmpty = input.trim() === "";
 
-  const isEmptyMessage = "Members' fullnames cannot be empty";
+  const isEmptyMessage = "Members' full names cannot be empty";
 
   if (isEmpty) return { fullNameValError: isEmptyMessage };
 
@@ -14,7 +14,7 @@ export default function validateFullName(input) {
 
   if (!areFullnamesValid.invalidDetailsIndexArray) return true;
 
-  const oneOnlyInvalidMessage = `Fullname is invalid`;
+  const oneOnlyInvalidMessage = `Full name is invalid`;
 
   if (areFullnamesValid.invalidDetailsIndexArray && inputsSplitted.length == 1)
     return { fullnameValError: oneOnlyInvalidMessage };
@@ -25,7 +25,7 @@ export default function validateFullName(input) {
   );
   const invalidIndexesJoined = oneAddedToAllIndexes.join(", ");
 
-  const invalidFullnamesMessage = `Fullnames ${invalidIndexesJoined} is invalid`;
+  const invalidFullnamesMessage = `Full names ${invalidIndexesJoined} is invalid`;
   if (areFullnamesValid.invalidDetailsIndexArray && inputsSplitted.length > 1)
     return { fullnameValError: invalidFullnamesMessage };
 }

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import useStore from "../../Hooks/Zustand/usersStore";
+import closeErrorIcon from "../../../assets/SVGs/close-icon.svg"
 
 export default function SelectAll(props) {
   const [isAllChecked, setIsAllChecked] = useState(false);
+  const [isThereError, setIsThereError] = useState(false);
   const checkboxRatioNotifierDisplay = useStore(
     (state) => state.checkboxRatioNotifierDisplay
   );
@@ -11,6 +13,7 @@ export default function SelectAll(props) {
   );
   const checkboxesArray = useStore((state) => state.checkboxesArray);
   const executionErrorBtn = useStore((state) => state.executionErrorBtn);
+  const  setExecutionErrorBtn = useStore((state) => state.setExecutionErrorBtn);
 
     const verifying= props.verifying
     const executionBtnClicked= props.executionBtnClicked
@@ -44,6 +47,11 @@ export default function SelectAll(props) {
  checkboxRatioNotifier();
 }
 
+//close error icon
+function closeError () {
+setExecutionErrorBtn("")
+}
+
   return (
     <section className="selectionCont" id="selective-btn">
       <h1>{props.selectInstructionText}</h1>
@@ -74,8 +82,9 @@ export default function SelectAll(props) {
           { executionBtnClicked ? verifying : props.labelTitle}
         </button>
       </section>
-      <p className="execution-btn-error">{executionErrorBtn}</p>
-
+     { executionErrorBtn == "" ? "" : 
+     <p className="execution-btn-error">{executionErrorBtn} <img onClick={closeError} src={closeErrorIcon} title="close" alt="close error icon" /> </p>
+     }   
       {!checkboxRatioNotifierDisplay == "" && (
         <p id="para">{checkboxRatioNotifierDisplay}</p>
       )}

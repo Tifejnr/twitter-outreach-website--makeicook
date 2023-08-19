@@ -289,6 +289,7 @@ button:hover {
   background-color: transparent;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-bottom: 2rem;
 }
 
 .selecting-btn-cont button:hover {
@@ -626,10 +627,38 @@ input {
   }
 }
 
+/*Error display block */
+.execution-btn-error img {
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  top: 110%;
+  border-radius: 50%;
+  border: 1px solid #ff3860;
+  /* padding: 1rem; */
+  left: 50%;
+  cursor: pointer;
+  background-color: #fff;
+}
+
 .execution-btn-error {
+  position: fixed;
+  top: 0;
   padding-top: 0.5rem;
-  margin-bottom: 2rem;
   color: #ff3860;
+  border: 1px solid #ff3860;
+  padding: 2rem;
+  z-index: 10000;
+  margin: auto;
+  font-size: 1.8rem;
+  background-color: #fff;
+}
+
+@media only screen and (min-width: 768px) {
+  .execution-btn-error {
+    top: 20%;
+    left: 70%;
+  }
 }
 
 /* Selction Container */

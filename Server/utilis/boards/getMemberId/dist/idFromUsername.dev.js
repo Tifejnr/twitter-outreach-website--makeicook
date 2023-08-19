@@ -42,12 +42,11 @@ function findMemberId(req, res) {
 
         case 4:
           allMembersDetails = _context2.sent;
-          console.log(allMembersDetails);
           return _context2.abrupt("return", res.status(200).json({
             allMembersDetails: allMembersDetails
           }));
 
-        case 7:
+        case 6:
         case "end":
           return _context2.stop();
       }

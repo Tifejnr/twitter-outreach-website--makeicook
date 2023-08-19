@@ -8,6 +8,7 @@ const errorColor = "#ff3860";
 export default function Input(props) {
     const setTextAreaValue = useStore((state) => state.setTextAreaValue);
     const textAreaValue = useStore((state) => state.textAreaValue);
+    const executionErrorBtn = useStore((state) => state.executionErrorBtn);
 
     //props
     const textAreaError= props.textAreaError
@@ -38,7 +39,7 @@ export default function Input(props) {
             cols="40"
             rows="6"
             placeholder={props.inputPlaceholderText}></textarea>
-          <p className="error" style={textareaErrorStyle}>{textAreaError}</p>
+         {executionErrorBtn=="" ? "" : <p className="error" style={textareaErrorStyle}>{textAreaError}</p>}
         </section>       
     </>
 

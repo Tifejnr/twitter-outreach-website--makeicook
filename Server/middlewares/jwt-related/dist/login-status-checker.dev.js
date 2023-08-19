@@ -9,8 +9,8 @@ var keysObject = getKeys();
 var JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
 
 module.exports = function (req, res, next) {
-  var token = req.cookies.cftAuth; // const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGM4ZmJhMGRiMjA1ZGMzZDM1NDdmMzQiLCJpc1BhaWQiOmZhbHNlLCJpYXQiOjE2OTE5NzI2NjAsImV4cCI6MTY5NDU2NDY2MH0.Uaok4cyZK2StmgR6kgiuE6gqNpcQq1_bZsTWbGMd1mk`;
-
+  // const token = req.cookies.cftAuth;
+  var token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGM4ZmJhMGRiMjA1ZGMzZDM1NDdmMzQiLCJpc1BhaWQiOmZhbHNlLCJpYXQiOjE2OTE5NzI2NjAsImV4cCI6MTY5NDU2NDY2MH0.Uaok4cyZK2StmgR6kgiuE6gqNpcQq1_bZsTWbGMd1mk";
   if (!token) return res.status(401).json({
     invalidJWT: true
   });

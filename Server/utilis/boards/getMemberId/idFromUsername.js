@@ -18,7 +18,6 @@ async function findMemberId(req, res) {
     })
   );
 
-  console.log(allMembersDetails);
   return res.status(200).json({ allMembersDetails });
 }
 
