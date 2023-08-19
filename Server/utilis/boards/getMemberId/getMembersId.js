@@ -14,21 +14,21 @@ async function getMemberId(paramToGetUsernameIds) {
     const response = await axios.get(boardsDetailsUrl);
     const boardMembersDetails = response.data;
 
-    if (isUsernameInput) {
-      // Search for the desired member by username
-      desiredMember = boardMembersDetails.find(
-        (member) => member.username === memberUsername
-      );
-    } else {
-      desiredMember = boardMembersDetails.find(
-        (member) => member.fullName === memberUsername
-      );
-    }
+    // if (isUsernameInput) {
+    //   // Search for the desired member by username
+    //   desiredMember = boardMembersDetails.find(
+    //     (member) => member.username === memberUsername
+    //   );
+    // } else {
+    //   desiredMember = boardMembersDetails.find(
+    //     (member) => member.fullName === memberUsername
+    //   );
+    // }
 
-    if (!desiredMember) return;
+    // if (!desiredMember) return;
 
-    const memberId = desiredMember.id;
-    return { memberId };
+    // const memberId = desiredMember.id;
+    return { boardMembersDetails };
   } catch (error) {
     console.error("Error:", error);
     return { boardDetailsFetchingError: error };

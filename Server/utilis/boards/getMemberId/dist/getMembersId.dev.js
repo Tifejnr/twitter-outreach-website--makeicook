@@ -3,7 +3,7 @@
 var axios = require("axios");
 
 function getMemberId(paramToGetUsernameIds) {
-  var boardId, memberUsername, key, token, boardsDetailsUrl, response, boardMembersDetails, desiredMember, memberId;
+  var boardId, memberUsername, key, token, isUsernameInput, desiredMember, boardsDetailsUrl, response, boardMembersDetails;
   return regeneratorRuntime.async(function getMemberId$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
@@ -12,46 +12,45 @@ function getMemberId(paramToGetUsernameIds) {
           memberUsername = paramToGetUsernameIds.memberUsername;
           key = paramToGetUsernameIds.key;
           token = paramToGetUsernameIds.token;
+          isUsernameInput = paramToGetUsernameIds.isUsernameInput;
           boardsDetailsUrl = "https://api.trello.com/1/boards/".concat(boardId, "/members?key=").concat(key, "&token=").concat(token);
-          _context.prev = 5;
-          _context.next = 8;
+          _context.prev = 6;
+          _context.next = 9;
           return regeneratorRuntime.awrap(axios.get(boardsDetailsUrl));
 
-        case 8:
+        case 9:
           response = _context.sent;
-          boardMembersDetails = response.data; // Search for the desired member by username
+          boardMembersDetails = response.data; // if (isUsernameInput) {
+          //   // Search for the desired member by username
+          //   desiredMember = boardMembersDetails.find(
+          //     (member) => member.username === memberUsername
+          //   );
+          // } else {
+          //   desiredMember = boardMembersDetails.find(
+          //     (member) => member.fullName === memberUsername
+          //   );
+          // }
+          // if (!desiredMember) return;
+          // const memberId = desiredMember.id;
 
-          desiredMember = boardMembersDetails.find(function (member) {
-            return member.username === memberUsername;
-          });
-
-          if (desiredMember) {
-            _context.next = 13;
-            break;
-          }
-
-          return _context.abrupt("return");
-
-        case 13:
-          memberId = desiredMember.id;
           return _context.abrupt("return", {
-            memberId: memberId
+            boardMembersDetails: boardMembersDetails
           });
 
-        case 17:
-          _context.prev = 17;
-          _context.t0 = _context["catch"](5);
+        case 14:
+          _context.prev = 14;
+          _context.t0 = _context["catch"](6);
           console.error("Error:", _context.t0);
           return _context.abrupt("return", {
             boardDetailsFetchingError: _context.t0
           });
 
-        case 21:
+        case 18:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[5, 17]]);
+  }, null, null, [[6, 14]]);
 }
 
 exports.getMemberId = getMemberId;

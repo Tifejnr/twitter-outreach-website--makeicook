@@ -2,64 +2,26 @@ const { getMemberId } = require("./getMembersId");
 const additionAction = "Addition";
 
 async function findMemberId(req, res) {
-  const {
-    memberUsername,
-    isUsernameInput,
-    boardIdsObj,
-    checkedBoardsObj,
-    action,
-  } = req.body;
-
-  let noOfAttemptsArray = [],
-    memberIdFound = [],
-    boardObjToSearch;
+  const { boardIdsObj } = req.body;
 
   const mainBoardsIdObj = boardIdsObj.boardsIdOnly;
 
-  if (action == additionAction) {
-    boardObjToSearch = mainBoardsIdObj;
-  } else {
-    boardObjToSearch = checkedBoardsObj;
-  }
+  const boardId = board.boardId;
 
-  for (const board of boardObjToSearch) {
-    noOfAttemptsArray.push(1);
-    if (memberIdFound.length > 0) {
-      console.log("already found it,", noOfAttemptsArray.length);
-      break;
-    }
-
+  //fetch workspace names for each boards
+  mainBoardsIdObj.map(async (board, index) => {
     const boardId = board.boardId;
-
     const paramToGetUsernameIds = {
       boardId,
-      memberUsername,
-      isUsernameInput,
       key,
       token,
     };
+    const memberDetails = await getMemberId(paramToGetUsernameIds);
 
-    try {
-      const isMemberPresent = await getMemberId(paramToGetUsernameIds);
+    return memberDetails;
+  });
 
-      if (isMemberPresent && isMemberPresent.memberId) {
-        memberIdFound.push(isMemberPresent);
-      }
-    } catch (error) {
-      console.log("error", error);
-    }
-  }
-
-  if (memberIdFound.length > 0) {
-    return res.status(200).json({ memberIdFound });
-  }
-
-  if (
-    noOfAttemptsArray.length === mainBoardsIdObj.length &&
-    memberIdFound.length === 0
-  ) {
-    return res.status(402).json({ usernameIdNotFound: true });
-  }
+  return res.status(200).json({ allMembersDetails: mainBoardsIdObj });
 }
 
 exports.findMemberId = findMemberId;
