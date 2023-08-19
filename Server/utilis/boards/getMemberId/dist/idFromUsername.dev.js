@@ -3,8 +3,6 @@
 var _require = require("./getMembersId"),
     getMemberId = _require.getMemberId;
 
-var additionAction = "Addition";
-
 function findMemberId(req, res) {
   var allBoardsId, mainBoardsIdObj, allMembersDetails;
   return regeneratorRuntime.async(function findMemberId$(_context2) {

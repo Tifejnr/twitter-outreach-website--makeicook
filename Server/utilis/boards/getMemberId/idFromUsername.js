@@ -1,5 +1,4 @@
 const { getMemberId } = require("./getMembersId");
-const additionAction = "Addition";
 
 async function findMemberId(req, res) {
   const { allBoardsId } = req.body;

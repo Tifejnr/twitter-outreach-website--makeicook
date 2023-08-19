@@ -1,20 +1,19 @@
 import validateFullName from "../full-name/validateFullName";
 import usernamesValidation from "../usernames/usernamesValidation";
-import getMemberId from "./getMemberId";
+import { findMemberIdByName } from "./findByName";
+import { findMemberIdByUsername } from "./findByUsername";
 
 export default async function memberIdSearch(paramsForGettingMemberIds) {
   const usernameMeans = paramsForGettingMemberIds.usernameMeans;
   const meansOfExceution = paramsForGettingMemberIds.meansOfExceution;
   const whiteSpaceRemoved = paramsForGettingMemberIds.whiteSpaceRemoved;
-  const boardIdsObj = paramsForGettingMemberIds.boardIdsObj;
   const fullNamesIntoArray = paramsForGettingMemberIds.fullNamesIntoArray;
   const usernamesAtRemoved = paramsForGettingMemberIds.usernamesAtRemoved;
   const whiteSpaceEndAndBeginningRemoved =
     paramsForGettingMemberIds.whiteSpaceEndAndBeginningRemoved;
   const isUsernameInput = paramsForGettingMemberIds.isUsernameInput;
+  const allUserMemberDetail = paramsForGettingMemberIds.allUserMemberDetail;
   const executionBtnClicked = paramsForGettingMemberIds.executionBtnClicked;
-  const checkedBoardsObj = paramsForGettingMemberIds.boardDetailsObj;
-  const action = paramsForGettingMemberIds.action;
 
   let itemsIntoArray,
     nameAddingObjArray = [],
@@ -34,24 +33,21 @@ export default async function memberIdSearch(paramsForGettingMemberIds) {
 
   // Create an array to hold promises so that all pomises are executed before moving on wt=ith the process
   const promises = itemsIntoArray.map(async (memberUsername) => {
-    const memberDetailsForIdGetting = {
-      memberUsername,
-      boardIdsObj,
-      isUsernameInput,
-      checkedBoardsObj,
-      action,
-    };
+    let memberIdFound;
 
-    const getMemberIdServer = await getMemberId(memberDetailsForIdGetting);
+    if (isUsernameInput) {
+      memberIdFound = findMemberIdByUsername(
+        allUserMemberDetail,
+        memberUsername
+      );
+    } else {
+      memberIdFound = findMemberIdByName(allUserMemberDetail, memberUsername);
+    }
 
-    const memberIdFound = await getMemberIdServer;
+    if (!memberIdFound) return errorNameAddingObjArray.push(memberUsername);
 
-    if (executionBtnClicked) return { stop: true }, console.log("stopped");
+    const memberId = memberIdFound.id;
 
-    if (memberIdFound.error)
-      return errorNameAddingObjArray.push(memberUsername);
-
-    const memberId = memberIdFound.memberIdFound[0].memberId;
     const nameAddingObj = {
       memberId,
       memberUsername,

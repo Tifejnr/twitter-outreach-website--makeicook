@@ -365,7 +365,7 @@ button:hover {
   column-gap: 0.6rem;
   cursor: pointer;
   background-color: #fff;
-
+  margin: 1.2rem 0;
   color: purple;
   z-index: 70000;
   width: 100%;

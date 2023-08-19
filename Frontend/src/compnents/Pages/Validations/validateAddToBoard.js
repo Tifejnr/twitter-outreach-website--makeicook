@@ -13,6 +13,7 @@ export default async function validateAddToBoard(executionParams) {
   const textareaInputs = executionParams.textAreaValue;
   const meansOfExceution = executionParams.meansOfExceution;
   const executionBtnClicked = executionParams.executionBtnClicked;
+  const allUserMemberDetail = executionParams.allUserMemberDetail;
 
   //remove whitespaces from if it's username
   const whiteSpaceRemoved = textareaInputs.replace(/ /g, "");
@@ -49,6 +50,7 @@ export default async function validateAddToBoard(executionParams) {
       usernamesAtRemoved,
       executionBtnClicked,
       boardIdsObj,
+      allUserMemberDetail,
       isUsernameInput,
       boardDetailsObj,
     };

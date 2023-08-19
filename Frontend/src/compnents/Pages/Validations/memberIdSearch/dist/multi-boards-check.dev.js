@@ -9,12 +9,14 @@ var _validateFullName = _interopRequireDefault(require("../full-name/validateFul
 
 var _usernamesValidation = _interopRequireDefault(require("../usernames/usernamesValidation"));
 
-var _getMemberId = _interopRequireDefault(require("./getMemberId"));
+var _findByName = require("./findByName");
+
+var _findByUsername = require("./findByUsername");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function memberIdSearch(paramsForGettingMemberIds) {
-  var usernameMeans, meansOfExceution, whiteSpaceRemoved, boardIdsObj, fullNamesIntoArray, usernamesAtRemoved, whiteSpaceEndAndBeginningRemoved, isUsernameInput, executionBtnClicked, checkedBoardsObj, action, itemsIntoArray, nameAddingObjArray, errorNameAddingObjArray, response, _response, promises;
+  var usernameMeans, meansOfExceution, whiteSpaceRemoved, fullNamesIntoArray, usernamesAtRemoved, whiteSpaceEndAndBeginningRemoved, isUsernameInput, allUserMemberDetail, executionBtnClicked, itemsIntoArray, nameAddingObjArray, errorNameAddingObjArray, response, _response, promises;
 
   return regeneratorRuntime.async(function memberIdSearch$(_context2) {
     while (1) {
@@ -23,93 +25,69 @@ function memberIdSearch(paramsForGettingMemberIds) {
           usernameMeans = paramsForGettingMemberIds.usernameMeans;
           meansOfExceution = paramsForGettingMemberIds.meansOfExceution;
           whiteSpaceRemoved = paramsForGettingMemberIds.whiteSpaceRemoved;
-          boardIdsObj = paramsForGettingMemberIds.boardIdsObj;
           fullNamesIntoArray = paramsForGettingMemberIds.fullNamesIntoArray;
           usernamesAtRemoved = paramsForGettingMemberIds.usernamesAtRemoved;
           whiteSpaceEndAndBeginningRemoved = paramsForGettingMemberIds.whiteSpaceEndAndBeginningRemoved;
           isUsernameInput = paramsForGettingMemberIds.isUsernameInput;
+          allUserMemberDetail = paramsForGettingMemberIds.allUserMemberDetail;
           executionBtnClicked = paramsForGettingMemberIds.executionBtnClicked;
-          checkedBoardsObj = paramsForGettingMemberIds.boardDetailsObj;
-          action = paramsForGettingMemberIds.action;
           nameAddingObjArray = [], errorNameAddingObjArray = [];
 
           if (!(meansOfExceution == usernameMeans)) {
-            _context2.next = 19;
+            _context2.next = 17;
             break;
           }
 
           response = (0, _usernamesValidation["default"])(whiteSpaceRemoved);
 
           if (!response.usernameValError) {
-            _context2.next = 16;
+            _context2.next = 14;
             break;
           }
 
           return _context2.abrupt("return", response);
 
-        case 16:
+        case 14:
           itemsIntoArray = usernamesAtRemoved;
-          _context2.next = 23;
+          _context2.next = 21;
           break;
 
-        case 19:
+        case 17:
           _response = (0, _validateFullName["default"])(whiteSpaceEndAndBeginningRemoved);
 
           if (!_response.fullNameValError) {
-            _context2.next = 22;
+            _context2.next = 20;
             break;
           }
 
           return _context2.abrupt("return", _response);
 
-        case 22:
+        case 20:
           itemsIntoArray = fullNamesIntoArray;
 
-        case 23:
+        case 21:
           // Create an array to hold promises so that all pomises are executed before moving on wt=ith the process
           promises = itemsIntoArray.map(function _callee(memberUsername) {
-            var memberDetailsForIdGetting, getMemberIdServer, memberIdFound, memberId, nameAddingObj;
+            var memberIdFound, memberId, nameAddingObj;
             return regeneratorRuntime.async(function _callee$(_context) {
               while (1) {
                 switch (_context.prev = _context.next) {
                   case 0:
-                    memberDetailsForIdGetting = {
-                      memberUsername: memberUsername,
-                      boardIdsObj: boardIdsObj,
-                      isUsernameInput: isUsernameInput,
-                      checkedBoardsObj: checkedBoardsObj,
-                      action: action
-                    };
-                    _context.next = 3;
-                    return regeneratorRuntime.awrap((0, _getMemberId["default"])(memberDetailsForIdGetting));
-
-                  case 3:
-                    getMemberIdServer = _context.sent;
-                    _context.next = 6;
-                    return regeneratorRuntime.awrap(getMemberIdServer);
-
-                  case 6:
-                    memberIdFound = _context.sent;
-
-                    if (!executionBtnClicked) {
-                      _context.next = 9;
-                      break;
+                    if (isUsernameInput) {
+                      memberIdFound = (0, _findByUsername.findMemberIdByUsername)(allUserMemberDetail, memberUsername);
+                    } else {
+                      memberIdFound = (0, _findByName.findMemberIdByName)(allUserMemberDetail, memberUsername);
                     }
 
-                    return _context.abrupt("return", ({
-                      stop: true
-                    }, console.log("stopped")));
-
-                  case 9:
-                    if (!memberIdFound.error) {
-                      _context.next = 11;
+                    if (memberIdFound) {
+                      _context.next = 3;
                       break;
                     }
 
                     return _context.abrupt("return", errorNameAddingObjArray.push(memberUsername));
 
-                  case 11:
-                    memberId = memberIdFound.memberIdFound[0].memberId;
+                  case 3:
+                    memberId = memberIdFound.id;
                     nameAddingObj = {
                       memberId: memberId,
                       memberUsername: memberUsername,
@@ -117,7 +95,7 @@ function memberIdSearch(paramsForGettingMemberIds) {
                     };
                     nameAddingObjArray.push(nameAddingObj);
 
-                  case 14:
+                  case 6:
                   case "end":
                     return _context.stop();
                 }
@@ -126,7 +104,7 @@ function memberIdSearch(paramsForGettingMemberIds) {
           });
 
           if (!executionBtnClicked) {
-            _context2.next = 26;
+            _context2.next = 24;
             break;
           }
 
@@ -134,13 +112,13 @@ function memberIdSearch(paramsForGettingMemberIds) {
             stop: true
           });
 
-        case 26:
-          _context2.next = 28;
+        case 24:
+          _context2.next = 26;
           return regeneratorRuntime.awrap(Promise.all(promises));
 
-        case 28:
+        case 26:
           if (!executionBtnClicked) {
-            _context2.next = 30;
+            _context2.next = 28;
             break;
           }
 
@@ -148,9 +126,9 @@ function memberIdSearch(paramsForGettingMemberIds) {
             stop: true
           });
 
-        case 30:
+        case 28:
           if (!(errorNameAddingObjArray.length > 0)) {
-            _context2.next = 32;
+            _context2.next = 30;
             break;
           }
 
@@ -158,12 +136,12 @@ function memberIdSearch(paramsForGettingMemberIds) {
             errorNameAddingObjArray: errorNameAddingObjArray
           });
 
-        case 32:
+        case 30:
           return _context2.abrupt("return", {
             nameAddingObjArray: nameAddingObjArray
           });
 
-        case 33:
+        case 31:
         case "end":
           return _context2.stop();
       }

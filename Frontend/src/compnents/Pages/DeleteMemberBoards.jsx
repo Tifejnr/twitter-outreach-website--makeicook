@@ -271,7 +271,7 @@ export default function DeleteMemberBoards() {
         });
 
        setAllUserMemberDetail(uniqueMainMemberDetails);
-        setBoardIdsObj(allBoardsId);
+       setBoardIdsObj(allBoardsId);
 
         //fetch workspace names for each boards
         workspaceIdArray.map(async (workspaceId, index) => {
@@ -374,15 +374,15 @@ export default function DeleteMemberBoards() {
                 />
 
                 <SearchBoards searchPlaceholderTitle={searchPlaceholderTitle} />
-
-                {boardsCollection.length < 2 && (
+               {/* //members allowed to be loaded instead */}
+                {allUserMemberDetail.length < 2 && (
                   <p className="loading-your-boards-text">
                     Loading your boards and their workspaces...
                   </p>
                 )}
 
                 <section className="all-boardnames-container">
-                  {boardsCollection.length > 1 &&
+                  {allUserMemberDetail.length > 1 &&
                     boardsCollection.map((board, index) => {
                       return (
                         <BoardsDisplaySection
