@@ -19,10 +19,12 @@ export default async function validateAddToBoard(executionParams) {
   const whiteSpaceRemoved = textareaInputs.replace(/ /g, "");
 
   //remove whitespaces from  beginning and end of a string
-  const whiteSpaceEndAndBeginningRemoved = textareaInputs.replace(/ /g, "");
+  const whiteSpaceEndAndBeginningRemoved = textareaInputs.trim();
+
+  console.log(whiteSpaceEndAndBeginningRemoved);
 
   const usernamesIntoArray = whiteSpaceRemoved.split(/\s*,\s*/);
-  const fullNamesIntoArray = whiteSpaceRemoved.split(/\s*,\s*/);
+  const fullNamesIntoArray = whiteSpaceEndAndBeginningRemoved.split(/\s*,\s*/);
 
   const usernamesAtRemoved = usernamesIntoArray.map((username) => {
     return username.slice(1);

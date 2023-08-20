@@ -35,9 +35,10 @@ function validateAddToBoard(executionParams) {
 
           whiteSpaceRemoved = textareaInputs.replace(/ /g, ""); //remove whitespaces from  beginning and end of a string
 
-          whiteSpaceEndAndBeginningRemoved = textareaInputs.replace(/ /g, "");
+          whiteSpaceEndAndBeginningRemoved = textareaInputs.trim();
+          console.log(whiteSpaceEndAndBeginningRemoved);
           usernamesIntoArray = whiteSpaceRemoved.split(/\s*,\s*/);
-          fullNamesIntoArray = whiteSpaceRemoved.split(/\s*,\s*/);
+          fullNamesIntoArray = whiteSpaceEndAndBeginningRemoved.split(/\s*,\s*/);
           usernamesAtRemoved = usernamesIntoArray.map(function (username) {
             return username.slice(1);
           });
@@ -46,7 +47,7 @@ function validateAddToBoard(executionParams) {
           }); //validating checkbox to ensure at least one is checked
 
           if ((0, _Checkbox.isAnyCheckboxChecked)()) {
-            _context.next = 13;
+            _context.next = 14;
             break;
           }
 
@@ -54,12 +55,12 @@ function validateAddToBoard(executionParams) {
             noCheckboxChecked: true
           });
 
-        case 13:
+        case 14:
           //get checked boards id and their names for action in future
           boardDetailsObj = (0, _boardIdName["default"])(executionParams); //validating if it's username means or fullname means
 
           if (!(meansOfExceution == usernameMeans || meansOfExceution == fullNameMeans)) {
-            _context.next = 26;
+            _context.next = 27;
             break;
           }
 
@@ -77,61 +78,61 @@ function validateAddToBoard(executionParams) {
             isUsernameInput: isUsernameInput,
             boardDetailsObj: boardDetailsObj
           };
-          _context.next = 18;
+          _context.next = 19;
           return regeneratorRuntime.awrap((0, _multiBoardsCheck["default"])(paramsForGettingMemberIds));
 
-        case 18:
+        case 19:
           response = _context.sent;
 
           if (!response.usernameValError) {
-            _context.next = 21;
+            _context.next = 22;
             break;
           }
 
           return _context.abrupt("return", response);
 
-        case 21:
+        case 22:
           if (!response.fullNameValError) {
-            _context.next = 23;
+            _context.next = 24;
             break;
           }
 
           return _context.abrupt("return", response);
 
-        case 23:
+        case 24:
           if (!response.errorNameAddingObjArray) {
-            _context.next = 25;
+            _context.next = 26;
             break;
           }
 
           return _context.abrupt("return", response);
-
-        case 25:
-          nameAddingObjArray = response.nameAddingObjArray;
 
         case 26:
+          nameAddingObjArray = response.nameAddingObjArray;
+
+        case 27:
           if (!(meansOfExceution == emailMeans)) {
-            _context.next = 30;
+            _context.next = 31;
             break;
           }
 
           _response = (0, _Input.validateInput)(whiteSpaceRemoved);
 
           if (!_response.inputValError) {
-            _context.next = 30;
+            _context.next = 31;
             break;
           }
 
           return _context.abrupt("return", _response);
 
-        case 30:
+        case 31:
           validationComplete = {
             boardDetailsObj: boardDetailsObj,
             nameAddingObjArray: nameAddingObjArray
           };
           return _context.abrupt("return", validationComplete);
 
-        case 32:
+        case 33:
         case "end":
           return _context.stop();
       }
