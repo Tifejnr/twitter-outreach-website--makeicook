@@ -1,34 +1,39 @@
-import { findBoardIdByName } from "./FindBoardId/byName";
-
-export default function boardIdAndName(paramsForboardIdAndName) {
+export default function findMemberIdThroughInnerHtml(paramsForboardIdAndName) {
   const memberCheckboxesArray = paramsForboardIdAndName.memberCheckboxesArray;
   const allUserMemberDetail = paramsForboardIdAndName.allUserMemberDetail;
 
-  const boardDetailsObj = memberCheckboxesArray.map((checkbox, index) => {
+  let nameAddingObjArray = [];
+
+  const memberDetailsObj = memberCheckboxesArray.map((checkbox, index) => {
     if (!checkbox.checked) return false;
 
     const checkboxId = checkbox.id;
 
     const arrayNoFromId = Number(checkboxId.replace(/\D/g, ""));
 
-    const boardEl = document.getElementById(`labelcheck${arrayNoFromId}`);
+    const memberUsernameEl = document.getElementById(
+      `username${arrayNoFromId}`
+    );
+    const memberUsernameWithAt = memberUsernameEl.textContent;
+    const memberUsername = memberUsernameWithAt.slice(1);
 
-    const boardName = boardEl.textContent;
+    const foundMember = allUserMemberDetail.find(
+      (memberDetail) => memberDetail.username === memberUsername
+    );
 
-    const foundBoard = findBoardIdByName(allUserMemberDetail, boardName);
+    if (!foundMember) return console.log("board not found");
+    const memberId = foundMember.id;
+    const memberFullName = foundMember.fullName;
 
-    if (!foundBoard) return console.log("board not found");
-    const boardId = foundBoard.id;
-
-    const neededObj = {
-      boardId,
-      boardName,
+    const checkedMemberObj = {
+      memberId,
+      memberFullName,
     };
 
-    return neededObj;
+    nameAddingObjArray.push(checkedMemberObj);
   });
 
-  if (!boardDetailsObj) return "";
+  if (!memberDetailsObj) return "";
 
-  return boardDetailsObj;
+  return { nameAddingObjArray };
 }

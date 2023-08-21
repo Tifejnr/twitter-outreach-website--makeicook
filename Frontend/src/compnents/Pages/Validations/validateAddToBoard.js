@@ -2,6 +2,7 @@ import { isAnyCheckboxChecked } from "../../../JS functions/Utilis/Validations/C
 import { validateInput } from "../../../JS functions/Utilis/Validations/Input";
 import memberIdSearch from "./memberIdSearch/multi-boards-check";
 import boardIdAndName from "./board-id-and-name/boardIdName";
+import findMemberIdThroughInnerHtml from "./memberIdSearch/findMemberId";
 
 const emailMeans = "Email";
 let nameAddingObjArray;
@@ -12,6 +13,7 @@ export default async function validateAddToBoard(executionParams) {
   const meansOfExceution = executionParams.meansOfExceution;
   const executionBtnClicked = executionParams.executionBtnClicked;
   const allUserMemberDetail = executionParams.allUserMemberDetail;
+  const memberCheckboxesArray = executionParams.memberCheckboxesArray;
 
   //remove whitespaces from if it's email
   const whiteSpaceRemoved = textareaInputs.replace(/ /g, "");
@@ -29,21 +31,18 @@ export default async function validateAddToBoard(executionParams) {
   const boardDetailsObj = boardIdAndName(executionParams);
 
   const paramsForGettingMemberIds = {
-    usernameMeans,
     meansOfExceution,
     textareaInputs,
     whiteSpaceRemoved,
-    whiteSpaceEndAndBeginningRemoved,
-    fullNamesIntoArray,
-    usernamesAtRemoved,
-    executionBtnClicked,
     boardIdsObj,
     allUserMemberDetail,
-    isUsernameInput,
     boardDetailsObj,
+    memberCheckboxesArray,
   };
 
-  const response = await memberIdSearch(paramsForGettingMemberIds);
+  const response = findMemberIdThroughInnerHtml(paramsForGettingMemberIds);
+
+  console.log(response);
 
   nameAddingObjArray = response.nameAddingObjArray;
 

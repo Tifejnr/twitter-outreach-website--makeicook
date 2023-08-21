@@ -116,115 +116,15 @@ export default function DeleteMemberBoards() {
       setTextAreaError("");
     }
 
-    if (response.usernameValError) {
-      return (
-        setExecutionBtnClicked(false),
-        setLabelTitle(addMemberTitle),
-        setExecutionErrorBtn(response.usernameValError),
-        setTextAreaError(response.usernameValError)
-      );
-    } else {
-      setTextAreaError("");
-    }
-
-    if (response.fullNameValError) {
-      return (
-        setExecutionBtnClicked(false),
-        setLabelTitle(addMemberTitle),
-        setExecutionErrorBtn(response.fullNameValError),
-        setTextAreaError(response.fullNameValError)
-      );
-    } else {
-      setTextAreaError("");
-    }
-
     setTextAreaError("");
     setExecutionErrorBtn("");
-
-    if (meansOfExceution == usernameMeans) {
-      if (response.errorNameAddingObjArray) {
-        const usernamesAtAdded = response.errorNameAddingObjArray.map(
-          (username) => {
-            return `@${username}`;
-          }
-        );
-        let errorMessage;
-
-        if (usernamesAtAdded.length == 1) {
-          errorMessage = `Username ${usernamesAtAdded[0]} is not found.`;
-        }
-
-        if (usernamesAtAdded.length > 1) {
-          errorMessage = `Usernames ${usernamesAtAdded.join(
-            ", "
-          )} are not found.`;
-        }
-
-        return (
-          setExecutionBtnClicked(false),
-          setLabelTitle(addMemberTitle),
-          setTextAreaError(errorMessage),
-          setExecutionErrorBtn(errorMessage)
-        );
-      }
-
-      if (response.stop) {
-        const stoppedMessage = "Action Stopped";
-
-        console.log("tried here stop");
-        return (
-          setExecutionBtnClicked(false),
-          setLabelTitle(addMemberTitle),
-          setExecutionErrorBtn(stoppedMessage),
-          setTextAreaError(stoppedMessage)
-        );
-      } else if (response.nameAddingObjArray) {
-        setLabelTitle("Starting...");
-        setBoardDetailsObj(response);
-        setOpenProgressBar(true);
-      }
-    }
-
-    if (meansOfExceution == fullNameMeans) {
-      if (response.stop) {
-        const stoppedMessage = "Action Stopped";
-
-        console.log("tried here stop");
-        return (
-          setExecutionBtnClicked(false),
-          setLabelTitle(addMemberTitle),
-          setExecutionErrorBtn(stoppedMessage),
-          setTextAreaError(stoppedMessage)
-        );
-      }
-      if (response.errorNameAddingObjArray) {
-        const notFoundNamesArray = response.errorNameAddingObjArray;
-        let errorMessage;
-
-        if (notFoundNamesArray.length == 1) {
-          errorMessage = `Full name ${notFoundNamesArray[0]} is not found.`;
-        }
-
-        if (notFoundNamesArray.length > 1) {
-          errorMessage = `Full names ${notFoundNamesArray.join(
-            ", "
-          )} are not found.`;
-        }
-
-        return (
-          setExecutionBtnClicked(false),
-          setLabelTitle(addMemberTitle),
-          setTextAreaError(errorMessage),
-          setExecutionErrorBtn(errorMessage)
-        );
-      }
 
       if (response.nameAddingObjArray) {
         setLabelTitle("Starting...");
         setBoardDetailsObj(response);
         setOpenProgressBar(true);
       }
-    }
+
   }
 
   useEffect(() => {

@@ -25,8 +25,8 @@ export default function MemberInfoDisplay(props) {
               id={`checkMembers${props.indexNo}`}
             />
          <article >
-          <p className={`fullname${props.indexNo}`}> {memberDetailObj.fullName}</p>
-          <p className={`username${props.indexNo}`}>@{memberDetailObj.username}</p>
+          <p id={`fullname${props.indexNo}`}> {memberDetailObj.fullName}</p>
+          <p id={`username${props.indexNo}`}>@{memberDetailObj.username}</p>
             {/* <ul>
                 <li>Workspace</li>
         
