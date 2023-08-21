@@ -98,12 +98,14 @@ export default function AddMember() {
     if (creditsFromServer <1) return  setExecutionErrorBtn(insufficietCreditsMess) , setLabelTitle(addMemberTitle);
    setExecutionErrorBtn("")
 
-
    if (!isAnyCheckboxChecked(checkboxesArray))   return (
         setExecutionBtnClicked(false),
         setLabelTitle(addMemberTitle),
         setExecutionErrorBtn(checkboxMustBeCheckedMess)
       );
+
+  //only check if member checkbox is checked if it's name means, member list isn't present in email menas
+  if (meansOfExceution==nameMeans) {
 
    if (!isAnyMemberCheckboxChecked(memberCheckboxesArray))   return (
         setExecutionBtnClicked(false),
@@ -111,8 +113,16 @@ export default function AddMember() {
         setExecutionErrorBtn(memeberCheckboxMustBeCheckedMess)
       );
 
+   }
+
    const response = await validateAddToBoard(executionParams)
 
+   setTextAreaError("")
+   setExecutionErrorBtn("")
+
+   //if it's email means use board id only
+  if (meansOfExceution==emailMeans) {
+  
    if (response.inputValError) {
     return setExecutionBtnClicked(false), 
            setLabelTitle(addMemberTitle),
@@ -120,12 +130,7 @@ export default function AddMember() {
            setTextAreaError(response.inputValError);
     }
 
-   setTextAreaError("")
-   setExecutionErrorBtn("")
-
-   //if it's email means use board id only
-  if (meansOfExceution==emailMeans) {
-      if (response.boardDetailsObj )  {
+   if (response.boardDetailsObj )  {
    setLabelTitle("Starting...") 
     setBoardDetailsObj(response)
     setOpenProgressBar(true)
@@ -267,7 +272,7 @@ export default function AddMember() {
 
                {allUserMemberDetail.length < 2 && (
                   <p className="loading-your-boards-text">
-                    Loading your boards members ...
+                    Loading all your boards members ...
                   </p>
                 )}
                   
