@@ -284,7 +284,6 @@ button:hover {
 }
 
 /* Select All and Deselect All Button Block */
-
 .selecting-btn-cont button {
   border: 1px solid grey;
   border-radius: 0.6rem;
@@ -349,7 +348,6 @@ button:hover {
 }
 
 /* Failure Deatisl Design Block */
-
 .failureReasonsDisplay {
   position: relative;
   max-height: 3rem;
@@ -679,16 +677,31 @@ input {
 .member-info-container {
   display: flex;
   column-gap: 0.5rem;
-  align-items: center;
+  align-items: start;
 }
 
+.member-info-container input {
+  height: 2rem;
+  width: 2rem;
+  cursor: pointer;
+}
 .member-info-container p {
+  color: #17252a;
   /* width: 70rem; */
   text-align: left;
 }
 
-/* Selction Container */
+.member-info-container p:nth-child(1) {
+  font-size: 1.7rem;
+  font-weight: 500;
+}
+.member-info-container p:nth-child(2) {
+  font-size: 1.4rem;
+  margin: 0.5rem 0;
+  color: gray;
+}
 
+/* Selction Container */
 .main-section-cont {
   position: relative;
   top: 7rem;
