@@ -172,6 +172,8 @@ export default function DeleteMemberBoards() {
       //sort members name alhpabettically using fullname
       uniqueMainMemberDetails.sort((a, b) => a.fullName.localeCompare(b.fullName));
 
+      console.log(uniqueMainMemberDetails)
+
        setAllUserMemberDetail(uniqueMainMemberDetails);
        setBoardIdsObj(allBoardsId);
 
@@ -254,6 +256,8 @@ export default function DeleteMemberBoards() {
                           <MemberInfoDisplay
                             key= {index}
                             indexNo= {index}
+                            boardsCollection={boardsCollection}
+                            workspaceObjDetails={workspaceObjDetails}
                             memberDetailObj= {memberDetailObj}/>
                           );
                         })}

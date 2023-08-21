@@ -11,7 +11,7 @@ export default function BoardsDisplaySection(props) {
     (state) => state.setCheckboxRatioNotifierDisplay
   );
 
-  const workspaceObjDetails= props.workspaceObjDetails
+  const workspaceObjDetails = props.workspaceObjDetails;
   const board = props.board
 
   const checkboxRatioNotifier = () => {
@@ -24,7 +24,7 @@ export default function BoardsDisplaySection(props) {
     setCheckboxRatioNotifierDisplay(checkboxRatioNotifierValue);
   };
 
-      //getting product details first
+    //getting product details first
     const isWorkspaceDetailsValid = workspaceObjDetails.find(
       (workspaceDetail) => workspaceDetail.workspaceId == board.idOrganization
     );  

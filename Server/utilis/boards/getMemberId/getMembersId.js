@@ -10,7 +10,7 @@ async function getMemberId(paramToGetUsernameIds) {
     // Fetch list of members on the board
     const response = await axios.get(boardsDetailsUrl);
     const boardMembersDetails = response.data;
-
+    boardMembersDetails.boardId = boardId;
     return boardMembersDetails;
   } catch (error) {
     console.error("Error:", error);

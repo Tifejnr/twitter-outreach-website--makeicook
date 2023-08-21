@@ -11,7 +11,15 @@ export default function MemberInfoDisplay(props) {
     pushMemberCheckboxesArray(checkboxEle);
   }, []);
 
-    const memberDetailObj = props.memberDetailObj ;
+  const memberDetailObj = props.memberDetailObj ;
+  const workspaceObjDetails = props.workspaceObjDetails;
+  // const boardsCollection = props.boardsCollection;
+
+  //       //getting product details first
+  //   const isWorkspaceDetailsValid = workspaceObjDetails.find(
+  //     (workspaceDetail) => workspaceDetail.workspaceId == board.idOrganization
+  //   );  
+
   return (
     <form  className="eachMemberListCont">
         <section className='member-info-container'>
