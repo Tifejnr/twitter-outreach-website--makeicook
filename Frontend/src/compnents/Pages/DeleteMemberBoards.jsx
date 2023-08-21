@@ -32,10 +32,7 @@ const continuousAction = "Deleting";
 const proposition = "from";
 const addToBoardsTabTitle = "Delete Members from Boards – Collab for Trello";
 const timeInterval = 0.2;
-const usernameMeans = "Username - 100% Efficient";
-const fullNameMeans = "Full name - 60% Efficient";
-const unknowMeansYet = "...";
-const addMemberTitle = "Delete Members";
+const deleteMemberTitle = "Delete Members";
 const defaultMeansMessage = "Select Means of Deletion";
 const searchMembersPlaceholder = "Search board members name ..."
 
@@ -46,7 +43,7 @@ const memeberCheckboxMustBeCheckedMess = "Please check at least a member to be r
 export default function DeleteMemberBoards() {
   const [boardsCollection, setBoardsCollection] = useState([{}]);
   const [openProgressBar, setOpenProgressBar] = useState(false);
-  const [labelTitle, setLabelTitle] = useState(addMemberTitle);
+  const [labelTitle, setLabelTitle] = useState(deleteMemberTitle);
   const [executionBtnClicked, setExecutionBtnClicked] = useState(false);
   const [textAreaError, setTextAreaError] = useState("");
   const [memberDetailObj, setMemberDetailObj] = useState("");
@@ -94,19 +91,19 @@ export default function DeleteMemberBoards() {
     if (creditsFromServer < 1)
       return (
         setExecutionErrorBtn(insufficietCreditsMess),
-        setLabelTitle(addMemberTitle)
+        setLabelTitle(deleteMemberTitle)
       );
     setExecutionErrorBtn("");
 
    if (!isAnyCheckboxChecked(checkboxesArray))   return (
         setExecutionBtnClicked(false),
-        setLabelTitle(addMemberTitle),
+        setLabelTitle(deleteMemberTitle),
         setExecutionErrorBtn(checkboxMustBeCheckedMess)
       );
 
    if (!isAnyMemberCheckboxChecked(memberCheckboxesArray))   return (
         setExecutionBtnClicked(false),
-        setLabelTitle(addMemberTitle),
+        setLabelTitle(deleteMemberTitle),
         setExecutionErrorBtn(memeberCheckboxMustBeCheckedMess)
       );
 
@@ -263,7 +260,7 @@ export default function DeleteMemberBoards() {
                 </section>
             </section>
 
-              <section className="boardsListSection">
+              <section className="boardsListSection" id="boardsListSection">
                 <SelectAll
                   labelTitle={labelTitle}
                   verifying="Verifying Inputs..."

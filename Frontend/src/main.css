@@ -695,7 +695,7 @@ input {
   width: 100%;
   margin: 0 auto;
   height: 100vh;
-  max-width: 90rem;
+  max-width: 100rem;
 }
 
 .main-section-cont h1 {
@@ -753,8 +753,8 @@ form:last-child {
 }
 
 /* Boards List*/
-.boardsListSection {
-  width: 100%;
+#boardsListSection {
+  width: 120%;
 }
 
 /* No of Selection display box */
