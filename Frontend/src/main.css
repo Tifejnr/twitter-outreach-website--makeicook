@@ -210,12 +210,17 @@ Display Dropdwon menu */
 }
 
 /* prevent scrolling down till infinity */
-.all-boardnames-container {
+.all-boardnames-container,
+.member-list-cont {
   overflow-y: scroll;
   overflow-x: hidden;
   height: 100%;
   max-height: 50rem;
   margin-bottom: 3rem;
+}
+
+.member-list-cont h1 {
+  color: blue;
 }
 
 .loading-your-boards-text {
@@ -661,14 +666,45 @@ input {
   }
 }
 
+/* Member List  Container */
+
+#memberToDeleteHeading {
+  font-weight: 500;
+  text-align: left;
+  font-size: 2rem;
+  font-weight: 500;
+  color: #1e2831;
+  margin: 1rem 0;
+}
+
+.member-list-cont {
+  display: grid;
+  row-gap: 2rem;
+}
+.membersListsContainer {
+  height: 100%;
+}
+
+.member-info-container {
+  display: flex;
+  column-gap: 0.5rem;
+  align-items: center;
+}
+
+.member-info-container p {
+  /* width: 70rem; */
+  text-align: left;
+}
+
 /* Selction Container */
 
 .main-section-cont {
   position: relative;
   top: 7rem;
-  width: 60rem;
+  width: 100%;
   margin: 0 auto;
   height: 100vh;
+  max-width: 90rem;
 }
 
 .main-section-cont h1 {
@@ -685,6 +721,8 @@ input {
   justify-content: center;
   align-items: center;
   justify-items: center;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 15rem;
 }
 
 .inner-main-cont section {
@@ -717,7 +755,7 @@ form:last-child {
   margin-right: 1rem;
 }
 
-.selectionCont h1 {
+.selectionCont h1r {
   text-align: left;
   font-size: 2rem;
   font-weight: 500;
@@ -729,7 +767,7 @@ form:last-child {
 #para {
   position: fixed;
   top: 50%;
-  left: 10%;
+  left: 90%;
 }
 
 /* Text Area Block  for memeber details*/
