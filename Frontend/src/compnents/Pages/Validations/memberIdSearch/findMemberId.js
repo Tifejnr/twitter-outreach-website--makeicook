@@ -1,0 +1,34 @@
+import { findBoardIdByName } from "./FindBoardId/byName";
+
+export default function boardIdAndName(paramsForboardIdAndName) {
+  const memberCheckboxesArray = paramsForboardIdAndName.memberCheckboxesArray;
+  const allUserMemberDetail = paramsForboardIdAndName.allUserMemberDetail;
+
+  const boardDetailsObj = memberCheckboxesArray.map((checkbox, index) => {
+    if (!checkbox.checked) return false;
+
+    const checkboxId = checkbox.id;
+
+    const arrayNoFromId = Number(checkboxId.replace(/\D/g, ""));
+
+    const boardEl = document.getElementById(`labelcheck${arrayNoFromId}`);
+
+    const boardName = boardEl.textContent;
+
+    const foundBoard = findBoardIdByName(allUserMemberDetail, boardName);
+
+    if (!foundBoard) return console.log("board not found");
+    const boardId = foundBoard.id;
+
+    const neededObj = {
+      boardId,
+      boardName,
+    };
+
+    return neededObj;
+  });
+
+  if (!boardDetailsObj) return "";
+
+  return boardDetailsObj;
+}

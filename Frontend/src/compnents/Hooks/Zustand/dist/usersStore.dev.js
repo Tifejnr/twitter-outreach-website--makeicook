@@ -17,12 +17,21 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 var useStore = (0, _zustand.create)(function (set) {
   return {
-    //set textareaValue
+    //set checkboxRatioNotifierDisplay
     checkboxRatioNotifierDisplay: "",
     setCheckboxRatioNotifierDisplay: function setCheckboxRatioNotifierDisplay(updatedCheckboxRatioNotifierDisplay) {
       return set(function (state) {
         return {
           checkboxRatioNotifierDisplay: updatedCheckboxRatioNotifierDisplay
+        };
+      });
+    },
+    //set Means of execution
+    meansOfExceution: false,
+    setMeansOfExceution: function setMeansOfExceution(updatedmeansOfExceution) {
+      return set(function (state) {
+        return {
+          meansOfExceution: updatedmeansOfExceution
         };
       });
     },
@@ -32,15 +41,6 @@ var useStore = (0, _zustand.create)(function (set) {
       return set(function (state) {
         return {
           textAreaValue: updatedTextArea
-        };
-      });
-    },
-    //set TextAreaRefEl
-    textAreaRefEl: "",
-    setTextAreaRefEl: function setTextAreaRefEl(updatedTextAreaRefEl) {
-      return set(function (state) {
-        return {
-          textAreaRefEl: updatedTextAreaRefEl
         };
       });
     },
@@ -95,6 +95,33 @@ var useStore = (0, _zustand.create)(function (set) {
       return set(function (state) {
         return {
           sectionName: updatedSectionName
+        };
+      });
+    },
+    // Function to push each index of memeber details invalid entry ele an array
+    invalidMemberDetailsArray: [],
+    pushInvalidMemberDetailsArray: function pushInvalidMemberDetailsArray(newString) {
+      return set(function (state) {
+        return {
+          invalidMemberDetailsArray: [].concat(_toConsumableArray(state.invalidMemberDetailsArray), [newString])
+        };
+      });
+    },
+    // Function to push each workspaceObjDetails ele into the array
+    workspaceObjDetails: [],
+    pushWorkspaceObjDetails: function pushWorkspaceObjDetails(newString) {
+      return set(function (state) {
+        return {
+          workspaceObjDetails: [].concat(_toConsumableArray(state.workspaceObjDetails), [newString])
+        };
+      });
+    },
+    // Function to push each membercheckbox ele into the memebercheckboxesArray
+    memberCheckboxesArray: [],
+    pushMemberCheckboxesArray: function pushMemberCheckboxesArray(newCheckbox) {
+      return set(function (state) {
+        return {
+          memberCheckboxesArray: [].concat(_toConsumableArray(state.memberCheckboxesArray), [newCheckbox])
         };
       });
     },

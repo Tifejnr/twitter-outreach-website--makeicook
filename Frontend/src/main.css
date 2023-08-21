@@ -768,6 +768,8 @@ form:last-child {
   position: fixed;
   top: 50%;
   left: 90%;
+  border: 1px solid gray;
+  padding: 1rem;
 }
 
 /* Text Area Block  for memeber details*/

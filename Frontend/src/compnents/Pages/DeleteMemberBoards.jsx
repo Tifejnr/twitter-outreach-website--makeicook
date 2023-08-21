@@ -31,7 +31,7 @@ const fullnameMeansInputPlaceholderText =
 const searchPlaceholderTitle = "Search Boards ...";
 const selectInstructionText = "Select Boards to Delete Members from";
 
-const pageTitle = "Delete Members Via";
+const pageTitle = "Delete Members from Boards";
 const action = "Deletion";
 const continuousAction = "Deleting";
 const proposition = "from";
@@ -72,6 +72,7 @@ export default function DeleteMemberBoards() {
   const workspaceObjDetails = useStore((state) => state.workspaceObjDetails);
   const meansOfExceution = useStore((state) => state.meansOfExceution);
   const setMeansOfExceution = useStore((state) => state.setMeansOfExceution);
+  const memberCheckboxesArray = useStore((state) => state.memberCheckboxesArray);
 
   changeTabTitle(addToBoardsTabTitle);
 
@@ -82,6 +83,7 @@ export default function DeleteMemberBoards() {
     timeInterval,
     clientSignature,
     checkboxesArray,
+    memberCheckboxesArray,
     boardDetailsObj,
     boardIdsObj,
     meansOfExceution,
@@ -303,22 +305,6 @@ export default function DeleteMemberBoards() {
     };
   }, []);
 
-  useEffect(() => {
-    // auto pick means picked previously for users
-    const meansChosenDeleteFromBoards = localStorage.getItem(
-      "meansChosenDeleteFromBoards"
-    );
-    if (meansChosenDeleteFromBoards)
-      return (
-        setMeansOfExceution(meansChosenDeleteFromBoards),
-        setSelectLabel(meansChosenDeleteFromBoards)
-      );
-    return (
-      setSelectLabel(defaultMeansMessage),
-      setMeansOfExceution(defaultMeansMessage)
-    );
-  });
-
   return (
     <>
       {openProgressBar ? (
@@ -336,10 +322,7 @@ export default function DeleteMemberBoards() {
           />
           <section className="main-section-cont" id="mainContentCont">
             <h1 id="toolInstruction">
-              {pageTitle}{" "}
-              {meansOfExceution == defaultMeansMessage
-                ? unknowMeansYet
-                : meansOfExceution}
+              {pageTitle}
             </h1>
             {/* <SelectMeans
               actionToBePerformed={action}

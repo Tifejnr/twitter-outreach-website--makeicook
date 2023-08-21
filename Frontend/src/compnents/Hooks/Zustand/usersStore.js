@@ -76,6 +76,13 @@ const useStore = create((set) => ({
       workspaceObjDetails: [...state.workspaceObjDetails, newString],
     })),
 
+  // Function to push each membercheckbox ele into the memebercheckboxesArray
+  memberCheckboxesArray: [],
+
+  pushMemberCheckboxesArray: (newCheckbox) =>
+    set((state) => ({
+      memberCheckboxesArray: [...state.memberCheckboxesArray, newCheckbox],
+    })),
   // Function to push each checkbox ele into the checkboxesArray
   checkboxesArray: [],
 

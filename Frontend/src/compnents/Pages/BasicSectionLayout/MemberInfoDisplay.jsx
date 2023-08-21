@@ -1,6 +1,16 @@
-
+import { useRef, useEffect } from "react";
+import useStore from "../../Hooks/Zustand/usersStore";
 
 export default function MemberInfoDisplay(props) {
+  const checkboxRef = useRef(null);
+  const memberCheckboxesArray = useStore((state) => state.memberCheckboxesArray);
+  const pushMemberCheckboxesArray = useStore((state) => state.pushMemberCheckboxesArray);
+
+  useEffect(() => {
+    const checkboxEle = checkboxRef.current;
+    pushMemberCheckboxesArray(checkboxEle);
+  }, []);
+
     const memberDetailObj = props.memberDetailObj ;
   return (
     <form  className="eachMemberListCont">
@@ -10,7 +20,7 @@ export default function MemberInfoDisplay(props) {
               type="checkbox"
               name="select-member"
               title="Check to select member"
-            //   ref={checkboxRef}
+              ref={checkboxRef}
               className="inputs board-checkbox"
               id={`checkMembers${props.indexNo}`}
             />
