@@ -242,7 +242,7 @@ export default function DeleteMemberBoards() {
 
               {allUserMemberDetail.length < 2 && (
                   <p className="loading-your-boards-text">
-                    Loading your boards members ...
+                    Loading all your boards members ...
                   </p>
               )}              
                   
