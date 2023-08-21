@@ -15,6 +15,8 @@ import SelectMeans from "./BasicSectionLayout/mean-of-execution/SelectMeans";
 import getWorkspacesName from "./getWorkspacesName";
 import getAllBoardsId from "./Validations/getBoardIdOnly/getAllBoardsId";
 import getMemberId from "./Validations/memberIdSearch/getMemberId";
+import MemberInfoDisplay from "./BasicSectionLayout/MemberInfoDisplay";
+import { searchMemberList } from "../../JS functions/Utilis/SearchBar";
 
 //username means  input params
 const usernameMeansInputLabel = "Members' Usernames:";
@@ -40,6 +42,7 @@ const fullNameMeans = "Full name - 60% Efficient";
 const unknowMeansYet = "...";
 const addMemberTitle = "Delete Members";
 const defaultMeansMessage = "Select Means of Deletion";
+const searchMembersPlaceholder = "Search board members name ..."
 
 const insufficietCreditsMess = "Please buy credits to use this tool";
 const checkboxMustBeCheckedMess = "Please check at least a board below";
@@ -50,6 +53,7 @@ export default function DeleteMemberBoards() {
   const [labelTitle, setLabelTitle] = useState(addMemberTitle);
   const [executionBtnClicked, setExecutionBtnClicked] = useState(false);
   const [textAreaError, setTextAreaError] = useState("");
+  const [memberDetailObj, setMemberDetailObj] = useState("");
   const [allUserMemberDetail, setAllUserMemberDetail] = useState([]);
 
   const [clientSignature, setClientSignature] = useState("");
@@ -269,6 +273,9 @@ export default function DeleteMemberBoards() {
             }
           });
         });
+      
+      //sort alhpabettically using fullname
+      uniqueMainMemberDetails.sort((a, b) => a.fullName.localeCompare(b.fullName));
 
        setAllUserMemberDetail(uniqueMainMemberDetails);
        setBoardIdsObj(allBoardsId);
@@ -334,16 +341,38 @@ export default function DeleteMemberBoards() {
                 ? unknowMeansYet
                 : meansOfExceution}
             </h1>
-            <SelectMeans
+            {/* <SelectMeans
               actionToBePerformed={action}
               selectLabel={selectLabel}
-            />
+            /> */}
 
-            {meansOfExceution == defaultMeansMessage ? (
-              ""
-            ) : (
               <section className="inner-main-cont" id="innerMainContentCont">
-                {meansOfExceution == usernameMeans ? (
+
+            <section className="membersListsContainer" >
+                <h1 id="memberToDeleteHeading">Select Members to Delete Below</h1>
+              <section className='searchSection'>
+                <input 
+                onKeyUp={searchMemberList}
+                  id="searchMembersList"
+                  type="text"
+                  placeholder={searchMembersPlaceholder} />
+                  
+              </section>
+                    <section className="member-list-cont">
+                      {allUserMemberDetail.length > 1 &&
+                        allUserMemberDetail.map((memberDetailObj, index) => {
+                          return (
+                          <MemberInfoDisplay
+                            key= {index}
+                            indexNo= {index}
+                            memberDetailObj= {memberDetailObj}/>
+                          );
+                        })}
+                    </section>
+                  </section>
+
+             
+                {/* {meansOfExceution == usernameMeans ? (
                   <Input
                     inputLabel={usernameMeansInputLabel}
                     inputPlaceholderText={usernameMeansInputPlaceholderText}
@@ -357,7 +386,9 @@ export default function DeleteMemberBoards() {
                   />
                 ) : (
                   ""
-                )}
+                )} */}
+
+              <section className="boardsListSection">
                 <SelectAll
                   labelTitle={labelTitle}
                   verifying="Verifying Inputs..."
@@ -395,7 +426,8 @@ export default function DeleteMemberBoards() {
                     })}
                 </section>
               </section>
-            )}
+              </section>
+       
           </section>
         </>
       )}
