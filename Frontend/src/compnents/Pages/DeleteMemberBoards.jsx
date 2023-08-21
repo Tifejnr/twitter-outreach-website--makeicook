@@ -17,6 +17,8 @@ import getAllBoardsId from "./Validations/getBoardIdOnly/getAllBoardsId";
 import getMemberId from "./Validations/memberIdSearch/getMemberId";
 import MemberInfoDisplay from "./BasicSectionLayout/MemberInfoDisplay";
 import { searchMemberList } from "../../JS functions/Utilis/SearchBar";
+import { isAnyCheckboxChecked } from "../../JS functions/Utilis/Validations/Checkbox";
+import isAnyMemberCheckboxChecked from "./Validations/checkboxMembers";
 
 //username means  input params
 const usernameMeansInputLabel = "Members' Usernames:";
@@ -46,6 +48,7 @@ const searchMembersPlaceholder = "Search board members name ..."
 
 const insufficietCreditsMess = "Please buy credits to use this tool";
 const checkboxMustBeCheckedMess = "Please check at least a board below";
+const memeberCheckboxMustBeCheckedMess = "Please check at least a member to be removed";
 
 export default function DeleteMemberBoards() {
   const [boardsCollection, setBoardsCollection] = useState([{}]);
@@ -102,22 +105,22 @@ export default function DeleteMemberBoards() {
       );
     setExecutionErrorBtn("");
 
-    const response = await validateAddToBoard(executionParams);
-
-    if (response.noCheckboxChecked) {
-      return (
+   if (!isAnyCheckboxChecked())   return (
         setExecutionBtnClicked(false),
         setLabelTitle(addMemberTitle),
         setExecutionErrorBtn(checkboxMustBeCheckedMess)
       );
-    } else {
-      setExecutionErrorBtn("");
-      setLabelTitle("Verifying Inputs...");
-      setTextAreaError("");
-    }
 
-    setTextAreaError("");
-    setExecutionErrorBtn("");
+   if (! isAnyMemberCheckboxChecked(memberCheckboxesArray))   return (
+        setExecutionBtnClicked(false),
+        setLabelTitle(addMemberTitle),
+        setExecutionErrorBtn(memeberCheckboxMustBeCheckedMess)
+      );
+
+    const response = await validateAddToBoard(executionParams);
+
+    // setTextAreaError("");
+    // setExecutionErrorBtn("");
 
       if (response.nameAddingObjArray) {
         setLabelTitle("Starting...");

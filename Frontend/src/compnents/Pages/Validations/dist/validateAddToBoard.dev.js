@@ -9,8 +9,6 @@ var _Checkbox = require("../../../JS functions/Utilis/Validations/Checkbox");
 
 var _Input = require("../../../JS functions/Utilis/Validations/Input");
 
-var _multiBoardsCheck = _interopRequireDefault(require("./memberIdSearch/multi-boards-check"));
-
 var _boardIdName = _interopRequireDefault(require("./board-id-and-name/boardIdName"));
 
 var _findMemberId = _interopRequireDefault(require("./memberIdSearch/findMemberId"));
@@ -21,7 +19,7 @@ var emailMeans = "Email";
 var nameAddingObjArray;
 
 function validateAddToBoard(executionParams) {
-  var boardIdsObj, textareaInputs, meansOfExceution, executionBtnClicked, allUserMemberDetail, memberCheckboxesArray, whiteSpaceRemoved, _response, boardDetailsObj, paramsForGettingMemberIds, response, validationComplete;
+  var boardIdsObj, textareaInputs, meansOfExceution, allUserMemberDetail, memberCheckboxesArray, whiteSpaceRemoved, _response, boardDetailsObj, paramsForGettingMemberIds, response, validationComplete;
 
   return regeneratorRuntime.async(function validateAddToBoard$(_context) {
     while (1) {
@@ -30,37 +28,26 @@ function validateAddToBoard(executionParams) {
           boardIdsObj = executionParams.boardIdsObj;
           textareaInputs = executionParams.textAreaValue;
           meansOfExceution = executionParams.meansOfExceution;
-          executionBtnClicked = executionParams.executionBtnClicked;
           allUserMemberDetail = executionParams.allUserMemberDetail;
           memberCheckboxesArray = executionParams.memberCheckboxesArray; //remove whitespaces from if it's email
 
           whiteSpaceRemoved = textareaInputs.replace(/ /g, ""); //validating if it's email means
 
           if (!(meansOfExceution == emailMeans)) {
-            _context.next = 11;
+            _context.next = 10;
             break;
           }
 
           _response = (0, _Input.validateInput)(whiteSpaceRemoved);
 
           if (!_response.inputValError) {
-            _context.next = 11;
+            _context.next = 10;
             break;
           }
 
           return _context.abrupt("return", _response);
 
-        case 11:
-          if ((0, _Checkbox.isAnyCheckboxChecked)()) {
-            _context.next = 13;
-            break;
-          }
-
-          return _context.abrupt("return", {
-            noCheckboxChecked: true
-          });
-
-        case 13:
+        case 10:
           //get checked boards id and their names for action in future
           boardDetailsObj = (0, _boardIdName["default"])(executionParams);
           paramsForGettingMemberIds = {
@@ -81,7 +68,7 @@ function validateAddToBoard(executionParams) {
           };
           return _context.abrupt("return", validationComplete);
 
-        case 20:
+        case 17:
         case "end":
           return _context.stop();
       }

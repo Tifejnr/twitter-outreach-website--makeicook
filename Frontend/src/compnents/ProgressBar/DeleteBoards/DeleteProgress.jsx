@@ -38,13 +38,10 @@ export default function DeleteProgress(props) {
   const pushFailureReason = useStore((state) => state.pushFailureReason);
 
   const executionParams = props.executionParams;
-  const textareaInputs = executionParams.textAreaValue;
   const boardDetailsObj = executionParams.boardDetailsObj.boardDetailsObj;
   const nameAddingObjArray = executionParams.boardDetailsObj.nameAddingObjArray;
-  const stop = executionParams.stop;
   const clientSignature = executionParams.clientSignature;
   const checkboxesArray = executionParams.checkboxesArray;
-  const meansOfExceution = executionParams.meansOfExceution;
   const continuousAction = executionParams.continuousAction;
   const action = executionParams.action;
   const proposition = executionParams.proposition;
@@ -53,27 +50,20 @@ export default function DeleteProgress(props) {
   const noOfCheckedCheckbox = checkboxesArray.filter(
     (checkbox) => checkbox.checked
   ).length;
-  const textareaListSplited = textareaInputs.split(",");
 
-  userDetailsLength = Number(textareaListSplited.length);
+  userDetailsLength = Number(nameAddingObjArray.length);
   totalDurationLength = Number(noOfCheckedCheckbox) * userDetailsLength;
   const timeInterval = timeIntervalValue * 1000;
 
   let nameDisplayed = "";
   // each name or username execution to server
   nameAddingObjArray.map((nameDetails, index) => {
-    const { memberId, memberUsername, isUsernameInput } = nameDetails;
+    const {  memberId, memberFullName, } = nameDetails;
 
     setTimeout(() => {
       incrementCurrentRound();
-      if (isUsernameInput) {
-        //put @ to display "username like" details to users
-        nameDisplayed = `@${memberUsername}`;
+        nameDisplayed = memberFullName;
         setuserDetails(nameDisplayed);
-      } else {
-        nameDisplayed = memberUsername;
-        setuserDetails(nameDisplayed);
-      }
     }, index * noOfCheckedCheckbox * timeInterval * 1.35);
 
     // loop through all checked boards and execute
@@ -92,7 +82,6 @@ export default function DeleteProgress(props) {
           boardId,
           boardName,
           nameDisplayed,
-          isUsernameInput,
         };
 
         setTimeout(() => {
