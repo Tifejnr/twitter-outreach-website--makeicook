@@ -1,6 +1,5 @@
-function isAnyCheckboxChecked() {
-  const checkboxes = document.querySelectorAll(".board-checkbox");
-  const isCheckedArray = Array.from(checkboxes).map(
+function isAnyCheckboxChecked(checkboxesArray) {
+  const isCheckedArray = Array.from(checkboxesArray).map(
     (checkbox) => checkbox.checked
   );
 

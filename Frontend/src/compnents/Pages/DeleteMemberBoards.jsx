@@ -20,15 +20,8 @@ import { searchMemberList } from "../../JS functions/Utilis/SearchBar";
 import { isAnyCheckboxChecked } from "../../JS functions/Utilis/Validations/Checkbox";
 import isAnyMemberCheckboxChecked from "./Validations/checkboxMembers";
 
-//username means  input params
-const usernameMeansInputLabel = "Members' Usernames:";
-const usernameMeansInputPlaceholderText =
-  "Input usernames of members to be deleted, each separated with comma if more than one.";
-
-//fullname means input params
-const fullnameMeansInputLabel = "Members' Full names:";
-const fullnameMeansInputPlaceholderText =
-  "Input fullnames of members to be deleted, each separated with comma if more than one.";
+//set variable to change flex
+const changeLayoutToFlex= true;
 
 const searchPlaceholderTitle = "Search Boards ...";
 const selectInstructionText = "Select Boards to Delete Members from";
@@ -105,13 +98,13 @@ export default function DeleteMemberBoards() {
       );
     setExecutionErrorBtn("");
 
-   if (!isAnyCheckboxChecked())   return (
+   if (!isAnyCheckboxChecked(checkboxesArray))   return (
         setExecutionBtnClicked(false),
         setLabelTitle(addMemberTitle),
         setExecutionErrorBtn(checkboxMustBeCheckedMess)
       );
 
-   if (! isAnyMemberCheckboxChecked(memberCheckboxesArray))   return (
+   if (!isAnyMemberCheckboxChecked(memberCheckboxesArray))   return (
         setExecutionBtnClicked(false),
         setLabelTitle(addMemberTitle),
         setExecutionErrorBtn(memeberCheckboxMustBeCheckedMess)
@@ -179,7 +172,7 @@ export default function DeleteMemberBoards() {
           });
         });
       
-      //sort alhpabettically using fullname
+      //sort members name alhpabettically using fullname
       uniqueMainMemberDetails.sort((a, b) => a.fullName.localeCompare(b.fullName));
 
        setAllUserMemberDetail(uniqueMainMemberDetails);
@@ -208,6 +201,13 @@ export default function DeleteMemberBoards() {
     };
   }, []);
 
+
+   //changeLayoutToFlex style if it's name means
+    const changeLayoutToFlexStyle= {
+        display: changeLayoutToFlex && "flex",
+     }
+
+
   return (
     <>
       {openProgressBar ? (
@@ -232,7 +232,7 @@ export default function DeleteMemberBoards() {
               selectLabel={selectLabel}
             /> */}
 
-        <section className="inner-main-cont" id="innerMainContentCont">
+        <section style={changeLayoutToFlexStyle} className="inner-main-cont" id="innerMainContentCont">
 
             <section className="membersListsContainer" >
                 <h1 id="memberToDeleteHeading">Select Members to Delete Below</h1>
@@ -242,6 +242,12 @@ export default function DeleteMemberBoards() {
                   id="searchMembersList"
                   type="text"
                   placeholder={searchMembersPlaceholder} />
+
+              {allUserMemberDetail.length < 2 && (
+                  <p className="loading-your-boards-text">
+                    Loading your boards members ...
+                  </p>
+              )}              
                   
               </section>
                     <section className="member-list-cont">
@@ -274,15 +280,15 @@ export default function DeleteMemberBoards() {
                 />
 
                 <SearchBoards searchPlaceholderTitle={searchPlaceholderTitle} />
-               {/* //members allowed to be loaded instead */}
-                {allUserMemberDetail.length < 2 && (
+
+                {boardsCollection.length < 2 && (
                   <p className="loading-your-boards-text">
                     Loading your boards and their workspaces...
                   </p>
                 )}
 
                 <section className="all-boardnames-container">
-                  {allUserMemberDetail.length > 1 &&
+                  {boardsCollection.length > 1 &&
                     boardsCollection.map((board, index) => {
                       return (
                         <BoardsDisplaySection

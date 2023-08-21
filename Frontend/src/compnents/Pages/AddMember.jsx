@@ -14,6 +14,10 @@ import SelectMeans from "./BasicSectionLayout/mean-of-execution/SelectMeans";
 import getWorkspacesName from "./getWorkspacesName";
 import getAllBoardsId from "./Validations/getBoardIdOnly/getAllBoardsId";
 import getMemberId from "./Validations/memberIdSearch/getMemberId";
+import MemberInfoDisplay from "./BasicSectionLayout/MemberInfoDisplay";
+import { searchMemberList } from "../../JS functions/Utilis/SearchBar";
+import isAnyMemberCheckboxChecked from "./Validations/checkboxMembers";
+import { isAnyCheckboxChecked } from "../../JS functions/Utilis/Validations/Checkbox";
 
 
 
@@ -22,21 +26,26 @@ const emailMeansInputLabel = "Members' Emails:";
 const emailMeansInputPlaceholderText =
   "Input emails of members to be added, each separated with comma if more than one.";
 
-const pageTitle = "Add Members Via";
+const pageTitle = "Add Members to Boards Via";
 const action = "Addition";
 const continuousAction = "Adding"
 const proposition= "to"
 const addToBoardsTabTitle= "Add Members to Boards – Collab for Trello"
 const timeInterval= 0.2;
 const emailMeans = "Email";
-const usernameMeans= "Username - 100% Efficient"
-const fullNameMeans= "Full name - 60% Efficient"
+const nameMeans= "Name"
 const unknowMeansYet="..."
 const addMemberTitle= "Add Members"
 const defaultMeansMessage= "Select Means of Addition"
 
+//selection  section
+const searchPlaceholderTitle = "Search Boards ...";
+const selectInstructionText = "Select Boards to Add Members to";
+const searchMembersPlaceholder = "Search board members name ..."
+
 const insufficietCreditsMess= "Please buy credits to use this tool";
 const checkboxMustBeCheckedMess= "Please check at least a board below";
+const memeberCheckboxMustBeCheckedMess = "Please check at least a member to be added";
 
 export default function AddMember() {
   const [boardsCollection, setBoardsCollection] = useState([{}]);
@@ -50,6 +59,7 @@ export default function AddMember() {
   const [boardDetailsObj, setBoardDetailsObj] = useState([])
   const [boardIdsObj, setBoardIdsObj] = useState([])
   const [selectLabel, setSelectLabel] = useState("Select Means of Addition");
+  const [ changeLayoutToFlex, setChangeLayoutToFlex] = useState("Select Means of Addition");
 
   const creditsFromServer = useStore((state) => state.creditsFromServer);
   const checkboxesArray = useStore((state) => state.checkboxesArray);
@@ -60,6 +70,7 @@ export default function AddMember() {
   const  workspaceObjDetails = useStore((state) => state.workspaceObjDetails);
   const  meansOfExceution = useStore((state) => state.meansOfExceution);
   const setMeansOfExceution = useStore((state) => state.setMeansOfExceution);
+  const memberCheckboxesArray = useStore((state) => state.memberCheckboxesArray);
 
   changeTabTitle(addToBoardsTabTitle)
 
@@ -70,6 +81,7 @@ export default function AddMember() {
     timeInterval,
     clientSignature,
     checkboxesArray,
+    memberCheckboxesArray, 
     boardDetailsObj,
     boardIdsObj,
     meansOfExceution,
@@ -86,18 +98,20 @@ export default function AddMember() {
     if (creditsFromServer <1) return  setExecutionErrorBtn(insufficietCreditsMess) , setLabelTitle(addMemberTitle);
    setExecutionErrorBtn("")
 
+
+   if (!isAnyCheckboxChecked(checkboxesArray))   return (
+        setExecutionBtnClicked(false),
+        setLabelTitle(addMemberTitle),
+        setExecutionErrorBtn(checkboxMustBeCheckedMess)
+      );
+
+   if (!isAnyMemberCheckboxChecked(memberCheckboxesArray))   return (
+        setExecutionBtnClicked(false),
+        setLabelTitle(addMemberTitle),
+        setExecutionErrorBtn(memeberCheckboxMustBeCheckedMess)
+      );
+
    const response = await validateAddToBoard(executionParams)
-
-  if (response.noCheckboxChecked) {
-    return  setExecutionBtnClicked(false), 
-    setLabelTitle(addMemberTitle), 
-    setExecutionErrorBtn(checkboxMustBeCheckedMess);
-  }
-
-  else{
-  setExecutionErrorBtn("")
-   setLabelTitle("Verifying Inputs...") 
-  }
 
    if (response.inputValError) {
     return setExecutionBtnClicked(false), 
@@ -105,20 +119,6 @@ export default function AddMember() {
            setExecutionErrorBtn(response.inputValError), 
            setTextAreaError(response.inputValError);
     }
-
-  if (response.usernameValError) {
-    return setExecutionBtnClicked(false),  
-           setLabelTitle(addMemberTitle),
-           setExecutionErrorBtn(response.usernameValError), 
-           setTextAreaError(response.usernameValError);
-  }
-
-   if (response.fullNameValError) {
-    return setExecutionBtnClicked(false), 
-           setLabelTitle(addMemberTitle),
-           setExecutionErrorBtn(response.fullNameValError), 
-           setTextAreaError(response.fullNameValError);
-   }
 
    setTextAreaError("")
    setExecutionErrorBtn("")
@@ -132,79 +132,8 @@ export default function AddMember() {
    }
   }
 
-   if (meansOfExceution==usernameMeans) {   
-     if (response.errorNameAddingObjArray )  {
-  const usernamesAtAdded = response.errorNameAddingObjArray.map((username) => {
-    return `@${username}`
-  });
-    let errorMessage
-
-      if(usernamesAtAdded.length==1) {
-        errorMessage = `Username ${usernamesAtAdded[0]} is not found.`
-      }
-
-      if(usernamesAtAdded.length>1) {
-        errorMessage = `Usernames ${usernamesAtAdded.join(", ")} are not found.`
-      }
-
-  return ( setExecutionBtnClicked(false),
-      setLabelTitle(addMemberTitle),
-      setTextAreaError(errorMessage),
-      setExecutionErrorBtn(errorMessage) )
-  }
-  
-   if (response.stop) {
-    const stoppedMessage = "Action Stopped"
-    
-    console.log("tried here stop")
-    return  (
-      setExecutionBtnClicked(false), 
-      setLabelTitle(addMemberTitle),
-      setExecutionErrorBtn(stoppedMessage),
-       setTextAreaError(stoppedMessage)
-    )
-   }
-
-
-   else if (response.nameAddingObjArray )  {
-     setLabelTitle("Starting...") 
-      setBoardDetailsObj(response)
-      setOpenProgressBar(true)
-      }
-    }
-    
-
-   if (meansOfExceution==fullNameMeans) {  
-  
-   if (response.stop) {
-    const stoppedMessage = "Action Stopped"
-
-    return  (
-      setExecutionBtnClicked(false), 
-      setLabelTitle(addMemberTitle),
-      setExecutionErrorBtn(stoppedMessage),
-       setTextAreaError(stoppedMessage)
-    )
-   } 
-     if (response.errorNameAddingObjArray )  {
-      const notFoundNamesArray = response.errorNameAddingObjArray 
-      let  errorMessage
-
-      if(notFoundNamesArray.length==1) {
-        errorMessage = `Full name ${notFoundNamesArray[0]} is not found.`
-      }
-
-      if(notFoundNamesArray.length>1) {
-        errorMessage = `Full names ${notFoundNamesArray.join(", ")} are not found.`
-      }
-
-  return ( setExecutionBtnClicked(false),
-      setLabelTitle(addMemberTitle),
-      setTextAreaError(errorMessage),
-      setExecutionErrorBtn(errorMessage) )
-  }
-
-    if (response.nameAddingObjArray )  {
+   if (meansOfExceution==nameMeans) {   
+     if (response.nameAddingObjArray )  {
      setLabelTitle("Starting...") 
       setBoardDetailsObj(response)
       setOpenProgressBar(true)
@@ -254,6 +183,9 @@ export default function AddMember() {
             }
           });
         });
+      
+    //sort members name alhpabetically using fullname
+      uniqueMainMemberDetails.sort((a, b) => a.fullName.localeCompare(b.fullName));
 
        setAllUserMemberDetail(uniqueMainMemberDetails);
        setBoardIdsObj(allBoardsId);
@@ -285,11 +217,23 @@ export default function AddMember() {
   }, []);
 
   useEffect(()=> {
+
+    if (meansOfExceution==emailMeans) {
+      setChangeLayoutToFlex(false)
+    }
+    if (meansOfExceution==nameMeans) {
+      setChangeLayoutToFlex(true)
+    }
      // auto pick means picked previously for users by checking local storage
     const meansChosenAddToBoards = localStorage.getItem('meansChosenAddToBoards');
     if (meansChosenAddToBoards) return setMeansOfExceution(meansChosenAddToBoards), setSelectLabel(meansChosenAddToBoards);
    return setSelectLabel(defaultMeansMessage), setMeansOfExceution(defaultMeansMessage);
-  })
+  }, [meansOfExceution])
+
+   //changeLayoutToFlex style if it's name means
+    const changeLayoutToFlexStyle= {
+        display: changeLayoutToFlex && "flex",
+     }
 
   return (
     <> 
@@ -304,52 +248,81 @@ export default function AddMember() {
         <h1 id="toolInstruction">{pageTitle} {meansOfExceution==defaultMeansMessage ? unknowMeansYet: meansOfExceution}</h1>
         <SelectMeans actionToBePerformed={action} selectLabel={selectLabel}/>
 
-      {!meansOfExceution? "" : meansOfExceution == defaultMeansMessage ? "" : <section className="inner-main-cont" id="innerMainContentCont">
+      {!meansOfExceution? "" : meansOfExceution == defaultMeansMessage ? "" : <section style={changeLayoutToFlexStyle} className="inner-main-cont" id="innerMainContentCont">
         { meansOfExceution == emailMeans ? <Input
             inputLabel={emailMeansInputLabel}
             inputPlaceholderText={emailMeansInputPlaceholderText}
             textAreaError={textAreaError}
           /> :  
           
-          meansOfExceution == usernameMeans ? 
-          <Input
-            inputLabel={usernameMeansInputLabel}
-            inputPlaceholderText={usernameMeansInputPlaceholderText}
-            textAreaError={textAreaError}
-          /> :   
-          
-          meansOfExceution == fullNameMeans ?  
-             <Input
-            inputLabel={fullnameMeansInputLabel}
-            inputPlaceholderText={fullnameMeansInputPlaceholderText}
-            textAreaError={textAreaError}
-          /> :    ""
+          <section className="membersListsContainer" >
+                <h1 id="memberToDeleteHeading">Select Members to Delete Below</h1>
+
+              <section className='searchSection'>
+                <input 
+                onKeyUp={searchMemberList}
+                  id="searchMembersList"
+                  type="text"
+                  placeholder={searchMembersPlaceholder} />
+
+               {allUserMemberDetail.length < 2 && (
+                  <p className="loading-your-boards-text">
+                    Loading your boards members ...
+                  </p>
+                )}
+                  
+              </section>
+                    <section className="member-list-cont">
+                      {allUserMemberDetail.length > 1 &&
+                        allUserMemberDetail.map((memberDetailObj, index) => {
+                          return (
+                          <MemberInfoDisplay
+                            key= {index}
+                            indexNo= {index}
+                            memberDetailObj= {memberDetailObj}/>
+                          );
+                        })}
+                </section>
+            </section>
         } 
-          <SelectAll
-            labelTitle={labelTitle}
-            verifying = "Verifying Inputs..."
-            executionBtnClicked ={executionBtnClicked}
-            selectInstructionText={selectInstructionText}
-            action={ async (e)=> {
-             e.preventDefault();
-            setExecutionBtnClicked(executionBtnClicked=>!executionBtnClicked);
-            setTextAreaError("");
-           await validateParams(executionParams);
-            } }
-          />
+    
+        <section className="boardsListSection">
+                <SelectAll
+                  labelTitle={labelTitle}
+                  verifying="Verifying Inputs..."
+                  executionBtnClicked={executionBtnClicked}
+                  selectInstructionText={selectInstructionText}
+                  action={async (e) => {
+                    e.preventDefault();
+                    setExecutionBtnClicked(
+                      (executionBtnClicked) => !executionBtnClicked
+                    );
+                    setTextAreaError("");
+                    await validateParams(executionParams);
+                  }}
+                />
 
-          <SearchBoards searchPlaceholderTitle={searchPlaceholderTitle} />
+                <SearchBoards searchPlaceholderTitle={searchPlaceholderTitle} />
+                {boardsCollection.length < 2 && (
+                  <p className="loading-your-boards-text">
+                    Loading your boards and their workspaces...
+                  </p>
+                )}
 
-          {allUserMemberDetail.length < 2 && <p className="loading-your-boards-text">Loading your boards and their workspaces...</p>}
-
-          <section className="all-boardnames-container">
-            { allUserMemberDetail.length >1 &&  boardsCollection.map((board, index) => {
-                return (
-                  <BoardsDisplaySection key={index} board={board} indexNo={index} workspaceObjDetails={workspaceObjDetails}/>
-                );
-              })
-            }
-          </section>
+                <section className="all-boardnames-container">
+                  {boardsCollection.length > 1 &&
+                    boardsCollection.map((board, index) => {
+                      return (
+                        <BoardsDisplaySection
+                          key={index}
+                          board={board}
+                          indexNo={index}
+                          workspaceObjDetails={workspaceObjDetails}
+                        />
+                      );
+                    })}
+                </section>
+            </section>
         </section>
 }
       </section>

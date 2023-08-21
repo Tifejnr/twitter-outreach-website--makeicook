@@ -668,15 +668,6 @@ input {
 
 /* Member List  Container */
 
-#memberToDeleteHeading {
-  font-weight: 500;
-  text-align: left;
-  font-size: 2rem;
-  font-weight: 500;
-  color: #1e2831;
-  margin: 1rem 0;
-}
-
 .member-list-cont {
   display: grid;
   row-gap: 2rem;
@@ -717,12 +708,9 @@ input {
 .inner-main-cont {
   width: 100%;
   position: relative;
-  /* display: grid; */
-  justify-content: center;
-  align-items: center;
+  justify-content: space-around;
   justify-items: center;
-  /* grid-template-columns: repeat(2, 1fr);
-  column-gap: 15rem; */
+  column-gap: 13rem;
 }
 
 .inner-main-cont section {
@@ -755,12 +743,18 @@ form:last-child {
   margin-right: 1rem;
 }
 
-.selectionCont h1r {
+.selectionCont h1,
+#memberToDeleteHeading {
   text-align: left;
   font-size: 2rem;
   font-weight: 500;
   color: #1e2831;
   margin: 1rem 0;
+}
+
+/* Boards List*/
+.boardsListSection {
+  width: 100%;
 }
 
 /* No of Selection display box */

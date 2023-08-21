@@ -10,8 +10,7 @@ const action = "adding";
 const isAddedTo = "Boards";
 
 const emailMeans = "Email";
-const usernameMeans= "Username - 100% Efficient"
-const fullNameMeans= "Full name - 60% Efficient"
+const nameMeans = "Name"
 
 export default function AddToBoardsProgress(props) {
   //using useStore to manage states cause useState cant work with multiple map methods, runs into infinite loop.
@@ -59,12 +58,12 @@ export default function AddToBoardsProgress(props) {
   ).length;
   const emailListSplited = emailInputs.split(",");
 
-  userDetailsLength = Number(emailListSplited.length);
-  totalDurationLength = Number(noOfCheckedCheckbox) * userDetailsLength;
   const timeInterval = timeIntervalValue * 1000;
 
   //email means
   if (meansOfExceution == emailMeans) {
+  userDetailsLength = Number(emailListSplited.length);
+  totalDurationLength = Number(noOfCheckedCheckbox) * userDetailsLength;
     // each email execution to server
     emailListSplited.map((eachEmail, index) => {
       const email = eachEmail.trim();
@@ -100,22 +99,19 @@ export default function AddToBoardsProgress(props) {
   }
 
   //username means of execution
-  if (meansOfExceution == usernameMeans || meansOfExceution == fullNameMeans) {
+  if (meansOfExceution == nameMeans) {
+  userDetailsLength = Number(nameAddingObjArray.length);
+  totalDurationLength = Number(noOfCheckedCheckbox) * userDetailsLength;
     let nameDisplayed = "";
     // each name or username execution to server
     nameAddingObjArray.map((nameDetails, index) => {
-      const { memberId, memberUsername, isUsernameInput } = nameDetails;
+      const { memberId, memberFullName,  } = nameDetails;
 
       setTimeout(() => {
         incrementCurrentRound();
-        if (isUsernameInput) {
-          //put @ to display "username like" details to users
-          nameDisplayed = `@${memberUsername}`;
+          nameDisplayed = memberFullName;
           setuserDetails(nameDisplayed);
-        } else {
-          nameDisplayed = memberUsername;
-          setuserDetails(nameDisplayed);
-        }
+
       }, index * noOfCheckedCheckbox * timeInterval * 1.35);
 
       // loop through all checked boards and execute
@@ -134,7 +130,6 @@ export default function AddToBoardsProgress(props) {
             boardId,
             boardName,
             nameDisplayed,
-            isUsernameInput,
           };
 
           setTimeout(() => {
@@ -245,8 +240,20 @@ export default function AddToBoardsProgress(props) {
 
           return pushFailureReason(failureObj), console.log(limitReachedError);
         }
+     else{
+          const unknownError = "Unknown Error";
+          const failedSectionName = boardName;
+          const failedMemberDetails = userDetail;
 
+          const failureObj = {
+            reason: unknownError,
+            failedSectionName,
+            failedMemberDetails,
+          };
         console.log(errorMessage);
+          return pushFailureReason(failureObj), console.log(unknownError);
+     }
+
       } finally {
         setuserDetails(userDetail);
         incrementTotalAttemptLength();

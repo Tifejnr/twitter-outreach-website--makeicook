@@ -72,13 +72,13 @@ export default function ProgressBar(props) {
               ? ` ${userDetails} ${action} Completed`
               : ` ${totalRounds} Members ${action} Completed`
             : totalRounds === 1
-            ? ''
+            ? `${continuousAction} ${totalRounds} Member...`
             : `${continuousAction} ${totalRounds} Members...`}
         </h2>
 
         {percentLoaded != 100 && (
           <h2 id="noOfRounds" className="title">
-            {continuousAction} Member {totalRounds >1 && currentRound}
+            {continuousAction} Member {totalRounds >1 && currentRound}, {userDetails}
           </h2>
         )}
         {percentLoaded == 100 ? (

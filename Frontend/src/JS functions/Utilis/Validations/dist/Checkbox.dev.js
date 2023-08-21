@@ -5,9 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.isAnyCheckboxChecked = isAnyCheckboxChecked;
 
-function isAnyCheckboxChecked() {
-  var checkboxes = document.querySelectorAll(".board-checkbox");
-  var isCheckedArray = Array.from(checkboxes).map(function (checkbox) {
+function isAnyCheckboxChecked(checkboxesArray) {
+  var isCheckedArray = Array.from(checkboxesArray).map(function (checkbox) {
     return checkbox.checked;
   });
   return isCheckedArray.includes(true);
