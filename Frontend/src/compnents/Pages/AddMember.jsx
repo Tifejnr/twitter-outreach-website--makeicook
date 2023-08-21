@@ -286,7 +286,7 @@ export default function AddMember() {
             </section>
         } 
     
-        <section className="boardsListSection">
+        <section className="boardsListSection" id="boardsListSection">
                 <SelectAll
                   labelTitle={labelTitle}
                   verifying="Verifying Inputs..."
