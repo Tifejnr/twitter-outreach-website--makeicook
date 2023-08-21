@@ -1,6 +1,5 @@
 import { isAnyCheckboxChecked } from "../../../JS functions/Utilis/Validations/Checkbox";
 import { validateInput } from "../../../JS functions/Utilis/Validations/Input";
-import memberIdSearch from "./memberIdSearch/multi-boards-check";
 import boardIdAndName from "./board-id-and-name/boardIdName";
 import findMemberIdThroughInnerHtml from "./memberIdSearch/findMemberId";
 
@@ -11,7 +10,6 @@ export default async function validateAddToBoard(executionParams) {
   const boardIdsObj = executionParams.boardIdsObj;
   const textareaInputs = executionParams.textAreaValue;
   const meansOfExceution = executionParams.meansOfExceution;
-  const executionBtnClicked = executionParams.executionBtnClicked;
   const allUserMemberDetail = executionParams.allUserMemberDetail;
   const memberCheckboxesArray = executionParams.memberCheckboxesArray;
 
@@ -23,9 +21,6 @@ export default async function validateAddToBoard(executionParams) {
     const response = validateInput(whiteSpaceRemoved);
     if (response.inputValError) return response;
   }
-
-  //validating checkbox to ensure at least one is checked
-  if (!isAnyCheckboxChecked()) return { noCheckboxChecked: true };
 
   //get checked boards id and their names for action in future
   const boardDetailsObj = boardIdAndName(executionParams);
