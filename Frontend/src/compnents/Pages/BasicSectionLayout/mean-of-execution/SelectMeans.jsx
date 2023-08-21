@@ -3,8 +3,7 @@ import useStore from "../../../Hooks/Zustand/usersStore";
 import toggleIcon from "../../../../assets/SVGs/faq-toggle-icon.svg"
 
 const emailMeans = "Email";
-const usernameMeans= "Username - 100% Efficient"
-const fullNameMeans= "Full name - 60% Efficient"
+const nameMeans= "Name"
 
 const additionAction = "Addition";
 const deletionAction = "Deletion"
@@ -42,16 +41,10 @@ function handleEmailMeansSelection () {
   storeMeansInStorage(emailMeans)
 }
 
-function handleUsernameMeansSelection () {
-  setMeansOfExceution(usernameMeans)
+function handleNameMeansSelection () {
+  setMeansOfExceution(nameMeans)
   setIsClicked(false)
-  storeMeansInStorage(usernameMeans)
-}
-
-function handleFullnameMeansSelection () {
-   setMeansOfExceution(fullNameMeans)
-   setIsClicked(false)
-   storeMeansInStorage(fullNameMeans)
+  storeMeansInStorage(nameMeans)
 }
 
   return (
@@ -76,16 +69,9 @@ function handleFullnameMeansSelection () {
           { 
           actionToBePerformed == additionAction && <li className="options" onClick={handleEmailMeansSelection}><p>Email</p></li>
            }
-            <li className="options" onClick={handleUsernameMeansSelection}><p>{usernameMeans}</p></li>
-            <li className="options" onClick={handleFullnameMeansSelection}><p>{fullNameMeans}</p></li>
+            <li className="options" onClick={handleNameMeansSelection}><p>{nameMeans}</p></li>
           </ul>
         </div>
-
-      {actionToBePerformed === additionAction && meansOfExceution != emailMeans && (
-          <p className="name-means-note">
-            <b>Note:</b> Member must be on one of your boards already to use their {meansOfExceution}
-          </p>
-      )}
 
      </form>
     </section> 

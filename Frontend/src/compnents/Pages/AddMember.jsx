@@ -22,20 +22,6 @@ const emailMeansInputLabel = "Members' Emails:";
 const emailMeansInputPlaceholderText =
   "Input emails of members to be added, each separated with comma if more than one.";
 
-//username means
-const usernameMeansInputLabel = "Members' Usernames:";
-const usernameMeansInputPlaceholderText =
-  "Input usernames of members to be added, each separated with comma if more than one.";
-
-//fullname means
-const fullnameMeansInputLabel = "Members' Full names:";
-const fullnameMeansInputPlaceholderText =
-  "Input fullnames of members to be added, each separated with comma if more than one.";
-
-const searchPlaceholderTitle = "Search Boards ...";
-const selectInstructionText = "Select Boards to Add Members to";
-
-
 const pageTitle = "Add Members Via";
 const action = "Addition";
 const continuousAction = "Adding"
@@ -166,8 +152,6 @@ export default function AddMember() {
       setTextAreaError(errorMessage),
       setExecutionErrorBtn(errorMessage) )
   }
-
-
   
    if (response.stop) {
     const stoppedMessage = "Action Stopped"
@@ -320,7 +304,7 @@ export default function AddMember() {
         <h1 id="toolInstruction">{pageTitle} {meansOfExceution==defaultMeansMessage ? unknowMeansYet: meansOfExceution}</h1>
         <SelectMeans actionToBePerformed={action} selectLabel={selectLabel}/>
 
-      {!meansOfExceution? "" : meansOfExceution==defaultMeansMessage ? "" : <section className="inner-main-cont" id="innerMainContentCont">
+      {!meansOfExceution? "" : meansOfExceution == defaultMeansMessage ? "" : <section className="inner-main-cont" id="innerMainContentCont">
         { meansOfExceution == emailMeans ? <Input
             inputLabel={emailMeansInputLabel}
             inputPlaceholderText={emailMeansInputPlaceholderText}

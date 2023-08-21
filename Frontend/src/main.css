@@ -717,12 +717,12 @@ input {
 .inner-main-cont {
   width: 100%;
   position: relative;
-  display: grid;
+  /* display: grid; */
   justify-content: center;
   align-items: center;
   justify-items: center;
-  grid-template-columns: repeat(2, 1fr);
-  column-gap: 15rem;
+  /* grid-template-columns: repeat(2, 1fr);
+  column-gap: 15rem; */
 }
 
 .inner-main-cont section {

@@ -232,7 +232,7 @@ export default function DeleteMemberBoards() {
               selectLabel={selectLabel}
             /> */}
 
-              <section className="inner-main-cont" id="innerMainContentCont">
+        <section className="inner-main-cont" id="innerMainContentCont">
 
             <section className="membersListsContainer" >
                 <h1 id="memberToDeleteHeading">Select Members to Delete Below</h1>
@@ -254,25 +254,8 @@ export default function DeleteMemberBoards() {
                             memberDetailObj= {memberDetailObj}/>
                           );
                         })}
-                    </section>
-                  </section>
-
-             
-                {/* {meansOfExceution == usernameMeans ? (
-                  <Input
-                    inputLabel={usernameMeansInputLabel}
-                    inputPlaceholderText={usernameMeansInputPlaceholderText}
-                    textAreaError={textAreaError}
-                  />
-                ) : meansOfExceution == fullNameMeans ? (
-                  <Input
-                    inputLabel={fullnameMeansInputLabel}
-                    inputPlaceholderText={fullnameMeansInputPlaceholderText}
-                    textAreaError={textAreaError}
-                  />
-                ) : (
-                  ""
-                )} */}
+                </section>
+            </section>
 
               <section className="boardsListSection">
                 <SelectAll
