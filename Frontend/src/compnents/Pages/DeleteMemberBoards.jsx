@@ -45,14 +45,13 @@ export default function DeleteMemberBoards() {
   const [openProgressBar, setOpenProgressBar] = useState(false);
   const [labelTitle, setLabelTitle] = useState(deleteMemberTitle);
   const [executionBtnClicked, setExecutionBtnClicked] = useState(false);
-  const [textAreaError, setTextAreaError] = useState("");
+  const [userUsername, setUserUsername] = useState("");
   const [memberDetailObj, setMemberDetailObj] = useState("");
   const [allUserMemberDetail, setAllUserMemberDetail] = useState([]);
 
   const [clientSignature, setClientSignature] = useState("");
   const [boardDetailsObj, setBoardDetailsObj] = useState([]);
   const [boardIdsObj, setBoardIdsObj] = useState([]);
-  const [selectLabel, setSelectLabel] = useState(defaultMeansMessage);
 
   const creditsFromServer = useStore((state) => state.creditsFromServer);
   const checkboxesArray = useStore((state) => state.checkboxesArray);
@@ -64,7 +63,6 @@ export default function DeleteMemberBoards() {
   );
   const workspaceObjDetails = useStore((state) => state.workspaceObjDetails);
   const meansOfExceution = useStore((state) => state.meansOfExceution);
-  const setMeansOfExceution = useStore((state) => state.setMeansOfExceution);
   const memberCheckboxesArray = useStore((state) => state.memberCheckboxesArray);
 
   changeTabTitle(addToBoardsTabTitle);
@@ -140,6 +138,11 @@ export default function DeleteMemberBoards() {
 
         const data = dataRaw.boards;
         const signature = dataRaw.sessionSignature;
+        const  userUsernameFromServer = dataRaw.userUsername;
+        setClientSignature(signature);
+        setUserUsername(userUsernameFromServer)
+
+      
         const workspaceIdArray = [
           ...new Set(
             data
@@ -148,7 +151,6 @@ export default function DeleteMemberBoards() {
           ),
         ];
         setBoardsCollection(data);
-        setClientSignature(signature);
 
         //fetch all board ids for usernames and fullnames method of addition
         const allBoardsId = getAllBoardsId(data);
@@ -291,6 +293,7 @@ export default function DeleteMemberBoards() {
                             indexNo= {index}
                             boardsCollection={boardsCollection}
                             workspaceObjDetails={workspaceObjDetails}
+                            userUsername={userUsername}
                             memberDetailObj= {memberDetailObj}/>
                           );
                         })}

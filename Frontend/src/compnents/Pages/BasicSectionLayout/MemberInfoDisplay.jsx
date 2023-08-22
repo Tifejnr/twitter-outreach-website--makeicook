@@ -33,7 +33,6 @@ export default function MemberInfoDisplay(props) {
   return memberBoards;
 }
 
-
     const allBoardMemberBelongsArray = boardsCollection.map((board)=> {
       const isMemberPartOfBoard = boardsCollection.find(
       (boardDetail) => boardDetail.id == memberDetailObj.boardId
@@ -47,31 +46,25 @@ export default function MemberInfoDisplay(props) {
     })
   
 
-  return (
-    <form  className="eachMemberListCont">
-        <section className='member-info-container'>
-          <input
-            //   onClick={checkboxRatioNotifier}
-              type="checkbox"
-              name="select-member"
-              title="Check to select member"
-              ref={checkboxRef}
-              className="inputs board-checkbox"
-              id={`checkMembers${props.indexNo}`}
-            />
-         <article >
-          <p id={`fullname${props.indexNo}`}> {memberDetailObj.fullName}</p>
+return (
+  props.userUsername === memberDetailObj.username ? null : (
+    <form className="eachMemberListCont">
+      <section className='member-info-container'>
+        <input
+          type="checkbox"
+          name="select-member"
+          title="Check to select member"
+          ref={checkboxRef}
+          className="inputs board-checkbox"
+          id={`checkMembers${props.indexNo}`}
+        />
+        <article>
+          <p id={`fullname${props.indexNo}`}>{memberDetailObj.fullName}</p>
           <p id={`username${props.indexNo}`}>@{memberDetailObj.username}</p>
-            {/* <ul>
-                { allBoardMemberBelongsArray.length<1 ? "" : 
-                  allBoardMemberBelongsArray.map((boardName)=> {
-                    return <li>{boardName}</li>
-                  })
-                }
-        
-            </ul> */}
-         </article>
-        </section>
+        </article>
+      </section>
     </form>
   )
+);
+
 }
