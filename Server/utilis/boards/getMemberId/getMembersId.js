@@ -9,9 +9,8 @@ async function getMemberId(paramToGetUsernameIds) {
   try {
     // Fetch list of members on the board
     const response = await axios.get(boardsDetailsUrl);
-    const boardMembersDetails = response.data;
-    boardMembersDetails.boardId = boardId;
-    return boardMembersDetails;
+    let boardMembersDetails = response.data;
+    return { boardMembersDetails, boardId };
   } catch (error) {
     console.error("Error:", error);
     return { boardDetailsFetchingError: error };

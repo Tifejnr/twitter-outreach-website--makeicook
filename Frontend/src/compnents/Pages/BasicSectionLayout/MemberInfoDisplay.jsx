@@ -11,14 +11,41 @@ export default function MemberInfoDisplay(props) {
     pushMemberCheckboxesArray(checkboxEle);
   }, []);
 
-  const memberDetailObj = props.memberDetailObj ;
+  const memberDetailObj = props.memberDetailObj;
+  // const member
   const workspaceObjDetails = props.workspaceObjDetails;
-  // const boardsCollection = props.boardsCollection;
+  const boardsCollection = props.boardsCollection;
 
-  //       //getting product details first
-  //   const isWorkspaceDetailsValid = workspaceObjDetails.find(
-  //     (workspaceDetail) => workspaceDetail.workspaceId == board.idOrganization
-  //   );  
+
+    //getting all board names that each memeber belongs to
+
+  function getBoardsForMember(memberId, boardsCollection) {
+  // Initialize an empty array to store the board names.
+  const memberBoards = [];
+
+  // Find boards that match the memberId.
+  for (const board of boardsCollection) {
+    if (board.boardId === memberId) {
+      memberBoards.push(board.boardName);
+    }
+  }
+
+  return memberBoards;
+}
+
+
+    const allBoardMemberBelongsArray = boardsCollection.map((board)=> {
+      const isMemberPartOfBoard = boardsCollection.find(
+      (boardDetail) => boardDetail.id == memberDetailObj.boardId
+    );
+
+    if (!isMemberPartOfBoard) return false;
+
+    const boardName = isMemberPartOfBoard.name
+
+    return boardName 
+    })
+  
 
   return (
     <form  className="eachMemberListCont">
@@ -36,7 +63,11 @@ export default function MemberInfoDisplay(props) {
           <p id={`fullname${props.indexNo}`}> {memberDetailObj.fullName}</p>
           <p id={`username${props.indexNo}`}>@{memberDetailObj.username}</p>
             {/* <ul>
-                <li>Workspace</li>
+                { allBoardMemberBelongsArray.length<1 ? "" : 
+                  allBoardMemberBelongsArray.map((boardName)=> {
+                    return <li>{boardName}</li>
+                  })
+                }
         
             </ul> */}
          </article>

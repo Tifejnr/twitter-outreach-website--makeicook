@@ -24,15 +24,15 @@ import isAnyMemberCheckboxChecked from "./Validations/checkboxMembers";
 const changeLayoutToFlex= true;
 
 const searchPlaceholderTitle = "Search Boards ...";
-const selectInstructionText = "Select Boards to Delete Members from";
+const selectInstructionText = "Select Boards to Remove Members from";
 
-const pageTitle = "Delete Members from Boards";
+const pageTitle = "Remove Members from Boards";
 const action = "Deletion";
 const continuousAction = "Deleting";
 const proposition = "from";
-const addToBoardsTabTitle = "Delete Members from Boards – Collab for Trello";
+const addToBoardsTabTitle = "Remove Members from Boards – Collab for Trello";
 const timeInterval = 0.2;
-const deleteMemberTitle = "Delete Members";
+const deleteMemberTitle = "Remove Members";
 const defaultMeansMessage = "Select Means of Deletion";
 const searchMembersPlaceholder = "Search board members name ..."
 
@@ -156,13 +156,46 @@ export default function DeleteMemberBoards() {
 
         const memberRawArray = memberDetailsResponse.allMembersDetails;
 
-        const uniqueIds = new Set();
-        const uniqueMainMemberDetails = [];
+        // const uniqueIds = new Set();
+        // const uniqueMainMemberDetails = [];
+
+
+      const uniqueIds = new Set();
+      const uniqueMainMemberDetails = [];
+      const boardIdsMap = {}; // Object to store boardIds for each mainMemberDetail.id
+
+        memberRawArray.forEach((memberDetail) => {
+          const boardId = memberDetail.boardId;
+          const rawMemberDetail = memberDetail.boardMembersDetails;
+          rawMemberDetail.forEach((mainMemberDetail) => {
+            const { id, username, fullName } = mainMemberDetail; // Destructure the relevant properties
+            if (!uniqueIds.has(id)) {
+              mainMemberDetail.boardId = boardId;
+              uniqueIds.add(id);
+              uniqueMainMemberDetails.push(mainMemberDetail);
+            } else {
+              // If the id already exists, add the boardId to the associated array
+              if (!boardIdsMap[id]) {
+                boardIdsMap[id] = [boardId];
+              } else {
+                boardIdsMap[id].push(boardId);
+              }
+            }
+          });
+        });
+
+        // Now, uniqueMainMemberDetails contains the unique mainMemberDetails with boardId, and boardIdsMap contains arrays of boardIds for each mainMemberDetail.id
+        console.log(uniqueMainMemberDetails);
+        setAllUserMemberDetail(uniqueMainMemberDetails)
+        console.log(boardIdsMap);
 
       //fetch and get all unique memebers ids and details
         memberRawArray.forEach((memberDetail) => {
-          memberDetail.forEach((mainMemberDetail) => {
+          const boardId = memberDetail.boardId
+          const rawMemberDetail= memberDetail.boardMembersDetails
+          rawMemberDetail.forEach((mainMemberDetail) => {
             if (!uniqueIds.has(mainMemberDetail.id)) {
+              mainMemberDetail.boardId= boardId
               uniqueIds.add(mainMemberDetail.id);
               uniqueMainMemberDetails.push(mainMemberDetail);
             }
@@ -234,7 +267,7 @@ export default function DeleteMemberBoards() {
         <section style={changeLayoutToFlexStyle} className="inner-main-cont" id="innerMainContentCont">
 
             <section className="membersListsContainer" >
-                <h1 id="memberToDeleteHeading">Select Members to Delete Below</h1>
+                <h1 id="memberToDeleteHeading">Select Members to Remove Below</h1>
               <section className='searchSection'>
                 <input 
                 onKeyUp={searchMemberList}

@@ -11,6 +11,7 @@ async function fetchAllBoards(req, res) {
 
   //save user signature on every page load
   accountUser.sessionSignature = sessionSignature;
+  const userUsername = accountUser.username;
   await accountUser.save();
 
   //fetch all boards
@@ -20,7 +21,7 @@ async function fetchAllBoards(req, res) {
     const response = await axios.get(boardsFetchingUrl);
     const boards = response.data;
 
-    res.status(200).json({ boards, sessionSignature });
+    res.status(200).json({ boards, sessionSignature, userUsername });
   } catch (error) {
     console.error("Error:", error);
     res.status(500).json({ error });

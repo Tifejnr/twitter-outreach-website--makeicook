@@ -53,19 +53,13 @@ setExecutionErrorBtn("")
 }
 
   return (
+
+   <>
     <section className="selectionCont" id="selective-btn">
+    
       <h1>{props.selectInstructionText}</h1>
       <section className="selecting-btn-cont">
-        {isAllChecked ? (
-          <button
-            id="clear-select"
-            onClick={() => {
-              UncheckAll();
-              setIsAllChecked(false);
-            }}>
-            Deselect All
-          </button>
-        ) : (
+       
           <button
             id="select-all"
             onClick={() => {
@@ -74,13 +68,15 @@ setExecutionErrorBtn("")
             }}>
             Select All
           </button>
-        )}
 
-        <button
-          className={`execution-btn ${props.executionBtnClicked && "spinning"} `}
-          onClick={props.action}>
-          { executionBtnClicked ? verifying : props.labelTitle}
-        </button>
+           <button
+            id="clear-select"
+            onClick={() => {
+              UncheckAll();
+              setIsAllChecked(false);
+            }}>
+            Deselect All
+          </button>
       </section>
      { executionErrorBtn == "" ? "" : 
      <p className="execution-btn-error">{executionErrorBtn} <img onClick={closeError} src={closeErrorIcon} title="close" alt="close error icon" /> </p>
@@ -89,5 +85,12 @@ setExecutionErrorBtn("")
         <p id="para">{checkboxRatioNotifierDisplay}</p>
       )}
     </section>
+
+      <button id="executionBtn"
+          className={`execution-btn ${props.executionBtnClicked && "spinning"} `}
+          onClick={props.action}>
+          { executionBtnClicked ? verifying : props.labelTitle}
+      </button>
+  </> 
   );
 }
