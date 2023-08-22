@@ -6,7 +6,7 @@ import useStore from "../../Hooks/Zustand/usersStore";
 
 let totalDurationLength, userDetailsLength;
 
-const action = "deleting";
+const action = "Removing";
 const isAddedTo = "Boards";
 
 export default function DeleteProgress(props) {

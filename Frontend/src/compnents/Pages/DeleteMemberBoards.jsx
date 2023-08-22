@@ -27,13 +27,12 @@ const searchPlaceholderTitle = "Search Boards ...";
 const selectInstructionText = "Select Boards to Remove Members from";
 
 const pageTitle = "Remove Members from Boards";
-const action = "Deletion";
-const continuousAction = "Deleting";
+const action = "Removal";
+const continuousAction = "Removing";
 const proposition = "from";
 const addToBoardsTabTitle = "Remove Members from Boards – Collab for Trello";
 const timeInterval = 0.2;
 const deleteMemberTitle = "Remove Members";
-const defaultMeansMessage = "Select Means of Deletion";
 const searchMembersPlaceholder = "Search board members name ..."
 
 const insufficietCreditsMess = "Please buy credits to use this tool";
@@ -46,6 +45,7 @@ export default function DeleteMemberBoards() {
   const [labelTitle, setLabelTitle] = useState(deleteMemberTitle);
   const [executionBtnClicked, setExecutionBtnClicked] = useState(false);
   const [userUsername, setUserUsername] = useState("");
+  const [textAreaError, setTextAreaError] = useState("");
   const [memberDetailObj, setMemberDetailObj] = useState("");
   const [allUserMemberDetail, setAllUserMemberDetail] = useState([]);
 
@@ -86,6 +86,7 @@ export default function DeleteMemberBoards() {
   };
 
   async function validateParams(executionParams) {
+
     if (creditsFromServer < 1)
       return (
         setExecutionErrorBtn(insufficietCreditsMess),
@@ -107,8 +108,8 @@ export default function DeleteMemberBoards() {
 
     const response = await validateAddToBoard(executionParams);
 
-    // setTextAreaError("");
-    // setExecutionErrorBtn("");
+    setTextAreaError("");
+    setExecutionErrorBtn("");
 
       if (response.nameAddingObjArray) {
         setLabelTitle("Starting...");
@@ -186,7 +187,7 @@ export default function DeleteMemberBoards() {
           });
         });
 
-        // Now, uniqueMainMemberDetails contains the unique mainMemberDetails with boardId, and boardIdsMap contains arrays of boardIds for each mainMemberDetail.id
+      // Now, uniqueMainMemberDetails contains the unique mainMemberDetails with boardId, and boardIdsMap contains arrays of boardIds for each mainMemberDetail.id
         console.log(uniqueMainMemberDetails);
         setAllUserMemberDetail(uniqueMainMemberDetails)
         console.log(boardIdsMap);
@@ -287,13 +288,15 @@ export default function DeleteMemberBoards() {
                     <section className="member-list-cont">
                       {allUserMemberDetail.length > 1 &&
                         allUserMemberDetail.map((memberDetailObj, index) => {
+
+                          if (memberDetailObj.username==userUsername ) return false;
+
                           return (
                           <MemberInfoDisplay
                             key= {index}
                             indexNo= {index}
                             boardsCollection={boardsCollection}
                             workspaceObjDetails={workspaceObjDetails}
-                            userUsername={userUsername}
                             memberDetailObj= {memberDetailObj}/>
                           );
                         })}

@@ -47,7 +47,6 @@ export default function MemberInfoDisplay(props) {
   
 
 return (
-  props.userUsername === memberDetailObj.username ? null : (
     <form className="eachMemberListCont">
       <section className='member-info-container'>
         <input
@@ -65,6 +64,4 @@ return (
       </section>
     </form>
   )
-);
-
 }
