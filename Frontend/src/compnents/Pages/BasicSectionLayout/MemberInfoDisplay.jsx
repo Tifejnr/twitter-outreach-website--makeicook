@@ -38,9 +38,11 @@ if (memberBoardsArray.length > 0) {
       (boardDetail) => boardDetail.id === boardId
     );
 
+    let boardName
+
     if (!isMemberPartOfBoard)  return  (boardName = memberNotInAnyBoardMessage);
 
-    const boardName = isMemberPartOfBoard.name;
+     boardName = isMemberPartOfBoard.name;
     return boardName;
   });
 
@@ -52,7 +54,7 @@ if (memberBoardsArray.length > 0) {
 
    //setting toggling when clicked
   const handleToggle= ()=> {
-         setIsClicked((prevState)=>!prevState)
+     setIsClicked((prevState)=>!prevState)
   }
 
    const rotateOnToggle = {
@@ -83,8 +85,8 @@ return (
          <ul style={openBoardsListStyle}>
           <h3>Member Boards</h3>
             {allBoardMemberBelongsArray.length > 0 ?  (
-              Array.from(allBoardMemberBelongsArray).map((boardName)=> {
-                return <li>{boardName}</li>
+              Array.from(allBoardMemberBelongsArray).map((boardName, index)=> {
+                return <li key= {index}>{boardName}</li>
               })
             ) : <li>{memberNotInAnyBoardMessage}</li>
           } 
