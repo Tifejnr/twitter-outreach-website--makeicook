@@ -15,7 +15,7 @@ async function deleteMemberFromBoard(req, res) {
     if (deleteSucessfull == "OK")
       return res.status(200).json({ deleteSucessfull });
   } catch (error) {
-    console.error("Error:", error);
+    // console.error("Error:", error);
     const memberNotFoundError = error.response.data;
 
     if (memberNotFoundError == "membership not found")

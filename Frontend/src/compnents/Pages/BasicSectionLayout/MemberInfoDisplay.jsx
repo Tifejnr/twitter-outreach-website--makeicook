@@ -2,7 +2,7 @@ import { useRef, useEffect , useState } from "react";
 import useStore from "../../Hooks/Zustand/usersStore";
 import openMemberDetailIcon from "../../../assets/SVGs/faq-toggle-icon.svg"
 
-const memberNotInAnyBoardMessage = "Does not belong to any boards."
+const memberNotInAnyBoardMessage = "You don't have access to some of the boards below."
 let allBoardMemberBelongsArray=[];
 
 export default function MemberInfoDisplay(props) {
@@ -32,25 +32,22 @@ function getBoardsForMember(memberId, boardIdsMapMemberId) {
 }
 
 const memberBoardsArray = getBoardsForMember(memberId, boardIdsMapMemberId);
- let boardName
+ let isBoardMemberAdmin = true, memberIsNotYours = memberNotInAnyBoardMessage,  boardName;
+
 if (memberBoardsArray.length > 0) {
   allBoardMemberBelongsArray = memberBoardsArray.map((boardId) => {
     const isMemberPartOfBoard = boardsCollection.find(
       (boardDetail) => boardDetail.id === boardId
     );
 
-
-    if (!isMemberPartOfBoard)  return  (boardName = memberNotInAnyBoardMessage);
+    if (!isMemberPartOfBoard)  return  
 
      boardName = isMemberPartOfBoard.name;
     return boardName;
   });
-
-  // Now, allBoardMemberBelongsArray contains the names of boards the member belongs to
-  // console.log(`Board names for member ${memberDetailObj.username}:`, allBoardMemberBelongsArray);
 } else {
-  // console.log(`Member ${memberDetailObj.username, memberDetailObj.fullName} does not belong to any boards.`);
-  boardName = memberNotInAnyBoardMessage
+  console.log(`Member ${memberDetailObj.username} does not belong to any boards.`);
+ isBoardMemberAdmin = false
 }
 
    //setting toggling when clicked
@@ -90,11 +87,12 @@ return (
 
          <ul style={openBoardsListStyle}>
           <h3>Boards member belongs to:</h3>
-            {allBoardMemberBelongsArray.length > 0 ?  (
+          { isBoardMemberAdmin==false && <p>{memberNotInAnyBoardMessage}</p> }
+            {allBoardMemberBelongsArray.length > 0 &&  (
               Array.from(allBoardMemberBelongsArray).map((boardName, index)=> {
                 return <li key= {index}>{index+1}. {boardName}</li>
               })
-            ) : <li>{memberNotInAnyBoardMessage}</li>
+            ) 
           } 
           </ul>
         </article>

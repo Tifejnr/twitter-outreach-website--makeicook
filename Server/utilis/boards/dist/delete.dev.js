@@ -39,17 +39,17 @@ function deleteMemberFromBoard(req, res) {
           }));
 
         case 14:
-          _context.next = 23;
+          _context.next = 22;
           break;
 
         case 16:
           _context.prev = 16;
           _context.t0 = _context["catch"](2);
-          console.error("Error:", _context.t0);
+          // console.error("Error:", error);
           memberNotFoundError = _context.t0.response.data;
 
           if (!(memberNotFoundError == "membership not found")) {
-            _context.next = 22;
+            _context.next = 21;
             break;
           }
 
@@ -57,12 +57,12 @@ function deleteMemberFromBoard(req, res) {
             memberNotFoundError: memberNotFoundError
           }));
 
-        case 22:
+        case 21:
           res.status(500).json({
             error: _context.t0
           });
 
-        case 23:
+        case 22:
         case "end":
           return _context.stop();
       }
