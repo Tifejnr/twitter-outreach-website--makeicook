@@ -12,8 +12,11 @@ export default function MemberInfoDisplay(props) {
   const pushMemberCheckboxesArray = useStore((state) => state.pushMemberCheckboxesArray);
 
   useEffect(() => {
+
+    if (isBoardMemberAdmin) {
     const checkboxEle = checkboxRef.current;
     pushMemberCheckboxesArray(checkboxEle);
+    }
   }, []);
 
   const memberDetailObj = props.memberDetailObj;
@@ -64,8 +67,8 @@ if (memberBoardsArray.length > 0) {
         marginTop: isClicked ? '0.8rem' : "-0.4rem",
         overflow: isClicked ?  'visible' : "hidden",
   } 
-
 return (
+  isBoardMemberAdmin && (
     <form className="eachMemberListCont">
       <section className='member-info-container'>
         <input
@@ -77,26 +80,27 @@ return (
           id={`checkMembers${props.indexNo}`}
         />
         <article onClick={handleToggle} title="Click to see boards member belongs to">
-          <p id={`fullname${props.indexNo}`}>{memberDetailObj.fullName}   
+          <p id={`fullname${props.indexNo}`}>{memberDetailObj.fullName}
            
-           <picture title="Show boards member belongs to" >
+           <picture title="Show boards member belongs to">
               <img style={rotateOnToggle} src={openMemberDetailIcon} alt="show member boards icon" />
             </picture>
           </p>
           <p id={`username${props.indexNo}`}>@{memberDetailObj.username}</p>
 
-         <ul style={openBoardsListStyle}>
-          <h3>Boards member belongs to:</h3>
-          { isBoardMemberAdmin==false && <p>{memberNotInAnyBoardMessage}</p> }
-            {allBoardMemberBelongsArray.length > 0 &&  (
-              Array.from(allBoardMemberBelongsArray).map((boardName, index)=> {
-                return <li key= {index}>{index+1}. {boardName}</li>
+          <ul style={openBoardsListStyle}>
+            <h3>Boards member belongs to:</h3>
+      
+            {allBoardMemberBelongsArray.length > 0 && (
+              Array.from(allBoardMemberBelongsArray).map((boardName, index) => {
+                return <li key={index}>{index + 1}. {boardName}</li>
               })
-            ) 
-          } 
+            )} 
           </ul>
         </article>
       </section>
     </form>
   )
+)
+
 }

@@ -129,7 +129,7 @@ export default function ProgressBar(props) {
           </section>
         )}
 
-    {percentLoaded > 0 && !isClicked && <h3 className="title">Credit Charged: 1</h3>}
+    {percentLoaded > 0 && !isClicked && <h3 className="title">Credit Charged: {totalRounds}</h3>}
 
       </section>
 
