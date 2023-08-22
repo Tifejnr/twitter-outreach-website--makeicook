@@ -1,8 +1,12 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect , useState } from "react";
 import useStore from "../../Hooks/Zustand/usersStore";
+
+const memberNotInAnyBoardMessage = "Does not belong to any boards."
+let allBoardMemberBelongsArray=[];
 
 export default function MemberInfoDisplay(props) {
   const checkboxRef = useRef(null);
+  const [isClicked, setIsClicked] = useState(false);
   const memberCheckboxesArray = useStore((state) => state.memberCheckboxesArray);
   const pushMemberCheckboxesArray = useStore((state) => state.pushMemberCheckboxesArray);
 
@@ -12,39 +16,54 @@ export default function MemberInfoDisplay(props) {
   }, []);
 
   const memberDetailObj = props.memberDetailObj;
-  // const member
-  const workspaceObjDetails = props.workspaceObjDetails;
+  const memberId = memberDetailObj.id;
+  const boardIdsMapMemberId = props.boardIdsMapMemberId;
   const boardsCollection = props.boardsCollection;
 
 
     //getting all board names that each memeber belongs to
-
-  function getBoardsForMember(memberId, boardsCollection) {
-  // Initialize an empty array to store the board names.
-  const memberBoards = [];
-
-  // Find boards that match the memberId.
-  for (const board of boardsCollection) {
-    if (board.boardId === memberId) {
-      memberBoards.push(board.boardName);
-    }
+function getBoardsForMember(memberId, boardIdsMapMemberId) {
+  if (boardIdsMapMemberId[memberId]) {
+    return boardIdsMapMemberId[memberId];
+  } else {
+    return []; // Return an empty array if the memberId is not found in boardIdsMapMemberId
   }
-
-  return memberBoards;
 }
 
-    const allBoardMemberBelongsArray = boardsCollection.map((board)=> {
-      const isMemberPartOfBoard = boardsCollection.find(
-      (boardDetail) => boardDetail.id == memberDetailObj.boardId
+const memberBoardsArray = getBoardsForMember(memberId, boardIdsMapMemberId);
+
+if (memberBoardsArray.length > 0) {
+  allBoardMemberBelongsArray = memberBoardsArray.map((boardId) => {
+    const isMemberPartOfBoard = boardsCollection.find(
+      (boardDetail) => boardDetail.id === boardId
     );
 
-    if (!isMemberPartOfBoard) return false;
+    if (!isMemberPartOfBoard)  return  (boardName = memberNotInAnyBoardMessage);
 
-    const boardName = isMemberPartOfBoard.name
+    const boardName = isMemberPartOfBoard.name;
+    return boardName;
+  });
 
-    return boardName 
-    })
-  
+  // Now, allBoardMemberBelongsArray contains the names of boards the member belongs to
+  console.log(`Board names for member ${memberDetailObj.username}:`, allBoardMemberBelongsArray);
+} else {
+  console.log(`Member ${memberDetailObj.username, memberDetailObj.fullName} does not belong to any boards.`);
+}
+
+   //setting toggling when clicked
+  const handleToggle= ()=> {
+         setIsClicked((prevState)=>!prevState)
+  }
+
+   const rotateOnToggle = {
+    transform: isClicked ? "rotate(180deg)" : "0deg"
+  };
+
+ const openBoardsListStyle= {
+        maxHeight: isClicked ?  "100%" : "0",
+        marginTop: isClicked ? '1rem' : "0rem",
+        overflow: isClicked ?  'visible' : "hidden",
+  } 
 
 return (
     <form className="eachMemberListCont">
@@ -57,9 +76,19 @@ return (
           className="inputs board-checkbox"
           id={`checkMembers${props.indexNo}`}
         />
-        <article>
+        <article onClick={handleToggle} title="Click to see member boards">
           <p id={`fullname${props.indexNo}`}>{memberDetailObj.fullName}</p>
           <p id={`username${props.indexNo}`}>@{memberDetailObj.username}</p>
+
+         <ul style={openBoardsListStyle}>
+          <h3>Member Boards</h3>
+            {allBoardMemberBelongsArray.length > 0 ?  (
+              Array.from(allBoardMemberBelongsArray).map((boardName)=> {
+                return <li>{boardName}</li>
+              })
+            ) : <li>{memberNotInAnyBoardMessage}</li>
+          } 
+          </ul>
         </article>
       </section>
     </form>

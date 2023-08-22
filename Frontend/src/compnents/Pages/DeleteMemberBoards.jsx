@@ -7,11 +7,9 @@ import HomeNavBar from "../Home-nav-items/HomeNavBar";
 import BoardsDisplaySection from "./BasicSectionLayout/BoardsDisplaySection";
 import { websiteUrl } from "../../JS functions/websiteUrl";
 import useStore from "../Hooks/Zustand/usersStore";
-import ProgressExceution from "../ProgressBar/ProgressExceution.jsx";
 import DeleteProgress from "../ProgressBar/DeleteBoards/DeleteProgress";
 import validateAddToBoard from "./Validations/validateAddToBoard";
 import { changeTabTitle } from "../utilis/changeTabTitle";
-import SelectMeans from "./BasicSectionLayout/mean-of-execution/SelectMeans";
 import getWorkspacesName from "./getWorkspacesName";
 import getAllBoardsId from "./Validations/getBoardIdOnly/getAllBoardsId";
 import getMemberId from "./Validations/memberIdSearch/getMemberId";
@@ -22,6 +20,7 @@ import isAnyMemberCheckboxChecked from "./Validations/checkboxMembers";
 
 //set variable to change flex
 const changeLayoutToFlex= true;
+const errorColor= "#ff3860"
 
 const searchPlaceholderTitle = "Search Boards ...";
 const selectInstructionText = "Select Boards to Remove Members from";
@@ -47,6 +46,7 @@ export default function DeleteMemberBoards() {
   const [userUsername, setUserUsername] = useState("");
   const [textAreaError, setTextAreaError] = useState("");
   const [memberDetailObj, setMemberDetailObj] = useState("");
+  const [boardIdsMapMemberId, setBoardIdsMapMemberId] = useState([]);
   const [allUserMemberDetail, setAllUserMemberDetail] = useState([]);
 
   const [clientSignature, setClientSignature] = useState("");
@@ -58,6 +58,7 @@ export default function DeleteMemberBoards() {
   const textAreaValue = useStore((state) => state.textAreaValue);
   const textAreaRefEl = useStore((state) => state.textAreaRefEl);
   const setExecutionErrorBtn = useStore((state) => state.setExecutionErrorBtn);
+  const executionErrorBtn = useStore((state) => state.executionErrorBtn);
   const pushWorkspaceObjDetails = useStore(
     (state) => state.pushWorkspaceObjDetails
   );
@@ -79,6 +80,7 @@ export default function DeleteMemberBoards() {
     boardIdsObj,
     meansOfExceution,
     allUserMemberDetail,
+    boardIdsMapMemberId,
     executionBtnClicked,
     action,
     continuousAction,
@@ -159,10 +161,6 @@ export default function DeleteMemberBoards() {
 
         const memberRawArray = memberDetailsResponse.allMembersDetails;
 
-        // const uniqueIds = new Set();
-        // const uniqueMainMemberDetails = [];
-
-
       const uniqueIds = new Set();
       const uniqueMainMemberDetails = [];
       const boardIdsMap = {}; // Object to store boardIds for each mainMemberDetail.id
@@ -187,10 +185,12 @@ export default function DeleteMemberBoards() {
           });
         });
 
-      // Now, uniqueMainMemberDetails contains the unique mainMemberDetails with boardId, and boardIdsMap contains arrays of boardIds for each mainMemberDetail.id
+      // Now, uniqueMainMemberDetails contains the unique mainMemberDetails with boardId,
         console.log(uniqueMainMemberDetails);
         setAllUserMemberDetail(uniqueMainMemberDetails)
+      // and boardIdsMap contains arrays of boardIds for each mainMemberDetail.id
         console.log(boardIdsMap);
+        setBoardIdsMapMemberId(boardIdsMap)
 
       //fetch and get all unique memebers ids and details
         memberRawArray.forEach((memberDetail) => {
@@ -242,6 +242,16 @@ export default function DeleteMemberBoards() {
         display: changeLayoutToFlex && "flex",
      }
 
+   //Error noti on Board List container
+    const boardContainerErrorStyle= {
+        borderColor: executionErrorBtn == checkboxMustBeCheckedMess && errorColor
+     }
+
+   //Error noti on  memberList container
+    const memberListContainerErrorStyle = {
+        borderColor: executionErrorBtn == memeberCheckboxMustBeCheckedMess && errorColor
+     }
+
 
   return (
     <>
@@ -269,8 +279,9 @@ export default function DeleteMemberBoards() {
 
         <section style={changeLayoutToFlexStyle} className="inner-main-cont" id="innerMainContentCont">
 
-            <section className="membersListsContainer" >
-                <h1 id="memberToDeleteHeading">Select Members to Remove Below</h1>
+            <section className="membersListsContainer"  style={memberListContainerErrorStyle} >
+                <h1>{memberCheckboxesArray.length} Board Members</h1>
+                <h1 id="memberToDeleteHeading">Select Members to be Removed Below</h1>
               <section className='searchSection'>
                 <input 
                 onKeyUp={searchMemberList}
@@ -296,14 +307,14 @@ export default function DeleteMemberBoards() {
                             key= {index}
                             indexNo= {index}
                             boardsCollection={boardsCollection}
-                            workspaceObjDetails={workspaceObjDetails}
+                            boardIdsMapMemberId={boardIdsMapMemberId}
                             memberDetailObj= {memberDetailObj}/>
                           );
                         })}
                 </section>
             </section>
 
-              <section className="boardsListSection" id="boardsListSection">
+              <section style={boardContainerErrorStyle} className="boardsListSection" id="boardsListSection">
                 <SelectAll
                   labelTitle={labelTitle}
                   verifying="Verifying Inputs..."
