@@ -35,8 +35,8 @@ const deleteMemberTitle = "Remove Members";
 const searchMembersPlaceholder = "Search board members name ..."
 
 const insufficietCreditsMess = "Please buy credits to use this tool";
-const checkboxMustBeCheckedMess = "Please check at least a board below";
-const memeberCheckboxMustBeCheckedMess = "Please check at least a member to be removed";
+const checkboxMustBeCheckedMess = "Please select at least a board below";
+const memeberCheckboxMustBeCheckedMess = "Please select at least a member to be removed";
 
 export default function DeleteMemberBoards() {
   const [boardsCollection, setBoardsCollection] = useState([{}]);
@@ -186,10 +186,8 @@ export default function DeleteMemberBoards() {
         });
 
       // Now, uniqueMainMemberDetails contains the unique mainMemberDetails with boardId,
-        console.log(uniqueMainMemberDetails);
         setAllUserMemberDetail(uniqueMainMemberDetails)
       // and boardIdsMap contains arrays of boardIds for each mainMemberDetail.id
-        console.log(boardIdsMap);
         setBoardIdsMapMemberId(boardIdsMap)
 
       //fetch and get all unique memebers ids and details

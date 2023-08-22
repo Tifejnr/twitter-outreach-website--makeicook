@@ -1,5 +1,6 @@
 import { useRef, useEffect , useState } from "react";
 import useStore from "../../Hooks/Zustand/usersStore";
+import openMemberDetailIcon from "../../../assets/SVGs/faq-toggle-icon.svg"
 
 const memberNotInAnyBoardMessage = "Does not belong to any boards."
 let allBoardMemberBelongsArray=[];
@@ -31,14 +32,13 @@ function getBoardsForMember(memberId, boardIdsMapMemberId) {
 }
 
 const memberBoardsArray = getBoardsForMember(memberId, boardIdsMapMemberId);
-
+ let boardName
 if (memberBoardsArray.length > 0) {
   allBoardMemberBelongsArray = memberBoardsArray.map((boardId) => {
     const isMemberPartOfBoard = boardsCollection.find(
       (boardDetail) => boardDetail.id === boardId
     );
 
-    let boardName
 
     if (!isMemberPartOfBoard)  return  (boardName = memberNotInAnyBoardMessage);
 
@@ -50,6 +50,7 @@ if (memberBoardsArray.length > 0) {
   // console.log(`Board names for member ${memberDetailObj.username}:`, allBoardMemberBelongsArray);
 } else {
   // console.log(`Member ${memberDetailObj.username, memberDetailObj.fullName} does not belong to any boards.`);
+  boardName = memberNotInAnyBoardMessage
 }
 
    //setting toggling when clicked
@@ -58,12 +59,12 @@ if (memberBoardsArray.length > 0) {
   }
 
    const rotateOnToggle = {
-    transform: isClicked ? "rotate(180deg)" : "0deg"
+    transform: isClicked && "rotate(180deg)"
   };
 
  const openBoardsListStyle= {
         maxHeight: isClicked ?  "100%" : "0",
-        marginTop: isClicked ? '1rem' : "0rem",
+        marginTop: isClicked ? '0.8rem' : "-0.4rem",
         overflow: isClicked ?  'visible' : "hidden",
   } 
 
@@ -78,15 +79,20 @@ return (
           className="inputs board-checkbox"
           id={`checkMembers${props.indexNo}`}
         />
-        <article onClick={handleToggle} title="Click to see member boards">
-          <p id={`fullname${props.indexNo}`}>{memberDetailObj.fullName}</p>
+        <article onClick={handleToggle} title="Click to see boards member belongs to">
+          <p id={`fullname${props.indexNo}`}>{memberDetailObj.fullName}   
+           
+           <picture title="Show boards member belongs to" >
+              <img style={rotateOnToggle} src={openMemberDetailIcon} alt="show member boards icon" />
+            </picture>
+          </p>
           <p id={`username${props.indexNo}`}>@{memberDetailObj.username}</p>
 
          <ul style={openBoardsListStyle}>
-          <h3>Member Boards</h3>
+          <h3>Boards member belongs to:</h3>
             {allBoardMemberBelongsArray.length > 0 ?  (
               Array.from(allBoardMemberBelongsArray).map((boardName, index)=> {
-                return <li key= {index}>{boardName}</li>
+                return <li key= {index}>{index+1}. {boardName}</li>
               })
             ) : <li>{memberNotInAnyBoardMessage}</li>
           } 

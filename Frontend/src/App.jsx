@@ -23,7 +23,7 @@ import OnlyAuthorizedUsers from './compnents/Controllers/OnlyAuthorizedUsers'
 
 const trackingId = "G-67WKHKMDEH";
 
-ReactGA.initialize(trackingId);
+// ReactGA.initialize(trackingId);
 
 
 function App() {
