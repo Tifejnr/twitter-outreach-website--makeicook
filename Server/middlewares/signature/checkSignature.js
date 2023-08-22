@@ -5,7 +5,7 @@ const JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
 const creditsNoPerAction = 1;
 
 module.exports = async function (req, res, next) {
-  const { clientSignature } = req.body;
+  const { clientSignature, creditsCharged } = req.body;
 
   try {
     const userId = userDetails._id;
@@ -21,7 +21,7 @@ module.exports = async function (req, res, next) {
       accountUser.sessionSignature = newSessionSignature;
 
       //deduct a credit since it's a new session
-      const remainingCredits = accountUser.credits - creditsNoPerAction;
+      const remainingCredits = accountUser.credits - Number(creditsCharged);
 
       accountUser.credits = remainingCredits;
 

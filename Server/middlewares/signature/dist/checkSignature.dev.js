@@ -11,12 +11,13 @@ var JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
 var creditsNoPerAction = 1;
 
 module.exports = function _callee(req, res, next) {
-  var clientSignature, userId, accountUser, serverSignature, creditsAvailable, newSessionSignature, remainingCredits;
+  var _req$body, clientSignature, creditsCharged, userId, accountUser, serverSignature, creditsAvailable, newSessionSignature, remainingCredits;
+
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          clientSignature = req.body.clientSignature;
+          _req$body = req.body, clientSignature = _req$body.clientSignature, creditsCharged = _req$body.creditsCharged;
           _context.prev = 1;
           userId = userDetails._id;
           _context.next = 5;
@@ -45,7 +46,7 @@ module.exports = function _callee(req, res, next) {
           newSessionSignature = "".concat(clientSignature).concat(JWT_PRIVATE_KEY);
           accountUser.sessionSignature = newSessionSignature; //deduct a credit since it's a new session
 
-          remainingCredits = accountUser.credits - creditsNoPerAction;
+          remainingCredits = accountUser.credits - Number(creditsCharged);
           accountUser.credits = remainingCredits;
           _context.next = 17;
           return regeneratorRuntime.awrap(accountUser.save());

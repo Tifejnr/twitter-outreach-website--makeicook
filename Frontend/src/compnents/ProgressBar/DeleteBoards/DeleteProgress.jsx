@@ -106,6 +106,7 @@ export default function DeleteProgress(props) {
       boardId,
       memberId,
       clientSignature,
+      creditsCharged: userDetailsLength
     };
 
     (async () => {
@@ -118,7 +119,8 @@ export default function DeleteProgress(props) {
           return (
             incrementSucessLength(),
             incrementTotalSucessLength(),
-            setuserDetails(nameDisplayed)
+            setuserDetails(nameDisplayed),
+            console.log(nameDisplayed, "deleted")
           );
         if (data.error) {
           console.log(data.error);

@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import useStore from "../Hooks/Zustand/usersStore";
 import FailureDetails from "./FailureDetails";
 import failureToggleIcon from "../../assets/SVGs/failure-toggle.svg";
+import successToggleIcon from "../../assets/SVGs/faq-toggle-icon.svg"
 
 export default function ProgressBar(props) {
   const failureLength = useStore((state) => state.failureLength);
