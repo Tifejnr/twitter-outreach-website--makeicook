@@ -1,5 +1,5 @@
-export default function isAnyMemberCheckboxChecked(checkboxes) {
-  const isCheckedArray = Array.from(checkboxes).map(
+export default function isAnyMemberCheckboxChecked(checkboxesArray) {
+  const isCheckedArray = Array.from(checkboxesArray).map(
     (checkbox) => checkbox.checked
   );
 
