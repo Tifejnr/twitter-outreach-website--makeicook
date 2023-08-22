@@ -45,9 +45,9 @@ if (memberBoardsArray.length > 0) {
   });
 
   // Now, allBoardMemberBelongsArray contains the names of boards the member belongs to
-  console.log(`Board names for member ${memberDetailObj.username}:`, allBoardMemberBelongsArray);
+  // console.log(`Board names for member ${memberDetailObj.username}:`, allBoardMemberBelongsArray);
 } else {
-  console.log(`Member ${memberDetailObj.username, memberDetailObj.fullName} does not belong to any boards.`);
+  // console.log(`Member ${memberDetailObj.username, memberDetailObj.fullName} does not belong to any boards.`);
 }
 
    //setting toggling when clicked
