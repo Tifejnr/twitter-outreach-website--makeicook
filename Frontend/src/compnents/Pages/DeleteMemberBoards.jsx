@@ -220,12 +220,12 @@ export default function DeleteMemberBoards() {
             workspaceName,
             workspaceId,
           };
-          return pushWorkspaceObjDetails(workspaceDetails);
+         pushWorkspaceObjDetails(workspaceDetails);
         });
       } catch (error) {
         //handle any error from server or internet
         console.log(error);
-        const errorMessage = error.response.data;
+        // const errorMessage = error.response
         //Unauthorized handling
       }
     })();
