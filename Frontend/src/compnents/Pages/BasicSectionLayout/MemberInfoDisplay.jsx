@@ -52,8 +52,6 @@ if (memberBoardsArray.length > 0) {
 } else {
 
   return  isBoardMemberAdmin = false
-  console.log(`Member ${memberDetailObj.username} does not belong to any boards.`);
- isBoardMemberAdmin = false
 }
    //setting toggling when clicked
   const handleToggle= ()=> {
@@ -87,7 +85,7 @@ function limitOnCheckableMembersNo() {
 
 return (
   isBoardMemberAdmin && (
-    <form className="eachMemberListCont">
+    <form className="member-list-form eachMemberListCont">
       <section className='member-info-container'>
         <input
         onClick={limitOnCheckableMembersNo}

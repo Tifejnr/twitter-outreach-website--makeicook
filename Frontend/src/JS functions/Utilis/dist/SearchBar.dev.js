@@ -31,15 +31,15 @@ function searchMemberList() {
   var searchTextRaw = document.getElementById("searchMembersList");
   var searchText1 = searchTextRaw.value;
   var searchText = searchText1.replace(/\s/g, "").toLowerCase();
-  var allEleClass = document.getElementsByClassName("eachMemberListCont");
+  var allEleClass = document.getElementsByClassName("member-list-form");
   Array.from(allEleClass).forEach(function (eleContainer) {
     if (searchText.length === 0) {
-      eleContainer.style.display = "grid";
+      eleContainer.style.display = "block";
     } else {
       var paragraphElement = eleContainer.getElementsByTagName("p")[0];
 
       if (paragraphElement && paragraphElement.innerText.replace(/\s/g, "").toLowerCase().indexOf(searchText) > -1) {
-        eleContainer.style.display = "grid";
+        eleContainer.style.display = "block";
       } else {
         eleContainer.style.display = "none";
       }

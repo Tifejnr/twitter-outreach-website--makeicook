@@ -163,6 +163,7 @@ export default function AddToBoardsProgress(props) {
       boardId,
       memberId,
       clientSignature,
+      creditsCharged: userDetailsLength
     };
 
     (async () => {

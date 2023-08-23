@@ -10,7 +10,7 @@ function searchInput() {
     if (searchText.length === 0) {
       recipe.style.display = "block";
     } else {
-      var nameElement = recipe.getElementsByTagName("p")[0];
+      const nameElement = recipe.getElementsByTagName("p")[0];
 
       if (
         nameElement &&
@@ -32,11 +32,11 @@ function searchMemberList() {
   const searchText1 = searchTextRaw.value;
   let searchText = searchText1.replace(/\s/g, "").toLowerCase();
 
-  const allEleClass = document.getElementsByClassName("eachMemberListCont");
+  const allEleClass = document.getElementsByClassName("member-list-form");
 
   Array.from(allEleClass).forEach(function (eleContainer) {
     if (searchText.length === 0) {
-      eleContainer.style.display = "grid";
+      eleContainer.style.display = "block";
     } else {
       const paragraphElement = eleContainer.getElementsByTagName("p")[0];
 
@@ -47,7 +47,7 @@ function searchMemberList() {
           .toLowerCase()
           .indexOf(searchText) > -1
       ) {
-        eleContainer.style.display = "grid";
+        eleContainer.style.display = "block";
       } else {
         eleContainer.style.display = "none";
       }

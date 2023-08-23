@@ -54,6 +54,10 @@ export default function AddMember() {
  const [executionBtnClicked , setExecutionBtnClicked ] = useState(false);
  const [textAreaError, setTextAreaError ] = useState("");
  const [allUserMemberDetail, setAllUserMemberDetail] = useState([]);
+ const [boardIdsMapMemberId, setBoardIdsMapMemberId] = useState([]);
+ const [memberRawArrayDetail, setMemberRawArrayDetail] = useState([]);
+ const [userUsername, setUserUsername] = useState("");
+
 
   const [clientSignature, setClientSignature] = useState("");
   const [boardDetailsObj, setBoardDetailsObj] = useState([])
@@ -166,45 +170,73 @@ export default function AddMember() {
 
         const data = dataRaw.boards;
         const signature = dataRaw.sessionSignature;
-        const workspaceIdArray = [...new Set(data.map(boardsDetail => boardsDetail.idOrganization).filter(Boolean))];
-        setBoardsCollection(data);
+        const  userUsernameFromServer = dataRaw.userUsername;
         setClientSignature(signature);
+        setUserUsername(userUsernameFromServer)
+      
+        const workspaceIdArray = [
+          ...new Set(
+            data
+              .map((boardsDetail) => boardsDetail.idOrganization)
+              .filter(Boolean)
+          ),
+        ];
+        setBoardsCollection(data);
 
         //fetch all board ids for usernames and fullnames method of addition
         const allBoardsId = getAllBoardsId(data);
         const memberDetailsResponse = await getMemberId(allBoardsId);
-
         const memberRawArray = memberDetailsResponse.allMembersDetails;
+       setMemberRawArrayDetail(memberRawArray);
 
-        const uniqueIds = new Set();
-        const uniqueMainMemberDetails = [];
+      const uniqueIds = new Set();
+      const uniqueMainMemberDetails = [];
+      const boardIdsMap = {}; // Object to store boardIds for each mainMemberDetail.id
 
-      //fetch and get all unique memebers ids and details
         memberRawArray.forEach((memberDetail) => {
-          memberDetail.forEach((mainMemberDetail) => {
-            if (!uniqueIds.has(mainMemberDetail.id)) {
-              uniqueIds.add(mainMemberDetail.id);
+          const boardId = memberDetail.boardId;
+          const rawMemberDetail = memberDetail.boardMembersDetails;
+          rawMemberDetail.forEach((mainMemberDetail) => {
+            const { id, username, fullName } = mainMemberDetail; // Destructure the relevant properties
+            if (!uniqueIds.has(id)) {
+              mainMemberDetail.boardId = boardId;
+              uniqueIds.add(id);
               uniqueMainMemberDetails.push(mainMemberDetail);
+            } else {
+              // If the id already exists, add the boardId to the associated array
+              if (!boardIdsMap[id]) {
+                boardIdsMap[id] = [boardId];
+              } else {
+                boardIdsMap[id].push(boardId);
+              }
             }
           });
         });
+
+      // Now, uniqueMainMemberDetails contains the unique mainMemberDetails with boardId,
+        setAllUserMemberDetail(uniqueMainMemberDetails)
+      // and boardIdsMap contains arrays of boardIds for each mainMemberDetail.id
+        setBoardIdsMapMemberId(boardIdsMap);
       
-    //sort members name alhpabetically using fullname
+      //sort members name alhpabettically using fullname
       uniqueMainMemberDetails.sort((a, b) => a.fullName.localeCompare(b.fullName));
 
        setAllUserMemberDetail(uniqueMainMemberDetails);
        setBoardIdsObj(allBoardsId);
 
-     
-    //fetch workspace names for each boards
-        workspaceIdArray.map(async (workspaceId, index)=> {
-        const workspaceName =  await getWorkspacesName(workspaceId)
-        const  workspaceDetails= {
-          workspaceName,
-          workspaceId
+        //fetch workspace names for each boards
+        workspaceIdArray.map(async (workspaceId, index) => {
+          const workspaceName = await getWorkspacesName(workspaceId);
+          const workspaceDetails = {
+            workspaceName,
+            workspaceId,
+          };
+         pushWorkspaceObjDetails(workspaceDetails);
+        });
+
+      if (memberRawArray.length > 1) {
+          setMemberRawArrayDetail(memberRawArray);
         }
-        return pushWorkspaceObjDetails(workspaceDetails);
-        })
 
       } catch (error) {
         //handle any error from server or internet
@@ -261,8 +293,8 @@ export default function AddMember() {
           /> :  
           
           <section className="membersListsContainer" >
-                <h1 id="memberToDeleteHeading">Select Members to Delete Below</h1>
-
+              <h2>{memberCheckboxesArray.length} Board Members</h2>
+              <h1 id="memberToDeleteHeading">Select Members to be Added Below</h1>
               <section className='searchSection'>
                 <input 
                 onKeyUp={searchMemberList}
@@ -280,10 +312,16 @@ export default function AddMember() {
                     <section className="member-list-cont">
                       {allUserMemberDetail.length > 1 &&
                         allUserMemberDetail.map((memberDetailObj, index) => {
+
+                          if (memberDetailObj.username==userUsername ) return false;
+
                           return (
                           <MemberInfoDisplay
                             key= {index}
                             indexNo= {index}
+                            boardsCollection={boardsCollection}
+                            boardIdsMapMemberId={boardIdsMapMemberId}
+                            boardIdsObj={boardIdsObj}
                             memberDetailObj= {memberDetailObj}/>
                           );
                         })}
@@ -322,6 +360,7 @@ export default function AddMember() {
                           key={index}
                           board={board}
                           indexNo={index}
+                          memberRawArrayDetail={memberRawArrayDetail}
                           workspaceObjDetails={workspaceObjDetails}
                         />
                       );

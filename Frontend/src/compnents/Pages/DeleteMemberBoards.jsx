@@ -280,7 +280,7 @@ export default function DeleteMemberBoards() {
               )}              
                   
               </section>
-                    <section className="member-list-cont">
+                  <section className="member-list-cont">
                       {allUserMemberDetail.length > 1 &&
                         allUserMemberDetail.map((memberDetailObj, index) => {
 
