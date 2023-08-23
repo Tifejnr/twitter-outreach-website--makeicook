@@ -31,8 +31,6 @@ export default function SelectAll(props) {
 
   //select all checkbox function
  function CheckAll() {
-  const memeberFormArray = document.getElementsByClassName("eachMemberListCont");
-  console.log(memeberFormArray.length)
   checkboxesArray.forEach((checkbox) => {
     checkbox.checked = true;
   });
@@ -63,6 +61,7 @@ setExecutionErrorBtn("")
       <section className="selecting-btn-cont">
        
           <button
+          title="Click to select all boards"
             id="select-all"
             onClick={() => {
               CheckAll();
@@ -72,6 +71,7 @@ setExecutionErrorBtn("")
           </button>
 
            <button
+           title="Click to de-select all boards"
             id="clear-select"
             onClick={() => {
               UncheckAll();

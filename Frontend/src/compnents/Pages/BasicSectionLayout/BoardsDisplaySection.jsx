@@ -4,6 +4,7 @@ import openBoardsDetailIcon from "../../../assets/SVGs/faq-toggle-icon.svg"
 
 export default function BoardsDisplaySection(props) {
   const [isClicked, setIsClicked] = useState(false);
+  const [boardMembersObj, setBoardMembersObj] = useState([]);
   const checkboxRef = useRef(null);
   const checkboxesArray = useStore((state) => state.checkboxesArray);
   const pushCheckboxesArray = useStore((state) => state.pushCheckboxesArray);
@@ -33,28 +34,37 @@ export default function BoardsDisplaySection(props) {
   useEffect(() => {
     const checkboxEle = checkboxRef.current;
     pushCheckboxesArray(checkboxEle);
+
   }, []);
 
-  //setting toggling when clicked
 
-    const handleToggle= ()=> {
-         setIsClicked((prevState)=>!prevState)
-    }
+  function loadAllBoardMembersName () {
 
+  setIsClicked((prevState)=>!prevState)  
+  const memberRawArrayDetail = props.memberRawArrayDetail;
+  //find board members for each boards
+  const allboardMembersObj = memberRawArrayDetail.find((memberDetail) => memberDetail.boardId === board.id);
+  const boardMembersObjAlone = allboardMembersObj.boardMembersDetails;
+
+  if (boardMembersObjAlone) return setBoardMembersObj(boardMembersObjAlone)
+
+  }
+
+  //setting toglig
    const rotateOnToggle = {
     transform: isClicked && "rotate(180deg)"
   };
 
  const openFaqDetailsStyle= {
-        maxHeight: isClicked &&  "100%",
-        marginTop: isClicked && '0.4rem',
-        overflow: isClicked &&  'visible',
-      }
+     maxHeight: isClicked ?  "100%" :"0",
+        marginTop: isClicked ? '0.8rem' :"-0.4rem",
+        overflow: isClicked ?  'visible': "hidden",
+ }
 
   return (
-    <form className="item eachBoardSection" name="main">
-      <article className="label-article">
-        <input
+    <form className="boardListItem eachMemberListCont" name="main">
+      <section className='member-info-container'>
+          <input
           onClick={checkboxRatioNotifier}
           type="checkbox"
           name="fruit"
@@ -63,19 +73,30 @@ export default function BoardsDisplaySection(props) {
           className="inputs board-checkbox"
           id={`check${props.indexNo}`}
         />
+      <article onClick={loadAllBoardMembersName} title="Click to show members">
 
-        <h5 onClick={handleToggle}  title="Show workspace" 
-          id={`labelcheck${props.indexNo}`}>
-
-          <p>{board.name} 
-            <picture title="Show workspace" >
-              <img style={rotateOnToggle} src={openBoardsDetailIcon} alt="show workspace icon" />
+        <p id={`labelcheck${props.indexNo}`}>        
+          {board.name} 
+           
+           <picture title="Click to show members">
+              <img style={rotateOnToggle} src={openBoardsDetailIcon} alt="show member icon" />
             </picture>
-          </p>
-          
-        </h5>
-      </article>
-      <p style={openFaqDetailsStyle} className="workspaceName">{ isWorkspaceDetailsValid ? isWorkspaceDetailsValid.workspaceName: "Not under any workspace yet"}</p>
+        </p>
+
+        <p>{ isWorkspaceDetailsValid ? `WS - ${isWorkspaceDetailsValid.workspaceName}`: "WS - None"}</p>
+
+         <ul style={openFaqDetailsStyle}>
+            <h3>Members:</h3>
+
+            {boardMembersObj.length > 0 && boardMembersObj.map((memberDetail, index)=> {
+                return <li key={index}>{index+1}. {memberDetail.fullName}</li>
+              })}
+          </ul> 
+
+    </article>
+    </section>
     </form>
   );
 }
+
+

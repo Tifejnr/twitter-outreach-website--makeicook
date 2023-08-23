@@ -172,7 +172,7 @@ export default function DeleteProgress(props) {
           };
 
           return (
-            pushFailureReason(failureObj), console.log(unstableInteretError)
+            pushFailureReason(failureObj)
           );
         }
 
@@ -188,7 +188,7 @@ export default function DeleteProgress(props) {
           };
 
           return (
-            pushFailureReason(failureObj), console.log(memberNotFoundMessage)
+            pushFailureReason(failureObj)
           );
         }
 

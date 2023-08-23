@@ -3,6 +3,7 @@ import useStore from "../../Hooks/Zustand/usersStore";
 import openMemberDetailIcon from "../../../assets/SVGs/faq-toggle-icon.svg"
 
 const memberNotInAnyBoardMessage = "You don't have access to some of the boards below."
+const limitOfCheckboxReached = "You can't select more than 20 members at a go."
 let allBoardMemberBelongsArray=[];
 
 export default function MemberInfoDisplay(props) {
@@ -10,6 +11,7 @@ export default function MemberInfoDisplay(props) {
   const [isClicked, setIsClicked] = useState(false);
   const memberCheckboxesArray = useStore((state) => state.memberCheckboxesArray);
   const pushMemberCheckboxesArray = useStore((state) => state.pushMemberCheckboxesArray);
+  const setExecutionErrorBtn = useStore((state) => state.setExecutionErrorBtn);
 
   useEffect(() => {
 
@@ -24,7 +26,6 @@ export default function MemberInfoDisplay(props) {
   const boardIdsMapMemberId = props.boardIdsMapMemberId;
   const boardsCollection = props.boardsCollection;
 
-
     //getting all board names that each memeber belongs to
 function getBoardsForMember(memberId, boardIdsMapMemberId) {
   if (boardIdsMapMemberId[memberId]) {
@@ -35,7 +36,7 @@ function getBoardsForMember(memberId, boardIdsMapMemberId) {
 }
 
 const memberBoardsArray = getBoardsForMember(memberId, boardIdsMapMemberId);
- let isBoardMemberAdmin = true, memberIsNotYours = memberNotInAnyBoardMessage,  boardName;
+ let isBoardMemberAdmin = true; let memberIsNotYours = memberNotInAnyBoardMessage,  boardName;
 
 if (memberBoardsArray.length > 0) {
   allBoardMemberBelongsArray = memberBoardsArray.map((boardId) => {
@@ -49,10 +50,11 @@ if (memberBoardsArray.length > 0) {
     return boardName;
   });
 } else {
+
+  return  isBoardMemberAdmin = false
   console.log(`Member ${memberDetailObj.username} does not belong to any boards.`);
  isBoardMemberAdmin = false
 }
-
    //setting toggling when clicked
   const handleToggle= ()=> {
      setIsClicked((prevState)=>!prevState)
@@ -67,11 +69,28 @@ if (memberBoardsArray.length > 0) {
         marginTop: isClicked ? '0.8rem' : "-0.4rem",
         overflow: isClicked ?  'visible' : "hidden",
   } 
+
+ //limit no of checkboxes of member to 20  
+function limitOnCheckableMembersNo() {
+  const noOfChecked = memberCheckboxesArray.filter(
+    (checkbox) => checkbox.checked
+  ).length;
+
+  const checkboxEle = checkboxRef.current;
+
+  if (noOfChecked > 20) {
+    // If the number of checked checkboxes is greater than 2, set an error state and uncheck the current checkbox.
+    setExecutionErrorBtn(limitOfCheckboxReached); // Assuming "limitOfCheckboxReached" is a string error message.
+    checkboxEle.checked = false;
+  } 
+}
+
 return (
   isBoardMemberAdmin && (
     <form className="eachMemberListCont">
       <section className='member-info-container'>
         <input
+        onClick={limitOnCheckableMembersNo}
           type="checkbox"
           name="select-member"
           title="Check to select member"

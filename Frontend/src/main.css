@@ -148,6 +148,10 @@ Display Dropdwon menu */
 }
 
 /* Functionlity Pages Design */
+
+.boardListItem {
+  padding: 0.6rem;
+}
 .item {
   display: block;
   width: 100%;
@@ -200,14 +204,22 @@ Display Dropdwon menu */
   text-align: left;
 }
 
+.item.eachBoardSection h4 {
+  text-decoration: underline;
+}
+
+.item.eachBoardSection ul {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  display: grid;
+  row-gap: 1rem;
+  color: #1e2831;
+  transition: max-height 250ms ease, margin-top 250ms;
+}
+
 .item .workspaceName {
   color: grey;
   text-align: left;
-  margin-bottom: 0.4rem;
-  height: 100%;
-  overflow: hidden;
-  max-height: 0;
-  transition: max-height 250ms ease, margin-top 250ms;
 }
 
 /* prevent scrolling down till infinity */
@@ -663,13 +675,20 @@ input {
   display: grid;
   row-gap: 2rem;
 }
-.membersListsContainer {
+.membersListsContainer,
+#boardsListSection {
   height: 100%;
   border: 1px solid transparent;
   padding: 0.5rem;
+  max-width: 42rem;
+}
+.membersListsContainer h2 {
+  color: #17252a;
+  font-size: 2rem;
 }
 
 .member-info-container {
+  position: relative;
   display: flex;
   column-gap: 0.5rem;
   align-items: start;
@@ -695,6 +714,7 @@ input {
 
 .member-info-container article {
   cursor: pointer;
+  width: 100%;
 }
 
 .member-info-container input {
@@ -747,7 +767,7 @@ input {
   position: relative;
   justify-content: space-around;
   justify-items: center;
-  column-gap: 13rem;
+  column-gap: 10rem;
 }
 
 .inner-main-cont section {

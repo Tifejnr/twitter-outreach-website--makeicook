@@ -1,19 +1,16 @@
 //serach functionality//
 
-function getReceipes() {
-  return document.getElementsByClassName("item");
-}
-
 function searchInput() {
+  const allBoardsClass = document.getElementsByClassName("boardListItem");
   const searchTextRaw = document.getElementById("search");
   const searchText1 = searchTextRaw.value;
   let searchText = searchText1.replace(/\s/g, "").toLowerCase();
 
-  Array.from(getReceipes()).forEach(function (recipe) {
+  Array.from(allBoardsClass).forEach(function (recipe) {
     if (searchText.length === 0) {
       recipe.style.display = "block";
     } else {
-      var nameElement = recipe.getElementsByTagName("h5")[0];
+      var nameElement = recipe.getElementsByTagName("p")[0];
 
       if (
         nameElement &&
