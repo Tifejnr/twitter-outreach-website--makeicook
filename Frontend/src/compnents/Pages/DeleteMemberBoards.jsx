@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import Input from "./BasicSectionLayout/Input";
 import SearchBoards from "./BasicSectionLayout/SearchBoards";
 import SelectAll from "./BasicSectionLayout/SelectAll";
 import HomeNavBar from "../Home-nav-items/HomeNavBar";
@@ -37,6 +36,7 @@ const searchMembersPlaceholder = "Search board members name ..."
 const insufficietCreditsMess = "Please buy credits to use this tool";
 const checkboxMustBeCheckedMess = "Please select at least a board below";
 const memeberCheckboxMustBeCheckedMess = "Please select at least a member to be removed";
+const limitOfCheckboxReached = "You can't select more than 20 members at a go."
 
 export default function DeleteMemberBoards() {
   const [boardsCollection, setBoardsCollection] = useState([{}]);
@@ -48,6 +48,7 @@ export default function DeleteMemberBoards() {
   const [memberDetailObj, setMemberDetailObj] = useState("");
   const [boardIdsMapMemberId, setBoardIdsMapMemberId] = useState([]);
   const [allUserMemberDetail, setAllUserMemberDetail] = useState([]);
+  const [memberRawArrayDetail, setMemberRawArrayDetail] = useState([]);
 
   const [clientSignature, setClientSignature] = useState("");
   const [boardDetailsObj, setBoardDetailsObj] = useState([]);
@@ -144,7 +145,6 @@ export default function DeleteMemberBoards() {
         const  userUsernameFromServer = dataRaw.userUsername;
         setClientSignature(signature);
         setUserUsername(userUsernameFromServer)
-
       
         const workspaceIdArray = [
           ...new Set(
@@ -158,8 +158,8 @@ export default function DeleteMemberBoards() {
         //fetch all board ids for usernames and fullnames method of addition
         const allBoardsId = getAllBoardsId(data);
         const memberDetailsResponse = await getMemberId(allBoardsId);
-
         const memberRawArray = memberDetailsResponse.allMembersDetails;
+     setMemberRawArrayDetail(memberRawArray);
 
       const uniqueIds = new Set();
       const uniqueMainMemberDetails = [];
@@ -188,25 +188,10 @@ export default function DeleteMemberBoards() {
       // Now, uniqueMainMemberDetails contains the unique mainMemberDetails with boardId,
         setAllUserMemberDetail(uniqueMainMemberDetails)
       // and boardIdsMap contains arrays of boardIds for each mainMemberDetail.id
-        setBoardIdsMapMemberId(boardIdsMap)
-
-      //fetch and get all unique memebers ids and details
-        memberRawArray.forEach((memberDetail) => {
-          const boardId = memberDetail.boardId
-          const rawMemberDetail= memberDetail.boardMembersDetails
-          rawMemberDetail.forEach((mainMemberDetail) => {
-            if (!uniqueIds.has(mainMemberDetail.id)) {
-              mainMemberDetail.boardId= boardId
-              uniqueIds.add(mainMemberDetail.id);
-              uniqueMainMemberDetails.push(mainMemberDetail);
-            }
-          });
-        });
+        setBoardIdsMapMemberId(boardIdsMap);
       
       //sort members name alhpabettically using fullname
       uniqueMainMemberDetails.sort((a, b) => a.fullName.localeCompare(b.fullName));
-
-      console.log(uniqueMainMemberDetails)
 
        setAllUserMemberDetail(uniqueMainMemberDetails);
        setBoardIdsObj(allBoardsId);
@@ -220,6 +205,11 @@ export default function DeleteMemberBoards() {
           };
          pushWorkspaceObjDetails(workspaceDetails);
         });
+
+      if (memberRawArray.length > 1) {
+          setMemberRawArrayDetail(memberRawArray);
+        }
+
       } catch (error) {
         //handle any error from server or internet
         console.log(error);
@@ -247,7 +237,7 @@ export default function DeleteMemberBoards() {
 
    //Error noti on  memberList container
     const memberListContainerErrorStyle = {
-        borderColor: executionErrorBtn == memeberCheckboxMustBeCheckedMess && errorColor
+        borderColor: executionErrorBtn == memeberCheckboxMustBeCheckedMess || executionErrorBtn==limitOfCheckboxReached && errorColor
      }
 
 
@@ -270,15 +260,11 @@ export default function DeleteMemberBoards() {
             <h1 id="toolInstruction">
               {pageTitle}
             </h1>
-            {/* <SelectMeans
-              actionToBePerformed={action}
-              selectLabel={selectLabel}
-            /> */}
 
         <section style={changeLayoutToFlexStyle} className="inner-main-cont" id="innerMainContentCont">
 
             <section className="membersListsContainer"  style={memberListContainerErrorStyle} >
-                <h1>{memberCheckboxesArray.length} Board Members</h1>
+                <h2>{memberCheckboxesArray.length} Board Members</h2>
                 <h1 id="memberToDeleteHeading">Select Members to be Removed Below</h1>
               <section className='searchSection'>
                 <input 
@@ -306,13 +292,14 @@ export default function DeleteMemberBoards() {
                             indexNo= {index}
                             boardsCollection={boardsCollection}
                             boardIdsMapMemberId={boardIdsMapMemberId}
+                            boardIdsObj={boardIdsObj}
                             memberDetailObj= {memberDetailObj}/>
                           );
                         })}
                 </section>
             </section>
 
-              <section style={boardContainerErrorStyle} className="boardsListSection" id="boardsListSection">
+            <section style={boardContainerErrorStyle} className="boardsListSection" id="boardsListSection">
                 <SelectAll
                   labelTitle={labelTitle}
                   verifying="Verifying Inputs..."
@@ -344,6 +331,7 @@ export default function DeleteMemberBoards() {
                           key={index}
                           board={board}
                           indexNo={index}
+                          memberRawArrayDetail={memberRawArrayDetail}
                           workspaceObjDetails={workspaceObjDetails}
                         />
                       );
