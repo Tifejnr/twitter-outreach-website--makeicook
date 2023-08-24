@@ -55,7 +55,20 @@ require("./startup/prod")(app); //webhooks set here so req.body does not get par
 
 var webhooks = require("./routes/Payments/webhooks");
 
-app.use("/api/checkout/webhooks", webhooks); //Connect to mong db
+app.use("/api/checkout/webhooks", webhooks); //
+
+app.get("/proxy-gtag-script", function (req, res) {
+  https.get("https://www.googletagmanager.com/gtag/js?id=G-67WKHKMDEH", function (response) {
+    var data = "";
+    response.on("data", function (chunk) {
+      data += chunk;
+    });
+    response.on("end", function () {
+      res.setHeader("Content-Type", "application/javascript");
+      res.send(data);
+    });
+  });
+}); //Connect to mong db
 
 var keysObjects = getKeys();
 var mongoDB_string = keysObjects.mongoDB_string;
@@ -226,4 +239,3 @@ app.post("/get-workspace-name", [loginStatusChecker, isUserAuthorized, userToken
 app.listen(3000, function () {
   console.log("Listening on port 3000");
 });
-"\nHe is a Gem of a person. Very humble, responsible, quite flexible and cooperative. He does what he commits. We are taking a small break with the project but will not hesitate to reach out again in the near future. \nDon't hesitate in hiring him. Hopefully, we will work again together. \nI wish him all the best for his future\n";
