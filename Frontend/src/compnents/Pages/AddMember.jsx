@@ -46,6 +46,9 @@ const searchMembersPlaceholder = "Search board members name ..."
 const insufficietCreditsMess= "Please buy credits to use this tool";
 const checkboxMustBeCheckedMess= "Please check at least a board below";
 const memeberCheckboxMustBeCheckedMess = "Please check at least a member to be added";
+const limitOfCheckboxReached = "You can't select more than 20 members at a go."
+
+const errorColor= "#ff3860"
 
 export default function AddMember() {
   const [boardsCollection, setBoardsCollection] = useState([{}]);
@@ -70,6 +73,7 @@ export default function AddMember() {
   const textAreaValue = useStore((state) => state.textAreaValue);
   const textAreaRefEl = useStore((state) => state.textAreaRefEl);
   const  setExecutionErrorBtn = useStore((state) => state.setExecutionErrorBtn);
+  const executionErrorBtn = useStore((state) => state.executionErrorBtn);
   const  pushWorkspaceObjDetails = useStore((state) => state.pushWorkspaceObjDetails);
   const  workspaceObjDetails = useStore((state) => state.workspaceObjDetails);
   const  meansOfExceution = useStore((state) => state.meansOfExceution);
@@ -261,7 +265,8 @@ export default function AddMember() {
     if (meansOfExceution==nameMeans) {
       setChangeLayoutToFlex(true)
     }
-     // auto pick means picked previously for users by checking local storage
+     
+    // auto pick means picked previously for users by checking local storage
     const meansChosenAddToBoards = localStorage.getItem('meansChosenAddToBoards');
     if (meansChosenAddToBoards) return setMeansOfExceution(meansChosenAddToBoards), setSelectLabel(meansChosenAddToBoards);
    return setSelectLabel(defaultMeansMessage), setMeansOfExceution(defaultMeansMessage);
@@ -271,6 +276,20 @@ export default function AddMember() {
     const changeLayoutToFlexStyle= {
         display: changeLayoutToFlex && "flex",
      }
+
+
+   //Error noti on Board List container
+    const boardContainerErrorStyle= {
+        borderColor: executionErrorBtn == checkboxMustBeCheckedMess && errorColor
+     }
+
+   //Error noti on  memberList container
+ const memberListContainerErrorStyle = {
+    borderColor:
+      (executionErrorBtn === memeberCheckboxMustBeCheckedMess ||
+        executionErrorBtn === limitOfCheckboxReached) &&
+      errorColor,
+  };
 
   return (
     <> 
@@ -292,7 +311,7 @@ export default function AddMember() {
             textAreaError={textAreaError}
           /> :  
           
-          <section className="membersListsContainer" >
+          <section className="membersListsContainer" style={memberListContainerErrorStyle} >
               <h2>{memberCheckboxesArray.length} Board Members</h2>
               <h1 id="memberToDeleteHeading">Select Members to be Added Below</h1>
               <section className='searchSection'>
@@ -329,7 +348,7 @@ export default function AddMember() {
             </section>
         } 
     
-        <section className="boardsListSection" id="boardsListSection">
+        <section className="boardsListSection" id="boardsListSection" style={boardContainerErrorStyle} >
                 <SelectAll
                   labelTitle={labelTitle}
                   verifying="Verifying Inputs..."

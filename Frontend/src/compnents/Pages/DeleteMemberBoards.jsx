@@ -236,9 +236,12 @@ export default function DeleteMemberBoards() {
      }
 
    //Error noti on  memberList container
-    const memberListContainerErrorStyle = {
-        borderColor: executionErrorBtn == memeberCheckboxMustBeCheckedMess || executionErrorBtn==limitOfCheckboxReached && errorColor
-     }
+ const memberListContainerErrorStyle = {
+    borderColor:
+      (executionErrorBtn === memeberCheckboxMustBeCheckedMess ||
+        executionErrorBtn === limitOfCheckboxReached) &&
+      errorColor,
+  };
 
 
   return (
@@ -247,7 +250,6 @@ export default function DeleteMemberBoards() {
         <DeleteProgress executionParams={executionParams} />
       ) : (
         <>
-          {" "}
           <HomeNavBar
             innerText={
               creditsFromServer == 1
