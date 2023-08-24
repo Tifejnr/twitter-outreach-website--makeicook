@@ -51,7 +51,7 @@ const signInUser = require("./routes/auth");
 const paymentsHandling = require("./routes/Payments/checkout");
 const dashboard = require("./routes/dashboard");
 
-//api routes declaarations
+//api routes declarations
 app.use("/api/register-user", registerUser);
 app.use("/api/sign-in", signInUser);
 app.use("/api/dashboard", loginStatusChecker, isUserAuthorized, dashboard);
@@ -62,6 +62,15 @@ app.use(
     path.join(__dirname, "../../Trello-Project-React/Frontend/dist")
   )
 );
+
+// Set up CSP header to allow connections from your React app's domain
+app.use((req, res, next) => {
+  res.setHeader(
+    "Content-Security-Policy",
+    "default-src 'self' https://www.collabfortrello.com;"
+  );
+  next();
+});
 
 //Won't be accessible by React route, server owns this route
 app.get("/callback", loginStatusChecker, async (req, res) => {
