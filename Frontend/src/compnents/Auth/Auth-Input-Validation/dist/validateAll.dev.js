@@ -22,6 +22,5 @@ function validateAll(paramsObj) {
     passwordValResponse: passwordValResponse.passwordError,
     emailValResponse: emailValResponse.emailErrorMessage
   };
-  console.log(resultofValidation);
   return resultofValidation;
 }

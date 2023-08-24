@@ -16,6 +16,5 @@ export default function validateAll(paramsObj) {
     emailValResponse: emailValResponse.emailErrorMessage,
   };
 
-  console.log(resultofValidation);
   return resultofValidation;
 }

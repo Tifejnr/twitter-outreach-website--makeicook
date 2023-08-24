@@ -9,7 +9,7 @@ export default async function signInUser(signInParams) {
     if (!data.signedIn) return false;
     return true;
   } catch (error) {
-    console.log(error.response.data);
+    // console.log(error.response.data);
     const errorMessage = error.response.data.invalidLoginDetails;
     if (errorMessage) return { errorMessage };
     return false;
