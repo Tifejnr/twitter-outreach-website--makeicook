@@ -23,7 +23,7 @@ return (
         
        <LandingPageToggle innerText="Free start" pageLink="/register"/>
 
-      <ul className="nav__menu">
+      <ul className="nav__menu landing-page-nav-menu">
 
         <li>
           <NavLogo />

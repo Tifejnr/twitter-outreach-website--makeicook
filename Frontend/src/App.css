@@ -206,12 +206,15 @@ body {
   display: none;
   fill: #ff3860;
 }
+
 .nav__toggle .menu {
   margin-top: 0.3rem;
 }
+
 .nav__checkbox {
   display: none;
 }
+
 .nav__menu {
   display: flex;
   flex-direction: column;
@@ -224,24 +227,37 @@ body {
   margin: 0;
 }
 
+.nav__menu.landing-page-nav-menu {
+  row-gap: 0;
+  column-gap: 0;
+  justify-content: space-between;
+}
+
 /* Stand alone Login and Start for Free Button on Nav items */
-.nav__menu ul {
+.nav__menu .inner-nav-item-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   row-gap: 2rem;
   column-gap: 1.5rem;
-  border: 1px solid red;
 }
 
-.nav__menu ul li {
+.nav__menu .inner-nav-item-container li {
   margin: auto;
 }
 
+.nav__menu .inner-nav-item-container li:first-child {
+  display: none;
+}
+
 @media screen and (min-width: 768px) {
-  .nav__menu ul {
+  .nav__menu .inner-nav-item-container {
     flex-direction: row;
+  }
+
+  .nav__menu .inner-nav-item-container li:first-child {
+    display: block;
   }
 }
 
@@ -1023,22 +1039,13 @@ a .buy-credits-nav-home:hover {
 
 .main-pricing-section-alone {
   position: relative;
-  top: 6rem;
 }
 
 /* Pricing Block Design Landing Page*/
 
 .pricing-section {
   margin: 5rem 0;
-  background-color: #101c77;
-  background: rgb(16, 28, 119);
-  background: linear-gradient(
-    90deg,
-    rgba(16, 28, 119, 1) 15%,
-    rgb(45, 45, 199) 55%,
-    rgba(16, 28, 119, 1) 85%,
-    rgb(36, 50, 158) 98%
-  );
+  background-color: #fff;
   padding: 2rem 0;
 }
 
@@ -1047,6 +1054,10 @@ a .buy-credits-nav-home:hover {
   justify-content: center;
   justify-items: center;
   row-gap: 1rem;
+}
+
+.pricing-section header h2 {
+  color: var(--dark-des-blue);
 }
 
 @media screen and (min-width: 580px) {
@@ -1058,8 +1069,7 @@ a .buy-credits-nav-home:hover {
 
 .pricing-section h2,
 .tools-section-cont h2 {
-  color: #fff;
-  font-size: 6rem;
+  font-size: 4rem;
   letter-spacing: 0.5px;
 }
 
@@ -1070,7 +1080,6 @@ a .buy-credits-nav-home:hover {
 
 .pricing-section header p {
   font-size: 1.8rem;
-  color: #fff;
   font-weight: 400;
 }
 
@@ -1087,7 +1096,7 @@ a .buy-credits-nav-home:hover {
 
 .card {
   position: relative;
-  max-width: 90%;
+  max-width: 95%;
   height: auto;
   background: linear-gradient(-45deg, #fff, #fff);
   border-radius: 1.5rem;
@@ -1104,6 +1113,7 @@ a .buy-credits-nav-home:hover {
   -ms-transition: 0.5s;
   -o-transition: 0.5s;
   overflow: hidden;
+  border: 1px solid #eef1f6;
 }
 
 @media (min-width: 600px) {
@@ -1170,7 +1180,6 @@ a .buy-credits-nav-home:hover {
 .price p {
   font-size: 1.5rem;
   color: var(--dark-des-blue);
-  /* font-weight: 300; */
   padding: 0;
   line-height: 1.3;
   text-align: left;
