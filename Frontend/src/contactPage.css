@@ -8,6 +8,12 @@ body {
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
 }
+
+.main-pricing-section-alone {
+  position: relative;
+  top: 5rem;
+  margin: auto;
+}
 .contact-us-form {
   background: rgb(16, 27, 105, 0.8);
   height: 100%;
