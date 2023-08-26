@@ -1,7 +1,11 @@
-import React from 'react'
+import {Link } from 'react-router-dom'
 import facebookIcon from "../../../../assets/SVGs/facebook.svg"
-import twitterIcon from "../../../../assets/SVGs/twitter.svg"
+import twitterIcon from "../../../../assets/SVGs/Twitter X.svg"
 import instagramIcon from "../../../../assets/SVGs/instagram.svg"
+import linkedInIcon from "../../../../assets/SVGs/linkedIn-icon.svg"
+
+const linkedInLink = `https://www.linkedin.com/company/collab-for-trello/`;
+const facebookLink = `https://www.facebook.com/people/Collab-for-Trello/61550452245234/`
 
 export default function SocialMediaIcons() {
   return (
@@ -10,7 +14,7 @@ export default function SocialMediaIcons() {
         <ul>
             <li>
                 <picture>
-                    <img src={twitterIcon} alt="twitter icon"  title='Our Twitter'/>
+                    <img src={twitterIcon} alt="x icon"  title='Our X'/>
                 </picture>
 
             </li>
@@ -20,7 +24,15 @@ export default function SocialMediaIcons() {
             </li>
 
             <li>
-                <picture><img src={facebookIcon} alt="facebook icon" title='Our Facebook'/></picture>
+              <Link to={linkedInLink}>
+                <picture><img src={linkedInIcon} alt="linkedIn icon" title='Our LinkedIn'/></picture>
+               </Link>
+            </li>
+
+            <li>
+                <Link to={facebookLink}>
+                 <picture><img src={facebookIcon} alt="facebook icon" title='Our Facebook'/></picture>
+                </Link>
             </li>
         </ul>
 

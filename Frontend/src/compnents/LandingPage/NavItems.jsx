@@ -16,7 +16,7 @@ const faqClick = ()=> {
   closeMenuBar()
 }
 const pricingClick = ()=> {
-  smoothScroll(pricingSection, 50)
+  smoothScroll(pricingSection, 5)
   closeMenuBar()
 }
 const toolsClick = ()=> {
