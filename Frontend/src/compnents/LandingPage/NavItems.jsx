@@ -26,35 +26,35 @@ const toolsClick = ()=> {
 
   return (
       <>
-      <li className="nav-list" onClick={toolsClick}>
-         <h3 className="tools">Tools</h3>
-      </li>
-
-        <li className="nav-list" onClick={pricingClick}>
-          <h3 className="pricing">Pricing</h3>
+      <ul>
+        <li className="nav-list" onClick={toolsClick}>
+           <h3 className="tools">Tools</h3>
         </li>
+          <li className="nav-list" onClick={pricingClick}>
+            <h3 className="pricing">Pricing</h3>
+          </li>
+          <li className="nav-list" onClick={faqClick}>
+           <h3 className="faq">FAQ</h3>
+          </li>
+          <li className="nav-list">
+              <h3 className="reviews">Reviews</h3>
+          </li>
+      </ul>
 
-        <li className="nav-list" onClick={faqClick}>
-         <h3 className="faq">FAQ</h3>
-        </li>
-
-        <li className="nav-list">
-            <h3 className="reviews">Reviews</h3>
-        </li>
-
-        <CustomLink to={signInPageLink} onClick={(e)=> {
-          e.preventDefault();
-          handlePageRefreshOnLoad(signInPageLink)
-        }}>
-         <h3 className="login">Log In</h3> 
-        </CustomLink>
-
-        <CustomLink to={registerPageLink} className="sign-up-cont" onClick={(e)=> {
-          e.preventDefault();
-          handlePageRefreshOnLoad(registerPageLink)
-        }}>
-        <h4 className='sign-up'>Start for free</h4> 
-        </CustomLink>
+        <ul>
+          <CustomLink to={signInPageLink} onClick={(e)=> {
+            e.preventDefault();
+            handlePageRefreshOnLoad(signInPageLink)
+          }}>
+           <h3 className="login">Log In</h3>
+          </CustomLink>
+          <CustomLink to={registerPageLink} className="sign-up-cont" onClick={(e)=> {
+            e.preventDefault();
+            handlePageRefreshOnLoad(registerPageLink)
+          }}>
+          <h4 className='sign-up'>Start for free</h4>
+          </CustomLink>
+        </ul>
 </>
 )
 }
