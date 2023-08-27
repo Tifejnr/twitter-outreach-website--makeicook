@@ -428,7 +428,8 @@ body {
 
 .hero-inner-container,
 .tools-section-cont,
-.home-main-cont {
+.home-main-cont,
+.about-section-inner-cont article {
   position: relative;
   display: flex;
   justify-content: center;
@@ -447,14 +448,16 @@ body {
 @media only screen and (min-width: 480px) {
   .hero-inner-container,
   .tools-section-cont,
-  .home-main-cont {
+  .home-main-cont,
+  .about-section-inner-cont article {
     margin: 0 5rem;
   }
 }
 @media only screen and (min-width: 768px) {
   .hero-inner-container,
   .tools-section-cont,
-  .home-main-cont {
+  .home-main-cont,
+  .about-section-inner-cont article {
     margin: 0 9rem;
   }
 }
@@ -462,19 +465,20 @@ body {
 @media only screen and (min-width: 960px) {
   .hero-inner-container,
   .tools-section-cont,
-  .home-main-cont {
+  .home-main-cont,
+  .about-section-inner-cont article {
     margin: 0 18rem;
   }
 }
 
 @media only screen and (min-width: 1200px) {
   .hero-inner-container,
-  .tools-section-cont,
   .home-main-cont {
     margin: 0 32rem;
   }
 
-  .tools-section-cont {
+  .tools-section-cont,
+  .about-section-inner-cont article {
     margin: 0 35rem;
   }
 }
@@ -1521,4 +1525,31 @@ article.creditsNeededCont {
   .copyright-section {
     display: none;
   }
+}
+
+/* About Section Design*/
+
+.pricing-section.about-section-inner-cont h2 {
+  color: #101c77;
+}
+
+.pricing-section.about-section-inner-cont header {
+  margin: 0 1rem;
+  row-gap: 3rem;
+}
+
+.about-section-inner-cont article {
+  border: 1px solid red;
+  text-align: left;
+}
+
+.about-us-text-cont p {
+  font-size: 1.6rem;
+  color: #192c35;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.about-us-text-cont p ul {
+  list-style: disc;
 }

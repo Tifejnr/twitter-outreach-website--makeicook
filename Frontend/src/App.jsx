@@ -18,6 +18,7 @@ import HomePage from './compnents/Home-nav-items/HomePage'
 import Dashboard from './compnents/Auth/Dashboard/Dashboard'
 import LoginOnlyControl from './compnents/Controllers/LoginOnlyControl'
 import MainContactPage from './compnents/Pages/Contact-us-page/MainContactPage'
+import AboutUsPage from './compnents/Pages/About-us-page/AboutUs'
 import OnlyAuthorizedUsers from './compnents/Controllers/OnlyAuthorizedUsers'
 
 
@@ -40,6 +41,7 @@ function App() {
         <Route path='/pricing' element={<Pricing/>}/>
         <Route path='/authorize' element={<OauthPage/>}/>
         <Route path='/contact-us' element={<MainContactPage/>}/>
+        <Route path='/about-us' element={<AboutUsPage/>}/>
       </Routes>
 
     </>

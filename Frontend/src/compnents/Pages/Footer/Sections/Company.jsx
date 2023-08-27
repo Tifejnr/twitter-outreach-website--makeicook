@@ -2,7 +2,7 @@ import React from 'react'
 import CustomLink from '../../../CustomLink'
 import handlePageRefreshOnLoad from '../../../utilis/refreshPageOnLoad'
 
-const aboutPageLink= "/about"
+const aboutPageLink= "/about-us"
 const contactPageLink= "/contact-us"
 const mediaPageLink= "/media"
 const privacyPolicyPageLink= "/privacy-policy"
