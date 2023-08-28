@@ -43,7 +43,7 @@ export default function PrivacyPolicyPage() {
             On this page, you may find out what information about you we gather when you interact with us, why we collect it and how we use, keep, and disclose it, as well as how we handle the personal data you offer us.
              Collab for Trello enables compliance with the GDPR when it processes personal data on behalf of its customers.
              If you live in California and want to learn more about your rights under the California Consumer Privacy Act of 2018 (“CCPA“).
-             You can also read upon our <Link>Cookie Policy.</Link> This Privacy Statement (“Policy”) explains how we handle the information you submit to us via CollabforTrello.
+             You can also read upon our <Link>Cookie Policy.</Link> This Privacy Statement (“Policy”) explains how we handle the information you submit to us via Collab for Trello.
               </p>
 
               <p>
@@ -135,34 +135,27 @@ export default function PrivacyPolicyPage() {
                     the purpose for which it was collected, as well as the situation’s requirements and the necessity to remove obsolete, 
                     unneeded information as soon as possible.                    
                 </p>
-                
+
+                <p>
+                 Collab for Trello Contacts: We keep your Data for as long as we need it to perform our Services and then archive it to meet our legal responsibilities, settle disputes, and enforce our rules. 
+                </p>
+
+                <p>
+                    We save your data for as long as you have an active Collab for Trello account. In order to comply with our legal and contractual obligations or to protect ourselves from any potential disputes
+                   (as required by laws applicable to record-keeping and to have proof and evidence concerning our relationship, should any legal issues arise following the termination of your account), 
+                    we may keep your data in an intermediate archive following the deletion of your account.
+                </p>
+
               </section>
               
 
               <section>
-                <h3>Refunds</h3>
+                <h3>Changes to this policy</h3>
                 <p>
-                  The subscription fee is strictly non-refundable, and this policy applies without exception, regardless of the circumstances or reasons behind the refund request. 
-                  Whether due to user preferences, technical issues, or any other factor, once the subscription fee is paid,
-                  it is considered final and non-reversible, reinforcing our commitment to a no-refund policy.
-                </p>
-
-
-              </section>
-
-              <section>
-                <h3>Credits</h3>
-                <p>
-                The credits are added to your account after subscription. Your credits do not expire. You can always come back to meet your credits intact and use them when you need to do so.
-                </p>
-              </section>
-
-              <section>
-                <h3>Severability</h3>
-                <p>
-              If a court rules that any provision of these Terms is invalid, unlawful, or unenforceable,
-              such decisions will have no bearing on the legality or
-              enforceability of the remaining sections of the Terms, and each provision will be treated as independent, severable, and distinct from the others.
+                Collab for Trello reserves the right to alter this Privacy Policy at any time to reflect changes in the way we treat data. 
+                If we make material changes to this policy (such as a change in our processing purposes, a change in the identity of the controller, or even a 
+                change in the way you can exercise your rights in relation to our processing activities), 
+                we will notify you via email or a notice on our website’s homepage, as appropriate, prior to the changes becoming effective.
                 </p>
               </section>
 
