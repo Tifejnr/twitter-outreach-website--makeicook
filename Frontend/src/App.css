@@ -1581,9 +1581,16 @@ article.creditsNeededCont {
   margin-bottom: 1.5rem;
 }
 
-.about-us-text-cont p ul {
+.about-us-text-cont ul {
+  display: grid;
+  row-gap: 1.5rem;
   margin-top: 1.4rem;
   list-style: disc;
+  margin-bottom: 1.5rem;
+}
+
+.about-us-text-cont ul li {
+  margin-left: 2.5rem;
 }
 
 .about-us-CTA-section {

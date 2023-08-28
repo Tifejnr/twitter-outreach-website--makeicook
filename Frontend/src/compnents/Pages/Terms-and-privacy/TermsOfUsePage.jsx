@@ -31,7 +31,7 @@ export default function TermsOfUsePage() {
           <header>
             <h2>Terms of Service</h2>
           </header>
-          
+
           <section className="about-us-text-cont">
             <article>
               <section>
@@ -54,67 +54,96 @@ export default function TermsOfUsePage() {
 
               <section>
                 <h3>
-                  Our Purpose
+                 Changes to the Terms
                 </h3>
                 
                 <p>
-                  Our purpose is to empower teams to be more productive by automating the tedious tasks of managing Trello memberships across boards and workspaces.  
+                    We reserve the right to change these Terms of Service at any time by publishing new versions on the Website or otherwise informing you.
+                    All such modifications will take effect when the updated Terms of Service are posted on the Website, or when you are given notice, whichever comes first.
                 </p>
 
-                <p>We believe that everyone should be able to focus on their most important work,
-                  and we're here to help you do just that.
-                </p>
               </section>
 
               <section>
                 <h3>
-                  Our Mission
+                 Changes to the Service
                 </h3>
                 <p>
-                  Our mission is to make Trello teams more efficient and effective by automating members addition and
-                   removal across multiple boards and workspaces.
+                 We have the right to modify the features and functioning of the Service at any time. This might involve adding, changing, or eliminating any of the Service’s
+                  features or capabilities. Any new version of the Service will be subject to the Terms of Service. We may also suspend or terminate the Service.
+                  In addition, we reserve the right to charge fees for new or existing features of the Service.
                 </p>
 
+              </section>
+
+              <section>
+                <h3>Support for Services</h3>
                 <p>
-                  We do this by providing a simple and powerful tools to automate members addition
-                   and removal across multiple boards and workspaces.
+                    Collab for Trello will offer appropriate assistance with the Services. Collab for Trello developed a number of tools to assist users with commonly asked concerns as well as other technical and general support difficulties. 
+                    Collab for Trello also tests regular updates, maintenance, troubleshooting and other methods to improve the Services. 
+                    Collab for Trello does not guarantee that any of the above will continue to operate, and it has the right to alter, decrease, limit, or cancel its maintenance and support activities at any time.
                 </p>
               </section>
 
               <section>
-                <h3>How We Help</h3>
+                <h3>Account</h3>
                 <p>
-                  Collab for Trello helps teams save time and stress by automating the following tasks across multiple boards and workspaces:
-                    <ul>
-                      <li>Adding team members to Trello boards</li>
-                      <li>Removing team members from Trello boards</li>
-                
-                      <li>Adding team members to Trello workspaces</li>
-                      <li>Removing team members from Trello workspaces</li>
-                
-                    </ul>
+                    Users must register or create a user account to use the Service. Users must supply all needed data or information comprehensively and truthfully. Failure to do so will result in the Service becoming 
+                    unavailable or suspension of your account. Users are responsible for maintaining the security and confidentiality of their login credentials. 
+                    As a result, Users are also obliged to select passwords that fulfill the Website’s highest security requirements. 
+                    Users agree to be solely responsible for any activities that take place under their username and password when they register. 
+                    If Users believe their personal information, including but not limited to user accounts, access credentials, or personal data, has been breached, unjustly disclosed, or misused, they must promptly and explicitly notify us using our contact information.
+                     <b>
+                     <span></span>    <Link>Contact us</Link>
+                     </b>
+                </p>
+              </section>
+              
+
+              <section>
+                <h3>Payment & Subscription</h3>
+                <p>
+                    You agree to pay CollabforTrello.com the fees specified for that service by selecting a subscription plan. Your invoice will include the subscription or purchase price.  
+                    You allow us to charge any credit card or other payment method we have on record for you to collect the then-applicable fee. Collab for Trello maintains the right to amend the Payment Terms and fees by giving you thirty (30) days written notice. You can cancel your Collab for Trello account at any time from the dashboard provided to you. Written notices refer to, but are not limited to, website, emails & in-app notifications.
+                    Collab for Trello includes access to email support at https://CollabforTrello.com/contact-us/. “Contact Us” means the ability to make requests for technical support assistance by email at any time concerning the use of Collab for Trello. Collab for Trello will assist in accordance with our established standards, procedures, and policies. Please note that repeated Free Account registrations are not permitted, whether for business, educational, or personal purposes.
+                    If we detect numerous registrations, we retain the right to cancel all old and new accounts at our discretion. 
+                    When you buy a Collab for Trello plan, you get credits according to your plan at the beginning of the paying term. Your credits do not expire.    
                 </p>
               </section>
 
               <section>
-                <h3>Our Customers</h3>
-                <p>Collab for Trello is used by teams of all sizes, from small businesses to large enterprises. 
-                  Our customers include:[List of customers]</p>
+                <h3>Refunds</h3>
+                <p>
+                  The subscription fee is strictly non-refundable, and this policy applies without exception, regardless of the circumstances or reasons behind the refund request. 
+                  Whether due to user preferences, technical issues, or any other factor, once the subscription fee is paid,
+                  it is considered final and non-reversible, reinforcing our commitment to a no-refund policy.
+                </p>
               </section>
 
               <section>
-                <h3>Real Time Saving Impact</h3>
+                <h3>Credits</h3>
                 <p>
-                 Collab for Trello can save you significant time managing Trello memberships.              
+                The credits are added to your account after subscription. Your credits do not expire. You can always come back to meet your credits intact and use them when you need to do so.
                 </p>
-
-                <p>
-                  For example, if manually removing 10 members from 10 boards takes 70 seconds (assuming each member removal takes 7 seconds).
-                </p>
-
-                <p>Collab for Trello tools do the same in just 2.2 seconds (each member removal takes 0.2 seconds).
-                  That's a time savings of 97%!</p>
               </section>
+
+              <section>
+                <h3>Severability</h3>
+                <p>
+              If a court rules that any provision of these Terms is invalid, unlawful, or unenforceable,
+              such decisions will have no bearing on the legality or
+              enforceability of the remaining sections of the Terms, and each provision will be treated as independent, severable, and distinct from the others.
+                </p>
+              </section>
+
+              <section>
+                <h3>Contact Us</h3>
+                <p>
+               If you have any questions regarding the Terms and Conditions, you may contact us on collabfortrello@gmail.com
+                </p>
+              </section>
+
+              <p>Last Updated: August 29, 2023.</p>
 
             </article>
           </section>
