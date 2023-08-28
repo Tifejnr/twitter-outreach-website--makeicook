@@ -448,9 +448,12 @@ body {
 @media only screen and (min-width: 480px) {
   .hero-inner-container,
   .tools-section-cont,
-  .home-main-cont,
-  .about-section-inner-cont article {
+  .home-main-cont {
     margin: 0 5rem;
+  }
+
+  .about-section-inner-cont article {
+    margin: 0 2rem;
   }
 }
 @media only screen and (min-width: 768px) {
@@ -1531,25 +1534,76 @@ article.creditsNeededCont {
 
 .pricing-section.about-section-inner-cont h2 {
   color: #101c77;
+  line-height: 1.3;
+  font-size: 2.7rem;
+}
+
+@media screen and (min-width: 768px) {
+  .pricing-section.about-section-inner-cont h2 {
+    font-size: 4rem;
+  }
 }
 
 .pricing-section.about-section-inner-cont header {
   margin: 0 1rem;
   row-gap: 3rem;
 }
-
-.about-section-inner-cont article {
-  border: 1px solid red;
-  text-align: left;
+.pricing-section.about-section-inner-cont header p {
+  margin-bottom: 4rem;
 }
 
+.about-us-text-cont {
+  background-color: #ebf0f7;
+  margin: 0;
+}
+
+.about-section-inner-cont article {
+  text-align: left;
+  padding: 8rem 0;
+}
+
+.about-us-text-cont h3 {
+  font-size: 1.8rem;
+  color: #192c35;
+  line-height: 1.5;
+  text-align: left;
+  font-weight: 600;
+  padding-bottom: 1.4rem;
+  padding-top: 3rem;
+}
 .about-us-text-cont p {
   font-size: 1.6rem;
   color: #192c35;
   line-height: 1.5;
   text-align: left;
+  margin-bottom: 1.5rem;
 }
 
 .about-us-text-cont p ul {
+  margin-top: 1.4rem;
   list-style: disc;
+}
+
+.about-us-CTA-section {
+  position: relative;
+}
+.about-us-CTA-section h2 {
+  font-size: 2rem;
+}
+
+.about-us-CTA-section .call-to-action-cont .oauth-button {
+  width: 100%;
+  background-color: #101c77;
+}
+.about-us-CTA-section .call-to-action-cont .oauth-button:hover {
+  width: 100%;
+  background-color: #4e59ad;
+}
+
+.about-us-CTA-section .call-to-action-cont .oauth-button h2 {
+  color: #fff;
+}
+
+.call-to-action-cont p {
+  font-size: 1.5rem;
 }
