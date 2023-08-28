@@ -583,6 +583,7 @@ input {
   text-align: center;
   left: 86%;
   margin-right: 1.4rem;
+  top: 50%;
 }
 
 .execution-btn:hover {
