@@ -4,10 +4,9 @@ import PagesNavItems from "../../LandingPage/PagesNavItems";
 import NavLogo from "../../Main-nav-bar/NavLogo";
 import FooterPages from "../Footer/FooterPages";
 import { changeTabTitle } from "../../utilis/changeTabTitle";
-import handlePageRefreshOnLoad from '../../utilis/refreshPageOnLoad';
+import CTAForTermsPolicy from '../Terms-and-privacy/CTAForTermsPolicy';
 
 const contactUsTabTitle = "About us – Collab for Trello";
-const registerLink= "/register"
 
 export default function AboutUsPage() {
   changeTabTitle(contactUsTabTitle);
@@ -113,22 +112,7 @@ export default function AboutUsPage() {
           </section>
         </section>
 
-        <section className="about-us-CTA-section">
-          <h2>Automate trello members addition and removal</h2>
-          <section className='call-to-action-cont'>
-              <Link  to={registerLink} className='oauth-button' onClick={(e)=> {
-                e.preventDefault()
-                handlePageRefreshOnLoad(registerLink)
-              }}>
-              
-              <h2>Start for free <span className='floating-arrow'>&#8594;</span> </h2>
-              </Link>
-              <ul>
-                <li><p> 5 free credits for trial</p></li>
-                <li> <p>No credit card required</p> </li>       
-              </ul>
-            </section>
-        </section>
+     <CTAForTermsPolicy/>
       </section>
       <FooterPages />
     </>
