@@ -1548,8 +1548,10 @@ article.creditsNeededCont {
   margin: 0 1rem;
   row-gap: 3rem;
 }
+
 .pricing-section.about-section-inner-cont header p {
   margin-bottom: 4rem;
+  font-size: 1.7rem;
 }
 
 .about-us-text-cont {
@@ -1589,6 +1591,11 @@ article.creditsNeededCont {
 }
 .about-us-CTA-section h2 {
   font-size: 2rem;
+}
+
+.about-us-CTA-section .call-to-action-cont {
+  display: grid;
+  row-gap: 2rem;
 }
 
 .about-us-CTA-section .call-to-action-cont .oauth-button {

@@ -19,6 +19,7 @@ import Dashboard from './compnents/Auth/Dashboard/Dashboard'
 import LoginOnlyControl from './compnents/Controllers/LoginOnlyControl'
 import MainContactPage from './compnents/Pages/Contact-us-page/MainContactPage'
 import AboutUsPage from './compnents/Pages/About-us-page/AboutUs'
+import TermsOfUsePage from './compnents/Pages/Terms-and-privacy/TermsOfUsePage'
 import OnlyAuthorizedUsers from './compnents/Controllers/OnlyAuthorizedUsers'
 
 
@@ -42,6 +43,7 @@ function App() {
         <Route path='/authorize' element={<OauthPage/>}/>
         <Route path='/contact-us' element={<MainContactPage/>}/>
         <Route path='/about-us' element={<AboutUsPage/>}/>
+        <Route path='/terms' element={<TermsOfUsePage/>}/>
       </Routes>
 
     </>
