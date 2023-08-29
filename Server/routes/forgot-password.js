@@ -1,6 +1,5 @@
 const { user } = require("/root/Wfr-Digital-Ocean/models/users");
 const express = require("express");
-const mongoose = require("mongoose");
 const router = express.Router();
 const _ = require("lodash");
 const bycrypt = require("bcrypt");
@@ -26,10 +25,10 @@ router.post("/", async (req, res) => {
 
   const { error } = validate(req.body);
   if (error)
-    return res.status(400).json({ emailError: error.details[0].message });
+    return res.status(400).json({ emailValError: error.details[0].message });
   const accountUser = await user.findOne({ email: req.body.email });
   if (!accountUser)
-    return res.status(400).json({ notFoundUser: "User not found" });
+    return res.status(400).json({ notFoundUserEmail: "User not found" });
 
   const secret = JWT_PRIVATE_KEY + accountUser.password;
   const payload = {

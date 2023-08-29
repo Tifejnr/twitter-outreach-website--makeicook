@@ -1,6 +1,8 @@
+import axios from "axios"
 import { useState } from "react";
 import { websiteUrl } from "../../../JS functions/websiteUrl";
 import validateEmailInput from "../../Auth/Auth-Input-Validation/validateEmailInput";
+
 
 const successColor = "#09c372";
 const errorColor = "#ff3860"
@@ -23,31 +25,34 @@ export default function ForgotPassword() {
     setEmailBorderColor(false)  )
 
     setEmailError("");     
-    setEmailBorderColor(true)
+    setEmailBorderColor(true);
 
-    
-  const res = await fetch("https://workforreputation.com/api/forgot-password", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
 
-    body: JSON.stringify({
-      email,
-    }),
-  });
-
-  const data = await res.json();
-
-  if (data.emailError)
-    return setError(emailError, "Provide a valid email address");
-
-  if (data.notFoundUser) {
-    return setError(emailError, "Email is not Registered");
+  const emailValidCheckUrl = `${websiteUrl}/api/forgot-password`;
+  try {
+    const response = await axios.post(emailValidCheckUrl, {email});
+    const data = await response.data;
+    console.log(data)
+    // if (!data.signedIn) return false;
+    // return true;
+  } catch (error) {
+    // console.log(error.response.data);
+    const errorMessage = error.response.data.invalidLoginDetails;
+    if (errorMessage) return { errorMessage };
+    return false;
   }
 
-  if (data.emailSent)
-    return (window.location.href = "`validateEmailInput`/email-sent");
+
+
+  // if (data.emailError)
+  //   return setError(emailError, "Provide a valid email address");
+
+  // if (data.notFoundUser) {
+  //   return setError(emailError, "Email is not Registered");
+  // }
+
+  // if (data.emailSent)
+  //   return (window.location.href = "`validateEmailInput`/email-sent");
 
   }
 
@@ -59,9 +64,6 @@ export default function ForgotPassword() {
         ? successColor
         : errorColor,
   };
-
-  
-
 
     const textareaErrorStyle= {
      color: textAreaError== "" ? "" :  textAreaError && errorColor 

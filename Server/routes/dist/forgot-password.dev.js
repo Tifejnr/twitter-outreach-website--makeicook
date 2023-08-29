@@ -1,11 +1,9 @@
 "use strict";
 
-var _require = require("../models/users"),
+var _require = require("/root/Wfr-Digital-Ocean/models/users"),
     user = _require.user;
 
 var express = require("express");
-
-var mongoose = require("mongoose");
 
 var router = express.Router();
 
@@ -21,7 +19,7 @@ var nodemailer = require("nodemailer");
 
 var Joi = require("joi");
 
-var _require2 = require("../middleware/getSecretKeys"),
+var _require2 = require("/root/Wfr-Digital-Ocean/envVariables"),
     getSecretKeys = _require2.getSecretKeys;
 
 function validate(req) {
@@ -38,44 +36,40 @@ router.post("/", function _callee(req, res) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          _context.next = 2;
-          return regeneratorRuntime.awrap(getSecretKeys());
-
-        case 2:
-          keysObject = _context.sent;
+          keysObject = getSecretKeys();
           JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
           emailUsername = keysObject.emailUsername;
           emailPassword = keysObject.emailPassword;
           _validate = validate(req.body), error = _validate.error;
 
           if (!error) {
-            _context.next = 9;
+            _context.next = 7;
             break;
           }
 
           return _context.abrupt("return", res.status(400).json({
-            emailError: error.details[0].message
+            emailValError: error.details[0].message
           }));
 
-        case 9:
-          _context.next = 11;
+        case 7:
+          _context.next = 9;
           return regeneratorRuntime.awrap(user.findOne({
             email: req.body.email
           }));
 
-        case 11:
+        case 9:
           accountUser = _context.sent;
 
           if (accountUser) {
-            _context.next = 14;
+            _context.next = 12;
             break;
           }
 
           return _context.abrupt("return", res.status(400).json({
-            notFoundUser: "User not found"
+            notFoundUserEmail: "User not found"
           }));
 
-        case 14:
+        case 12:
           secret = JWT_PRIVATE_KEY + accountUser.password;
           payload = {
             email: accountUser.email,
@@ -92,7 +86,7 @@ router.post("/", function _callee(req, res) {
               pass: emailPassword
             }
           });
-          _context.next = 21;
+          _context.next = 19;
           return regeneratorRuntime.awrap(transporter.sendMail({
             from: emailUsername,
             to: "".concat(accountUser.email),
@@ -100,11 +94,11 @@ router.post("/", function _callee(req, res) {
             text: "  \t\n        Hi ".concat(accountUser.name, ",\n\n        A password reset event has been triggered. The password reset window is limited to 20 minutes.\n\n        If you do not reset your password within 20 minutes, you will need to submit a new request.\n\n        To complete the password reset process, visit the following link:\n\n        ").concat(link)
           }));
 
-        case 21:
+        case 19:
           result = _context.sent;
 
           if (!result) {
-            _context.next = 24;
+            _context.next = 22;
             break;
           }
 
@@ -112,7 +106,7 @@ router.post("/", function _callee(req, res) {
             emailSent: true
           }));
 
-        case 24:
+        case 22:
         case "end":
           return _context.stop();
       }
@@ -187,25 +181,21 @@ router.post("/:id/:token", function _callee3(req, res) {
     while (1) {
       switch (_context3.prev = _context3.next) {
         case 0:
-          _context3.next = 2;
-          return regeneratorRuntime.awrap(getSecretKeys());
-
-        case 2:
-          keysObject = _context3.sent;
+          keysObject = getSecretKeys();
           JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
           newPassword = req.body.password;
           token = req.cookies.reset_pass;
           userId = req.cookies.reset_id;
-          _context3.next = 9;
+          _context3.next = 7;
           return regeneratorRuntime.awrap(user.findOne({
             _id: userId
           }));
 
-        case 9:
+        case 7:
           accountUser = _context3.sent;
 
           if (accountUser) {
-            _context3.next = 12;
+            _context3.next = 10;
             break;
           }
 
@@ -213,13 +203,13 @@ router.post("/:id/:token", function _callee3(req, res) {
             UsernotFound: "User not found"
           }));
 
-        case 12:
-          _context3.prev = 12;
+        case 10:
+          _context3.prev = 10;
           _secret = JWT_PRIVATE_KEY + accountUser.password;
           decodedPayload = jwt.verify(token, _secret);
 
           if (decodedPayload) {
-            _context3.next = 17;
+            _context3.next = 15;
             break;
           }
 
@@ -227,28 +217,28 @@ router.post("/:id/:token", function _callee3(req, res) {
             error: "token invalid"
           }));
 
-        case 17:
-          _context3.next = 19;
+        case 15:
+          _context3.next = 17;
           return regeneratorRuntime.awrap(bycrypt.genSalt(10));
 
-        case 19:
+        case 17:
           salt = _context3.sent;
-          _context3.next = 22;
+          _context3.next = 20;
           return regeneratorRuntime.awrap(bycrypt.hash(newPassword, salt));
 
-        case 22:
+        case 20:
           hashedPassword = _context3.sent;
           accountUser.set({
             password: hashedPassword
           });
-          _context3.next = 26;
+          _context3.next = 24;
           return regeneratorRuntime.awrap(accountUser.save());
 
-        case 26:
+        case 24:
           passwordUpdated = _context3.sent;
 
           if (!passwordUpdated) {
-            _context3.next = 29;
+            _context3.next = 27;
             break;
           }
 
@@ -256,23 +246,23 @@ router.post("/:id/:token", function _callee3(req, res) {
             passwordUpdated: true
           }));
 
-        case 29:
-          _context3.next = 35;
+        case 27:
+          _context3.next = 33;
           break;
 
-        case 31:
-          _context3.prev = 31;
-          _context3.t0 = _context3["catch"](12);
+        case 29:
+          _context3.prev = 29;
+          _context3.t0 = _context3["catch"](10);
           console.log(_context3.t0.message);
           res.json({
             error: _context3.t0.message
           });
 
-        case 35:
+        case 33:
         case "end":
           return _context3.stop();
       }
     }
-  }, null, null, [[12, 31]]);
+  }, null, null, [[10, 29]]);
 });
 module.exports = router;
