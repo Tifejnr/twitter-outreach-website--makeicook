@@ -5,9 +5,11 @@ import NavLogo from "../../Main-nav-bar/NavLogo";
 import FooterPages from "../Footer/FooterPages";
 import { changeTabTitle } from "../../utilis/changeTabTitle";
 import CTAForTermsPolicy from './CTAForTermsPolicy';
+import handlePageRefreshOnLoad from '../../utilis/refreshPageOnLoad';
 
 const TermsOfUsePageTabTitle = "Terms & Conditions – Collab for Trello";
 const privacyPolicyLink= "/privacy-policy";
+const contactUsPageLink= "/contact-us"
 
 export default function TermsOfUsePage() {
   changeTabTitle(TermsOfUsePageTabTitle);
@@ -93,7 +95,13 @@ export default function TermsOfUsePage() {
                     Users agree to be solely responsible for any activities that take place under their username and password when they register. 
                     If Users believe their personal information, including but not limited to user accounts, access credentials, or personal data, has been breached, unjustly disclosed, or misused, they must promptly and explicitly notify us using our contact information.
                      <b>
-                     <span></span>    <Link>Contact us</Link>
+                     <span></span>    
+                     <Link to={contactUsPageLink}  onClick={(e)=> {
+                        e.preventDefault()
+                        handlePageRefreshOnLoad(contactUsPageLink)
+                        }}>
+                       Contact us
+                     </Link>
                      </b>
                 </p>
               </section>

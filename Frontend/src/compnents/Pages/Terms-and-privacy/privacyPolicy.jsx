@@ -5,10 +5,12 @@ import NavLogo from "../../Main-nav-bar/NavLogo";
 import FooterPages from "../Footer/FooterPages";
 import { changeTabTitle } from "../../utilis/changeTabTitle";
 import CTAForTermsPolicy from './CTAForTermsPolicy';
+import handlePageRefreshOnLoad from '../../utilis/refreshPageOnLoad';
 
 
 const PrivacyPolicyPageTabTitle = "Privacy Policy – Collab for Trello";
 const termsPageLink= "/terms";
+const cookiesPolicyPageLink = "/cookies-policy"
 
 export default function PrivacyPolicyPage() {
   changeTabTitle(PrivacyPolicyPageTabTitle);
@@ -43,7 +45,11 @@ export default function PrivacyPolicyPage() {
             On this page, you may find out what information about you we gather when you interact with us, why we collect it and how we use, keep, and disclose it, as well as how we handle the personal data you offer us.
              Collab for Trello enables compliance with the GDPR when it processes personal data on behalf of its customers.
              If you live in California and want to learn more about your rights under the California Consumer Privacy Act of 2018 (“CCPA“).
-             You can also read upon our <Link>Cookie Policy.</Link> This Privacy Statement (“Policy”) explains how we handle the information you submit to us via Collab for Trello.
+             You can also read upon our 
+             <Link onClick={(e)=> {
+              e.preventDefault()
+              handlePageRefreshOnLoad(cookiesPolicyPageLink)
+              }}>Cookie Policy.</Link> This Privacy Statement (“Policy”) explains how we handle the information you submit to us via Collab for Trello.
               </p>
 
               <p>
@@ -56,7 +62,11 @@ export default function PrivacyPolicyPage() {
               </p>
 
               <p>
-                Our <Link to={termsPageLink}>Terms of Service</Link> (the “Terms of Service” or “Agreement”) are complemented by this Privacy Policy. 
+                Our <Link to={termsPageLink} onClick={(e)=> {
+                e.preventDefault()
+                handlePageRefreshOnLoad(termsPageLink)
+                }}>
+                Terms of Service</Link> (the “Terms of Service” or “Agreement”) are complemented by this Privacy Policy. 
                 You should not use this website or use our Services if you do not agree with this Privacy Policy or any part of it.
               </p>
               </section>
