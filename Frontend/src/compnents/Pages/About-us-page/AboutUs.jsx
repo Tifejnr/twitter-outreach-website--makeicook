@@ -101,11 +101,11 @@ export default function AboutUsPage() {
                 </p>
 
                 <p>
-                  For example, if manually removing 10 members from 10 boards takes 70 seconds (assuming each member removal takes 7 seconds).
+                  For example, if manually removing a member from 10 different boards takes 70 seconds (assuming each board removal takes 7 seconds).
                 </p>
 
-                <p>Collab for Trello tools do the same in just 2.2 seconds (each member removal takes 0.2 seconds).
-                  That's a time savings of 97%!</p>
+                <p>Collab for Trello tools do the same in just 2.5 seconds (each member removal takes about 0.25 seconds).
+                  That's a time savings of about 95%!</p>
               </section>
 
             </article>

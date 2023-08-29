@@ -42,7 +42,6 @@ export default function MemberInfoDisplay(props) {
   // Initialize some variables.
   const memberBoardsArray = getBoardsForMember(memberId, boardIdsMapMemberId);
   let isBoardMemberAdmin = true; // Assuming the member is initially considered an admin.
-  let memberIsNotYours = memberNotInAnyBoardMessage;
   let boardName;
 
   // Check if the member belongs to any boards.
@@ -98,7 +97,7 @@ export default function MemberInfoDisplay(props) {
 
   // Render the component.
   return (
-    isBoardMemberAdmin && ( // Render the following only if the member is an admin.
+    // isBoardMemberAdmin && ( // Render the following only if the member is an admin.
       <form className="member-list-form eachMemberListCont">
         <section className="member-info-container">
           <input
@@ -130,6 +129,6 @@ export default function MemberInfoDisplay(props) {
           </article>
         </section>
       </form>
-    )
+    // )
   );
 }

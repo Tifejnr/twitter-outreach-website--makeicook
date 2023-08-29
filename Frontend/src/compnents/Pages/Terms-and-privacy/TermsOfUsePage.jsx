@@ -37,19 +37,26 @@ export default function TermsOfUsePage() {
             <article>
               <section>
               <p>
-              These are the Terms and Conditions of Use that regulate your relationship with ‘CollabforTrello.com’, ‘CollabforTrello’, ‘we’, ‘us’, ‘Platform’, ‘Company’, or ‘our’. 
-              By using CollabforTrello or registering for an account, you agree to the terms and conditions which will result in a legal agreement between you and CollabforTrello.com. 
-              These Terms are meant to inform Users about the limitations and equirements that must be considered and followed when using CollabforTrello services. 
+                These are the Terms and Conditions of Use that regulate your relationship with ‘CollabforTrello.com’, ‘Collab for Trello’, ‘we’, ‘us’, ‘Platform’, ‘Company’, or ‘our’. 
+                By using Collab for Trello or registering for an account, you agree to the terms and conditions which will result in a legal agreement between you and CollabforTrello.com. 
+                These Terms are meant to inform Users about the limitations and equirements that must be considered and followed when using CollabforTrello services. 
               </p>
 
               <p>
-              Any registration on the Platform means an unconditional acceptance of the Terms and Conditions,
-               which the User acknowledges having read and understood.
-               You should not use the Service if you breach these Terms of Service or if you do not agree to these Terms of Service.  
+                Any registration on the Platform means an unconditional acceptance of the Terms and Conditions,
+                which the User acknowledges having read and understood.
+                You should not use the Service if you breach these Terms of Service or if you do not agree to these Terms of Service.  
               </p>
 
               <p>
-                All terminologies in the Terms and Conditions must be read in conjunction with the <Link to={privacyPolicyLink}>Privacy Policy.</Link> 
+                All terminologies in the Terms and Conditions must be read in conjunction with the  <span></span>
+                
+              <Link to={privacyPolicyLink} onClick={(e)=> {
+                e.preventDefault()
+                handlePageRefreshOnLoad(privacyPolicyLink)
+                }}>
+                Privacy Policy.
+              </Link> 
               </p>
               </section>
 
@@ -94,15 +101,15 @@ export default function TermsOfUsePage() {
                     As a result, Users are also obliged to select passwords that fulfill the Website’s highest security requirements. 
                     Users agree to be solely responsible for any activities that take place under their username and password when they register. 
                     If Users believe their personal information, including but not limited to user accounts, access credentials, or personal data, has been breached, unjustly disclosed, or misused, they must promptly and explicitly notify us using our contact information.
-                     <b>
-                     <span></span>    
+                    
+                     <span></span>    <span></span>
                      <Link to={contactUsPageLink}  onClick={(e)=> {
                         e.preventDefault()
                         handlePageRefreshOnLoad(contactUsPageLink)
                         }}>
-                       Contact us
+                        Contact us
                      </Link>
-                     </b>
+            
                 </p>
               </section>
               

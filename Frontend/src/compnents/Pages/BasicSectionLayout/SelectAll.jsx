@@ -31,6 +31,10 @@ export default function SelectAll(props) {
 
   //select all checkbox function
  function CheckAll() {
+  const formMembersListArray = document.getElementsByClassName("eachMemberListCont");
+  
+  console.log( formMembersListArray.length);
+
   checkboxesArray.forEach((checkbox) => {
     checkbox.checked = true;
   });

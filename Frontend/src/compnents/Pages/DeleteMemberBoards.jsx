@@ -283,7 +283,8 @@ export default function DeleteMemberBoards() {
                   
               </section>
                   <section className="member-list-cont">
-                      {allUserMemberDetail.length > 1 &&
+                      {
+                      // allUserMemberDetail.length > 1 &&
                         allUserMemberDetail.map((memberDetailObj, index) => {
 
                           if (memberDetailObj.username==userUsername ) return false;
@@ -297,7 +298,8 @@ export default function DeleteMemberBoards() {
                             boardIdsObj={boardIdsObj}
                             memberDetailObj= {memberDetailObj}/>
                           );
-                        })}
+                        })
+                        }
                 </section>
             </section>
 
