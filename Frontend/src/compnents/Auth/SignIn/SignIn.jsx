@@ -12,6 +12,7 @@ const successColor = "#09c372";
 const errorColor = "#ff3860";
 const logInTabTitle= "Log in – Collab for Trello"
 const registerPageLink= "/register"
+const forgotPasswordLink= "/forgot-password"
 
 export default function SignIn() {
   const [email, setEmail] = useState("")
@@ -144,13 +145,17 @@ const validateFunctionResponse= (validateAll(paramsObj));
       </fieldset>
 
        <section className="forgot-password">
-          <a to="/forgot-password" className="forgot-pass-text"
-            ><b>Forgot Password?</b></a>
+          <Link className="forgot-pass-text" to={forgotPasswordLink} onClick={(e)=> {
+            e.preventDefault();
+            handlePageRefreshOnLoad(forgotPasswordLink)
+          }}
+            ><b>Forgot Password?</b></Link>
        </section>
+       
 
         <button id="login_btn" className="submit-btn">Login</button>
         <p className="widthRegulator"> By Registering, I agree to Work for Reputation's
-          <a to="#">Terms of Use</a> & <a to="#">Privacy Policy</a></p>
+          <Link to="#">Terms of Use</Link> & <Link to="#">Privacy Policy</Link></p>
     </form>
     <aside className="prompt-message">
         <h3>
