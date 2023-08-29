@@ -13,6 +13,9 @@ const successColor = "#09c372";
 const errorColor = "#ff3860"
 const signUpTabTitle= "Sign up – Collab for Trello"
 const signUpPageLink = "/sign-in"
+const privacyPageLink= "/privacy-policy"
+const termsPageLink = "/terms"
+
 
 export default function Register() {
   const [email, setEmail] = useState("")
@@ -142,8 +145,17 @@ if(!validateFunctionResponse.emailValResponse && !validateFunctionResponse.passw
       </fieldset>
 
        <h3 className="policy-agreement-text">
-        By getting started, I agree to Collab for Trello's
-          <Link to="#"> Terms of Use </Link> & <Link to="#"> Privacy Policy</Link>
+          By Registering, I agree to Work for Reputation's
+          <Link to={termsPageLink} onClick={(e)=> {
+            e.preventDefault();
+            handlePageRefreshOnLoad(termsPageLink)
+          }}
+          >Terms of Use</Link> &  <span></span>
+          <Link to={privacyPageLink} onClick={(e)=> {
+            e.preventDefault();
+            handlePageRefreshOnLoad(privacyPageLink)
+          }}
+          >Privacy Policy</Link>
        </h3>
 
         <button id="create_btn" type="submit" className="submit-btn">Get Started</button>

@@ -55,7 +55,7 @@ const forgotPassword = require("./routes/forgot-password");
 //api routes declaarations
 app.use("/api/register-user", registerUser);
 app.use("/api/sign-in", signInUser);
-app.use("/api/sign-in", forgotPassword);
+app.use("/api/forgot-password", forgotPassword);
 app.use("/api/dashboard", loginStatusChecker, isUserAuthorized, dashboard);
 app.use("/api/checkout", loginStatusChecker, paymentsHandling);
 app.use("/api/checkout/webhooks", webhooks);
