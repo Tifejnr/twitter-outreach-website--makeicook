@@ -1,29 +1,20 @@
-const { user } = require("/root/Wfr-Digital-Ocean/models/users");
+const { user } = require("../models/users");
 const express = require("express");
 const router = express.Router();
 const _ = require("lodash");
 const bycrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const coookieParser = require("cookie-parser");
 const nodemailer = require("nodemailer");
-const Joi = require("joi");
-const { getSecretKeys } = require("/root/Wfr-Digital-Ocean/envVariables");
-
-function validate(req) {
-  const schema = Joi.object({
-    email: Joi.string().min(3).max(250).required().email(),
-  });
-
-  return schema.validate(req);
-}
+const { validateEmail } = require("../Joi-Validations/emailAloneValidation");
+const { getKeys } = require("../envKeys/allKeys");
+const keysObject = getKeys();
 
 router.post("/", async (req, res) => {
-  const keysObject = getSecretKeys();
   const JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
   const emailUsername = keysObject.emailUsername;
   const emailPassword = keysObject.emailPassword;
 
-  const { error } = validate(req.body);
+  const { error } = validateEmail(req.body);
   if (error)
     return res.status(400).json({ emailValError: error.details[0].message });
   const accountUser = await user.findOne({ email: req.body.email });

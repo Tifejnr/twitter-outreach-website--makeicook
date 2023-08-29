@@ -1,6 +1,6 @@
 "use strict";
 
-var _require = require("/root/Wfr-Digital-Ocean/models/users"),
+var _require = require("../models/users"),
     user = _require.user;
 
 var express = require("express");
@@ -13,37 +13,29 @@ var bycrypt = require("bcrypt");
 
 var jwt = require("jsonwebtoken");
 
-var coookieParser = require("cookie-parser");
-
 var nodemailer = require("nodemailer");
 
-var Joi = require("joi");
+var _require2 = require("../Joi-Validations/emailAloneValidation"),
+    validateEmail = _require2.validateEmail;
 
-var _require2 = require("/root/Wfr-Digital-Ocean/envVariables"),
-    getSecretKeys = _require2.getSecretKeys;
+var _require3 = require("../envKeys/allKeys"),
+    getKeys = _require3.getKeys;
 
-function validate(req) {
-  var schema = Joi.object({
-    email: Joi.string().min(3).max(250).required().email()
-  });
-  return schema.validate(req);
-}
-
+var keysObject = getKeys();
 router.post("/", function _callee(req, res) {
-  var keysObject, JWT_PRIVATE_KEY, emailUsername, emailPassword, _validate, error, accountUser, secret, payload, token, link, transporter, result;
+  var JWT_PRIVATE_KEY, emailUsername, emailPassword, _validateEmail, error, accountUser, secret, payload, token, link, transporter, result;
 
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          keysObject = getSecretKeys();
           JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
           emailUsername = keysObject.emailUsername;
           emailPassword = keysObject.emailPassword;
-          _validate = validate(req.body), error = _validate.error;
+          _validateEmail = validateEmail(req.body), error = _validateEmail.error;
 
           if (!error) {
-            _context.next = 7;
+            _context.next = 6;
             break;
           }
 
@@ -51,17 +43,17 @@ router.post("/", function _callee(req, res) {
             emailValError: error.details[0].message
           }));
 
-        case 7:
-          _context.next = 9;
+        case 6:
+          _context.next = 8;
           return regeneratorRuntime.awrap(user.findOne({
             email: req.body.email
           }));
 
-        case 9:
+        case 8:
           accountUser = _context.sent;
 
           if (accountUser) {
-            _context.next = 12;
+            _context.next = 11;
             break;
           }
 
@@ -69,7 +61,7 @@ router.post("/", function _callee(req, res) {
             notFoundUserEmail: "User not found"
           }));
 
-        case 12:
+        case 11:
           secret = JWT_PRIVATE_KEY + accountUser.password;
           payload = {
             email: accountUser.email,
@@ -86,7 +78,7 @@ router.post("/", function _callee(req, res) {
               pass: emailPassword
             }
           });
-          _context.next = 19;
+          _context.next = 18;
           return regeneratorRuntime.awrap(transporter.sendMail({
             from: emailUsername,
             to: "".concat(accountUser.email),
@@ -94,11 +86,11 @@ router.post("/", function _callee(req, res) {
             text: "  \t\n        Hi ".concat(accountUser.name, ",\n\n        A password reset event has been triggered. The password reset window is limited to 20 minutes.\n\n        If you do not reset your password within 20 minutes, you will need to submit a new request.\n\n        To complete the password reset process, visit the following link:\n\n        ").concat(link)
           }));
 
-        case 19:
+        case 18:
           result = _context.sent;
 
           if (!result) {
-            _context.next = 22;
+            _context.next = 21;
             break;
           }
 
@@ -106,7 +98,7 @@ router.post("/", function _callee(req, res) {
             emailSent: true
           }));
 
-        case 22:
+        case 21:
         case "end":
           return _context.stop();
       }
