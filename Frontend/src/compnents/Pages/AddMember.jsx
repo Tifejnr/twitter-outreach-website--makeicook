@@ -41,7 +41,7 @@ const defaultMeansMessage= "Select Means of Addition"
 //selection  section
 const searchPlaceholderTitle = "Search Boards ...";
 const selectInstructionText = "Select Boards to Add Members to";
-const searchMembersPlaceholder = "Search board members name ..."
+const searchMembersPlaceholder = "Search member name ..."
 
 const insufficietCreditsMess= "Please buy credits to use this tool";
 const checkboxMustBeCheckedMess= "Please check at least a board below";
@@ -312,7 +312,7 @@ export default function AddMember() {
           /> :  
           
           <section className="membersListsContainer" style={memberListContainerErrorStyle} >
-              <h2>{memberCheckboxesArray.length} Board Members</h2>
+              <h2> All Members - {memberCheckboxesArray.length}</h2>
               <h1 id="memberToDeleteHeading">Select Members to be Added Below</h1>
               <section className='searchSection'>
                 <input 
@@ -323,7 +323,7 @@ export default function AddMember() {
 
                {allUserMemberDetail.length < 2 && (
                   <p className="loading-your-boards-text">
-                    Loading all your boards members ...
+                    Loading all your members ...
                   </p>
                 )}
                   

@@ -136,7 +136,7 @@ export default function AddToBoardsProgress(props) {
             new Execution(paramsForExecution);
           }, index * timeInterval);
         });
-      }, index * noOfCheckedCheckbox * timeInterval * 1.35);
+      }, index * noOfCheckedCheckbox * timeInterval * 1.4);
     });
   }
   function Execution(paramsForExecution) {

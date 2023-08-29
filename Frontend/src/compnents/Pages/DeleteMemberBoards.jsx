@@ -31,7 +31,7 @@ const proposition = "from";
 const addToBoardsTabTitle = "Remove Members from Boards – Collab for Trello";
 const timeInterval = 0.2;
 const deleteMemberTitle = "Remove Members";
-const searchMembersPlaceholder = "Search board members name ..."
+const searchMembersPlaceholder = "Search members name ..."
 
 const insufficietCreditsMess = "Please buy credits to use this tool";
 const checkboxMustBeCheckedMess = "Please select at least a board below";
@@ -266,7 +266,7 @@ export default function DeleteMemberBoards() {
         <section style={changeLayoutToFlexStyle} className="inner-main-cont" id="innerMainContentCont">
 
             <section className="membersListsContainer"  style={memberListContainerErrorStyle} >
-                <h2>{memberCheckboxesArray.length} Board Members</h2>
+                <h2>All Members - {memberCheckboxesArray.length}</h2>
                 <h1 id="memberToDeleteHeading">Select Members to be Removed Below</h1>
               <section className='searchSection'>
                 <input 
@@ -277,7 +277,7 @@ export default function DeleteMemberBoards() {
 
               {allUserMemberDetail.length < 2 && (
                   <p className="loading-your-boards-text">
-                    Loading all your boards members ...
+                    Loading all your members ...
                   </p>
               )}              
                   

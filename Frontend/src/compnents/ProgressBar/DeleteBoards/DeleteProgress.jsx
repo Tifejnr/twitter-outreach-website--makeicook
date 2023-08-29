@@ -64,7 +64,7 @@ export default function DeleteProgress(props) {
       incrementCurrentRound();
         nameDisplayed = memberFullName;
         setuserDetails(nameDisplayed);
-    }, index * noOfCheckedCheckbox * timeInterval * 1.35);
+    }, index * noOfCheckedCheckbox * timeInterval * 1.4);
 
     // loop through all checked boards and execute
     setTimeout(() => {
@@ -117,10 +117,10 @@ export default function DeleteProgress(props) {
 
         if (data.deleteSucessfull)
           return (
+            // console.log(boardName, "deleted ooooooooooooooooooooooooo"),
             incrementSucessLength(),
             incrementTotalSucessLength(),
-            setuserDetails(nameDisplayed),
-            console.log(nameDisplayed, "deleted")
+            setuserDetails(nameDisplayed)
           );
         if (data.error) {
           console.log(data.error);

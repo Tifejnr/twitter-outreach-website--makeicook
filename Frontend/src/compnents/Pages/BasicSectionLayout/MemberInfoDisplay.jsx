@@ -4,7 +4,7 @@ import openMemberDetailIcon from "../../../assets/SVGs/faq-toggle-icon.svg";
 
 // Define some constant messages
 const memberNotInAnyBoardMessage = "You don't have access to some of the boards below.";
-const limitOfCheckboxReached = "You can't select more than 20 members at a go.";
+const limitOfCheckboxReached = "You can't select more than 15 members at a go.";
 let allBoardMemberBelongsArray = []; // Initialize an array to store board names.
 
 // This is the main component function.
@@ -18,10 +18,10 @@ export default function MemberInfoDisplay(props) {
   // useEffect is used for side effects in React. This effect runs once when the component mounts.
   useEffect(() => {
     // If the member is a board admin, push the checkbox reference to the checkboxes array.
-    if (isBoardMemberAdmin) {
+    // if (isBoardMemberAdmin) {
       const checkboxEle = checkboxRef.current;
       pushMemberCheckboxesArray(checkboxEle);
-    }
+    // }
   }, []);
 
   // Extract member details and board information from props.
@@ -88,7 +88,7 @@ export default function MemberInfoDisplay(props) {
 
     const checkboxEle = checkboxRef.current;
 
-    if (noOfChecked > 20) {
+    if (noOfChecked > 15) {
       // If the number of checked checkboxes is greater than 20, set an error state and uncheck the current checkbox.
       setExecutionErrorBtn(limitOfCheckboxReached);
       checkboxEle.checked = false;
