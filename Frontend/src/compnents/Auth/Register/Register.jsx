@@ -60,7 +60,8 @@ const sendInfoToServer = async (e)=> {
     password,
     passwordId
     }
-const validateFunctionResponse= (validateAll(paramsObj));
+  
+  const validateFunctionResponse= (validateAll(paramsObj));
 
   if (validateFunctionResponse.emailValResponse) 
    {  

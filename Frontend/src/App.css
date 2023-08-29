@@ -1203,6 +1203,8 @@ a .buy-credits-nav-home:hover {
 .option ul {
   margin: 0;
   padding: 0;
+  display: grid;
+  row-gap: 1rem;
 }
 
 .option ul li {
@@ -1223,7 +1225,7 @@ a .buy-credits-nav-home:hover {
   background-color: rgba(48, 11, 184, 1);
   color: #fff;
   width: 90%;
-  height: 4rem;
+  height: 4.4rem;
   line-height: 4rem;
   border-radius: 4rem;
   font-weight: 600;

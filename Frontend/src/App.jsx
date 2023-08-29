@@ -21,6 +21,7 @@ import MainContactPage from './compnents/Pages/Contact-us-page/MainContactPage'
 import AboutUsPage from './compnents/Pages/About-us-page/AboutUs'
 import TermsOfUsePage from './compnents/Pages/Terms-and-privacy/TermsOfUsePage'
 import PrivacyPolicyPage from './compnents/Pages/Terms-and-privacy/privacyPolicy'
+import MainForgotPasswordPage from './compnents/Pages/ForgotPassword/MainForgotPasswordPage'
 import OnlyAuthorizedUsers from './compnents/Controllers/OnlyAuthorizedUsers'
 
 
@@ -46,6 +47,7 @@ function App() {
         <Route path='/about-us' element={<AboutUsPage/>}/>
         <Route path='/terms' element={<TermsOfUsePage/>}/>
         <Route path='/privacy-policy' element={<PrivacyPolicyPage/>}/>
+        <Route path='/forgot-password' element={<MainForgotPasswordPage/>}/>
       </Routes>
 
     </>

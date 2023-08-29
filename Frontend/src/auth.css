@@ -413,6 +413,24 @@ label {
   text-decoration: none;
 }
 
+.forgot-password-container p {
+  text-align: left;
+  font-size: 1.6rem;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.forgot-password-container form label {
+  text-align: left;
+  font-size: 1.6rem;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.forgot-password-label {
+  text-align: left;
+}
+
 .widthRegulator {
   visibility: hidden;
 }
@@ -467,6 +485,7 @@ h3.policy-agreement-text a:active {
     padding-bottom: 3rem;
   }
 }
+
 /* Footer Block */
 
 .footer {
