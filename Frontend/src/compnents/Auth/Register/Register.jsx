@@ -56,9 +56,7 @@ const sendInfoToServer = async (e)=> {
   try {
    const paramsObj = {
     email,
-    emailId,
     password,
-    passwordId
     }
   
   const validateFunctionResponse= (validateAll(paramsObj));

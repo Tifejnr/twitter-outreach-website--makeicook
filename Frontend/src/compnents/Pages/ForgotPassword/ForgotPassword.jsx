@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { websiteUrl } from "../../../JS functions/websiteUrl";
 import validateEmailInput from "../../Auth/Auth-Input-Validation/validateEmailInput";
 
 const successColor = "#09c372";
@@ -7,11 +8,47 @@ const errorColor = "#ff3860"
 export default function ForgotPassword() {
   const [email, setEmail] = useState("")
   const [emailError, setEmailError] = useState("")
+  const [textAreaError, setTextAreaError] = useState("")
   const [emailBorderColor, setEmailBorderColor]= useState(null)
 
 
-  function sendEmailToServer () {
-    validateEmailInput(email)
+  async function sendEmailToServer (e) {
+    e.preventDefault();
+
+  const validateFunctionResponse= validateEmailInput(email);
+
+  if (validateFunctionResponse.emailErrorMessage)  
+  return (
+     setEmailError(validateFunctionResponse.emailErrorMessage), 
+    setEmailBorderColor(false)  )
+
+    setEmailError("");     
+    setEmailBorderColor(true)
+
+    
+  const res = await fetch("https://workforreputation.com/api/forgot-password", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+
+    body: JSON.stringify({
+      email,
+    }),
+  });
+
+  const data = await res.json();
+
+  if (data.emailError)
+    return setError(emailError, "Provide a valid email address");
+
+  if (data.notFoundUser) {
+    return setError(emailError, "Email is not Registered");
+  }
+
+  if (data.emailSent)
+    return (window.location.href = "`validateEmailInput`/email-sent");
+
   }
 
     const emailBorderStyle = {
@@ -22,6 +59,14 @@ export default function ForgotPassword() {
         ? successColor
         : errorColor,
   };
+
+  
+
+
+    const textareaErrorStyle= {
+     color: textAreaError== "" ? "" :  textAreaError && errorColor 
+    }
+
 
     return (
       <section className="main-container forgot-password-container" id="form">
@@ -35,7 +80,7 @@ export default function ForgotPassword() {
           </h3>
         </article>
 
-        <form action="" className="reg-form">
+        <form action="" className="reg-form" onSubmit={sendEmailToServer}>
          
           <section className="input-wrapper">
              <label className="label" htmlFor="email"><p>Email</p></label>
@@ -47,9 +92,10 @@ export default function ForgotPassword() {
              value={email}
            onChange={(e)=> setEmail(e.target.value)} 
            style={emailBorderStyle}
+           
               autoFocus // No need to use "autofocus='autofocus'" in React
             />
-            <section className="error" id="emailError"></section>
+            <p className="error" id="emailError" style={textareaErrorStyle}>{emailError}</p>
           </section>
 
           <button id="login_btn" className="submit-btn">Continue</button>
