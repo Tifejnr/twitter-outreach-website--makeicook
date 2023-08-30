@@ -13,11 +13,13 @@ const JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
 const websiteUrl = "http://localhost:3000";
 const websiteUrlClient = "http://localhost:5173/reset-password";
 // const websiteUrlClient = "https://www.collabfortrello.com";
+const maxAgeInmilliSeconds = 1200000; //20 min expiry in milli secs
 
 router.post("/", async (req, res) => {
   const { error } = validateEmail(req.body);
   if (error)
     return res.status(400).json({ emailValError: error.details[0].message });
+
   const accountUser = await user.findOne({ email: req.body.email });
   if (!accountUser)
     return res.status(400).json({ notFoundUserEmail: "User not found" });
@@ -62,7 +64,7 @@ router.get("/:id/:token", async (req, res) => {
   const urlQeryParams = req.params;
   const { id, token } = urlQeryParams;
 
-  res.cookie("reset_id", id, { maxAge: 100000, httpOnly: true });
+  res.cookie("reset_id", id, { maxAge: 1200000, httpOnly: true });
   const accountUser = await user.findOne({ _id: id });
 
   if (!accountUser)
@@ -74,7 +76,10 @@ router.get("/:id/:token", async (req, res) => {
     const verifiedToken = jwt.verify(token, secret);
     if (verifiedToken)
       return res
-        .cookie("reset_pass", token, { maxAge: 100000, httpOnly: true })
+        .cookie("reset_pass", token, {
+          maxAge: 1200000,
+          httpOnly: true,
+        })
         .redirect(websiteUrlClient);
   } catch (error) {
     console.log(error);
@@ -84,22 +89,20 @@ router.get("/:id/:token", async (req, res) => {
 
 //reset password route
 router.post("/:id/:token", async (req, res) => {
-  const keysObject = getSecretKeys();
-  const JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
-
   const newPassword = req.body.password;
   const token = req.cookies.reset_pass;
-  const userId = req.cookies.reset_id;
+  const id = req.cookies.reset_id;
 
-  const accountUser = await user.findOne({ _id: userId });
-  if (!accountUser)
-    return res.status(400).json({ UsernotFound: "User not found" });
+  console.log(id);
+
+  const accountUser = await user.findOne({ _id: id });
+  if (!accountUser) return res.status(400).json({ sessionExpired: true });
 
   try {
     const secret = JWT_PRIVATE_KEY + accountUser.password;
     const decodedPayload = jwt.verify(token, secret);
 
-    if (!decodedPayload) return res.json({ error: "token invalid" });
+    if (!decodedPayload) return res.status(403).json({ invalidToken: true });
 
     const salt = await bycrypt.genSalt(10);
     const hashedPassword = await bycrypt.hash(newPassword, salt);

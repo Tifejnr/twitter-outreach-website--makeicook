@@ -27,6 +27,8 @@ var JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
 var websiteUrl = "http://localhost:3000";
 var websiteUrlClient = "http://localhost:5173/reset-password"; // const websiteUrlClient = "https://www.collabfortrello.com";
 
+var maxAgeInmilliSeconds = 1200000; //20 min expiry in milli secs
+
 router.post("/", function _callee(req, res) {
   var _validateEmail, error, accountUser, secret, payload, token, link, folderDir, subject, customerEmail, fullName, customerParams, resetPasswordEmailContent, isEmailSentToUser;
 
@@ -127,7 +129,7 @@ router.get("/:id/:token", function _callee2(req, res) {
           urlQeryParams = req.params;
           id = urlQeryParams.id, token = urlQeryParams.token;
           res.cookie("reset_id", id, {
-            maxAge: 100000,
+            maxAge: 1200000,
             httpOnly: true
           });
           _context2.next = 5;
@@ -158,7 +160,7 @@ router.get("/:id/:token", function _callee2(req, res) {
           }
 
           return _context2.abrupt("return", res.cookie("reset_pass", token, {
-            maxAge: 100000,
+            maxAge: 1200000,
             httpOnly: true
           }).redirect(websiteUrlClient));
 
@@ -183,69 +185,68 @@ router.get("/:id/:token", function _callee2(req, res) {
 }); //reset password route
 
 router.post("/:id/:token", function _callee3(req, res) {
-  var keysObject, JWT_PRIVATE_KEY, newPassword, token, userId, accountUser, secret, decodedPayload, salt, hashedPassword, passwordUpdated;
+  var newPassword, token, id, accountUser, secret, decodedPayload, salt, hashedPassword, passwordUpdated;
   return regeneratorRuntime.async(function _callee3$(_context3) {
     while (1) {
       switch (_context3.prev = _context3.next) {
         case 0:
-          keysObject = getSecretKeys();
-          JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
           newPassword = req.body.password;
           token = req.cookies.reset_pass;
-          userId = req.cookies.reset_id;
-          _context3.next = 7;
+          id = req.cookies.reset_id;
+          console.log(id);
+          _context3.next = 6;
           return regeneratorRuntime.awrap(user.findOne({
-            _id: userId
+            _id: id
           }));
 
-        case 7:
+        case 6:
           accountUser = _context3.sent;
 
           if (accountUser) {
-            _context3.next = 10;
+            _context3.next = 9;
             break;
           }
 
           return _context3.abrupt("return", res.status(400).json({
-            UsernotFound: "User not found"
+            sessionExpired: true
           }));
 
-        case 10:
-          _context3.prev = 10;
+        case 9:
+          _context3.prev = 9;
           secret = JWT_PRIVATE_KEY + accountUser.password;
           decodedPayload = jwt.verify(token, secret);
 
           if (decodedPayload) {
-            _context3.next = 15;
+            _context3.next = 14;
             break;
           }
 
-          return _context3.abrupt("return", res.json({
-            error: "token invalid"
+          return _context3.abrupt("return", res.status(403).json({
+            invalidToken: true
           }));
 
-        case 15:
-          _context3.next = 17;
+        case 14:
+          _context3.next = 16;
           return regeneratorRuntime.awrap(bycrypt.genSalt(10));
 
-        case 17:
+        case 16:
           salt = _context3.sent;
-          _context3.next = 20;
+          _context3.next = 19;
           return regeneratorRuntime.awrap(bycrypt.hash(newPassword, salt));
 
-        case 20:
+        case 19:
           hashedPassword = _context3.sent;
           accountUser.set({
             password: hashedPassword
           });
-          _context3.next = 24;
+          _context3.next = 23;
           return regeneratorRuntime.awrap(accountUser.save());
 
-        case 24:
+        case 23:
           passwordUpdated = _context3.sent;
 
           if (!passwordUpdated) {
-            _context3.next = 27;
+            _context3.next = 26;
             break;
           }
 
@@ -253,23 +254,23 @@ router.post("/:id/:token", function _callee3(req, res) {
             passwordUpdated: true
           }));
 
-        case 27:
-          _context3.next = 33;
+        case 26:
+          _context3.next = 32;
           break;
 
-        case 29:
-          _context3.prev = 29;
-          _context3.t0 = _context3["catch"](10);
+        case 28:
+          _context3.prev = 28;
+          _context3.t0 = _context3["catch"](9);
           console.log(_context3.t0.message);
           res.status(402).json({
             error: _context3.t0.message
           });
 
-        case 33:
+        case 32:
         case "end":
           return _context3.stop();
       }
     }
-  }, null, null, [[10, 29]]);
+  }, null, null, [[9, 28]]);
 });
 module.exports = router;

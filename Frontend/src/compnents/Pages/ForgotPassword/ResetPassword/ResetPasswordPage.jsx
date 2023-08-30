@@ -91,9 +91,9 @@ return (
   setPasswordBorderColor(true)
 
 //proceed to sending the new password to server
- const resetPasswordUrl = `${websiteUrl}/api/register-user`;
+ const resetPasswordUrl = `${websiteUrl}/api/forgot-password/:id/:token`;
   try {
-    const response = await axios.post(resetPasswordUrl, regParams);
+    const response = await axios.post(resetPasswordUrl, {password});
     const data = await response.data;
 
   if (data.passwordUpdated) return setIsPasswordResetSuccessfull(true), console.log("sucessful reset");
@@ -101,8 +101,11 @@ return (
   } catch (error) {
     console.log(error);
     const errorMessage = error.response.data
-        if (errorMessage.invalidLoginDetails)
-    return setNewPasswordBorderColor(false), setNewPasswordError("User not found")
+        if (errorMessage.invalidToken)
+    return setNewPasswordBorderColor(false),  setPasswordBorderColor(false), setNewPasswordError("Token expired, please restart this process")
+
+        if (errorMessage.sessionExpired)
+    return setNewPasswordBorderColor(false), setPasswordBorderColor(false), setNewPasswordError("Session expired, please restart this process")
     return false;
   }
 
