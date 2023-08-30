@@ -23,20 +23,21 @@ var _require4 = require("../envKeys/allKeys"),
     getKeys = _require4.getKeys;
 
 var keysObject = getKeys();
-var websiteUrl = "http://localhost:3000"; // const websiteUrl = "https://www.collabfortrello.com";
+var JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
+var websiteUrl = "http://localhost:3000";
+var websiteUrlClient = "http://localhost:5173/reset-password"; // const websiteUrlClient = "https://www.collabfortrello.com";
 
 router.post("/", function _callee(req, res) {
-  var JWT_PRIVATE_KEY, _validateEmail, error, accountUser, secret, payload, token, link, folderDir, subject, customerEmail, fullName, customerParams, resetPasswordEmailContent, isEmailSentToUser;
+  var _validateEmail, error, accountUser, secret, payload, token, link, folderDir, subject, customerEmail, fullName, customerParams, resetPasswordEmailContent, isEmailSentToUser;
 
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
           _validateEmail = validateEmail(req.body), error = _validateEmail.error;
 
           if (!error) {
-            _context.next = 4;
+            _context.next = 3;
             break;
           }
 
@@ -44,17 +45,17 @@ router.post("/", function _callee(req, res) {
             emailValError: error.details[0].message
           }));
 
-        case 4:
-          _context.next = 6;
+        case 3:
+          _context.next = 5;
           return regeneratorRuntime.awrap(user.findOne({
             email: req.body.email
           }));
 
-        case 6:
+        case 5:
           accountUser = _context.sent;
 
           if (accountUser) {
-            _context.next = 9;
+            _context.next = 8;
             break;
           }
 
@@ -62,7 +63,7 @@ router.post("/", function _callee(req, res) {
             notFoundUserEmail: "User not found"
           }));
 
-        case 9:
+        case 8:
           secret = JWT_PRIVATE_KEY + accountUser.password;
           payload = {
             email: accountUser.email,
@@ -85,14 +86,14 @@ router.post("/", function _callee(req, res) {
             fullName: fullName,
             resetPasswordLink: link
           };
-          _context.next = 21;
+          _context.next = 20;
           return regeneratorRuntime.awrap(sendEmail(customerParams, resetPasswordEmailContent));
 
-        case 21:
+        case 20:
           isEmailSentToUser = _context.sent;
 
           if (!isEmailSentToUser.error) {
-            _context.next = 24;
+            _context.next = 23;
             break;
           }
 
@@ -100,9 +101,9 @@ router.post("/", function _callee(req, res) {
             emailSentError: true
           }));
 
-        case 24:
+        case 23:
           if (!isEmailSentToUser.info) {
-            _context.next = 26;
+            _context.next = 25;
             break;
           }
 
@@ -110,7 +111,7 @@ router.post("/", function _callee(req, res) {
             emailSent: true
           }));
 
-        case 26:
+        case 25:
         case "end":
           return _context.stop();
       }
@@ -118,28 +119,27 @@ router.post("/", function _callee(req, res) {
   });
 });
 router.get("/:id/:token", function _callee2(req, res) {
-  var id, token, accountUser, verifiedToken;
+  var urlQeryParams, id, token, accountUser, secret, verifiedToken;
   return regeneratorRuntime.async(function _callee2$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
         case 0:
-          id = req.params.id;
-          token = req.params.token;
-          console.log(token);
+          urlQeryParams = req.params;
+          id = urlQeryParams.id, token = urlQeryParams.token;
           res.cookie("reset_id", id, {
             maxAge: 100000,
             httpOnly: true
           });
-          _context2.next = 6;
+          _context2.next = 5;
           return regeneratorRuntime.awrap(user.findOne({
             _id: id
           }));
 
-        case 6:
+        case 5:
           accountUser = _context2.sent;
 
           if (accountUser) {
-            _context2.next = 9;
+            _context2.next = 8;
             break;
           }
 
@@ -147,7 +147,8 @@ router.get("/:id/:token", function _callee2(req, res) {
             notFoundUser: "User not found"
           }));
 
-        case 9:
+        case 8:
+          secret = JWT_PRIVATE_KEY + accountUser.password;
           _context2.prev = 9;
           verifiedToken = jwt.verify(token, secret);
 
@@ -159,20 +160,21 @@ router.get("/:id/:token", function _callee2(req, res) {
           return _context2.abrupt("return", res.cookie("reset_pass", token, {
             maxAge: 100000,
             httpOnly: true
-          }).redirect("/"));
+          }).redirect(websiteUrlClient));
 
         case 13:
-          _context2.next = 18;
+          _context2.next = 19;
           break;
 
         case 15:
           _context2.prev = 15;
           _context2.t0 = _context2["catch"](9);
+          console.log(_context2.t0);
           res.send({
             tokenExpired: true
           });
 
-        case 18:
+        case 19:
         case "end":
           return _context2.stop();
       }
@@ -181,8 +183,7 @@ router.get("/:id/:token", function _callee2(req, res) {
 }); //reset password route
 
 router.post("/:id/:token", function _callee3(req, res) {
-  var keysObject, JWT_PRIVATE_KEY, newPassword, token, userId, accountUser, _secret, decodedPayload, salt, hashedPassword, passwordUpdated;
-
+  var keysObject, JWT_PRIVATE_KEY, newPassword, token, userId, accountUser, secret, decodedPayload, salt, hashedPassword, passwordUpdated;
   return regeneratorRuntime.async(function _callee3$(_context3) {
     while (1) {
       switch (_context3.prev = _context3.next) {
@@ -211,8 +212,8 @@ router.post("/:id/:token", function _callee3(req, res) {
 
         case 10:
           _context3.prev = 10;
-          _secret = JWT_PRIVATE_KEY + accountUser.password;
-          decodedPayload = jwt.verify(token, _secret);
+          secret = JWT_PRIVATE_KEY + accountUser.password;
+          decodedPayload = jwt.verify(token, secret);
 
           if (decodedPayload) {
             _context3.next = 15;

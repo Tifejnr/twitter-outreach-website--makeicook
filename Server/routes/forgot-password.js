@@ -8,13 +8,13 @@ const { sendEmail } = require("../middlewares/Email-sending/emailTemplate");
 const { validateEmail } = require("../Joi-Validations/emailAloneValidation");
 const { getKeys } = require("../envKeys/allKeys");
 const keysObject = getKeys();
+const JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
 
 const websiteUrl = "http://localhost:3000";
-// const websiteUrl = "https://www.collabfortrello.com";
+const websiteUrlClient = "http://localhost:5173/reset-password";
+// const websiteUrlClient = "https://www.collabfortrello.com";
 
 router.post("/", async (req, res) => {
-  const JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
-
   const { error } = validateEmail(req.body);
   if (error)
     return res.status(400).json({ emailValError: error.details[0].message });
@@ -59,23 +59,25 @@ router.post("/", async (req, res) => {
 });
 
 router.get("/:id/:token", async (req, res) => {
-  const id = req.params.id;
-  const token = req.params.token;
+  const urlQeryParams = req.params;
+  const { id, token } = urlQeryParams;
 
-  console.log(token);
   res.cookie("reset_id", id, { maxAge: 100000, httpOnly: true });
   const accountUser = await user.findOne({ _id: id });
 
   if (!accountUser)
     return res.status(400).json({ notFoundUser: "User not found" });
 
+  const secret = JWT_PRIVATE_KEY + accountUser.password;
+
   try {
     const verifiedToken = jwt.verify(token, secret);
     if (verifiedToken)
       return res
         .cookie("reset_pass", token, { maxAge: 100000, httpOnly: true })
-        .redirect("/");
+        .redirect(websiteUrlClient);
   } catch (error) {
+    console.log(error);
     res.send({ tokenExpired: true });
   }
 });
