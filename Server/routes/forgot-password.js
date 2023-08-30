@@ -4,7 +4,6 @@ const router = express.Router();
 const _ = require("lodash");
 const bycrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const nodemailer = require("nodemailer");
 const { sendEmail } = require("../middlewares/Email-sending/emailTemplate");
 const { validateEmail } = require("../Joi-Validations/emailAloneValidation");
 const { getKeys } = require("../envKeys/allKeys");
@@ -29,10 +28,10 @@ router.post("/", async (req, res) => {
   const token = jwt.sign(payload, secret, { expiresIn: "10m" });
   const link = `https://workforreputation.com/api/forgot-password/${accountUser.id}/${token}`;
 
-  const folderDir = "../reset-password-email/email.hbs";
+  const folderDir = "./reset-password-email";
   const subject = "Password Reset";
   const customerEmail = accountUser.email;
-  const fullName = accountUser.fullName;
+  const fullName = accountUser.name;
 
   const customerParams = {
     subject: subject,
@@ -42,7 +41,7 @@ router.post("/", async (req, res) => {
 
   const resetPasswordEmailContent = {
     fullName,
-    link,
+    resetPasswordLink: link,
   };
 
   const isEmailSentToUser = await sendEmail(
@@ -50,7 +49,10 @@ router.post("/", async (req, res) => {
     resetPasswordEmailContent
   );
 
-  if (isEmailSentToUser) return res.json({ emailSent: true });
+  if (isEmailSentToUser.error)
+    return res.status(402).json({ emailSentError: true });
+
+  if (isEmailSentToUser.info) return res.status(200).json({ emailSent: true });
 });
 
 router.get("/:id/:token", async (req, res) => {

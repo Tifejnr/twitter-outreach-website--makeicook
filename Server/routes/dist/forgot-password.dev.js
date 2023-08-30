@@ -13,8 +13,6 @@ var bycrypt = require("bcrypt");
 
 var jwt = require("jsonwebtoken");
 
-var nodemailer = require("nodemailer");
-
 var _require2 = require("../middlewares/Email-sending/emailTemplate"),
     sendEmail = _require2.sendEmail;
 
@@ -72,10 +70,10 @@ router.post("/", function _callee(req, res) {
             expiresIn: "10m"
           });
           link = "https://workforreputation.com/api/forgot-password/".concat(accountUser.id, "/").concat(token);
-          folderDir = "../reset-password-email/email.hbs";
+          folderDir = "./reset-password-email";
           subject = "Password Reset";
           customerEmail = accountUser.email;
-          fullName = accountUser.fullName;
+          fullName = accountUser.name;
           customerParams = {
             subject: subject,
             folderDir: folderDir,
@@ -83,7 +81,7 @@ router.post("/", function _callee(req, res) {
           };
           resetPasswordEmailContent = {
             fullName: fullName,
-            link: link
+            resetPasswordLink: link
           };
           _context.next = 21;
           return regeneratorRuntime.awrap(sendEmail(customerParams, resetPasswordEmailContent));
@@ -91,16 +89,26 @@ router.post("/", function _callee(req, res) {
         case 21:
           isEmailSentToUser = _context.sent;
 
-          if (!isEmailSentToUser) {
+          if (!isEmailSentToUser.error) {
             _context.next = 24;
             break;
           }
 
-          return _context.abrupt("return", res.json({
-            emailSent: true
+          return _context.abrupt("return", res.status(402).json({
+            emailSentError: true
           }));
 
         case 24:
+          if (!isEmailSentToUser.info) {
+            _context.next = 26;
+            break;
+          }
+
+          return _context.abrupt("return", res.status(200).json({
+            emailSent: true
+          }));
+
+        case 26:
         case "end":
           return _context.stop();
       }

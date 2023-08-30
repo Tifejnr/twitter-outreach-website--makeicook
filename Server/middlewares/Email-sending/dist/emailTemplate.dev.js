@@ -10,16 +10,17 @@ var keysObject = getKeys();
 var hbs = require("nodemailer-express-handlebars");
 
 function sendEmail(customerParams, emailContextParams) {
-  var emailUsername, emailPassword, subject, folderDir, customerEmail, transporter, handlebarOptions, mailOptions, result;
+  var emailUsername, emailPassword, subject, folderDir, customerEmail, transporter, handlebarOptions, mailOptions, info;
   return regeneratorRuntime.async(function sendEmail$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
+          _context.prev = 0;
           emailUsername = keysObject.emailUsername;
           emailPassword = keysObject.emailPassword;
           subject = customerParams.subject;
           folderDir = customerParams.folderDir;
-          customerEmail = customerParams.customerEmail; // create reusable transporter object using the default SMTP transport
+          customerEmail = customerParams.customerEmail; // Create a transporter object using the default SMTP transport
 
           transporter = nodemailer.createTransport({
             service: "gmail",
@@ -27,7 +28,8 @@ function sendEmail(customerParams, emailContextParams) {
               user: emailUsername,
               pass: emailPassword
             }
-          });
+          }); // Configure Handlebars for email templates
+
           handlebarOptions = {
             viewEngine: {
               extname: ".hbs",
@@ -38,43 +40,38 @@ function sendEmail(customerParams, emailContextParams) {
             viewPath: "".concat(folderDir),
             extName: ".hbs"
           };
-          transporter.use("compile", hbs(handlebarOptions)); // send mail with defined transport object
+          transporter.use("compile", hbs(handlebarOptions)); // Send mail with defined transport object
 
           mailOptions = {
-            from: "workforreputation@gmail.com",
+            from: emailUsername,
             to: customerEmail,
             subject: subject,
             template: "email",
             context: emailContextParams
-          };
-          _context.next = 11;
-          return regeneratorRuntime.awrap(transporter.sendMail(mailOptions, function (error, info) {
-            if (error) {
-              console.log(error);
-              console.log("Error: Email not sent");
-            } else {
-              console.log("Email sent: " + info.response);
-              console.log("Email sent");
-            }
-          }));
+          }; // Use async/await to send the email and capture the result
 
-        case 11:
-          result = _context.sent;
-          console.log(result);
+          _context.next = 12;
+          return regeneratorRuntime.awrap(transporter.sendMail(mailOptions));
 
-          if (!result) {
-            _context.next = 15;
-            break;
-          }
+        case 12:
+          info = _context.sent;
+          return _context.abrupt("return", {
+            info: info
+          });
 
-          return _context.abrupt("return", true);
+        case 16:
+          _context.prev = 16;
+          _context.t0 = _context["catch"](0);
+          return _context.abrupt("return", {
+            error: _context.t0
+          });
 
-        case 15:
+        case 19:
         case "end":
           return _context.stop();
       }
     }
-  });
+  }, null, null, [[0, 16]]);
 }
 
 exports.sendEmail = sendEmail;
