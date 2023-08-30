@@ -5,14 +5,13 @@ const _ = require("lodash");
 const bycrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
+const { sendEmail } = require("../middlewares/Email-sending/emailTemplate");
 const { validateEmail } = require("../Joi-Validations/emailAloneValidation");
 const { getKeys } = require("../envKeys/allKeys");
 const keysObject = getKeys();
 
 router.post("/", async (req, res) => {
   const JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
-  const emailUsername = keysObject.emailUsername;
-  const emailPassword = keysObject.emailPassword;
 
   const { error } = validateEmail(req.body);
   if (error)
@@ -30,31 +29,28 @@ router.post("/", async (req, res) => {
   const token = jwt.sign(payload, secret, { expiresIn: "10m" });
   const link = `https://workforreputation.com/api/forgot-password/${accountUser.id}/${token}`;
 
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: emailUsername,
-      pass: emailPassword,
-    },
-  });
+  const folderDir = "../reset-password-email/email.hbs";
+  const subject = "Password Reset";
+  const customerEmail = accountUser.email;
+  const fullName = accountUser.fullName;
 
-  const result = await transporter.sendMail({
-    from: emailUsername,
-    to: `${accountUser.email}`,
-    subject: "Password Reset",
-    text: `  	
-        Hi ${accountUser.fullName},
+  const customerParams = {
+    subject: subject,
+    folderDir: folderDir,
+    customerEmail: customerEmail,
+  };
 
-        A password reset event has been triggered. The password reset window is limited to 20 minutes.
+  const resetPasswordEmailContent = {
+    fullName,
+    link,
+  };
 
-        If you do not reset your password within 20 minutes, you will need to submit a new request.
+  const isEmailSentToUser = await sendEmail(
+    customerParams,
+    resetPasswordEmailContent
+  );
 
-        To complete the password reset process, visit the following link:
-
-        ${link}`,
-  });
-
-  if (result) return res.json({ emailSent: true });
+  if (isEmailSentToUser) return res.json({ emailSent: true });
 });
 
 router.get("/:id/:token", async (req, res) => {

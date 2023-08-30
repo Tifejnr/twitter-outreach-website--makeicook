@@ -15,27 +15,28 @@ var jwt = require("jsonwebtoken");
 
 var nodemailer = require("nodemailer");
 
-var _require2 = require("../Joi-Validations/emailAloneValidation"),
-    validateEmail = _require2.validateEmail;
+var _require2 = require("../middlewares/Email-sending/emailTemplate"),
+    sendEmail = _require2.sendEmail;
 
-var _require3 = require("../envKeys/allKeys"),
-    getKeys = _require3.getKeys;
+var _require3 = require("../Joi-Validations/emailAloneValidation"),
+    validateEmail = _require3.validateEmail;
+
+var _require4 = require("../envKeys/allKeys"),
+    getKeys = _require4.getKeys;
 
 var keysObject = getKeys();
 router.post("/", function _callee(req, res) {
-  var JWT_PRIVATE_KEY, emailUsername, emailPassword, _validateEmail, error, accountUser, secret, payload, token, link, transporter, result;
+  var JWT_PRIVATE_KEY, _validateEmail, error, accountUser, secret, payload, token, link, folderDir, subject, customerEmail, fullName, customerParams, resetPasswordEmailContent, isEmailSentToUser;
 
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
           JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
-          emailUsername = keysObject.emailUsername;
-          emailPassword = keysObject.emailPassword;
           _validateEmail = validateEmail(req.body), error = _validateEmail.error;
 
           if (!error) {
-            _context.next = 6;
+            _context.next = 4;
             break;
           }
 
@@ -43,17 +44,17 @@ router.post("/", function _callee(req, res) {
             emailValError: error.details[0].message
           }));
 
-        case 6:
-          _context.next = 8;
+        case 4:
+          _context.next = 6;
           return regeneratorRuntime.awrap(user.findOne({
             email: req.body.email
           }));
 
-        case 8:
+        case 6:
           accountUser = _context.sent;
 
           if (accountUser) {
-            _context.next = 11;
+            _context.next = 9;
             break;
           }
 
@@ -61,7 +62,7 @@ router.post("/", function _callee(req, res) {
             notFoundUserEmail: "User not found"
           }));
 
-        case 11:
+        case 9:
           secret = JWT_PRIVATE_KEY + accountUser.password;
           payload = {
             email: accountUser.email,
@@ -71,26 +72,27 @@ router.post("/", function _callee(req, res) {
             expiresIn: "10m"
           });
           link = "https://workforreputation.com/api/forgot-password/".concat(accountUser.id, "/").concat(token);
-          transporter = nodemailer.createTransport({
-            service: "gmail",
-            auth: {
-              user: emailUsername,
-              pass: emailPassword
-            }
-          });
-          _context.next = 18;
-          return regeneratorRuntime.awrap(transporter.sendMail({
-            from: emailUsername,
-            to: "".concat(accountUser.email),
-            subject: "Password Reset",
-            text: "  \t\n        Hi ".concat(accountUser.fullName, ",\n\n        A password reset event has been triggered. The password reset window is limited to 20 minutes.\n\n        If you do not reset your password within 20 minutes, you will need to submit a new request.\n\n        To complete the password reset process, visit the following link:\n\n        ").concat(link)
-          }));
+          folderDir = "../reset-password-email/email.hbs";
+          subject = "Password Reset";
+          customerEmail = accountUser.email;
+          fullName = accountUser.fullName;
+          customerParams = {
+            subject: subject,
+            folderDir: folderDir,
+            customerEmail: customerEmail
+          };
+          resetPasswordEmailContent = {
+            fullName: fullName,
+            link: link
+          };
+          _context.next = 21;
+          return regeneratorRuntime.awrap(sendEmail(customerParams, resetPasswordEmailContent));
 
-        case 18:
-          result = _context.sent;
+        case 21:
+          isEmailSentToUser = _context.sent;
 
-          if (!result) {
-            _context.next = 21;
+          if (!isEmailSentToUser) {
+            _context.next = 24;
             break;
           }
 
@@ -98,7 +100,7 @@ router.post("/", function _callee(req, res) {
             emailSent: true
           }));
 
-        case 21:
+        case 24:
         case "end":
           return _context.stop();
       }
