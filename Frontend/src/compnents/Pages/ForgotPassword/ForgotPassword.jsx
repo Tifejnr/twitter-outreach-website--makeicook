@@ -3,10 +3,10 @@ import { useState } from "react";
 import { Link, useNavigate} from "react-router-dom";
 import { websiteUrl } from "../../../JS functions/websiteUrl";
 import validateEmailInput from "../../Auth/Auth-Input-Validation/validateEmailInput";
+import { changeTabTitle } from "../../utilis/changeTabTitle";
+import { notificationColorsObj } from "../../utilis/colors/colors";
 
-
-const successColor = "#09c372";
-const errorColor = "#ff3860"
+const forgotPasswordTabTitle = "Forgot Password – Collab for Trello"
 const emailNotRegisteredErrorMessage= "Email is not registered"
 const invalidEmailErrorMessage= "Please provide a valid email adress"
 
@@ -17,7 +17,7 @@ export default function ForgotPassword() {
   const [emailBorderColor, setEmailBorderColor]= useState(null)
   const navigate = useNavigate();
 
-
+ changeTabTitle(forgotPasswordTabTitle)
   async function sendEmailToServer (e) {
     e.preventDefault();
 
@@ -55,12 +55,12 @@ export default function ForgotPassword() {
       emailBorderColor === null
         ? 'grey'
         : emailBorderColor
-        ? successColor
-        : errorColor,
+        ? notificationColorsObj.successColor
+        : notificationColorsObj.errorColor,
   };
 
     const textareaErrorStyle= {
-     color: textAreaError== "" ? "" :  textAreaError && errorColor 
+     color: textAreaError== "" ? "" :  textAreaError && notificationColorsObj.errorColor 
     }
 
 

@@ -2,10 +2,16 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import AuthNav from '../../../Auth/AuthNav'
 import handlePageRefreshOnLoad from '../../../utilis/refreshPageOnLoad'
+import { changeTabTitle } from '../../../utilis/changeTabTitle'
+
+const emailSentTabTitle = "Email Sent – Collab for Trello"
+
 const forgotPasswordPageLink = "/forgot-password"
 
 
 export default function EmailSentPage() {
+  changeTabTitle(emailSentTabTitle)
+
   return (
     <>
    <AuthNav/>

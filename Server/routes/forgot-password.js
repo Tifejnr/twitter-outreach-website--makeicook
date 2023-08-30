@@ -78,7 +78,7 @@ router.get("/:id/:token", async (req, res) => {
         .redirect(websiteUrlClient);
   } catch (error) {
     console.log(error);
-    res.send({ tokenExpired: true });
+    res.status(402).json({ tokenExpired: true });
   }
 });
 
@@ -110,10 +110,10 @@ router.post("/:id/:token", async (req, res) => {
 
     const passwordUpdated = await accountUser.save();
 
-    if (passwordUpdated) return res.json({ passwordUpdated: true });
+    if (passwordUpdated) return res.status(200).json({ passwordUpdated: true });
   } catch (error) {
     console.log(error.message);
-    res.json({ error: error.message });
+    res.status(402).json({ error: error.message });
   }
 });
 

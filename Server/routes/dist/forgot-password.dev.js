@@ -170,7 +170,7 @@ router.get("/:id/:token", function _callee2(req, res) {
           _context2.prev = 15;
           _context2.t0 = _context2["catch"](9);
           console.log(_context2.t0);
-          res.send({
+          res.status(402).json({
             tokenExpired: true
           });
 
@@ -249,7 +249,7 @@ router.post("/:id/:token", function _callee3(req, res) {
             break;
           }
 
-          return _context3.abrupt("return", res.json({
+          return _context3.abrupt("return", res.status(200).json({
             passwordUpdated: true
           }));
 
@@ -261,7 +261,7 @@ router.post("/:id/:token", function _callee3(req, res) {
           _context3.prev = 29;
           _context3.t0 = _context3["catch"](10);
           console.log(_context3.t0.message);
-          res.json({
+          res.status(402).json({
             error: _context3.t0.message
           });
 

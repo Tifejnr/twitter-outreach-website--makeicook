@@ -1,39 +1,20 @@
 import React , {useState} from 'react'
+import axios from 'axios'
 import AuthNav from '../../../Auth/AuthNav'
 import showPasswordIcon from "../../../../assets/SVGs/PasswordRelated/show-password-eye.svg"
 import hidePasswordIcon from "../../../../assets/SVGs/PasswordRelated/hide-password-eye.svg"
 import validateAll from '../../../Auth/Auth-Input-Validation/validateAll'
+import { notificationColorsObj } from '../../../utilis/colors/colors'
+import { websiteUrl } from '../../../../JS functions/websiteUrl'
+import { changeTabTitle } from '../../../utilis/changeTabTitle'
 
-
-// async function resetPassword() {
-//   const password = passwordId.value;
-
-//   const res = await fetch(
-//     "https://workforreputation.com/api/forgot-password/:id/:token",
-//     {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-
-//       body: JSON.stringify({
-//         password,
-//       }),
-//     }
-//   );
-
-//   const data = await res.json();
-//   console.log(data);
-
-//   if (data.invalidLoginDetails)
-//     return setError(invalidDetailsErr, "Invalid password or password");
-
-//   if (data.passwordUpdated) return showPasswordResetSuccess();
-
+const resetPasswordTabTitle= "Reset Password – Collab for Trello"
 const passwordsDoNotMatchMessage= "Passwords do not match"
 
 
 export default function ResetPasswordPage() {
+  const [isPasswordResetSuccessfull, setIsPasswordResetSuccessfull] = useState(false);
+
   //new password
   const [password, setPassword] = useState("")
   const [passwordError, setPasswordError] = useState("")
@@ -46,13 +27,15 @@ export default function ResetPasswordPage() {
   const [newPasswordBorderColor, setNewPasswordBorderColor]= useState(null)
   const [newPasswordVisible, setNewPasswordVisible] = useState(false);
 
+  changeTabTitle(resetPasswordTabTitle);
+
   const passwordBorderStyle = {
     borderColor: 
           passwordBorderColor === null
         ? 'grey'
         : passwordBorderColor
-        ? successColor
-        : errorColor,
+        ? notificationColorsObj.successColor
+        : notificationColorsObj.errorColor,
   };
 
   const newPasswordBorderStyle = {
@@ -60,8 +43,8 @@ export default function ResetPasswordPage() {
           newPasswordBorderColor === null
         ? 'grey'
         : newPasswordBorderColor
-        ? successColor
-        : errorColor,
+        ? notificationColorsObj.successColor
+        : notificationColorsObj.errorColor,
   };
 
 
@@ -83,7 +66,7 @@ const retypedPasswordVal =  (validateAll(retypedParamsObj));
 
 
 if(validatePasswordFunc.passwordValResponse) {
-  setNewPasswordError(validatePasswordFunc.passwordValResponse)
+  setPasswordError(validatePasswordFunc.passwordValResponse)
   setPasswordBorderColor(false)
 }
 
@@ -101,27 +84,29 @@ return (
   setNewPasswordBorderColor(false),
   setPasswordBorderColor(false)
 )
+//remove all error validation noti 
+  setNewPasswordError(""), 
+  setPasswordError(""),
+  setNewPasswordBorderColor(true),
+  setPasswordBorderColor(true)
 
+//proceed to sending the new password to server
+ const resetPasswordUrl = `${websiteUrl}/api/register-user`;
+  try {
+    const response = await axios.post(resetPasswordUrl, regParams);
+    const data = await response.data;
 
-  // if (validateFunctionResponse.emailValResponse) 
-  //  {  
-  //   setEmailError(validateFunctionResponse.emailValResponse), 
-  //   setEmailBorderColor(false);
-  //  }
-  //  else{
-  //   setEmailError("");     
-  //   setEmailBorderColor(true)
-  //  }
+  if (data.passwordUpdated) return setIsPasswordResetSuccessfull(true), console.log("sucessful reset");
 
-  
-  // if (validateFunctionResponse.passwordValResponse) {
-
-  //     setPasswordError(validateFunctionResponse.passwordValResponse);
-  //     setPasswordBorderColor(false)
-  //  }
+  } catch (error) {
+    console.log(error);
+    const errorMessage = error.response.data
+        if (errorMessage.invalidLoginDetails)
+    return setNewPasswordBorderColor(false), setNewPasswordError("User not found")
+    return false;
+  }
 
 }
-
 
 
   const handleShowPassword = ()=> {
@@ -141,7 +126,7 @@ return (
         <h2>Reset Your Password</h2>
       </article>
 
-      <form action="" className="reg-form">
+      <form action="" className="reg-form" onSubmit={sendNewPasswordToServer}>
 
       <fieldset className="input-wrapper">
         <label htmlFor="passwordId"><p>Enter New Password</p></label>
@@ -162,7 +147,7 @@ return (
 
        {/* Retype password Field */}
 
-      <fieldset className="input-wrapper">
+      <fieldset className="input-wrapper" id='retypedPasswordRapper'>
         <label htmlFor="newPasswordId"><p>Confirm New Password</p></label>
         <section className="innerInputWrapper"   style={newPasswordBorderStyle}>
            <input type={newPasswordVisible ? "text" : "password"} placeholder="minimum of 6 characters" id="newPasswordId" value={newPassword} 
@@ -178,7 +163,7 @@ return (
         <p className="error" id="regErrorDisplay">{newPasswordError}</p>
       </fieldset>
 
-        <button id="login_btn" className="submit-btn" onClick={sendNewPasswordToServer}>Reset Password</button>
+        <button id="login_btn" className="submit-btn">Reset Password</button>
       </form>
     </section>
    </>
