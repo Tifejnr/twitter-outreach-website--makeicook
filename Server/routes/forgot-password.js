@@ -17,6 +17,8 @@ router.post("/", async (req, res) => {
   const { error } = validateEmail(req.body);
   if (error)
     return res.status(400).json({ emailValError: error.details[0].message });
+
+  console.log(req.body);
   const accountUser = await user.findOne({ email: req.body.email });
   if (!accountUser)
     return res.status(400).json({ notFoundUserEmail: "User not found" });

@@ -53,9 +53,6 @@ export default function Register() {
 
 const sendInfoToServer = async (e)=> {
     e.preventDefault();
-    
-  const emailId = document.getElementById("emailId")
-  const passwordId = document.getElementById("passwordId")
   try {
    const paramsObj = {
     email,

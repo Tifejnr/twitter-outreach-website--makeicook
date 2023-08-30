@@ -6,6 +6,8 @@ import validateEmailInput from "../../Auth/Auth-Input-Validation/validateEmailIn
 
 const successColor = "#09c372";
 const errorColor = "#ff3860"
+const emailNotRegisteredErrorMessage= "Email is not registered"
+const invalidEmailErrorMessage= "Please provide a valid email adress"
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("")
@@ -31,25 +33,21 @@ export default function ForgotPassword() {
   const emailValidCheckUrl = `${websiteUrl}/api/forgot-password`;
   try {
     const response = await axios.post(emailValidCheckUrl, {email});
+
+    console.log(response)
     const data = await response.data;
     console.log(data)
     // if (!data.signedIn) return false;
     // return true;
   } catch (error) {
-    // console.log(error.response.data);
-    const errorMessage = error.response.data.invalidLoginDetails;
-    if (errorMessage) return { errorMessage };
+    console.log(error);
+    const userNotFoundErrorMessage = error.response.data.notFoundUserEmail;
+    const emailValErrorMessage = error.response.data.emailValError;
+
+    if (emailValErrorMessage) return setEmailError(invalidEmailErrorMessage), setEmailBorderColor(false)
+    if (userNotFoundErrorMessage) return setEmailError(emailNotRegisteredErrorMessage ), setEmailBorderColor(false)
     return false;
   }
-
-
-
-  // if (data.emailError)
-  //   return setError(emailError, "Provide a valid email address");
-
-  // if (data.notFoundUser) {
-  //   return setError(emailError, "Email is not Registered");
-  // }
 
   // if (data.emailSent)
   //   return (window.location.href = "`validateEmailInput`/email-sent");

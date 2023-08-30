@@ -44,16 +44,17 @@ router.post("/", function _callee(req, res) {
           }));
 
         case 6:
-          _context.next = 8;
+          console.log(req.body);
+          _context.next = 9;
           return regeneratorRuntime.awrap(user.findOne({
             email: req.body.email
           }));
 
-        case 8:
+        case 9:
           accountUser = _context.sent;
 
           if (accountUser) {
-            _context.next = 11;
+            _context.next = 12;
             break;
           }
 
@@ -61,7 +62,7 @@ router.post("/", function _callee(req, res) {
             notFoundUserEmail: "User not found"
           }));
 
-        case 11:
+        case 12:
           secret = JWT_PRIVATE_KEY + accountUser.password;
           payload = {
             email: accountUser.email,
@@ -78,7 +79,7 @@ router.post("/", function _callee(req, res) {
               pass: emailPassword
             }
           });
-          _context.next = 18;
+          _context.next = 19;
           return regeneratorRuntime.awrap(transporter.sendMail({
             from: emailUsername,
             to: "".concat(accountUser.email),
@@ -86,11 +87,11 @@ router.post("/", function _callee(req, res) {
             text: "  \t\n        Hi ".concat(accountUser.name, ",\n\n        A password reset event has been triggered. The password reset window is limited to 20 minutes.\n\n        If you do not reset your password within 20 minutes, you will need to submit a new request.\n\n        To complete the password reset process, visit the following link:\n\n        ").concat(link)
           }));
 
-        case 18:
+        case 19:
           result = _context.sent;
 
           if (!result) {
-            _context.next = 21;
+            _context.next = 22;
             break;
           }
 
@@ -98,7 +99,7 @@ router.post("/", function _callee(req, res) {
             emailSent: true
           }));
 
-        case 21:
+        case 22:
         case "end":
           return _context.stop();
       }

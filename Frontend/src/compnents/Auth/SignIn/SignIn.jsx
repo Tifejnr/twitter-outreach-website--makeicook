@@ -51,15 +51,11 @@ export default function SignIn() {
 
 const sendInfoToServer = async (e)=> {
     e.preventDefault();
-    
-  const emailId = document.getElementById("emailId")
-  const passwordId = document.getElementById("passwordId")
+
   try {
    const paramsObj = {
     email,
-    emailId,
     password,
-    passwordId
     }
 
 const validateFunctionResponse= (validateAll(paramsObj));
