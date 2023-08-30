@@ -74,6 +74,7 @@ router.get("/:id/:token", async (req, res) => {
   }
 });
 
+//reset password route
 router.post("/:id/:token", async (req, res) => {
   const keysObject = getSecretKeys();
   const JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;

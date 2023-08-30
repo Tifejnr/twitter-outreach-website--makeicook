@@ -175,7 +175,8 @@ router.get("/:id/:token", function _callee2(req, res) {
       }
     }
   }, null, null, [[8, 14]]);
-});
+}); //reset password route
+
 router.post("/:id/:token", function _callee3(req, res) {
   var keysObject, JWT_PRIVATE_KEY, newPassword, token, userId, accountUser, _secret, decodedPayload, salt, hashedPassword, passwordUpdated;
 
