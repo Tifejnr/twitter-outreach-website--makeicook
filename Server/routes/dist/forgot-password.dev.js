@@ -23,6 +23,8 @@ var _require4 = require("../envKeys/allKeys"),
     getKeys = _require4.getKeys;
 
 var keysObject = getKeys();
+var websiteUrl = "http://localhost:3000"; // const websiteUrl = "https://www.collabfortrello.com";
+
 router.post("/", function _callee(req, res) {
   var JWT_PRIVATE_KEY, _validateEmail, error, accountUser, secret, payload, token, link, folderDir, subject, customerEmail, fullName, customerParams, resetPasswordEmailContent, isEmailSentToUser;
 
@@ -69,7 +71,7 @@ router.post("/", function _callee(req, res) {
           token = jwt.sign(payload, secret, {
             expiresIn: "10m"
           });
-          link = "https://workforreputation.com/api/forgot-password/".concat(accountUser.id, "/").concat(token);
+          link = "".concat(websiteUrl, "/api/forgot-password/").concat(accountUser.id, "/").concat(token);
           folderDir = "./reset-password-email";
           subject = "Password Reset";
           customerEmail = accountUser.email;
@@ -122,21 +124,22 @@ router.get("/:id/:token", function _callee2(req, res) {
       switch (_context2.prev = _context2.next) {
         case 0:
           id = req.params.id;
+          token = req.params.token;
+          console.log(token);
           res.cookie("reset_id", id, {
             maxAge: 100000,
             httpOnly: true
           });
-          token = req.params.token;
-          _context2.next = 5;
+          _context2.next = 6;
           return regeneratorRuntime.awrap(user.findOne({
             _id: id
           }));
 
-        case 5:
+        case 6:
           accountUser = _context2.sent;
 
           if (accountUser) {
-            _context2.next = 8;
+            _context2.next = 9;
             break;
           }
 
@@ -144,37 +147,37 @@ router.get("/:id/:token", function _callee2(req, res) {
             notFoundUser: "User not found"
           }));
 
-        case 8:
-          _context2.prev = 8;
+        case 9:
+          _context2.prev = 9;
           verifiedToken = jwt.verify(token, secret);
 
           if (!verifiedToken) {
-            _context2.next = 12;
+            _context2.next = 13;
             break;
           }
 
           return _context2.abrupt("return", res.cookie("reset_pass", token, {
             maxAge: 100000,
             httpOnly: true
-          }).render("reset-password"));
+          }).redirect("/"));
 
-        case 12:
-          _context2.next = 17;
+        case 13:
+          _context2.next = 18;
           break;
 
-        case 14:
-          _context2.prev = 14;
-          _context2.t0 = _context2["catch"](8);
+        case 15:
+          _context2.prev = 15;
+          _context2.t0 = _context2["catch"](9);
           res.send({
             tokenExpired: true
           });
 
-        case 17:
+        case 18:
         case "end":
           return _context2.stop();
       }
     }
-  }, null, null, [[8, 14]]);
+  }, null, null, [[9, 15]]);
 }); //reset password route
 
 router.post("/:id/:token", function _callee3(req, res) {

@@ -9,6 +9,9 @@ const { validateEmail } = require("../Joi-Validations/emailAloneValidation");
 const { getKeys } = require("../envKeys/allKeys");
 const keysObject = getKeys();
 
+const websiteUrl = "http://localhost:3000";
+// const websiteUrl = "https://www.collabfortrello.com";
+
 router.post("/", async (req, res) => {
   const JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
 
@@ -26,7 +29,7 @@ router.post("/", async (req, res) => {
   };
 
   const token = jwt.sign(payload, secret, { expiresIn: "10m" });
-  const link = `https://workforreputation.com/api/forgot-password/${accountUser.id}/${token}`;
+  const link = `${websiteUrl}/api/forgot-password/${accountUser.id}/${token}`;
 
   const folderDir = "./reset-password-email";
   const subject = "Password Reset";
@@ -57,9 +60,12 @@ router.post("/", async (req, res) => {
 
 router.get("/:id/:token", async (req, res) => {
   const id = req.params.id;
-  res.cookie("reset_id", id, { maxAge: 100000, httpOnly: true });
   const token = req.params.token;
+
+  console.log(token);
+  res.cookie("reset_id", id, { maxAge: 100000, httpOnly: true });
   const accountUser = await user.findOne({ _id: id });
+
   if (!accountUser)
     return res.status(400).json({ notFoundUser: "User not found" });
 
@@ -68,7 +74,7 @@ router.get("/:id/:token", async (req, res) => {
     if (verifiedToken)
       return res
         .cookie("reset_pass", token, { maxAge: 100000, httpOnly: true })
-        .render("reset-password");
+        .redirect("/");
   } catch (error) {
     res.send({ tokenExpired: true });
   }
