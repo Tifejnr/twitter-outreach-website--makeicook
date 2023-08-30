@@ -106,6 +106,7 @@ const validateFunctionResponse= (validateAll(paramsObj));
      
 <>
 <AuthNav/>
+
 <section className="main-container reg-container" id="form">
 
     <article className="main__title">

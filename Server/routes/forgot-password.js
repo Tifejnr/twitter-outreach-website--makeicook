@@ -17,8 +17,6 @@ router.post("/", async (req, res) => {
   const { error } = validateEmail(req.body);
   if (error)
     return res.status(400).json({ emailValError: error.details[0].message });
-
-  console.log(req.body);
   const accountUser = await user.findOne({ email: req.body.email });
   if (!accountUser)
     return res.status(400).json({ notFoundUserEmail: "User not found" });
@@ -45,7 +43,7 @@ router.post("/", async (req, res) => {
     to: `${accountUser.email}`,
     subject: "Password Reset",
     text: `  	
-        Hi ${accountUser.name},
+        Hi ${accountUser.fullName},
 
         A password reset event has been triggered. The password reset window is limited to 20 minutes.
 

@@ -44,17 +44,16 @@ router.post("/", function _callee(req, res) {
           }));
 
         case 6:
-          console.log(req.body);
-          _context.next = 9;
+          _context.next = 8;
           return regeneratorRuntime.awrap(user.findOne({
             email: req.body.email
           }));
 
-        case 9:
+        case 8:
           accountUser = _context.sent;
 
           if (accountUser) {
-            _context.next = 12;
+            _context.next = 11;
             break;
           }
 
@@ -62,7 +61,7 @@ router.post("/", function _callee(req, res) {
             notFoundUserEmail: "User not found"
           }));
 
-        case 12:
+        case 11:
           secret = JWT_PRIVATE_KEY + accountUser.password;
           payload = {
             email: accountUser.email,
@@ -79,19 +78,19 @@ router.post("/", function _callee(req, res) {
               pass: emailPassword
             }
           });
-          _context.next = 19;
+          _context.next = 18;
           return regeneratorRuntime.awrap(transporter.sendMail({
             from: emailUsername,
             to: "".concat(accountUser.email),
             subject: "Password Reset",
-            text: "  \t\n        Hi ".concat(accountUser.name, ",\n\n        A password reset event has been triggered. The password reset window is limited to 20 minutes.\n\n        If you do not reset your password within 20 minutes, you will need to submit a new request.\n\n        To complete the password reset process, visit the following link:\n\n        ").concat(link)
+            text: "  \t\n        Hi ".concat(accountUser.fullName, ",\n\n        A password reset event has been triggered. The password reset window is limited to 20 minutes.\n\n        If you do not reset your password within 20 minutes, you will need to submit a new request.\n\n        To complete the password reset process, visit the following link:\n\n        ").concat(link)
           }));
 
-        case 19:
+        case 18:
           result = _context.sent;
 
           if (!result) {
-            _context.next = 22;
+            _context.next = 21;
             break;
           }
 
@@ -99,7 +98,7 @@ router.post("/", function _callee(req, res) {
             emailSent: true
           }));
 
-        case 22:
+        case 21:
         case "end":
           return _context.stop();
       }

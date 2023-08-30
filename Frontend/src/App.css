@@ -1635,3 +1635,11 @@ article.creditsNeededCont {
   text-decoration: underline;
   color: #7e8ae2;
 }
+
+/* Forgot Password Email Sent Page */
+
+.email-sent-container article h3 {
+  line-height: 1.4;
+  font-size: 1.6rem;
+  color: #17252a;
+}

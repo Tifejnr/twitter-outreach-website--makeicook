@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useState } from "react";
+import { Link, useNavigate} from "react-router-dom";
 import { websiteUrl } from "../../../JS functions/websiteUrl";
 import validateEmailInput from "../../Auth/Auth-Input-Validation/validateEmailInput";
 
@@ -14,6 +15,7 @@ export default function ForgotPassword() {
   const [emailError, setEmailError] = useState("")
   const [textAreaError, setTextAreaError] = useState("")
   const [emailBorderColor, setEmailBorderColor]= useState(null)
+  const navigate = useNavigate();
 
 
   async function sendEmailToServer (e) {
@@ -33,12 +35,9 @@ export default function ForgotPassword() {
   const emailValidCheckUrl = `${websiteUrl}/api/forgot-password`;
   try {
     const response = await axios.post(emailValidCheckUrl, {email});
-
-    console.log(response)
     const data = await response.data;
-    console.log(data)
-    // if (!data.signedIn) return false;
-    // return true;
+    if (data.emailSent) return (navigate('/email-sent'))
+
   } catch (error) {
     console.log(error);
     const userNotFoundErrorMessage = error.response.data.notFoundUserEmail;
@@ -48,9 +47,6 @@ export default function ForgotPassword() {
     if (userNotFoundErrorMessage) return setEmailError(emailNotRegisteredErrorMessage ), setEmailBorderColor(false)
     return false;
   }
-
-  // if (data.emailSent)
-  //   return (window.location.href = "`validateEmailInput`/email-sent");
 
   }
 
