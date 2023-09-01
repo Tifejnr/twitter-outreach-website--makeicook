@@ -119,7 +119,6 @@ export default function DeleteMemberBoards() {
         setBoardDetailsObj(response);
         setOpenProgressBar(true);
       }
-
   }
 
   useEffect(() => {
@@ -134,7 +133,6 @@ export default function DeleteMemberBoards() {
         );
 
         const dataRaw = await response.data;
-
         if (!dataRaw) {
           console.log("No data seen");
           return;

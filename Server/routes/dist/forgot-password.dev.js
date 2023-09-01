@@ -24,9 +24,9 @@ var _require4 = require("../envKeys/allKeys"),
 
 var keysObject = getKeys();
 var JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
-var websiteUrl = "http://localhost:3000";
-var websiteUrlClient = "http://localhost:5173/reset-password"; // const websiteUrlClient = "https://www.collabfortrello.com";
+var websiteUrl = "https://www.collabfortrello.com"; // const websiteUrlClient = "http://localhost:5173/reset-password";
 
+var websiteUrlClient = "https://www.collabfortrello.com/reset-password";
 var maxAgeInmilliSeconds = 1200000; //20 min expiry in milli secs
 
 router.post("/", function _callee(req, res) {
@@ -131,6 +131,9 @@ router.get("/:id/:token", function _callee2(req, res) {
           res.cookie("reset_id", id, {
             maxAge: 1200000,
             httpOnly: true
+          }).cookie("reset_pass", token, {
+            maxAge: 1200000,
+            httpOnly: true
           });
           _context2.next = 5;
           return regeneratorRuntime.awrap(user.findOne({
@@ -159,10 +162,7 @@ router.get("/:id/:token", function _callee2(req, res) {
             break;
           }
 
-          return _context2.abrupt("return", res.cookie("reset_pass", token, {
-            maxAge: 1200000,
-            httpOnly: true
-          }).redirect(websiteUrlClient));
+          return _context2.abrupt("return", res.redirect(websiteUrlClient));
 
         case 13:
           _context2.next = 19;
@@ -193,17 +193,18 @@ router.post("/:id/:token", function _callee3(req, res) {
           newPassword = req.body.password;
           token = req.cookies.reset_pass;
           id = req.cookies.reset_id;
+          console.log(token);
           console.log(id);
-          _context3.next = 6;
+          _context3.next = 7;
           return regeneratorRuntime.awrap(user.findOne({
             _id: id
           }));
 
-        case 6:
+        case 7:
           accountUser = _context3.sent;
 
           if (accountUser) {
-            _context3.next = 9;
+            _context3.next = 10;
             break;
           }
 
@@ -211,13 +212,13 @@ router.post("/:id/:token", function _callee3(req, res) {
             sessionExpired: true
           }));
 
-        case 9:
-          _context3.prev = 9;
+        case 10:
+          _context3.prev = 10;
           secret = JWT_PRIVATE_KEY + accountUser.password;
           decodedPayload = jwt.verify(token, secret);
 
           if (decodedPayload) {
-            _context3.next = 14;
+            _context3.next = 15;
             break;
           }
 
@@ -225,28 +226,28 @@ router.post("/:id/:token", function _callee3(req, res) {
             invalidToken: true
           }));
 
-        case 14:
-          _context3.next = 16;
+        case 15:
+          _context3.next = 17;
           return regeneratorRuntime.awrap(bycrypt.genSalt(10));
 
-        case 16:
+        case 17:
           salt = _context3.sent;
-          _context3.next = 19;
+          _context3.next = 20;
           return regeneratorRuntime.awrap(bycrypt.hash(newPassword, salt));
 
-        case 19:
+        case 20:
           hashedPassword = _context3.sent;
           accountUser.set({
             password: hashedPassword
           });
-          _context3.next = 23;
+          _context3.next = 24;
           return regeneratorRuntime.awrap(accountUser.save());
 
-        case 23:
+        case 24:
           passwordUpdated = _context3.sent;
 
           if (!passwordUpdated) {
-            _context3.next = 26;
+            _context3.next = 27;
             break;
           }
 
@@ -254,23 +255,23 @@ router.post("/:id/:token", function _callee3(req, res) {
             passwordUpdated: true
           }));
 
-        case 26:
-          _context3.next = 32;
+        case 27:
+          _context3.next = 33;
           break;
 
-        case 28:
-          _context3.prev = 28;
-          _context3.t0 = _context3["catch"](9);
+        case 29:
+          _context3.prev = 29;
+          _context3.t0 = _context3["catch"](10);
           console.log(_context3.t0.message);
           res.status(402).json({
             error: _context3.t0.message
           });
 
-        case 32:
+        case 33:
         case "end":
           return _context3.stop();
       }
     }
-  }, null, null, [[9, 28]]);
+  }, null, null, [[10, 29]]);
 });
 module.exports = router;

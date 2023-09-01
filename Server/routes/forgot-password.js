@@ -10,9 +10,9 @@ const { getKeys } = require("../envKeys/allKeys");
 const keysObject = getKeys();
 const JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
 
-const websiteUrl = "http://localhost:3000";
-const websiteUrlClient = "http://localhost:5173/reset-password";
-// const websiteUrlClient = "https://www.collabfortrello.com";
+const websiteUrl = "https://www.collabfortrello.com";
+// const websiteUrlClient = "http://localhost:5173/reset-password";
+const websiteUrlClient = "https://www.collabfortrello.com/reset-password";
 const maxAgeInmilliSeconds = 1200000; //20 min expiry in milli secs
 
 router.post("/", async (req, res) => {
@@ -64,7 +64,13 @@ router.get("/:id/:token", async (req, res) => {
   const urlQeryParams = req.params;
   const { id, token } = urlQeryParams;
 
-  res.cookie("reset_id", id, { maxAge: 1200000, httpOnly: true });
+  res
+    .cookie("reset_id", id, { maxAge: 1200000, httpOnly: true })
+    .cookie("reset_pass", token, {
+      maxAge: 1200000,
+      httpOnly: true,
+    });
+
   const accountUser = await user.findOne({ _id: id });
 
   if (!accountUser)
@@ -74,13 +80,7 @@ router.get("/:id/:token", async (req, res) => {
 
   try {
     const verifiedToken = jwt.verify(token, secret);
-    if (verifiedToken)
-      return res
-        .cookie("reset_pass", token, {
-          maxAge: 1200000,
-          httpOnly: true,
-        })
-        .redirect(websiteUrlClient);
+    if (verifiedToken) return res.redirect(websiteUrlClient);
   } catch (error) {
     console.log(error);
     res.status(402).json({ tokenExpired: true });
@@ -93,6 +93,7 @@ router.post("/:id/:token", async (req, res) => {
   const token = req.cookies.reset_pass;
   const id = req.cookies.reset_id;
 
+  console.log(token);
   console.log(id);
 
   const accountUser = await user.findOne({ _id: id });
