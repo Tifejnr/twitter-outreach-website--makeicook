@@ -11,13 +11,11 @@ export default function PricingPage() {
                     <p>Select plan tailored to your needs below.</p>
                   </header>
                   <section className="pricing-cont">
-                  <h1></h1>
                     {allPricingPlansObjArray.map((planObj, index) => (
                         <BasicCard key={index} planObjs={planObj} />
                       ))}
                   </section>
             </section>
-
      </>
   )
 }
