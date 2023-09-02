@@ -14,8 +14,6 @@ export default function EmailSentPage() {
 
   return (
     <>
-   <AuthNav/>
-
    <section className="main-container email-sent-container" id="form">
       <article className="main__title email-sent-title">
         <h2>Check Your Email</h2>

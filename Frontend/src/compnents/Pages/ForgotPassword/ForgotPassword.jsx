@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link, useNavigate} from "react-router-dom";
 import { websiteUrl } from "../../../JS functions/websiteUrl";
 import validateEmailInput from "../../Auth/Auth-Input-Validation/validateEmailInput";
+import EmailSentPage from "./Email-sent-page/EmailSentPage";
 import { changeTabTitle } from "../../utilis/changeTabTitle";
 import { notificationColorsObj } from "../../utilis/colors/colors";
 
@@ -11,6 +12,7 @@ const emailNotRegisteredErrorMessage= "Email is not registered"
 const invalidEmailErrorMessage= "Please provide a valid email adress"
 
 export default function ForgotPassword() {
+  const [isEmailSent, setIsEmailSent] = useState(false)
   const [email, setEmail] = useState("")
   const [emailError, setEmailError] = useState("")
   const [textAreaError, setTextAreaError] = useState("")
@@ -36,7 +38,7 @@ export default function ForgotPassword() {
   try {
     const response = await axios.post(emailValidCheckUrl, {email});
     const data = await response.data;
-    if (data.emailSent) return (navigate('/email-sent'))
+    if (data.emailSent) return (setIsEmailSent(true))
 
   } catch (error) {
     console.log(error);
@@ -65,6 +67,12 @@ export default function ForgotPassword() {
 
 
     return (
+     <>
+     {
+      isEmailSent ? <EmailSentPage/> 
+      
+      : 
+
       <section className="main-container forgot-password-container" id="form">
         <article className="main__title">
           <h2>Forgotten Password</h2>
@@ -97,5 +105,7 @@ export default function ForgotPassword() {
           <button id="login_btn" className="submit-btn">Continue</button>
         </form>
       </section>
+    }
+    </> 
     );
 }
