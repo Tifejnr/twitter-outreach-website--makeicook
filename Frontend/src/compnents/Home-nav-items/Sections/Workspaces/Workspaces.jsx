@@ -15,7 +15,7 @@ export default function Workspaces() {
         </Link>
         <Link>
           <li>
-              <p>Delete team members from workspaces tool</p>
+              <p>Remove team members from workspaces tool</p>
           </li>
         </Link>
      </ul>

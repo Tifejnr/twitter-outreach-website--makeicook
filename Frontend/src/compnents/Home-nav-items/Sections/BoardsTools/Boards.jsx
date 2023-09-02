@@ -26,7 +26,7 @@ export default function Boards() {
           handlePageRefreshOnLoad(deleteFromBoardsLink)
         }}>
           <li>
-              <p>Delete team members from boards tool</p>
+              <p>Remove team members from boards tool</p>
           </li>
         </Link>
      </ul>
