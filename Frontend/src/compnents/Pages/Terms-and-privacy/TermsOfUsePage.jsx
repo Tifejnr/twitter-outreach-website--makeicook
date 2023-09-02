@@ -164,7 +164,7 @@ export default function TermsOfUsePage() {
             </article>
           </section>
         </section>
-      <CTAForTermsPolicy/>
+      <CTAForTermsPolicy title={termsPageSeoToMatch}/>
       </section>
       <FooterPages />
     </>

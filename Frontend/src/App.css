@@ -1609,6 +1609,13 @@ article.creditsNeededCont {
 
 .about-us-CTA-section {
   position: relative;
+  background-color: rgba(226, 223, 223, 0.2);
+  width: 100%;
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  padding: 2rem;
 }
 
 .about-us-CTA-section h1 {
@@ -1617,25 +1624,28 @@ article.creditsNeededCont {
 }
 
 .about-us-CTA-section .call-to-action-cont {
+  position: relative;
   display: grid;
   row-gap: 2rem;
+  width: 70%;
 }
 
 .about-us-CTA-section .call-to-action-cont .oauth-button {
   width: 100%;
   background-color: #101c77;
 }
+
 .about-us-CTA-section .call-to-action-cont .oauth-button:hover {
-  width: 100%;
   background-color: #4e59ad;
 }
 
 .about-us-CTA-section .call-to-action-cont .oauth-button h2 {
   color: #fff;
+  font-size: 1.8rem;
 }
 
 .call-to-action-cont p {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
 }
 
 .about-us-text-cont section a {
