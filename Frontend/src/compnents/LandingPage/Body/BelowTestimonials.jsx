@@ -16,9 +16,9 @@ export default function BelowTestimonials() {
             e.preventDefault()
             handlePageRefreshOnLoad(registerLink)
              }}>
-              <h2>Start for free  <span className='floating-arrow'>&#8594;</span> </h2>
+              <h2>Start for free</h2>
           </Link>
-                 <ul>
+            <ul>
               <li><p> 5 free credits for trial</p></li>
               <li> <p>No credit card required</p> </li>
           </ul>

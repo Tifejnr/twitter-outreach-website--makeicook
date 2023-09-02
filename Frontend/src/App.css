@@ -645,8 +645,9 @@ body {
 
 @media screen and (min-width: 760px) {
   .oauth-button {
-    width: 20rem;
+    width: 30rem;
     margin-top: 2rem;
+    height: 6rem;
   }
 }
 
@@ -671,6 +672,12 @@ body {
 @media screen and (min-width: 500px) {
   .oauth-button h2 {
     font-weight: 600;
+  }
+}
+@media screen and (min-width: 760px) {
+  .oauth-button h2 {
+    font-size: 2.5rem;
+    letter-spacing: 1px;
   }
 }
 
@@ -1603,8 +1610,10 @@ article.creditsNeededCont {
 .about-us-CTA-section {
   position: relative;
 }
-.about-us-CTA-section h2 {
+
+.about-us-CTA-section h1 {
   font-size: 2rem;
+  color: var(--dark-des-blue);
 }
 
 .about-us-CTA-section .call-to-action-cont {
