@@ -17,7 +17,6 @@ export default function ForgotPassword() {
   const [emailError, setEmailError] = useState("")
   const [textAreaError, setTextAreaError] = useState("")
   const [emailBorderColor, setEmailBorderColor]= useState(null)
-  const navigate = useNavigate();
 
  changeTabTitle(forgotPasswordTabTitle)
   async function sendEmailToServer (e) {
@@ -102,7 +101,7 @@ export default function ForgotPassword() {
             <p className="error" id="emailError" style={textareaErrorStyle}>{emailError}</p>
           </section>
 
-          <button id="login_btn" className="submit-btn">Continue</button>
+          <button id="login_btn" className="submit-btn" >Continue</button>
         </form>
       </section>
     }

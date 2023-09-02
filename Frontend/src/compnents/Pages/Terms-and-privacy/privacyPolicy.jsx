@@ -45,11 +45,11 @@ export default function PrivacyPolicyPage() {
             On this page, you may find out what information about you we gather when you interact with us, why we collect it and how we use, keep, and disclose it, as well as how we handle the personal data you offer us.
              Collab for Trello enables compliance with the GDPR when it processes personal data on behalf of its customers.
              If you live in California and want to learn more about your rights under the California Consumer Privacy Act of 2018 (“CCPA“).
-             You can also read upon our  <span></span>
+             {/* You can also read upon our  <span></span>
              <Link onClick={(e)=> {
               e.preventDefault()
               handlePageRefreshOnLoad(cookiesPolicyPageLink)
-              }}>Cookie Policy.</Link> This Privacy Statement (“Policy”) explains how we handle the information you submit to us via Collab for Trello.
+              }}>Cookie Policy.</Link> This Privacy Statement (“Policy”) explains how we handle the information you submit to us via Collab for Trello. */}          
               </p>
 
               <p>

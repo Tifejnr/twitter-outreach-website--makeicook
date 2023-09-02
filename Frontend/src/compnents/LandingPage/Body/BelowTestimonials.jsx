@@ -8,7 +8,7 @@ export default function BelowTestimonials() {
   return (
     <section className='hero-container below-testimonial-cont'> 
      <div className='hero-inner-container'>
-      <h1>Ready to try out Collab for Trello?</h1>
+      <h2>Ready to try out Collab for Trello?</h2>
        <h3>Eliminate manual addition and removal of members from boards and workspaces</h3>
 
         <section className='call-to-action-cont'>

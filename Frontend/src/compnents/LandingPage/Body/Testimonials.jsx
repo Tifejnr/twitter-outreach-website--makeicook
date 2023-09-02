@@ -4,20 +4,20 @@ export default function Testimonials() {
   return (
     <section className='testimonials-cont'>
 
-        <h1>Loved By Users Around The World</h1>
+        <h2>Loved By Users Around The World</h2>
 
         <article>
-            <h2>I love collab for Trello</h2>
+            <h3>I love collab for Trello</h3>
             <p>taiwo jesys</p>
         </article>
 
         <article>
-            <h2>I love collab for Trello</h2>
+            <h3>I love collab for Trello</h3>
             <p>Nida zakhmi</p>
         </article>
 
         <article>
-            <h2>I love collab for Trello</h2>
+            <h3>I love collab for Trello</h3>
             <p>Nodzakeyill Alex</p>
         </article>
 
