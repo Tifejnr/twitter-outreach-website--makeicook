@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import useStore from "../Hooks/Zustand/usersStore";
 import FailureDetails from "./FailureDetails";
 import failureToggleIcon from "../../assets/SVGs/failure-toggle.svg";
-import successToggleIcon from "../../assets/SVGs/faq-toggle-icon.svg"
+import successToggleIcon from "../../assets/SVGs/faq-toggle-icon.svg";
 
 export default function ProgressBar(props) {
   const failureLength = useStore((state) => state.failureLength);
@@ -17,7 +17,7 @@ export default function ProgressBar(props) {
   const [isClicked, setIsClicked] = useState(false);
 
   //props from execution
-  const labellingObj= props.labellingObj
+  const labellingObj = props.labellingObj;
   const totalDurationLength = labellingObj.totalDurationLength;
   const totalRounds = labellingObj.totalRounds;
   const continuousAction = labellingObj.continuousAction;
@@ -33,7 +33,7 @@ export default function ProgressBar(props) {
   };
   const expandFailureDetails = {
     overflow: isClicked && "visible",
-    maxHeight : isClicked && "100vh"
+    maxHeight: isClicked && "100vh",
   };
 
   let percentLoaded =
@@ -46,75 +46,99 @@ export default function ProgressBar(props) {
 
   return (
     <div className="loading" id="loading">
-     { isClicked? "" : <div
-        className={`barHolder ${
-          percentLoaded < 100 ? "moveFlame-animation" : ""
-        }`}>
-        <p>{Math.round(percentLoaded)}%</p>
+      {isClicked ? (
+        ""
+      ) : (
         <div
-          className={`progressing-bar ${
+          className={`barHolder ${
             percentLoaded < 100 ? "moveFlame-animation" : ""
-          }`}
-          style={updateBarWidth}></div>
-      </div>
-  }
-    <section >
-
-      {isClicked? "" : <section className="changing-ele-on-bar">
-        <h2 id="progressBarTitle" className="title">
-          {percentLoaded == 100
-            ? `${action} ${proposition} Boards Completed`
-            : `${continuousAction} ${userDetails} ${proposition} ${sectionName}`}
-        </h2>
-
-        <h2 id="totalRoundsEl" className="title">
-          {percentLoaded === 100
-            ? totalRounds === 1
-              ? ` ${userDetails} ${action} Completed`
-              : ` ${totalRounds} Members ${action} Completed`
-            : totalRounds === 1
-            ? `${continuousAction} ${totalRounds} Member...`
-            : `${continuousAction} ${totalRounds} Members...`}
-        </h2>
-
-        {percentLoaded != 100 && (
-          <h2 id="noOfRounds" className="title">
-            {continuousAction} Member {totalRounds >1 && currentRound}, {userDetails}
-          </h2>
-        )}
-        {percentLoaded == 100 ? (
-          <h3 id="successStatusTitle" className="title successTitle">
-             Total Successfull {action}s: {totalSucessLength}
-          </h3>
+          }`}>
+          <p>{Math.round(percentLoaded)}%</p>
+          <div
+            className={`progressing-bar ${
+              percentLoaded < 100 ? "moveFlame-animation" : ""
+            }`}
+            style={updateBarWidth}></div>
+        </div>
+      )}
+      <section>
+        {isClicked ? (
+          ""
         ) : (
-          <h3 id="successStatusTitle" className="title successTitle">
-              Member {totalRounds >1 && currentRound} Successfull {action}s: {sucessLength}
-          </h3>
+          <section className="changing-ele-on-bar">
+            <h2 id="progressBarTitle" className="title">
+              {percentLoaded == 100
+                ? `${action} ${proposition} Boards Completed`
+                : `${continuousAction} ${userDetails} ${proposition} ${sectionName}`}
+            </h2>
+
+            <h2 id="totalRoundsEl" className="title">
+              {percentLoaded === 100
+                ? totalRounds === 1
+                  ? ` ${userDetails} ${action} Completed`
+                  : ` ${totalRounds} Members ${action} Completed`
+                : totalRounds === 1
+                ? `${continuousAction} ${totalRounds} Member...`
+                : `${continuousAction} ${totalRounds} Members...`}
+            </h2>
+
+            {percentLoaded != 100 && (
+              <h2 id="noOfRounds" className="title">
+                {continuousAction} Member {totalRounds > 1 && currentRound},{" "}
+                {userDetails}
+              </h2>
+            )}
+            {percentLoaded === 100 && totalSucessLength === 0 ? (
+              <h3 id="successStatusTitle" className="title successTitle">
+                You may not be authorized to remove this type of member
+              </h3>
+            ) : percentLoaded === 100 ? (
+              <h3 id="successStatusTitle" className="title successTitle">
+                Total Successful {action}s: {totalSucessLength}
+              </h3>
+            ) : (
+              <h3 id="successStatusTitle" className="title successTitle">
+                Member {totalRounds > 1 && currentRound} Successful {action}s:{" "}
+                {sucessLength}
+              </h3>
+            )}
+
+            {percentLoaded == 100 ? (
+              <h3 id="failureTitle" className="title failureTitle">
+                Total Failed {action}s: {totalFailureLength}
+              </h3>
+            ) : (
+              <h3 id="failureTitle" className="title failureTitle">
+                Member {totalRounds > 1 && currentRound} Failed {action}s:{" "}
+                {failureLength}
+              </h3>
+            )}
+          </section>
         )}
-        {percentLoaded == 100 ? (
-          <h3 id="failureTitle" className="title failureTitle">
-            Total Failed {action}s: {totalFailureLength}
-          </h3>
-        ) : (
-          <h3 id="failureTitle" className="title failureTitle">
-           Member {totalRounds >1 && currentRound} Failed {action}s: {failureLength}
-          </h3>
-        )}
-    </section>     
-    }  
-     {failureReason.length > 0 && (
-          <section className="failureReasonsDisplay" style={expandFailureDetails}>
+        {failureReason.length > 0 && (
+          <section
+            className="failureReasonsDisplay"
+            style={expandFailureDetails}>
             <h3
               title="Click to see details"
               onClick={handleToggle}
               className="title failureReasonsDisplayTitle">
-             { isClicked ? <button title="close" className="back-to-progress-btn">Close</button> : "See Failure Details" }
-              { isClicked ? "" :  <img
-                style={rotateOnToggle}
-                src={failureToggleIcon}
-                alt="failure toggle icon"
-              />
-                  }
+              {isClicked ? (
+                <button title="close" className="back-to-progress-btn">
+                  Close
+                </button>
+              ) : (
+                "See Failure Details"
+              )}
+              {isClicked ? (
+                ""
+              ) : (
+                <img
+                  style={rotateOnToggle}
+                  src={failureToggleIcon}
+                  alt="failure toggle icon"
+                />
+              )}
             </h3>
 
             {failureReason.map((failureObj, index) => (
@@ -129,28 +153,30 @@ export default function ProgressBar(props) {
           </section>
         )}
 
-    {percentLoaded > 0 && !isClicked && <h3 className="title">Credit Charged: {totalRounds}</h3>}
-
-      </section>
-
-      { isClicked? "" : <section className="btn-section" id="btnSection">
-        
-        {percentLoaded == 100 ? (
-          <a href={`/${props.pageName}`}>
-            
-            <button className="okay-btn progressbar-btn" id="okay">
-              Okay
-            </button>
-          </a>
-        ) : (
-          <a href={`/${props.pageName}`}>
-            <button className="cancel-btn progressbar-btn" id="cancelBtn">
-              Cancel
-            </button>
-          </a>
+        {percentLoaded > 0 && !isClicked && (
+          <h3 className="title">Credit Charged: {totalRounds}</h3>
         )}
       </section>
-  }
+
+      {isClicked ? (
+        ""
+      ) : (
+        <section className="btn-section" id="btnSection">
+          {percentLoaded == 100 ? (
+            <a href={`/${props.pageName}`}>
+              <button className="okay-btn progressbar-btn" id="okay">
+                Okay
+              </button>
+            </a>
+          ) : (
+            <a href={`/${props.pageName}`}>
+              <button className="cancel-btn progressbar-btn" id="cancelBtn">
+                Cancel
+              </button>
+            </a>
+          )}
+        </section>
+      )}
     </div>
   );
 }

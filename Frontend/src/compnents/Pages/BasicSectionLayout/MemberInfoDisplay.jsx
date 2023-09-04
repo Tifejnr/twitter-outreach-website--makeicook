@@ -18,10 +18,10 @@ export default function MemberInfoDisplay(props) {
   // useEffect is used for side effects in React. This effect runs once when the component mounts.
   useEffect(() => {
     // If the member is a board admin, push the checkbox reference to the checkboxes array.
-    // if (isBoardMemberAdmin) {
+    if (isBoardMemberAdmin) {
       const checkboxEle = checkboxRef.current;
       pushMemberCheckboxesArray(checkboxEle);
-    // }
+    }
   }, []);
 
   // Extract member details and board information from props.
@@ -97,7 +97,7 @@ export default function MemberInfoDisplay(props) {
 
   // Render the component.
   return (
-    // isBoardMemberAdmin && ( // Render the following only if the member is an admin.
+    isBoardMemberAdmin && ( // Render the following only if the member is an admin.
       <form className="member-list-form eachMemberListCont">
         <section className="member-info-container">
           <input
@@ -129,6 +129,6 @@ export default function MemberInfoDisplay(props) {
           </article>
         </section>
       </form>
-    // )
+    )
   );
 }
