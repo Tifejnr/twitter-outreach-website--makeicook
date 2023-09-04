@@ -4,7 +4,6 @@ import closeErrorIcon from "../../../assets/SVGs/close-icon.svg"
 
 export default function SelectAll(props) {
   const [isAllChecked, setIsAllChecked] = useState(false);
-  const [isThereError, setIsThereError] = useState(false);
   const checkboxRatioNotifierDisplay = useStore(
     (state) => state.checkboxRatioNotifierDisplay
   );
@@ -21,9 +20,11 @@ export default function SelectAll(props) {
  //display counts of checked to unchecked checkboxes
    const checkboxRatioNotifier = () => {
     const totalCheckboxes = checkboxesArray.length;
+
     const noOfChecked = checkboxesArray.filter(
       (checkbox) => checkbox.checked
     ).length;
+
 
     const checkboxRatioNotifierValue = `${noOfChecked} of ${totalCheckboxes}`;
     setCheckboxRatioNotifierDisplay(checkboxRatioNotifierValue);
@@ -31,10 +32,6 @@ export default function SelectAll(props) {
 
   //select all checkbox function
  function CheckAll() {
-  const formMembersListArray = document.getElementsByClassName("eachMemberListCont");
-  
-  console.log( formMembersListArray.length);
-
   checkboxesArray.forEach((checkbox) => {
     checkbox.checked = true;
   });

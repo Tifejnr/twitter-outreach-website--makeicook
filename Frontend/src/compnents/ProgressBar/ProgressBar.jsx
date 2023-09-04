@@ -1,10 +1,13 @@
+// Import necessary dependencies and components from external files and libraries
 import React, { useEffect, useState, useContext } from "react";
 import useStore from "../Hooks/Zustand/usersStore";
 import FailureDetails from "./FailureDetails";
 import failureToggleIcon from "../../assets/SVGs/failure-toggle.svg";
-import successToggleIcon from "../../assets/SVGs/faq-toggle-icon.svg";
 
+
+// Define the ProgressBar component
 export default function ProgressBar(props) {
+  // Retrieve various state variables from the custom hook 'useStore'
   const failureLength = useStore((state) => state.failureLength);
   const totalFailureLength = useStore((state) => state.totalFailureLength);
   const sucessLength = useStore((state) => state.sucessLength);
@@ -14,9 +17,11 @@ export default function ProgressBar(props) {
   const totalAttemptLength = useStore((state) => state.totalAttemptLength);
   const currentRound = useStore((state) => state.currentRound);
   const failureReason = useStore((state) => state.failureReason);
+
+  // Define a local state variable 'isClicked' and its updater function 'setIsClicked'
   const [isClicked, setIsClicked] = useState(false);
 
-  //props from execution
+  // Extract 'labellingObj' and its properties from the 'props' object
   const labellingObj = props.labellingObj;
   const totalDurationLength = labellingObj.totalDurationLength;
   const totalRounds = labellingObj.totalRounds;
@@ -24,10 +29,12 @@ export default function ProgressBar(props) {
   const action = labellingObj.action;
   const proposition = labellingObj.proposition;
 
+  // Function to toggle the 'isClicked' state
   const handleToggle = () => {
     setIsClicked((prevState) => !prevState);
   };
 
+  // CSS styles for rotating an icon and expanding a section based on 'isClicked' state
   const rotateOnToggle = {
     transform: isClicked && "rotate(180deg)",
   };
@@ -36,14 +43,16 @@ export default function ProgressBar(props) {
     maxHeight: isClicked && "100vh",
   };
 
-  let percentLoaded =
-    (Number(totalAttemptLength) / Number(totalDurationLength)) * 100;
+  // Calculate the percentage of loading progress
+  let percentLoaded = (Number(totalAttemptLength) / Number(totalDurationLength)) * 100;
 
+  // CSS style to update the width of the progress bar and disable animation when 100% loaded
   let updateBarWidth = {
     width: `${percentLoaded}%`,
-    aimation: percentLoaded == 100 && "none",
+    animation: percentLoaded === 100 && "none",
   };
 
+  // Render the JSX for the ProgressBar component
   return (
     <div className="loading" id="loading">
       {isClicked ? (
@@ -66,8 +75,9 @@ export default function ProgressBar(props) {
           ""
         ) : (
           <section className="changing-ele-on-bar">
+            {/* Render various pieces of information based on loading progress */}
             <h2 id="progressBarTitle" className="title">
-              {percentLoaded == 100
+              {percentLoaded === 100
                 ? `${action} ${proposition} Boards Completed`
                 : `${continuousAction} ${userDetails} ${proposition} ${sectionName}`}
             </h2>
@@ -82,10 +92,9 @@ export default function ProgressBar(props) {
                 : `${continuousAction} ${totalRounds} Members...`}
             </h2>
 
-            {percentLoaded != 100 && (
+            {percentLoaded !== 100 && (
               <h2 id="noOfRounds" className="title">
-                {continuousAction} Member {totalRounds > 1 && currentRound},{" "}
-                {userDetails}
+                {`${continuousAction} Member ${totalRounds > 1 && currentRound}, ${userDetails}`}
               </h2>
             )}
             {percentLoaded === 100 && totalSucessLength === 0 ? (
@@ -98,23 +107,22 @@ export default function ProgressBar(props) {
               </h3>
             ) : (
               <h3 id="successStatusTitle" className="title successTitle">
-                Member {totalRounds > 1 && currentRound} Successful {action}s:{" "}
-                {sucessLength}
+                Member {totalRounds > 1 && currentRound} Successful {action}s: {sucessLength}
               </h3>
             )}
 
-            {percentLoaded == 100 ? (
+            {percentLoaded === 100 ? (
               <h3 id="failureTitle" className="title failureTitle">
                 Total Failed {action}s: {totalFailureLength}
               </h3>
             ) : (
               <h3 id="failureTitle" className="title failureTitle">
-                Member {totalRounds > 1 && currentRound} Failed {action}s:{" "}
-                {failureLength}
+                Member {totalRounds > 1 && currentRound} Failed {action}s: {failureLength}
               </h3>
             )}
           </section>
         )}
+        {/* Render failure details if available */}
         {failureReason.length > 0 && (
           <section
             className="failureReasonsDisplay"
@@ -141,6 +149,7 @@ export default function ProgressBar(props) {
               )}
             </h3>
 
+            {/* Map and render individual failure details */}
             {failureReason.map((failureObj, index) => (
               <FailureDetails
                 key={index}
@@ -153,6 +162,7 @@ export default function ProgressBar(props) {
           </section>
         )}
 
+        {/* Render credit charged information if loading progress is greater than 0 and not clicked */}
         {percentLoaded > 0 && !isClicked && (
           <h3 className="title">Credit Charged: {totalRounds}</h3>
         )}
@@ -162,7 +172,8 @@ export default function ProgressBar(props) {
         ""
       ) : (
         <section className="btn-section" id="btnSection">
-          {percentLoaded == 100 ? (
+          {/* Render different buttons based on loading progress */}
+          {percentLoaded === 100 ? (
             <a href={`/${props.pageName}`}>
               <button className="okay-btn progressbar-btn" id="okay">
                 Okay
@@ -180,48 +191,3 @@ export default function ProgressBar(props) {
     </div>
   );
 }
-
-// function ProgressBarExecution(progressBarParams) {
-
-//   const userDetail= progressBarParams.userDetail
-//   const isAddedTo = progressBarParams.isAddedTo
-//   const noOfCheckedCheckbox= progressBarParams.noOfCheckedCheckbox
-//   const successLength= progressBarParams.successLength + 1
-//   const action= progressBarParams.action
-//   let failuresArrayLength= progressBarParams.failuresArrayLength
-//   const totalAttemptedArrayLength= progressBarParams.totalAttemptedArrayLength
-
-// if (failuresArrayLength==undefined) {
-//   failuresArrayLength= 0
-//  }
-
-// const progressBarTitle = document.getElementById("progressBarTitle");
-// const successStatusTitle = document.getElementById("successStatusTitle");
-// const failureTitle = document.getElementById("failureTitle");
-// const mainContentCont = document.getElementById("mainContentCont");
-// const BAR = document.getElementById("bar");
-// const progressBarContainer = document.getElementById("loading");
-// const allForms = document.getElementsByTagName("form");
-// progressBarTitle.innerHTML=""
-
-// if (action =="deleting") {
-//   progressBarTitle.innerHTML = `Deleting ${userDetail} from ${noOfCheckedCheckbox} Boards... `;
-//   successStatusTitle.innerHTML = `Successful ${isAddedTo} Deletions: ${successLength}`;
-//   failureTitle.innerHTML = `Failed Deletions: ${failuresArrayLength}`;
-// }
-
-// if (action=="adding") {
-//   progressBarTitle.innerHTML = `Adding ${userDetail} to ${noOfCheckedCheckbox} Boards... `;
-//   successStatusTitle.innerHTML = `Successful ${isAddedTo} Additions: ${successLength}`;
-//   failureTitle.innerHTML = `Failed Additions: ${failuresArrayLength}`;
-
-// }
-//   hide(mainContentCont);
-//   hideForms(allForms);
-//   display(progressBarContainer);
-//   display(btnSection);
-
-//   let percentLoaded = (Number(totalAttemptedArrayLength) / Number(noOfCheckedCheckbox)) * 100;
-
-//   BAR.style.width = percentLoaded + "%";
-// }

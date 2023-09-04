@@ -821,7 +821,7 @@ form:last-child {
 /* No of Selection display box */
 #para {
   position: fixed;
-  top: 50%;
+  top: 60%;
   left: 90%;
   border: 1px solid gray;
   padding: 1rem;

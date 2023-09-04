@@ -18,10 +18,10 @@ export default function MemberInfoDisplay(props) {
   // useEffect is used for side effects in React. This effect runs once when the component mounts.
   useEffect(() => {
     // If the member is a board admin, push the checkbox reference to the checkboxes array.
-    if (isBoardMemberAdmin) {
+    // if (isBoardMemberAdmin) {
       const checkboxEle = checkboxRef.current;
       pushMemberCheckboxesArray(checkboxEle);
-    }
+    // }
   }, []);
 
   // Extract member details and board information from props.
@@ -97,7 +97,6 @@ export default function MemberInfoDisplay(props) {
 
   // Render the component.
   return (
-    isBoardMemberAdmin && ( // Render the following only if the member is an admin.
       <form className="member-list-form eachMemberListCont">
         <section className="member-info-container">
           <input
@@ -109,6 +108,7 @@ export default function MemberInfoDisplay(props) {
             className="inputs board-checkbox"
             id={`checkMembers${props.indexNo}`}
           />
+          
           <article onClick={handleToggle} title="Click to see boards member belongs to">
             <p id={`fullname${props.indexNo}`}>{memberDetailObj.fullName}
               <picture title="Show boards member belongs to">
@@ -118,17 +118,18 @@ export default function MemberInfoDisplay(props) {
             <p id={`username${props.indexNo}`}>@{memberDetailObj.username}</p>
 
             <ul style={openBoardsListStyle}>
-              <h3>Boards member belongs to:</h3>
+            {!isBoardMemberAdmin && <p className="notYourPersonal">Belongs to a board you didn't create</p>}
+              {/* <h3>Boards member belongs to:</h3> */}
 
-              {allBoardMemberBelongsArray.length > 0 && (
-                Array.from(allBoardMemberBelongsArray).map((boardName, index) => {
-                  return <li key={index}>{index + 1}. {boardName}</li>;
-                })
-              )}
+              {/* {allBoardMemberBelongsArray.length > 0 && (
+                // Array.from(allBoardMemberBelongsArray).map((boardName, index) => {
+                //   return <li key={index}>{index + 1}. {boardName}</li>;
+                // })
+              ) */}
+              {/* } */}
             </ul>
           </article>
         </section>
       </form>
-    )
   );
 }
