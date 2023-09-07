@@ -11,9 +11,12 @@ export default async function getCheckoutLink(planName) {
 
     if (response.unauthorizedToken) return response;
     const checkoutUrl = response.data.checkoutUrl;
-    if (checkoutUrl) return checkoutUrl;
+
+    console.log(checkoutUrl);
+    if (checkoutUrl) return { checkoutUrl };
     // const data = await response.data;
   } catch (error) {
+    console.log("checkout error", error);
     const errorDetail = error.response.data;
     if (errorDetail) return errorDetail;
 

@@ -37,37 +37,41 @@ function getCheckoutLink(planName) {
 
         case 8:
           checkoutUrl = response.data.checkoutUrl;
+          console.log(checkoutUrl);
 
           if (!checkoutUrl) {
-            _context.next = 11;
+            _context.next = 12;
             break;
           }
 
-          return _context.abrupt("return", checkoutUrl);
+          return _context.abrupt("return", {
+            checkoutUrl: checkoutUrl
+          });
 
-        case 11:
-          _context.next = 19;
+        case 12:
+          _context.next = 21;
           break;
 
-        case 13:
-          _context.prev = 13;
+        case 14:
+          _context.prev = 14;
           _context.t0 = _context["catch"](2);
+          console.log("checkout error", _context.t0);
           errorDetail = _context.t0.response.data;
 
           if (!errorDetail) {
-            _context.next = 18;
+            _context.next = 20;
             break;
           }
 
           return _context.abrupt("return", errorDetail);
 
-        case 18:
+        case 20:
           return _context.abrupt("return", false);
 
-        case 19:
+        case 21:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[2, 13]]);
+  }, null, null, [[2, 14]]);
 }

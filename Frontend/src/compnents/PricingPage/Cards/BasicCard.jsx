@@ -14,9 +14,12 @@ export default function BasicCard(props) {
       const planName = planNameRef.current.innerHTML;
       const response = await getCheckoutLink(planName);
 
+      
+      console.log(response)
+
       if (response.unauthorizedToken)  return ( navigate('/register'))
 
-      const checkoutUrl= response
+      const checkoutUrl= response.checkoutUrl
 
     // Redirect the user to the specified link
     window.location.href = checkoutUrl
