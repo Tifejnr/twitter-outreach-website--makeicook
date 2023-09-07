@@ -1,6 +1,6 @@
 const basicPlanObj = {
   planName: "Basic",
-  suitabilityTimeUsage: 20,
+  perCreditInfo: 0.25,
   planCreditsAmount: 20,
   planPrice: 4.99,
   choiceIndcator: true,
@@ -8,15 +8,15 @@ const basicPlanObj = {
 
 const standardPlanObj = {
   planName: "Standard",
-  suitabilityTimeUsage: 20,
-  planCreditsAmount: 110,
+  perCreditInfo: 0.2,
+  planCreditsAmount: 100,
   planPrice: 19,
 };
 
 const PremiumPlanObj = {
   planName: "Premium",
-  suitabilityTimeUsage: 100,
-  planCreditsAmount: 500,
+  perCreditInfo: 0.16,
+  planCreditsAmount: 310,
   planPrice: 49,
 };
 
