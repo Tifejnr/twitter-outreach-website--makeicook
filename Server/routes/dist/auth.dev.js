@@ -85,7 +85,7 @@ router.post("/", function _callee(req, res) {
         case 19:
           cookieOptions = {
             maxAge: 1209600000,
-            httpOnly: true
+            secure: true
           };
           console.log("signed in");
           res.cookie("cftAuth", token, cookieOptions).json({

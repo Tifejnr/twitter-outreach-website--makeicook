@@ -33,7 +33,6 @@ router.post("/", async (req, res) => {
 
     const cookieOptions = {
       maxAge: 1209600000,
-      httpOnly: true,
       secure: true,
     };
 

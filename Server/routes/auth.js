@@ -30,9 +30,10 @@ router.post("/", async (req, res) => {
     const token = await signJwt(accountUser);
 
     if (!token) return console.log("token not found");
+
     const cookieOptions = {
       maxAge: 1209600000,
-      httpOnly: true,
+      secure: true,
     };
 
     console.log("signed in");
