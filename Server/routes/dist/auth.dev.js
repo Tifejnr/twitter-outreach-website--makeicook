@@ -87,26 +87,27 @@ router.post("/", function _callee(req, res) {
             maxAge: 1209600000,
             secure: true
           };
+          res.cookie("cftAuth", token, cookieOptions);
           console.log("signed in");
-          res.cookie("cftAuth", token, cookieOptions).json({
+          res.json({
             signedIn: true
           });
-          _context.next = 28;
+          _context.next = 29;
           break;
 
-        case 24:
-          _context.prev = 24;
+        case 25:
+          _context.prev = 25;
           _context.t0 = _context["catch"](3);
           console.log(_context.t0);
           return _context.abrupt("return", res.json({
             error: _context.t0
           }));
 
-        case 28:
+        case 29:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[3, 24]]);
+  }, null, null, [[3, 25]]);
 });
 module.exports = router;
