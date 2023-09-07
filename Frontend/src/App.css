@@ -1098,7 +1098,13 @@ a .buy-credits-nav-home:hover {
 
 .pricing-section header p {
   font-size: 1.8rem;
-  font-weight: 400;
+  font-weight: 500;
+  margin-bottom: 3.4rem;
+}
+@media (min-width: 768px) {
+  .pricing-section header p {
+    margin-bottom: 0;
+  }
 }
 
 .pricing-cont {
