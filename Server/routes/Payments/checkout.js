@@ -12,8 +12,8 @@ const { allPlansArrayObj } = require("./allPlanDetails/allPlans");
 
 const keysObjects = getKeys();
 const apiKey = keysObjects.lemonApiKey;
+const storeId = keysObjects.storeId;
 
-const storeId = "41389";
 const redirectUrl = "https://www.collabfortrello.com";
 
 router.post("/", async (req, res) => {

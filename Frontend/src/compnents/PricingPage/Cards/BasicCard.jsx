@@ -13,6 +13,7 @@ export default function BasicCard(props) {
     if (!planNameRef.current) return console.log("plan name ref not found")
       const planName = planNameRef.current.innerHTML;
       const response = await getCheckoutLink(planName);
+
       if (response.unauthorizedToken)  return ( navigate('/register'))
 
       const checkoutUrl= response
