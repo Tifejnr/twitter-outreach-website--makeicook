@@ -6,7 +6,11 @@ module.exports = function (app) {
     helmet.contentSecurityPolicy({
       directives: {
         defaultSrc: ["'self'"],
-        scriptSrc: ["'self'", "https://www.googletagmanager.com"],
+        connectSrc: [
+          "'self'",
+          "https://www.collabfortrello.com",
+          "https://www.google-analytics.com",
+        ],
         // Add other directives as needed
       },
     })
