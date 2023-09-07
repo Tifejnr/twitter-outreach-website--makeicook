@@ -48,9 +48,8 @@ var userToken = require("./middlewares/token-safety/decryptToken");
 
 var isUserAuthorized = require("./middlewares/jwt-related/authorizedUserVerification");
 
-require("dotenv").config();
-
-require("./startup/prod")(app); //webhooks set here so req.body does not get parsed into json before reaching the route. raw body is needed
+require("dotenv").config(); // require("./startup/prod")(app);
+//webhooks set here so req.body does not get parsed into json before reaching the route. raw body is needed
 
 
 var webhooks = require("./routes/Payments/webhooks");
