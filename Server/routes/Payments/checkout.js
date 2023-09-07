@@ -66,7 +66,7 @@ router.post("/", async (req, res) => {
     const checkoutUrl = newCheckout.data.attributes.url;
     return res.json({ checkoutUrl });
   } catch (error) {
-    console.log("An error occurred:", error);
+    console.log("An error occurred in checkout:", error);
     res.json({ error });
   }
 });

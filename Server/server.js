@@ -25,7 +25,7 @@ const signatureChecker = require("./middlewares/signature/checkSignature");
 const userToken = require("./middlewares/token-safety/decryptToken");
 const isUserAuthorized = require("./middlewares/jwt-related/authorizedUserVerification");
 require("dotenv").config();
-// require("./startup/prod")(app);
+require("./startup/prod")(app);
 
 //webhooks set here so req.body does not get parsed into json before reaching the route. raw body is needed
 const webhooks = require("./routes/Payments/webhooks");

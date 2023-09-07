@@ -105,7 +105,7 @@ router.post("/", function _callee(req, res) {
         case 23:
           _context.prev = 23;
           _context.t0 = _context["catch"](1);
-          console.log("An error occurred:", _context.t0);
+          console.log("An error occurred in checkout:", _context.t0);
           res.json({
             error: _context.t0
           });
