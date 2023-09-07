@@ -12,17 +12,17 @@ export default function BasicCard(props) {
     const planCheckout = async () => {
     if (!planNameRef.current) return console.log("plan name ref not found")
       const planName = planNameRef.current.innerHTML;
-      const response = await getCheckoutLink(planName);
-
-      
+      const response = await getCheckoutLink(planName); 
       console.log(response)
 
       if (response.unauthorizedToken)  return ( navigate('/register'))
 
-      const checkoutUrl= response.checkoutUrl
+      if (response.invalidJWT)  return ( navigate('/sign-in'))
+
+      const checkoutUrl = response.checkoutUrl
 
     // Redirect the user to the specified link
-    window.location.href = checkoutUrl
+  if (checkoutUrl)  window.location.href = checkoutUrl
   };
 
   return (
