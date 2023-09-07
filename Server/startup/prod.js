@@ -7,6 +7,7 @@ module.exports = function (app) {
       directives: {
         defaultSrc: ["'self'"],
         connectSrc: ["'self'", "https://www.collabfortrello.com"],
+        scriptSrc: ["'self'", "https://www.googletagmanager.com"],
         // Add other directives as needed
       },
     })
