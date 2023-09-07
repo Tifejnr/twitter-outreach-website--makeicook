@@ -11,6 +11,7 @@ module.exports = function (app) {
           "https://www.collabfortrello.com",
           "https://www.google-analytics.com",
         ],
+        scriptSrc: ["'self'", "https://www.googletagmanager.com"],
         // Add other directives as needed
       },
     })
