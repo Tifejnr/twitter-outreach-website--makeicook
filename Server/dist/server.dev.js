@@ -64,7 +64,13 @@ mongoose.connect(mongoDB_string).then(function () {
 })["catch"](function (err) {
   return console.error("could not connect", err);
 });
-app.use(cors());
+var corsOptions = {
+  origin: true,
+  //included origin as true
+  credentials: true //included credentials as true
+
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(coookieParser()); //Importing api routes
 
