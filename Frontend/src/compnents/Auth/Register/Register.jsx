@@ -142,7 +142,7 @@ if(!validateFunctionResponse.emailValResponse && !validateFunctionResponse.passw
       </fieldset>
 
        <h3 className="policy-agreement-text">
-          By Registering, I agree to Work for Reputation's
+          By Registering, I agree to Work for Reputation's <span></span>
           <Link to={termsPageLink} onClick={(e)=> {
             e.preventDefault();
             handlePageRefreshOnLoad(termsPageLink)

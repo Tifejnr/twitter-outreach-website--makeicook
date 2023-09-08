@@ -37,6 +37,10 @@ var _require6 = require("./utilis/oauth/oauth-and-callback"),
 var _require7 = require("./utilis/workspaces/workspacesNames"),
     getWorkspaceName = _require7.getWorkspaceName;
 
+require("dotenv").config();
+
+require("./startup/prod")(app);
+
 var _require8 = require("./envKeys/allKeys"),
     getKeys = _require8.getKeys;
 
@@ -46,11 +50,7 @@ var signatureChecker = require("./middlewares/signature/checkSignature");
 
 var userToken = require("./middlewares/token-safety/decryptToken");
 
-var isUserAuthorized = require("./middlewares/jwt-related/authorizedUserVerification");
-
-require("dotenv").config();
-
-require("./startup/prod")(app); //webhooks set here so req.body does not get parsed into json before reaching the route. raw body is needed
+var isUserAuthorized = require("./middlewares/jwt-related/authorizedUserVerification"); //webhooks set here so req.body does not get parsed into json before reaching the route. raw body is needed
 
 
 var webhooks = require("./routes/Payments/webhooks");
@@ -129,15 +129,12 @@ app.post("/isloggedIn", loginStatusChecker, function _callee2(req, res) {
     }
   });
 });
-app.post("/is-account-authorized", [loginStatusChecker, isUserAuthorized], function _callee3(req, res) {
+app.get("/cookie", function _callee3(req, res) {
   return regeneratorRuntime.async(function _callee3$(_context3) {
     while (1) {
       switch (_context3.prev = _context3.next) {
         case 0:
-          res.json({
-            authorized: true,
-            userCredits: userCredits
-          });
+          res.cookie("cftAuth", "Laoakkkkkkkkkkkkkkkkkkkkkkkkkkanaananan");
 
         case 1:
         case "end":
@@ -146,12 +143,15 @@ app.post("/is-account-authorized", [loginStatusChecker, isUserAuthorized], funct
     }
   });
 });
-app.post("/authorize", loginStatusChecker, function _callee4(req, res) {
+app.post("/is-account-authorized", [loginStatusChecker, isUserAuthorized], function _callee4(req, res) {
   return regeneratorRuntime.async(function _callee4$(_context4) {
     while (1) {
       switch (_context4.prev = _context4.next) {
         case 0:
-          login(req, res);
+          res.json({
+            authorized: true,
+            userCredits: userCredits
+          });
 
         case 1:
         case "end":
@@ -160,12 +160,12 @@ app.post("/authorize", loginStatusChecker, function _callee4(req, res) {
     }
   });
 });
-app.post("/start", [loginStatusChecker, isUserAuthorized, userToken], function _callee5(req, res) {
+app.post("/authorize", loginStatusChecker, function _callee5(req, res) {
   return regeneratorRuntime.async(function _callee5$(_context5) {
     while (1) {
       switch (_context5.prev = _context5.next) {
         case 0:
-          fetchAllBoards(req, res);
+          login(req, res);
 
         case 1:
         case "end":
@@ -174,12 +174,12 @@ app.post("/start", [loginStatusChecker, isUserAuthorized, userToken], function _
     }
   });
 });
-app.post("/add", [loginStatusChecker, isUserAuthorized, userToken, signatureChecker], function _callee6(req, res) {
+app.post("/start", [loginStatusChecker, isUserAuthorized, userToken], function _callee6(req, res) {
   return regeneratorRuntime.async(function _callee6$(_context6) {
     while (1) {
       switch (_context6.prev = _context6.next) {
         case 0:
-          addMemberToBoard(req, res);
+          fetchAllBoards(req, res);
 
         case 1:
         case "end":
@@ -188,46 +188,60 @@ app.post("/add", [loginStatusChecker, isUserAuthorized, userToken, signatureChec
     }
   });
 });
-app.post("/find-member-id", [loginStatusChecker, isUserAuthorized, userToken, signatureChecker], function _callee7(req, res) {
+app.post("/add", [loginStatusChecker, isUserAuthorized, userToken, signatureChecker], function _callee7(req, res) {
   return regeneratorRuntime.async(function _callee7$(_context7) {
     while (1) {
       switch (_context7.prev = _context7.next) {
         case 0:
-          _context7.next = 2;
-          return regeneratorRuntime.awrap(findMemberId(req, res));
+          addMemberToBoard(req, res);
 
-        case 2:
+        case 1:
         case "end":
           return _context7.stop();
       }
     }
   });
 });
-app.post("/delete-from-boards", [loginStatusChecker, isUserAuthorized, userToken, signatureChecker], function _callee8(req, res) {
+app.post("/find-member-id", [loginStatusChecker, isUserAuthorized, userToken, signatureChecker], function _callee8(req, res) {
   return regeneratorRuntime.async(function _callee8$(_context8) {
     while (1) {
       switch (_context8.prev = _context8.next) {
         case 0:
-          deleteMemberFromBoard(req, res);
+          _context8.next = 2;
+          return regeneratorRuntime.awrap(findMemberId(req, res));
 
-        case 1:
+        case 2:
         case "end":
           return _context8.stop();
       }
     }
   });
-}); //workspaces routes
-
-app.post("/get-workspace-name", [loginStatusChecker, isUserAuthorized, userToken, signatureChecker], function _callee9(req, res) {
+});
+app.post("/delete-from-boards", [loginStatusChecker, isUserAuthorized, userToken, signatureChecker], function _callee9(req, res) {
   return regeneratorRuntime.async(function _callee9$(_context9) {
     while (1) {
       switch (_context9.prev = _context9.next) {
+        case 0:
+          deleteMemberFromBoard(req, res);
+
+        case 1:
+        case "end":
+          return _context9.stop();
+      }
+    }
+  });
+}); //workspaces routes
+
+app.post("/get-workspace-name", [loginStatusChecker, isUserAuthorized, userToken, signatureChecker], function _callee10(req, res) {
+  return regeneratorRuntime.async(function _callee10$(_context10) {
+    while (1) {
+      switch (_context10.prev = _context10.next) {
         case 0:
           getWorkspaceName(req, res);
 
         case 1:
         case "end":
-          return _context9.stop();
+          return _context10.stop();
       }
     }
   });
