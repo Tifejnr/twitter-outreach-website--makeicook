@@ -28,10 +28,12 @@ export default function MainContactPage() {
       </ul>
   </nav>
 
- <section className="main-pricing-section-alone">
-    <ContactUs/>
-  </section>
-<FooterPages/>
-    </>
+    <section className="main-pricing-section-alone">
+        <ContactUs/>
+    </section>
+
+    <FooterPages/>
+
+  </>
   )
 }

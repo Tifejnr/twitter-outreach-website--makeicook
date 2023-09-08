@@ -2,13 +2,6 @@
   font-size: 62.5%;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
-}
-
 .main-pricing-section-alone {
   position: relative;
   top: 5rem;
@@ -161,8 +154,8 @@ body {
 .contact-us-form .form-textarea:focus ~ .form-textarea-label {
   color: #515151;
   transform: translateY(-82%);
-  font-size: 13px;
-  line-height: 23px;
+  font-size: 1.3rem;
+  line-height: 2;
 }
 
 .contact-us-form .form-textarea:-webkit-autofill,
@@ -198,7 +191,7 @@ body {
   border-radius: 6px;
   transition: all 0.5s ease;
   cursor: pointer;
-  box-shadow: 0 0 5px 5px #17252a;
+  box-shadow: 0 0 2px 2px #17252a;
 }
 .btn-wrap button:hover {
   border: 1px solid #17252a;
