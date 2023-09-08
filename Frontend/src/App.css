@@ -204,7 +204,6 @@ body {
 }
 
 .nav__toggle .close {
-  display: none;
   fill: #ff3860;
 }
 
@@ -294,12 +293,7 @@ body {
 #nav__checkbox:checked ~ ul.nav__menu li {
   display: block;
 }
-#nav__checkbox:checked ~ label.nav__toggle .close {
-  display: block;
-}
-#nav__checkbox:checked ~ label.nav__toggle .menu {
-  display: none;
-}
+
 #nav .nav-list {
   padding: 0.6rem;
 }

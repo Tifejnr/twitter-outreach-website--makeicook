@@ -117,7 +117,7 @@ if(!validateFunctionResponse.emailValResponse && !validateFunctionResponse.passw
 
      <fieldset className="input-wrapper">
         <label htmlFor="emailId"><p>Email</p></label>
-        <input type="email" placeholder="Enter your email" id="emailId" value={email}
+        <input type="email" placeholder="Please enter an email you can access" id="emailId" value={email}
            onChange={(e)=> setEmail(e.target.value)} 
            style={emailBorderStyle}
         />
@@ -127,7 +127,7 @@ if(!validateFunctionResponse.emailValResponse && !validateFunctionResponse.passw
       <fieldset className="input-wrapper">
         <label htmlFor="passwordId"><p>Password</p></label>
         <section className="innerInputWrapper"   style={passwordBorderStyle}>
-           <input type={passwordVisible ? "text" : "password"} placeholder="Enter your password" id="passwordId" value={password} 
+           <input type={passwordVisible ? "text" : "password"} placeholder="Minimum of 6 characters" id="passwordId" value={password} 
                  onChange={(e)=> setPassword(e.target.value)} 
         />
 

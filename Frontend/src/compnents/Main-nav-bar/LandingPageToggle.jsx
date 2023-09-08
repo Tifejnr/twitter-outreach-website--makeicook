@@ -1,13 +1,21 @@
-import React from 'react'
+import React , {useState} from 'react'
 import { Link } from 'react-router-dom'
 import ToggleLabel from './ToggleLabel'
 import handlePageRefreshOnLoad from '../utilis/refreshPageOnLoad'
 
 export default function LandingPageToggle(props) {
 
+    // Define a state variable to keep track of the toggle state
+  const [toggle, setToggle] = useState(true);
+
+  // Function to handle the button click and toggle the state
+  const handleClick = () => {
+    setToggle((toggle)=>!toggle);
+  };
+
   return (
     <>
-     <input type="checkbox" id="nav__checkbox" className="nav__checkbox" />
+     <input type="checkbox" id="nav__checkbox" className="nav__checkbox"  onChange={handleClick}/>
       <section className="mainNavIcons">
           {
           props.noCredits ? "" :
@@ -24,7 +32,7 @@ export default function LandingPageToggle(props) {
 
         </article>
          } 
-        <ToggleLabel/>
+        <ToggleLabel toggle={toggle}/>
       </section>
    </>
   )
