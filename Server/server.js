@@ -85,11 +85,11 @@ app.get("*", function (req, res) {
   );
 });
 
-app.set("view engine", "ejs");
-app.set(
-  "views",
-  path.join(__dirname, "../../Trello-Project-React/Frontend/views")
-);
+// app.set("view engine", "ejs");
+// app.set(
+//   "views",
+//   path.join(__dirname, "../../Trello-Project-React/Frontend/views")
+// );
 
 // Routes Handling Section
 
@@ -97,9 +97,11 @@ app.post("/isloggedIn", loginStatusChecker, async (req, res) => {
   res.json({ loggedIn: true });
 });
 
-app.get("/cookie", async (req, res) => {
-  res.cookie("cftAuth", "Laoakkkkkkkkkkkkkkkkkkkkkkkkkkanaananan");
+app.get("/set-cookie", (req, res) => {
+  res.cookie("myCookieName", "cookieValue", { maxAge: 900000, httpOnly: true });
+  res.send("Cookie set successfully!");
 });
+
 app.post(
   "/is-account-authorized",
   [loginStatusChecker, isUserAuthorized],

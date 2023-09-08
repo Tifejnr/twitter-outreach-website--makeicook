@@ -90,6 +90,8 @@ if(!validateFunctionResponse.emailValResponse && !validateFunctionResponse.passw
   }
  const regUser = await registerUser(regParam)
 
+  if (regUser.errorMessageNoJWT) return (navigate('/'))
+
  if (regUser.errorMessage) return setPasswordError(regUser.errorMessage);
 
  if (regUser) return ( navigate('/authorize'))

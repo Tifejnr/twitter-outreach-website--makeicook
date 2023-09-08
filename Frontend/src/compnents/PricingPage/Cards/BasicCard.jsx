@@ -35,7 +35,7 @@ export default function BasicCard(props) {
                 <h4>${props.planObjs.planPrice}</h4>
 
                 <p>
-                 <b>Right choice</b> for <b>{props.planObjs.suitabilityTimeUsage}</b> tools usage
+                 <b>Right choice</b> if tools usage is <b>{props.planObjs.suitabilityTimeUsage}</b> 
                 </p>
               </div>
               <div className="option">

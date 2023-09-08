@@ -11,6 +11,8 @@ export default async function signInUser(signInParams) {
   } catch (error) {
     // console.log(error.response.data);
     const errorMessage = error.response.data.invalidLoginDetails;
+    const errorMessageNoJWT = error.response.data.nullJWT;
+    if (errorMessageNoJWT) return { errorMessageNoJWT };
     if (errorMessage) return { errorMessage };
     return false;
   }

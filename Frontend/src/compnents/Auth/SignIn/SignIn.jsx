@@ -90,6 +90,8 @@ const validateFunctionResponse= (validateAll(paramsObj));
 
     const signedIn = await signInUser(signInParam)
 
+    if (signedIn.errorMessageNoJWT) return (navigate('/'))
+
     if (signedIn.errorMessage) return setPasswordError(signedIn.errorMessage)
 
     if (signedIn) return (navigate('/home'))
