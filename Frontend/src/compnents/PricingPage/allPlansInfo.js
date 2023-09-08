@@ -3,7 +3,7 @@ const basicPlanObj = {
   perCreditInfo: 0.25,
   planCreditsAmount: 20,
   planPrice: 4.99,
-  choiceIndcator: true,
+  suitabilityTimeUsage: "Occasional",
 };
 
 const standardPlanObj = {
@@ -11,6 +11,7 @@ const standardPlanObj = {
   perCreditInfo: 0.2,
   planCreditsAmount: 100,
   planPrice: 19,
+  suitabilityTimeUsage: "Frequent",
 };
 
 const PremiumPlanObj = {
@@ -18,6 +19,7 @@ const PremiumPlanObj = {
   perCreditInfo: 0.16,
   planCreditsAmount: 310,
   planPrice: 49,
+  suitabilityTimeUsage: "More Frequent",
 };
 
 export const allPricingPlansObjArray = [
