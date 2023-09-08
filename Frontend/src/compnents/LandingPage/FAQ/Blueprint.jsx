@@ -1,5 +1,10 @@
 import React , {useState} from 'react'
+import { Link } from 'react-router-dom'
+import handlePageRefreshOnLoad from "../../utilis/refreshPageOnLoad";
 import faqToggleIcon from "../../../assets/SVGs/faq-toggle-icon.svg"
+
+const contactPageLink = "/contact-us";
+const toolsTutorialPage= "tools-tutorial"
 
 export default function Blueprint(props) {
     const [isClicked, setIsClicked] = useState(false);
@@ -32,7 +37,30 @@ export default function Blueprint(props) {
           </section>
 
           <section  className='faq-item__detail' style={openFaqDetailsStyle}>
-            <p>{props.faqObj.answer}  </p> 
+            <p>{props.faqObj.answer} { props.faqObj.contactUsLink &&  
+              <Link
+              className='contact-us-link-faq'
+                to={contactPageLink}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handlePageRefreshOnLoad(contactPageLink);
+                }}>
+                Contact us
+            </Link>} 
+
+             { props.faqObj.toolsTutorial &&  
+              <Link
+              className='contact-us-link-faq'
+                to={toolsTutorialPage}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handlePageRefreshOnLoad(toolsTutorialPage);
+                }}>
+                Tools tutorial
+            </Link>} 
+
+
+           </p>  
           </section>
    
  </li>

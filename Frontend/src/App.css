@@ -975,6 +975,16 @@ li.faq__faq-item {
   padding: 0 0 1.8rem;
 }
 
+.faq__faq-item .faq-item__detail p .contact-us-link-faq {
+  color: #101c77;
+  font-weight: 600;
+  text-decoration: underline;
+  transition: 0.3s color linear;
+}
+.faq__faq-item .faq-item__detail p .contact-us-link-faq:hover {
+  color: #17252a;
+}
+
 .faq-item__summary {
   font-size: var(--font-size-summary-description);
   display: flex;

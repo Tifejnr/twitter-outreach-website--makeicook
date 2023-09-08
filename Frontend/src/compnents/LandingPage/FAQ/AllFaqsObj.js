@@ -2,7 +2,7 @@ export const faqArray = [
   {
     question: "What are credits?",
     answer:
-      "Credits are currencies required to perform automations with our tools. Most tools cost 1 credit per usage.",
+      "Credits are currencies required to perform automations with our tools.",
   },
   {
     question: "How do credits work?",
@@ -19,8 +19,8 @@ export const faqArray = [
   },
   {
     question: "Do you take Feature Requests?",
-    answer:
-      "Yes, we take Feature Requests & all our customer’s suggestions to make our tools optimized as per User needs & wants. You can request or suggest a tool you would like to see by clicking here & we might make it for you.",
+    answer: `Yes, we take Feature Requests & all our customer’s suggestions to make our tools optimized as per User needs & wants. You can request or suggest a feature you would like to see by clicking`,
+    contactUsLink: true,
   },
   {
     question: "Do you have a Refund Policy?",
@@ -32,18 +32,15 @@ export const faqArray = [
       "NO! Only the Trello account linked with the email registered with us can utilize the credits on your account.",
   },
   {
-    question: "Do you provide live Demo/Training?",
-    answer:
-      "Yes. To request a demo/ training, you can contact us via Live Chat or the Contact Us form.",
+    question: "Do you provide Tutorials on how to use the tools?",
+    answer: "Yes. All the tools tutorials can be found by clicking ",
+    toolsTutorial: true,
   },
-  {
-    question: "Do you have a Credit Volume Discount?",
-    answer:
-      "Yes, we offer a Credit Volume Discount which you can find right below our Pricing section. It depends on how many credits you are looking for & for which tools.",
-  },
+
   {
     question: "Where can I report an Issue?",
     answer:
-      "To report an issue, you can reach out to us via live chat or the Contact Us form & our team will get it fixed for you. You can also chat with us live from Live Support for any queries or concerns.",
+      "To report an issue, you can reach out to us via the Contact Us form & our team will get it fixed for you. ",
+    contactUsLink: true,
   },
 ];

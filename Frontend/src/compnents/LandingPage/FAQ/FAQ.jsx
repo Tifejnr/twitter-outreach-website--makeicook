@@ -1,10 +1,12 @@
 import React, {useState} from 'react'
-import { Link } from 'react-router-dom'
 import Blueprint from './Blueprint'
+
 
 import { faqArray } from './AllFaqsObj'
 
 export default function FAQ() {
+
+
 
   return (
     <>
@@ -17,7 +19,8 @@ export default function FAQ() {
 
           {faqArray.map((faqObj, index) => (
               <Blueprint key={index} faqObj={faqObj} />
-            ))}
+            ))
+          }
   
         </ul>
       </section>
