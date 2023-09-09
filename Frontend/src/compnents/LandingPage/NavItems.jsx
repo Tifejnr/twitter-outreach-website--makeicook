@@ -25,7 +25,7 @@ const pricingClick = ()=> {
     setIsMenuIconShowing(true)
 }
 const toolsClick = ()=> {
-  smoothScroll(toolsSection, 40)
+  smoothScroll(toolsSection, 60)
   closeMenuBar()
   setIsMenuIconShowing(true)
 }

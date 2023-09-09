@@ -5,10 +5,10 @@ import ToggleLabel from './ToggleLabel'
 import handlePageRefreshOnLoad from '../utilis/refreshPageOnLoad'
 
 export default function LandingPageToggle(props) {
+// Define state variables to keep track of the toggle state
 const isMenuIconShowing = useStore((state) => state.isMenuIconShowing);
 const setIsMenuIconShowing = useStore((state) => state.setIsMenuIconShowing);
-    // Define a state variable to keep track of the toggle state
-console.log(isMenuIconShowing)
+
   // Function to handle the button click and toggle the state
   const handleClick = () => {
     setIsMenuIconShowing(!isMenuIconShowing);
