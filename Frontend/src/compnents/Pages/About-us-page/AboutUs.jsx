@@ -7,6 +7,7 @@ import { changeTabTitle } from "../../utilis/changeTabTitle";
 import CTAForTermsPolicy from '../Terms-and-privacy/CTAForTermsPolicy';
 
 const contactUsTabTitle = "About us – Collab for Trello";
+const aboutPageSeoToMatch=  "Remove trello members from multiple boards at once"
 
 export default function AboutUsPage() {
   changeTabTitle(contactUsTabTitle);
@@ -112,7 +113,7 @@ export default function AboutUsPage() {
           </section>
         </section>
 
-     <CTAForTermsPolicy/>
+     <CTAForTermsPolicy  title={aboutPageSeoToMatch}/>
       </section>
       <FooterPages />
     </>

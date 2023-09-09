@@ -10,7 +10,7 @@ const useStore = create((set) => ({
     })),
 
   //set Menu Icon Closing on scroll landing page
-  isMenuIconShowing: false,
+  isMenuIconShowing: true,
 
   setIsMenuIconShowing: (updatedisMenuIconShowing) =>
     set((state) => ({ isMenuIconShowing: updatedisMenuIconShowing })),

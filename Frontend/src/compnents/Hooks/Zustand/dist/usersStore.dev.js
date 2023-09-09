@@ -27,7 +27,7 @@ var useStore = (0, _zustand.create)(function (set) {
       });
     },
     //set Menu Icon Closing on scroll landing page
-    isMenuIconShowing: false,
+    isMenuIconShowing: true,
     setIsMenuIconShowing: function setIsMenuIconShowing(updatedisMenuIconShowing) {
       return set(function (state) {
         return {

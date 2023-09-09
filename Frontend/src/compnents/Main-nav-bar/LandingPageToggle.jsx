@@ -8,11 +8,10 @@ export default function LandingPageToggle(props) {
 const isMenuIconShowing = useStore((state) => state.isMenuIconShowing);
 const setIsMenuIconShowing = useStore((state) => state.setIsMenuIconShowing);
     // Define a state variable to keep track of the toggle state
-  const [toggle, setToggle] = useState(true);
-
+console.log(isMenuIconShowing)
   // Function to handle the button click and toggle the state
   const handleClick = () => {
-    setToggle((toggle)=>!toggle);
+    setIsMenuIconShowing(!isMenuIconShowing);
   };
 
   return (
@@ -34,7 +33,7 @@ const setIsMenuIconShowing = useStore((state) => state.setIsMenuIconShowing);
 
         </article>
          } 
-        <ToggleLabel toggle={toggle} isMenuIconShowing={isMenuIconShowing}/>
+        <ToggleLabel isMenuIconShowing={isMenuIconShowing}/>
       </section>
    </>
   )

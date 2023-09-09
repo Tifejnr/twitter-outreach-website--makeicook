@@ -9,7 +9,7 @@ import CTAForTermsPolicy from '../Terms-and-privacy/CTAForTermsPolicy';
 
 
 const contactUsTabTitle= "Contact us – Collab for Trello"
-const aboutPageSeoToMatch= "Add Trello Members to multiple boards at once"
+const contactPageSeoToMatch= "Add trello members to multiple boards at once"
 
 export default function MainContactPage() {
 
@@ -33,7 +33,7 @@ export default function MainContactPage() {
 
     <section className="main-pricing-section-alone contact-us-main">
         <ContactUs/>
-        <CTAForTermsPolicy title={aboutPageSeoToMatch}/>
+        <CTAForTermsPolicy title={contactPageSeoToMatch}/>
     </section>
 
     <FooterPages/>

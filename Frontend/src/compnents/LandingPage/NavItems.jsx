@@ -17,7 +17,6 @@ const toolsSection = ".tools-section-cont"
 const faqClick = ()=> {
   smoothScroll(faqSection, 80)
   closeMenuBar()
-  setToggle((toggle)=>!toggle);
   setIsMenuIconShowing(true)
 }
 const pricingClick = ()=> {
