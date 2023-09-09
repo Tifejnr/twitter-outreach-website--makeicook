@@ -10,7 +10,7 @@ import handlePageRefreshOnLoad from '../../utilis/refreshPageOnLoad';
 const TermsOfUsePageTabTitle = "Terms & Conditions – Collab for Trello";
 const privacyPolicyLink= "/privacy-policy";
 const contactUsPageLink= "/contact-us"
-const termsPageSeoToMatch = "Want to remove trello members from multiple boards?";
+const termsPageSeoToMatch = "Want to automate the removal of trello members from multiple boards?";
 
 
 export default function TermsOfUsePage() {

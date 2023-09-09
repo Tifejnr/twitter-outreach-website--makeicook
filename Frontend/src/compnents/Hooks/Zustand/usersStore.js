@@ -9,6 +9,12 @@ const useStore = create((set) => ({
       checkboxRatioNotifierDisplay: updatedCheckboxRatioNotifierDisplay,
     })),
 
+  //set Menu Icon Closing on scroll landing page
+  isMenuIconShowing: false,
+
+  setIsMenuIconShowing: (updatedisMenuIconShowing) =>
+    set((state) => ({ isMenuIconShowing: updatedisMenuIconShowing })),
+
   //set Means of execution
   meansOfExceution: false,
 

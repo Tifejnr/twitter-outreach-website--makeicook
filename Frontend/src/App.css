@@ -1554,6 +1554,13 @@ article.creditsNeededCont {
   }
 }
 
+/*Cotact us */
+
+.contact-us-main {
+  display: grid;
+  row-gap: 5rem;
+}
+
 /* About Section Design*/
 
 .pricing-section.about-section-inner-cont h2 {

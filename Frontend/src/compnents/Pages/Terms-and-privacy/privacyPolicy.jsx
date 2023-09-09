@@ -11,7 +11,7 @@ import handlePageRefreshOnLoad from '../../utilis/refreshPageOnLoad';
 const PrivacyPolicyPageTabTitle = "Privacy Policy – Collab for Trello";
 const termsPageLink= "/terms";
 const cookiesPolicyPageLink = "/cookies-policy"
-const privacyPageSeoToMatch = "Want to add trello members to multiple boards?";
+const privacyPageSeoToMatch = "Want to automate the add of trello members to multiple boards?";
 
 export default function PrivacyPolicyPage() {
   changeTabTitle(PrivacyPolicyPageTabTitle);

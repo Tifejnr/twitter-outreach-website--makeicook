@@ -1,10 +1,12 @@
 import React , {useState} from 'react'
+import useStore from '../Hooks/Zustand/usersStore'
 import { Link } from 'react-router-dom'
 import ToggleLabel from './ToggleLabel'
 import handlePageRefreshOnLoad from '../utilis/refreshPageOnLoad'
 
 export default function LandingPageToggle(props) {
-
+const isMenuIconShowing = useStore((state) => state.isMenuIconShowing);
+const setIsMenuIconShowing = useStore((state) => state.setIsMenuIconShowing);
     // Define a state variable to keep track of the toggle state
   const [toggle, setToggle] = useState(true);
 
@@ -32,7 +34,7 @@ export default function LandingPageToggle(props) {
 
         </article>
          } 
-        <ToggleLabel toggle={toggle}/>
+        <ToggleLabel toggle={toggle} isMenuIconShowing={isMenuIconShowing}/>
       </section>
    </>
   )

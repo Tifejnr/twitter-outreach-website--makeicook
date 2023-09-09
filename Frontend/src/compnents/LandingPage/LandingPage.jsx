@@ -16,7 +16,8 @@ const landingPageTabTitle= "Automate Trello Members Addition and Removal – Col
 
 
 export default function LandingPage() {
-  changeTabTitle(landingPageTabTitle)
+  changeTabTitle(landingPageTabTitle);
+  
 return (
 <>
   <nav className='nav'>

@@ -1,3 +1,4 @@
+import useStore from '../Hooks/Zustand/usersStore';
 import CustomLink from '../CustomLink'
 import { smoothScroll } from '../../JS functions/Utilis/SmoothScrolling/scroll'
 import { closeMenuBar } from '../../JS functions/Utilis/SmoothScrolling/scroll'
@@ -7,6 +8,8 @@ const registerPageLink ="/register"
 const signInPageLink ="/sign-in"
 
 export default function NavItemsLandingPage() {
+const setIsMenuIconShowing = useStore((state) => state.setIsMenuIconShowing);
+
 const faqSection = "#faq__text-container";
 const pricingSection = ".pricing-section";
 const toolsSection = ".tools-section-cont"
@@ -14,14 +17,18 @@ const toolsSection = ".tools-section-cont"
 const faqClick = ()=> {
   smoothScroll(faqSection, 80)
   closeMenuBar()
+  setToggle((toggle)=>!toggle);
+  setIsMenuIconShowing(true)
 }
 const pricingClick = ()=> {
   smoothScroll(pricingSection, 36)
   closeMenuBar()
+    setIsMenuIconShowing(true)
 }
 const toolsClick = ()=> {
   smoothScroll(toolsSection, 40)
   closeMenuBar()
+  setIsMenuIconShowing(true)
 }
 
   return (
