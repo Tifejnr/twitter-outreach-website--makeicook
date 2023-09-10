@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate, Navigate } from 'react-router-dom';
 import useStore from '../Hooks/Zustand/usersStore';
 import { websiteUrl } from '../../JS functions/websiteUrl';
+import getCookies from '../utilis/cookiesSetting/getCookies';
 
 // This route protects both logged in and unauthorized users
 export default function OnlyAuthorizedUsers({ children }) {
@@ -13,12 +14,14 @@ export default function OnlyAuthorizedUsers({ children }) {
 
   useEffect(() => {
     const abortController = new AbortController();
+    const token = getCookies();
 
     (async function () {
       try {
         const url = `${websiteUrl}/is-account-authorized`;
         const response = await axios.post(
-          url,
+          url, 
+          {token},
           { signal: abortController.signal } // Pass the signal to the fetch call
         );
 

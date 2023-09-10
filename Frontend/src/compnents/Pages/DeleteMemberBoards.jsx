@@ -16,6 +16,7 @@ import MemberInfoDisplay from "./BasicSectionLayout/MemberInfoDisplay";
 import { searchMemberList } from "../../JS functions/Utilis/SearchBar";
 import { isAnyCheckboxChecked } from "../../JS functions/Utilis/Validations/Checkbox";
 import isAnyMemberCheckboxChecked from "./Validations/checkboxMembers";
+import getCookies from "../utilis/cookiesSetting/getCookies";
 
 //set variable to change flex
 const changeLayoutToFlex= true;
@@ -126,9 +127,11 @@ export default function DeleteMemberBoards() {
 
     (async function () {
       try {
+        const token= getCookies();
         const fetcbBoardsUrl = `${websiteUrl}/start`;
         const response = await axios.post(
           fetcbBoardsUrl,
+          {token},
           { signal: abortController.signal } // Pass the signal to the fetch call
         );
 

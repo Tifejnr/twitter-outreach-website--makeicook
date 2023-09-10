@@ -18,6 +18,7 @@ import MemberInfoDisplay from "./BasicSectionLayout/MemberInfoDisplay";
 import { searchMemberList } from "../../JS functions/Utilis/SearchBar";
 import isAnyMemberCheckboxChecked from "./Validations/checkboxMembers";
 import { isAnyCheckboxChecked } from "../../JS functions/Utilis/Validations/Checkbox";
+import getCookies from "../utilis/cookiesSetting/getCookies";
 
 
 
@@ -159,9 +160,12 @@ export default function AddMember() {
 
     (async function () {
       try {
+        const token= getCookies();
+
         const fetcbBoardsUrl = `${websiteUrl}/start`;
         const response = await axios.post(
           fetcbBoardsUrl,
+          {token},
           { signal: abortController.signal } // Pass the signal to the fetch call
         );
 

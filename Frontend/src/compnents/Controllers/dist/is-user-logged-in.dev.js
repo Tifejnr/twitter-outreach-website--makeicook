@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = trelloAuthRedirect;
+exports["default"] = isUserLoggedIn;
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -13,17 +13,17 @@ var _getCookies = _interopRequireDefault(require("../utilis/cookiesSetting/getCo
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function trelloAuthRedirect() {
-  var trelloAuthEndpoint, token, response, data, errorMessage;
-  return regeneratorRuntime.async(function trelloAuthRedirect$(_context) {
+function isUserLoggedIn() {
+  var isUserLoggedInEndpoint, token, response, data, errorMessage;
+  return regeneratorRuntime.async(function isUserLoggedIn$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          trelloAuthEndpoint = "".concat(_websiteUrl.websiteUrl, "/authorize");
+          isUserLoggedInEndpoint = "".concat(_websiteUrl.websiteUrl, "/isloggedIn");
           token = (0, _getCookies["default"])();
           _context.prev = 2;
           _context.next = 5;
-          return regeneratorRuntime.awrap(_axios["default"].post(trelloAuthEndpoint, {
+          return regeneratorRuntime.awrap(_axios["default"].post(isUserLoggedInEndpoint, {
             token: token
           }));
 
@@ -35,7 +35,7 @@ function trelloAuthRedirect() {
         case 8:
           data = _context.sent;
 
-          if (data.authorizationUrl) {
+          if (data.loggedIn) {
             _context.next = 11;
             break;
           }
@@ -43,13 +43,13 @@ function trelloAuthRedirect() {
           return _context.abrupt("return", false);
 
         case 11:
-          return _context.abrupt("return", window.location.href = data.authorizationUrl);
+          return _context.abrupt("return", true);
 
         case 14:
           _context.prev = 14;
           _context.t0 = _context["catch"](2);
-          errorMessage = _context.t0.response.data;
-          console.log(errorMessage);
+          console.log(_context.t0.response.data);
+          errorMessage = _context.t0.response.data.unAuthorizedToken;
           return _context.abrupt("return", false);
 
         case 19:

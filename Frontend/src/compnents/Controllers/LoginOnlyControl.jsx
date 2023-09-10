@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import {Navigate} from "react-router-dom";
-import isUserLoggedIn from '../../JS functions/Auth/is-user-logged-in';
+import isUserLoggedIn from './is-user-logged-in';
 
 
 export default  function LoginOnlyControl({children}) {
