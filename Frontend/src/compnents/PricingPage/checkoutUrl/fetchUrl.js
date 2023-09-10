@@ -1,9 +1,13 @@
 import axios from "axios";
 import { websiteUrl } from "../../../JS functions/websiteUrl";
+import getCookies from "../../utilis/cookiesSetting/getCookies";
 
 export default async function getCheckoutLink(planName) {
+  const token = getCookies();
+  if (!token) return false;
   const paramToServer = {
     planName: planName.trim(),
+    token,
   };
   const isUserLoggedInEndpoint = `${websiteUrl}/api/checkout`;
   try {

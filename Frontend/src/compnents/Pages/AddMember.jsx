@@ -164,6 +164,7 @@ export default function AddMember() {
         const fetcbBoardsUrl = `${websiteUrl}/start`;
         const response = await axios.post(
           fetcbBoardsUrl,
+          {token},
           { signal: abortController.signal } // Pass the signal to the fetch call
         );
 

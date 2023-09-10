@@ -1,6 +1,5 @@
-import React , {useContext, useState} from "react";
+import React , {useState} from "react";
 import { useNavigate, Link} from "react-router-dom";
-import validateInputs from "../../../JS functions/inputs-validations/overall-val-func";
 import registerUser from "../../../JS functions/Auth/register";
 import AuthNav from "../AuthNav";
 import hidePasswordIcon from "../../../assets/SVGs/PasswordRelated/hide-password-eye.svg"
@@ -8,9 +7,10 @@ import showPasswordIcon from "../../../assets/SVGs/PasswordRelated/show-password
 import validateAll from "../Auth-Input-Validation/validateAll";
 import { changeTabTitle } from "../../utilis/changeTabTitle";
 import handlePageRefreshOnLoad from "../../utilis/refreshPageOnLoad";
+import { notificationColorsObj } from "../../utilis/colors/colors";
+import setCookies from "../../utilis/cookiesSetting/setCookies";
 
-const successColor = "#09c372";
-const errorColor = "#ff3860"
+
 const signUpTabTitle= "Sign up – Collab for Trello"
 const signUpPageLink = "/sign-in"
 const privacyPageLink= "/privacy-policy"
@@ -34,8 +34,8 @@ export default function Register() {
       emailBorderColor === null
         ? 'grey'
         : emailBorderColor
-        ? successColor
-        : errorColor,
+        ? notificationColorsObj.successColor
+        : notificationColorsObj.errorColor,
   };
 
   const passwordBorderStyle = {
@@ -43,8 +43,8 @@ export default function Register() {
           passwordBorderColor === null
         ? 'grey'
         : passwordBorderColor
-        ? successColor
-        : errorColor,
+        ? notificationColorsObj.successColor
+        : notificationColorsObj.errorColor,
   };
 
   const handleShowPassword = ()=> {
@@ -88,13 +88,13 @@ if(!validateFunctionResponse.emailValResponse && !validateFunctionResponse.passw
     email,
     password
   }
- const regUser = await registerUser(regParam)
+ const regUserResponse = await registerUser(regParam)
 
-  if (regUser.errorMessageNoJWT) return (navigate('/'))
+  if (regUserResponse.errorMessageNoJWT) return (navigate('/'))
 
- if (regUser.errorMessage) return setPasswordError(regUser.errorMessage);
+ if (regUserResponse.errorMessage) return setPasswordError(regUserResponse.errorMessage);
 
- if (regUser) return ( navigate('/authorize'))
+ if (regUserResponse.registered) return (setCookies(regUserResponse.token), navigate('/authorize'))
 
  return false
 }

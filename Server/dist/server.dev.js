@@ -109,12 +109,9 @@ app.get("/callback", loginStatusChecker, function _callee(req, res) {
 });
 app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "../../Trello-Project-React/Frontend/dist", "index.html"));
-}); // app.set("view engine", "ejs");
-// app.set(
-//   "views",
-//   path.join(__dirname, "../../Trello-Project-React/Frontend/views")
-// );
-// Routes Handling Section
+});
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "../../Trello-Project-React/Frontend/views")); // Routes Handling Section
 
 app.post("/isloggedIn", loginStatusChecker, function _callee2(req, res) {
   return regeneratorRuntime.async(function _callee2$(_context2) {
@@ -132,13 +129,6 @@ app.post("/isloggedIn", loginStatusChecker, function _callee2(req, res) {
     }
   });
 });
-app.get("/set-cookie", function (req, res) {
-  res.cookie("myCookieName", "cookieValue", {
-    maxAge: 900000,
-    httpOnly: true
-  });
-  res.send("Cookie set successfully!");
-});
 app.post("/is-account-authorized", [loginStatusChecker, isUserAuthorized], function _callee3(req, res) {
   return regeneratorRuntime.async(function _callee3$(_context3) {
     while (1) {
@@ -155,7 +145,11 @@ app.post("/is-account-authorized", [loginStatusChecker, isUserAuthorized], funct
       }
     }
   });
-});
+}); // app.get("/check-cookie", (req, res) => {
+//   const tokenCheck = req.cookies.cftAuth;
+//   console.log(tokenCheck);
+// });
+
 app.post("/authorize", loginStatusChecker, function _callee4(req, res) {
   return regeneratorRuntime.async(function _callee4$(_context4) {
     while (1) {

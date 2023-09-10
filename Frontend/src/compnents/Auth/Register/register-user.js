@@ -7,7 +7,7 @@ export default async function registerUser(regParams) {
     const response = await axios.post(registerUserEndPoint, regParams);
     const data = await response.data;
     if (!data.registered) return false;
-    return true;
+    return data;
   } catch (error) {
     console.log(error.response.data);
     const errorMessage = error.response.data.alreadyRegistered;

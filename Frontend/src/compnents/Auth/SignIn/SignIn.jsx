@@ -1,4 +1,4 @@
-import React , {useEffect, useState, useRef} from "react";
+import React , {useState} from "react";
 import { Link, useNavigate} from "react-router-dom";
 import validateAll from "../Auth-Input-Validation/validateAll";
 import signInUser from "./sign-in";
@@ -7,10 +7,9 @@ import hidePasswordIcon from "../../../assets/SVGs/PasswordRelated/hide-password
 import showPasswordIcon from "../../../assets/SVGs/PasswordRelated/show-password-eye.svg"
 import { changeTabTitle } from "../../utilis/changeTabTitle";
 import handlePageRefreshOnLoad from "../../utilis/refreshPageOnLoad";
+import { notificationColorsObj } from "../../utilis/colors/colors";
 import setCookies from "../../utilis/cookiesSetting/setCookies";
 
-const successColor = "#09c372";
-const errorColor = "#ff3860";
 const logInTabTitle= "Log in – Collab for Trello"
 const registerPageLink= "/register"
 const forgotPasswordLink= "/forgot-password"
@@ -32,8 +31,8 @@ export default function SignIn() {
       emailBorderColor === null
         ? 'grey'
         : emailBorderColor
-        ? successColor
-        : errorColor,
+        ? notificationColorsObj.successColor
+        : notificationColorsObj.errorColor,
   };
 
   const passwordBorderStyle = {
@@ -41,8 +40,8 @@ export default function SignIn() {
           passwordBorderColor === null
         ? 'grey'
         : passwordBorderColor
-        ? successColor
-        : errorColor,
+        ? notificationColorsObj.successColor
+        : notificationColorsObj.errorColor,
   };
 
   const handleShowPassword = ()=> {

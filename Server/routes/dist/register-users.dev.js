@@ -82,7 +82,8 @@ router.post("/", function _callee(req, res) {
             secure: true
           };
           res.cookie("cftAuth", token, cookieOptions).json({
-            registered: true
+            registered: true,
+            token: token
           });
           console.log("registered");
           _context.next = 32;

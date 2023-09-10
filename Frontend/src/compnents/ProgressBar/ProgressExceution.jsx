@@ -3,11 +3,10 @@ import axios from "axios";
 import ProgressBar from "./ProgressBar";
 import { websiteUrl } from "../../JS functions/websiteUrl";
 import useStore from "../Hooks/Zustand/usersStore";
+import getCookies from "../utilis/cookiesSetting/getCookies";
 
 let totalDurationLength, userDetailsLength;
 
-const action = "adding";
-const isAddedTo = "Boards";
 
 const emailMeans = "Email";
 const nameMeans = "Name"
@@ -158,7 +157,11 @@ export default function AddToBoardsProgress(props) {
 
     if (!boardName) return console.log("boardname does not exist");
 
+    const token = getCookies();
+    if (!token) return { error: "No token" };
+
     const message = {
+      token,
       email,
       boardId,
       memberId,
