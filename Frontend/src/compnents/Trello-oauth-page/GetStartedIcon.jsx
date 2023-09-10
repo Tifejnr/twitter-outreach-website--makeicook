@@ -1,5 +1,5 @@
 import React from 'react'
-import trelloAuthRedirect from "./trello-oauth"
+import trelloAuthRedirect from "../../JS functions/Auth/trello-oauth"
 
 export default function GetStartedIcon() {
   return (

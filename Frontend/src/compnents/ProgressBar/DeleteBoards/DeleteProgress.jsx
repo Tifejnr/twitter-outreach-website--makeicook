@@ -3,10 +3,11 @@ import axios from "axios";
 import ProgressBar from "../ProgressBar";
 import { websiteUrl } from "../../../JS functions/websiteUrl";
 import useStore from "../../Hooks/Zustand/usersStore";
-import getCookies from "../../utilis/cookiesSetting/getCookies";
 
 let totalDurationLength, userDetailsLength;
 
+const action = "Removing";
+const isAddedTo = "Boards";
 
 export default function DeleteProgress(props) {
   //using useStore to manage states cause useState cant work with multiple map methods, runs into infinite loop.
@@ -100,11 +101,8 @@ export default function DeleteProgress(props) {
     userDetail = nameDisplayed;
 
     if (!boardName) return console.log("boardname does not exist");
-    const token = getCookies();
-    if (!token) return { error: "No token" };
 
     const message = {
-      token,
       boardId,
       memberId,
       clientSignature,
