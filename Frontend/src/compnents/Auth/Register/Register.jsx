@@ -1,6 +1,6 @@
 import React , {useState} from "react";
 import { useNavigate, Link} from "react-router-dom";
-import registerUser from "../../../JS functions/Auth/register";
+import registerUser from "./register-user";
 import AuthNav from "../AuthNav";
 import hidePasswordIcon from "../../../assets/SVGs/PasswordRelated/hide-password-eye.svg"
 import showPasswordIcon from "../../../assets/SVGs/PasswordRelated/show-password-eye.svg"
@@ -89,6 +89,8 @@ if(!validateFunctionResponse.emailValResponse && !validateFunctionResponse.passw
     password
   }
  const regUserResponse = await registerUser(regParam)
+
+ console.log(regUserResponse)
 
   if (regUserResponse.errorMessageNoJWT) return (navigate('/'))
 
