@@ -75,6 +75,10 @@ body {
   color: #1e2831;
 }
 
+.workspace-section {
+  margin-bottom: 4rem;
+}
+
 .home-main-cont p {
   text-align: center;
   font-size: 1.7rem;

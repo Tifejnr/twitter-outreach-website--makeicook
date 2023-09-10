@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export default function Workspaces() {
   return (
-   <section className='boards-actions-section'>
+   <section className='boards-actions-section workspace-section'>
 
     <h2>Workspaces</h2>
 
