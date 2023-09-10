@@ -3,6 +3,7 @@ import axios from "axios";
 import ProgressBar from "../ProgressBar";
 import { websiteUrl } from "../../../JS functions/websiteUrl";
 import useStore from "../../Hooks/Zustand/usersStore";
+import getCookies from "../../utilis/cookiesSetting/getCookies";
 
 let totalDurationLength, userDetailsLength;
 
@@ -101,8 +102,10 @@ export default function DeleteProgress(props) {
     userDetail = nameDisplayed;
 
     if (!boardName) return console.log("boardname does not exist");
-
+    const token= getCookies();
+    
     const message = {
+      token,
       boardId,
       memberId,
       clientSignature,
