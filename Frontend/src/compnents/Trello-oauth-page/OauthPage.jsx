@@ -6,8 +6,9 @@ import trelloIcon from "../../assets/SVGs/trello-icon.svg"
 import forwardArrow from "../../assets/SVGs/thin-long-arrow-right-icon.svg"
 import LoginOnlyControl from "../Controllers/LoginOnlyControl"
 import { changeTabTitle } from "../utilis/changeTabTitle"
+import AuthNav from "../Auth/AuthNav"
 
-const oauthPageTabTitle= "Authorize your account – CollabforTrello"
+const oauthPageTabTitle= "Authorize account – Collab for Trello"
 
 
 export default function OauthPage() {
@@ -17,18 +18,8 @@ export default function OauthPage() {
   return (
    <>
  <LoginOnlyControl>
-  <nav className='nav'>
-
-       <NavToggleIcon/>
-
-      <ul className="nav__menu">
-
-        <li>
-          <NavLogo />
-        </li>
-         <OauthNavItems/>
-      </ul>
-  </nav> 
+   
+   <AuthNav />
 
   <main className="auth-page-main-cont">
        <h1>AUTHORIZE ACCESS</h1>

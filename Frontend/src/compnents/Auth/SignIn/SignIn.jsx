@@ -7,6 +7,7 @@ import hidePasswordIcon from "../../../assets/SVGs/PasswordRelated/hide-password
 import showPasswordIcon from "../../../assets/SVGs/PasswordRelated/show-password-eye.svg"
 import { changeTabTitle } from "../../utilis/changeTabTitle";
 import handlePageRefreshOnLoad from "../../utilis/refreshPageOnLoad";
+import setCookies from "../../utilis/cookiesSetting/setCookies";
 
 const successColor = "#09c372";
 const errorColor = "#ff3860";
@@ -88,13 +89,13 @@ const validateFunctionResponse= (validateAll(paramsObj));
         password
       }
 
-    const signedIn = await signInUser(signInParam)
+    const signedInResponse = await signInUser(signInParam)
 
-    if (signedIn.errorMessageNoJWT) return (navigate('/'))
+    if (signedInResponse.errorMessageNoJWT) return (navigate('/'))
 
-    if (signedIn.errorMessage) return setPasswordError(signedIn.errorMessage)
+    if (signedInResponse.errorMessage) return setPasswordError(signedInResponse.errorMessage)
 
-    if (signedIn) return (navigate('/home'))
+    if (signedInResponse.signedIn) return (setCookies(signedInResponse.token),navigate('/home'))
 
     return false
     }

@@ -3,11 +3,11 @@ import axios from 'axios';
 import { useNavigate, Navigate } from 'react-router-dom';
 import useStore from '../Hooks/Zustand/usersStore';
 import { websiteUrl } from '../../JS functions/websiteUrl';
+import getCookies from '../utilis/cookiesSetting/getCookies';
 
 // This route protects both logged in and unauthorized users
 export default function OnlyAuthorizedUsers({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(null); 
-  const [noTokenYet, setNoTokenYet] = useState(null); 
   const setCreditsFromServer = useStore((state) => state.setCreditsFromServer);
   const navigate = useNavigate();
 
@@ -16,9 +16,14 @@ export default function OnlyAuthorizedUsers({ children }) {
 
     (async function () {
       try {
+        //fetch the token stored on the client end and send it in body of response to server
+          const token = getCookies();
+          if (!token) return  navigate('/');
+
         const url = `${websiteUrl}/is-account-authorized`;
         const response = await axios.post(
-          url,
+          url, 
+          {token},
           { signal: abortController.signal } // Pass the signal to the fetch call
         );
 

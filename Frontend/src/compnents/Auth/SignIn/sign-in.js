@@ -7,7 +7,7 @@ export default async function signInUser(signInParams) {
     const response = await axios.post(signInEndPoint, signInParams);
     const data = await response.data;
     if (!data.signedIn) return false;
-    return true;
+    return data;
   } catch (error) {
     // console.log(error.response.data);
     const errorMessage = error.response.data.invalidLoginDetails;

@@ -90,7 +90,8 @@ router.post("/", function _callee(req, res) {
           };
           console.log("signed in");
           res.cookie("cftAuth", token, cookieOptions).json({
-            signedIn: true
+            signedIn: true,
+            token: token
           });
           _context.next = 28;
           break;

@@ -38,7 +38,7 @@ function signInUser(signInParams) {
           return _context.abrupt("return", false);
 
         case 10:
-          return _context.abrupt("return", true);
+          return _context.abrupt("return", data);
 
         case 13:
           _context.prev = 13;

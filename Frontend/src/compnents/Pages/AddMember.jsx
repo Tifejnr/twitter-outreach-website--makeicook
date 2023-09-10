@@ -18,7 +18,7 @@ import MemberInfoDisplay from "./BasicSectionLayout/MemberInfoDisplay";
 import { searchMemberList } from "../../JS functions/Utilis/SearchBar";
 import isAnyMemberCheckboxChecked from "./Validations/checkboxMembers";
 import { isAnyCheckboxChecked } from "../../JS functions/Utilis/Validations/Checkbox";
-
+import getCookies from "../utilis/cookiesSetting/getCookies";
 
 
 //email means
@@ -158,6 +158,8 @@ export default function AddMember() {
     const abortController = new AbortController();
 
     (async function () {
+        const token = getCookies();
+        if (!token) return  false
       try {
         const fetcbBoardsUrl = `${websiteUrl}/start`;
         const response = await axios.post(
