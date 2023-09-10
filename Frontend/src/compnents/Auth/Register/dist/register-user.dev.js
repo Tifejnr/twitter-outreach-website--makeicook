@@ -62,7 +62,9 @@ function registerUser(regParams) {
             break;
           }
 
-          return _context.abrupt("return", errorMessage);
+          return _context.abrupt("return", {
+            errorMessage: errorMessage
+          });
 
         case 22:
           return _context.abrupt("return", false);

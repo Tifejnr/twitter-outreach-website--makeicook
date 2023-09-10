@@ -53,6 +53,8 @@ export default function Register() {
 
 const sendInfoToServer = async (e)=> {
     e.preventDefault();
+
+
   try {
    const paramsObj = {
     email,
@@ -89,8 +91,6 @@ if(!validateFunctionResponse.emailValResponse && !validateFunctionResponse.passw
     password
   }
  const regUserResponse = await registerUser(regParam)
-
- console.log(regUserResponse)
 
   if (regUserResponse.errorMessageNoJWT) return (navigate('/'))
 
