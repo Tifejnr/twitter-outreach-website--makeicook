@@ -9,14 +9,19 @@ export const faqArray = [
     answer:
       "Each time you use our tools to carry out your tasks, you are charged with a specific amount of credits.",
   },
+
   {
-    question: "How many credits are deducted per tool usage?",
+    question: "Do credits expire?",
+    answer: "No. Credits bought are everlasting",
+  },
+
+  {
+    question: "How many credits are charged per tool usage?",
     answer: `The amount of credits charged per tool usage depends on how many members and how many boards or workspaces are involved in the process. Each member added incurs a cost of 1 credit.`,
   },
 
   {
-    question:
-      "Does adding or removing multiple trello members cost more credit?",
+    question: "Does adding or removing multiple members cost more credit?",
     answer: `Yes. Each member added incurs a cost of 1 credit. For instance, if you add a member, the total cost would be 1 credit, if you add 2 members, 
     the total cost would be 2 credits, and if you add 3 members, the total cost would be 3 credits. You are charged based on the number of members involved in the process`,
   },
@@ -28,22 +33,21 @@ export const faqArray = [
   // },
 
   {
-    question: "Do credits expire?",
-    answer: "No. Credits bought are everlasting",
-  },
-  {
     question: "Do I need to authorize my Trello Account to use your tools?",
     answer: "Yes.",
   },
+
   {
     question: "Do you take Feature Requests?",
     answer: `Yes, we take Feature Requests & all our customer’s suggestions to make our tools optimized as per User needs & wants. You can request or suggest a feature you would like to see by clicking`,
     contactUsLink: true,
   },
+
   {
     question: "Do you have a Refund Policy?",
     answer: "No, we do not have a refund policy.",
   },
+
   {
     question: "Can others link their accounts to use my credits",
     answer:
