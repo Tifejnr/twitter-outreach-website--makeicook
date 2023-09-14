@@ -94,7 +94,7 @@ const validateFunctionResponse= (validateAll(paramsObj));
 
     if (signedInResponse.errorMessage) return setPasswordError(signedInResponse.errorMessage)
 
-    if (signedInResponse.signedIn) return (setCookies(signedInResponse.token),navigate('/home'))
+    if (signedInResponse.signedIn) return (navigate('/home'))
 
     return false
     }

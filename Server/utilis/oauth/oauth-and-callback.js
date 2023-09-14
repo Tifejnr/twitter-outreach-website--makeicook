@@ -76,7 +76,7 @@ async function callback(req, response) {
 
           await accountUser.save();
 
-          response.redirect(redirectUrl);
+          response.json({ redirectUrl });
         }
       );
     }

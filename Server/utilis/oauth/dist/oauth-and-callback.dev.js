@@ -98,7 +98,9 @@ function callback(req, response) {
                       return regeneratorRuntime.awrap(accountUser.save());
 
                     case 20:
-                      response.redirect(redirectUrl);
+                      response.json({
+                        redirectUrl: redirectUrl
+                      });
 
                     case 21:
                     case "end":

@@ -4,7 +4,6 @@ const router = express.Router();
 const bycrypt = require("bcrypt");
 const { signJwt } = require("../middlewares/jwt-related/sign-jwt");
 const { validateSignInParams } = require("../Joi-Validations/SignIn");
-const cookie = require("cookie");
 
 router.post("/", async (req, res) => {
   const { error } = validateSignInParams(req.body);
@@ -40,9 +39,7 @@ router.post("/", async (req, res) => {
 
     console.log("signed in");
 
-    res
-      .cookie("cftAuthaa", token, cookieOptions)
-      .json({ signedIn: true, token });
+    res.cookie("cftAuth", token, cookieOptions).json({ signedIn: true, token });
   } catch (error) {
     console.log(error);
     return res.json({ error });

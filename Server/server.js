@@ -70,20 +70,19 @@ app.use(
   )
 );
 
-//Won't be accessible by React route, callback during app authorization. server owns this route
-app.get("/callback", loginStatusChecker, async (req, res) => {
-  callback(req, res);
-});
-
 app.set("view engine", "ejs");
 app.set(
   "views",
-  path.join(__dirname, "../../Trello-Project-React/Frontend/views")
+  path.join(__dirname, "../../Trello-Project-React/Frontend/public/views")
 );
 
-//Won't be accessible by React route, server owns this route
-app.get("/cft-icon-64px", async (req, res) => {
-  res.render("login");
+//Won't be accessible by React route, callback during app authorization. server owns this route
+app.get("/callback", async (req, res) => {
+  res.render("oauthCallback");
+});
+
+app.post("/authorization-callback", loginStatusChecker, async (req, res) => {
+  callback(req, res);
 });
 
 app.get("*", function (req, res) {
@@ -96,7 +95,11 @@ app.get("*", function (req, res) {
   );
 });
 
-// Routes Handling Section
+// Routes Handling
+
+app.get("/cft-icon-64px", async (req, res) => {
+  res.render("login");
+});
 
 app.post("/isloggedIn", loginStatusChecker, async (req, res) => {
   res.json({ loggedIn: true });
@@ -110,10 +113,10 @@ app.post(
   }
 );
 
-// app.get("/check-cookie", (req, res) => {
-//   const tokenCheck = req.cookies.cftAuth;
-//   console.log(tokenCheck);
-// });
+app.get("/check-cookie", (req, res) => {
+  const tokenCheck = req.cookies.cftAuth;
+  console.log(tokenCheck);
+});
 
 app.post("/authorize", loginStatusChecker, async (req, res) => {
   login(req, res);
