@@ -52,6 +52,7 @@ function callback(req, response) {
         case 0:
           query = url.parse(req.url, true).query;
           token = query.oauth_token;
+          console.log(token);
           tokenSecret = oauth_secrets[token];
           verifier = query.oauth_verifier;
           oauth.getOAuthAccessToken(token, tokenSecret, verifier, function (error, accessToken, accessTokenSecret, results) {
@@ -108,7 +109,7 @@ function callback(req, response) {
             });
           });
 
-        case 5:
+        case 6:
         case "end":
           return _context2.stop();
       }

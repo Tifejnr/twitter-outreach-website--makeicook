@@ -46,6 +46,8 @@ function login(req, res) {
 async function callback(req, response) {
   const query = url.parse(req.url, true).query;
   const token = query.oauth_token;
+
+  console.log(token);
   const tokenSecret = oauth_secrets[token];
   const verifier = query.oauth_verifier;
 
