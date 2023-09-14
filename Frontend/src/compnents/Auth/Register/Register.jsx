@@ -75,7 +75,6 @@ const sendInfoToServer = async (e)=> {
 
   
   if (validateFunctionResponse.passwordValResponse) {
-
       setPasswordError(validateFunctionResponse.passwordValResponse);
       setPasswordBorderColor(false)
    }

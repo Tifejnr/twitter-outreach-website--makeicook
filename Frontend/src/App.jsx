@@ -24,6 +24,7 @@ import PrivacyPolicyPage from './compnents/Pages/Terms-and-privacy/privacyPolicy
 import MainForgotPasswordPage from './compnents/Pages/ForgotPassword/MainForgotPasswordPage'
 import ResetPasswordPage from './compnents/Pages/ForgotPassword/ResetPassword/ResetPasswordPage'
 import OnlyAuthorizedUsers from './compnents/Controllers/OnlyAuthorizedUsers'
+import CFTIconHosted from './compnents/HostedIcon/CFTIconHosted'
 
 
 const trackingId = "G-67WKHKMDEH";
@@ -50,6 +51,7 @@ function App() {
         <Route path='/privacy-policy' element={<PrivacyPolicyPage/>}/>
         <Route path='/forgot-password' element={<MainForgotPasswordPage/>}/>
         <Route path='/reset-password' element={<ResetPasswordPage/>}/>
+        <Route path='/cft-auth-icon' element={<CFTIconHosted/>}/>
       </Routes>
 
     </>
