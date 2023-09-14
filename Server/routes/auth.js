@@ -5,6 +5,8 @@ const bycrypt = require("bcrypt");
 const { signJwt } = require("../middlewares/jwt-related/sign-jwt");
 const { validateSignInParams } = require("../Joi-Validations/SignIn");
 
+const websiteUrl = "https://collabfortrello.com/";
+
 router.post("/", async (req, res) => {
   const { error } = validateSignInParams(req.body);
 
@@ -32,14 +34,20 @@ router.post("/", async (req, res) => {
     if (!token) return console.log("token not found");
 
     const cookieOptions = {
-      maxAge: 60 * 60 * 24 * 30,
-      // secure: true,
-      // httpOnly: true,
+      maxAge: 1209600000,
+      secure: true,
+      httpOnly: true,
+      domain: websiteUrl,
     };
 
     console.log("signed in");
 
-    res.cookie("cftAuth", token, cookieOptions).json({ signedIn: true, token });
+    res
+      .cookie("cftAuthtest", token, cookieOptions)
+      .json({ signedIn: true, token });
+    tokenNow = req.cookies.cftAuthtest;
+
+    console.log(tokenNow, "now");
   } catch (error) {
     console.log(error);
     return res.json({ error });

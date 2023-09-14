@@ -11,7 +11,9 @@ function getCookie(name) {
 }
 
 // Usage:
-const token = getCookie("cftAuth");
+
+console.log(token);
+
 if (cftAuthValue !== null) {
   console.log("cftAuth cookie value:", cftAuthValue);
 } else {
@@ -19,6 +21,7 @@ if (cftAuthValue !== null) {
 }
 
 (async () => {
+  const token = getCookie("cftAuth");
   const data = {
     token,
   };

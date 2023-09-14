@@ -52,7 +52,6 @@ function callback(req, response) {
         case 0:
           query = url.parse(req.url, true).query;
           token = query.oauth_token;
-          console.log(token);
           tokenSecret = oauth_secrets[token];
           verifier = query.oauth_verifier;
           oauth.getOAuthAccessToken(token, tokenSecret, verifier, function (error, accessToken, accessTokenSecret, results) {
@@ -98,9 +97,7 @@ function callback(req, response) {
                       return regeneratorRuntime.awrap(accountUser.save());
 
                     case 20:
-                      response.json({
-                        redirectUrl: redirectUrl
-                      });
+                      response.redirect(redirectUrl);
 
                     case 21:
                     case "end":
@@ -111,7 +108,7 @@ function callback(req, response) {
             });
           });
 
-        case 6:
+        case 5:
         case "end":
           return _context2.stop();
       }

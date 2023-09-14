@@ -15,6 +15,7 @@ var _require2 = require("../middlewares/jwt-related/sign-jwt"),
 var _require3 = require("../Joi-Validations/SignIn"),
     validateSignInParams = _require3.validateSignInParams;
 
+var websiteUrl = "https://collabfortrello.com/";
 router.post("/", function _callee(req, res) {
   var _validateSignInParams, error, accountUser, validPassword, token, cookieOptions;
 
@@ -84,31 +85,34 @@ router.post("/", function _callee(req, res) {
 
         case 19:
           cookieOptions = {
-            maxAge: 60 * 60 * 24 * 30 // secure: true,
-            // httpOnly: true,
-
+            maxAge: 1209600000,
+            secure: true,
+            httpOnly: true,
+            domain: websiteUrl
           };
           console.log("signed in");
-          res.cookie("cftAuth", token, cookieOptions).json({
+          res.cookie("cftAuthtest", token, cookieOptions).json({
             signedIn: true,
             token: token
           });
-          _context.next = 28;
+          tokenNow = req.cookies.cftAuthtest;
+          console.log(tokenNow, "now");
+          _context.next = 30;
           break;
 
-        case 24:
-          _context.prev = 24;
+        case 26:
+          _context.prev = 26;
           _context.t0 = _context["catch"](3);
           console.log(_context.t0);
           return _context.abrupt("return", res.json({
             error: _context.t0
           }));
 
-        case 28:
+        case 30:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[3, 24]]);
+  }, null, null, [[3, 26]]);
 });
 module.exports = router;
