@@ -70,9 +70,20 @@ app.use(
   )
 );
 
-//Won't be accessible by React route, server owns this route
+//Won't be accessible by React route, callback during app authorization. server owns this route
 app.get("/callback", loginStatusChecker, async (req, res) => {
   callback(req, res);
+});
+
+app.set("view engine", "ejs");
+app.set(
+  "views",
+  path.join(__dirname, "../../Trello-Project-React/Frontend/views")
+);
+
+//Won't be accessible by React route, server owns this route
+app.get("/cft-icon-64px", async (req, res) => {
+  res.render("login");
 });
 
 app.get("*", function (req, res) {
@@ -84,12 +95,6 @@ app.get("*", function (req, res) {
     )
   );
 });
-
-app.set("view engine", "ejs");
-app.set(
-  "views",
-  path.join(__dirname, "../../Trello-Project-React/Frontend/views")
-);
 
 // Routes Handling Section
 

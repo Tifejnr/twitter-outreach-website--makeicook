@@ -2,6 +2,10 @@
   font-size: 62.5%;
 }
 
+html {
+  height: 100%;
+}
+
 html,
 body {
   /* overflow-y: scroll;
