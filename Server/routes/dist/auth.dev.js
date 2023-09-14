@@ -15,6 +15,8 @@ var _require2 = require("../middlewares/jwt-related/sign-jwt"),
 var _require3 = require("../Joi-Validations/SignIn"),
     validateSignInParams = _require3.validateSignInParams;
 
+var cookie = require("cookie");
+
 router.post("/", function _callee(req, res) {
   var _validateSignInParams, error, accountUser, validPassword, token, cookieOptions;
 
@@ -84,12 +86,12 @@ router.post("/", function _callee(req, res) {
 
         case 19:
           cookieOptions = {
-            maxAge: 1209600000,
-            secure: true,
-            httpOnly: true
+            maxAge: 60 * 60 * 24 * 30 // secure: true,
+            // httpOnly: true,
+
           };
           console.log("signed in");
-          res.cookie("cftAuth", token, cookieOptions).json({
+          res.cookie("cftAuthaa", token, cookieOptions).json({
             signedIn: true,
             token: token
           });
