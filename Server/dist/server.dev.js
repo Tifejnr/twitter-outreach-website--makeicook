@@ -123,9 +123,6 @@ app.get("/cft-icon-64px", function _callee2(req, res) {
       }
     }
   });
-});
-app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "../../Trello-Project-React/Frontend/dist", "index.html"));
 }); // Routes Handling Section
 
 app.post("/isloggedIn", loginStatusChecker, function _callee3(req, res) {
@@ -250,6 +247,10 @@ app.post("/get-workspace-name", [loginStatusChecker, isUserAuthorized, userToken
       }
     }
   });
+}); //reaeact routes connection
+
+app.get("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "../../Trello-Project-React/Frontend/dist", "index.html"));
 });
 app.listen(3000, function () {
   console.log("Listening on port 3000");

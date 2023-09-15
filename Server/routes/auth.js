@@ -37,15 +37,12 @@ router.post("/", async (req, res) => {
       maxAge: 1209600000,
       secure: true,
       httpOnly: true,
-      domain: websiteUrl,
     };
 
     console.log("signed in");
 
-    res
-      .cookie("cftAuthtest", token, cookieOptions)
-      .json({ signedIn: true, token });
-    tokenNow = req.cookies.cftAuthtest;
+    res.cookie("cftAuth", token, cookieOptions).json({ signedIn: true, token });
+    tokenNow = req.cookies.cftAuth;
 
     console.log(tokenNow, "now");
   } catch (error) {

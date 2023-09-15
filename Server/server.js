@@ -86,16 +86,6 @@ app.get("/cft-icon-64px", async (req, res) => {
   res.render("login");
 });
 
-app.get("*", function (req, res) {
-  res.sendFile(
-    path.join(
-      __dirname,
-      "../../Trello-Project-React/Frontend/dist",
-      "index.html"
-    )
-  );
-});
-
 // Routes Handling Section
 
 app.post("/isloggedIn", loginStatusChecker, async (req, res) => {
@@ -159,6 +149,18 @@ app.post(
     getWorkspaceName(req, res);
   }
 );
+
+//reaeact routes connection
+
+app.get("*", function (req, res) {
+  res.sendFile(
+    path.join(
+      __dirname,
+      "../../Trello-Project-React/Frontend/dist",
+      "index.html"
+    )
+  );
+});
 
 app.listen(3000, function () {
   console.log("Listening on port 3000");

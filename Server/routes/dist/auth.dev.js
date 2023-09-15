@@ -87,15 +87,14 @@ router.post("/", function _callee(req, res) {
           cookieOptions = {
             maxAge: 1209600000,
             secure: true,
-            httpOnly: true,
-            domain: websiteUrl
+            httpOnly: true
           };
           console.log("signed in");
-          res.cookie("cftAuthtest", token, cookieOptions).json({
+          res.cookie("cftAuth", token, cookieOptions).json({
             signedIn: true,
             token: token
           });
-          tokenNow = req.cookies.cftAuthtest;
+          tokenNow = req.cookies.cftAuth;
           console.log(tokenNow, "now");
           _context.next = 30;
           break;

@@ -10,7 +10,7 @@ module.exports = function (req, res, next) {
 
   //try to fetch it from server if undefined
   if (!token) {
-    token = serverToken.cftAuthtest;
+    token = serverToken.cftAuth;
     console.log(token);
   }
   // const token = req.cookies.cftAuth;
