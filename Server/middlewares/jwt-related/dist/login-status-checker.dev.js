@@ -10,8 +10,8 @@ var JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
 
 module.exports = function (req, res, next) {
   var token = req.body.token;
-  var serverToken = req.cookies;
-  console.log(serverToken); //try to fetch it from server if undefined
+  var serverToken = req.cookies; // console.log(serverToken);
+  //try to fetch it from server if undefined
 
   if (!token) {
     token = serverToken.cftAuth;

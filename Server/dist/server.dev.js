@@ -91,7 +91,9 @@ app.use("/api/forgot-password", forgotPassword);
 app.use("/api/dashboard", loginStatusChecker, isUserAuthorized, dashboard);
 app.use("/api/checkout", loginStatusChecker, paymentsHandling);
 app.use("/api/checkout/webhooks", webhooks);
-app.use(express["static"](path.join(__dirname, "../../Trello-Project-React/Frontend/dist"))); //Won't be accessible by React route, callback during app authorization. server owns this route
+app.use(express["static"](path.join(__dirname, "../../Trello-Project-React/Frontend/dist")));
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "../../Trello-Project-React/Frontend/public/views")); //Won't be accessible by React route, callback during app authorization. server owns this route
 
 app.get("/callback", function _callee(req, res) {
   return regeneratorRuntime.async(function _callee$(_context) {
@@ -106,9 +108,7 @@ app.get("/callback", function _callee(req, res) {
       }
     }
   });
-});
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "../../Trello-Project-React/Frontend/views")); //Won't be accessible by React route, server owns this route
+}); //Won't be accessible by React route, server owns this route
 
 app.get("/cft-icon-64px", function _callee2(req, res) {
   return regeneratorRuntime.async(function _callee2$(_context2) {

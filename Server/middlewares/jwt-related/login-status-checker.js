@@ -6,7 +6,7 @@ const JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
 module.exports = function (req, res, next) {
   let token = req.body.token;
   const serverToken = req.cookies;
-  console.log(serverToken);
+  // console.log(serverToken);
 
   //try to fetch it from server if undefined
   if (!token) {

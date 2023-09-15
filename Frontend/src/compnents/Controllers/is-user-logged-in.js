@@ -5,6 +5,7 @@ import getCookies from "../utilis/cookiesSetting/getCookies";
 export default async function isUserLoggedIn() {
   const isUserLoggedInEndpoint = `${websiteUrl}/isloggedIn`;
   const token = getCookies();
+
   try {
     const response = await axios.post(isUserLoggedInEndpoint, { token });
     const data = await response.data;

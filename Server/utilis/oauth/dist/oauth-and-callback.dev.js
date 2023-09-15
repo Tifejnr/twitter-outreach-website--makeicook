@@ -35,7 +35,7 @@ var keysObj = getKeys();
 var key = keysObj.CLIENT_SECRET_KEY;
 var secret = keysObj.SECRET;
 var loginCallback = "http://localhost:3000/callback";
-var redirectUrl = "http://localhost:3000/home"; // const loginCallback = "https://www.collabfortrello.com/callback";
+var redirectUrl = "http://localhost:5173/home"; // const loginCallback = "https://www.collabfortrello.com/callback";
 // const redirectUrl = "https://www.collabfortrello.com/home";
 
 var oauth_secrets = {}; //trello oauth starts
@@ -134,12 +134,9 @@ function callback(req, response) {
                       cookieOptions = {
                         maxAge: 1209600000,
                         secure: true,
-                        httpOnly: true
+                        httpOnly: false
                       };
-                      response.cookie("cftAuth", _token, cookieOptions).json({
-                        registered: true,
-                        token: _token
-                      });
+                      response.cookie("cftAuth", _token, cookieOptions).redirect(redirectUrl);
                       console.log("registered");
                       _context.next = 40;
                       break;

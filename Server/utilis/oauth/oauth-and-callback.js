@@ -24,7 +24,8 @@ const key = keysObj.CLIENT_SECRET_KEY;
 const secret = keysObj.SECRET;
 
 const loginCallback = "http://localhost:3000/callback";
-const redirectUrl = "http://localhost:3000/home";
+const redirectUrl = "http://localhost:5173/home";
+
 // const loginCallback = "https://www.collabfortrello.com/callback";
 // const redirectUrl = "https://www.collabfortrello.com/home";
 
@@ -105,12 +106,12 @@ async function callback(req, response) {
             const cookieOptions = {
               maxAge: 1209600000,
               secure: true,
-              httpOnly: true,
+              httpOnly: false,
             };
 
             response
               .cookie("cftAuth", token, cookieOptions)
-              .json({ registered: true, token });
+              .redirect(redirectUrl);
 
             console.log("registered");
           } catch (error) {

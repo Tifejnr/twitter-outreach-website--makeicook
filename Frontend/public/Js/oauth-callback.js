@@ -12,40 +12,38 @@ function getCookie(name) {
 
 // Usage:
 
-console.log(token);
+// if (cftAuthValue !== null) {
+//   console.log("cftAuth cookie value:", cftAuthValue);
+// } else {
+//   console.log("cftAuth cookie not found");
+// }
 
-if (cftAuthValue !== null) {
-  console.log("cftAuth cookie value:", cftAuthValue);
-} else {
-  console.log("cftAuth cookie not found");
-}
+// (async () => {
+//   const token = getCookie("cftAuth");
+//   const data = {
+//     token,
+//   };
 
-(async () => {
-  const token = getCookie("cftAuth");
-  const data = {
-    token,
-  };
+//   try {
+//     const response = await fetch(url, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify(data),
+//     });
 
-  try {
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+//     if (!response.ok) {
+//       throw new Error(`HTTP error! Status: ${response.status}`);
+//     }
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
+//     const responseData = await response.json();
+//     console.log("Response data:", responseData);
 
-    const responseData = await response.json();
-    console.log("Response data:", responseData);
+//     const redirectUrl = responseData.redirectUrl;
 
-    const redirectUrl = responseData.redirectUrl;
-
-    if (redirectUrl) return (window.location.href = "/home");
-  } catch (error) {
-    console.error("Error:", error);
-  }
-})();
+//     if (redirectUrl) return (window.location.href = "/home");
+//   } catch (error) {
+//     console.error("Error:", error);
+//   }
+// })();

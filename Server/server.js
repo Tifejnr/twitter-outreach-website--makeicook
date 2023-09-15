@@ -70,16 +70,16 @@ app.use(
   )
 );
 
+app.set("view engine", "ejs");
+app.set(
+  "views",
+  path.join(__dirname, "../../Trello-Project-React/Frontend/public/views")
+);
+
 //Won't be accessible by React route, callback during app authorization. server owns this route
 app.get("/callback", async (req, res) => {
   callback(req, res);
 });
-
-app.set("view engine", "ejs");
-app.set(
-  "views",
-  path.join(__dirname, "../../Trello-Project-React/Frontend/views")
-);
 
 //Won't be accessible by React route, server owns this route
 app.get("/cft-icon-64px", async (req, res) => {
