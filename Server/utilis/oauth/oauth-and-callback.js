@@ -23,11 +23,17 @@ const keysObj = getKeys();
 const key = keysObj.CLIENT_SECRET_KEY;
 const secret = keysObj.SECRET;
 
-const loginCallback = "http://localhost:3000/callback";
-const redirectUrl = "http://localhost:5173/home";
+// const loginCallback = "http://localhost:3000/callback";
+// const homeUrl = "http://localhost:5173/home";
 
-// const loginCallback = "https://www.collabfortrello.com/callback";
-// const redirectUrl = "https://www.collabfortrello.com/home";
+const loginCallback = "https://www.collabfortrello.com/callback";
+const homeUrl = "https://www.collabfortrello.com/home";
+
+const cookieOptions = {
+  maxAge: 1209600000,
+  secure: true,
+  httpOnly: false,
+};
 
 const oauth_secrets = {};
 
@@ -72,22 +78,25 @@ async function callback(req, response) {
 
           //Get user details from trello and save his email, name, username and token
           const userDetails = await getUserDetails(key, accessToken);
+          const { fullName, username } = userDetails;
 
-          console.log(userDetails);
-          const { fullName, username, email } = userDetails;
-          //check if user has once been authorized with the username
+          //check if user has once been authorized/registered with the username
           try {
             const accountUserExists = await user.findOne({
               username: username,
             });
 
-            if (accountUserExists)
-              return response
-                .status(409)
-                .json({ alreadyRegistered: "User already registered" });
+            //if user has already been registered, return the account to homepage
+            if (accountUserExists) {
+              const token = await signJwt(accountUserExists);
 
+              return response
+                .cookie("cftAuth", token, cookieOptions)
+                .redirect(homeUrl);
+            }
+
+            //create new user and save user details in db
             const accountUser = new user(_.pick(userDetails, ["email"]));
-            accountUser.credits = 5;
             accountUser.name = fullName;
             accountUser.username = username;
 
@@ -102,18 +111,11 @@ async function callback(req, response) {
             console.log(accountUser);
 
             const token = await signJwt(accountUser);
-
-            const cookieOptions = {
-              maxAge: 1209600000,
-              secure: true,
-              httpOnly: false,
-            };
-
-            response
-              .cookie("cftAuth", token, cookieOptions)
-              .redirect(redirectUrl);
-
             console.log("registered");
+
+            return response
+              .cookie("cftAuth", token, cookieOptions)
+              .redirect(homeUrl);
           } catch (error) {
             console.log(error);
             return response.json({ error });

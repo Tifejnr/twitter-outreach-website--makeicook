@@ -824,6 +824,15 @@ body {
   height: 1rem;
 }
 
+/* Trello oauth icon sizing */
+
+#trelloIconForOauth {
+  height: 3rem;
+  width: 4rem;
+  background-color: #fff;
+  border-radius: 20%;
+}
+
 /* Below Hero Block */
 .product-pic-container {
   display: flex;

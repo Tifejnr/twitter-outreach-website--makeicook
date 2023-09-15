@@ -9,10 +9,12 @@ import { changeTabTitle } from "../../utilis/changeTabTitle";
 import handlePageRefreshOnLoad from "../../utilis/refreshPageOnLoad";
 import { notificationColorsObj } from "../../utilis/colors/colors";
 import setCookies from "../../utilis/cookiesSetting/setCookies";
+import GetStartedIcon from "../../Trello-oauth-page/GetStartedIcon";
 
 const logInTabTitle= "Log in – Collab for Trello"
 const registerPageLink= "/register"
 const forgotPasswordLink= "/forgot-password"
+const signinButtonLabel= "Sign in wth Trello"
 
 export default function SignIn() {
   const [email, setEmail] = useState("")
@@ -112,9 +114,13 @@ const validateFunctionResponse= (validateAll(paramsObj));
 <section className="main-container reg-container" id="form">
 
     <article className="main__title">
-        <h2>Log in</h2>
-      </article>
-   <section>
+        <h2>Sign In</h2>
+    </article>
+
+    <GetStartedIcon buttonLabel={signinButtonLabel}/>
+
+    
+   {/* <section>
     <form action="" className="reg-form" onSubmit={sendInfoToServer}>
 
       <fieldset className="input-wrapper">
@@ -165,7 +171,7 @@ const validateFunctionResponse= (validateAll(paramsObj));
           </Link>
         </h3>
     </aside>
-   </section>
+   </section> */}
  </section>
 </>
  );

@@ -1,17 +1,18 @@
 
 import NavLogo from "../Main-nav-bar/NavLogo"
 import GetStartedIcon from "./GetStartedIcon"
-import trelloIcon from "../../assets/SVGs/trello-icon.svg"
 import forwardArrow from "../../assets/SVGs/thin-long-arrow-right-icon.svg"
 import { changeTabTitle } from "../utilis/changeTabTitle"
 import AuthNav from "../Auth/AuthNav"
+import { IconsObj } from "../utilis/Icons/iconsObj"
 
 const oauthPageTabTitle= "Authorize account – Collab for Trello"
+const buttonLabel= "CLICK TO AUTHORIZE"
 
 
 export default function OauthPage() {
 
-  changeTabTitle( oauthPageTabTitle)
+  changeTabTitle(oauthPageTabTitle)
 
   return (
    <>
@@ -24,7 +25,7 @@ export default function OauthPage() {
 
        <section className="authorize-image-desc">
           <article>
-            <img src= {trelloIcon} className='trello-icon' />
+            <img src= {IconsObj.trelloIcon} className='trello-icon' />
               <h3>Trello</h3>
           </article>
 
@@ -45,7 +46,7 @@ export default function OauthPage() {
        </section>
 
        <section>
-         <GetStartedIcon/>
+         <GetStartedIcon buttonLabel={buttonLabel}/>
        </section>
 
   </main> 

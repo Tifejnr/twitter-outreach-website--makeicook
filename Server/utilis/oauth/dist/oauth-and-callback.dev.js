@@ -33,11 +33,16 @@ var scope = "read,write,account";
 var expiration = "never";
 var keysObj = getKeys();
 var key = keysObj.CLIENT_SECRET_KEY;
-var secret = keysObj.SECRET;
-var loginCallback = "http://localhost:3000/callback";
-var redirectUrl = "http://localhost:5173/home"; // const loginCallback = "https://www.collabfortrello.com/callback";
-// const redirectUrl = "https://www.collabfortrello.com/home";
+var secret = keysObj.SECRET; // const loginCallback = "http://localhost:3000/callback";
+// const homeUrl = "http://localhost:5173/home";
 
+var loginCallback = "https://www.collabfortrello.com/callback";
+var homeUrl = "https://www.collabfortrello.com/home";
+var cookieOptions = {
+  maxAge: 1209600000,
+  secure: true,
+  httpOnly: false
+};
 var oauth_secrets = {}; //trello oauth starts
 
 var oauth = new OAuth(requestURL, accessURL, key, secret, "1.0A", loginCallback, "HMAC-SHA1");
@@ -65,7 +70,7 @@ function callback(req, response) {
           verifier = query.oauth_verifier;
           oauth.getOAuthAccessToken(token, tokenSecret, verifier, function (error, accessToken, accessTokenSecret, results) {
             oauth.getProtectedResource("https://api.trello.com/1/members/me/boards", "GET", accessToken, accessTokenSecret, function _callee(error, data, response2) {
-              var userDetails, fullName, username, email, accountUserExists, accountUser, _ref, iv, encrytptedToken, _token, cookieOptions;
+              var userDetails, fullName, username, accountUserExists, _token2, accountUser, _ref, iv, encrytptedToken, _token;
 
               return regeneratorRuntime.async(function _callee$(_context) {
                 while (1) {
@@ -84,66 +89,61 @@ function callback(req, response) {
 
                     case 4:
                       userDetails = _context.sent;
-                      console.log(userDetails);
-                      fullName = userDetails.fullName, username = userDetails.username, email = userDetails.email; //check if user has once been authorized with the username
+                      fullName = userDetails.fullName, username = userDetails.username; //check if user has once been authorized/registered with the username
 
-                      _context.prev = 7;
-                      _context.next = 10;
+                      _context.prev = 6;
+                      _context.next = 9;
                       return regeneratorRuntime.awrap(user.findOne({
                         username: username
                       }));
 
-                    case 10:
+                    case 9:
                       accountUserExists = _context.sent;
 
                       if (!accountUserExists) {
-                        _context.next = 13;
+                        _context.next = 15;
                         break;
                       }
 
-                      return _context.abrupt("return", response.status(409).json({
-                        alreadyRegistered: "User already registered"
-                      }));
+                      _context.next = 13;
+                      return regeneratorRuntime.awrap(signJwt(accountUserExists));
 
                     case 13:
+                      _token2 = _context.sent;
+                      return _context.abrupt("return", response.cookie("cftAuth", _token2, cookieOptions).redirect(homeUrl));
+
+                    case 15:
+                      //create new user and save user details in db
                       accountUser = new user(_.pick(userDetails, ["email"]));
-                      accountUser.credits = 5;
                       accountUser.name = fullName;
                       accountUser.username = username; //encrypt and save access token plus give 5 bonus credits for trial
 
-                      _context.next = 19;
+                      _context.next = 20;
                       return regeneratorRuntime.awrap(encryptToken(accessToken));
 
-                    case 19:
+                    case 20:
                       _ref = _context.sent;
                       iv = _ref.iv;
                       encrytptedToken = _ref.encrytptedToken;
                       accountUser.trello_token = encrytptedToken;
                       accountUser.iv = iv;
                       accountUser.credits = 5;
-                      _context.next = 27;
+                      _context.next = 28;
                       return regeneratorRuntime.awrap(accountUser.save());
 
-                    case 27:
+                    case 28:
                       console.log(accountUser);
-                      _context.next = 30;
+                      _context.next = 31;
                       return regeneratorRuntime.awrap(signJwt(accountUser));
 
-                    case 30:
+                    case 31:
                       _token = _context.sent;
-                      cookieOptions = {
-                        maxAge: 1209600000,
-                        secure: true,
-                        httpOnly: false
-                      };
-                      response.cookie("cftAuth", _token, cookieOptions).redirect(redirectUrl);
                       console.log("registered");
-                      _context.next = 40;
-                      break;
+                      return _context.abrupt("return", response.cookie("cftAuth", _token, cookieOptions).redirect(homeUrl));
 
                     case 36:
                       _context.prev = 36;
-                      _context.t0 = _context["catch"](7);
+                      _context.t0 = _context["catch"](6);
                       console.log(_context.t0);
                       return _context.abrupt("return", response.json({
                         error: _context.t0
@@ -154,7 +154,7 @@ function callback(req, response) {
                       return _context.stop();
                   }
                 }
-              }, null, null, [[7, 36]]);
+              }, null, null, [[6, 36]]);
             });
           });
 
