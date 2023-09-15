@@ -3,7 +3,7 @@ import CustomLink from '../CustomLink'
 import handlePageRefreshOnLoad from '../utilis/refreshPageOnLoad'
 
 
-const registerPageLink ="/register"
+const registerPageLink ="/authorize"
 const signInPageLink ="/sign-in"
 const pricingLink = "/pricing"
 const toolsLink ="/tools"
@@ -11,7 +11,6 @@ const faqLink ="/faq"
 const reviewsLink ="/reviews"
 
 export default function PagesNavItems(props) {
-
  return (
     <>
       <li>

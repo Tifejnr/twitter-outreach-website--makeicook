@@ -17,8 +17,7 @@ export default function OauthPage() {
 
   return (
    <>
- <LoginOnlyControl>
-   
+
    <AuthNav />
 
   <main className="auth-page-main-cont">
@@ -51,7 +50,6 @@ export default function OauthPage() {
        </section>
 
   </main> 
-</LoginOnlyControl>  
    </>
   )
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import handlePageRefreshOnLoad from '../../utilis/refreshPageOnLoad';
 
-const registerLink= "/register"
+const registerLink= "/authorize"
 
 export default function Hero() {
   

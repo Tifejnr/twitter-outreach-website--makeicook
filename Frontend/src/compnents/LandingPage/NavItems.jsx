@@ -4,7 +4,7 @@ import { smoothScroll } from '../../JS functions/Utilis/SmoothScrolling/scroll'
 import { closeMenuBar } from '../../JS functions/Utilis/SmoothScrolling/scroll'
 import handlePageRefreshOnLoad from '../utilis/refreshPageOnLoad';
 
-const registerPageLink ="/register"
+const registerPageLink ="/authorize"
 const signInPageLink ="/sign-in"
 
 export default function NavItemsLandingPage() {
