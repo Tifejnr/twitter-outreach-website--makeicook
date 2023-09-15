@@ -1,8 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import handlePageRefreshOnLoad from '../../utilis/refreshPageOnLoad';
-
-const registerLink= "/authorize"
+import { pagesLinkObj } from '../../utilis/pageLinks/pagesLinkObj';
 
 export default function Hero() {
   
@@ -14,9 +13,9 @@ export default function Hero() {
       <h3>Save time and stress of manually adding and removing trello team members from multiple boards and workspaces</h3>
        
         <section className='call-to-action-cont'>
-          <Link  to={registerLink} className='oauth-button' onClick={(e)=> {
+          <Link  to={pagesLinkObj.registerPageLink} className='oauth-button' onClick={(e)=> {
             e.preventDefault()
-            handlePageRefreshOnLoad(registerLink)
+            handlePageRefreshOnLoad(pagesLinkObj.registerPageLink)
           }}>
               <h2>Start for free</h2>
           </Link>

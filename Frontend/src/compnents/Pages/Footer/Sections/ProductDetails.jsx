@@ -2,11 +2,8 @@ import React from 'react'
 import {Link } from 'react-router-dom'
 import CustomLink from '../../../CustomLink'
 import handlePageRefreshOnLoad from '../../../utilis/refreshPageOnLoad'
+import { pagesLinkObj } from '../../../utilis/pageLinks/pagesLinkObj'
 
-const toolsPageLink= "/tools"
-const faqPageLink= "/faq"
-const reviewsPageLink= "/reviews"
-const pricingPageLink= "/pricing"
 
 export default function ProductDetails() {
 
@@ -16,36 +13,36 @@ export default function ProductDetails() {
        <h3>Product</h3>
 
        <ul>
-          <CustomLink to={toolsPageLink}
+          <CustomLink to={pagesLinkObj.toolsLink}
               onClick={(e) => {
                   e.preventDefault()
-                handlePageRefreshOnLoad(toolsPageLink)
+                handlePageRefreshOnLoad(pagesLinkObj.toolsLink)
                 }}
               >
               <p>Tools</p>
           </CustomLink>
 
-          <CustomLink to={faqPageLink}
+          <CustomLink to={pagesLinkObj.faqPageLink}
             onClick={(e) => {
                 e.preventDefault()
-                handlePageRefreshOnLoad(faqPageLink)
+                handlePageRefreshOnLoad(pagesLinkObj.faqPageLink)
                 }}
             >            
               <p>FAQ</p>
           </CustomLink>
 
-          <CustomLink to={reviewsPageLink}
+          <CustomLink to={pagesLinkObj.reviewsLink}
             onClick={(e) => {
                 e.preventDefault()
-              handlePageRefreshOnLoad(reviewsPageLink)
+              handlePageRefreshOnLoad(pagesLinkObj.reviewsLink)
               }}
             >
             <p>Reviews</p>
           </CustomLink>
 
-          <CustomLink to={pricingPageLink}  onClick={(e) => {
+          <CustomLink to={pagesLinkObj.pricingLink}  onClick={(e) => {
                 e.preventDefault()
-              handlePageRefreshOnLoad(pricingPageLink)
+              handlePageRefreshOnLoad(pagesLinkObj.pricingLink)
               }}>
               <p>Pricing</p>
           </CustomLink>

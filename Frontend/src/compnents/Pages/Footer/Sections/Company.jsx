@@ -1,55 +1,50 @@
 import React from 'react'
 import CustomLink from '../../../CustomLink'
 import handlePageRefreshOnLoad from '../../../utilis/refreshPageOnLoad'
-
-const aboutPageLink= "/about-us"
-const contactPageLink= "/contact-us"
-const mediaPageLink= "/media"
-const privacyPolicyPageLink= "/privacy-policy"
-const termsPageLink= "/terms"
+import { pagesLinkObj } from '../../../utilis/pageLinks/pagesLinkObj'
 
 export default function Company() {
   return (
     <section>
        <h3>Company</h3>
        <ul>
-          <CustomLink to={aboutPageLink}
+          <CustomLink to={pagesLinkObj.aboutPageLink}
             onClick={(e) => {
                 e.preventDefault()
-                handlePageRefreshOnLoad(aboutPageLink)
+                handlePageRefreshOnLoad(pagesLinkObj.aboutPageLink)
              }}
               >
             <p>About us</p>
           </CustomLink>
           
-          <CustomLink to={contactPageLink}
+          <CustomLink to={pagesLinkObj.contactPageLink}
             onClick={(e) => {
               e.preventDefault();
-              handlePageRefreshOnLoad(contactPageLink);
+              handlePageRefreshOnLoad(pagesLinkObj.contactPageLink);
             }}>
             <p>Contact us</p>
           </CustomLink>
 
-          <CustomLink to={mediaPageLink}
+          <CustomLink to={pagesLinkObj.mediaPageLink}
             onClick={(e) => {
               e.preventDefault();
-              handlePageRefreshOnLoad(mediaPageLink);
+              handlePageRefreshOnLoad(pagesLinkObj.mediaPageLink);
             }}>
             <p>Media</p>
           </CustomLink>
 
-          <CustomLink to={termsPageLink}
+          <CustomLink to={pagesLinkObj.termsPageLink}
             onClick={(e) => {
               e.preventDefault();
-              handlePageRefreshOnLoad(termsPageLink);
+              handlePageRefreshOnLoad(pagesLinkObj.termsPageLink);
             }}>
             <p>Terms</p>
           </CustomLink>
 
-          <CustomLink to={privacyPolicyPageLink}
+          <CustomLink to={pagesLinkObj.privacyPolicyPageLink}
             onClick={(e) => {
               e.preventDefault();
-              handlePageRefreshOnLoad(privacyPolicyPageLink);
+              handlePageRefreshOnLoad(pagesLinkObj.privacyPolicyPageLink);
             }}>
             <p>Privacy Policy</p>
           </CustomLink>

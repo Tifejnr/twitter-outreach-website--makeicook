@@ -3,9 +3,7 @@ import CustomLink from '../CustomLink'
 import { smoothScroll } from '../../JS functions/Utilis/SmoothScrolling/scroll'
 import { closeMenuBar } from '../../JS functions/Utilis/SmoothScrolling/scroll'
 import handlePageRefreshOnLoad from '../utilis/refreshPageOnLoad';
-
-const registerPageLink ="/authorize"
-const signInPageLink ="/sign-in"
+import { pagesLinkObj } from '../utilis/pageLinks/pagesLinkObj';
 
 export default function NavItemsLandingPage() {
 const setIsMenuIconShowing = useStore((state) => state.setIsMenuIconShowing);
@@ -51,15 +49,15 @@ const toolsClick = ()=> {
 
         <li>
           <ul className='inner-nav-item-container'>
-            <CustomLink to={signInPageLink} onClick={(e)=> {
+            <CustomLink to={pagesLinkObj.signInPageLink} onClick={(e)=> {
               e.preventDefault();
-              handlePageRefreshOnLoad(signInPageLink)
+              handlePageRefreshOnLoad(pagesLinkObj.signInPageLink)
             }}>
              <h3 id="loginLandingPage">Log In</h3>
             </CustomLink>
-            <CustomLink to={registerPageLink} className="sign-up-cont" onClick={(e)=> {
+            <CustomLink to={pagesLinkObj.registerPageLink} className="sign-up-cont" onClick={(e)=> {
               e.preventDefault();
-              handlePageRefreshOnLoad(registerPageLink)
+              handlePageRefreshOnLoad(pagesLinkObj.registerPageLink)
             }}>
             <h4 className='sign-up'>Start for free</h4>
             </CustomLink>

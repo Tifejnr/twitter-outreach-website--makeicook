@@ -1,11 +1,10 @@
 import React from 'react'
 import CustomLink from '../../../CustomLink'
 import handlePageRefreshOnLoad from '../../../utilis/refreshPageOnLoad'
+import { pagesLinkObj } from '../../../utilis/pageLinks/pagesLinkObj'
 
-const blogPageLink= "/blog"
-const tutorialsPageLink= "/tutorials"
-const reviewsPageLink= "/reviews"
-const pricingPageLink= "/pricing"
+// const reviewsPageLink= "/reviews"
+// const pricingPageLink= "/pricing"
 
 export default function ResourcesSection() {
   return (
@@ -13,18 +12,18 @@ export default function ResourcesSection() {
     <section>
        <h3>Resources</h3>
        <ul>
-    <CustomLink to={blogPageLink}
+    <CustomLink to={pagesLinkObj.blogPageLink}
       onClick={(e) => {
         e.preventDefault();
-        handlePageRefreshOnLoad(blogPageLink);
+        handlePageRefreshOnLoad(pagesLinkObj.blogPageLink);
       }}>
       <p>Blog</p>
     </CustomLink>
 
-    <CustomLink to={tutorialsPageLink}
+    <CustomLink to={pagesLinkObj.tutorialsPageLink}
       onClick={(e) => {
         e.preventDefault();
-        handlePageRefreshOnLoad(tutorialsPageLink);
+        handlePageRefreshOnLoad(pagesLinkObj.tutorialsPageLink);
       }}>
       <p>Tools Tutorial</p>
     </CustomLink>

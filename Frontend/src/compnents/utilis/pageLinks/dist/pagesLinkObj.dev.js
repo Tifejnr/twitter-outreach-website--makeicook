@@ -9,13 +9,28 @@ var signInPageLink = "/sign-in";
 var pricingLink = "/pricing";
 var toolsLink = "/tools";
 var faqLink = "/faq";
-var reviewsLink = "/reviews";
+var reviewsLink = "/reviews"; //footer links
+
+var aboutPageLink = "/about-us";
+var contactPageLink = "/contact-us";
+var mediaPageLink = "/media";
+var privacyPolicyPageLink = "/privacy-policy";
+var termsPageLink = "/terms";
+var blogPageLink = "/blog";
+var tutorialsPageLink = "/tutorials";
 var pagesLinkObj = {
   registerPageLink: registerPageLink,
   signInPageLink: signInPageLink,
   pricingLink: pricingLink,
   toolsLink: toolsLink,
   faqLink: faqLink,
-  reviewsLink: reviewsLink
+  reviewsLink: reviewsLink,
+  aboutPageLink: aboutPageLink,
+  contactPageLink: contactPageLink,
+  mediaPageLink: mediaPageLink,
+  privacyPolicyPageLink: privacyPolicyPageLink,
+  termsPageLink: termsPageLink,
+  blogPageLink: blogPageLink,
+  tutorialsPageLink: tutorialsPageLink
 };
 exports.pagesLinkObj = pagesLinkObj;

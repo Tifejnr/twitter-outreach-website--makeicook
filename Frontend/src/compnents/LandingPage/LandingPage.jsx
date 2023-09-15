@@ -11,6 +11,7 @@ import PricingPage from '../PricingPage/PricingPage'
 import ToolsSection from './Tools/Tools'
 import FooterPages from '../Pages/Footer/FooterPages'
 import { changeTabTitle } from '../utilis/changeTabTitle'
+import { pagesLinkObj } from '../utilis/pageLinks/pagesLinkObj'
 
 const landingPageTabTitle= "Automate Trello Members Addition and Removal – Collab for Trello";
 
@@ -22,7 +23,7 @@ return (
 <>
   <nav className='nav'>
         
-       <LandingPageToggle innerText="Free start" pageLink="/register"/>
+       <LandingPageToggle innerText="Free start" pageLink={pagesLinkObj.registerPageLink}/>
 
       <ul className="nav__menu landing-page-nav-menu">
 
