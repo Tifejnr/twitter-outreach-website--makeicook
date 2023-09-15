@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import fullNameValidation from "./Contact-Input-Validations/fullname-validation";
 import emailValidation from "./Contact-Input-Validations/emailValidation";
 import textAreaValidation from "./Contact-Input-Validations/textAreaVal";
+import { notificationColorsObj } from "../../utilis/colors/colors";
 
-const successColor = "#09c372";
-const errorColor = "#ff3860";
 const hideVisiblilty = "hidden"
 const showVisibilty = "visible"
 
@@ -30,8 +29,8 @@ export default function ContactUs() {
       fullNameBorderColor === null
         ? "grey"
         : fullNameBorderColor
-        ? successColor
-        : errorColor,
+        ? notificationColorsObj.successColor
+        : notificationColorsObj.errorColor,
   };
 
   const fullNameErrorStyle = {
@@ -39,8 +38,8 @@ export default function ContactUs() {
       fullNameBorderColor === null
         ? "grey"
         : fullNameBorderColor
-        ? successColor
-        : errorColor,
+        ? notificationColorsObj.successColor
+        : notificationColorsObj.errorColor,
     visibility: fullNameBorderColor === null
         ? showVisibilty
         : fullNameBorderColor
@@ -53,8 +52,8 @@ export default function ContactUs() {
       emailBorderColor === null
         ? "grey"
         : emailBorderColor
-        ? successColor
-        : errorColor,
+        ? notificationColorsObj.successColor
+        : notificationColorsObj.errorColor,
   };
 
   const emailErrorStyle = {
@@ -62,8 +61,8 @@ export default function ContactUs() {
       emailBorderColor === null
         ? "grey"
         : emailBorderColor
-        ? successColor
-        : errorColor,
+        ? notificationColorsObj.successColor
+        : notificationColorsObj.errorColor,
    visibility: 
       emailBorderColor === null
         ? showVisibilty
@@ -78,8 +77,8 @@ export default function ContactUs() {
       textareaBorderColor === null
         ? "grey"
         : textareaBorderColor
-        ? successColor
-        : errorColor,
+        ? notificationColorsObj.successColor
+        : notificationColorsObj.errorColor,
   };
 
   const textareaErrorStyle = {
@@ -87,8 +86,8 @@ export default function ContactUs() {
       textareaBorderColor === null
         ? "grey"
         : textareaBorderColor
-        ? successColor
-        : errorColor,
+        ? notificationColorsObj.successColor
+        : notificationColorsObj.errorColor,
 
    visibility: 
       textareaBorderColor === null
