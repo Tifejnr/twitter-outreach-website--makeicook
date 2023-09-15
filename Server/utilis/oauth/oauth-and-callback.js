@@ -2,16 +2,20 @@ const session = require("express-session");
 const OAuth = require("oauth").OAuth;
 const url = require("url");
 const { user } = require("../../models/users");
+const _ = require("lodash");
 const { getKeys } = require("../../envKeys/allKeys");
 const { encryptToken } = require("../../middlewares/token-safety/encryptToken");
 const { getUserDetails } = require("./getUserDetails");
+const { signJwt } = require("../../middlewares/jwt-related/sign-jwt");
 
 // OAuth Setup and Functions
 const requestURL = "https://trello.com/1/OAuthGetRequestToken";
 const accessURL = "https://trello.com/1/OAuthGetAccessToken";
 const authorizeURL = "https://trello.com/1/OAuthAuthorizeToken";
 const appName = "Collab for Trello";
-const scope = "read,write";
+
+//important to put account in the scope so that you can get the email of user
+const scope = "read,write,account";
 const expiration = "never";
 
 const keysObj = getKeys();
@@ -19,8 +23,10 @@ const keysObj = getKeys();
 const key = keysObj.CLIENT_SECRET_KEY;
 const secret = keysObj.SECRET;
 
-const loginCallback = "https://www.collabfortrello.com/callback";
-const redirectUrl = "https://www.collabfortrello.com/home";
+const loginCallback = "http://localhost:3000/callback";
+const redirectUrl = "http://localhost:3000/home";
+// const loginCallback = "https://www.collabfortrello.com/callback";
+// const redirectUrl = "https://www.collabfortrello.com/home";
 
 const oauth_secrets = {};
 
@@ -75,15 +81,16 @@ async function callback(req, response) {
             });
 
             if (accountUserExists)
-              return res
+              return response
                 .status(409)
                 .json({ alreadyRegistered: "User already registered" });
+
             const accountUser = new user(_.pick(userDetails, ["email"]));
             accountUser.credits = 5;
             accountUser.name = fullName;
             accountUser.username = username;
 
-            //encrypt and save access token
+            //encrypt and save access token plus give 5 bonus credits for trial
             const { iv, encrytptedToken } = await encryptToken(accessToken);
             accountUser.trello_token = encrytptedToken;
             accountUser.iv = iv;
@@ -101,19 +108,15 @@ async function callback(req, response) {
               httpOnly: true,
             };
 
-            res
+            response
               .cookie("cftAuth", token, cookieOptions)
               .json({ registered: true, token });
 
             console.log("registered");
           } catch (error) {
             console.log(error);
-            return res.json({ error });
+            return response.json({ error });
           }
-
-          await accountUser.save();
-
-          response.redirect(redirectUrl);
         }
       );
     }

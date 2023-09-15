@@ -9,6 +9,8 @@ var url = require("url");
 var _require = require("../../models/users"),
     user = _require.user;
 
+var _ = require("lodash");
+
 var _require2 = require("../../envKeys/allKeys"),
     getKeys = _require2.getKeys;
 
@@ -16,20 +18,26 @@ var _require3 = require("../../middlewares/token-safety/encryptToken"),
     encryptToken = _require3.encryptToken;
 
 var _require4 = require("./getUserDetails"),
-    getUserDetails = _require4.getUserDetails; // OAuth Setup and Functions
+    getUserDetails = _require4.getUserDetails;
+
+var _require5 = require("../../middlewares/jwt-related/sign-jwt"),
+    signJwt = _require5.signJwt; // OAuth Setup and Functions
 
 
 var requestURL = "https://trello.com/1/OAuthGetRequestToken";
 var accessURL = "https://trello.com/1/OAuthGetAccessToken";
 var authorizeURL = "https://trello.com/1/OAuthAuthorizeToken";
-var appName = "Collab for Trello";
-var scope = "read,write";
+var appName = "Collab for Trello"; //important to put account in the scope so that you can get the email of user
+
+var scope = "read,write,account";
 var expiration = "never";
 var keysObj = getKeys();
 var key = keysObj.CLIENT_SECRET_KEY;
 var secret = keysObj.SECRET;
-var loginCallback = "https://www.collabfortrello.com/callback";
-var redirectUrl = "https://www.collabfortrello.com/home";
+var loginCallback = "http://localhost:3000/callback";
+var redirectUrl = "http://localhost:3000/home"; // const loginCallback = "https://www.collabfortrello.com/callback";
+// const redirectUrl = "https://www.collabfortrello.com/home";
+
 var oauth_secrets = {}; //trello oauth starts
 
 var oauth = new OAuth(requestURL, accessURL, key, secret, "1.0A", loginCallback, "HMAC-SHA1");
@@ -57,7 +65,7 @@ function callback(req, response) {
           verifier = query.oauth_verifier;
           oauth.getOAuthAccessToken(token, tokenSecret, verifier, function (error, accessToken, accessTokenSecret, results) {
             oauth.getProtectedResource("https://api.trello.com/1/members/me/boards", "GET", accessToken, accessTokenSecret, function _callee(error, data, response2) {
-              var userDetails, fullName, username, email, accountUserExists, _accountUser, _ref, iv, encrytptedToken, _token, cookieOptions;
+              var userDetails, fullName, username, email, accountUserExists, accountUser, _ref, iv, encrytptedToken, _token, cookieOptions;
 
               return regeneratorRuntime.async(function _callee$(_context) {
                 while (1) {
@@ -93,15 +101,15 @@ function callback(req, response) {
                         break;
                       }
 
-                      return _context.abrupt("return", res.status(409).json({
+                      return _context.abrupt("return", response.status(409).json({
                         alreadyRegistered: "User already registered"
                       }));
 
                     case 13:
-                      _accountUser = new user(_.pick(userDetails, ["email"]));
-                      _accountUser.credits = 5;
-                      _accountUser.name = fullName;
-                      _accountUser.username = username; //encrypt and save access token
+                      accountUser = new user(_.pick(userDetails, ["email"]));
+                      accountUser.credits = 5;
+                      accountUser.name = fullName;
+                      accountUser.username = username; //encrypt and save access token plus give 5 bonus credits for trial
 
                       _context.next = 19;
                       return regeneratorRuntime.awrap(encryptToken(accessToken));
@@ -110,16 +118,16 @@ function callback(req, response) {
                       _ref = _context.sent;
                       iv = _ref.iv;
                       encrytptedToken = _ref.encrytptedToken;
-                      _accountUser.trello_token = encrytptedToken;
-                      _accountUser.iv = iv;
-                      _accountUser.credits = 5;
+                      accountUser.trello_token = encrytptedToken;
+                      accountUser.iv = iv;
+                      accountUser.credits = 5;
                       _context.next = 27;
-                      return regeneratorRuntime.awrap(_accountUser.save());
+                      return regeneratorRuntime.awrap(accountUser.save());
 
                     case 27:
-                      console.log(_accountUser);
+                      console.log(accountUser);
                       _context.next = 30;
-                      return regeneratorRuntime.awrap(signJwt(_accountUser));
+                      return regeneratorRuntime.awrap(signJwt(accountUser));
 
                     case 30:
                       _token = _context.sent;
@@ -128,7 +136,7 @@ function callback(req, response) {
                         secure: true,
                         httpOnly: true
                       };
-                      res.cookie("cftAuth", _token, cookieOptions).json({
+                      response.cookie("cftAuth", _token, cookieOptions).json({
                         registered: true,
                         token: _token
                       });
@@ -140,18 +148,11 @@ function callback(req, response) {
                       _context.prev = 36;
                       _context.t0 = _context["catch"](7);
                       console.log(_context.t0);
-                      return _context.abrupt("return", res.json({
+                      return _context.abrupt("return", response.json({
                         error: _context.t0
                       }));
 
                     case 40:
-                      _context.next = 42;
-                      return regeneratorRuntime.awrap(accountUser.save());
-
-                    case 42:
-                      response.redirect(redirectUrl);
-
-                    case 43:
                     case "end":
                       return _context.stop();
                   }

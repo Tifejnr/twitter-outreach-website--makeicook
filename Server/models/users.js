@@ -6,12 +6,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     minlength: 4,
     maxlength: 40,
+    required: true,
   },
 
   username: {
     type: String,
     minlength: 2,
     maxlength: 40,
+    required: true,
   },
 
   plan: {
@@ -22,14 +24,12 @@ const userSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    required: true,
     minlength: 4,
     maxlength: 250,
     unique: true,
   },
   password: {
     type: String,
-    required: true,
     minlength: 4,
     maxlength: 1250,
   },
@@ -43,13 +43,13 @@ const userSchema = new mongoose.Schema({
     type: String,
     minlength: 1,
     maxlength: 50000,
-    default: "NA",
+    required: true,
   },
   trello_token: {
     type: String,
     minlength: 1,
     maxlength: 122250,
-    default: "NA",
+    required: true,
   },
 
   isPaid: {

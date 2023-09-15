@@ -10,7 +10,7 @@ function getUserDetails(key, token) {
         case 0:
           _context.prev = 0;
           _context.next = 3;
-          return regeneratorRuntime.awrap(axios.get("https://api.trello.com/1/members/me?fields=fullName,username&key=".concat(key, "&token=").concat(token)));
+          return regeneratorRuntime.awrap(axios.get("https://api.trello.com/1/members/me?fields=fullName,username,email&key=".concat(key, "&token=").concat(token)));
 
         case 3:
           response = _context.sent;

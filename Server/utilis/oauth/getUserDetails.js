@@ -3,7 +3,7 @@ const axios = require("axios");
 async function getUserDetails(key, token) {
   try {
     const response = await axios.get(
-      `https://api.trello.com/1/members/me?fields=fullName,username&key=${key}&token=${token}`
+      `https://api.trello.com/1/members/me?fields=fullName,username,email&key=${key}&token=${token}`
     );
 
     if (response.status === 200) {
