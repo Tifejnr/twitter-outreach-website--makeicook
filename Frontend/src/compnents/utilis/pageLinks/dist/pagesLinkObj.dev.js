@@ -4,6 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.pagesLinkObj = void 0;
+//nav  links
 var registerPageLink = "/authorize";
 var signInPageLink = "/sign-in";
 var pricingLink = "/pricing";

@@ -735,6 +735,17 @@ body {
   align-content: center;
 }
 
+.auth-page-main-cont h5 {
+  font-size: 1.8rem;
+  color: var(--dark-des-blue);
+  letter-spacing: 0.5px;
+  font-weight: 300;
+}
+
+.auth-page-main-cont h5 b {
+  font-size: 2.5rem;
+}
+
 .auth-page-main-cont p {
   padding: 0 2rem;
   text-align: center;

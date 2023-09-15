@@ -1,3 +1,4 @@
+//nav  links
 const registerPageLink = "/authorize";
 const signInPageLink = "/sign-in";
 const pricingLink = "/pricing";

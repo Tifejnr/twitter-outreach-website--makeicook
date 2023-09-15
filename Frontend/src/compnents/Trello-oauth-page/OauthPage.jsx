@@ -1,10 +1,8 @@
-import NavToggleIcon from "../Main-nav-bar/NavToggleIcon"
+
 import NavLogo from "../Main-nav-bar/NavLogo"
-import OauthNavItems from "./OauthNavItems"
 import GetStartedIcon from "./GetStartedIcon"
 import trelloIcon from "../../assets/SVGs/trello-icon.svg"
 import forwardArrow from "../../assets/SVGs/thin-long-arrow-right-icon.svg"
-import LoginOnlyControl from "../Controllers/LoginOnlyControl"
 import { changeTabTitle } from "../utilis/changeTabTitle"
 import AuthNav from "../Auth/AuthNav"
 
@@ -22,6 +20,7 @@ export default function OauthPage() {
 
   <main className="auth-page-main-cont">
        <h1>AUTHORIZE ACCESS</h1>
+       <h5><b>5</b> free credits for trial</h5>
 
        <section className="authorize-image-desc">
           <article>
@@ -41,7 +40,7 @@ export default function OauthPage() {
 
        <section>
         <p>
-         Before we can let you dive in, please click the button below to connect Collab for Trello with Trello in order to perform automations on your behalf. 
+         To get started, please click the button below to connect Collab for Trello with Trello in order to perform automations on your behalf. 
         </p>
        </section>
 
