@@ -93,7 +93,7 @@ app.use("/api/checkout", loginStatusChecker, paymentsHandling);
 app.use("/api/checkout/webhooks", webhooks);
 app.use(express["static"](path.join(__dirname, "../../Trello-Project-React/Frontend/dist"))); //Won't be accessible by React route, callback during app authorization. server owns this route
 
-app.get("/callback", loginStatusChecker, function _callee(req, res) {
+app.get("/callback", function _callee(req, res) {
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
@@ -162,7 +162,7 @@ app.post("/is-account-authorized", [loginStatusChecker, isUserAuthorized], funct
 //   console.log(tokenCheck);
 // });
 
-app.post("/authorize", loginStatusChecker, function _callee5(req, res) {
+app.post("/authorize", function _callee5(req, res) {
   return regeneratorRuntime.async(function _callee5$(_context5) {
     while (1) {
       switch (_context5.prev = _context5.next) {

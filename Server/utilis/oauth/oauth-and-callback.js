@@ -24,6 +24,7 @@ const redirectUrl = "https://www.collabfortrello.com/home";
 
 const oauth_secrets = {};
 
+//trello oauth starts
 const oauth = new OAuth(
   requestURL,
   accessURL,
@@ -61,16 +62,54 @@ async function callback(req, response) {
         accessTokenSecret,
         async function (error, data, response2) {
           if (error) return console.log(error);
-          const accountUser = await user.findById(req.user._id);
-          const { iv, encrytptedToken } = await encryptToken(accessToken);
-          accountUser.trello_token = encrytptedToken;
-          accountUser.iv = iv;
 
-          //save user name and username
+          //Get user details from trello and save his email, name, username and token
           const userDetails = await getUserDetails(key, accessToken);
-          const { fullName, username } = userDetails;
-          accountUser.name = fullName;
-          accountUser.username = username;
+
+          console.log(userDetails);
+          const { fullName, username, email } = userDetails;
+          //check if user has once been authorized with the username
+          try {
+            const accountUserExists = await user.findOne({
+              username: username,
+            });
+
+            if (accountUserExists)
+              return res
+                .status(409)
+                .json({ alreadyRegistered: "User already registered" });
+            const accountUser = new user(_.pick(userDetails, ["email"]));
+            accountUser.credits = 5;
+            accountUser.name = fullName;
+            accountUser.username = username;
+
+            //encrypt and save access token
+            const { iv, encrytptedToken } = await encryptToken(accessToken);
+            accountUser.trello_token = encrytptedToken;
+            accountUser.iv = iv;
+            accountUser.credits = 5;
+
+            await accountUser.save();
+
+            console.log(accountUser);
+
+            const token = await signJwt(accountUser);
+
+            const cookieOptions = {
+              maxAge: 1209600000,
+              secure: true,
+              httpOnly: true,
+            };
+
+            res
+              .cookie("cftAuth", token, cookieOptions)
+              .json({ registered: true, token });
+
+            console.log("registered");
+          } catch (error) {
+            console.log(error);
+            return res.json({ error });
+          }
 
           await accountUser.save();
 

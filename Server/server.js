@@ -71,7 +71,7 @@ app.use(
 );
 
 //Won't be accessible by React route, callback during app authorization. server owns this route
-app.get("/callback", loginStatusChecker, async (req, res) => {
+app.get("/callback", async (req, res) => {
   callback(req, res);
 });
 
@@ -105,7 +105,7 @@ app.post(
 //   console.log(tokenCheck);
 // });
 
-app.post("/authorize", loginStatusChecker, async (req, res) => {
+app.post("/authorize", async (req, res) => {
   login(req, res);
 });
 
