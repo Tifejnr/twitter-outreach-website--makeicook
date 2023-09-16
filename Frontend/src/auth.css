@@ -185,6 +185,7 @@ h3 {
 }
 
 /* Main Container Block */
+
 .main-container {
   position: relative;
   padding: 1.5rem 2.1rem;
@@ -208,8 +209,8 @@ h3 {
   .main-container {
     background-color: #fff;
     max-width: 40rem;
-    height: 46rem;
-    max-height: 46rem;
+    height: 30rem;
+    max-height: 30rem;
     width: 100%;
     padding: 0 4.5rem;
     border: 1px solid #d3d3d3;
@@ -218,13 +219,13 @@ h3 {
     transition: all 0.3s ease;
     position: relative;
     margin: auto;
-    margin-top: -4rem;
+    /* margin-top: -4rem; */
   }
-  .main-container#register-main-cont {
+  /* .main-container#register-main-cont {
     height: 49rem;
     max-height: 49rem;
     margin-top: 0;
-  }
+  } */
 }
 
 /* Input Form Design Block */
