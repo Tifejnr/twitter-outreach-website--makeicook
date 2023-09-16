@@ -4,13 +4,12 @@ import { changeTabTitle } from "../../utilis/changeTabTitle";
 import GetStartedIcon from "../../Trello-oauth-page/GetStartedIcon";
 
 const logInTabTitle= "Log in – Collab for Trello"
-const signinButtonLabel= "Sign in wth Trello"
+const signinButtonLabel= "Sign in with Trello"
 
 export default function SignIn() {
   changeTabTitle(logInTabTitle)
 
-  return (
-     
+  return (     
 <>
   <AuthNav/>
 

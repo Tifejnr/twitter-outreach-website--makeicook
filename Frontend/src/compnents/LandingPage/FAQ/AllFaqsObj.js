@@ -1,5 +1,11 @@
 export const faqArray = [
   {
+    question: "Do you provide Tutorials on how to use the tools?",
+    answer: "Yes. All the tools tutorials can be found by clicking ",
+    toolsTutorial: true,
+  },
+
+  {
     question: "What are credits?",
     answer:
       "Credits are currencies required to perform automations with our tools.",
@@ -52,11 +58,6 @@ export const faqArray = [
     question: "Can others link their accounts to use my credits",
     answer:
       "NO! Only the Trello account linked with the email registered with us can utilize the credits on your account.",
-  },
-  {
-    question: "Do you provide Tutorials on how to use the tools?",
-    answer: "Yes. All the tools tutorials can be found by clicking ",
-    toolsTutorial: true,
   },
 
   {
