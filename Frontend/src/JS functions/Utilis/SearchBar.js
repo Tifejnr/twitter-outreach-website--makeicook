@@ -11,13 +11,19 @@ function searchInput() {
       recipe.style.display = "block";
     } else {
       const nameElement = recipe.getElementsByTagName("p")[0];
+      const workspaceNameEle = recipe.getElementsByTagName("p")[1];
 
       if (
-        nameElement &&
-        nameElement.innerText
-          .replace(/\s/g, "")
-          .toLowerCase()
-          .indexOf(searchText) > -1
+        (nameElement &&
+          nameElement.innerText
+            .replace(/\s/g, "")
+            .toLowerCase()
+            .indexOf(searchText) > -1) ||
+        (workspaceNameEle &&
+          workspaceNameEle.innerText
+            .replace(/\s/g, "")
+            .toLowerCase()
+            .indexOf(searchText) > -1)
       ) {
         recipe.style.display = "block";
       } else {

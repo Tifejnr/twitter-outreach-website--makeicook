@@ -5,6 +5,7 @@ const JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
 
 module.exports = function (req, res, next) {
   let token = req.body.token;
+  // let token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTA0N2RiNGExNjg5MDEyYjYxNjRmZGMiLCJpc1BhaWQiOmZhbHNlLCJpYXQiOjE2OTQ4NTI1OTEsImV4cCI6MTY5NzQ0NDU5MX0.iL7wTRMwcRclV7M7McgIv7d7aHMSA1curKJXcA-IP5U`;
   const serverToken = req.cookies;
   // console.log(serverToken);
 
