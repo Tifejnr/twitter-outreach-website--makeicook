@@ -81,13 +81,7 @@ app.get("/callback", async (req, res) => {
   callback(req, res);
 });
 
-//Won't be accessible by React route, server owns this route
-app.get("/cft-icon-64px", async (req, res) => {
-  res.render("login");
-});
-
 // Routes Handling Section
-
 app.post("/isloggedIn", loginStatusChecker, async (req, res) => {
   res.json({ loggedIn: true });
 });

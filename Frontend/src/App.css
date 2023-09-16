@@ -663,22 +663,16 @@ body {
   text-decoration: none;
 }
 
-@media screen and (min-width: 500px) {
-  .oauth-button h2 {
-    font-weight: 600;
-  }
-}
 @media screen and (min-width: 760px) {
   .oauth-button h2 {
-    font-size: 2.5rem;
-    letter-spacing: 1px;
+    font-size: 1.8rem;
+    font-weight: 500;
   }
 }
 
 @media screen and (min-width: 960px) {
   .oauth-button h2 {
-    font-size: 1.8rem;
-    font-weight: 500;
+    font-size: 2rem;
   }
 }
 
