@@ -8,7 +8,6 @@ import getCookies from '../utilis/cookiesSetting/getCookies';
 // This route protects both logged in and unauthorized users
 export default function OnlyAuthorizedUsers({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(null); 
-  const [noTokenYet, setNoTokenYet] = useState(null); 
   const setCreditsFromServer = useStore((state) => state.setCreditsFromServer);
   const navigate = useNavigate();
 
