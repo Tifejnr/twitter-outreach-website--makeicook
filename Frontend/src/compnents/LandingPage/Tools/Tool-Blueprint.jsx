@@ -15,7 +15,7 @@ export default function ToolBlueprint(props) {
       </article>
 
       <article>
-        <p>Classic way of doing it in Trello</p>
+        <h3>Classic way of doing it in Trello</h3>
         <ToolVideo videoUrl={allToolsVideosObj.addingToBoardClassicWay} />
         <ul>
           <h3>Drawbacks</h3>
