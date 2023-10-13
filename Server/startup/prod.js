@@ -10,9 +10,10 @@ module.exports = function (app) {
           "'self'",
           "https://www.collabfortrello.com",
           "https://www.google-analytics.com",
+          "https://www.youtube.com",
         ],
         scriptSrc: ["'self'", "https://www.googletagmanager.com"],
-        // Add other directives as needed
+        frameSrc: ["'self'", "https://www.youtube.com"],
       },
     })
   );
