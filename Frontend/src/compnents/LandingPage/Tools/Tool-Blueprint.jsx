@@ -1,7 +1,6 @@
 import React from "react";
 import ToolVideo from "../videos/templates/toolVideo";
-const videoSrc =
-  "../../../assets/videos/adding-to-boards/collab-for-trello-way-of-adding.mp4";
+import { allToolsVideosObj } from "../videos/allToolsVideos";
 
 export default function ToolBlueprint(props) {
   return (
@@ -17,7 +16,7 @@ export default function ToolBlueprint(props) {
 
       <article>
         <p>Classic way of doing it in Trello</p>
-        <ToolVideo videoSrc={videoSrc} />
+        <ToolVideo videoUrl={allToolsVideosObj.addingToBoardClassicWay} />
         <ul>
           <h3>Drawbacks</h3>
           <li>
@@ -49,7 +48,9 @@ export default function ToolBlueprint(props) {
 
       <article>
         <h3>Collab for Trello way of doing it</h3>
-        <ToolVideo videoSrc={videoSrc} />
+        <ToolVideo
+          videoUrl={allToolsVideosObj.addingToBoardCollabForTrelloVid}
+        />
         <ul>
           <h3>Benefits of choosing this</h3>
           <li>
