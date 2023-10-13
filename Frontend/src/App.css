@@ -1330,6 +1330,11 @@ li img {
   font-size: 2.2rem;
   text-align: left;
 }
+.each-tool-section h3 {
+  color: var(--dark-des-blue);
+  font-size: 1.8rem;
+  text-align: left;
+}
 
 .each-tool-section article {
   display: grid;
@@ -1337,10 +1342,15 @@ li img {
   justify-items: left;
 }
 
-.each-tool-section article p:first-child {
+/* .each-tool-section article p:first-child {
   font-weight: 600;
   font-size: 1.7rem;
   color: #181818;
+} */
+
+.each-tool-section article ul P {
+  font-weight: 500;
+  font-size: 1.6rem;
 }
 
 .each-tool-section p {
