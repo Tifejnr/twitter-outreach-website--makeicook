@@ -410,7 +410,7 @@ body {
 /* Hero Component Block */
 .hero-container {
   position: relative;
-  height: 54rem;
+  height: 58rem;
   top: 6rem;
   display: flex;
   flex-direction: column;
@@ -419,6 +419,12 @@ body {
   color: #fff;
   background: #101c77;
   background: linear-gradient(-45deg, #c75328, #101c77, #101c77);
+}
+
+@media only screen and (min-width: 340px) {
+  .hero-container {
+    height: 54rem;
+  }
 }
 
 .hero-inner-container,
@@ -483,7 +489,7 @@ body {
 
 .hero-container h1,
 .hero-container h2 {
-  font-size: 3.6rem;
+  font-size: 2.7rem;
   line-height: 1.4;
   letter-spacing: 0.6px;
   color: #fff;
@@ -493,7 +499,7 @@ body {
 @media only screen and (min-width: 480px) {
   .hero-container h1,
   .hero-container h2 {
-    font-size: 4.3rem;
+    font-size: 3.3rem;
   }
 }
 
@@ -501,14 +507,14 @@ body {
   .hero-container h1,
   .hero-container h2 {
     font-weight: 700;
-    font-size: 5.5rem;
+    font-size: 4rem;
   }
 }
 
 .hero-container h3 {
   margin: 2rem 0;
   margin-bottom: 0;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   font-weight: 500;
   line-height: 1.5;
   white-space: pre-wrap;
