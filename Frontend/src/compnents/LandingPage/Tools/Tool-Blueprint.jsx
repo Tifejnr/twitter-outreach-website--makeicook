@@ -48,33 +48,30 @@ export default function ToolBlueprint(props) {
       </article>
 
       <article>
-        <p>Collab for Trello way of doing it</p>
+        <h3>Collab for Trello way of doing it</h3>
         <ToolVideo videoSrc={videoSrc} />
         <ul>
-          <h3>Drawbacks</h3>
+          <h3>Benefits of choosing this</h3>
           <li>
             <p>
-              Desired boards can't be selected on a single page, hence the need
+              All Desired boards can be selected on a single page, hence no need
               to navigate multiple boards one after the other.
             </p>
           </li>
           <li>
             <p>
-              Boring as hell, especially when you need to repeat it for large
-              amount of boards.
+              Automation process can be continued even without your activity,
+              you can switch to other tabs while automation continues
             </p>
           </li>
           <li>
             <p>
-              Time wasting, it takes around 7 seconds to add a member to a
-              board, Our tool takes around 0.3 seconds to do the same.
+              Extremely fast, Our tool takes around 0.3 seconds to add a member
+              to a board. That level of speed is humanly impossible to attain.
             </p>
           </li>
           <li>
-            <p>
-              Increased screen time which can cause eye strain, and reduced
-              productivity.
-            </p>
+            <p>Increased productivity.</p>
           </li>
         </ul>
       </article>
