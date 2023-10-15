@@ -19,8 +19,8 @@ import isAnyMemberCheckboxChecked from "./Validations/checkboxMembers";
 import getCookies from "../utilis/cookiesSetting/getCookies";
 
 //set variable to change flex
-const changeLayoutToFlex= true;
-const errorColor= "#ff3860"
+const changeLayoutToFlex = true;
+const errorColor = "#ff3860";
 
 const searchPlaceholderTitle = "Search Boards ...";
 const selectInstructionText = "Select Boards to Remove Members from";
@@ -32,12 +32,13 @@ const proposition = "from";
 const addToBoardsTabTitle = "Remove Members from Boards – Collab for Trello";
 const timeInterval = 0.2;
 const deleteMemberTitle = "Remove Members";
-const searchMembersPlaceholder = "Search members name ..."
+const searchMembersPlaceholder = "Search members name ...";
 
 const insufficietCreditsMess = "Please buy credits to use this tool";
 const checkboxMustBeCheckedMess = "Please select at least a board below";
-const memeberCheckboxMustBeCheckedMess = "Please select at least a member to be removed";
-const limitOfCheckboxReached = "You can't select more than 20 members at a go."
+const memeberCheckboxMustBeCheckedMess =
+  "Please select at least a member to be removed";
+const limitOfCheckboxReached = "You can't select more than 20 members at a go.";
 
 export default function DeleteMemberBoards() {
   const [boardsCollection, setBoardsCollection] = useState([{}]);
@@ -66,7 +67,9 @@ export default function DeleteMemberBoards() {
   );
   const workspaceObjDetails = useStore((state) => state.workspaceObjDetails);
   const meansOfExceution = useStore((state) => state.meansOfExceution);
-  const memberCheckboxesArray = useStore((state) => state.memberCheckboxesArray);
+  const memberCheckboxesArray = useStore(
+    (state) => state.memberCheckboxesArray
+  );
 
   changeTabTitle(addToBoardsTabTitle);
 
@@ -90,7 +93,6 @@ export default function DeleteMemberBoards() {
   };
 
   async function validateParams(executionParams) {
-
     if (creditsFromServer < 1)
       return (
         setExecutionErrorBtn(insufficietCreditsMess),
@@ -98,13 +100,15 @@ export default function DeleteMemberBoards() {
       );
     setExecutionErrorBtn("");
 
-   if (!isAnyCheckboxChecked(checkboxesArray))   return (
+    if (!isAnyCheckboxChecked(checkboxesArray))
+      return (
         setExecutionBtnClicked(false),
         setLabelTitle(deleteMemberTitle),
         setExecutionErrorBtn(checkboxMustBeCheckedMess)
       );
 
-   if (!isAnyMemberCheckboxChecked(memberCheckboxesArray))   return (
+    if (!isAnyMemberCheckboxChecked(memberCheckboxesArray))
+      return (
         setExecutionBtnClicked(false),
         setLabelTitle(deleteMemberTitle),
         setExecutionErrorBtn(memeberCheckboxMustBeCheckedMess)
@@ -115,11 +119,11 @@ export default function DeleteMemberBoards() {
     setTextAreaError("");
     setExecutionErrorBtn("");
 
-      if (response.nameAddingObjArray) {
-        setLabelTitle("Starting...");
-        setBoardDetailsObj(response);
-        setOpenProgressBar(true);
-      }
+    if (response.nameAddingObjArray) {
+      setLabelTitle("Starting...");
+      setBoardDetailsObj(response);
+      setOpenProgressBar(true);
+    }
   }
 
   useEffect(() => {
@@ -127,11 +131,11 @@ export default function DeleteMemberBoards() {
 
     (async function () {
       try {
-        const token= getCookies();
+        const token = getCookies();
         const fetcbBoardsUrl = `${websiteUrl}/start`;
         const response = await axios.post(
           fetcbBoardsUrl,
-          {token},
+          { token },
           { signal: abortController.signal } // Pass the signal to the fetch call
         );
 
@@ -143,10 +147,10 @@ export default function DeleteMemberBoards() {
 
         const data = dataRaw.boards;
         const signature = dataRaw.sessionSignature;
-        const  userUsernameFromServer = dataRaw.userUsername;
+        const userUsernameFromServer = dataRaw.userUsername;
         setClientSignature(signature);
-        setUserUsername(userUsernameFromServer)
-      
+        setUserUsername(userUsernameFromServer);
+
         const workspaceIdArray = [
           ...new Set(
             data
@@ -160,11 +164,11 @@ export default function DeleteMemberBoards() {
         const allBoardsId = getAllBoardsId(data);
         const memberDetailsResponse = await getMemberId(allBoardsId);
         const memberRawArray = memberDetailsResponse.allMembersDetails;
-     setMemberRawArrayDetail(memberRawArray);
+        setMemberRawArrayDetail(memberRawArray);
 
-      const uniqueIds = new Set();
-      const uniqueMainMemberDetails = [];
-      const boardIdsMap = {}; // Object to store boardIds for each mainMemberDetail.id
+        const uniqueIds = new Set();
+        const uniqueMainMemberDetails = [];
+        const boardIdsMap = {}; // Object to store boardIds for each mainMemberDetail.id
 
         memberRawArray.forEach((memberDetail) => {
           const boardId = memberDetail.boardId;
@@ -186,16 +190,18 @@ export default function DeleteMemberBoards() {
           });
         });
 
-      // Now, uniqueMainMemberDetails contains the unique mainMemberDetails with boardId,
-        setAllUserMemberDetail(uniqueMainMemberDetails)
-      // and boardIdsMap contains arrays of boardIds for each mainMemberDetail.id
+        // Now, uniqueMainMemberDetails contains the unique mainMemberDetails with boardId,
+        setAllUserMemberDetail(uniqueMainMemberDetails);
+        // and boardIdsMap contains arrays of boardIds for each mainMemberDetail.id
         setBoardIdsMapMemberId(boardIdsMap);
-      
-      //sort members name alhpabettically using fullname
-      uniqueMainMemberDetails.sort((a, b) => a.fullName.localeCompare(b.fullName));
 
-       setAllUserMemberDetail(uniqueMainMemberDetails);
-       setBoardIdsObj(allBoardsId);
+        //sort members name alhpabettically using fullname
+        uniqueMainMemberDetails.sort((a, b) =>
+          a.fullName.localeCompare(b.fullName)
+        );
+
+        setAllUserMemberDetail(uniqueMainMemberDetails);
+        setBoardIdsObj(allBoardsId);
 
         //fetch workspace names for each boards
         workspaceIdArray.map(async (workspaceId, index) => {
@@ -204,13 +210,12 @@ export default function DeleteMemberBoards() {
             workspaceName,
             workspaceId,
           };
-         pushWorkspaceObjDetails(workspaceDetails);
+          pushWorkspaceObjDetails(workspaceDetails);
         });
 
-      if (memberRawArray.length > 1) {
+        if (memberRawArray.length > 1) {
           setMemberRawArrayDetail(memberRawArray);
         }
-
       } catch (error) {
         //handle any error from server or internet
         console.log(error);
@@ -225,25 +230,23 @@ export default function DeleteMemberBoards() {
     };
   }, []);
 
+  //changeLayoutToFlex style if it's name means
+  const changeLayoutToFlexStyle = {
+    display: changeLayoutToFlex && "flex",
+  };
 
-   //changeLayoutToFlex style if it's name means
-    const changeLayoutToFlexStyle= {
-        display: changeLayoutToFlex && "flex",
-     }
+  //Error noti on Board List container
+  const boardContainerErrorStyle = {
+    borderColor: executionErrorBtn == checkboxMustBeCheckedMess && errorColor,
+  };
 
-   //Error noti on Board List container
-    const boardContainerErrorStyle= {
-        borderColor: executionErrorBtn == checkboxMustBeCheckedMess && errorColor
-     }
-
-   //Error noti on  memberList container
- const memberListContainerErrorStyle = {
+  //Error noti on  memberList container
+  const memberListContainerErrorStyle = {
     borderColor:
       (executionErrorBtn === memeberCheckboxMustBeCheckedMess ||
         executionErrorBtn === limitOfCheckboxReached) &&
       errorColor,
   };
-
 
   return (
     <>
@@ -260,51 +263,62 @@ export default function DeleteMemberBoards() {
             pagelink="#"
           />
           <section className="main-section-cont" id="mainContentCont">
-            <h1 id="toolInstruction">
-              {pageTitle}
-            </h1>
+            <h1 id="toolInstruction">{pageTitle}</h1>
 
-        <section style={changeLayoutToFlexStyle} className="inner-main-cont" id="innerMainContentCont">
-
-            <section className="membersListsContainer"  style={memberListContainerErrorStyle} >
+            <section
+              style={changeLayoutToFlexStyle}
+              className="inner-main-cont"
+              id="innerMainContentCont"
+            >
+              <section
+                className="membersListsContainer"
+                style={memberListContainerErrorStyle}
+              >
                 <h2>All Members - {memberCheckboxesArray.length}</h2>
-                <h1 id="memberToDeleteHeading">Select Members to be Removed Below</h1>
-              <section className='searchSection'>
-                <input 
-                onKeyUp={searchMemberList}
-                  id="searchMembersList"
-                  type="text"
-                  placeholder={searchMembersPlaceholder} />
+                <h1 id="memberToDeleteHeading">
+                  Select Members to be Removed Below
+                </h1>
+                <section className="searchSection">
+                  <input
+                    onKeyUp={searchMemberList}
+                    id="searchMembersList"
+                    type="text"
+                    placeholder={searchMembersPlaceholder}
+                  />
 
-              {allUserMemberDetail.length < 2 && (
-                  <p className="loading-your-boards-text">
-                    Loading all your members ...
-                  </p>
-              )}              
-                  
-              </section>
-                  <section className="member-list-cont">
-                      {
-                      // allUserMemberDetail.length > 1 &&
-                        allUserMemberDetail.map((memberDetailObj, index) => {
-
-                          if (memberDetailObj.username==userUsername ) return false;
-
-                          return (
-                          <MemberInfoDisplay
-                            key= {index}
-                            indexNo= {index}
-                            boardsCollection={boardsCollection}
-                            boardIdsMapMemberId={boardIdsMapMemberId}
-                            boardIdsObj={boardIdsObj}
-                            memberDetailObj= {memberDetailObj}/>
-                          );
-                        })
-                        }
+                  {allUserMemberDetail.length < 2 && (
+                    <p className="loading-your-boards-text">
+                      Loading all your members ...
+                    </p>
+                  )}
                 </section>
-            </section>
+                <section className="member-list-cont">
+                  {
+                    // allUserMemberDetail.length > 1 &&
+                    allUserMemberDetail.map((memberDetailObj, index) => {
+                      if (memberDetailObj.username == userUsername)
+                        return false;
 
-            <section style={boardContainerErrorStyle} className="boardsListSection" id="boardsListSection">
+                      return (
+                        <MemberInfoDisplay
+                          key={index}
+                          indexNo={index}
+                          boardsCollection={boardsCollection}
+                          boardIdsMapMemberId={boardIdsMapMemberId}
+                          boardIdsObj={boardIdsObj}
+                          memberDetailObj={memberDetailObj}
+                        />
+                      );
+                    })
+                  }
+                </section>
+              </section>
+
+              <section
+                style={boardContainerErrorStyle}
+                className="boardsListSection"
+                id="boardsListSection"
+              >
                 <SelectAll
                   labelTitle={labelTitle}
                   verifying="Verifying Inputs..."
@@ -343,8 +357,7 @@ export default function DeleteMemberBoards() {
                     })}
                 </section>
               </section>
-              </section>
-       
+            </section>
           </section>
         </>
       )}

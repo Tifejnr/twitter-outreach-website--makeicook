@@ -230,6 +230,12 @@ Display Dropdwon menu */
   text-align: left;
 }
 
+/* innerMainContentCont Style for Exceution paths */
+#innerMainContentCont {
+  width: 95%;
+  padding: 0 1rem;
+}
+
 /* prevent scrolling down till infinity */
 .all-boardnames-container,
 .member-list-cont {
@@ -579,19 +585,33 @@ input {
 
 .execution-btn {
   position: fixed;
-  font-size: 2rem;
+  transform: translate(-50%, -50%);
+  font-size: 1.7rem;
   font-weight: 700;
   border-radius: 0.6rem;
   cursor: pointer;
   border: none;
-  height: 5rem;
-  width: 18rem;
+  height: 4.4rem;
+  width: 85%;
+  max-width: 30rem;
   background-color: #3e1fde;
   color: white;
   text-align: center;
-  left: 86%;
-  margin-right: 1.4rem;
-  top: 50%;
+  left: 50%;
+  top: 96.5%;
+  z-index: 100;
+  margin-bottom: 2.9rem;
+}
+
+@media screen and (min-width: 768px) {
+  .execution-btn {
+    font-size: 2rem;
+    height: 5rem;
+    width: 18rem;
+    left: 86%;
+    margin-right: 1.4rem;
+    top: 50%;
+  }
 }
 
 .execution-btn:hover {
@@ -755,7 +775,7 @@ input {
   color: gray;
 }
 
-/* Selction Container */
+/* Selection Container */
 .main-section-cont {
   position: relative;
   top: 7rem;
@@ -767,17 +787,37 @@ input {
 
 .main-section-cont h1 {
   color: #04002a;
-  font-size: 2.5rem;
+  font-size: 2rem;
   text-align: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+@media screen and (min-width: 768px) {
+  .main-section-cont h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
 }
 
 .inner-main-cont {
+  display: flex;
   width: 100%;
   position: relative;
   justify-content: space-around;
   justify-items: center;
   column-gap: 10rem;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 768px) {
+  .inner-main-cont {
+    width: 100%;
+    position: relative;
+    justify-content: space-around;
+    justify-items: center;
+    column-gap: 10rem;
+    flex-direction: row;
+  }
 }
 
 .inner-main-cont section {
@@ -813,10 +853,32 @@ form:last-child {
 .selectionCont h1,
 #memberToDeleteHeading {
   text-align: left;
-  font-size: 2rem;
+  font-size: 1.7rem;
   font-weight: 500;
   color: #1e2831;
   margin: 1rem 0;
+}
+
+@media screen and (min-width: 768px) {
+  .selectionCont h1,
+  #memberToDeleteHeading {
+    font-size: 2rem;
+  }
+}
+
+/* Means of Action Styles */
+.meansofAdditionSection {
+  width: 100%;
+}
+
+.meansofAdditionSection .selector label {
+  font-size: 1.6rem;
+}
+
+@media screen and (min-width: 768px) {
+  .meansofAdditionSection .selector label {
+    font-size: 1.9rem;
+  }
 }
 
 /* Boards List*/
@@ -840,9 +902,14 @@ form:last-child {
 textarea {
   outline: none;
   width: 100%;
-  max-width: 100%;
   padding: 0.5rem;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
+}
+
+@media screen and (min-width: 768px) {
+  textarea {
+    font-size: 1.5rem;
+  }
 }
 
 textarea::placeholder {
@@ -853,7 +920,7 @@ textarea::placeholder {
 .memberDetailsCont p {
   text-align: left;
   margin-bottom: 0.5rem;
-  max-width: 100%;
+  width: 100%;
 }
 
 /* Range Slider Design*/
