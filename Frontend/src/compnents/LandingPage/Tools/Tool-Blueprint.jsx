@@ -10,12 +10,11 @@ export default function ToolBlueprint(props) {
       </h2>
 
       <article>
-        <p></p>
         <p>{props.toolDetails.overview}</p>
       </article>
 
       <article>
-        <h3>Classic way of doing it in Trello</h3>
+        <h3>Classic way of doing it in Trello </h3>
         <ToolVideo videoUrl={allToolsVideosObj.addingToBoardClassicWay} />
         <ul>
           <h3>Drawbacks</h3>
@@ -48,9 +47,9 @@ export default function ToolBlueprint(props) {
 
       <article>
         <h3>Collab for Trello way of doing it</h3>
-        <ToolVideo
+        {/* <ToolVideo
           videoUrl={allToolsVideosObj.addingToBoardCollabForTrelloVid}
-        />
+        /> */}
         <ul>
           <h3>Benefits of choosing this</h3>
           <li>
