@@ -1,7 +1,7 @@
 import { allToolsVideosObj } from "../../videos/allToolsVideos";
-const heading = "Add team members to boards tool";
+const heading = "Add same Trello members to multiple boards tool";
 const overview =
-  "This tool allows addition of Trello team members to multiple Trello boards at once, eliminating the need to perform the task manually for each board.";
+  "This tool allows addition of same Trello members to multiple Trello boards at once, eliminating the need to perform the task manually for each board.";
 
 const drawBacksList = [
   {
