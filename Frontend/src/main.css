@@ -820,6 +820,15 @@ input {
   }
 }
 
+@media screen and (min-width: 768px) {
+  .inner-main-cont.emailMeansOfExecution {
+    flex-direction: column;
+  }
+  .inner-main-cont.nameMeansOfExecution {
+    flex-direction: row;
+  }
+}
+
 .inner-main-cont section {
   width: 100%;
 }

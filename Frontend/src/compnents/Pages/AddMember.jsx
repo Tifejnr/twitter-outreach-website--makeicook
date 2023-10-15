@@ -65,9 +65,8 @@ export default function AddMember() {
   const [boardDetailsObj, setBoardDetailsObj] = useState([]);
   const [boardIdsObj, setBoardIdsObj] = useState([]);
   const [selectLabel, setSelectLabel] = useState("Select Means of Addition");
-  const [changeLayoutToFlex, setChangeLayoutToFlex] = useState(
-    "Select Means of Addition"
-  );
+  const [changeLayoutToFlex, setChangeLayoutToFlex] = useState(false);
+  const [layoutToRowDisplay, setLayoutToRowDisplay] = useState(null);
 
   const creditsFromServer = useStore((state) => state.creditsFromServer);
   const checkboxesArray = useStore((state) => state.checkboxesArray);
@@ -262,23 +261,7 @@ export default function AddMember() {
       }
     })();
 
-    // Function to handle window resize event
-    const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        setChangeLayoutToFlex(true);
-      } else {
-        setChangeLayoutToFlex(false);
-      }
-    };
-
-    // Add the event listener
-    window.addEventListener("resize", handleResize);
-
-    // Initialize the state based on the initial window width
-    handleResize();
-
     return () => {
-      window.removeEventListener("resize", handleResize);
       // Clean up the effect by aborting the fetch request if the component is unmounted
       abortController.abort();
     };
@@ -306,11 +289,6 @@ export default function AddMember() {
       setMeansOfExceution(defaultMeansMessage)
     );
   }, [meansOfExceution]);
-
-  //changeLayoutToFlex style if it's name means
-  const changeFlexDirectionToColumn = {
-    flexDirection: !changeLayoutToFlex ? "column" : "row",
-  };
 
   //Error noti on Board List container
   const boardContainerErrorStyle = {
@@ -357,8 +335,11 @@ export default function AddMember() {
               ""
             ) : (
               <section
-                style={changeFlexDirectionToColumn}
-                className="inner-main-cont"
+                className={`inner-main-cont${
+                  meansOfExceution == emailMeans
+                    ? " emailMeansOfExecution"
+                    : " nameMeansOfExecution"
+                }`}
                 id="innerMainContentCont"
               >
                 {meansOfExceution == emailMeans ? (
