@@ -56,6 +56,7 @@ const signInUser = require("./routes/auth");
 const paymentsHandling = require("./routes/Payments/checkout");
 const dashboard = require("./routes/dashboard");
 const forgotPassword = require("./routes/forgot-password");
+const saveOureachDetails = require("./routes/outreach-server/saveOutreachDetails");
 
 //api routes declaarations
 app.use("/api/register-user", registerUser);
@@ -64,6 +65,7 @@ app.use("/api/forgot-password", forgotPassword);
 app.use("/api/dashboard", loginStatusChecker, isUserAuthorized, dashboard);
 app.use("/api/checkout", loginStatusChecker, paymentsHandling);
 app.use("/api/checkout/webhooks", webhooks);
+app.use("/api/save-outreach-details", saveOureachDetails);
 app.use(
   express.static(
     path.join(__dirname, "../../Trello-Project-React/Frontend/dist")

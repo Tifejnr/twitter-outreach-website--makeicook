@@ -23,6 +23,7 @@
 		"express-session": "^1.17.3",
 		"firebase-admin": "^11.9.0",
 		"firebase-admin-auth": "^1.0.0",
+		"googleapis": "^127.0.0",
 		"helmet": "^7.0.0",
 		"http": "^0.0.0",
 		"http-proxy-middleware": "^2.0.6",

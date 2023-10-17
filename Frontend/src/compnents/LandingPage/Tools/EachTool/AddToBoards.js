@@ -20,13 +20,13 @@ const drawBacksList = [
 
 const benefitsList = [
   {
+    list: "Extremely fast, Our tool takes around 0.3 seconds to add a member to a board. That level of speed is humanly impossible to attain.",
+  },
+  {
     list: "All Desired boards can be selected on a single page, hence no need to navigate multiple boards one after the other.",
   },
   {
     list: "Automation process can be continued even without your activity, you can switch to other tabs while automation continues",
-  },
-  {
-    list: "Extremely fast, Our tool takes around 0.3 seconds to add a member to a board. That level of speed is humanly impossible to attain.",
   },
   {
     list: "Increased productivity.",
