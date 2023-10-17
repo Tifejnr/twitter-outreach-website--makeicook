@@ -1327,7 +1327,8 @@ li img {
 
 .each-tool-section h2,
 .each-tool-section h3,
-.each-tool-section h4 {
+.each-tool-section h4,
+.faq-item__detail.toolLists {
   color: var(--dark-des-blue);
   text-align: left;
 }
@@ -1340,6 +1341,7 @@ li img {
   font-weight: 600;
 }
 .each-tool-section h4 {
+  cursor: pointer;
   font-size: 1.6rem;
   font-weight: 600;
   text-decoration: underline;
@@ -1393,22 +1395,6 @@ li img {
   }
 }
 
-.each-tool-section img {
-  width: 95%;
-  height: 100%;
-  border: 1px solid gray;
-  max-width: 43rem;
-  max-height: 40rem;
-  cursor: pointer;
-}
-
-@media screen and (min-width: 768px) {
-  .each-tool-section img {
-    width: 100%;
-    height: 100%;
-  }
-}
-
 .each-tool-section .image-arrow-icon {
   width: 7rem;
   rotate: 90deg;
@@ -1416,6 +1402,10 @@ li img {
   border-left: none;
   border-right: none;
   cursor: none;
+}
+
+.each-tool-section .faq-item__arrow-container {
+  margin-left: 0.4rem;
 }
 
 @media screen and (min-width: 768px) {
