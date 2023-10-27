@@ -8,6 +8,7 @@ const { validateSignInParams } = require("../Joi-Validations/SignIn");
 const websiteUrl = "https://collabfortrello.com/";
 
 router.post("/", async (req, res) => {
+  console.log(req.body);
   const { error } = validateSignInParams(req.body);
 
   if (error)
