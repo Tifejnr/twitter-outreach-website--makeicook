@@ -9,13 +9,8 @@ module.exports = function (app) {
         connectSrc: [
           "'self'",
           "https://www.collabfortrello.com",
-          "https://www.google-analytics.com",
-          "https://www.youtube.com",
-        ],
-        scriptSrc: [
-          "'self'",
           "https://www.googletagmanager.com",
-          "'unsafe-inline'",
+          "https://www.youtube.com",
         ],
 
         frameSrc: ["'self'", "https://www.youtube.com"],
