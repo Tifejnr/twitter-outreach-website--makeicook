@@ -13,6 +13,8 @@ module.exports = function (app) {
           "https://www.youtube.com",
         ],
 
+        scriptSrc: ["'self'", "'unsafe-inline'"],
+
         frameSrc: ["'self'", "https://www.youtube.com"],
       },
     })
