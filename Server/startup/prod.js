@@ -12,7 +12,11 @@ module.exports = function (app) {
           "https://www.google-analytics.com",
           "https://www.youtube.com",
         ],
-        scriptSrc: ["'self'", "https://www.googletagmanager.com"],
+        scriptSrc: [
+          "'self'",
+          "https://www.googletagmanager.com",
+          "'unsafe-inline'",
+        ],
 
         frameSrc: ["'self'", "https://www.youtube.com"],
       },
