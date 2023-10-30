@@ -24,9 +24,9 @@ import MainForgotPasswordPage from "./compnents/Pages/ForgotPassword/MainForgotP
 import ResetPasswordPage from "./compnents/Pages/ForgotPassword/ResetPassword/ResetPasswordPage";
 import OnlyAuthorizedUsers from "./compnents/Controllers/OnlyAuthorizedUsers";
 
-const trackingId = "G-67WKHKMDEH";
+// const trackingId = "G-67WKHKMDEH";
 
-ReactGA.initialize(trackingId);
+// ReactGA.initialize(trackingId);
 
 function App() {
   return (
