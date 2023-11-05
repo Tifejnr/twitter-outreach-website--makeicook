@@ -20,12 +20,12 @@ router.post("/", async (req, res) => {
       return res
         .status(401)
         .json({ invalidLoginDetails: "Invalid email or password" });
-    const validPassword = await bycrypt.compare(
+    const validExtensionKey = await bycrypt.compare(
       req.body.password,
       accountUser.password
     );
 
-    if (!validPassword)
+    if (!validExtensionKey)
       return res
         .status(401)
         .json({ invalidLoginDetails: "Invalid email or password" });

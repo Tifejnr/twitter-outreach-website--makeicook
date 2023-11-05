@@ -7,6 +7,9 @@ const { getKeys } = require("../../envKeys/allKeys");
 const { encryptToken } = require("../../middlewares/token-safety/encryptToken");
 const { getUserDetails } = require("./getUserDetails");
 const { signJwt } = require("../../middlewares/jwt-related/sign-jwt");
+const {
+  generateExtensionKey,
+} = require("../../middlewares/signature/generateExtensionKey");
 
 // OAuth Setup and Functions
 const requestURL = "https://trello.com/1/OAuthGetRequestToken";
@@ -94,11 +97,15 @@ async function callback(req, response) {
                 .cookie("cftAuth", token, cookieOptions)
                 .redirect(homeUrl);
             }
+            //generate extension key for user using crypto
+            const rawExtensionKey = generateExtensionKey(username);
+            const extensionKey = await encryptToken(rawExtensionKey);
 
             //create new user and save user details in db
             const accountUser = new user(_.pick(userDetails, ["email"]));
             accountUser.name = fullName;
             accountUser.username = username;
+            accountUser.extensionKey = extensionKey;
 
             //encrypt and save access token plus give 5 bonus credits for trial
             const { iv, encrytptedToken } = await encryptToken(accessToken);

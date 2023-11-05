@@ -21,6 +21,7 @@ const { getWorkspaceName } = require("./utilis/workspaces/workspacesNames");
 require("dotenv").config();
 require("./startup/prod")(app);
 
+//utils functions
 const { getKeys } = require("./envKeys/allKeys");
 const loginStatusChecker = require("./middlewares/jwt-related/login-status-checker");
 const signatureChecker = require("./middlewares/signature/checkSignature");
