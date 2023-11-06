@@ -8,6 +8,8 @@ const {
   decryptExtensionKey,
 } = require("../middlewares/extensionKey-safety/decryptExtensionKey");
 
+trialKey = `12fe-Bu6t-3atb-io3w-1dad-w04l-e82Q-es02-120e-07`;
+
 router.post("/", async (req, res) => {
   console.log(req.body);
   const { error } = validateSignInParams(req.body);
