@@ -22,7 +22,7 @@ body {
   position: relative;
   top: 8rem;
   display: grid;
-  row-gap: 4rem;
+  row-gap: 3rem;
   place-content: center;
 }
 
@@ -72,7 +72,8 @@ body {
   justify-content: center;
   text-align: center;
 }
-.main-eachExtensionDetailCont {
+.main-eachExtensionDetailCont,
+.extensionLoginDetailsContainer img {
   transition: 0.3s;
 }
 
@@ -86,7 +87,6 @@ body {
   height: 1rem;
   width: 1.2rem;
   margin-left: 0.4rem;
-  transition: 0.3s;
 }
 
 .extensionLoginDetailsContainer article p {
