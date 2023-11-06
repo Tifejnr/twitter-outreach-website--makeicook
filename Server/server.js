@@ -61,7 +61,7 @@ const saveOureachDetails = require("./routes/outreach-server/saveOutreachDetails
 
 //api routes declaarations
 app.use("/api/register-user", registerUser);
-app.use("/api/sign-in", signInUser);
+app.use("/api/extension-sign-in", signInUser);
 app.use("/api/forgot-password", forgotPassword);
 app.use("/api/dashboard", loginStatusChecker, isUserAuthorized, dashboard);
 app.use("/api/checkout", loginStatusChecker, paymentsHandling);
@@ -162,9 +162,3 @@ app.get("*", function (req, res) {
 app.listen(3000, function () {
   console.log("Listening on port 3000");
 });
-
-`
-He is a Gem of a person. Very humble, responsible, quite flexible and cooperative. He does what he commits. We are taking a small break with the project but will not hesitate to reach out again in the near future. 
-Don't hesitate in hiring him. Hopefully, we will work again together. 
-I wish him all the best for his future
-`;

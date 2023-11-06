@@ -5,6 +5,9 @@ const { user } = require("../../models/users");
 const _ = require("lodash");
 const { getKeys } = require("../../envKeys/allKeys");
 const { encryptToken } = require("../../middlewares/token-safety/encryptToken");
+const {
+  encryptExtensionKey,
+} = require("../../middlewares/extensionKey-safety/encryptExtensionKey");
 const { getUserDetails } = require("./getUserDetails");
 const { signJwt } = require("../../middlewares/jwt-related/sign-jwt");
 const {
@@ -17,7 +20,7 @@ const accessURL = "https://trello.com/1/OAuthGetAccessToken";
 const authorizeURL = "https://trello.com/1/OAuthAuthorizeToken";
 const appName = "Collab for Trello";
 
-//important to put account in the scope so that you can get the email of user
+//important to put "account" in the scope so that you can get the email of user
 const scope = "read,write,account";
 const expiration = "never";
 
@@ -99,13 +102,15 @@ async function callback(req, response) {
             }
             //generate extension key for user using crypto
             const rawExtensionKey = generateExtensionKey(username);
-            const extensionKey = await encryptToken(rawExtensionKey);
+            const { extensionKeyDecrypter, extensionKey } =
+              await encryptExtensionKey(rawExtensionKey);
 
             //create new user and save user details in db
             const accountUser = new user(_.pick(userDetails, ["email"]));
             accountUser.name = fullName;
             accountUser.username = username;
             accountUser.extensionKey = extensionKey;
+            accountUser.extensionKeyDecrypter = extensionKeyDecrypter;
 
             //encrypt and save access token plus give 5 bonus credits for trial
             const { iv, encrytptedToken } = await encryptToken(accessToken);

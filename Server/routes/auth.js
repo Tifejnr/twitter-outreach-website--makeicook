@@ -4,48 +4,47 @@ const router = express.Router();
 const bycrypt = require("bcrypt");
 const { signJwt } = require("../middlewares/jwt-related/sign-jwt");
 const { validateSignInParams } = require("../Joi-Validations/SignIn");
-
-const websiteUrl = "https://collabfortrello.com/";
+const {
+  decryptExtensionKey,
+} = require("../middlewares/extensionKey-safety/decryptExtensionKey");
 
 router.post("/", async (req, res) => {
   console.log(req.body);
   const { error } = validateSignInParams(req.body);
+
+  // console.log("error", error.details[0].message);
 
   if (error)
     return res.status(400).json({ joiError: error.details[0].message });
 
   try {
     const accountUser = await user.findOne({ email: req.body.email });
-    if (!accountUser)
-      return res
+    if (!accountUser) {
+      res
         .status(401)
-        .json({ invalidLoginDetails: "Invalid email or password" });
-    const validExtensionKey = await bycrypt.compare(
-      req.body.password,
-      accountUser.password
-    );
+        .json({ invalidLoginDetails: "Invalid email or extension key" });
 
-    if (!validExtensionKey)
-      return res
+      return;
+    }
+
+    //decrypt user database key and check if it matches one sent from the client
+    const userDbEncryptedKey = await decryptExtensionKey(accountUser._id);
+
+    if (userDbEncryptedKey !== req.body.extensionKey) {
+      res
         .status(401)
-        .json({ invalidLoginDetails: "Invalid email or password" });
+        .json({ invalidLoginDetails: "Invalid email or extension key" });
+
+      return;
+    }
 
     const token = await signJwt(accountUser);
 
     if (!token) return console.log("token not found");
 
-    const cookieOptions = {
-      maxAge: 1209600000,
-      secure: true,
-      httpOnly: true,
-    };
-
     console.log("signed in");
 
-    res.cookie("cftAuth", token, cookieOptions).json({ signedIn: true, token });
-    tokenNow = req.cookies.cftAuth;
-
-    console.log(tokenNow, "now");
+    return res.json({ signedIn: true, token });
   } catch (error) {
     console.log(error);
     return res.json({ error });

@@ -28,6 +28,12 @@ const userSchema = new mongoose.Schema({
     maxlength: 250,
     unique: true,
   },
+
+  extensionKeyDecrypter: {
+    type: String,
+    minlength: 1,
+    maxlength: 50000,
+  },
   extensionKey: {
     type: String,
     minlength: 4,
