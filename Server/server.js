@@ -93,7 +93,7 @@ app.post(
   "/is-account-authorized",
   [loginStatusChecker, isUserAuthorized],
   async (req, res) => {
-    res.json({ authorized: true, userCredits });
+    res.json({ authorized: true, userCredits, extensionLoginDetails });
   }
 );
 

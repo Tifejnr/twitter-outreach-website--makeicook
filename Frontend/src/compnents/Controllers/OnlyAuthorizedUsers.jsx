@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useNavigate, Navigate } from 'react-router-dom';
-import useStore from '../Hooks/Zustand/usersStore';
-import { websiteUrl } from '../../JS functions/websiteUrl';
-import getCookies from '../utilis/cookiesSetting/getCookies';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate, Navigate } from "react-router-dom";
+import useStore from "../Hooks/Zustand/usersStore";
+import { websiteUrl } from "../../JS functions/websiteUrl";
+import getCookies from "../utilis/cookiesSetting/getCookies";
 
 // This route protects both logged in and unauthorized users
 export default function OnlyAuthorizedUsers({ children }) {
-  const [isLoggedIn, setIsLoggedIn] = useState(null); 
+  const [isLoggedIn, setIsLoggedIn] = useState(null);
   const setCreditsFromServer = useStore((state) => state.setCreditsFromServer);
+  const setExtensionLoginDetailsFromServer = useStore(
+    (state) => state.setExtensionLoginDetailsFromServer
+  );
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,29 +23,31 @@ export default function OnlyAuthorizedUsers({ children }) {
       try {
         const url = `${websiteUrl}/is-account-authorized`;
         const response = await axios.post(
-          url, 
-          {token},
+          url,
+          { token },
           { signal: abortController.signal } // Pass the signal to the fetch call
         );
 
         const dataRaw = await response.data;
 
-        console.log(dataRaw)
+        if (dataRaw.authorized) {
+          setExtensionLoginDetailsFromServer(dataRaw.extensionLoginDetails);
+          setCreditsFromServer(dataRaw.userCredits), setIsLoggedIn(true);
 
+          return;
+        }
 
-      if (dataRaw.authorized) return  (setCreditsFromServer(dataRaw.userCredits),setIsLoggedIn(true));
-
-       return setIsLoggedIn(false);
-     
+        return setIsLoggedIn(false);
       } catch (error) {
         //handle any error from server or internet
 
-        if(error.message=="Network Error") return console.log("Network Error");
-        const errorMessage= error.response.data
-        console.log(errorMessage)
+        if (error.message == "Network Error")
+          return console.log("Network Error");
+        const errorMessage = error.response.data;
+        console.log(errorMessage);
 
-        if (errorMessage.invalidJWT) return  navigate('/');
-        if (errorMessage.backToOauthPage) return navigate('/authorize');
+        if (errorMessage.invalidJWT) return navigate("/");
+        if (errorMessage.backToOauthPage) return navigate("/authorize");
 
         return setIsLoggedIn(false);
       }

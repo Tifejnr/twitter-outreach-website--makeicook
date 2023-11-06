@@ -27,6 +27,14 @@ const useStore = create((set) => ({
   setTextAreaValue: (updatedTextArea) =>
     set((state) => ({ textAreaValue: updatedTextArea })),
 
+  //set extension login details from server
+  extensionLoginDetailsFromServer: "",
+
+  setExtensionLoginDetailsFromServer: (updatedExtensionDetails) =>
+    set((state) => ({
+      extensionLoginDetailsFromServer: updatedExtensionDetails,
+    })),
+
   //set timeInterval
   timeInterval: 1,
 
