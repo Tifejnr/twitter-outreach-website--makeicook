@@ -30,7 +30,8 @@ const isUserAuthorized = require("./middlewares/jwt-related/authorizedUserVerifi
 
 //webhooks set here so req.body does not get parsed into json before reaching the route. raw body is needed
 const webhooks = require("./routes/Payments/webhooks");
-app.use("/api/checkout/webhooks", webhooks);
+app.use("/api/webhooks", webhooks);
+const webhookCallbackUrl = "https://www.collabfortrello.com/api/webhooks";
 
 //Connect to mong db
 const keysObjects = getKeys();
