@@ -64,10 +64,12 @@ router.post("/", async (req, res) => {
         console.log("product not found");
         return res.status(402).json({ notFound: true });
       }
-
+      //set  user status to paid
       accountUser.isPaid = true;
 
-      accountUser.credits = product.credits;
+      //add the payed for credit to current users credits
+      const currentUserCredit = accountUser.credits;
+      accountUser.credits = currentUserCredit + product.credits;
 
       // Respond with a 200 status to acknowledge receipt of the webhook
       return res.sendStatus(200);
