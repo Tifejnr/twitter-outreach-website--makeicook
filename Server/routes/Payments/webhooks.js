@@ -71,6 +71,9 @@ router.post("/", async (req, res) => {
       const currentUserCredit = accountUser.credits;
       accountUser.credits = currentUserCredit + product.credits;
 
+      //save user details
+      await accountUser.save();
+
       // Respond with a 200 status to acknowledge receipt of the webhook
       return res.sendStatus(200);
     } else {
