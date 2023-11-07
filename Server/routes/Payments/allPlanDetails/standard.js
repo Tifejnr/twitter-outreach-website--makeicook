@@ -1,7 +1,7 @@
 const planName = "Standard";
 const planPrice = 19;
 const credits = 100;
-const variantId = "124558";
+const variantId = "148857";
 
 const standardPlanObj = {
   planName,
