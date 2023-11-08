@@ -1,4 +1,3 @@
-import { isAnyCheckboxChecked } from "../../../JS functions/Utilis/Validations/Checkbox";
 import { validateInput } from "../../../JS functions/Utilis/Validations/Input";
 import boardIdAndName from "./board-id-and-name/boardIdName";
 import findMemberIdThroughInnerHtml from "./memberIdSearch/findMemberId";
