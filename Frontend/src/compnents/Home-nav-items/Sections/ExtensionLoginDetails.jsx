@@ -51,7 +51,7 @@ export default function ExtensionLoginDetails() {
 
       setTimeout(() => {
         setIsEmailCopied(false);
-      }, 3000);
+      }, 1500);
 
       return;
     } else if (itemCopied === extensionKeyItem) {
@@ -59,7 +59,7 @@ export default function ExtensionLoginDetails() {
 
       setTimeout(() => {
         setIsExtensionKeyCopied(false);
-      }, 3000);
+      }, 1500);
 
       return;
     }
@@ -69,6 +69,7 @@ export default function ExtensionLoginDetails() {
       <article
         onClick={handleExtensionContToggle}
         className="extensionInstructionCont"
+        title="Click to view extension login details"
       >
         <p>View my extension login details</p>
         <picture title="Click to view extension login details">

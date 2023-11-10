@@ -22,7 +22,6 @@ async function addMemberToBoard(req, res) {
     const response = await axios.put(addingUrl);
 
     if (response.status === 200) {
-      console.log("Member added successfully");
       const success = true;
       return res.status(200).json({ success });
     }
