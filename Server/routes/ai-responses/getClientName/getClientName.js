@@ -10,14 +10,10 @@ const HF_TOKEN = keysObj.HF_TOKEN;
 const model = keysObj.huggingFaceModel;
 const hf = new HfInference(HF_TOKEN);
 
-console.log("hf", hf);
-console.log("model", model);
-
 const getClientNamePromptHeading = `What one word is a real human name?`;
 
 //workspaces routes
 router.post("/", async (req, res) => {
-  console.log("req.body", req);
   //   if (error)
   //     return (
   //       res.status(400).json({ emailError: error.details[0].message }),
