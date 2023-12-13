@@ -5,6 +5,7 @@ const path = require("path");
 const ejs = require("ejs");
 const coookieParser = require("cookie-parser");
 const app = express();
+const { HfInference } = require("@huggingface/inference");
 
 // functions boards
 const { addMemberToBoard } = require("./utilis/boards/add");
@@ -23,6 +24,7 @@ require("./startup/prod")(app);
 
 //utils functions
 const { getKeys } = require("./envKeys/allKeys");
+const keysObjects = getKeys();
 const loginStatusChecker = require("./middlewares/jwt-related/login-status-checker");
 const signatureChecker = require("./middlewares/signature/checkSignature");
 const userToken = require("./middlewares/token-safety/decryptToken");
@@ -30,11 +32,11 @@ const isUserAuthorized = require("./middlewares/jwt-related/authorizedUserVerifi
 
 //webhooks set here so req.body does not get parsed into json before reaching the route. raw body is needed
 const webhooks = require("./routes/Payments/webhooks");
+
 app.use("/api/webhooks", webhooks);
 const webhookCallbackUrl = "https://www.collabfortrello.com/api/webhooks";
 
 //Connect to mong db
-const keysObjects = getKeys();
 const mongoDB_string = keysObjects.mongoDB_string;
 mongoose
   .connect(mongoDB_string)
@@ -58,7 +60,8 @@ const signInUser = require("./routes/auth");
 const paymentsHandling = require("./routes/Payments/checkout");
 const dashboard = require("./routes/dashboard");
 const forgotPassword = require("./routes/forgot-password");
-const saveOureachDetails = require("./routes/outreach-server/saveOutreachDetails");
+// const saveOureachDetails = require("./routes/outreach-server/saveOutreachDetails");
+const getClientNameFromTestimonials = require("./routes/ai-responses/getClientName/getClientName");
 
 //api routes declaarations
 app.use("/api/register-user", registerUser);
@@ -67,7 +70,8 @@ app.use("/api/forgot-password", forgotPassword);
 app.use("/api/dashboard", loginStatusChecker, isUserAuthorized, dashboard);
 app.use("/api/checkout", loginStatusChecker, paymentsHandling);
 app.use("/api/checkout/webhooks", webhooks);
-app.use("/api/save-outreach-details", saveOureachDetails);
+// app.use("/api/get-client-name", getClientNameFromTestimonials);
+// app.use("/api/save-outreach-details", saveOureachDetails);
 app.use(
   express.static(
     path.join(__dirname, "../../Trello-Project-React/Frontend/dist")
