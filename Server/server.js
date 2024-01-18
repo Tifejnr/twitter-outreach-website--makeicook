@@ -79,6 +79,7 @@ app.use(
 );
 
 app.set("view engine", "ejs");
+
 app.set(
   "views",
   path.join(__dirname, "../../Trello-Project-React/Frontend/public/views")
