@@ -1,13 +1,12 @@
-import { NextRequest } from "next/server";
-import user from "@/app/server-utils/database/usersDb";
+import express from "express";
+import user from "../../../server-utils/database/usersDb";
 import forgotPasswordValidation from "@/app/server-utils/joi-validations/forgot-password-req/forgotPasswordValidation";
 import jwt from "jsonwebtoken";
-import { getSecretKeys } from "@/app/envVariables/envVariables";
 import sendEmail from "@/app/server-utils/emailTemplates/sendEmail";
-import getMongoKeyAndConnect from "@/app/server-utils/database/mongoDbConnect";
 import emailTemplateFolderSrc from "@/app/server-utils/emailTemplates/template-folder-src/emailTemplateFolderSrc";
+import getSecretKeys from "../../../envVariables/envVariables";
 
-getMongoKeyAndConnect();
+const forgotPasswordRouter = express.Router();
 
 const keysObject = getSecretKeys();
 const JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
@@ -15,16 +14,16 @@ const JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
 const websiteUrl = "http://localhost:3000";
 // const websiteUrl = "https://workforreputation.com";
 
-export async function POST(req: NextRequest) {
-  const bodyRequest = await req.json();
+forgotPasswordRouter.post("/", async (req, res) => {
+  const bodyRequest = await req.body;
 
   const { error } = forgotPasswordValidation(bodyRequest);
 
-  if (error) return Response.json({ emailError: error.details[0].message });
+  if (error) return res.json({ emailError: error.details[0].message });
 
   try {
     const accountUser = await user.findOne({ email: bodyRequest.email });
-    if (!accountUser) return Response.json({ notFoundUser: "User not found" });
+    if (!accountUser) return res.json({ notFoundUser: "User not found" });
 
     const secret = JWT_PRIVATE_KEY + accountUser.password;
     const payload = {
@@ -52,18 +51,20 @@ export async function POST(req: NextRequest) {
     const result = await sendEmail(customerParams, emailContextParamsNow);
 
     if (result)
-      return Response.json({
+      return res.json({
         emailSent: true,
         userId: accountUser.id,
         forgotPassToken: token,
       });
 
-    return Response.json({
+    return res.json({
       emailNotSentError: true,
     });
   } catch (error) {
     console.log("error,", error);
 
-    return Response.json({ error: "Internal server error" });
+    return res.json({ error: "Internal server error" });
   }
-}
+});
+
+export default forgotPasswordRouter;
