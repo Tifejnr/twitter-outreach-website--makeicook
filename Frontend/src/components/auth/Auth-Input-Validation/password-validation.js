@@ -1,6 +1,6 @@
-const minPasswordLength: number = 5;
+const minPasswordLength = 5;
 
-export default function validatePassword(extensionKey: string) {
+export default function validatePassword(extensionKey) {
   if (extensionKey === "")
     return { extensionKeyError: "Password cannot be empty" };
   if (extensionKey.length <= minPasswordLength)

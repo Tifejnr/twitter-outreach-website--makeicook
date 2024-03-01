@@ -1,9 +1,6 @@
-"use client";
-
-import React, { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import "../styles/auth.css";
 
@@ -15,25 +12,17 @@ import validateAll from "../Auth-Input-Validation/validateAll";
 import AuthNav from "../AuthNav";
 import loginUserRequest from "../server-requests/loginUserRequest";
 
-export default function LoginPage() {
+export default function SignInPage() {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
-  const [emailBorderColor, setEmailBorderColor] = useState<boolean | null>(
-    null
-  );
+  const [emailBorderColor, setEmailBorderColor] = useState | (null > null);
 
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [passwordBorderColor, setPasswordBorderColor] = useState<
-    boolean | null
-  >(null);
-  const [passwordVisible, setpasswordVisible] = useState<boolean | null>(false);
+  const [passwordBorderColor, setPasswordBorderColor] = useState(null);
+  const [passwordVisible, setpasswordVisible] = useState(false);
 
-  const router = useRouter();
-
-  function navigateToAnotherRoute(routeToGo: string) {
-    router.push(routeToGo);
-  }
+  const navigateToAnotherRoute = useNavigate();
 
   const emailBorderStyle = {
     borderColor:
@@ -57,7 +46,7 @@ export default function LoginPage() {
     setpasswordVisible((prevState) => !prevState);
   };
 
-  const sendInfoToServer = async (e: React.FormEvent<HTMLFormElement>) => {
+  const sendInfoToServer = async (e) => {
     e.preventDefault();
 
     try {
@@ -169,7 +158,7 @@ export default function LoginPage() {
                     onClick={handleShowPassword}
                     className="toggle-password-visisbiilty"
                   >
-                    <Image
+                    <img
                       src={allIconsContainer.hidePasswordEye}
                       alt="hide extension key icon"
                       width="100"
@@ -182,7 +171,7 @@ export default function LoginPage() {
                     onClick={handleShowPassword}
                     className="toggle-password-visisbiilty"
                   >
-                    <Image
+                    <img
                       src={allIconsContainer.showPasswordEye}
                       alt="show extension key icon"
                       width="100"

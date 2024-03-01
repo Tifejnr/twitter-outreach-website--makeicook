@@ -1,13 +1,11 @@
-const isValidEmailId = (email: string) => {
+const isValidEmailId = (email) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   return emailRegex.test(email);
 };
 
-export default function forgotPasswordEmailVal(email: string): {
-  emailErrorMessage?: string;
-} {
-  let emailErrorMessage: string;
+export default function forgotPasswordEmailVal(email) {
+  let emailErrorMessage;
   if (email === "") {
     emailErrorMessage = "Email cannot be empty";
     return { emailErrorMessage };

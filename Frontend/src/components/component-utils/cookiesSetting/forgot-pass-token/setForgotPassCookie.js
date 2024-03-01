@@ -5,7 +5,7 @@ const cookieExpiryDate = {
   expires: 30,
 };
 
-export default function setForgotPassCookie(cookieValue: string) {
+export default function setForgotPassCookie(cookieValue) {
   Cookies.set(
     compConstValues.forgotPassCookieName,
     cookieValue,

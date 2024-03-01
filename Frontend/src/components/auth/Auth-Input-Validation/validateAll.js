@@ -3,20 +3,12 @@ import fullnameValidation from "./fullname-validation/fullnameValidation";
 import validatePassword from "./password-validation";
 import validateEmailInput from "./validateEmailInput";
 
-export interface ParamsObjTypes {
-  fullname?: string;
-  email: string;
-  password: string;
-  entryCode?: string;
-  isItSignUP?: boolean;
-}
-
 // Combining both email validation and password validation into one function.
-export default function validateAll(paramsObj: ParamsObjTypes) {
+export default function validateAll(paramsObj) {
   const { fullname, email, password, entryCode, isItSignUP } = paramsObj;
 
-  let fullnameErrorMessage: string | undefined;
-  let entryCodeErrorMessage: string | undefined;
+  let fullnameErrorMessage;
+  let entryCodeErrorMessage;
 
   // Run validation all at once to display all errors to users
   const emailValResponse = validateEmailInput(email);
@@ -44,7 +36,7 @@ export default function validateAll(paramsObj: ParamsObjTypes) {
   }
 
   // Check the type of emailValResponse and handle accordingly
-  let emailErrorMessage: string | undefined;
+  let emailErrorMessage;
   if (
     typeof emailValResponse === "object" &&
     "emailErrorMessage" in emailValResponse
@@ -53,7 +45,7 @@ export default function validateAll(paramsObj: ParamsObjTypes) {
   }
 
   // Check the type of passwordValResponse and handle accordingly
-  let extensionKeyError: string | undefined;
+  let extensionKeyError;
   if (
     typeof passwordValResponse === "object" &&
     "extensionKeyError" in passwordValResponse

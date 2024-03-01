@@ -5,6 +5,6 @@ const cookieExpiryDate = {
   expires: 30,
 };
 
-export default function setuserIdCookie(cookieValue: string) {
+export default function setuserIdCookie(cookieValue) {
   Cookies.set(compConstValues.userIdCookieName, cookieValue, cookieExpiryDate);
 }

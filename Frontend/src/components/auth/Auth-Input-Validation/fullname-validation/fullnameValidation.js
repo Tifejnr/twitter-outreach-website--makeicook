@@ -1,7 +1,7 @@
 // Define the regular expression pattern for "first name last name" format
 const fullNameRegex = /^[a-zA-Z]+ [a-zA-Z]+$/;
 
-export default function fullnameValidation(fullName: string) {
+export default function fullnameValidation(fullName) {
   if (fullName === "")
     return { fullnameValidationError: "Full name cannot be empty" };
 

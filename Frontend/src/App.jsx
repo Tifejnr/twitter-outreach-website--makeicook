@@ -4,7 +4,7 @@ import "./main.css";
 import { Route, Routes } from "react-router-dom";
 import ReactGA from "react-ga4";
 import Register from "./compnents/Auth/Register/Register";
-import SignIn from "./compnents/Auth/SignIn/SignIn";
+import SignInPage from "./components/auth/sign-in/SignInPage";
 import AddMember from "./compnents/Pages/AddMember";
 import DeleteMemberBoards from "./compnents/Pages/DeleteMemberBoards";
 import Pricing from "./compnents/Pages/Pricing";
@@ -37,7 +37,7 @@ function App() {
             </OnlyAuthorizedUsers>
           }
         />
-        <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/sign-in" element={<SignInPage />} />
         <Route path="/register" element={<Register />} />
         <Route
           path="/dashboard"
