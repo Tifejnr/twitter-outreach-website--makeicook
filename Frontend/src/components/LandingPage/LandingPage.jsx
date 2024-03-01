@@ -34,7 +34,7 @@ export default function LandingPage() {
       <ToolsSection />
       <Testimonials />
       {/* <PricingPage /> */}
-      {/* <FAQ /> */}
+      <FAQ />
 
       <BelowTestimonials />
       <FooterPages />

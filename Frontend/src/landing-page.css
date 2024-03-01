@@ -320,12 +320,16 @@ body {
 }
 
 .nav-list h3,
-.inner-nav-item-container #loginLandingPage {
+.inner-nav-item-container #loginLandingPage,
+.inner-nav-item-container .nav-list {
   color: var(--dark-des-blue);
   transition: color linear 0.3s;
 }
+
 .nav-list h3:hover,
-.nav-list h3:focus {
+.nav-list h3:focus,
+.inner-nav-item-container .nav-list h3:hover,
+.inner-nav-item-container .nav-list h3:focus {
   color: var(--light-green);
 }
 
@@ -415,10 +419,6 @@ body {
     width: 100%;
   } */
 
-.nav li.active {
-  background-color: #b4b0d8;
-}
-
 /* Hero Component Block */
 body .hero-container {
   position: relative;
@@ -431,7 +431,6 @@ body .hero-container {
   background: var(--background-col);
   margin-top: 3rem;
   top: 6rem;
-  border: 2px solid red;
 }
 
 @media only screen and (min-width: 340px) {
@@ -942,7 +941,7 @@ body .hero-container {
   top: 0;
   margin-top: 4rem;
   height: 100%;
-  margin-bottom: 4rem;
+  margin-bottom: 8rem;
 }
 
 .hero-container.testimonials-cont h3,
@@ -1408,7 +1407,10 @@ li img {
 .each-tool-section h2 {
   color: var(--green-primary);
   font-weight: 550;
+  text-align: left;
+  line-height: 1.4;
 }
+
 .each-tool-section h3,
 .each-tool-section h4,
 .faq-item__detail.toolLists {
@@ -1522,6 +1524,7 @@ article.creditsNeededCont {
   align-content: center;
   width: 100%;
   margin-top: 6rem;
+  margin-bottom: 6rem;
 }
 
 @media screen and (min-width: 768px) {
