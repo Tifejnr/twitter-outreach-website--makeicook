@@ -1,3 +1,4 @@
+import "./contact-us.css";
 import "./landing-page.css";
 
 import { Route, Routes } from "react-router-dom";
@@ -8,7 +9,7 @@ import SignUpPage from "./components/auth/sign-up/SignUpPage";
 import ForgotPassword from "./components/auth/forgot-password/ForgotPassword";
 import ResetPassword from "./components/auth/forgot-password/reset-password/ResetPassword";
 import LandingPage from "./components/LandingPage/LandingPage";
-import ContactUs from "./components/Pages/Contact-us-page/ContactUs";
+import MainContactPage from "./components/Pages/Contact-us-page/MainContactPage";
 import AboutUsPage from "./components/Pages/About-us-page/AboutUs";
 import TermsOfUsePage from "./components/Pages/Terms-and-privacy/TermsOfUsePage";
 import PrivacyPolicyPage from "./components/Pages/Terms-and-privacy/privacyPolicy";
@@ -56,9 +57,9 @@ function App() {
         /> */}
 
         {/* <Route path="/pricing" element={<Pricing />} /> */}
-        <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/contact-us" element={<MainContactPage />} />
         <Route path="/about-us" element={<AboutUsPage />} />
-        <Route path="/terms" element={<TermsOfUsePage />} />
+        <Route path="/terms-of-service" element={<TermsOfUsePage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
       </Routes>
     </>

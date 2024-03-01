@@ -1,10 +1,11 @@
+// import React from "react";
 import ContactUs from "./ContactUs";
 import LandingPageToggle from "../../Main-nav-bar/LandingPageToggle";
 import PagesNavItems from "../PagesNavItems";
 import NavLogo from "../../auth/utils/components/NavLogo";
 import FooterPages from "../Footer/FooterPages";
-
-import "./contactPage.css";
+import changeTabTitle from "../../component-utils/change-tab-title/changeTabTitle";
+import pagesTitleConstValues from "../../component-utils/comp-constant-values/pagesTitleConstValues";
 
 export default function MainContactPage() {
   return (

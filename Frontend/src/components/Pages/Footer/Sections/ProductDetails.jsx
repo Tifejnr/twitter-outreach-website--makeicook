@@ -7,21 +7,21 @@ export default function ProductDetails() {
         <h3>Product</h3>
 
         <ul>
-          <a href={pagesLinkObj.toolsLink}>
+          <a href={pagesLinkObj.toolsLink} target="_blank" rel="noreferrer">
             <p>WFR Toolkit</p>
           </a>
 
-          <a href={pagesLinkObj.faqLink}>
+          <a href={pagesLinkObj.faqLink} target="_blank" rel="noreferrer">
             <p>FAQ</p>
           </a>
 
-          <a href={pagesLinkObj.reviewsLink}>
+          <a href={pagesLinkObj.reviewsLink} target="_blank" rel="noreferrer">
             <p>Testimonials</p>
           </a>
 
-          <a href={pagesLinkObj.pricingLink}>
+          {/* <a href={pagesLinkObj.pricingLink} target="_blank" rel="noreferrer">
             <p>Pricing</p>
-          </a>
+          </a> */}
 
           {/* <ahref=""></a> */}
         </ul>

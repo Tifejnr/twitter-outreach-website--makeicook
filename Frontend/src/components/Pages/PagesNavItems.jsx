@@ -9,9 +9,9 @@ export default function PagesNavItems() {
             <h3 className="tools">Tools</h3>
           </a>
 
-          <a className="nav-list" href={pagesLinkObj.pricingLink}>
+          {/* <a className="nav-list" href={pagesLinkObj.pricingLink}>
             <h3 className="pricing">Pricing</h3>
-          </a>
+          </a> */}
 
           <a className="nav-list" href={pagesLinkObj.faqLink}>
             <h3 className="faq">FAQ</h3>
