@@ -1,6 +1,6 @@
-import removeDoubleSpaces from "@/app/components/auth/utils/removeDouleSpaces/removeDoubleSpaces";
+import removeDoubleSpaces from "../../../auth/utils/removeDouleSpaces/removeDoubleSpaces";
 
-export default function fullNameValidation(fullname: string) {
+export default function fullNameValidation(fullname) {
   const regex = /\b\w{2,}\s+\w{2,}\b/;
 
   const fullnameSpacesRemoved = removeDoubleSpaces(fullname);

@@ -4,8 +4,7 @@ import PagesNavItems from "../PagesNavItems";
 import NavLogo from "../../auth/utils/components/NavLogo";
 import FooterPages from "../Footer/FooterPages";
 
-import "../../../styles-css/contact-page.css";
-import "../../../styles-css/landingpage.css";
+import "./contactPage.css";
 
 export default function MainContactPage() {
   return (

@@ -1,22 +1,7 @@
 import axios, { AxiosError } from "axios";
-import allLinks from "@/app/components/auth/utils/links/allLinks";
+import allLinks from "../../../auth/utils/links/allLinks";
 
-interface ContactUserRequestParamTypes {
-  customerEmail: string;
-  message: string;
-  customerName: string;
-}
-
-interface ServerResponse {
-  error?: any;
-  joiError?: string;
-  emailSent?: boolean;
-  somethingElseHappened?: boolean;
-}
-
-export default async function contactUsRequestToServer(
-  contactUsParams: ContactUserRequestParamTypes
-): Promise<ServerResponse> {
+export default async function contactUsRequestToServer(contactUsParams) {
   const signInEndPoint = allLinks.contactUsAPIRoute;
   try {
     const response = await axios.post(signInEndPoint, contactUsParams);

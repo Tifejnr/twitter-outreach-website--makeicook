@@ -1,4 +1,4 @@
-import pagesLinkObj from "@/app/components/component-utils/pageLinks/pagesLinkObj";
+import pagesLinkObj from "../../../component-utils/pageLinks/pagesLinkObj";
 // const reviewsPageLink= "/reviews"
 // const pricingPageLink= "/pricing"
 

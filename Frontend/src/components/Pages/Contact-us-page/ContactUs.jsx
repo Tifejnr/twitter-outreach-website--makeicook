@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useState } from "react";
+import { useState } from "react";
 import fullNameValidation from "./Contact-Input-Validations/fullname-validation";
 import emailValidation from "./Contact-Input-Validations/emailValidation";
 import textAreaValidation from "./Contact-Input-Validations/textAreaVal";
@@ -14,41 +12,24 @@ const contactPageSeoToMatch = "Add trello members to multiple boards at once";
 const hideVisiblilty = "hidden";
 const showVisibilty = "visible";
 
-interface ErrorStyle {
-  color: string;
-  visibility:
-    | "visible"
-    | "hidden"
-    | "collapse"
-    | "initial"
-    | "inherit"
-    | undefined;
-}
-
 export default function ContactUs() {
   const [fullName, setFullName] = useState("");
   const [fullNameInstruction, setFullNameInstruction] = useState(
     "First name  Last name"
   );
-  const [fullNameBorderColor, setFullNameBorderColor] = useState<
-    boolean | null
-  >(null);
+  const [fullNameBorderColor, setFullNameBorderColor] = useState(null);
 
   const [email, setEmail] = useState("");
   const [emailInstruction, setEmailInstruction] = useState(
     "Please enter an email you can access"
   );
-  const [emailBorderColor, setEmailBorderColor] = useState<boolean | null>(
-    null
-  );
+  const [emailBorderColor, setEmailBorderColor] = useState(null);
 
   const [textarea, setTextarea] = useState("");
   const [textareaInstruction, setTextareaInstruction] =
     useState("Minimum of 5 words");
-  const [textareaBorderColor, setTextareaBorderColor] = useState<
-    boolean | null
-  >(null);
-  const [isRequestSent, setIsRequestSent] = useState<boolean>(false);
+  const [textareaBorderColor, setTextareaBorderColor] = useState(null);
+  const [isRequestSent, setIsRequestSent] = useState(false);
 
   const fullNameBorderStyle = {
     borderColor:
@@ -59,7 +40,7 @@ export default function ContactUs() {
         : notificationColorsObj.errorColor,
   };
 
-  const fullNameErrorStyle: ErrorStyle = {
+  const fullNameErrorStyle = {
     color:
       fullNameBorderColor === null
         ? "grey"
@@ -83,7 +64,7 @@ export default function ContactUs() {
         : notificationColorsObj.errorColor,
   };
 
-  const emailErrorStyle: ErrorStyle = {
+  const emailErrorStyle = {
     color:
       emailBorderColor === null
         ? "grey"
@@ -108,7 +89,7 @@ export default function ContactUs() {
         : notificationColorsObj.errorColor,
   };
 
-  const textareaErrorStyle: ErrorStyle = {
+  const textareaErrorStyle = {
     color:
       textareaBorderColor === null
         ? "grey"

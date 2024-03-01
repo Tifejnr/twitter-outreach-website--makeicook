@@ -2,10 +2,10 @@
   font-size: 62.5%;
 }
 
-.main-pricing-section-alone {
+.contact-us-page-cont {
   position: relative;
-  top: 5rem;
-  margin: auto;
+  top: 6.3rem;
+  padding-bottom: 3rem;
 }
 
 .contact-us-form {
@@ -20,7 +20,7 @@
 
 @media screen and (min-width: 768px) {
   .contact-us-form {
-    background-color: rgb(16, 27, 105, 0.8);
+    background-color: rgba(188, 214, 192, 0.8);
   }
 }
 
@@ -29,7 +29,8 @@
     margin-bottom: 0;
   }
 }
-.contact-us-form .main-wrapper {
+.contact-us-form .main-wrapper,
+.messageReceived {
   padding: 0 1.5rem;
   width: 100%;
   margin: 2rem 0;
@@ -38,13 +39,15 @@
 }
 
 @media screen and (min-width: 580px) {
-  .contact-us-form .main-wrapper {
+  .contact-us-form .main-wrapper,
+  .messageReceived {
     padding: 0 3.5rem;
     margin: 3rem 0;
   }
 }
 @media screen and (min-width: 760px) {
-  .contact-us-form .main-wrapper {
+  .contact-us-form .main-wrapper,
+  .messageReceived {
     width: 60%;
     margin: 4rem 0;
     max-width: 60rem;
@@ -192,6 +195,7 @@
   transition: all 0.5s ease;
   cursor: pointer;
   box-shadow: 0 0 2px 2px #17252a;
+  margin-bottom: 3rem;
 }
 .btn-wrap button:hover {
   border: 1px solid #17252a;
@@ -218,4 +222,29 @@
 }
 .contact-us-form input ~ p {
   visibility: hidden;
+}
+
+.messageReceived {
+  position: absolute;
+  height: 120%;
+  width: 120%;
+  background-color: #eee;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  gap: 3rem;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  z-index: 800;
+}
+
+.messageReceived h1 {
+  font-size: 2.3rem;
+}
+.messageReceived p {
+  text-align: center;
+  font-size: 1.7rem;
+  color: #17252a;
 }
