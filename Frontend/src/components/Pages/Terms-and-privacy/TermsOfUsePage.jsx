@@ -1,4 +1,3 @@
-import Link from "next/link";
 import LandingPageToggle from "../../Main-nav-bar/LandingPageToggle";
 import PagesNavItems from "../PagesNavItems";
 import NavLogo from "../../auth/utils/components/NavLogo";
@@ -57,9 +56,13 @@ export default function TermsOfUsePage() {
               <p>
                 All terminologies in the Terms and Conditions must be read in
                 conjunction with the <span></span>
-                <Link href={pagesLinkObj.privacyPolicyPageLink}>
+                <a
+                  href={pagesLinkObj.privacyPolicyPageLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Privacy Policy.
-                </Link>
+                </a>
               </p>
             </section>
 

@@ -1,12 +1,9 @@
-import Link from "next/link";
 import LandingPageToggle from "../../Main-nav-bar/LandingPageToggle";
 import PagesNavItems from "../PagesNavItems";
 import NavLogo from "../../auth/utils/components/NavLogo";
 import FooterPages from "../Footer/FooterPages";
 import CTAForTermsPolicy from "./CTAForTermsPolicy";
 import pagesLinkObj from "../../component-utils/pageLinks/pagesLinkObj";
-
-import "../../../styles-css/landingpage.css";
 
 const privacyPageSeoToMatch =
   "Add same trello members to multiple boards at once";
