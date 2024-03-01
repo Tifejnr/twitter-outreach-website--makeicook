@@ -11,8 +11,12 @@ import setCookies from "../../component-utils/cookiesSetting/setCookies";
 import validateAll from "../Auth-Input-Validation/validateAll";
 import AuthNav from "../AuthNav";
 import loginUserRequest from "../server-requests/loginUserRequest";
+import changeTabTitle from "../../component-utils/change-tab-title/changeTabTitle";
+import pagesTitleConstValues from "../../component-utils/comp-constant-values/pagesTitleConstValues";
 
 export default function SignInPage() {
+  changeTabTitle(pagesTitleConstValues.signIn);
+
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [emailBorderColor, setEmailBorderColor] = useState(null);
