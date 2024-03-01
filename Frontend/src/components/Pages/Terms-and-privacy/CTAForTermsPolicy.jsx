@@ -1,4 +1,3 @@
-import Link from "next/link";
 import allLinks from "../../auth/utils/links/allLinks";
 import PropTypes from "prop-types"; // Import PropTypes
 
@@ -11,9 +10,9 @@ export default function CTAForTermsPolicy(props) {
     <section className="about-us-CTA-section">
       <h1>{props.title}</h1>
       <section className="call-to-action-cont">
-        <Link href={allLinks.signUpPage} className="oauth-button">
+        <a href={allLinks.signUpPage} className="oauth-button">
           <h2>Start for free</h2>
-        </Link>
+        </a>
         <ul>
           <li>
             <p>5 free credits for trial</p>

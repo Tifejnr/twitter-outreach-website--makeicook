@@ -42,7 +42,7 @@ export default function LandingPageToggle(props) {
 
 // Add PropTypes validation
 LandingPageToggle.propTypes = {
-  pageLink: PropTypes.string.isRequired, // Validate pageLink as a required string
+  pageLink: PropTypes.string, // Validate pageLink as a required string
   noCredits: PropTypes.bool, // Validate noCredits as a boolean
   innerText: PropTypes.string, // Validate innerText as a string
 };

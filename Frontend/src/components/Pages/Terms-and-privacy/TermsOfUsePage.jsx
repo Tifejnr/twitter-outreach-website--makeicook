@@ -8,8 +8,6 @@ import pagesLinkObj from "../../component-utils/pageLinks/pagesLinkObj";
 const termsPageSeoToMatch =
   "Remove same trello members from multiple boards at once";
 
-import "../../../styles-css/landingpage.css";
-
 export default function TermsOfUsePage() {
   return (
     <>
