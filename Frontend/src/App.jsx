@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router-dom";
 // import ReactGA from "react-ga4";
 // import Register from "./compnents/Auth/Register/Register";
 import SignInPage from "./components/auth/sign-in/SignInPage";
+import SignUpPage from "./components/auth/sign-up/SignUpPage";
 // import Pricing from "./compnents/Pages/Pricing";
 // import OauthPage from "./compnents/Trello-oauth-page/OauthPage";
 // import LandingPage from "./compnents/LandingPage/LandingPage";
@@ -36,7 +37,7 @@ function App() {
           }
         /> */}
         <Route path="/sign-in" element={<SignInPage />} />
-        {/* <Route path="/register" element={<Register />} /> */}
+        <Route path="/sign-up" element={<SignUpPage />} />
         {/* <Route
           path="/dashboard"
           element={

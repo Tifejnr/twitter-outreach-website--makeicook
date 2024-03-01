@@ -1,9 +1,6 @@
-"use client";
-
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
-import Image from "next/image";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import notificationColorsObj from "../utils/colors/allColorsObj";
 import allIconsContainer from "../utils/icons/allIconsContainer";
@@ -12,40 +9,32 @@ import setCookies from "../../component-utils/cookiesSetting/setCookies";
 import validateAll from "../Auth-Input-Validation/validateAll";
 import AuthNav from "../AuthNav";
 import signUpUserRequest from "../server-requests/signUpUserRequest";
+import changeTabTitle from "../../component-utils/change-tab-title/changeTabTitle";
+import pagesTitleConstValues from "../../component-utils/comp-constant-values/pagesTitleConstValues";
 
 import "../styles/auth.css";
 
 export default function SignUpPage() {
-  const [fullname, setFullname] = useState<string>("");
-  const [fullnameError, setFullnameError] = useState<string>("");
-  const [fullnameBorderColor, setFullnameBorderColor] = useState<
-    boolean | null
-  >(null);
+  changeTabTitle(pagesTitleConstValues.signUp);
 
-  const [email, setEmail] = useState<string>("");
-  const [emailError, setEmailError] = useState<string>("");
-  const [emailBorderColor, setEmailBorderColor] = useState<boolean | null>(
-    null
-  );
+  const [fullname, setFullname] = useState("");
+  const [fullnameError, setFullnameError] = useState("");
+  const [fullnameBorderColor, setFullnameBorderColor] = useState(null);
 
-  const [password, setPassword] = useState<string>("");
-  const [passwordError, setPasswordError] = useState<string>("");
-  const [passwordBorderColor, setPasswordBorderColor] = useState<
-    boolean | null
-  >(null);
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [emailBorderColor, setEmailBorderColor] = useState(null);
+
+  const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [passwordBorderColor, setPasswordBorderColor] = useState(null);
   const [extensionKeyVisible, setextensionKeyVisible] = useState(false);
 
-  const [entryCode, setEntryCode] = useState<string>("");
-  const [entryCodeError, setEntryCodeError] = useState<string>("");
-  const [entryCodeBorderColor, setEntryCodeBorderColor] = useState<
-    boolean | null
-  >(null);
+  const [entryCode, setEntryCode] = useState("");
+  const [entryCodeError, setEntryCodeError] = useState("");
+  const [entryCodeBorderColor, setEntryCodeBorderColor] = useState(null);
 
-  const router = useRouter();
-
-  function navigateToAnotherRoute(routeToGo: string) {
-    router.push(routeToGo);
-  }
+  const navigateToAnotherRoute = useNavigate();
 
   const fullnameBorderStyle = {
     borderColor:
@@ -86,7 +75,7 @@ export default function SignUpPage() {
     setextensionKeyVisible((prevState) => !prevState);
   };
 
-  const sendInfoToServer = async (e: React.FormEvent<HTMLFormElement>) => {
+  const sendInfoToServer = async (e) => {
     e.preventDefault();
 
     try {
@@ -257,7 +246,7 @@ export default function SignUpPage() {
                     onClick={handleShowPassword}
                     className="toggle-password-visisbiilty"
                   >
-                    <Image
+                    <img
                       src={allIconsContainer.hidePasswordEye}
                       alt="hide password icon"
                       width="100"
@@ -270,7 +259,7 @@ export default function SignUpPage() {
                     onClick={handleShowPassword}
                     className="toggle-password-visisbiilty"
                   >
-                    <Image
+                    <img
                       src={allIconsContainer.showPasswordEye}
                       alt="Show password icon"
                       width="100"

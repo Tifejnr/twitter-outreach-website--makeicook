@@ -2,20 +2,7 @@ import axios from "axios";
 
 import allLinks from "../utils/links/allLinks";
 
-import type { ParamsObjTypes } from "../Auth-Input-Validation/validateAll";
-
-type ServerSignUpType = {
-  alreadyRegsitered?: string;
-  invalidCode?: string;
-  token?: string;
-  alreadyRegistered?: string;
-  joiError?: string;
-  error?: any;
-};
-
-export default async function signUpUserRequest(
-  signUpParams: ParamsObjTypes
-): Promise<ServerSignUpType> {
+export default async function signUpUserRequest(signUpParams) {
   const signInEndPoint = allLinks.apiRouteSignUp;
   try {
     const response = await axios.post(signInEndPoint, signUpParams);
@@ -30,7 +17,7 @@ export default async function signUpUserRequest(
     if (data.token) return { token: data.token };
 
     return data;
-  } catch (error: any) {
+  } catch (error) {
     console.log("error", error);
 
     return { error };
