@@ -13,6 +13,7 @@ import AuthNav from "../AuthNav";
 import loginUserRequest from "../server-requests/loginUserRequest";
 import changeTabTitle from "../../component-utils/change-tab-title/changeTabTitle";
 import pagesTitleConstValues from "../../component-utils/comp-constant-values/pagesTitleConstValues";
+import linkNavigation from "../../component-utils/link-navigation/linkNaviagtion";
 
 export default function SignInPage() {
   changeTabTitle(pagesTitleConstValues.signIn);
@@ -211,7 +212,14 @@ export default function SignInPage() {
           <aside className="prompt-message">
             <h3>
               Don&apos;t have an account?&nbsp;
-              <Link href={allLinks.signUpPage}>
+              <Link
+                href={allLinks.signUpPage}
+                onClick={(e) => {
+                  e.preventDefault();
+
+                  linkNavigation(allLinks.signUpPage);
+                }}
+              >
                 <b>Sign up</b>
               </Link>
             </h3>

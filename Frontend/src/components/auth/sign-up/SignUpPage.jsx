@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
@@ -11,6 +11,7 @@ import AuthNav from "../AuthNav";
 import signUpUserRequest from "../server-requests/signUpUserRequest";
 import changeTabTitle from "../../component-utils/change-tab-title/changeTabTitle";
 import pagesTitleConstValues from "../../component-utils/comp-constant-values/pagesTitleConstValues";
+import linkNavigation from "../../component-utils/link-navigation/linkNaviagtion";
 
 import "../styles/auth.css";
 
@@ -313,7 +314,14 @@ export default function SignUpPage() {
           <aside className="prompt-message">
             <h3>
               Already have an account?&nbsp;
-              <Link href={allLinks.loginPagePath}>
+              <Link
+                href={allLinks.loginPagePath}
+                onClick={(e) => {
+                  e.preventDefault();
+
+                  linkNavigation(allLinks.loginPagePath);
+                }}
+              >
                 <b>Sign in</b>
               </Link>
             </h3>
