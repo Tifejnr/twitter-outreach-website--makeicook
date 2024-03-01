@@ -2,11 +2,11 @@ import express from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import _ from "lodash";
-import user from "../../../server-utils/database/usersDb";
-import websiteSignUpValidation from "../../../server-utils/joi-validations/sign-up/websiteSignUpValidation";
-import extensionSignUpValidation from "../../../server-utils/joi-validations/sign-up/extensionSignUpValidation";
-import getFirst3Letters from "../../../server-utils/users-identifers/getFirst3Letters";
-import getSecretKeys from "../../../envVariables/envVariables";
+import user from "../../../server-utils/database/usersDb.js";
+import websiteSignUpValidation from "../../../server-utils/joi-validations/sign-up/websiteSignUpValidation.js";
+import extensionSignUpValidation from "../../../server-utils/joi-validations/sign-up/extensionSignUpValidation.js";
+import getFirst3Letters from "../../../server-utils/users-identifers/getFirst3Letters.js";
+import getSecretKeys from "../../../envVariables/envVariables.js";
 
 const signUpRouter = express.Router();
 

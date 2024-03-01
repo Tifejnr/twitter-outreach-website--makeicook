@@ -8,6 +8,7 @@ import SignInPage from "./components/auth/sign-in/SignInPage";
 import SignUpPage from "./components/auth/sign-up/SignUpPage";
 import ForgotPassword from "./components/auth/forgot-password/ForgotPassword";
 import ResetPassword from "./components/auth/forgot-password/reset-password/ResetPassword";
+import EmailSentView from "./components/auth/forgot-password/email-sent-view/EmailSentView";
 import LandingPage from "./components/LandingPage/LandingPage";
 import MainContactPage from "./components/Pages/Contact-us-page/MainContactPage";
 import AboutUsPage from "./components/Pages/About-us-page/AboutUs";
@@ -47,6 +48,7 @@ function App() {
         <Route path="/sign-up" element={<SignUpPage />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password/*" element={<ResetPassword />} />
+        <Route path="/email-sent/*" element={<EmailSentView />} />
         {/* <Route
           path="/dashboard"
           element={

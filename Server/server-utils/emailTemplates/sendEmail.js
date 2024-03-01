@@ -1,17 +1,8 @@
-import nodemailer, { SentMessageInfo } from "nodemailer";
-import { getSecretKeys } from "@/app/envVariables/envVariables";
+import nodemailer from "nodemailer";
 import hbs from "nodemailer-express-handlebars";
+import getSecretKeys from "../../envVariables/envVariables.js";
 
-type customerDetailsType = {
-  subject: string;
-  folderDir: string;
-  customerEmail: string;
-};
-
-export default async function sendEmail(
-  customerParams: customerDetailsType,
-  emailContextParams: any
-) {
+export default async function sendEmail(customerParams, emailContextParams) {
   const keysObject = getSecretKeys();
   const { emailUsername, emailPassword } = keysObject;
 

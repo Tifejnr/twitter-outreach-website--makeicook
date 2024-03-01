@@ -1,10 +1,10 @@
 import express from "express";
-import user from "../../../server-utils/database/usersDb";
-import forgotPasswordValidation from "@/app/server-utils/joi-validations/forgot-password-req/forgotPasswordValidation";
+import user from "../../../server-utils/database/usersDb.js";
+import forgotPasswordValidation from "../../../server-utils/joi-validations/forgot-password-req/forgotPasswordValidation.js";
 import jwt from "jsonwebtoken";
-import sendEmail from "@/app/server-utils/emailTemplates/sendEmail";
-import emailTemplateFolderSrc from "@/app/server-utils/emailTemplates/template-folder-src/emailTemplateFolderSrc";
-import getSecretKeys from "../../../envVariables/envVariables";
+import sendEmail from "../../../server-utils/emailTemplates/sendEmail.js";
+import emailTemplateFolderSrc from "../../../server-utils/emailTemplates/template-folder-src/emailTemplateFolderSrc.js";
+import getSecretKeys from "../../../envVariables/envVariables.js";
 
 const forgotPasswordRouter = express.Router();
 

@@ -1,13 +1,6 @@
 import Joi from "joi";
 
-type ChatGPTRequestType = {
-  prompt: string;
-  openAiKey: string;
-  temperature: number;
-  maxToken: number;
-};
-
-export default function chatGPTRequestVal(reqBody: ChatGPTRequestType) {
+export default function chatGPTRequestVal(reqBody) {
   const schema = Joi.object({
     prompt: Joi.string().min(3).max(20050).required(),
     openAiKey: Joi.string().min(10).max(1050).required(),

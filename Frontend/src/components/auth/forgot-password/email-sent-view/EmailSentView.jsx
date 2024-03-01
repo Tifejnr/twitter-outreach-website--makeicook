@@ -3,6 +3,7 @@ import allLinks from "../../utils/links/allLinks";
 import "../../styles/auth.css";
 import changeTabTitle from "../../../component-utils/change-tab-title/changeTabTitle";
 import pagesTitleConstValues from "../../../component-utils/comp-constant-values/pagesTitleConstValues";
+
 export default function EmailSentView() {
   changeTabTitle(pagesTitleConstValues.resetPasswordEmailSent);
   return (
