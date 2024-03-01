@@ -1,6 +1,6 @@
 import { useState } from "react";
 import allIconsContainer from "../../auth/utils/icons/allIconsContainer";
-import allLinks from "../../auth/utils/as/allLinks";
+import allLinks from "../../auth/utils/links/allLinks";
 import PropTypes from "prop-types";
 
 const contactPageLink = "/contact-us";

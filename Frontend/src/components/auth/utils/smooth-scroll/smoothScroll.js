@@ -1,21 +1,21 @@
 export default function smoothScroll(
-  targetSelector: string,
-  heightAdjuster: number,
-  fastScroll?: boolean
-): void {
-  let duration: number = 200;
+  targetSelector,
+  heightAdjuster,
+  fastScroll
+) {
+  let duration = 200;
 
   if (fastScroll) {
     duration = 0;
   }
 
-  const target = document.querySelector(targetSelector) as HTMLElement;
+  const target = document.querySelector(targetSelector);
   let targetPosition = target.getBoundingClientRect().top;
   let startPosition = window.pageYOffset;
   let distance = targetPosition - heightAdjuster; // - startPosition;
-  let startTime: number | null = null;
+  let startTime = null;
 
-  function animation(currentTime: number) {
+  function animation(currentTime) {
     if (startTime === null) startTime = currentTime;
     let timeElapsed = currentTime - startTime;
     let run = ease(timeElapsed, startPosition, distance, duration);
@@ -24,7 +24,7 @@ export default function smoothScroll(
   }
 
   // http://www.gizma.com/easing/
-  function ease(t: number, b: number, c: number, d: number) {
+  function ease(t, b, c, d) {
     t /= d / 2;
     if (t < 1) return (c / 2) * t * t + b;
     t--;

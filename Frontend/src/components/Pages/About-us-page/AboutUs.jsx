@@ -7,8 +7,6 @@ import CTAForTermsPolicy from "../Terms-and-privacy/CTAForTermsPolicy";
 const aboutPageSeoToMatch =
   "Remove same trello members from multiple boards at once";
 
-import "../../../styles-css/landingpage.css";
-
 export default function AboutUsPage() {
   return (
     <>
