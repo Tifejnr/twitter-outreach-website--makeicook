@@ -18,6 +18,7 @@ import signInRouter from "./routes/(auth)/auth/route.js";
 import signUpRouter from "./routes/(auth)/users/route.js";
 import forgotPasswordRouter from "./routes/(auth)/forgot-password/route.js";
 import resetPasswordRouter from "./routes/(auth)/forgot-password/reset-password/route.js";
+import getClientNameRouter from "./routes/(ai-related)/get-client-name/route.js";
 
 //Connect to mong db
 
@@ -41,17 +42,16 @@ app.use(coookieParser());
 // const dashboard = require("./routes/dashboard");
 // const forgotPassword = require("./routes/forgot-password");
 // const saveOureachDetails = require("./routes/outreach-server/saveOutreachDetails");
-// const getClientNameFromTestimonials = require("./routes/ai-responses/getClientName/getClientName");
 
 //api routes declaarations
 app.use("/api/users", signUpRouter);
 app.use("/api/auth", signInRouter);
 app.use("/api/forgot-password", forgotPasswordRouter);
 app.use("/api/forgot-password/reset-password", resetPasswordRouter);
+app.use("/api/get-client-name", getClientNameRouter);
 // app.use("/api/dashboard", loginStatusChecker, isUserAuthorized, dashboard);
 // app.use("/api/checkout", loginStatusChecker, paymentsHandling);
 // app.use("/api/checkout/webhooks", webhooks);
-// app.use("/api/get-client-name", getClientNameFromTestimonials);
 // app.use("/api/save-outreach-details", saveOureachDetails);
 app.use(
   express.static(

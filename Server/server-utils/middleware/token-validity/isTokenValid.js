@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
-import user from "../../server-utils/database/usersDb";
-import getSecretKeys from "../../envVariables/envVariables";
+import user from "../../database/usersDb.js";
+import getSecretKeys from "../../../envVariables/envVariables.js";
 
 export default async function isTokenValid(bodyRequest) {
   //get request sent
@@ -11,8 +11,6 @@ export default async function isTokenValid(bodyRequest) {
 
   let token;
 
-  //fetch token from cookies on server first
-  //   token = req.cookies.xAuth;
   token = bodyRequest.token;
 
   if (fromExtension) {
@@ -26,7 +24,6 @@ export default async function isTokenValid(bodyRequest) {
 
   try {
     const decodedPayload = jwt.verify(token, JWT_PRIVATE_KEY);
-
     if (!decodedPayload) return { invalidToken: true };
 
     if (isJssHomePage) {
