@@ -1,15 +1,16 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import AuthNav from "../../AuthNav";
 import { useNavigate } from "react-router-dom";
 import notificationColorsObj from "../../utils/colors/allColorsObj";
 import allIconsContainer from "../../utils/icons/allIconsContainer";
 import validatePassword from "../../Auth-Input-Validation/password-validation";
-
-import "../../styles/auth.css";
 import resetPasswordRequest from "../../server-requests/resetPasswordRequest";
 import allLinks from "../../utils/links/allLinks";
 import changeTabTitle from "../../../component-utils/change-tab-title/changeTabTitle";
 import pagesTitleConstValues from "../../../component-utils/comp-constant-values/pagesTitleConstValues";
+
+import "../../styles/auth.css";
 
 export default function ResetPassword() {
   changeTabTitle(pagesTitleConstValues.resetPassword);
@@ -25,6 +26,14 @@ export default function ResetPassword() {
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
 
   const navigateToAnotherRoute = useNavigate();
+
+  const urlValuesGotten = useParams();
+
+  const value = urlValuesGotten["*"];
+  const parts = value.split("/");
+
+  const userId = parts[0];
+  const forgotPassToken = parts[1];
 
   const passwordBorderStyle = {
     borderColor:
@@ -54,19 +63,6 @@ export default function ResetPassword() {
 
   async function handleParamsToServer(e) {
     e.preventDefault();
-
-    const url = location.href;
-
-    const userIdRegex = /reset-password\/([^/]+)\//;
-    const forgotPassTokenRegex = /\/([^/]+)$/;
-
-    const userIdMatch = url.match(userIdRegex);
-    const forgotPassTokenMatch = url.match(forgotPassTokenRegex);
-
-    const userId = userIdMatch ? userIdMatch[1] : null;
-    const forgotPassToken = forgotPassTokenMatch
-      ? forgotPassTokenMatch[1]
-      : null;
 
     if (confirmPassword !== password) {
       setConfirmPasswordBorderColor(false);

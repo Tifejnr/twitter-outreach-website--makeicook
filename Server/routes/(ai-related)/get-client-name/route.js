@@ -1,10 +1,10 @@
-import { NextRequest, NextResponse } from "next/server";
+import express from "express";
 import { HfInference } from "@huggingface/inference";
-import isTokenValid from "../../middleware/isTokenValid";
-import forbiddenNames from "./forbiddenNames";
-import { getSecretKeys } from "@/app/envVariables/envVariables";
+import isTokenValid from "../../middleware/isTokenValid.js";
+import forbiddenNames from "./forbiddenNames.js";
+import forbiddenNamesInclusionArray from "./forbiddenNamesInclusion.js";
+import getSecretKeys from "../../../envVariables/envVariables.js";
 
-// const model = "rsvp-ai/bertserini-bert-base-squad";
 const keysObject = getSecretKeys();
 const model = keysObject.huggingFaceModel;
 const HF_TOKEN = keysObject.HF_TOKEN;
@@ -15,8 +15,10 @@ const getClientNamePromptHeading = `What one word is a real human name?`;
 const clientText = "Client";
 const clientTextSmallLetter = "client";
 
-export async function POST(req: NextRequest) {
-  const bodyRequest = await req.json();
+const getClientNameRouter = express.Router();
+
+getClientNameRouter.post("/", async (req, res) => {
+  const bodyRequest = await req.body;
 
   const resultOfTokenValidation = await isTokenValid(bodyRequest);
 
@@ -39,16 +41,19 @@ export async function POST(req: NextRequest) {
     });
 
     let clientNameResponse = result.answer;
+    const clientNameResponseLowercase = clientNameResponse.toLowerCase();
 
     if (
       forbiddenNames.some(
-        (forbiddenName) => forbiddenName == clientNameResponse
+        (forbiddenName) =>
+          forbiddenName.toLowerCase() == clientNameResponseLowercase
       )
     ) {
       clientNameResponse = "Hi there";
     } else if (
-      clientNameResponse.includes(clientText) ||
-      clientNameResponse.includes(clientTextSmallLetter)
+      forbiddenNamesInclusionArray.some((forbiddenName) =>
+        forbiddenName.toLowerCase().includes(clientNameResponseLowercase)
+      )
     ) {
       clientNameResponse = "Hi there";
     }
@@ -61,4 +66,4 @@ export async function POST(req: NextRequest) {
 
     return Response.json({ error: "Internal server error" });
   }
-}
+});

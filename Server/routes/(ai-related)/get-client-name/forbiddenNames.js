@@ -13,6 +13,8 @@ const greatCustomerText = "Great customer";
 const bestClientEverText = "Best client ever!";
 const greatExperienceText = "Great experience";
 const goodClient = "Good client";
+const clintText = "Clint";
+const agaiText = "agai";
 const cooperativeClientText = "Cooperative Client";
 
 const forbiddenNames = [
@@ -32,6 +34,8 @@ const forbiddenNames = [
   greatExperienceText,
   goodClient,
   cooperativeClientText,
+  clintText,
+  agaiText,
 ];
 
 export default forbiddenNames;

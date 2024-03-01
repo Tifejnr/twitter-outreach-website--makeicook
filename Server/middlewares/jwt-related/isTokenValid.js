@@ -1,24 +1,8 @@
-import { getSecretKeys } from "@/app/envVariables/envVariables";
 import jwt from "jsonwebtoken";
-import user from "@/app/server-utils/database/usersDb";
-import getMongoKeyAndConnect from "@/app/server-utils/database/mongoDbConnect";
-import type { AccountUserModel } from "@/app/server-utils/database/usersDb";
+import user from "../../server-utils/database/usersDb";
+import getSecretKeys from "../../envVariables/envVariables";
 
-interface JwtPayloadType {
-  _id: string;
-  isPaid: boolean;
-}
-
-//connect to mongo deb
-getMongoKeyAndConnect();
-
-export default async function isTokenValid(bodyRequest: any): Promise<{
-  nullJWTToken?: boolean;
-  invalidToken?: boolean;
-  notAuthorizedOnJSSHomePage?: boolean;
-  authorizedOnJSSHomePage?: boolean;
-  decodedPayload?: any;
-}> {
+export default async function isTokenValid(bodyRequest) {
   //get request sent
   const keysObject = getSecretKeys();
   const JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
@@ -41,14 +25,12 @@ export default async function isTokenValid(bodyRequest: any): Promise<{
   if (!token) return { nullJWTToken: true };
 
   try {
-    const decodedPayload = jwt.verify(token, JWT_PRIVATE_KEY) as JwtPayloadType;
+    const decodedPayload = jwt.verify(token, JWT_PRIVATE_KEY);
 
     if (!decodedPayload) return { invalidToken: true };
 
     if (isJssHomePage) {
-      const accountUser = (await user.findById(
-        decodedPayload._id
-      )) as AccountUserModel | null;
+      const accountUser = await user.findById(decodedPayload._id);
 
       if (!accountUser) return { invalidToken: true };
 
