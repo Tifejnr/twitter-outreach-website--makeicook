@@ -1,15 +1,11 @@
 import express from "express";
 const router = express.Router();
 
-import getSecretKeys from "../../../envVariables/envVariables";
-// import signInDetailsValidation from "@/app/server-utils/joi-validations/signInValidation";
+import getSecretKeys from "../../../envVariables/envVariables.js";
+import signInDetailsValidation from "../../../server-utils/joi-validations/sign-in/signInValidation.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import user from "@/app/server-utils/database/usersDb";
-import getMongoKeyAndConnect from "@/app/server-utils/database/mongoDbConnect";
-
-//connect to mongo deb
-getMongoKeyAndConnect();
+import user from "../../../server-utils/database/usersDb.js";
 
 router.post("/", async (req, res) => {
   //get request sent
