@@ -4,6 +4,7 @@
 	"version": "0.0.1",
 	"description": "Example app to demonstrate using OAuth with Trello's API!",
 	"main": "index.js",
+	"type": "module",
 	"scripts": {
 		"start": "node index.js"
 	},
@@ -12,6 +13,7 @@
 		"axios": "^0.27.2",
 		"bard-ai": "^2.0.3",
 		"bcrypt": "^5.1.0",
+		"bcryptjs": "^2.4.3",
 		"body-parser": "^1.20.2",
 		"compression": "^1.7.4",
 		"connect-redis": "^6.1.3",

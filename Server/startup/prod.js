@@ -1,14 +1,14 @@
-const helmet = require("helmet");
-const compression = require("compression");
+import helmet from "helmet";
+import compression from "compression";
 
-module.exports = function (app) {
+const setupMiddleware = (app) => {
   app.use(
     helmet.contentSecurityPolicy({
       directives: {
         defaultSrc: ["'self'"],
         connectSrc: [
           "'self'",
-          "https://www.collabfortrello.com",
+          "https://www.workforreputation.com",
           "https://www.google-analytics.com",
           "https://www.youtube.com",
         ],
@@ -17,10 +17,11 @@ module.exports = function (app) {
           "https://www.googletagmanager.com",
           "'unsafe-inline'",
         ],
-
         frameSrc: ["'self'", "https://www.youtube.com"],
       },
     })
   );
   app.use(compression());
 };
+
+export default setupMiddleware;

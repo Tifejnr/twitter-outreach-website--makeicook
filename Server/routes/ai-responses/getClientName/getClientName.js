@@ -1,9 +1,8 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
 const { HfInference } = require("@huggingface/inference");
 const { getKeys } = require("../../../envKeys/allKeys");
 const keysObj = getKeys();
-
 const HF_TOKEN = keysObj.HF_TOKEN;
 
 // const model = "rsvp-ai/bertserini-bert-base-squad";
