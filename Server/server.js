@@ -12,6 +12,7 @@ setupMiddleware(app);
 
 import signInRouter from "./routes/(auth)/auth/route.js";
 import signUpRouter from "./routes/(auth)/users/route.js";
+import forgotPasswordRouter from "./routes/(auth)/forgot-password/route.js";
 
 //Connect to mong db
 
@@ -40,7 +41,7 @@ app.use(coookieParser());
 //api routes declaarations
 app.use("/api/users", signUpRouter);
 app.use("/api/auth", signInRouter);
-// app.use("/api/forgot-password", forgotPassword);
+app.use("/api/forgot-password", forgotPasswordRouter);
 // app.use("/api/dashboard", loginStatusChecker, isUserAuthorized, dashboard);
 // app.use("/api/checkout", loginStatusChecker, paymentsHandling);
 // app.use("/api/checkout/webhooks", webhooks);
