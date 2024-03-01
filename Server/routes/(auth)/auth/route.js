@@ -1,5 +1,6 @@
 import express from "express";
 const router = express.Router();
+
 import getSecretKeys from "../../../envVariables/envVariables";
 // import signInDetailsValidation from "@/app/server-utils/joi-validations/signInValidation";
 import bcrypt from "bcryptjs";
@@ -20,18 +21,18 @@ router.post("/", async (req, res) => {
 
   const { error } = signInDetailsValidation(bodyRequest);
 
-  if (error) return Response.json({ emailError: error.details[0].message });
+  if (error) return res.json({ emailError: error.details[0].message });
 
   const accountUser = await user.findOne({ email: bodyRequest.email });
 
   if (!accountUser)
-    return Response.json({ invalidLoginDetails: "Invalid email or password" });
+    return res.json({ invalidLoginDetails: "Invalid email or password" });
   const validPassword = await bcrypt.compare(
     bodyRequest.password,
     accountUser.password
   );
   if (!validPassword)
-    return Response.json({ invalidLoginDetails: "Invalid email or password" });
+    return res.json({ invalidLoginDetails: "Invalid email or password" });
   const token = jwt.sign(
     { _id: accountUser._id, isPaid: accountUser.isPaid },
     JWT_PRIVATE_KEY
@@ -43,7 +44,7 @@ router.post("/", async (req, res) => {
   //   secure: true,
   // });
 
-  return Response.json({ token });
+  return res.json({ token });
 });
 
 export default router;

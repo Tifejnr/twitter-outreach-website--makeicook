@@ -59,18 +59,6 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-export interface AccountUserModel {
-  name: string;
-  email: string;
-  password: string;
-  entryCode: string;
-  isPaid?: boolean;
-  paidFor?: string;
-  profileLink?: string;
-  jobsCompleted?: number;
-  jobsToBeCompleted?: number;
-}
-
 const user = mongoose.models.User || mongoose.model("User", userSchema);
 
 export default user;

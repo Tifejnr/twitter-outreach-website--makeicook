@@ -1,6 +1,5 @@
 import express from "express";
-import getMongoKeyAndConnect from "./database/mongoDbConnect.js";
-import mongoose from "mongoose";
+import getMongoKeyAndConnect from "./server-utils/database/mongoDbConnect.js";
 import cors from "cors";
 import path from "path";
 import coookieParser from "cookie-parser";

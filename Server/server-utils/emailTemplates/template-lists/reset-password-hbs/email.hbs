@@ -1,0 +1,42 @@
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reset Password Work for Reputation</title>
+    <style>
+      body { display: flex; justify-content: center; font-size: 1.1rem; }
+      section { padding: 0.5rem; } p { line-height: 1.5; font-weight: 400;
+      color: hsl(238, 29%, 16%); } #resetPasswordHref{ transform:
+      translate(-50%, -50%); left: 50%; } button { width: 60%; border-radius:
+      0.7rem; margin-top: 1rem; border: 0; padding: 1rem; font-size: 1.2rem;
+      text-align: center; justify-self: center; background-color: #14a800;
+      color: #fff; cursor: pointer; touch-action: manipulation; transition: 0.3s
+      ease-in-out; } button:hover { background-color: #70c964; }
+    </style>
+  </head>
+
+  <body>
+    <section>
+
+      <p>
+        Hi
+        {{name}}, A password reset event has been triggered. The password reset
+        window is limited to
+        <b>10 MINUTES.</b>
+      </p>
+
+      <p>If you do not reset your password within
+        <b>10 MINUTES.</b>, you will need to submit a new request.
+      </p>
+      <p>To complete the password reset process, click the Reset Password button
+        below:
+      </p>
+
+      <a id="resetPasswordHref" href={{link}}>
+        <button>Reset Password</button></a>
+    </section>
+  </body>
+
+</html>

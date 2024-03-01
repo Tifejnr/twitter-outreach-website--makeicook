@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import getSecretKeys from "../envVariables/envVariables.js";
+import getSecretKeys from "../../envVariables/envVariables.js";
 
 export default async function getMongoKeyAndConnect() {
   const keysObjects = getSecretKeys();
