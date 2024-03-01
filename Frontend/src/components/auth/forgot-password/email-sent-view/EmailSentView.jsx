@@ -1,14 +1,16 @@
 import AuthNav from "../../AuthNav";
 import allLinks from "../../utils/links/allLinks";
 import "../../styles/auth.css";
-
+import changeTabTitle from "../../../component-utils/change-tab-title/changeTabTitle";
+import pagesTitleConstValues from "../../../component-utils/comp-constant-values/pagesTitleConstValues";
 export default function EmailSentView() {
+  changeTabTitle(pagesTitleConstValues.resetPasswordEmailSent);
   return (
     <>
       <AuthNav />
       <section className="main-container email-sent-container" id="form">
         <article className="main__title email-sent-title">
-          <h2>Check your email</h2>
+          <h2>Please check your email</h2>
         </article>
 
         <article className="reset-pass-info">
