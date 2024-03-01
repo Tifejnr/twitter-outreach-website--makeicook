@@ -1,12 +1,9 @@
-"use client";
-
 import { useState } from "react";
 import AuthNav from "../../AuthNav";
-import Image from "next/image";
+import { useNavigate } from "react-router-dom";
 import notificationColorsObj from "../../utils/colors/allColorsObj";
 import allIconsContainer from "../../utils/icons/allIconsContainer";
 import validatePassword from "../../Auth-Input-Validation/password-validation";
-import { useRouter } from "next/navigation";
 
 import "../../styles/auth.css";
 import resetPasswordRequest from "../../server-requests/resetPasswordRequest";
@@ -15,21 +12,16 @@ import allLinks from "../../utils/links/allLinks";
 export default function ResetPassword() {
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [passwordBorderColor, setPasswordBorderColor] = useState<
-    boolean | null
-  >(null);
-  const [passwordVisible, setpasswordVisible] = useState<boolean | null>(false);
+  const [passwordBorderColor, setPasswordBorderColor] = useState(null);
+  const [passwordVisible, setpasswordVisible] = useState(false);
 
   const [confirmPassword, setConfirmPassword] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
-  const [confirmPasswordBorderColor, setConfirmPasswordBorderColor] = useState<
-    boolean | null
-  >(null);
-  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState<
-    boolean | null
-  >(false);
+  const [confirmPasswordBorderColor, setConfirmPasswordBorderColor] =
+    useState(null);
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
 
-  const router = useRouter();
+  const navigateToAnotherRoute = useNavigate();
 
   const passwordBorderStyle = {
     borderColor:
@@ -57,13 +49,13 @@ export default function ResetPassword() {
     setConfirmPasswordVisible((prevState) => !prevState);
   };
 
-  async function handleParamsToServer(e: React.FormEvent<HTMLFormElement>) {
+  async function handleParamsToServer(e) {
     e.preventDefault();
 
     const url = location.href;
 
-    const userIdRegex = /reset-password\/([^\/]+)\//;
-    const forgotPassTokenRegex = /\/([^\/]+)$/;
+    const userIdRegex = /reset-password\/([^/]+)\//;
+    const forgotPassTokenRegex = /\/([^/]+)$/;
 
     const userIdMatch = url.match(userIdRegex);
     const forgotPassTokenMatch = url.match(forgotPassTokenRegex);
@@ -119,7 +111,7 @@ export default function ResetPassword() {
     }
 
     if (resetPasswordResponse.passwordUpdated) {
-      router.push(allLinks.homePagePath);
+      navigateToAnotherRoute(allLinks.homePagePath);
     }
   }
 
@@ -157,7 +149,7 @@ export default function ResetPassword() {
                   onClick={handleShowPassword}
                   className="toggle-password-visisbiilty"
                 >
-                  <Image
+                  <img
                     src={allIconsContainer.hidePasswordEye}
                     alt="hide password icon"
                     width="100"
@@ -170,7 +162,7 @@ export default function ResetPassword() {
                   onClick={handleShowPassword}
                   className="toggle-password-visisbiilty"
                 >
-                  <Image
+                  <img
                     src={allIconsContainer.showPasswordEye}
                     alt="show password icon"
                     width="100"
@@ -206,7 +198,7 @@ export default function ResetPassword() {
                   onClick={handleShowConfirmPassword}
                   className="toggle-password-visisbiilty"
                 >
-                  <Image
+                  <img
                     src={allIconsContainer.hidePasswordEye}
                     alt="hide password icon"
                     width="100"
@@ -219,7 +211,7 @@ export default function ResetPassword() {
                   onClick={handleShowConfirmPassword}
                   className="toggle-password-visisbiilty"
                 >
-                  <Image
+                  <img
                     src={allIconsContainer.showPasswordEye}
                     alt="show password icon"
                     width="100"

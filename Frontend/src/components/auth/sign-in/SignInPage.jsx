@@ -13,7 +13,6 @@ import AuthNav from "../AuthNav";
 import loginUserRequest from "../server-requests/loginUserRequest";
 import changeTabTitle from "../../component-utils/change-tab-title/changeTabTitle";
 import pagesTitleConstValues from "../../component-utils/comp-constant-values/pagesTitleConstValues";
-import linkNavigation from "../../component-utils/link-navigation/linkNaviagtion";
 
 export default function SignInPage() {
   changeTabTitle(pagesTitleConstValues.signIn);
@@ -191,13 +190,13 @@ export default function SignInPage() {
             </fieldset>
 
             <section className="forgot-password">
-              <Link
+              <a
                 className="forgot-pass-text"
                 href={allLinks.forgotPasswordPage}
-                target="_blank"
+                // target="_blank"
               >
                 <b>Forgot password?</b>
-              </Link>
+              </a>
             </section>
 
             <button id="login_btn" className="submit-btn">
@@ -205,23 +204,16 @@ export default function SignInPage() {
             </button>
             <p className="widthRegulator">
               By Registering, I agree to Work for Reputation&apos;s
-              <Link href="#">Terms of Use</Link> &
+              <Link href="#">Terms of Use</Link>&
               <Link href="#">Privacy Policy</Link>
             </p>
           </form>
           <aside className="prompt-message">
             <h3>
               Don&apos;t have an account?&nbsp;
-              <Link
-                href={allLinks.signUpPage}
-                onClick={(e) => {
-                  e.preventDefault();
-
-                  linkNavigation(allLinks.signUpPage);
-                }}
-              >
+              <a href={allLinks.signUpPage}>
                 <b>Sign up</b>
-              </Link>
+              </a>
             </h3>
           </aside>
         </section>

@@ -1,15 +1,6 @@
 import allLinks from "../utils/links/allLinks";
 
-type ForgotPasswordParamsResponse = {
-  emailError?: string;
-  emailSent?: { userId?: string; forgotPassToken?: string };
-  error?: any;
-  somethingElseHappened?: boolean;
-};
-
-export default async function forgotPasswordRequest(
-  email: string
-): Promise<ForgotPasswordParamsResponse> {
+export default async function forgotPasswordRequest(email) {
   try {
     const res = await fetch(allLinks.forgotPasswordAPIRoute, {
       method: "POST",
@@ -33,7 +24,7 @@ export default async function forgotPasswordRequest(
     if (data.emailSent) return { emailSent: data };
 
     return { somethingElseHappened: true };
-  } catch (error: any) {
+  } catch (error) {
     console.log("error password forgot", error);
 
     return { error };

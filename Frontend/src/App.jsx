@@ -6,6 +6,8 @@ import { Route, Routes } from "react-router-dom";
 // import Register from "./compnents/Auth/Register/Register";
 import SignInPage from "./components/auth/sign-in/SignInPage";
 import SignUpPage from "./components/auth/sign-up/SignUpPage";
+import ForgotPassword from "./components/auth/forgot-password/ForgotPassword";
+import ResetPassword from "./components/auth/forgot-password/reset-password/ResetPassword";
 // import Pricing from "./compnents/Pages/Pricing";
 // import OauthPage from "./compnents/Trello-oauth-page/OauthPage";
 // import LandingPage from "./compnents/LandingPage/LandingPage";
@@ -38,6 +40,8 @@ function App() {
         /> */}
         <Route path="/sign-in" element={<SignInPage />} />
         <Route path="/sign-up" element={<SignUpPage />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password/*" element={<ResetPassword />} />
         {/* <Route
           path="/dashboard"
           element={

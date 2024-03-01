@@ -1,23 +1,6 @@
 import allLinks from "../utils/links/allLinks";
 
-type ForgotPasswordParamsResponse = {
-  error?: any;
-  joiError?: string;
-  invalidToken?: boolean;
-  notFoundUser?: boolean;
-  passwordUpdated?: boolean;
-  somethingElseHappened?: boolean;
-};
-
-type ResetPasswordParamsType = {
-  password: string | null;
-  userId: string | null;
-  forgotPassToken: string | null;
-};
-
-export default async function resetPasswordRequest(
-  paramsToResetPassword: ResetPasswordParamsType
-): Promise<ForgotPasswordParamsResponse> {
+export default async function resetPasswordRequest(paramsToResetPassword) {
   try {
     const res = await fetch(allLinks.resetPasswordAPIRoute, {
       method: "POST",
@@ -48,7 +31,7 @@ export default async function resetPasswordRequest(
     }
 
     return { somethingElseHappened: true };
-  } catch (error: any) {
+  } catch (error) {
     console.log("error password forgot", error);
 
     return { error };

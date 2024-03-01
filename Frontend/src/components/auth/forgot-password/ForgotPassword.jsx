@@ -1,28 +1,25 @@
 "use client";
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import AuthNav from "../AuthNav";
 import notificationColorsObj from "../utils/colors/allColorsObj";
 import "../styles/auth.css";
 import forgotPasswordRequest from "../server-requests/forgotPasswordRequest";
 import forgotPasswordEmailVal from "../Auth-Input-Validation/forgot-password-email-val/forgotPasswordEmailVal";
-import EmailSentView from "./email-sent-view/EmailSentView";
 import allLinks from "../utils/links/allLinks";
 import setuserIdCookie from "../../component-utils/cookiesSetting/userId/setuserIdCookie";
 import setForgotPassCookie from "../../component-utils/cookiesSetting/forgot-pass-token/setForgotPassCookie";
+import changeTabTitle from "../../component-utils/change-tab-title/changeTabTitle";
+import pagesTitleConstValues from "../../component-utils/comp-constant-values/pagesTitleConstValues";
 
 export default function ForgotPassword() {
-  const [email, setEmail] = useState<string>("");
-  const [emailError, setEmailError] = useState<string>("");
-  const [emailBorderColor, setEmailBorderColor] = useState<boolean | null>(
-    null
-  );
+  changeTabTitle(pagesTitleConstValues.forgotPassword);
 
-  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [emailBorderColor, setEmailBorderColor] = useState(null);
 
-  function navigateToAnotherRoute(routeToGo: string) {
-    router.push(routeToGo);
-  }
+  const navigateToAnotherRoute = useNavigate();
 
   const emailBorderStyle = {
     borderColor:
@@ -33,7 +30,7 @@ export default function ForgotPassword() {
         : notificationColorsObj.errorColor,
   };
 
-  async function handleSubmitBtn(e: React.FormEvent<HTMLButtonElement>) {
+  async function handleSubmitBtn(e) {
     e.preventDefault();
     const isValidationFaulty = forgotPasswordEmailVal(email);
 
@@ -45,8 +42,6 @@ export default function ForgotPassword() {
     } else {
       setEmailError("");
       setEmailBorderColor(true);
-
-      // navigateToAnotherRoute(allLinks.emailSentPage);
     }
 
     const responseFromServer = await forgotPasswordRequest(email);

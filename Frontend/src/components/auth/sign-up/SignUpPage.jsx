@@ -11,7 +11,6 @@ import AuthNav from "../AuthNav";
 import signUpUserRequest from "../server-requests/signUpUserRequest";
 import changeTabTitle from "../../component-utils/change-tab-title/changeTabTitle";
 import pagesTitleConstValues from "../../component-utils/comp-constant-values/pagesTitleConstValues";
-import linkNavigation from "../../component-utils/link-navigation/linkNaviagtion";
 
 import "../styles/auth.css";
 
@@ -302,28 +301,29 @@ export default function SignUpPage() {
             <p className="registering-terms-text">
               By Registering, I agree to Work for Reputation&apos;s
               <span> </span>
-              <Link href={allLinks.termsOfServiceLink} target="_blank">
+              <Link
+                href={allLinks.termsOfServiceLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Terms of Use
               </Link>
               <span> </span>&<span> </span>
-              <Link href={allLinks.privacyPolicyLink} target="_blank">
+              <a
+                href={allLinks.privacyPolicyLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Privacy Policy
-              </Link>
+              </a>
             </p>
           </form>
           <aside className="prompt-message">
             <h3>
               Already have an account?&nbsp;
-              <Link
-                href={allLinks.loginPagePath}
-                onClick={(e) => {
-                  e.preventDefault();
-
-                  linkNavigation(allLinks.loginPagePath);
-                }}
-              >
+              <a href={allLinks.loginPagePath}>
                 <b>Sign in</b>
-              </Link>
+              </a>
             </h3>
           </aside>
         </section>
