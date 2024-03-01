@@ -1,5 +1,4 @@
 import allIconsContainer from "../icons/allIconsContainer";
-import Image from "next/image";
 
 export default function NavLogo() {
   return (
@@ -7,7 +6,7 @@ export default function NavLogo() {
       <div className="logo-container">
         <div className="logo">
           <div className="logo-icon">
-            <Image
+            <img
               src={allIconsContainer.letterW}
               alt="logo letter w"
               width={100}
@@ -15,7 +14,7 @@ export default function NavLogo() {
             />
           </div>
           <div className="logo-icon letter-f">
-            <Image
+            <img
               src={allIconsContainer.letterF}
               alt="logo letter f"
               width={100}
@@ -23,7 +22,7 @@ export default function NavLogo() {
             />
           </div>
           <div className="logo-icon letter-r">
-            <Image
+            <img
               src={allIconsContainer.letterR}
               alt="logo letter r"
               width={100}

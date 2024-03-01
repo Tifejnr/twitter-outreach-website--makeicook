@@ -1,23 +1,7 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import allLinks from "../utils/links/allLinks";
-import type { ParamsObjTypes } from "../Auth-Input-Validation/validateAll";
 
-interface ErrorResponse {
-  invalidLoginDetails?: string;
-  nullJWT?: string;
-  joiError?: string;
-}
-
-type LoginServerResponse = {
-  joiError?: string;
-  token?: string;
-  errorMessage?: string;
-  error?: any;
-};
-
-export default async function loginUserRequest(
-  signInParams: ParamsObjTypes
-): Promise<LoginServerResponse> {
+export default async function loginUserRequest(signInParams) {
   const signInEndPoint = allLinks.apiRouteSignIn;
   try {
     const response = await axios.post(signInEndPoint, signInParams);
@@ -30,9 +14,9 @@ export default async function loginUserRequest(
     if (data.token) return { token: data.token };
 
     return data;
-  } catch (error: any) {
+  } catch (error) {
     console.log("error", error);
-    const errorResponse: ErrorResponse = error.response?.data || {};
+    const errorResponse = error.response?.data;
 
     if (errorResponse.invalidLoginDetails)
       return { errorMessage: errorResponse.invalidLoginDetails };
