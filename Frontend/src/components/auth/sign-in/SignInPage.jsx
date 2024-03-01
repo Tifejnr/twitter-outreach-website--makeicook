@@ -15,7 +15,7 @@ import loginUserRequest from "../server-requests/loginUserRequest";
 export default function SignInPage() {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
-  const [emailBorderColor, setEmailBorderColor] = useState | (null > null);
+  const [emailBorderColor, setEmailBorderColor] = useState(null);
 
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
