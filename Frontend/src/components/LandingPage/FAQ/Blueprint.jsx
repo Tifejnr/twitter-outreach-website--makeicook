@@ -1,15 +1,17 @@
-"use client";
-
-import React, { useState } from "react";
-import Link from "next/link";
+import { useState } from "react";
 import allIconsContainer from "../../auth/utils/icons/allIconsContainer";
-import Image from "next/image";
-import allLinks from "../../auth/utils/links/allLinks";
+import allLinks from "../../auth/utils/as/allLinks";
+import PropTypes from "prop-types";
 
 const contactPageLink = "/contact-us";
 const toolsTutorialPage = "tools-tutorial";
 
-export default function Blueprint(props: any) {
+// Add PropTypes validation
+Blueprint.propTypes = {
+  faqObj: PropTypes.any.isRequired, // Validate pageLink as a required string
+};
+
+export default function Blueprint(props) {
   const [isClicked, setIsClicked] = useState(false);
 
   const handleToggle = () => {
@@ -31,7 +33,7 @@ export default function Blueprint(props: any) {
       <section className="faq-item__summary">
         <p className="faq-item__description">{props.faqObj.question}</p>
         <div className="faq-item__arrow-container">
-          <Image
+          <img
             style={rotateOnToggle}
             src={allIconsContainer.greenArrowIcon}
             alt="faq toggle icon"
@@ -44,26 +46,27 @@ export default function Blueprint(props: any) {
 
       <section className="faq-item__detail" style={openFaqDetailsStyle}>
         <p>
-          {props.faqObj.answer}{" "}
+          {props.faqObj.answer}
           {props.faqObj.contactUsLink && (
-            <Link className="contact-us-link-faq" href={contactPageLink}>
+            <a className="contact-us-link-faq" href={contactPageLink}>
               Contact us
-            </Link>
+            </a>
           )}
           {props.faqObj.toolsTutorial && (
-            <Link className="contact-us-link-faq" href={toolsTutorialPage}>
+            <a className="contact-us-link-faq" href={toolsTutorialPage}>
               WFR Toolkit tutorial
-            </Link>
+            </a>
           )}
           {props.faqObj.extensionChromeStoreLink && (
             <>
-              <Link
+              <a
                 className="contact-us-link-faq"
                 href={allLinks.extensionChromeStoreLink}
                 target="_blank"
+                rel="noreferrer"
               >
                 WFR Toolkit - Chrome store
-              </Link>
+              </a>
 
               <span>
                 , and click on the <b>&quot;Add to Chrome&quot;</b> button to

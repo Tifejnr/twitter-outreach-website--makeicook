@@ -1,6 +1,7 @@
-import ToolVideo from "../videos/ToolVideo";
+// import ToolVideo from "../videos/ToolVideo";
+import PropTypes from "prop-types";
 
-export default function ToolBlueprint(props: any) {
+export default function ToolBlueprint(props) {
   return (
     <section className="each-tool-section">
       <h2>
@@ -19,3 +20,8 @@ export default function ToolBlueprint(props: any) {
     </section>
   );
 }
+
+ToolBlueprint.propTypes = {
+  indexNo: PropTypes.number.isRequired, // Validate pageLink as a required string
+  toolDetails: PropTypes.any, // Validate noCredits as a boolea
+};

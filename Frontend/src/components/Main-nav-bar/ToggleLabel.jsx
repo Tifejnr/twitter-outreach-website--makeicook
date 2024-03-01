@@ -1,4 +1,6 @@
-export default function ToggleLabel(props: any) {
+import PropTypes from "prop-types";
+
+export default function ToggleLabel(props) {
   return (
     <>
       <label htmlFor="nav__checkbox" className="nav__toggle" title="Menu">
@@ -15,3 +17,8 @@ export default function ToggleLabel(props: any) {
     </>
   );
 }
+
+// Add PropTypes validation
+ToggleLabel.propTypes = {
+  isMenuIconShowing: PropTypes.bool, // Validate noCredits as a boolean
+};

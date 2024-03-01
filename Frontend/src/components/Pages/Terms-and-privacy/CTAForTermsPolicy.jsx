@@ -1,7 +1,12 @@
 import Link from "next/link";
 import allLinks from "../../auth/utils/links/allLinks";
+import PropTypes from "prop-types"; // Import PropTypes
 
-export default function CTAForTermsPolicy(props: { title: string }) {
+CTAForTermsPolicy.propTypes = {
+  title: PropTypes.string.isRequired, // Validate pageLink as a required string
+};
+
+export default function CTAForTermsPolicy(props) {
   return (
     <section className="about-us-CTA-section">
       <h1>{props.title}</h1>

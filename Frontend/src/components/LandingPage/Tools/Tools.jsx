@@ -1,4 +1,3 @@
-import React from "react";
 import ToolBlueprint from "./Tool-Blueprint";
 import { allToolsArray } from "./allToolsArray";
 

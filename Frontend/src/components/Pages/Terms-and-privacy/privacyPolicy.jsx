@@ -73,7 +73,13 @@ export default function PrivacyPolicyPage() {
 
               <p>
                 Our <span></span>
-                <Link href={pagesLinkObj.termsPageLink}>Terms of Service</Link>
+                <a
+                  href={pagesLinkObj.termsPageLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Terms of Service
+                </a>
                 (the “Terms of Service” or “Agreement”) are complemented by this
                 Privacy Policy. You should not use this website or use our
                 Services if you do not agree with this Privacy Policy or any

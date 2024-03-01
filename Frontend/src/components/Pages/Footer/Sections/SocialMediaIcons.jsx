@@ -1,6 +1,4 @@
-import Link from "next/link";
-import allIconsContainer from "@/app/components/auth/utils/icons/allIconsContainer";
-import Image from "next/image";
+import allIconsContainer from "../../../auth/utils/icons/allIconsContainer";
 
 const linkedInLink = `https://www.linkedin.com/company/collab-for-trello/`;
 const facebookLink = `https://www.facebook.com/people/Collab-for-Trello/61550452245234/`;
@@ -12,7 +10,7 @@ export default function SocialMediaIcons() {
       <ul>
         <li>
           <picture>
-            <Image
+            <img
               src={allIconsContainer.twitterIcon}
               alt="x icon"
               title="Our X"
@@ -23,9 +21,9 @@ export default function SocialMediaIcons() {
         </li>
 
         <li>
-          <Link href={youtubeLink}>
+          <a href={youtubeLink}>
             <picture>
-              <Image
+              <img
                 src={allIconsContainer.youtubeIcon}
                 alt="youtube icon"
                 title="Our Youtube"
@@ -33,13 +31,13 @@ export default function SocialMediaIcons() {
                 height={100}
               />
             </picture>
-          </Link>
+          </a>
         </li>
 
         <li>
-          <Link href={linkedInLink}>
+          <a href={linkedInLink}>
             <picture>
-              <Image
+              <img
                 src={allIconsContainer.linkedInIcon}
                 alt="linkedIn icon"
                 title="Our LinkedIn"
@@ -47,13 +45,13 @@ export default function SocialMediaIcons() {
                 height={100}
               />
             </picture>
-          </Link>
+          </a>
         </li>
 
         <li>
-          <Link href={facebookLink}>
+          <a href={facebookLink}>
             <picture>
-              <Image
+              <img
                 src={allIconsContainer.facebookIcon}
                 alt="facebook icon"
                 title="Our Facebook"
@@ -61,7 +59,7 @@ export default function SocialMediaIcons() {
                 height={100}
               />
             </picture>
-          </Link>
+          </a>
         </li>
       </ul>
     </section>
