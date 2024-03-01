@@ -47,8 +47,8 @@ function App() {
         <Route path="/sign-in" element={<SignInPage />} />
         <Route path="/sign-up" element={<SignUpPage />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/reset-password/*" element={<ResetPassword />} />
-        <Route path="/email-sent/*" element={<EmailSentView />} />
+        <Route path="/reset-password/*/*" element={<ResetPassword />} />
+        <Route path="/email-sent" element={<EmailSentView />} />
         {/* <Route
           path="/dashboard"
           element={

@@ -2,7 +2,11 @@ import express from "express";
 import getMongoKeyAndConnect from "./server-utils/database/mongoDbConnect.js";
 import cors from "cors";
 import path from "path";
+import { fileURLToPath } from "url";
 import coookieParser from "cookie-parser";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const app = express();
 
 import setupMiddleware from "./startup/prod.js";
@@ -13,6 +17,7 @@ setupMiddleware(app);
 import signInRouter from "./routes/(auth)/auth/route.js";
 import signUpRouter from "./routes/(auth)/users/route.js";
 import forgotPasswordRouter from "./routes/(auth)/forgot-password/route.js";
+import resetPasswordRouter from "./routes/(auth)/forgot-password/reset-password/route.js";
 
 //Connect to mong db
 
@@ -42,21 +47,22 @@ app.use(coookieParser());
 app.use("/api/users", signUpRouter);
 app.use("/api/auth", signInRouter);
 app.use("/api/forgot-password", forgotPasswordRouter);
+app.use("/api/forgot-password/reset-password", resetPasswordRouter);
 // app.use("/api/dashboard", loginStatusChecker, isUserAuthorized, dashboard);
 // app.use("/api/checkout", loginStatusChecker, paymentsHandling);
 // app.use("/api/checkout/webhooks", webhooks);
 // app.use("/api/get-client-name", getClientNameFromTestimonials);
 // app.use("/api/save-outreach-details", saveOureachDetails);
-// app.use(
-//   express.static(
-//     path.join(__dirname, "../../Trello-Project-React/Frontend/dist")
-//   )
-// );
+app.use(
+  express.static(
+    path.join(__dirname, "../../Trello-Project-React/Frontend/dist")
+  )
+);
 
-// app.set(
-//   "views",
-//   path.join(__dirname, "../../Trello-Project-React/Frontend/public/views")
-// );
+app.set(
+  "views",
+  path.join(__dirname, "../../Trello-Project-React/Frontend/public/views")
+);
 
 // Routes Handling Section
 // app.post("/isloggedIn", loginStatusChecker, async (req, res) => {
