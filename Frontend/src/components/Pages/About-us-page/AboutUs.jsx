@@ -3,11 +3,15 @@ import PagesNavItems from "../PagesNavItems";
 import NavLogo from "../../auth/utils/components/NavLogo";
 import FooterPages from "../Footer/FooterPages";
 import CTAForTermsPolicy from "../Terms-and-privacy/CTAForTermsPolicy";
+import changeTabTitle from "../../component-utils/change-tab-title/changeTabTitle";
+import pagesTitleConstValues from "../../component-utils/comp-constant-values/pagesTitleConstValues";
 
 const aboutPageSeoToMatch =
   "Remove same trello members from multiple boards at once";
 
 export default function AboutUsPage() {
+  changeTabTitle(pagesTitleConstValues.aboutUs);
+
   return (
     <>
       <nav className="nav">

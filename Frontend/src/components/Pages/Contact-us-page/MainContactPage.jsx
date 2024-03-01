@@ -8,6 +8,7 @@ import changeTabTitle from "../../component-utils/change-tab-title/changeTabTitl
 import pagesTitleConstValues from "../../component-utils/comp-constant-values/pagesTitleConstValues";
 
 export default function MainContactPage() {
+  changeTabTitle(pagesTitleConstValues.contactUs);
   return (
     <>
       <nav className="nav">

@@ -1,6 +1,3 @@
-"use client";
-
-import Link from "next/link";
 import AuthNav from "../../AuthNav";
 import allLinks from "../../utils/links/allLinks";
 import "../../styles/auth.css";
@@ -21,16 +18,16 @@ export default function EmailSentView() {
 
           <h3>Please follow the instructions to set a new password.</h3>
           <h3>
-            The email may take up to 5 minutes to be delivered, please be
+            The email may take up to 3 minutes to be delivered, please be
             patient.
           </h3>
         </article>
 
-        <Link href={allLinks.forgotPasswordPage}>
+        <a href={allLinks.forgotPasswordPage}>
           <button id="login_btn" className="submit-btn">
             Back
           </button>
-        </Link>
+        </a>
       </section>
     </>
   );

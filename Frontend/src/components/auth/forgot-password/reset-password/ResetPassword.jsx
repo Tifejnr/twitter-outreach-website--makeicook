@@ -8,8 +8,11 @@ import validatePassword from "../../Auth-Input-Validation/password-validation";
 import "../../styles/auth.css";
 import resetPasswordRequest from "../../server-requests/resetPasswordRequest";
 import allLinks from "../../utils/links/allLinks";
+import changeTabTitle from "../../../component-utils/change-tab-title/changeTabTitle";
+import pagesTitleConstValues from "../../../component-utils/comp-constant-values/pagesTitleConstValues";
 
 export default function ResetPassword() {
+  changeTabTitle(pagesTitleConstValues.resetPassword);
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [passwordBorderColor, setPasswordBorderColor] = useState(null);
