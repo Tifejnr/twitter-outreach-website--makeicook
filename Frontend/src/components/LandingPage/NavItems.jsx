@@ -1,8 +1,5 @@
-"use client";
-
 // import useStore from "../Hooks/Zustand/usersStore";
 // import { useState } from "react";
-import Link from "next/link";
 import smoothScroll from "../auth/utils/smooth-scroll/smoothScroll";
 import closeMenuBar from "../auth/utils/smooth-scroll/closeMenuBar";
 import allLinks from "../auth/utils/links/allLinks";
@@ -11,7 +8,7 @@ export default function NavItemsLandingPage() {
   // const setIsMenuIconShowing = useStore((state) => state.setIsMenuIconShowing);
 
   const faqSection = "#faq__text-container";
-  const pricingSection = ".pricing-section";
+  // const pricingSection = ".pricing-section";
   const toolsSection = ".tools-section-cont";
   const testimonialsSection = ".testimonials-cont";
 
@@ -21,11 +18,11 @@ export default function NavItemsLandingPage() {
     // setIsMenuIconShowing(true);
   };
 
-  const pricingClick = () => {
-    smoothScroll(pricingSection, 36);
-    closeMenuBar();
-    // setIsMenuIconShowing(true);
-  };
+  // const pricingClick = () => {
+  //   smoothScroll(pricingSection, 36);
+  //   closeMenuBar();
+  //   // setIsMenuIconShowing(true);
+  // };
 
   const toolsClick = () => {
     smoothScroll(toolsSection, 60);
@@ -60,12 +57,12 @@ export default function NavItemsLandingPage() {
 
       <li>
         <ul className="inner-nav-item-container">
-          <Link href={allLinks.loginPagePath}>
+          <a href={allLinks.loginPagePath}>
             <h3 id="loginLandingPage">Log In</h3>
-          </Link>
-          <Link href={allLinks.signUpPage} className="sign-up-cont">
+          </a>
+          <a href={allLinks.signUpPage} className="sign-up-cont">
             <h4 className="sign-up">Start for free</h4>
-          </Link>
+          </a>
         </ul>
       </li>
     </>

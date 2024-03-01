@@ -112,9 +112,16 @@ body {
   margin-top: 1.5em;
 }
 
+.logo-icon.letter-f {
+  margin-top: 1.8em;
+}
+.logo-icon.letter-r {
+  margin-top: 2em;
+}
+
 .letter-f {
   position: absolute;
-  top: -1em;
+  /* top: -1em; */
   left: 0.18em;
 }
 .letter-r {

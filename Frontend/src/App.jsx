@@ -8,6 +8,7 @@ import SignInPage from "./components/auth/sign-in/SignInPage";
 import SignUpPage from "./components/auth/sign-up/SignUpPage";
 import ForgotPassword from "./components/auth/forgot-password/ForgotPassword";
 import ResetPassword from "./components/auth/forgot-password/reset-password/ResetPassword";
+import LandingPage from "./components/LandingPage/LandingPage";
 // import Pricing from "./compnents/Pages/Pricing";
 // import OauthPage from "./compnents/Trello-oauth-page/OauthPage";
 // import LandingPage from "./compnents/LandingPage/LandingPage";
@@ -29,7 +30,7 @@ function App() {
   return (
     <>
       <Routes>
-        {/* <Route path="/" element={<LandingPage />} /> */}
+        <Route path="/" element={<LandingPage />} />
         {/* <Route
           path="/home"
           element={

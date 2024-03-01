@@ -1,4 +1,3 @@
-import React from "react";
 import BrandLogo from "./Sections/BrandLogo";
 import ProductDetails from "./Sections/ProductDetails";
 import ResourcesSection from "./Sections/ResourcesSection";
