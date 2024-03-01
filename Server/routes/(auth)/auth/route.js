@@ -1,5 +1,5 @@
 import express from "express";
-const router = express.Router();
+const signInRouter = express.Router();
 
 import getSecretKeys from "../../../envVariables/envVariables.js";
 import signInDetailsValidation from "../../../server-utils/joi-validations/sign-in/signInValidation.js";
@@ -7,7 +7,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import user from "../../../server-utils/database/usersDb.js";
 
-router.post("/", async (req, res) => {
+signInRouter.post("/", async (req, res) => {
   //get request sent
   const bodyRequest = await req.body;
   const keysObject = getSecretKeys();
@@ -43,4 +43,4 @@ router.post("/", async (req, res) => {
   return res.json({ token });
 });
 
-export default router;
+export default signInRouter;

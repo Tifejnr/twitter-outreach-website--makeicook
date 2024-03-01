@@ -6,8 +6,12 @@ import coookieParser from "cookie-parser";
 const app = express();
 
 import setupMiddleware from "./startup/prod.js";
-
 setupMiddleware(app);
+
+//routers
+
+import signInRouter from "./routes/(auth)/auth/route.js";
+import signUpRouter from "./routes/(auth)/users/route.js";
 
 //Connect to mong db
 
@@ -34,8 +38,8 @@ app.use(coookieParser());
 // const getClientNameFromTestimonials = require("./routes/ai-responses/getClientName/getClientName");
 
 //api routes declaarations
-// app.use("/api/register-user", registerUser);
-// app.use("/api/extension-sign-in", signInUser);
+app.use("/api/users", signUpRouter);
+app.use("/api/auth", signInRouter);
 // app.use("/api/forgot-password", forgotPassword);
 // app.use("/api/dashboard", loginStatusChecker, isUserAuthorized, dashboard);
 // app.use("/api/checkout", loginStatusChecker, paymentsHandling);

@@ -1,15 +1,6 @@
 import Joi from "joi";
 
-export type ExtensionSignUpValidationParams = {
-  name: string;
-  email: string;
-  password: string;
-  fromExtension: boolean;
-};
-
-export default function extensionSignUpValidation(
-  reqBody: ExtensionSignUpValidationParams
-) {
+export default function extensionSignUpValidation(reqBody) {
   const schema = Joi.object({
     name: Joi.string().min(3).max(150).required(),
     email: Joi.string().min(3).max(250).required().email(),

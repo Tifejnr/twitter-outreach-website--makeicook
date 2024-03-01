@@ -1,20 +1,18 @@
-import { NextRequest, NextResponse } from "next/server";
-import { getSecretKeys } from "@/app/envVariables/envVariables";
+import express from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import _ from "lodash";
-import user from "@/app/server-utils/database/usersDb";
-import getMongoKeyAndConnect from "@/app/server-utils/database/mongoDbConnect";
-import websiteSignUpValidatio from "@/app/server-utils/joi-validations/sign-up/websiteSignUpValidation";
-import extensionSignUpValidation from "@/app/server-utils/joi-validations/sign-up/extensionSignUpValidation";
-import getFirst3Letters from "@/app/server-utils/users-identifers/getFirst3Letters";
+import user from "../../../server-utils/database/usersDb";
+import websiteSignUpValidation from "../../../server-utils/joi-validations/sign-up/websiteSignUpValidation";
+import extensionSignUpValidation from "../../../server-utils/joi-validations/sign-up/extensionSignUpValidation";
+import getFirst3Letters from "../../../server-utils/users-identifers/getFirst3Letters";
+import getSecretKeys from "../../../envVariables/envVariables";
 
-//connect to mongo deb
-getMongoKeyAndConnect();
+const signUpRouter = express.Router();
 
-export async function POST(req: NextRequest) {
+signUpRouter.post("/", async (req, res) => {
   //get request sent
-  const bodyRequest = await req.json();
+  const bodyRequest = await req.body;
   const { fromExtension, password } = bodyRequest;
   const keysObject = getSecretKeys();
   const JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
@@ -25,12 +23,12 @@ export async function POST(req: NextRequest) {
   if (fromExtension) {
     const { error } = extensionSignUpValidation(bodyRequest);
 
-    if (error) return Response.json({ joiError: error.details[0].message });
+    if (error) return res.json({ joiError: error.details[0].message });
 
     let accountUser = await user.findOne({ email: bodyRequest.email });
 
     if (accountUser)
-      return Response.json({ alreadyRegistered: "User already registered" });
+      return res.json({ alreadyRegistered: "User already registered" });
 
     accountUser = new user(_.pick(bodyRequest, ["name", "email", "password"]));
 
@@ -47,21 +45,21 @@ export async function POST(req: NextRequest) {
       JWT_PRIVATE_KEY
     );
 
-    return Response.json({ token });
+    return res.json({ token });
   }
 
   //normal website login
-  const { error } = websiteSignUpValidatio(bodyRequest);
-  if (error) return Response.json({ emailError: error.details[0].message });
+  const { error } = websiteSignUpValidation(bodyRequest);
+  if (error) return res.json({ emailError: error.details[0].message });
 
   const entryCode = bodyRequest.entryCode;
   if (!(entryCode == entry_code || entryCode == TIFE_ENTRY_CODE))
-    return Response.json({ invalidCode: "Invalid Entry Code" });
+    return res.json({ invalidCode: "Invalid Entry Code" });
 
   let accountUser = await user.findOne({ email: bodyRequest.email });
 
   if (accountUser)
-    return Response.json({ alreadyRegistered: "User already registered" });
+    return res.json({ alreadyRegistered: "User already registered" });
 
   accountUser = new user(
     _.pick(bodyRequest, ["name", "email", "password", "entryCode"])
@@ -82,5 +80,7 @@ export async function POST(req: NextRequest) {
     JWT_PRIVATE_KEY
   );
 
-  return Response.json({ token });
-}
+  return res.json({ token });
+});
+
+export default signUpRouter;
