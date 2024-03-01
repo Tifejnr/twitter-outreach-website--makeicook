@@ -1,9 +1,5 @@
 import "./App.css";
 import "./main.css";
-import "./auth.css";
-import "./dashboard.css";
-import "./select-means.css";
-import "./contactPage.css";
 
 import { Route, Routes } from "react-router-dom";
 import ReactGA from "react-ga4";
