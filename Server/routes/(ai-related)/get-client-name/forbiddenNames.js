@@ -16,6 +16,7 @@ const goodClient = "Good client";
 const clintText = "Clint";
 const agaiText = "agai";
 const cooperativeClientText = "Cooperative Client";
+const sirText = "sir";
 
 const forbiddenNames = [
   beast,
@@ -36,6 +37,7 @@ const forbiddenNames = [
   cooperativeClientText,
   clintText,
   agaiText,
+  sirText,
 ];
 
 export default forbiddenNames;

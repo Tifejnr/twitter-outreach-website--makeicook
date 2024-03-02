@@ -1,20 +1,17 @@
-import { NextRequest } from "next/server";
-import contactUsReqVal from "@/app/server-utils/joi-validations/cutsomer-requests-val/from-website/contactUsReqVal";
-import sendEmail from "@/app/server-utils/emailTemplates/sendEmail";
-import { getSecretKeys } from "@/app/envVariables/envVariables";
-import getMongoKeyAndConnect from "@/app/server-utils/database/mongoDbConnect";
-import emailTemplateFolderSrc from "@/app/server-utils/emailTemplates/template-folder-src/emailTemplateFolderSrc";
-
-getMongoKeyAndConnect();
+import express from "express";
+import contactUsReqVal from "../../../server-utils/joi-validations/cutsomer-requests-val/from-website/contactUsReqVal";
+import getSecretKeys from "../../../envVariables/envVariables";
+import emailTemplateFolderSrc from "../../../server-utils/emailTemplates/template-folder-src/emailTemplateFolderSrc";
 
 const keysObject = getSecretKeys();
+const contactUsHandlerWebsiteRouter = express.Router();
 
-export async function POST(req: NextRequest) {
-  const bodyRequest = await req.json();
+contactUsHandlerWebsiteRouter.post("/", async (req, res) => {
+  const bodyRequest = await req.body;
 
   const { error } = contactUsReqVal(bodyRequest);
 
-  if (error) return Response.json({ joiError: error.details[0].message });
+  if (error) return res.json({ joiError: error.details[0].message });
 
   const { customerEmail, message, customerName } = bodyRequest;
 
@@ -51,17 +48,19 @@ export async function POST(req: NextRequest) {
       emailContextParamsNow
     );
 
-    if (result && secondResult)
-      return Response.json({
+    if (result || secondResult)
+      return res.json({
         emailSent: true,
       });
 
-    return Response.json({
+    return res.json({
       emailNotSentError: true,
     });
   } catch (error) {
     console.log("error,", error);
 
-    return Response.json({ error: "Internal server error" });
+    return res.json({ error: "Internal server error" });
   }
-}
+});
+
+export default contactUsHandlerWebsiteRouter;

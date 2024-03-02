@@ -22,6 +22,7 @@ import getClientNameRouter from "./routes/(ai-related)/get-client-name/route.js"
 import isAccountAuthorizedRouter from "./routes/(auth)/is-account-authorized/route.js";
 import wfrOutreachRecordingRouter from "./routes/(ai-related)/wfr-outreach-details/route.js";
 import chatGPTAIResponseRouter from "./routes/(ai-related)/ChatGBT/route.js";
+import contactUsHandlerWebsiteRouter from "./routes/(customer-requests)/contact-us/route.js";
 
 //Connect to mong db
 (async () => {
@@ -55,6 +56,7 @@ app.use("/api/is-account-authorized", isAccountAuthorizedRouter);
 app.use("/is-account-authorized", isAccountAuthorizedRouter);
 app.use("/api/wfr-outreach-details", wfrOutreachRecordingRouter);
 app.use("/api/ChatGBT", chatGPTAIResponseRouter);
+app.use("/api/contact-us", contactUsHandlerWebsiteRouter);
 
 app.use(express.static(path.join(__dirname, "../Frontend/dist")));
 
