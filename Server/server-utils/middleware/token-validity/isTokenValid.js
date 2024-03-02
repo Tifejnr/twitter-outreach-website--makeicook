@@ -38,7 +38,7 @@ export default async function isTokenValid(bodyRequest) {
       return { authorizedOnJSSHomePage: true };
     }
 
-    return { decodedPayload: JSON.stringify(decodedPayload) };
+    return { decodedPayload };
   } catch (ex) {
     return { invalidToken: true };
   }
