@@ -22,7 +22,6 @@ import getClientNameRouter from "./routes/(ai-related)/get-client-name/route.js"
 import isAccountAuthorizedRouter from "./routes/(auth)/is-account-authorized/route.js";
 
 //Connect to mong db
-
 (async () => {
   await getMongoKeyAndConnect();
 })();
@@ -50,7 +49,8 @@ app.use("/api/auth", signInRouter);
 app.use("/api/forgot-password", forgotPasswordRouter);
 app.use("/api/forgot-password/reset-password", resetPasswordRouter);
 app.use("/api/get-client-name", getClientNameRouter);
-app.use("/api/ isAccountAuthorizedRoute", isAccountAuthorizedRouter);
+app.use("/api/is-account-authorized", isAccountAuthorizedRouter);
+app.use("/is-account-authorized", isAccountAuthorizedRouter);
 
 // app.use("/api/dashboard", loginStatusChecker, isUserAuthorized, dashboard);
 // app.use("/api/checkout", loginStatusChecker, paymentsHandling);
