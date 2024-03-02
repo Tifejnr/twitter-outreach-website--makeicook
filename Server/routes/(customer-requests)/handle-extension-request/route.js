@@ -36,8 +36,12 @@ handlerExtensionRequestRouter.post("/", async (req, res) => {
   try {
     const accountUser = await user.findById(decodedPayload._id);
 
+    if (!accountUser) return res.json({ userNotFoun: true });
+
     const subject = "Request Received";
     const folderDir = `${emailTemplateFolderSrc}/contact-us-from-extension/to-client`;
+
+    console.log(accountUser);
 
     const customerParams = {
       subject: subject,
