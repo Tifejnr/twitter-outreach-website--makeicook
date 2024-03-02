@@ -6,8 +6,7 @@ import CTAForTermsPolicy from "../Terms-and-privacy/CTAForTermsPolicy";
 import changeTabTitle from "../../component-utils/change-tab-title/changeTabTitle";
 import pagesTitleConstValues from "../../component-utils/comp-constant-values/pagesTitleConstValues";
 
-const aboutPageSeoToMatch =
-  "Remove same trello members from multiple boards at once";
+import compConstValues from "../../component-utils/comp-constant-values/compConstValues";
 
 export default function AboutUsPage() {
   changeTabTitle(pagesTitleConstValues.aboutUs);
@@ -126,7 +125,7 @@ export default function AboutUsPage() {
           </article>
         </section>
 
-        <CTAForTermsPolicy title={aboutPageSeoToMatch} />
+        <CTAForTermsPolicy title={compConstValues.aboutUsPageCTA} />
       </section>
       <FooterPages />
     </>
