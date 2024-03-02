@@ -1,8 +1,8 @@
 import { google } from "googleapis";
-import { NextRequest, NextResponse } from "next/server";
+import express from "express";
 const sheets = google.sheets("v4");
 import credentials from "./credentials.json"; // Replace with the actual path to your credentials file
-import isTokenValid from "../../../middlewares/jwt-related/isTokenValid";
+import isTokenValid from "../../../server-utils/middleware/token-validity/isTokenValid.js";
 
 const wfrToolKitInstagramSpreadsheetId =
   "13MvuAWr76SPmvJ9mPu5OgRW8GeyDe9SHZyaqQTS9kTU";
@@ -15,16 +15,18 @@ const auth = new google.auth.GoogleAuth({
   scopes: "https://www.googleapis.com/auth/spreadsheets",
 });
 
-export async function POST(req: NextRequest) {
+const wfrOutreachRecordingRouter = express.Router();
+
+wfrOutreachRecordingRouter.post("/", async (req, res) => {
   const bodyRequest = await req.json();
 
   const resultOfTokenValidation = await isTokenValid(bodyRequest);
 
   if (resultOfTokenValidation.nullJWTToken)
-    return Response.json({ nullJWTToken: true });
+    return res.json({ nullJWTToken: true });
 
   if (resultOfTokenValidation.invalidToken)
-    return Response.json({ invalidToken: true });
+    return res.json({ invalidToken: true });
 
   const { paramToDecide } = bodyRequest;
 
@@ -59,13 +61,13 @@ export async function POST(req: NextRequest) {
     }
 
     // Find the last row with data in the specified column
-    const response = await sheetsAPI.get({
+    const res = await sheetsAPI.get({
       auth,
       spreadsheetId,
       range: `${sheetName}!${columnLetter}:${columnLetter}`,
     });
 
-    const values = response.data.values;
+    const values = res.data.values;
     const lastRowIndex = values ? values.length : 0;
 
     // Calculate the new cell address at the bottom of the column
@@ -81,10 +83,12 @@ export async function POST(req: NextRequest) {
       requestBody: { values: [[username]] }, // Use requestBody instead of resource
     });
 
-    if (result.status == 200) return Response.json({ added: true });
+    if (result.status == 200) return res.json({ added: true });
   } catch (error) {
     console.error("Error appending cell value:", error);
 
-    Response.json({ error });
+    res.json({ error });
   }
-}
+});
+
+export default wfrOutreachRecordingRouter;

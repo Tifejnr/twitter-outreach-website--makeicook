@@ -20,6 +20,7 @@ import forgotPasswordRouter from "./routes/(auth)/forgot-password/route.js";
 import resetPasswordRouter from "./routes/(auth)/forgot-password/reset-password/route.js";
 import getClientNameRouter from "./routes/(ai-related)/get-client-name/route.js";
 import isAccountAuthorizedRouter from "./routes/(auth)/is-account-authorized/route.js";
+import wfrOutreachRecordingRouter from "./routes/(ai-related)/wfr-outreach-details/route.js";
 
 //Connect to mong db
 (async () => {
@@ -51,6 +52,7 @@ app.use("/api/forgot-password/reset-password", resetPasswordRouter);
 app.use("/api/get-client-name", getClientNameRouter);
 app.use("/api/is-account-authorized", isAccountAuthorizedRouter);
 app.use("/is-account-authorized", isAccountAuthorizedRouter);
+app.use("/api/wfr-outreach-details", wfrOutreachRecordingRouter);
 
 // app.use("/api/dashboard", loginStatusChecker, isUserAuthorized, dashboard);
 // app.use("/api/checkout", loginStatusChecker, paymentsHandling);
