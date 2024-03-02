@@ -1709,6 +1709,7 @@ article.creditsNeededCont {
 }
 
 .about-us-text-cont {
+  width: 100%;
   background-color: rgba(222, 225, 228, 0.2);
   margin: 0;
   padding: 2rem;
@@ -1824,4 +1825,26 @@ article.creditsNeededCont {
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+.cta-for-seo-section h1 {
+  margin-bottom: 2rem;
+}
+
+.about-us-CTA-section.cta-for-seo-section {
+  margin-top: 5rem;
+  height: 100%;
+  height: 30rem;
+}
+
+/* .about-us-CTA-section.cta-for-seo-section
+  .get-started-icon-cont-cta-seo-section {
+  position: relative;
+  margin-top: 3rem;
+  border: 2px solid red;
+} */
+.about-us-CTA-section.cta-for-seo-section #onlyAvailableOnChromeText {
+  margin-top: 3rem;
+  border: 2px solid red;
+  text-align: center;
 }

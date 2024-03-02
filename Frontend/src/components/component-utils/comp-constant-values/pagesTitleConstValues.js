@@ -1,4 +1,4 @@
-const mainName = "WFR Toolkit";
+const mainName = "Work for Reputation";
 const signIn = `Sign In | ${mainName}`;
 const signUp = `Sign Up | ${mainName}`;
 const forgotPassword = `Forgot your Password | ${mainName}`;

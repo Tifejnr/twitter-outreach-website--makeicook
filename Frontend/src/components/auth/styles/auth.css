@@ -155,7 +155,7 @@ html {
   --violet: hsl(273, 75%, 66%);
   /* background */
   --pure-white: #fff;
-  --background-color: #fffcfc;
+  --background-color: #fff;
 
   /* z-index */
   --z-index-main: 10;
