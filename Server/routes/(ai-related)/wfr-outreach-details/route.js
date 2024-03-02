@@ -61,13 +61,13 @@ wfrOutreachRecordingRouter.post("/", async (req, res) => {
     }
 
     // Find the last row with data in the specified column
-    const res = await sheetsAPI.get({
+    const resultResponse = await sheetsAPI.get({
       auth,
       spreadsheetId,
       range: `${sheetName}!${columnLetter}:${columnLetter}`,
     });
 
-    const values = res.data.values;
+    const values = resultResponse.data.values;
     const lastRowIndex = values ? values.length : 0;
 
     // Calculate the new cell address at the bottom of the column
