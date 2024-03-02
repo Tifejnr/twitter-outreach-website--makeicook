@@ -34,6 +34,7 @@ handlerExtensionRequestRouter.post("/", async (req, res) => {
     return res.json({ extensionRequestError: error.details[0].message });
 
   try {
+    console.log("decodedPayload", decodedPayload);
     const accountUser = await user.findById(decodedPayload._id);
 
     if (!accountUser) {
