@@ -15,6 +15,7 @@ credentials/
 .env
 .env.*
 envKeys
+credentials.json
 
 
 # Editor directories and files
@@ -27,3 +28,9 @@ envKeys
 *.njsproj
 *.sln
 *.sw?
+
+
+# personal env variables
+/envVariables
+envVariables/
+envVariables.ts
