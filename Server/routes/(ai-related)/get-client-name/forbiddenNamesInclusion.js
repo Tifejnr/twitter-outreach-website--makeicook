@@ -1,6 +1,6 @@
 const clientText = "Client";
 const clientTextSmallLetter = "client";
-const clientTextSmallLetter = "cilent";
+const cilentTextSmallLetter = "cilent";
 const ratingText = "Rating";
 const ouOfText = "out of";
 const customerText = "customer";
@@ -13,6 +13,7 @@ const forbiddenNamesInclusionArray = [
   ouOfText,
   customerText,
   thanksText,
+  cilentTextSmallLetter,
 ];
 
 export default forbiddenNamesInclusionArray;
