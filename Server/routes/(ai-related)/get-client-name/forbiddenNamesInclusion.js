@@ -1,5 +1,6 @@
 const clientText = "Client";
 const clientTextSmallLetter = "client";
+const clientTextSmallLetter = "cilent";
 const ratingText = "Rating";
 const ouOfText = "out of";
 const customerText = "customer";
