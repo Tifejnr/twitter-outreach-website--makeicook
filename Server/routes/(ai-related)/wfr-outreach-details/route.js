@@ -1,7 +1,7 @@
 import { google } from "googleapis";
 import express from "express";
 const sheets = google.sheets("v4");
-import credentials from "./credentials.json"; // Replace with the actual path to your credentials file
+import credentials from "./credentials.json" assert { type: "json" }; // Replace with the actual path to your credentials file
 import isTokenValid from "../../../server-utils/middleware/token-validity/isTokenValid.js";
 
 const wfrToolKitInstagramSpreadsheetId =
@@ -18,7 +18,7 @@ const auth = new google.auth.GoogleAuth({
 const wfrOutreachRecordingRouter = express.Router();
 
 wfrOutreachRecordingRouter.post("/", async (req, res) => {
-  const bodyRequest = await req.json();
+  const bodyRequest = await req.body;
 
   const resultOfTokenValidation = await isTokenValid(bodyRequest);
 

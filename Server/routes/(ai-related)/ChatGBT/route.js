@@ -1,6 +1,6 @@
 import express from "express";
 import isTokenValid from "../../../server-utils/middleware/token-validity/isTokenValid.js";
-import { Configuration, OpenAIApi } from "openai";
+import openai from "openai";
 import chatGPTRequestVal from "../../../server-utils/joi-validations/chat-gpt-request-val/chatGPTRequestVal.js";
 
 const chatGPTAIResponseRouter = express.Router();
@@ -24,12 +24,13 @@ chatGPTAIResponseRouter.post("/", async (req, res) => {
     //connect open ai key of user
     const { openAiKey } = bodyRequest;
 
-    const configuration = new Configuration({
+    // Configure OpenAI
+    const openaiInstance = new openai.OpenAIApi({
       apiKey: openAiKey,
     });
 
-    const openai = new OpenAIApi(configuration);
-    const completion = await openai.createCompletion({
+    // Use OpenAI instance to make requests
+    const completion = await openaiInstance.createCompletion({
       model: "text-davinci-003",
       prompt: req.body.prompt,
       temperature: req.body.temperature,
