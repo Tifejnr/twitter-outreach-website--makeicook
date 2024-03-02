@@ -56,14 +56,9 @@ app.use("/is-account-authorized", isAccountAuthorizedRouter);
 // app.use("/api/checkout", loginStatusChecker, paymentsHandling);
 // app.use("/api/checkout/webhooks", webhooks);
 // app.use("/api/save-outreach-details", saveOureachDetails);
-app.use(
-  express.static(path.join(__dirname, "Trello-Project-React/Frontend/dist"))
-);
+app.use(express.static(path.join(__dirname, "../Frontend/dist")));
 
-app.set(
-  "views",
-  path.join(__dirname, "Trello-Project-React/Frontend/public/views")
-);
+app.set("views", path.join(__dirname, "../Frontend/public/views"));
 
 // Routes Handling Section
 // app.post("/isloggedIn", loginStatusChecker, async (req, res) => {
@@ -131,9 +126,7 @@ app.set(
 //reaeact routes connection
 
 app.get("*", function (req, res) {
-  res.sendFile(
-    path.join(__dirname, "Trello-Project-React/Frontend/dist", "index.html")
-  );
+  res.sendFile(path.join(__dirname, "../Frontend/dist", "index.html"));
 });
 
 app.listen(3000, function () {
