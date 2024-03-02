@@ -1,5 +1,5 @@
-// const websiteUrl = "https://workforreputation.com";
-const websiteUrl = "http://localhost:3000";
+const websiteUrl = "https://workforreputation.com";
+// const websiteUrl = "http://localhost:3000";
 const loginPagePath = "/sign-in";
 const signUpPage = "/sign-up";
 const homePagePath = "/";

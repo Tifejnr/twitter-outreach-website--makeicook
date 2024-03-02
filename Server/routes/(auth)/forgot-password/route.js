@@ -11,8 +11,8 @@ const forgotPasswordRouter = express.Router();
 const keysObject = getSecretKeys();
 const JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
 
-const websiteUrl = "http://localhost:5173";
-// const websiteUrl = "https://workforreputation.com";
+// const websiteUrl = "http://localhost:5173";
+const websiteUrl = "https://workforreputation.com";
 
 forgotPasswordRouter.post("/", async (req, res) => {
   const bodyRequest = await req.body;

@@ -1,5 +1,5 @@
 import express from "express";
-import isTokenValid from "../../../server-utils/middleware/token-validity/isTokenValid";
+import isTokenValid from "../../../server-utils/middleware/token-validity/isTokenValid.js";
 
 const isAccountAuthorizedRouter = express.Router();
 
