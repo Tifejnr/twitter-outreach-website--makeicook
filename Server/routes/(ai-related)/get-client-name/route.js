@@ -10,20 +10,20 @@ const model = keysObject.huggingFaceModel;
 const HF_TOKEN = keysObject.HF_TOKEN;
 const hf = new HfInference(HF_TOKEN);
 
-const getClientNamePromptHeading = `What one word is a real human name?`;
+const getClientNamePromptHeading = `What first one word is a real human name?`;
 
 const getClientNameRouter = express.Router();
 
 getClientNameRouter.post("/", async (req, res) => {
   const bodyRequest = await req.body;
 
-  const resultOfTokenValidation = await isTokenValid(bodyRequest);
+  // const resultOfTokenValidation = await isTokenValid(bodyRequest);
 
-  if (resultOfTokenValidation.nullJWTToken)
-    return res.json({ nullJWTToken: true });
+  // if (resultOfTokenValidation.nullJWTToken)
+  //   return res.json({ nullJWTToken: true });
 
-  if (resultOfTokenValidation.invalidToken)
-    return res.json({ invalidToken: true });
+  // if (resultOfTokenValidation.invalidToken)
+  //   return res.json({ invalidToken: true });
 
   const { prompt } = bodyRequest;
   try {
@@ -40,18 +40,17 @@ getClientNameRouter.post("/", async (req, res) => {
     let clientNameResponse = result.answer;
     const clientNameResponseLowercase = clientNameResponse.toLowerCase();
 
-    if (
-      forbiddenNames.some(
-        (forbiddenName) =>
-          forbiddenName.toLowerCase() == clientNameResponseLowercase
-      )
-    ) {
-      clientNameResponse = "Hi there";
-    } else if (
-      forbiddenNamesInclusionArray.some((forbiddenName) =>
-        forbiddenName.toLowerCase().includes(clientNameResponseLowercase)
-      )
-    ) {
+    const isForbiddenNameEqualtTo = forbiddenNames.some(
+      (forbiddenName) =>
+        forbiddenName.toLowerCase() == clientNameResponseLowercase
+    );
+
+    const isForbiddenNameIncludedIn = forbiddenNamesInclusionArray.some(
+      (forbiddenName) =>
+        clientNameResponseLowercase.includes(forbiddenName.toLowerCase())
+    );
+
+    if (isForbiddenNameIncludedIn || isForbiddenNameEqualtTo) {
       clientNameResponse = "Hi there";
     }
 
