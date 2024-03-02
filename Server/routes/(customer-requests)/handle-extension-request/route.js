@@ -4,6 +4,7 @@ import isTokenValid from "../../../server-utils/middleware/token-validity/isToke
 import getSecretKeys from "../../../envVariables/envVariables.js";
 import validateExtensionRequest from "../../../server-utils/joi-validations/cutsomer-requests-val/from-extension/validateExtensionRequest.js";
 import sendEmail from "../../../server-utils/emailTemplates/sendEmail.js";
+import emailTemplateFolderSrc from "../../../server-utils/emailTemplates/template-folder-src/emailTemplateFolderSrc.js";
 
 const keysObject = getSecretKeys();
 
