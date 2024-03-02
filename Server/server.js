@@ -58,13 +58,13 @@ app.use("/is-account-authorized", isAccountAuthorizedRouter);
 // app.use("/api/save-outreach-details", saveOureachDetails);
 app.use(
   express.static(
-    path.join(__dirname, "../../Trello-Project-React/Frontend/dist")
+    path.join(__dirname, "/var/www/Trello-Project-React/Frontend/dist")
   )
 );
 
 app.set(
   "views",
-  path.join(__dirname, "../../Trello-Project-React/Frontend/public/views")
+  path.join(__dirname, "/var/www/Trello-Project-React/Frontend/public/views")
 );
 
 // Routes Handling Section
@@ -136,7 +136,7 @@ app.get("*", function (req, res) {
   res.sendFile(
     path.join(
       __dirname,
-      "../../Trello-Project-React/Frontend/dist",
+      "/var/www/Trello-Project-React/Frontend/dist",
       "index.html"
     )
   );
