@@ -1,4 +1,3 @@
-import allLinks from "../../auth/utils/links/allLinks";
 import PropTypes from "prop-types"; // Import PropTypes
 import GetStartedIcon from "../../LandingPage/Body/GetStartedIcon";
 
@@ -9,10 +8,9 @@ CTAForTermsPolicy.propTypes = {
 export default function CTAForTermsPolicy(props) {
   return (
     <section className="about-us-CTA-section cta-for-seo-section">
-      <h1>{props.title}</h1>
-      <section className="get-started-icon-cont-cta-seo-section">
-        <GetStartedIcon />
-      </section>
+      <h1>{props.title} for free</h1>
+
+      <GetStartedIcon />
     </section>
   );
 }

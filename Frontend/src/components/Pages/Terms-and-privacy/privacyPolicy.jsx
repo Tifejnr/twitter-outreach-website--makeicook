@@ -4,9 +4,7 @@ import NavLogo from "../../auth/utils/components/NavLogo";
 import FooterPages from "../Footer/FooterPages";
 import CTAForTermsPolicy from "./CTAForTermsPolicy";
 import pagesLinkObj from "../../component-utils/pageLinks/pagesLinkObj";
-
-const privacyPageSeoToMatch =
-  "Add same trello members to multiple boards at once";
+import compConstValues from "../../component-utils/comp-constant-values/compConstValues";
 
 export default function PrivacyPolicyPage() {
   return (
@@ -223,7 +221,7 @@ export default function PrivacyPolicyPage() {
           </article>
         </section>
 
-        <CTAForTermsPolicy title={privacyPageSeoToMatch} />
+        <CTAForTermsPolicy title={compConstValues.privacyPolicyPageCTA} />
       </section>
 
       <FooterPages />

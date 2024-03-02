@@ -6,8 +6,7 @@ import notificationColorsObj from "../../auth/utils/colors/allColorsObj";
 
 import CTAForTermsPolicy from "../Terms-and-privacy/CTAForTermsPolicy";
 import contactUsRequestToServer from "./request-to-server/contactUsRequestToServer";
-
-const contactPageSeoToMatch = "Add trello members to multiple boards at once";
+import compConstValues from "../../component-utils/comp-constant-values/compConstValues";
 
 const hideVisiblilty = "hidden";
 const showVisibilty = "visible";
@@ -237,9 +236,9 @@ export default function ContactUs() {
           </form>
           {/* )} */}
         </section>
-
-        <CTAForTermsPolicy title={contactPageSeoToMatch} />
       </section>
+
+      <CTAForTermsPolicy title={compConstValues.contactUsPageCTA} />
     </>
   );
 }

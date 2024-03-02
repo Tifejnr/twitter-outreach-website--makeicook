@@ -5,8 +5,7 @@ import FooterPages from "../Footer/FooterPages";
 import CTAForTermsPolicy from "./CTAForTermsPolicy";
 import pagesLinkObj from "../../component-utils/pageLinks/pagesLinkObj";
 
-const termsPageSeoToMatch =
-  "Remove same trello members from multiple boards at once";
+import compConstValues from "../../component-utils/comp-constant-values/compConstValues";
 
 export default function TermsOfUsePage() {
   return (
@@ -188,7 +187,7 @@ export default function TermsOfUsePage() {
           </article>
         </section>
 
-        <CTAForTermsPolicy title={termsPageSeoToMatch} />
+        <CTAForTermsPolicy title={compConstValues.termsOfServicePageCTA} />
       </section>
 
       <FooterPages />

@@ -11,7 +11,8 @@ export default function GetStartedIcon() {
         title="Get WFR Toolkit on chrome web store"
         href={allLinks.extensionChromeStoreLink}
         rel="noreferrer"
-        className="oauth-button real-oauth "
+        className="oauth-button real-oauth"
+        id="oauth-button"
         target="_blank"
       >
         <section>

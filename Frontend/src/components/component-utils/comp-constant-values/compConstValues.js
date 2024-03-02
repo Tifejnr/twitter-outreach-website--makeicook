@@ -15,6 +15,15 @@ const userIdCookieName = "wfr-user-id";
 const callToActionTextUnder =
   "WFR Toolkit is only available as a chrome extension";
 
+const aboutUsPageCTA = "Enjoy Upwork automatic client name retrieval";
+
+const contactUsPageCTA = "Enjoy Upwork one-click filtering on job search page";
+
+const termsOfServicePageCTA =
+  "Enjoy viewing Upwork job post directly above cover letter";
+
+const privacyPolicyPageCTA = `Enjoy Upwork "payment terms" and "profile options" simulation`;
+
 const compConstValues = {
   heroSecondHeadingtext,
   heroFirstHeadingText,
@@ -23,6 +32,10 @@ const compConstValues = {
   userIdCookieName,
   forgotPassCookieName,
   callToActionTextUnder,
+  aboutUsPageCTA,
+  contactUsPageCTA,
+  termsOfServicePageCTA,
+  privacyPolicyPageCTA,
 };
 
 export default compConstValues;
