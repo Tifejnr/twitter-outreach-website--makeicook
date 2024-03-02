@@ -1,7 +1,8 @@
 import express from "express";
-import contactUsReqVal from "../../../server-utils/joi-validations/cutsomer-requests-val/from-website/contactUsReqVal";
-import getSecretKeys from "../../../envVariables/envVariables";
-import emailTemplateFolderSrc from "../../../server-utils/emailTemplates/template-folder-src/emailTemplateFolderSrc";
+import contactUsReqVal from "../../../server-utils/joi-validations/cutsomer-requests-val/from-website/contactUsReqVal.js";
+import getSecretKeys from "../../../envVariables/envVariables.js";
+import emailTemplateFolderSrc from "../../../server-utils/emailTemplates/template-folder-src/emailTemplateFolderSrc.js";
+import sendEmail from "../../../server-utils/emailTemplates/sendEmail.js";
 
 const keysObject = getSecretKeys();
 const contactUsHandlerWebsiteRouter = express.Router();

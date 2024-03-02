@@ -1,8 +1,9 @@
 import express from "express";
-import user from "../../../server-utils/database/usersDb";
-import isTokenValid from "../../../server-utils/middleware/token-validity/isTokenValid";
-import getSecretKeys from "../../../envVariables/envVariables";
-import validateExtensionRequest from "../../../server-utils/joi-validations/cutsomer-requests-val/from-extension/validateExtensionRequest";
+import user from "../../../server-utils/database/usersDb.js";
+import isTokenValid from "../../../server-utils/middleware/token-validity/isTokenValid.js";
+import getSecretKeys from "../../../envVariables/envVariables.js";
+import validateExtensionRequest from "../../../server-utils/joi-validations/cutsomer-requests-val/from-extension/validateExtensionRequest.js";
+import sendEmail from "../../../server-utils/emailTemplates/sendEmail.js";
 
 const keysObject = getSecretKeys();
 
@@ -25,67 +26,35 @@ handlerExtensionRequestRouter.post("/", async (req, res) => {
 
   const { description, requestHeader } = bodyRequest;
 
-  const { emailUsername, emailPassword, supportEmail } = keysObject;
+  const { supportEmail } = keysObject;
+
+  const { error } = validateExtensionRequest(bodyRequest);
+  if (error)
+    return res.json({ extensionRequestError: error.details[0].message });
 
   try {
-    const { error } = validateExtensionRequest(bodyRequest);
-    if (error)
-      return res.json({ extensionRequestError: error.details[0].message });
-
     const accountUser = await user.findById(decodedPayload._id);
 
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: emailUsername,
-        pass: emailPassword,
-      },
-    });
-
-    const requestSentToSupport = {
-      from: emailUsername,
-      to: supportEmail,
-      subject: `${requestHeader} from ${accountUser.name}`,
-      text: `${accountUser.name} Request,
-    ${description.trim()}`,
-    };
-
-    const result = await transporter.sendMail(requestSentToSupport);
-
-    await sendConfirmationToUser(
-      transporter,
-      emailUsername,
-      accountUser,
-      requestHeader
-    );
-
-    return res.json({ emailSent: true }); // Sending emailSent res here
-  } catch (error) {
-    console.log("error,", error);
-    return res.json({ error: "Internal server error" });
-  }
-
-  try {
     const subject = "Request Received";
-    const folderDir = `${emailTemplateFolderSrc}/contact-us-hbs/to-client`;
+    const folderDir = `${emailTemplateFolderSrc}/contact-us-from-extension/to-client`;
 
     const customerParams = {
       subject: subject,
       folderDir: folderDir,
-      customerEmail,
+      customerEmail: accountUser.email,
     };
 
     const emailContextParamsNow = {
-      message,
-      customerName,
+      description,
+      requestHeader,
+      customerName: accountUser.name,
     };
 
     const result = await sendEmail(customerParams, emailContextParamsNow);
 
     //params for customer service email, where the email will be read.
-    const supportSubject = "New WFR Contact Us Message";
-    const supportEmail = keysObject.supportEmail;
-    const supportFolderDir = `${emailTemplateFolderSrc}/contact-us-hbs/to-support`;
+    const supportSubject = "From Extension - New WFR Contact Us Message";
+    const supportFolderDir = `${emailTemplateFolderSrc}/contact-us-from-extension/to-support`;
 
     const supportAccountParams = {
       subject: supportSubject,
@@ -112,3 +81,5 @@ handlerExtensionRequestRouter.post("/", async (req, res) => {
     return res.json({ error: "Internal server error" });
   }
 });
+
+export default handlerExtensionRequestRouter;
