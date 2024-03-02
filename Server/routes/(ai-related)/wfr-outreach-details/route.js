@@ -20,13 +20,13 @@ const wfrOutreachRecordingRouter = express.Router();
 wfrOutreachRecordingRouter.post("/", async (req, res) => {
   const bodyRequest = await req.body;
 
-  const resultOfTokenValidation = await isTokenValid(bodyRequest);
+  // const resultOfTokenValidation = await isTokenValid(bodyRequest);
 
-  if (resultOfTokenValidation.nullJWTToken)
-    return res.json({ nullJWTToken: true });
+  // if (resultOfTokenValidation.nullJWTToken)
+  //   return res.json({ nullJWTToken: true });
 
-  if (resultOfTokenValidation.invalidToken)
-    return res.json({ invalidToken: true });
+  // if (resultOfTokenValidation.invalidToken)
+  //   return res.json({ invalidToken: true });
 
   const { paramToDecide } = bodyRequest;
 
