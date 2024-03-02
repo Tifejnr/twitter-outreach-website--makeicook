@@ -19,6 +19,7 @@ import signUpRouter from "./routes/(auth)/users/route.js";
 import forgotPasswordRouter from "./routes/(auth)/forgot-password/route.js";
 import resetPasswordRouter from "./routes/(auth)/forgot-password/reset-password/route.js";
 import getClientNameRouter from "./routes/(ai-related)/get-client-name/route.js";
+import isAccountAuthorizedRouter from "./routes/(auth)/is-account-authorized/route.js";
 
 //Connect to mong db
 
@@ -49,6 +50,8 @@ app.use("/api/auth", signInRouter);
 app.use("/api/forgot-password", forgotPasswordRouter);
 app.use("/api/forgot-password/reset-password", resetPasswordRouter);
 app.use("/api/get-client-name", getClientNameRouter);
+app.use("/api/ isAccountAuthorizedRoute", isAccountAuthorizedRouter);
+
 // app.use("/api/dashboard", loginStatusChecker, isUserAuthorized, dashboard);
 // app.use("/api/checkout", loginStatusChecker, paymentsHandling);
 // app.use("/api/checkout/webhooks", webhooks);
