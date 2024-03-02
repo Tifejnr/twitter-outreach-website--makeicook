@@ -34,7 +34,6 @@ handlerExtensionRequestRouter.post("/", async (req, res) => {
     return res.json({ extensionRequestError: error.details[0].message });
 
   try {
-    console.log("decodedPayload", decodedPayload._id);
     const accountUser = await user.findById(decodedPayload._id);
 
     if (!accountUser) {
@@ -45,8 +44,6 @@ handlerExtensionRequestRouter.post("/", async (req, res) => {
 
     const subject = "Request Received";
     const folderDir = `${emailTemplateFolderSrc}/contact-us-from-extension/to-client`;
-
-    console.log(accountUser);
 
     const customerParams = {
       subject: subject,
