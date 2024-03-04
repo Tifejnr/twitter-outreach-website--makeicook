@@ -7,6 +7,7 @@ const customerText = "customer";
 const thanksText = "Thanks";
 const greatText = "Great";
 const communicationText = "communication";
+const awesomeText = "Awesome";
 
 const forbiddenNamesInclusionArray = [
   clientText,
@@ -18,6 +19,7 @@ const forbiddenNamesInclusionArray = [
   cilentTextSmallLetter,
   greatText,
   communicationText,
+  awesomeText,
 ];
 
 export default forbiddenNamesInclusionArray;
