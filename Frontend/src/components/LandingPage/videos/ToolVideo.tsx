@@ -4,7 +4,7 @@ export default function ToolVideo(props: any) {
   return (
     <div className="iframe-container">
       <iframe
-        width="560"
+        width="100%"
         height="315"
         src={props.videoUrl}
         title="YouTube video player"
