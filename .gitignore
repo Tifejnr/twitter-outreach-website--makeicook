@@ -14,8 +14,10 @@ credentials/
 # Ignore .env files
 .env
 .env.*
+/envVariables
 envKeys
 credentials.json
+envVariables.js
 
 
 # Editor directories and files

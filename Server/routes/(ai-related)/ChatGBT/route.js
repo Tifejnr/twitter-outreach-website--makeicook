@@ -1,6 +1,7 @@
 import express from "express";
 import isTokenValid from "../../../server-utils/middleware/token-validity/isTokenValid.js";
-import openai from "openai";
+// import openai from "openai";
+import OpenAI from "openai";
 import chatGPTRequestVal from "../../../server-utils/joi-validations/chat-gpt-request-val/chatGPTRequestVal.js";
 
 const chatGPTAIResponseRouter = express.Router();
@@ -22,19 +23,18 @@ chatGPTAIResponseRouter.post("/", async (req, res) => {
 
   try {
     //connect open ai key of user
-    const { openAiKey } = bodyRequest;
+    const { openAiKey, prompt, maxToken, temperature } = bodyRequest;
 
     // Configure OpenAI
-    const openaiInstance = new openai.OpenAIApi({
-      apiKey: openAiKey,
+    const openai = new OpenAI({
+      apiKey: openAiKey, // This is also the default, can be omitted
     });
 
-    // Use OpenAI instance to make requests
-    const completion = await openaiInstance.createCompletion({
-      model: "text-davinci-003",
-      prompt: req.body.prompt,
-      temperature: req.body.temperature,
-      max_tokens: req.body.maxToken,
+    const completion = await openai.completions.create({
+      model: "gpt-3.5-turbo",
+      prompt: prompt,
+      max_tokens: maxToken,
+      temperature: temperature,
       top_p: 1,
       frequency_penalty: 0.5,
       presence_penalty: 1,
@@ -42,9 +42,36 @@ chatGPTAIResponseRouter.post("/", async (req, res) => {
 
     res.json({ bot: completion.data.choices[0].text });
   } catch (error) {
-    console.log("error,", error);
+    let errorMessage;
+    if (error instanceof OpenAI.APIError) {
+      if (error.status) {
+        errorMessage = error.status; // e.g. 401
+      }
 
-    return res.json({ error: "Internal server error" });
+      if (error.message) {
+        errorMessage = error.message; // e.g. 401
+      }
+
+      if (error.code) {
+        errorMessage = error.code; // e.g. 401
+      }
+
+      if (error.type) {
+        errorMessage = error.type; // e.g. 401
+      }
+      if (error.error.message) {
+        errorMessage = error.error.message; // e.g. 401
+      }
+
+      console.log(error.error.message);
+
+      return res.json({ error: errorMessage });
+    } else {
+      // Non-API error
+      console.log(error);
+
+      res.json({ error: error });
+    }
   }
 });
 
