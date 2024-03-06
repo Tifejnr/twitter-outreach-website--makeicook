@@ -13,6 +13,7 @@ const feedbackText = "feedback";
 const HTMLText = "HTML";
 const virtualText = "Virtual";
 const assistantText = "assistant";
+const neededText = "needed";
 
 const forbiddenNamesInclusionArray = [
   clientText,
@@ -30,6 +31,7 @@ const forbiddenNamesInclusionArray = [
   HTMLText,
   virtualText,
   assistantText,
+  neededText,
 ];
 
 export default forbiddenNamesInclusionArray;
