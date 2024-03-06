@@ -11,6 +11,8 @@ const awesomeText = "Awesome";
 const googleText = "Google";
 const feedbackText = "feedback";
 const HTMLText = "HTML";
+const virtualText = "Virtual";
+const assistantText = "assistant";
 
 const forbiddenNamesInclusionArray = [
   clientText,
@@ -26,6 +28,8 @@ const forbiddenNamesInclusionArray = [
   googleText,
   feedbackText,
   HTMLText,
+  virtualText,
+  assistantText,
 ];
 
 export default forbiddenNamesInclusionArray;
