@@ -30,17 +30,21 @@ chatGPTAIResponseRouter.post("/", async (req, res) => {
       apiKey: openAiKey, // This is also the default, can be omitted
     });
 
-    const completion = await openai.completions.create({
+    const messages = [
+      {
+        role: "user",
+        content: prompt,
+      },
+    ];
+
+    const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
-      prompt: prompt,
+      messages,
       max_tokens: maxToken,
       temperature: temperature,
-      top_p: 1,
-      frequency_penalty: 0.5,
-      presence_penalty: 1,
     });
 
-    res.json({ bot: completion.data.choices[0].text });
+    res.json({ bot: completion.choices[0].message.content });
   } catch (error) {
     let errorMessage;
     if (error instanceof OpenAI.APIError) {
@@ -63,7 +67,7 @@ chatGPTAIResponseRouter.post("/", async (req, res) => {
         errorMessage = error.error.message; // e.g. 401
       }
 
-      console.log(error.error.message);
+      console.log("errorMessage", errorMessage);
 
       return res.json({ error: errorMessage });
     } else {
