@@ -14,6 +14,10 @@ const HTMLText = "HTML";
 const virtualText = "Virtual";
 const assistantText = "assistant";
 const neededText = "needed";
+const automationText = "automation";
+const memberText = "member";
+const familyText = "family";
+const MailchimpText = "Mailchimp";
 
 const forbiddenNamesInclusionArray = [
   clientText,
@@ -32,6 +36,10 @@ const forbiddenNamesInclusionArray = [
   virtualText,
   assistantText,
   neededText,
+  automationText,
+  memberText,
+  familyText,
+  MailchimpText,
 ];
 
 export default forbiddenNamesInclusionArray;

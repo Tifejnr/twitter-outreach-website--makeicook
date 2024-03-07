@@ -8,6 +8,7 @@ const himText = "him";
 const ghText = "gh";
 const wWord = "w";
 const ZWord = "Z";
+const hWord = "h";
 const greatClientText = "Great client";
 const greatCustomerText = "Great customer";
 const bestClientEverText = "Best client ever!";
@@ -17,6 +18,7 @@ const clintText = "Clint";
 const agaiText = "agai";
 const cooperativeClientText = "Cooperative Client";
 const sirText = "sir";
+const HubspotText = "Hubspot";
 
 const forbiddenNames = [
   beast,
@@ -30,6 +32,7 @@ const forbiddenNames = [
   wWord,
   greatClientText,
   ZWord,
+  hWord,
   greatCustomerText,
   bestClientEverText,
   greatExperienceText,
@@ -38,6 +41,7 @@ const forbiddenNames = [
   clintText,
   agaiText,
   sirText,
+  HubspotText,
 ];
 
 export default forbiddenNames;

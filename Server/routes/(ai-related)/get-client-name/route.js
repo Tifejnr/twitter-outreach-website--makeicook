@@ -4,6 +4,7 @@ import forbiddenNames from "./forbiddenNames.js";
 import forbiddenNamesInclusionArray from "./forbiddenNamesInclusion.js";
 import getSecretKeys from "../../../envVariables/envVariables.js";
 import isTokenValid from "../../../server-utils/middleware/token-validity/isTokenValid.js";
+import containsOneCharacter from "./utils/doesItContainOneXter.js";
 
 const keysObject = getSecretKeys();
 const model = keysObject.huggingFaceModel;
@@ -50,7 +51,15 @@ getClientNameRouter.post("/", async (req, res) => {
         clientNameResponseLowercase.includes(forbiddenName.toLowerCase())
     );
 
-    if (isForbiddenNameIncludedIn || isForbiddenNameEqualtTo) {
+    const doesItContainOneXter = containsOneCharacter(
+      clientNameResponseLowercase
+    );
+
+    if (
+      isForbiddenNameIncludedIn ||
+      isForbiddenNameEqualtTo ||
+      doesItContainOneXter
+    ) {
       clientNameResponse = "Hi there";
     }
 
