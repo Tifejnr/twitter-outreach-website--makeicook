@@ -14,19 +14,22 @@ export default function OnlyAuthorizedUsers({ children }) {
   useEffect(() => {
     const abortController = new AbortController();
     const token = getCookies();
+    const isJssHomePage = true;
 
     (async function () {
       try {
         const url = `${allLinks.websiteUrl}/is-account-authorized`;
         const response = await axios.post(
           url,
-          { token },
+          { token, isJssHomePage },
           { signal: abortController.signal } // Pass the signal to the fetch call
         );
 
         const dataRaw = await response.data;
 
-        if (dataRaw.authorized) {
+        console.log("data raw", dataRaw);
+
+        if (dataRaw.authorizedOnJSSHomePage) {
           setIsLoggedIn(true);
           return;
         }

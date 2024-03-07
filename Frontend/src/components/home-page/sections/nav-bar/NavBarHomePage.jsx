@@ -3,7 +3,6 @@
 import NavLogo from "../../../auth/utils/components/NavLogo";
 import NavItemsHomepage from "./nav-items/NavItemsHomepage";
 import ProfileIcon from "./profile-icon/ProfileIcon";
-import Link from "next/link";
 import allLinks from "../../../auth/utils/links/allLinks";
 
 export default function NavBarHomePage() {
@@ -13,9 +12,9 @@ export default function NavBarHomePage() {
         <input type="checkbox" id="nav__checkbox" className="nav__checkbox" />
         <section className="mainNavIcons">
           <article className="myProfileIcon">
-            <Link href={allLinks.userDashboardLink}>
+            <a href={allLinks.userDashboardLink}>
               <ProfileIcon />
-            </Link>
+            </a>
           </article>
 
           <label htmlFor="nav__checkbox" className="nav__toggle" title="Menu">

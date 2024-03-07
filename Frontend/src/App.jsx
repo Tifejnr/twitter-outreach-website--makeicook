@@ -14,6 +14,8 @@ import MainContactPage from "./components/Pages/Contact-us-page/MainContactPage"
 import AboutUsPage from "./components/Pages/About-us-page/AboutUs";
 import TermsOfUsePage from "./components/Pages/Terms-and-privacy/TermsOfUsePage";
 import PrivacyPolicyPage from "./components/Pages/Terms-and-privacy/privacyPolicy";
+import HomepageLamz from "./components/home-page/HomepageLamz";
+import OnlyAuthorizedUsers from "./components/controller/OnlyAuthorizedUsers";
 // import Pricing from "./compnents/Pages/Pricing";
 // import OauthPage from "./compnents/Trello-oauth-page/OauthPage";
 // import LandingPage from "./compnents/LandingPage/LandingPage";
@@ -36,14 +38,14 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        {/* <Route
-          path="/home"
+        <Route
+          path="/home-main"
           element={
-            <OnlyAuthorizedUsers>
-              <HomePage />
-            </OnlyAuthorizedUsers>
+            // <OnlyAuthorizedUsers>
+            <HomepageLamz />
+            // </OnlyAuthorizedUsers>
           }
-        /> */}
+        />
         <Route path="/sign-in" element={<SignInPage />} />
         <Route path="/sign-up" element={<SignUpPage />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />

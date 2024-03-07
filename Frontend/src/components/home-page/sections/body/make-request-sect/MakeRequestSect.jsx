@@ -1,9 +1,9 @@
 import { useState } from "react";
-import Image from "next/image";
-import allIconsContainer from "@/app/components/auth/utils/icons/allIconsContainer";
+
+import allIconsContainer from "../../../../auth/utils/icons/allIconsContainer";
 import requestConstantValues from "./constant-values/requestConstantValues";
 import makeRequestInputValidation from "./inputs-validations/makeRequestInputValidation";
-import notificationColorsObj from "@/app/components/auth/utils/colors/allColorsObj";
+import notificationColorsObj from "../../../../auth/utils/colors/allColorsObj";
 import makeRequestToServer from "./request-to-server/makeRequestToServer";
 
 export default function MakeRequestSect() {
@@ -124,7 +124,7 @@ export default function MakeRequestSect() {
               className={`arrow ${isSelectRequestClicked && "rotate"}`}
             >
               <div className="faq-item__arrow-container">
-                <Image
+                <img
                   src={allIconsContainer.greenArrowIcon}
                   alt="short green arrow toggle icon"
                   className="faq-item__arrow-icon"

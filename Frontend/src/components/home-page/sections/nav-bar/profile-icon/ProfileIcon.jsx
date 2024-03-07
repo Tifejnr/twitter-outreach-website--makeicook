@@ -1,4 +1,4 @@
-import allIconsContainer from "@/app/components/auth/utils/icons/allIconsContainer";
+import allIconsContainer from "../../../../auth/utils/icons/allIconsContainer";
 
 export default function ProfileIcon() {
   return (
