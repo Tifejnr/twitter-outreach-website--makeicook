@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 
 import NavBarHomePage from "./sections/nav-bar/NavBarHomePage";
 import BodyHomePage from "./sections/body/BodyHomePage";

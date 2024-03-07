@@ -1,6 +1,6 @@
 import smoothScroll from "../../../../auth/utils/smooth-scroll/smoothScroll";
 import ProfileIcon from "../profile-icon/ProfileIcon";
-import all
+import allLinks from "../../../../auth/utils/links/allLinks";
 
 export default function NavItemsHomepage() {
   function closeMenuBar() {

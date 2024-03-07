@@ -1,4 +1,6 @@
 import "./styles/homepage.css";
-// import Ho
+import HomeSectionIntoOne from "./HomeSectionIntoOne";
 
-export default function HomepageLamz() {}
+export default function HomepageLamz() {
+  return <HomeSectionIntoOne />;
+}
