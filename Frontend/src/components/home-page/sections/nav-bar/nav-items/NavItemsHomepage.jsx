@@ -18,22 +18,22 @@ export default function NavItemsHomepage() {
   }
   function scrollToFaqContainer() {
     closeMenuBar();
-    smoothScroll(".faq__text-container", 100);
+    smoothScroll("#faq__text-container", 100);
   }
 
   return (
     <>
-      <li className="nav-list" onClick={scrollToMakeRequestContainer}>
+      <li className="nav-list home-main" onClick={scrollToMakeRequestContainer}>
         <h3 className="makeRequest">Make Request</h3>
       </li>
-      <li className="nav-list" onClick={scrollToSafetyRulesContainer}>
+      <li className="nav-list home-main" onClick={scrollToSafetyRulesContainer}>
         <h3 className="rules">5 Rules</h3>
       </li>
-      <li className="nav-list" onClick={scrollToFaqContainer}>
+      <li className="nav-list home-main" onClick={scrollToFaqContainer}>
         <h3 className="faq">FAQ</h3>
       </li>
 
-      <li className="nav-list">
+      <li className="nav-list home-main">
         <a href={allLinks.userDashboardLink} className="userDashBoardLarge">
           <ProfileIcon />
         </a>

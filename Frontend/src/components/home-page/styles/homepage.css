@@ -1,4 +1,5 @@
-/* === RESET.CSS === */
+/* === RESET.CSS ===  */
+
 * {
   margin: 0;
   padding: 0;
@@ -94,6 +95,7 @@ html {
   --light-gray-blue: hsl(240, 5%, 91%);
   /* violet & red */
   --green: #14a800;
+  --light-green: #70c964;
   /* background */
   --background-col: #fff;
 
@@ -130,7 +132,7 @@ section.faq {
 @media screen and (min-width: 768px) {
   section.faq {
     background: white;
-    max-width: 83.2rem;
+    max-width: 68.2rem;
   }
 }
 
@@ -152,6 +154,12 @@ section.welcome-container,
 
 .faq__text-container {
   margin-top: 4rem;
+}
+.faq__text-container.home-main {
+  width: 80%;
+  /* display: grid;
+  transform: translate(-50%, -50%);
+  left: 50%; */
 }
 
 /* FAQ Text Styling */
@@ -218,6 +226,13 @@ img.faq-item__arrow-icon {
   overflow: hidden;
   transition: max-height 250ms ease, margin-top 250ms;
   color: var(--dark-gray-blue);
+  transition: 0.35s linear;
+}
+
+.faq-item__detail h5 {
+  color: var(--dark-gray-blue);
+  font-weight: 500;
+  font-size: 1.5rem;
 }
 
 .faq__faq-item:is(.active) > .faq-item__detail {
@@ -255,6 +270,12 @@ section.how-it-works-container {
   font-size: var(--font-size-heading);
   text-align: center;
   margin-top: -2rem;
+}
+
+.how-it-works-details li,
+.how-it-works-details h3,
+.how-it-works-details h2 {
+  text-align: left;
 }
 
 .how-it-works-details li {
@@ -386,30 +407,25 @@ img {
   align-items: center;
   margin-top: 0.4rem;
 }
-.logo {
-  height: 4rem;
-  width: 7rem;
-  position: absolute;
-}
 
-.logo-icon {
+.home-main .logo-icon {
   font-size: 7px;
   height: 5em;
   width: 5em;
 }
 
-.letter-f {
+.home-main .letter-f {
   position: absolute;
   top: -1em;
   left: 0.18em;
 }
-.letter-r {
+.home-main .letter-r {
   position: absolute;
   top: -1em;
   left: 3.6em;
 }
 
-@media screen and (min-width: 768px) {
+/* @media screen and (min-width: 768px) {
   .nav-bar .icon-title {
     margin-top: 0;
   }
@@ -418,7 +434,7 @@ img {
     left: 4rem;
     padding-right: 3rem;
   }
-}
+} */
 
 /* Log Out button */
 .logoutLink button {
@@ -644,6 +660,7 @@ textarea:focus {
 
 .slogan h2 {
   font-size: 1.5rem;
+  color: var(--dark-des-blue);
 }
 
 /* New Nav Bar Design */
@@ -656,7 +673,7 @@ textarea:focus {
   left: 0;
   right: 0;
   bottom: 0;
-  height: 5rem;
+  /* height: 5rem; */
   z-index: 900;
 }
 .nav__toggle {
@@ -732,16 +749,24 @@ nav .nav-list {
   padding: 0.6rem;
 }
 
-.nav-list {
+nav .nav-list.home-main h3 {
+  color: var(--dark-des-blue);
+}
+
+nav .nav-list.home-main h3:hover {
+  color: var(--light-green);
+}
+
+.nav-list h3 {
   transition: 0.3s;
 }
 
-.nav-list:hover,
-.nav-list:focus {
+.nav-list h3:hover,
+.nav-list h3:focus {
   background-color: #fff;
-  color: var(--green);
-  border-color: var(--green);
-  filter: blur(0.05rem);
+  color: var(--light-green);
+  border-color: var(--light-green);
+  filter: blur(0.00001rem);
   text-decoration: underline;
 }
 

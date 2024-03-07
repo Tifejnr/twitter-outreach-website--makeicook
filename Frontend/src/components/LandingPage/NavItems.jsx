@@ -31,7 +31,7 @@ export default function NavItemsLandingPage() {
   };
 
   const testimonialsSectionClick = () => {
-    smoothScroll(testimonialsSection, 30);
+    smoothScroll(testimonialsSection, 70);
     closeMenuBar();
     // setIsMenuIconShowing(true);
   };

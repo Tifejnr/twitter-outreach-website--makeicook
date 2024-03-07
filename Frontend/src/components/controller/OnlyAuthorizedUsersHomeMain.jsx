@@ -6,7 +6,7 @@ import getCookies from "../component-utils/cookiesSetting/getCookies";
 import PropTypes from "prop-types";
 
 // This route protects both logged in and unauthorized users
-export default function OnlyAuthorizedUsers({ children }) {
+export default function OnlyAuthorizedUsersHomeMain({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
 
   const navigate = useNavigate();
@@ -27,8 +27,6 @@ export default function OnlyAuthorizedUsers({ children }) {
 
         const dataRaw = await response.data;
 
-        console.log("data raw", dataRaw);
-
         if (dataRaw.authorizedOnJSSHomePage) {
           setIsLoggedIn(true);
           return;
@@ -38,8 +36,7 @@ export default function OnlyAuthorizedUsers({ children }) {
       } catch (error) {
         //handle any error from server or internet
 
-        if (error.message == "Network Error")
-          return console.log("Network Error");
+        if (error.message == "Network Error") return setIsLoggedIn(false);
         const errorMessage = error.response.data;
         console.log(errorMessage);
 
@@ -61,6 +58,6 @@ export default function OnlyAuthorizedUsers({ children }) {
   return isLoggedIn ? <>{children}</> : <Navigate to="/" />;
 }
 
-OnlyAuthorizedUsers.propTypes = {
+OnlyAuthorizedUsersHomeMain.propTypes = {
   children: PropTypes.node.isRequired,
 };

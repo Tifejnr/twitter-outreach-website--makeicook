@@ -1,6 +1,6 @@
 // import React from "react";
 
-import NavLogo from "../../../auth/utils/components/NavLogo";
+import HomeMainNavLogo from "./nav-items/HomeMainNavLogo";
 import NavItemsHomepage from "./nav-items/NavItemsHomepage";
 import ProfileIcon from "./profile-icon/ProfileIcon";
 import allLinks from "../../../auth/utils/links/allLinks";
@@ -28,9 +28,9 @@ export default function NavBarHomePage() {
         </section>
 
         <ul className="nav__menu">
-          <li>
-            <NavLogo />
-          </li>
+          <section>
+            <HomeMainNavLogo />
+          </section>
 
           <NavItemsHomepage />
         </ul>

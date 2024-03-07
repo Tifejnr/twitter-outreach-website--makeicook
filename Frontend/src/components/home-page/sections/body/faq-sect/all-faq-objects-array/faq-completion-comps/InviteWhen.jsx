@@ -3,9 +3,9 @@ export default function InviteWhenCompletion() {
     <>
       <b>
         &nbsp;
-        <img href="/requestSection" className="makeRequestLink">
+        <a href="/requestSection" className="makeRequestLink">
           Make Request
-        </img>
+        </a>
         &nbsp;
       </b>
       to make your request.

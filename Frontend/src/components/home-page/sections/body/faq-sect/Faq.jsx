@@ -4,7 +4,8 @@ import FaqBlueprint from "./FaqBlueprint";
 export default function Faq() {
   return (
     <>
-      <section className="faq__text-container" id="faq__text-container">
+      {/* how-it-works-container safety-rules-container */}
+      <section className="how-it-works-container" id="faq__text-container">
         <div className="faq__head">
           <h2 className="faq__heading">Frequently Asked Questions</h2>
           <div className="search-input"></div>
