@@ -1,19 +1,7 @@
 import axios from "axios";
 import requestConstantValues from "../constant-values/requestConstantValues";
 
-type RequestToServerParamTypes = {
-  textAreaText: string;
-  headingText: string;
-};
-
-type RequestToServerResultType = {
-  emailSent?: boolean;
-  error?: any;
-};
-
-export default async function makeRequestToServer(
-  params: RequestToServerParamTypes
-): Promise<RequestToServerResultType> {
+export default async function makeRequestToServer(params) {
   const { textAreaText, headingText } = params;
 
   const paramsToServer = {
@@ -44,7 +32,7 @@ export default async function makeRequestToServer(
       // In case emailSent is not true
       return { emailSent: false };
     }
-  } catch (error: any) {
+  } catch (error) {
     console.error("Error making request to server:", error);
 
     return { error };

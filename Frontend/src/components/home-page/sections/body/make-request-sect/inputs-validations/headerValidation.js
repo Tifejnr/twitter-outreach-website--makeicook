@@ -1,8 +1,6 @@
 import requestConstantValues from "../constant-values/requestConstantValues";
 
-export default function validateRequestHeading(headingText: string): {
-  requestHeaderError?: string;
-} {
+export default function validateRequestHeading(headingText) {
   if (headingText == requestConstantValues.selectRequestHeadingText)
     return {
       requestHeaderError:

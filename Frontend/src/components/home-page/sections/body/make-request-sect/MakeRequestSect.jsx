@@ -2,43 +2,38 @@ import { useState } from "react";
 import Image from "next/image";
 import allIconsContainer from "@/app/components/auth/utils/icons/allIconsContainer";
 import requestConstantValues from "./constant-values/requestConstantValues";
-import type { MakeRequestParamType } from "./inputs-validations/makeRequestInputValidation";
 import makeRequestInputValidation from "./inputs-validations/makeRequestInputValidation";
 import notificationColorsObj from "@/app/components/auth/utils/colors/allColorsObj";
-import { FormEvent } from "react";
 import makeRequestToServer from "./request-to-server/makeRequestToServer";
 
 export default function MakeRequestSect() {
-  const [isSelectRequestClicked, setIsSelectRequestClicked] =
-    useState<boolean>(false);
-  const [openTextArea, setOpenTextArea] = useState<boolean>(false);
-  const [textRequestSelected, setTextRequestSelected] = useState<string>(
+  const [isSelectRequestClicked, setIsSelectRequestClicked] = useState(false);
+  const [openTextArea, setOpenTextArea] = useState(false);
+  const [textRequestSelected, setTextRequestSelected] = useState(
     "Select Request Heading"
   );
   const [selectedTextRequestError, setSelectedTextRequestError] = useState("");
   const [selectedTextRequestBorderColor, setSelectedTextRequestBorderColor] =
-    useState<boolean | null>(null);
-  const [textAreaText, setTextAreaText] = useState<string>("");
+    useState(null);
+  const [textAreaText, setTextAreaText] = useState("");
   const [textareaError, setTextareaError] = useState("");
-  const [textareaBorderColor, setTextareaBorderColor] = useState<
-    boolean | null
-  >(null);
-  const [isRequestSent, setIsRequestSent] = useState<boolean>(false);
+  const [textareaBorderColor, setTextareaBorderColor] = useState(null);
+  const [isRequestSent, setIsRequestSent] = useState(false);
 
   const requestForJobNiches = "Request Niches I want Jobs on";
   //functions
 
-  function handleTextAreaChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
+  function handleTextAreaChange(event) {
     setTextAreaText(event.target.value); // Update state with textarea value
   }
 
   function handleClickOfMakeRequestBtn() {
-    const newToggledState: boolean = !isSelectRequestClicked;
+    const newToggledState = !isSelectRequestClicked;
     setIsSelectRequestClicked(newToggledState);
   }
 
-  function handleRequestOptionsClick(event: React.MouseEvent<HTMLElement>) {
-    const target = event.target as HTMLElement;
+  function handleRequestOptionsClick(event) {
+    const target = event.target;
     const selectedText = target.innerText;
     setTextRequestSelected(selectedText);
     setIsSelectRequestClicked(false);
@@ -54,7 +49,7 @@ export default function MakeRequestSect() {
     headingText: textRequestSelected,
   };
 
-  async function validateAndSendToServer(e: FormEvent<HTMLFormElement>) {
+  async function validateAndSendToServer(e) {
     e.preventDefault();
     const validationResponse = makeRequestInputValidation(paramsMakeRequest);
 
@@ -76,8 +71,6 @@ export default function MakeRequestSect() {
     }
 
     const sendRequestResponse = await makeRequestToServer(paramsMakeRequest);
-
- 
 
     if (sendRequestResponse.emailSent) {
       setOpenTextArea(false);

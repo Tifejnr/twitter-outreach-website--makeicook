@@ -1,14 +1,3 @@
-export type FaqObjType = {
-  question: string;
-  answer: string;
-  toolsTutorial?: boolean;
-  contactUsLink?: boolean;
-  inviteWhen?: boolean;
-  dontKnowWhatToSubmit?: boolean;
-  noFeedbackAfterEndContract?: boolean;
-  seeingFeedback?: boolean;
-};
-
 const faqArray = [
   {
     question: "When will I get my Invite?",

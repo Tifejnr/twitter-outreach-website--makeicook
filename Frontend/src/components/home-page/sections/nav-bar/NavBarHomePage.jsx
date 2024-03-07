@@ -1,11 +1,10 @@
 import React from "react";
 
-import NavLogo from "@/app/components/auth/utils/components/NavLogo";
+import NavLogo from "../../../auth/utils/components/NavLogo";
 import NavItemsHomepage from "./nav-items/NavItemsHomepage";
-import allIconsContainer from "@/app/components/auth/utils/icons/allIconsContainer";
 import ProfileIcon from "./profile-icon/ProfileIcon";
 import Link from "next/link";
-import allLinks from "@/app/components/auth/utils/links/allLinks";
+import allLinks from "../../../auth/utils/links/allLinks";
 
 export default function NavBarHomePage() {
   return (

@@ -1,8 +1,6 @@
 import requestConstantValues from "../constant-values/requestConstantValues";
 
-export default function validateTextArea(textAreaText: string): {
-  textAreaError?: string;
-} {
+export default function validateTextArea(textAreaText) {
   const messageValue = textAreaText.trim();
   if (messageValue === "")
     return { textAreaError: requestConstantValues.requestCannotBeEmptyText };

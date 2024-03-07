@@ -1,20 +1,7 @@
 import validateTextArea from "./textAreaValidation";
 import validateRequestHeading from "./headerValidation";
 
-export type MakeRequestParamType = {
-  textAreaText: string;
-  headingText: string;
-  isTextAreaOpened: boolean;
-};
-
-type MakeRequestResultType = {
-  requestHeaderError?: string;
-  textAreaError?: string;
-};
-
-export default function makeRequestInputValidation(
-  params: MakeRequestParamType
-): MakeRequestResultType {
+export default function makeRequestInputValidation(params) {
   const { textAreaText, headingText, isTextAreaOpened } = params;
 
   const requestHeadingTextValidationResult =

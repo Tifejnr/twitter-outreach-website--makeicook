@@ -1,3 +1,5 @@
+import React from "react";
+
 import NavBarHomePage from "./sections/nav-bar/NavBarHomePage";
 import BodyHomePage from "./sections/body/BodyHomePage";
 import Slogan from "./sections/slogan/Slogan";

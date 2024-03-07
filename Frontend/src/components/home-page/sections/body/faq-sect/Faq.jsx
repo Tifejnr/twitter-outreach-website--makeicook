@@ -1,6 +1,5 @@
 import faqArray from "./all-faq-objects-array/allFaqObjs";
 import FaqBlueprint from "./FaqBlueprint";
-import { FaqObjType } from "./all-faq-objects-array/allFaqObjs";
 
 export default function Faq() {
   return (
@@ -12,7 +11,7 @@ export default function Faq() {
         </div>
 
         <ul className="faq__faqs-list">
-          {faqArray.map((faqObj: FaqObjType, index) => (
+          {faqArray.map((faqObj, index) => (
             <FaqBlueprint key={index} index={index} {...faqObj} />
           ))}
         </ul>

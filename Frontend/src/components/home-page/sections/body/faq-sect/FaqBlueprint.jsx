@@ -1,16 +1,12 @@
-import Image from "next/image";
-import allIconsContainer from "@/app/components/auth/utils/icons/allIconsContainer";
-import Link from "next/link";
+import allIconsContainer from "../../../../auth/utils/icons/allIconsContainer";
 import { useState } from "react";
-import type { FaqObjType } from "./all-faq-objects-array/allFaqObjs";
 import InviteWhenCompletion from "./all-faq-objects-array/faq-completion-comps/InviteWhen";
 import DontKnowWhatToSubmitCompletion from "./all-faq-objects-array/faq-completion-comps/DontKnowWhatToSubmit";
 import NoFeedbackAfterEndContractCompletion from "./all-faq-objects-array/faq-completion-comps/NoFeedbackAfterEndContract";
 import SeeingFeedbackCompletion from "./all-faq-objects-array/faq-completion-comps/SeeingFeedback";
-const contactPageLink = "/contact-us";
-const toolsTutorialPage = "tools-tutorial";
+import PropTypes from "prop-types";
 
-export default function FaqBlueprint(props: FaqObjType & { index: number }) {
+export default function FaqBlueprint(props) {
   const [isClicked, setIsClicked] = useState(false);
 
   const handleToggle = () => {
@@ -34,7 +30,7 @@ export default function FaqBlueprint(props: FaqObjType & { index: number }) {
           <b>{props.index + 1}. </b> {props.question}
         </p>
         <div className="faq-item__arrow-container">
-          <Image
+          <img
             style={rotateOnToggle}
             src={allIconsContainer.greenArrowIcon}
             alt="faq toggle icon"
@@ -59,3 +55,13 @@ export default function FaqBlueprint(props: FaqObjType & { index: number }) {
     </li>
   );
 }
+
+FaqBlueprint.propTypes = {
+  index: PropTypes.number.isRequired,
+  question: PropTypes.string.isRequired,
+  answer: PropTypes.string.isRequired,
+  inviteWhen: PropTypes.bool,
+  dontKnowWhatToSubmit: PropTypes.bool,
+  noFeedbackAfterEndContract: PropTypes.bool,
+  seeingFeedback: PropTypes.bool,
+};

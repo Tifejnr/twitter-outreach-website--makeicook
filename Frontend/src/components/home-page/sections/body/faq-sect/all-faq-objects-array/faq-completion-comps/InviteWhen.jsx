@@ -1,13 +1,11 @@
-import Link from "next/link";
-
 export default function InviteWhenCompletion() {
   return (
     <>
       <b>
         &nbsp;
-        <Link href="/requestSection" className="makeRequestLink">
+        <img href="/requestSection" className="makeRequestLink">
           Make Request
-        </Link>
+        </img>
         &nbsp;
       </b>
       to make your request.

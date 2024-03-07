@@ -1,16 +1,13 @@
-import Link from "next/link";
-import smoothScroll from "@/app/components/auth/utils/smooth-scroll/smoothScroll";
+import smoothScroll from "../../../../auth/utils/smooth-scroll/smoothScroll";
 import ProfileIcon from "../profile-icon/ProfileIcon";
-import allLinks from "@/app/components/auth/utils/links/allLinks";
+import all
 
 export default function NavItemsHomepage() {
   function closeMenuBar() {
-    const menuBarLabelEl = document.getElementById(
-      "nav__checkbox"
-    ) as HTMLInputElement;
-
+    const menuBarLabelEl = document.getElementById("nav__checkbox");
     menuBarLabelEl.checked = false;
   }
+
   function scrollToSafetyRulesContainer() {
     closeMenuBar();
     smoothScroll(".safety-rules-container", 140);
@@ -37,9 +34,9 @@ export default function NavItemsHomepage() {
       </li>
 
       <li className="nav-list">
-        <Link href={allLinks.userDashboardLink} className="userDashBoardLarge">
+        <a href={allLinks.userDashboardLink} className="userDashBoardLarge">
           <ProfileIcon />
-        </Link>
+        </a>
       </li>
     </>
   );
