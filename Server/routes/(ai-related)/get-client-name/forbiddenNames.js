@@ -19,6 +19,7 @@ const agaiText = "agai";
 const cooperativeClientText = "Cooperative Client";
 const sirText = "sir";
 const HubspotText = "Hubspot";
+const ionText = "ion";
 
 const forbiddenNames = [
   beast,
@@ -42,6 +43,7 @@ const forbiddenNames = [
   agaiText,
   sirText,
   HubspotText,
+  ionText,
 ];
 
 export default forbiddenNames;

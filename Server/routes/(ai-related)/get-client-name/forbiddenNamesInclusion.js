@@ -21,6 +21,10 @@ const MailchimpText = "Mailchimp";
 const likedText = "liked";
 const likeText = "like";
 const workingText = "working";
+const KlaviyoText = "Klaviyo";
+const FunnelText = "Funnel";
+const EXPERTText = "EXPERT";
+const SalesText = "Sales";
 
 const forbiddenNamesInclusionArray = [
   clientText,
@@ -46,6 +50,10 @@ const forbiddenNamesInclusionArray = [
   likeText,
   likedText,
   workingText,
+  KlaviyoText,
+  FunnelText,
+  EXPERTText,
+  SalesText,
 ];
 
 export default forbiddenNamesInclusionArray;
