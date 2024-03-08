@@ -18,6 +18,9 @@ const automationText = "automation";
 const memberText = "member";
 const familyText = "family";
 const MailchimpText = "Mailchimp";
+const likedText = "liked";
+const likeText = "like";
+const workingText = "working";
 
 const forbiddenNamesInclusionArray = [
   clientText,
@@ -40,6 +43,9 @@ const forbiddenNamesInclusionArray = [
   memberText,
   familyText,
   MailchimpText,
+  likeText,
+  likedText,
+  workingText,
 ];
 
 export default forbiddenNamesInclusionArray;
