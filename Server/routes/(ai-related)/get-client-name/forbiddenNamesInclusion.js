@@ -25,6 +25,8 @@ const KlaviyoText = "Klaviyo";
 const FunnelText = "Funnel";
 const EXPERTText = "EXPERT";
 const SalesText = "Sales";
+const technicalText = "technical";
+const SEOText = "SEO";
 
 const forbiddenNamesInclusionArray = [
   clientText,
@@ -54,6 +56,8 @@ const forbiddenNamesInclusionArray = [
   FunnelText,
   EXPERTText,
   SalesText,
+  technicalText,
+  SEOText,
 ];
 
 export default forbiddenNamesInclusionArray;
