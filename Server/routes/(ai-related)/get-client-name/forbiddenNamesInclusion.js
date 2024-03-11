@@ -27,6 +27,7 @@ const EXPERTText = "EXPERT";
 const SalesText = "Sales";
 const technicalText = "technical";
 const SEOText = "SEO";
+const GoHightext = "GoHigh";
 
 const forbiddenNamesInclusionArray = [
   clientText,
@@ -58,6 +59,7 @@ const forbiddenNamesInclusionArray = [
   SalesText,
   technicalText,
   SEOText,
+  GoHightext,
 ];
 
 export default forbiddenNamesInclusionArray;
