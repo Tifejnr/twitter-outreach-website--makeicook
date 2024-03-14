@@ -30,7 +30,10 @@ const SEOText = "SEO";
 const executiveText = "executive";
 const fieldText = "field";
 const GoHightext = "GoHigh";
-const markeEmoji = "✅";
+const markEmoji = "✅";
+const buyerText = "Buyer";
+const outstandingText = "Outstanding";
+const BRILLIANTText = "BRILLIANT";
 
 const forbiddenNamesInclusionArray = [
   clientText,
@@ -63,9 +66,12 @@ const forbiddenNamesInclusionArray = [
   technicalText,
   SEOText,
   GoHightext,
-  markeEmoji,
+  markEmoji,
   executiveText,
   fieldText,
+  buyerText,
+  outstandingText,
+  BRILLIANTText,
 ];
 
 export default forbiddenNamesInclusionArray;
