@@ -27,7 +27,10 @@ const EXPERTText = "EXPERT";
 const SalesText = "Sales";
 const technicalText = "technical";
 const SEOText = "SEO";
+const executiveText = "executive";
+const fieldText = "field";
 const GoHightext = "GoHigh";
+const markeEmoji = "✅";
 
 const forbiddenNamesInclusionArray = [
   clientText,
@@ -60,6 +63,9 @@ const forbiddenNamesInclusionArray = [
   technicalText,
   SEOText,
   GoHightext,
+  markeEmoji,
+  executiveText,
+  fieldText,
 ];
 
 export default forbiddenNamesInclusionArray;
