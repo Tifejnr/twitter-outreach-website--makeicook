@@ -34,6 +34,13 @@ const markEmoji = "✅";
 const buyerText = "Buyer";
 const outstandingText = "Outstanding";
 const BRILLIANTText = "BRILLIANT";
+const NeedText = "Need";
+const moreText = "more";
+const analystText = "analyst";
+const excelText = "Excel";
+const skilledText = "skilled";
+const dataText = "data";
+const wonderfulText = "Wonderful";
 
 const forbiddenNamesInclusionArray = [
   clientText,
@@ -72,6 +79,13 @@ const forbiddenNamesInclusionArray = [
   buyerText,
   outstandingText,
   BRILLIANTText,
+  NeedText,
+  moreText,
+  analystText,
+  excelText,
+  skilledText,
+  dataText,
+  wonderfulText,
 ];
 
 export default forbiddenNamesInclusionArray;
