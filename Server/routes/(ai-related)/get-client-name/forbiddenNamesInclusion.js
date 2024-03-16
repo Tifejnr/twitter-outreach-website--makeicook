@@ -41,6 +41,10 @@ const excelText = "Excel";
 const skilledText = "skilled";
 const dataText = "data";
 const wonderfulText = "Wonderful";
+const EmailText = "Email";
+const MarketingText = "Marketing";
+const GoodText = "Good";
+const experienceText = "experience";
 
 const forbiddenNamesInclusionArray = [
   clientText,
@@ -86,6 +90,10 @@ const forbiddenNamesInclusionArray = [
   skilledText,
   dataText,
   wonderfulText,
+  EmailText,
+  MarketingText,
+  GoodText,
+  experienceText,
 ];
 
 export default forbiddenNamesInclusionArray;
