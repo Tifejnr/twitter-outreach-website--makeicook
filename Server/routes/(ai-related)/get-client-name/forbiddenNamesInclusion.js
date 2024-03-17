@@ -51,9 +51,11 @@ const workedText = "worked";
 const togetherText = "together";
 const projectText = "project";
 const ColdText = "Cold";
+const BrotherText = "Brother";
 
 const forbiddenNamesInclusionArray = [
   successfulText,
+  BrotherText,
   ColdText,
   projectText,
   workedText,
