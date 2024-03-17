@@ -55,8 +55,20 @@ const BrotherText = "Brother";
 const ResearchText = "Research";
 const SkillText = "Skill";
 const ListText = "List";
+const OutboundText = "Outbound";
+const SpecialistText = "Specialist";
+const EnglishText = "English";
+const FluentText = "Fluent";
+const AccentText = "Accent";
+const CallingText = "Calling";
 
 const forbiddenNamesInclusionArray = [
+  AccentText,
+  CallingText,
+  EnglishText,
+  FluentText,
+  SpecialistText,
+  OutboundText,
   SkillText,
   ListText,
   ResearchText,
