@@ -52,8 +52,14 @@ const togetherText = "together";
 const projectText = "project";
 const ColdText = "Cold";
 const BrotherText = "Brother";
+const ResearchText = "Research";
+const SkillText = "Skill";
+const ListText = "List";
 
 const forbiddenNamesInclusionArray = [
+  SkillText,
+  ListText,
+  ResearchText,
   successfulText,
   BrotherText,
   ColdText,

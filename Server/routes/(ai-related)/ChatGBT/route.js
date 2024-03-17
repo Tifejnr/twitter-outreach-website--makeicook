@@ -9,6 +9,8 @@ const chatGPTAIResponseRouter = express.Router();
 chatGPTAIResponseRouter.post("/", async (req, res) => {
   const bodyRequest = await req.body;
 
+  console.log("person click Roast feature ooooo");
+
   // const resultOfTokenValidation = await isTokenValid(bodyRequest);
 
   // if (resultOfTokenValidation.nullJWTToken)
