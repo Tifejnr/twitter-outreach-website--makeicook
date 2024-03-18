@@ -61,8 +61,14 @@ const EnglishText = "English";
 const FluentText = "Fluent";
 const AccentText = "Accent";
 const CallingText = "Calling";
+const professionalText = "professional";
+const personText = "person";
+const VeryText = "Very";
 
 const forbiddenNamesInclusionArray = [
+  VeryText,
+  personText,
+  professionalText,
   AccentText,
   CallingText,
   EnglishText,
