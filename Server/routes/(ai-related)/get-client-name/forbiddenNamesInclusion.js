@@ -64,8 +64,18 @@ const CallingText = "Calling";
 const professionalText = "professional";
 const personText = "person";
 const VeryText = "Very";
+const deadlinText = "deadlin";
+const BestText = "Best";
+const wishesText = "wishes";
+const brandText = "brand";
+const hisText = "his";
 
 const forbiddenNamesInclusionArray = [
+  hisText,
+  brandText,
+  wishesText,
+  BestText,
+  deadlinText,
   VeryText,
   personText,
   professionalText,
