@@ -69,8 +69,10 @@ const BestText = "Best";
 const wishesText = "wishes";
 const brandText = "brand";
 const hisText = "his";
+const NextJSText = "NextJS";
 
 const forbiddenNamesInclusionArray = [
+  NextJSText,
   hisText,
   brandText,
   wishesText,
