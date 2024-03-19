@@ -39,8 +39,9 @@ getClientNameRouter.post("/", async (req, res) => {
       },
     });
 
-    let clientNameResponse = result.answer;
-    clientNameResponse = removeAndTextFromClienName(clientNameResponse);
+    let clientNameResponseRaw = result.answer;
+    let clientNameResponse = removeAndTextFromClienName(clientNameResponseRaw);
+
     const clientNameResponseLowercase = clientNameResponse.toLowerCase();
 
     const isForbiddenNameEqualtTo = forbiddenNames.some(

@@ -74,8 +74,18 @@ const FigmaText = "Figma";
 const musicText = "music";
 const industryText = "industry";
 const nerdText = "nerd";
+const SomeText = "Some";
+const ScrapeText = "Scrape";
+const CSVText = "CSV";
+const returnText = "return";
+const SupportText = "Support";
 
 const forbiddenNamesInclusionArray = [
+  SupportText,
+  returnText,
+  CSVText,
+  ScrapeText,
+  SomeText,
   nerdText,
   industryText,
   musicText,
