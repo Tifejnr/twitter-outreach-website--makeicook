@@ -5,6 +5,7 @@ import forbiddenNamesInclusionArray from "./forbiddenNamesInclusion.js";
 import getSecretKeys from "../../../envVariables/envVariables.js";
 import isTokenValid from "../../../server-utils/middleware/token-validity/isTokenValid.js";
 import containsOneCharacter from "./utils/doesItContainOneXter.js";
+import removeAndTextFromClienName from "./utils/removeAndTextFromClienName.js";
 
 const keysObject = getSecretKeys();
 const model = keysObject.huggingFaceModel;
@@ -39,6 +40,7 @@ getClientNameRouter.post("/", async (req, res) => {
     });
 
     let clientNameResponse = result.answer;
+    clientNameResponse = removeAndTextFromClienName(clientNameResponse);
     const clientNameResponseLowercase = clientNameResponse.toLowerCase();
 
     const isForbiddenNameEqualtTo = forbiddenNames.some(
@@ -63,7 +65,7 @@ getClientNameRouter.post("/", async (req, res) => {
       clientNameResponse = "Hi there";
     }
 
-    console.log("result is", result.answer, clientNameResponse);
+    console.log("Name", result.answer, clientNameResponse);
 
     return res.json({ clientNameResponse });
   } catch (error) {

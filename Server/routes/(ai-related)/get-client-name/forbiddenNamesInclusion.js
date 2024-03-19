@@ -70,8 +70,16 @@ const wishesText = "wishes";
 const brandText = "brand";
 const hisText = "his";
 const NextJSText = "NextJS";
+const FigmaText = "Figma";
+const musicText = "music";
+const industryText = "industry";
+const nerdText = "nerd";
 
 const forbiddenNamesInclusionArray = [
+  nerdText,
+  industryText,
+  musicText,
+  FigmaText,
   NextJSText,
   hisText,
   brandText,
