@@ -20,8 +20,10 @@ const cooperativeClientText = "Cooperative Client";
 const sirText = "sir";
 const HubspotText = "Hubspot";
 const ionText = "ion";
+const herText = "her";
 
 const forbiddenNames = [
+  herText,
   beast,
   lessWord,
   dotResponse,
