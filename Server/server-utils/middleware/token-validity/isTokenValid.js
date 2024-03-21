@@ -7,7 +7,7 @@ export default async function isTokenValid(bodyRequest) {
   const keysObject = getSecretKeys();
   const JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
 
-  const { fromExtension, isJssHomePage } = bodyRequest;
+  const { fromExtension, isJssHomePage, prompt } = bodyRequest;
 
   let token;
 
@@ -37,6 +37,17 @@ export default async function isTokenValid(bodyRequest) {
       }
 
       return { authorizedOnJSSHomePage: true };
+    }
+
+    //if request is to get client name from wfr extension
+    if (prompt) {
+      const accountUser = await user.findById(decodedPayload._id);
+
+      if (!accountUser) return { invalidToken: true };
+
+      accountUser.jobsToBeCompleted++;
+
+      await accountUser.save();
     }
 
     return { decodedPayload };
