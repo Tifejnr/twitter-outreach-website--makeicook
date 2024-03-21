@@ -96,6 +96,8 @@ const HappyText = "Happy";
 const helpText = "help";
 
 const forbiddenNamesInclusionArray = [
+  HappyText,
+  helpText,
   recommendText,
   recommendedText,
   HighlyText,
