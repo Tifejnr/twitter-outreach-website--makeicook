@@ -94,8 +94,14 @@ const recommendedText = "recommended";
 const recommendText = "recommend";
 const HappyText = "Happy";
 const helpText = "help";
+const AppText = "App";
+const DeveloperText = "Developer";
+const FullText = "Full";
 
 const forbiddenNamesInclusionArray = [
+  FullText,
+  DeveloperText,
+  AppText,
   HappyText,
   helpText,
   recommendText,
