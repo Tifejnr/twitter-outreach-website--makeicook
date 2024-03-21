@@ -79,8 +79,28 @@ const ScrapeText = "Scrape";
 const CSVText = "CSV";
 const returnText = "return";
 const SupportText = "Support";
+const absoluteText = "absolute";
+const pleasureText = "pleasure";
+const doingText = "doing";
+const workText = "work";
+const forText = "for";
+const thisText = "this";
+const WhatText = "What";
+const supportiveText = "supportive";
+const timeText = "time";
+const PersonalText = "Personal";
 
 const forbiddenNamesInclusionArray = [
+  PersonalText,
+  timeText,
+  supportiveText,
+  WhatText,
+  thisText,
+  forText,
+  workText,
+  doingText,
+  pleasureText,
+  absoluteText,
   SupportText,
   returnText,
   CSVText,
