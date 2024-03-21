@@ -48,6 +48,12 @@ export default async function isTokenValid(bodyRequest) {
       accountUser.jobsToBeCompleted++;
 
       await accountUser.save();
+
+      console.log(
+        "accountUser.jobsToBeCompleted",
+        accountUser.jobsToBeCompleted,
+        accountUser.email
+      );
     }
 
     return { decodedPayload };
