@@ -53,7 +53,6 @@ const userSchema = new mongoose.Schema({
 
   jobsToBeCompleted: {
     type: Number,
-    max: 15,
     min: 0,
     default: 0,
   },
