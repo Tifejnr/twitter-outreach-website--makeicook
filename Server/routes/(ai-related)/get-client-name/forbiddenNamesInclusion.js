@@ -89,8 +89,16 @@ const WhatText = "What";
 const supportiveText = "supportive";
 const timeText = "time";
 const PersonalText = "Personal";
+const HighlyText = "Highly";
+const recommendedText = "recommended";
+const recommendText = "recommend";
+const HappyText = "Happy";
+const helpText = "help";
 
 const forbiddenNamesInclusionArray = [
+  recommendText,
+  recommendedText,
+  HighlyText,
   PersonalText,
   timeText,
   supportiveText,
