@@ -97,8 +97,10 @@ const helpText = "help";
 const AppText = "App";
 const DeveloperText = "Developer";
 const FullText = "Full";
+const detaiText = "detai";
 
 const forbiddenNamesInclusionArray = [
+  detaiText,
   FullText,
   DeveloperText,
   AppText,
