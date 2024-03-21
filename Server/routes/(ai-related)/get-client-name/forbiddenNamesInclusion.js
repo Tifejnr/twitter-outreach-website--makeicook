@@ -98,8 +98,14 @@ const AppText = "App";
 const DeveloperText = "Developer";
 const FullText = "Full";
 const detaiText = "detai";
+const PinchforthText = "Pinchforth";
+const incredibText = "incredib";
+const incredibleText = "incredible";
 
 const forbiddenNamesInclusionArray = [
+  incredibleText,
+  incredibText,
+  PinchforthText,
   detaiText,
   FullText,
   DeveloperText,
