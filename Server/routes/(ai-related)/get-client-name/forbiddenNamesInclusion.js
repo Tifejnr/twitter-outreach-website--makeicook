@@ -101,8 +101,10 @@ const detaiText = "detai";
 const PinchforthText = "Pinchforth";
 const incredibText = "incredib";
 const incredibleText = "incredible";
+const ContactText = "Contact";
 
 const forbiddenNamesInclusionArray = [
+  ContactText,
   incredibleText,
   incredibText,
   PinchforthText,
