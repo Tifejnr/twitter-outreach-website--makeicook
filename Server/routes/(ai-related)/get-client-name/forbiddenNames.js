@@ -45,7 +45,6 @@ const forbiddenNames = [
   greatExperienceText,
   goodClient,
   cooperativeClientText,
-  clintText,
   agaiText,
   sirText,
   HubspotText,
