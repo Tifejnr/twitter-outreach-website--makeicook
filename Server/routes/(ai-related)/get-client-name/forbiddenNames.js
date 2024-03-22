@@ -22,8 +22,10 @@ const HubspotText = "Hubspot";
 const ionText = "ion";
 const herText = "her";
 const hiText = "hi";
+const VAText = "VA";
 
 const forbiddenNames = [
+  VAText,
   hiText,
   herText,
   beast,
