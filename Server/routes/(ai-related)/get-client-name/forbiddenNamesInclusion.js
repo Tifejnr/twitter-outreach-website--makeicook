@@ -102,8 +102,10 @@ const PinchforthText = "Pinchforth";
 const incredibText = "incredib";
 const incredibleText = "incredible";
 const ContactText = "Contact";
+const oDeskText = "oDesk";
 
 const forbiddenNamesInclusionArray = [
+  oDeskText,
   ContactText,
   incredibleText,
   incredibText,
