@@ -103,8 +103,10 @@ const incredibText = "incredib";
 const incredibleText = "incredible";
 const ContactText = "Contact";
 const oDeskText = "oDesk";
+const SquarespaceText = "Squarespace";
 
 const forbiddenNamesInclusionArray = [
+  SquarespaceText,
   oDeskText,
   ContactText,
   incredibleText,
