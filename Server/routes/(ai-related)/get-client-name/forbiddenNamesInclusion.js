@@ -104,8 +104,16 @@ const incredibleText = "incredible";
 const ContactText = "Contact";
 const oDeskText = "oDesk";
 const SquarespaceText = "Squarespace";
+const TalentText = "Talent";
+const GlobalText = "Global";
+const ParagonText = "Paragon";
+const managerText = "manager";
 
 const forbiddenNamesInclusionArray = [
+  managerText,
+  ParagonText,
+  GlobalText,
+  TalentText,
   SquarespaceText,
   oDeskText,
   ContactText,
