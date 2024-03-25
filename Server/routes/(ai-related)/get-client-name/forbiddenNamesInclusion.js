@@ -111,8 +111,12 @@ const managerText = "manager";
 const speechText = "speech";
 const relationshipText = "relationship";
 const businessText = "business";
+const ThankText = "Thank";
+const youText = "you";
 
 const forbiddenNamesInclusionArray = [
+  youText,
+  ThankText,
   businessText,
   relationshipText,
   speechText,
