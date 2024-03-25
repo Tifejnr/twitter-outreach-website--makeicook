@@ -108,8 +108,10 @@ const TalentText = "Talent";
 const GlobalText = "Global";
 const ParagonText = "Paragon";
 const managerText = "manager";
+const speechText = "speech";
 
 const forbiddenNamesInclusionArray = [
+  speechText,
   managerText,
   ParagonText,
   GlobalText,
