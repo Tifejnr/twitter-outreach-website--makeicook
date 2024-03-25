@@ -109,8 +109,12 @@ const GlobalText = "Global";
 const ParagonText = "Paragon";
 const managerText = "manager";
 const speechText = "speech";
+const relationshipText = "relationship";
+const businessText = "business";
 
 const forbiddenNamesInclusionArray = [
+  businessText,
+  relationshipText,
   speechText,
   managerText,
   ParagonText,
