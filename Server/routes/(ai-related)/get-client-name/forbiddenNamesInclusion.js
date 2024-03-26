@@ -113,8 +113,12 @@ const relationshipText = "relationship";
 const businessText = "business";
 const ThankText = "Thank";
 const youText = "you";
+const kindText = "kind";
+const miserabText = "miserab";
 
 const forbiddenNamesInclusionArray = [
+  miserabText,
+  kindText,
   youText,
   ThankText,
   businessText,
