@@ -116,8 +116,12 @@ const youText = "you";
 const kindText = "kind";
 const miserabText = "miserab";
 const ShopifyText = "Shopify";
+const forEclipseText = "fo…";
+const YoutubeText = "Youtube";
 
 const forbiddenNamesInclusionArray = [
+  YoutubeText,
+  forEclipseText,
   ShopifyText,
   miserabText,
   kindText,
