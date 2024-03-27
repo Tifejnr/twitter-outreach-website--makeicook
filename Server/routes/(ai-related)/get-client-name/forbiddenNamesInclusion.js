@@ -115,8 +115,10 @@ const ThankText = "Thank";
 const youText = "you";
 const kindText = "kind";
 const miserabText = "miserab";
+const ShopifyText = "Shopify";
 
 const forbiddenNamesInclusionArray = [
+  ShopifyText,
   miserabText,
   kindText,
   youText,
