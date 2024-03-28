@@ -118,8 +118,12 @@ const miserabText = "miserab";
 const ShopifyText = "Shopify";
 const forEclipseText = "fo…";
 const YoutubeText = "Youtube";
+const KindlyText = "Kindly";
+const needfulText = "needful";
 
 const forbiddenNamesInclusionArray = [
+  needfulText,
+  KindlyText,
   YoutubeText,
   forEclipseText,
   ShopifyText,
