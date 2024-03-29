@@ -122,8 +122,26 @@ const KindlyText = "Kindly";
 const needfulText = "needful";
 const odeskText = "o'desk";
 const meText = "me";
+const hiringText = "hiring";
+const couldText = "could";
+const ThanksText = "Thanks";
+const betterText = "better";
+const beenText = "been";
+const yumbleText = "Yumble";
+const ThankyText = "Thanky";
+const ouText = "ou";
+const extremeText = "Extreme";
 
 const forbiddenNamesInclusionArray = [
+  extremeText,
+  ouText,
+  ThankyText,
+  beenText,
+  yumbleText,
+  betterText,
+  ThanksText,
+  couldText,
+  hiringText,
   meText,
   odeskText,
   needfulText,
