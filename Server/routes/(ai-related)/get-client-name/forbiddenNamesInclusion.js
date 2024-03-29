@@ -121,8 +121,10 @@ const YoutubeText = "Youtube";
 const KindlyText = "Kindly";
 const needfulText = "needful";
 const odeskText = "o'desk";
+const meText = "me";
 
 const forbiddenNamesInclusionArray = [
+  meText,
   odeskText,
   needfulText,
   KindlyText,
