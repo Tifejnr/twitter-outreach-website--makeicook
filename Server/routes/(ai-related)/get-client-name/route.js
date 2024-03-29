@@ -44,12 +44,12 @@ getClientNameRouter.post("/", async (req, res) => {
 
     const clientNameResponseLowercase = clientNameResponse.toLowerCase();
 
-    const isForbiddenNameEqualtTo = forbiddenNames.some(
+    const isForbiddenNameEqualtTo = forbiddenNames.find(
       (forbiddenName) =>
         forbiddenName.toLowerCase() == clientNameResponseLowercase
     );
 
-    const isForbiddenNameIncludedIn = forbiddenNamesInclusionArray.some(
+    const isForbiddenNameIncludedIn = forbiddenNamesInclusionArray.find(
       (forbiddenName) =>
         clientNameResponseLowercase.includes(forbiddenName.toLowerCase())
     );
@@ -63,12 +63,12 @@ getClientNameRouter.post("/", async (req, res) => {
       isForbiddenNameEqualtTo ||
       doesItContainOneXter
     ) {
-      console.log(
-        "isForbiddenNameIncludedIn",
-        isForbiddenNameIncludedIn,
-        "isForbiddenNameEqualtTo",
-        isForbiddenNameEqualtTo
+      const includedForbiddenNames = forbiddenNamesInclusionArray.find(
+        (forbiddenName) =>
+          clientNameResponseLowercase.includes(forbiddenName.toLowerCase())
       );
+
+      console.log("Forbidden name found:", includedForbiddenNames);
       clientNameResponse = "Hi there";
     }
 
