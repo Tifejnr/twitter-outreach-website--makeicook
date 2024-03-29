@@ -51,7 +51,9 @@ getClientNameRouter.post("/", async (req, res) => {
 
     const isForbiddenNameIncludedIn = forbiddenNamesInclusionArray.find(
       (forbiddenName) =>
-        clientNameResponseLowercase.includes(forbiddenName.toLowerCase())
+        new RegExp("\\b" + forbiddenName.toLowerCase() + "\\b").test(
+          clientNameResponseLowercase
+        )
     );
 
     const doesItContainOneXter = containsOneCharacter(
@@ -65,7 +67,9 @@ getClientNameRouter.post("/", async (req, res) => {
     ) {
       const includedForbiddenNames = forbiddenNamesInclusionArray.find(
         (forbiddenName) =>
-          clientNameResponseLowercase.includes(forbiddenName.toLowerCase())
+          new RegExp("\\b" + forbiddenName.toLowerCase() + "\\b").test(
+            clientNameResponseLowercase
+          )
       );
 
       console.log("Forbidden name found:", includedForbiddenNames);

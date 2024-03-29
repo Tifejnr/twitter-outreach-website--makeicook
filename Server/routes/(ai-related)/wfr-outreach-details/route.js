@@ -30,15 +30,7 @@ wfrOutreachRecordingRouter.post("/", async (req, res) => {
 
   const { paramToDecide } = bodyRequest;
 
-  const {
-    action,
-    username,
-    actionIdentifierObj,
-    fromTwitterInbox,
-    fromTwitterCommentReply,
-    columnLetter,
-    spreadsheetId,
-  } = paramToDecide;
+  const { username, columnLetter, spreadsheetId } = paramToDecide;
 
   // let spreadsheetId;
 
