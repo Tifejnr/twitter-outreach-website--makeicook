@@ -63,6 +63,12 @@ getClientNameRouter.post("/", async (req, res) => {
       isForbiddenNameEqualtTo ||
       doesItContainOneXter
     ) {
+      console.log(
+        "isForbiddenNameIncludedIn",
+        isForbiddenNameIncludedIn,
+        "isForbiddenNameEqualtTo",
+        isForbiddenNameEqualtTo
+      );
       clientNameResponse = "Hi there";
     }
 

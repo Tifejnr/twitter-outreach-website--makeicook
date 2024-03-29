@@ -36,29 +36,31 @@ wfrOutreachRecordingRouter.post("/", async (req, res) => {
     actionIdentifierObj,
     fromTwitterInbox,
     fromTwitterCommentReply,
+    columnLetter,
+    spreadsheetId,
   } = paramToDecide;
 
-  let spreadsheetId;
+  // let spreadsheetId;
 
   try {
     const sheetsAPI = sheets.spreadsheets.values;
-    if (fromTwitterInbox || fromTwitterCommentReply) {
-      spreadsheetId = wfrToolKitTwitterSpreadsheetId;
-    } else {
-      spreadsheetId = wfrToolKitInstagramSpreadsheetId;
-    }
+    // if (fromTwitterInbox || fromTwitterCommentReply) {
+    //   spreadsheetId = wfrToolKitTwitterSpreadsheetId;
+    // } else {
+    //   spreadsheetId = wfrToolKitInstagramSpreadsheetId;
+    // }
 
     const sheetName = "Sheet1";
-    let columnLetter = "A"; // Specify the column letter (e.g., "A" for column A)
+    // let columnLetter = "A"; // Specify the column letter (e.g., "A" for column A)
 
     //Determin column to go based on action
-    if (action == actionIdentifierObj.isEmailList) {
-      columnLetter = "C";
-    } else if (action == actionIdentifierObj.isRepliedList) {
-      columnLetter = fromTwitterCommentReply ? "D" : "B";
-    } else {
-      columnLetter = fromTwitterCommentReply ? "C" : "A";
-    }
+    // if (action == actionIdentifierObj.isEmailList) {
+    //   columnLetter = "C";
+    // } else if (action == actionIdentifierObj.isRepliedList) {
+    //   columnLetter = fromTwitterCommentReply ? "D" : "B";
+    // } else {
+    //   columnLetter = fromTwitterCommentReply ? "C" : "A";
+    // }
 
     // Find the last row with data in the specified column
     const resultResponse = await sheetsAPI.get({
