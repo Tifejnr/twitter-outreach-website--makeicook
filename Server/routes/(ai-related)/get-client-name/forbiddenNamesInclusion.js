@@ -120,8 +120,10 @@ const forEclipseText = "fo…";
 const YoutubeText = "Youtube";
 const KindlyText = "Kindly";
 const needfulText = "needful";
+const odeskText = "o'desk";
 
 const forbiddenNamesInclusionArray = [
+  odeskText,
   needfulText,
   KindlyText,
   YoutubeText,
