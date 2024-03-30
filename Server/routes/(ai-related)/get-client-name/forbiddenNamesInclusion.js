@@ -141,8 +141,14 @@ const challengingText = "challenging";
 const challengeText = "challenge";
 const taughtText = "taught";
 const amazingText = "Amazing";
+const wrongText = "wrong";
+const whatsText = "what's";
+const knowText = "know";
 
 const forbiddenNamesInclusionArray = [
+  knowText,
+  whatsText,
+  wrongText,
   amazingText,
   taughtText,
   challengeText,
