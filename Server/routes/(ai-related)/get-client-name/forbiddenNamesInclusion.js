@@ -144,8 +144,12 @@ const amazingText = "Amazing";
 const wrongText = "wrong";
 const whatsText = "what's";
 const knowText = "know";
+const copywriterText = "Copywriter";
+const juniorText = "Junior";
 
 const forbiddenNamesInclusionArray = [
+  juniorText,
+  copywriterText,
   knowText,
   whatsText,
   wrongText,
