@@ -131,8 +131,28 @@ const yumbleText = "Yumble";
 const ThankyText = "Thanky";
 const ouText = "ou";
 const extremeText = "Extreme";
+const friendlyText = "friendly";
+const easyText = "easy";
+const upText = "up";
+const withText = "with";
+const telegramText = "telegram";
+const opportunityText = "opportunity";
+const challengingText = "challenging";
+const challengeText = "challenge";
+const taughtText = "taught";
+const amazingText = "Amazing";
 
 const forbiddenNamesInclusionArray = [
+  amazingText,
+  taughtText,
+  challengeText,
+  challengingText,
+  opportunityText,
+  telegramText,
+  withText,
+  upText,
+  easyText,
+  friendlyText,
   extremeText,
   ouText,
   ThankyText,
