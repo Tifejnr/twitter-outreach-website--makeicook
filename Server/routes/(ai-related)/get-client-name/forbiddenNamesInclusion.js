@@ -149,8 +149,14 @@ const juniorText = "Junior";
 const threateneText = "threatene";
 const workiText = "worki";
 const gratefulText = "grateful";
+const excellentText = "Excellent";
+const toText = "to";
+const imText = "I'm";
 
 const forbiddenNamesInclusionArray = [
+  imText,
+  toText,
+  excellentText,
   gratefulText,
   workiText,
   threateneText,
