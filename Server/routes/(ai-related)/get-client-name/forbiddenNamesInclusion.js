@@ -152,8 +152,26 @@ const gratefulText = "grateful";
 const excellentText = "Excellent";
 const toText = "to";
 const imText = "I'm";
+const heartlessText = "heartless";
+const companyText = "company";
+const reallyText = "really";
+const idealText = "ideal";
+const YourText = "Your";
+const communicativeText = "communicative";
+const feText = "fe";
+const ghostedText = "ghosted";
+const muchText = "much";
 
 const forbiddenNamesInclusionArray = [
+  muchText,
+  ghostedText,
+  feText,
+  communicativeText,
+  YourText,
+  idealText,
+  reallyText,
+  companyText,
+  heartlessText,
   imText,
   toText,
   excellentText,
