@@ -161,8 +161,22 @@ const communicativeText = "communicative";
 const feText = "fe";
 const ghostedText = "ghosted";
 const muchText = "much";
+const altogeText = "altoge";
+const SmoothText = "Smooth";
+const processText = "process";
+const dealText = "deal";
+const pythonText = "Python";
+const NothingText = "Nothing";
+const VerveText = "Verve";
 
 const forbiddenNamesInclusionArray = [
+  VerveText,
+  NothingText,
+  pythonText,
+  dealText,
+  processText,
+  SmoothText,
+  altogeText,
   muchText,
   ghostedText,
   feText,
