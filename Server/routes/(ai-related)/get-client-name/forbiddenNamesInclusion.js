@@ -168,8 +168,14 @@ const dealText = "deal";
 const pythonText = "Python";
 const NothingText = "Nothing";
 const VerveText = "Verve";
+const videoText = "video";
+const ShortText = "Short";
+const oneText = "one";
 
 const forbiddenNamesInclusionArray = [
+  oneText,
+  ShortText,
+  videoText,
   VerveText,
   NothingText,
   pythonText,
