@@ -174,8 +174,28 @@ const oneText = "one";
 const innovativeText = "Innovative";
 const frontEndText = "Front-End";
 const WebText = "Web";
+const cleintText = "cleint";
+const ponctuelText = "ponctuel";
+const productText = "product";
+const gameText = "Game";
+const animatorText = "Animator";
+const channelText = "channel";
+const asapText = "asap";
+const thankeText = "Thanke";
+const editorText = "Editor";
+const expertText = "Expert";
 
 const forbiddenNamesInclusionArray = [
+  expertText,
+  editorText,
+  thankeText,
+  asapText,
+  channelText,
+  animatorText,
+  gameText,
+  productText,
+  ponctuelText,
+  cleintText,
   WebText,
   frontEndText,
   innovativeText,
