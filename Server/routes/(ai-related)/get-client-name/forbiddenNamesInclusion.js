@@ -171,8 +171,14 @@ const VerveText = "Verve";
 const videoText = "video";
 const ShortText = "Short";
 const oneText = "one";
+const innovativeText = "Innovative";
+const frontEndText = "Front-End";
+const WebText = "Web";
 
 const forbiddenNamesInclusionArray = [
+  WebText,
+  frontEndText,
+  innovativeText,
   oneText,
   ShortText,
   videoText,
