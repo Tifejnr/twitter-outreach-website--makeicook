@@ -6,6 +6,7 @@ import getSecretKeys from "../../../envVariables/envVariables.js";
 import isTokenValid from "../../../server-utils/middleware/token-validity/isTokenValid.js";
 import containsOneCharacter from "./utils/doesItContainOneXter.js";
 import removeAndTextFromClienName from "./utils/removeAndTextFromClienName.js";
+import isNameAdecimalNumber from "./utils/isNameAdecimalNumber.js";
 
 const keysObject = getSecretKeys();
 const model = keysObject.huggingFaceModel;
@@ -60,10 +61,13 @@ getClientNameRouter.post("/", async (req, res) => {
       clientNameResponseLowercase
     );
 
+    const isNameDecimal = isNameAdecimalNumber(clientNameResponseLowercase);
+
     if (
       isForbiddenNameIncludedIn ||
       isForbiddenNameEqualtTo ||
-      doesItContainOneXter
+      doesItContainOneXter ||
+      isNameDecimal
     ) {
       const includedForbiddenNames = forbiddenNamesInclusionArray.find(
         (forbiddenName) =>
