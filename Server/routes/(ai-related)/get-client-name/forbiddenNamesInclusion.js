@@ -184,8 +184,18 @@ const asapText = "asap";
 const thankeText = "Thanke";
 const editorText = "Editor";
 const expertText = "Expert";
+const jiraText = "Jira";
+const tickeText = "ticke";
+const ticketText = "ticket";
+const hackersDigitalText = "HackersDigital";
+const RatingText = "Rating";
 
 const forbiddenNamesInclusionArray = [
+  RatingText,
+  hackersDigitalText,
+  ticketText,
+  tickeText,
+  jiraText,
   expertText,
   editorText,
   thankeText,
