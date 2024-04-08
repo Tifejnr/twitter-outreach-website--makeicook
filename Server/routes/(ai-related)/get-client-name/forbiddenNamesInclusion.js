@@ -189,8 +189,13 @@ const tickeText = "ticke";
 const ticketText = "ticket";
 const hackersDigitalText = "HackersDigital";
 const RatingText = "Rating";
+const foignoredText = "foignored";
+const goodText = "good";
 
 const forbiddenNamesInclusionArray = [
+  goodText,
+  dataText,
+  foignoredText,
   RatingText,
   hackersDigitalText,
   ticketText,
