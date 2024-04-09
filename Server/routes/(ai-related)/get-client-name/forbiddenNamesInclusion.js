@@ -191,8 +191,24 @@ const hackersDigitalText = "HackersDigital";
 const RatingText = "Rating";
 const foignoredText = "foignored";
 const goodText = "good";
+const SQLText = "SQL";
+const AdvancedText = "Advanced";
+const MultipleText = "Multiple";
+const AreaText = "Area";
+const ImageText = "Image";
+const AnalysisText = "Analysis";
+const ModelText = "Model";
+const easygoingText = "easygoing";
 
 const forbiddenNamesInclusionArray = [
+  easygoingText,
+  ModelText,
+  AnalysisText,
+  ImageText,
+  AreaText,
+  MultipleText,
+  AdvancedText,
+  SQLText,
   goodText,
   dataText,
   foignoredText,
