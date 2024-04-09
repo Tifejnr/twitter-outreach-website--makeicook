@@ -199,8 +199,12 @@ const ImageText = "Image";
 const AnalysisText = "Analysis";
 const ModelText = "Model";
 const easygoingText = "easygoing";
+const understandingText = "understanding";
+const humanBeingText = "human-being";
 
 const forbiddenNamesInclusionArray = [
+  humanBeingText,
+  understandingText,
   easygoingText,
   ModelText,
   AnalysisText,
