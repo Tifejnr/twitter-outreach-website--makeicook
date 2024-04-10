@@ -203,8 +203,10 @@ const understandingText = "understanding";
 const humanBeingText = "human-being";
 const soundedText = "sounded";
 const evryoneText = "evryone";
+const breatheText = "breathe";
 
 const forbiddenNamesInclusionArray = [
+  breatheText,
   evryoneText,
   soundedText,
   humanBeingText,
