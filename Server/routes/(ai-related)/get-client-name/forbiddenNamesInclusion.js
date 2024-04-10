@@ -201,8 +201,12 @@ const ModelText = "Model";
 const easygoingText = "easygoing";
 const understandingText = "understanding";
 const humanBeingText = "human-being";
+const soundedText = "sounded";
+const evryoneText = "evryone";
 
 const forbiddenNamesInclusionArray = [
+  evryoneText,
+  soundedText,
   humanBeingText,
   understandingText,
   easygoingText,
