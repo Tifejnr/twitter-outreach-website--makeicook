@@ -204,8 +204,14 @@ const humanBeingText = "human-being";
 const soundedText = "sounded";
 const evryoneText = "evryone";
 const breatheText = "breathe";
+const powerbiText = "powerbi";
+const DesignText = "Design";
+const frendlyText = "frendly";
 
 const forbiddenNamesInclusionArray = [
+  frendlyText,
+  DesignText,
+  powerbiText,
   breatheText,
   evryoneText,
   soundedText,
