@@ -207,8 +207,10 @@ const breatheText = "breathe";
 const powerbiText = "powerbi";
 const DesignText = "Design";
 const frendlyText = "frendly";
+const WriterText = "Writer";
 
 const forbiddenNamesInclusionArray = [
+  WriterText,
   frendlyText,
   DesignText,
   powerbiText,
