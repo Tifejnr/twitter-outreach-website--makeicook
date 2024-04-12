@@ -208,8 +208,10 @@ const powerbiText = "powerbi";
 const DesignText = "Design";
 const frendlyText = "frendly";
 const WriterText = "Writer";
+const FixMyStreetText = "FixMyStreet";
 
 const forbiddenNamesInclusionArray = [
+  FixMyStreetText,
   WriterText,
   frendlyText,
   DesignText,
