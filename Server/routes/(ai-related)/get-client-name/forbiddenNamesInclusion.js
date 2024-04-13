@@ -209,8 +209,10 @@ const DesignText = "Design";
 const frendlyText = "frendly";
 const WriterText = "Writer";
 const FixMyStreetText = "FixMyStreet";
+const TheignoredText = "Theignored";
 
 const forbiddenNamesInclusionArray = [
+  TheignoredText,
   FixMyStreetText,
   WriterText,
   frendlyText,
