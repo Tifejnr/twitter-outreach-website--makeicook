@@ -67,7 +67,8 @@ getClientNameRouter.post("/", async (req, res) => {
       isForbiddenNameIncludedIn ||
       isForbiddenNameEqualtTo ||
       doesItContainOneXter ||
-      isNameDecimal
+      isNameDecimal ||
+      clientNameResponse.includes("ignored")
     ) {
       const includedForbiddenNames = forbiddenNamesInclusionArray.find(
         (forbiddenName) =>
