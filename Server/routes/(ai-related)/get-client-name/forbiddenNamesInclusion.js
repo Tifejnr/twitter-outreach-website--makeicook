@@ -212,8 +212,14 @@ const FixMyStreetText = "FixMyStreet";
 const TheignoredText = "Theignored";
 const quickText = "quick";
 const urgentText = "urgent";
+const wordsText = "words";
+const wordText = "word";
+const behaviourText = "behaviour";
 
 const forbiddenNamesInclusionArray = [
+  behaviourText,
+  wordText,
+  wordsText,
   urgentText,
   quickText,
   TheignoredText,
