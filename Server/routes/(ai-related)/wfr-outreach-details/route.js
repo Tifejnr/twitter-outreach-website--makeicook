@@ -4,10 +4,10 @@ const sheets = google.sheets("v4");
 import credentials from "./credentials.json" assert { type: "json" }; // Replace with the actual path to your credentials file
 import isTokenValid from "../../../server-utils/middleware/token-validity/isTokenValid.js";
 
-const wfrToolKitInstagramSpreadsheetId =
-  "13MvuAWr76SPmvJ9mPu5OgRW8GeyDe9SHZyaqQTS9kTU";
-const wfrToolKitTwitterSpreadsheetId =
-  "1XUJxi2EPmq17kZgKW6A3elhpFqQWB_HHT_MEW5WGAGk";
+// const wfrToolKitInstagramSpreadsheetId =
+//   "13MvuAWr76SPmvJ9mPu5OgRW8GeyDe9SHZyaqQTS9kTU";
+// const wfrToolKitTwitterSpreadsheetId =
+//   "1XUJxi2EPmq17kZgKW6A3elhpFqQWB_HHT_MEW5WGAGk";
 
 // Set up OAuth2 authentication
 const auth = new google.auth.GoogleAuth({
@@ -28,60 +28,120 @@ wfrOutreachRecordingRouter.post("/", async (req, res) => {
   // if (resultOfTokenValidation.invalidToken)
   //   return res.json({ invalidToken: true });
 
-  const { paramToDecide } = bodyRequest;
+  const { paramToDecide, paramsToAddToSheet } = bodyRequest;
 
-  const { username, columnLetter, spreadsheetId } = paramToDecide;
+  // for adding usernames to sheet
 
-  // let spreadsheetId;
+  if (paramToDecide) {
+    const { username, columnLetter, spreadsheetId } = paramToDecide;
+    try {
+      const sheetsAPI = sheets.spreadsheets.values;
 
-  try {
-    const sheetsAPI = sheets.spreadsheets.values;
-    // if (fromTwitterInbox || fromTwitterCommentReply) {
-    //   spreadsheetId = wfrToolKitTwitterSpreadsheetId;
-    // } else {
-    //   spreadsheetId = wfrToolKitInstagramSpreadsheetId;
-    // }
+      const sheetName = "Sheet1";
 
-    const sheetName = "Sheet1";
-    // let columnLetter = "A"; // Specify the column letter (e.g., "A" for column A)
+      // Find the last row with data in the specified column
+      const resultResponse = await sheetsAPI.get({
+        auth,
+        spreadsheetId,
+        range: `${sheetName}!${columnLetter}:${columnLetter}`,
+      });
 
-    //Determin column to go based on action
-    // if (action == actionIdentifierObj.isEmailList) {
-    //   columnLetter = "C";
-    // } else if (action == actionIdentifierObj.isRepliedList) {
-    //   columnLetter = fromTwitterCommentReply ? "D" : "B";
-    // } else {
-    //   columnLetter = fromTwitterCommentReply ? "C" : "A";
-    // }
+      const values = resultResponse.data.values;
+      const lastRowIndex = values ? values.length : 0;
 
-    // Find the last row with data in the specified column
-    const resultResponse = await sheetsAPI.get({
-      auth,
+      // Calculate the new cell address at the bottom of the column
+      const range = `${sheetName}!${columnLetter}${lastRowIndex + 1}`;
+
+      // Append the new value to the calculated cell address
+      // Append the new value to the calculated cell address
+      const result = await sheetsAPI.update({
+        auth,
+        spreadsheetId,
+        range,
+        valueInputOption: "RAW",
+        requestBody: { values: [[username]] }, // Use requestBody instead of resource
+      });
+
+      if (result.status == 200) return res.json({ added: true });
+    } catch (error) {
+      console.error("Error appending cell value:", error);
+
+      res.json({ error });
+    }
+  }
+
+  if (paramsToAddToSheet) {
+    const {
+      teamName,
+      sportyTeamName,
       spreadsheetId,
-      range: `${sheetName}!${columnLetter}:${columnLetter}`,
-    });
+      rawTeamNamecolumnLetter,
+      sportyTeamNamecolumnLetter,
+    } = paramsToAddToSheet;
 
-    const values = resultResponse.data.values;
-    const lastRowIndex = values ? values.length : 0;
+    try {
+      const sheetsAPI = sheets.spreadsheets.values;
 
-    // Calculate the new cell address at the bottom of the column
-    const range = `${sheetName}!${columnLetter}${lastRowIndex + 1}`;
+      const sheetName = "Sheet1";
 
-    // Append the new value to the calculated cell address
-    // Append the new value to the calculated cell address
-    const result = await sheetsAPI.update({
-      auth,
-      spreadsheetId,
-      range,
-      valueInputOption: "RAW",
-      requestBody: { values: [[username]] }, // Use requestBody instead of resource
-    });
+      // Find the last row with data in the with raw team name column letter
+      const rawTeamAddedresultResponse = await sheetsAPI.get({
+        auth,
+        spreadsheetId,
+        range: `${sheetName}!${rawTeamNamecolumnLetter}:${rawTeamNamecolumnLetter}`,
+      });
 
-    if (result.status == 200) return res.json({ added: true });
-  } catch (error) {
-    console.error("Error appending cell value:", error);
+      const values = rawTeamAddedresultResponse.data.values;
+      const lastRowIndex = values ? values.length : 0;
 
-    res.json({ error });
+      // Calculate the new cell address at the bottom of the column
+      const range = `${sheetName}!${rawTeamNamecolumnLetter}${
+        lastRowIndex + 1
+      }`;
+
+      // Append the new value to the calculated cell address
+      const rawTeamAddedresult = await sheetsAPI.update({
+        auth,
+        spreadsheetId,
+        range,
+        valueInputOption: "RAW",
+        requestBody: { values: [[teamName]] }, // Use requestBody instead of resource
+      });
+
+      // Find the last row with data in the with sporty team name column letter
+      const sportyTeamAddedresultResponse = await sheetsAPI.get({
+        auth,
+        spreadsheetId,
+        range: `${sheetName}!${sportyTeamNamecolumnLetter}:${sportyTeamNamecolumnLetter}`,
+      });
+
+      const valuesSporty = sportyTeamAddedresultResponse.data.values;
+      const lastRowIndexSporty = valuesSporty ? valuesSporty.length : 0;
+
+      // Calculate the new cell address at the bottom of the column
+      const rangeSporty = `${sheetName}!${sportyTeamNamecolumnLetter}${
+        lastRowIndexSporty + 1
+      }`;
+
+      // Append the new value to the calculated cell address
+      const sportyTeamAddedresult = await sheetsAPI.update({
+        auth,
+        spreadsheetId,
+        range: rangeSporty,
+        valueInputOption: "RAW",
+        requestBody: { values: [[sportyTeamName]] }, // Use requestBody instead of resource
+      });
+
+      if (
+        rawTeamAddedresult.status == 200 &&
+        sportyTeamAddedresult.status === 200
+      )
+        return res.json({ added: true });
+    } catch (error) {
+      console.error("Error appending cell value:", error);
+
+      res.json({ error });
+    }
   }
 });
 

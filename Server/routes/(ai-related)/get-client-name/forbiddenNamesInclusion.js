@@ -215,8 +215,18 @@ const urgentText = "urgent";
 const wordsText = "words";
 const wordText = "word";
 const behaviourText = "behaviour";
+const herText = "her";
+const linkedinText = "linkedin";
+const profileText = "profile";
+const fakeText = "fake";
+const nameText = "name";
 
 const forbiddenNamesInclusionArray = [
+  nameText,
+  fakeText,
+  profileText,
+  linkedinText,
+  herText,
   behaviourText,
   wordText,
   wordsText,
