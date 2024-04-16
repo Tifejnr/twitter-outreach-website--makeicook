@@ -1,7 +1,5 @@
-export default function removeAndTextFromClientName(phrase) {
-  // Use a regular expression to replace " and " with a single space
-  // The \b ensures that "and" is matched only as a whole word
-  // The g flag ensures that all occurrences of " and " are replaced
+function removeAndTextFromClientName(phrase) {
+  let phrase = phrase.trim();
   let phraseAndRemoved = phrase.replace(/\band\b|\b&\b/g, "");
   return phraseAndRemoved;
 }
