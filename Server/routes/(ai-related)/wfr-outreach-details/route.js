@@ -4,11 +4,6 @@ const sheets = google.sheets("v4");
 import credentials from "./credentials.json" assert { type: "json" }; // Replace with the actual path to your credentials file
 import isTokenValid from "../../../server-utils/middleware/token-validity/isTokenValid.js";
 
-// const wfrToolKitInstagramSpreadsheetId =
-//   "13MvuAWr76SPmvJ9mPu5OgRW8GeyDe9SHZyaqQTS9kTU";
-// const wfrToolKitTwitterSpreadsheetId =
-//   "1XUJxi2EPmq17kZgKW6A3elhpFqQWB_HHT_MEW5WGAGk";
-
 // Set up OAuth2 authentication
 const auth = new google.auth.GoogleAuth({
   credentials,
@@ -33,6 +28,7 @@ wfrOutreachRecordingRouter.post("/", async (req, res) => {
   // for adding usernames to sheet
 
   if (paramToDecide) {
+    console.log("paramToDecide", paramToDecide);
     const { username, columnLetter, spreadsheetId } = paramToDecide;
     try {
       const sheetsAPI = sheets.spreadsheets.values;
