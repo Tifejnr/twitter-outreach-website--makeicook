@@ -42,6 +42,7 @@ getClientNameRouter.post("/", async (req, res) => {
 
     let clientNameResponseRaw = result.answer;
     let clientNameResponse = removeAndTextFromClienName(clientNameResponseRaw);
+    clientNameResponse = clientNameResponse.replace(/\s{2,}/g, " ");
 
     const clientNameResponseLowercase = clientNameResponse.toLowerCase();
 

@@ -220,8 +220,12 @@ const linkedinText = "linkedin";
 const profileText = "profile";
 const fakeText = "fake";
 const nameText = "name";
+const alsoText = "Also";
+const availableText = "Available";
 
 const forbiddenNamesInclusionArray = [
+  availableText,
+  alsoText,
   nameText,
   fakeText,
   profileText,
