@@ -32,7 +32,7 @@ getClientNameRouter.post("/", async (req, res) => {
 
   console.log("prompt oooo", prompt);
 
-  if (prompt == "") {
+  if (prompt == undefined) {
     return res.json({ clientNameResponse: "Hi there" });
   }
 
