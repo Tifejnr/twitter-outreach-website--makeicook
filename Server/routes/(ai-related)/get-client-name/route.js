@@ -13,7 +13,7 @@ const model = keysObject.huggingFaceModel;
 const HF_TOKEN = keysObject.HF_TOKEN;
 const hf = new HfInference(HF_TOKEN);
 
-const getClientNamePromptHeading = `What first one word is a real human name?`;
+const getClientNamePromptHeading = `What first one word sounds like a human name?`;
 
 const getClientNameRouter = express.Router();
 
@@ -30,7 +30,6 @@ getClientNameRouter.post("/", async (req, res) => {
 
   const { prompt } = bodyRequest;
 
-  console.log("prompt", prompt.trim());
   try {
     const result = await hf.questionAnswering({
       model: model,
@@ -38,7 +37,7 @@ getClientNameRouter.post("/", async (req, res) => {
         //instruction for what to extract
         question: getClientNamePromptHeading,
         //freelancers feedback
-        context: prompt.trim(),
+        context: prompt,
       },
     });
 
