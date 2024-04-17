@@ -29,6 +29,11 @@ getClientNameRouter.post("/", async (req, res) => {
     return res.json({ invalidToken: true });
 
   const { prompt } = bodyRequest;
+
+  if (prompt == "") {
+    return res.json({ clientNameResponse: "Hi there" });
+  }
+
   try {
     const result = await hf.questionAnswering({
       model: model,
@@ -78,7 +83,6 @@ getClientNameRouter.post("/", async (req, res) => {
           )
       );
 
-      console.log("Forbidden name found:", includedForbiddenNames);
       clientNameResponse = "Hi there";
     }
 
