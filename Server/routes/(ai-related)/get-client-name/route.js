@@ -29,6 +29,8 @@ getClientNameRouter.post("/", async (req, res) => {
     return res.json({ invalidToken: true });
 
   const { prompt } = bodyRequest;
+
+  console.log("prompt", prompt);
   try {
     const result = await hf.questionAnswering({
       model: model,
