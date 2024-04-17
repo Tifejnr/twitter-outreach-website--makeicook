@@ -30,7 +30,7 @@ getClientNameRouter.post("/", async (req, res) => {
 
   const { prompt } = bodyRequest;
 
-  console.log("prompt", prompt);
+  console.log("prompt", prompt.trim());
   try {
     const result = await hf.questionAnswering({
       model: model,
@@ -38,7 +38,7 @@ getClientNameRouter.post("/", async (req, res) => {
         //instruction for what to extract
         question: getClientNamePromptHeading,
         //freelancers feedback
-        context: prompt,
+        context: prompt.trim(),
       },
     });
 
