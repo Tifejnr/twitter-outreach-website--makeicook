@@ -30,12 +30,6 @@ getClientNameRouter.post("/", async (req, res) => {
 
   const { prompt } = bodyRequest;
 
-  console.log("prompt oooo", prompt);
-
-  if (prompt == undefined) {
-    return res.json({ clientNameResponse: "Hi there" });
-  }
-
   try {
     const result = await hf.questionAnswering({
       model: model,
