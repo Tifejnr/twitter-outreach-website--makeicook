@@ -30,6 +30,8 @@ getClientNameRouter.post("/", async (req, res) => {
 
   const { prompt } = bodyRequest;
 
+  console.log("prompt", prompt);
+
   if (prompt == "") {
     return res.json({ clientNameResponse: "Hi there" });
   }
