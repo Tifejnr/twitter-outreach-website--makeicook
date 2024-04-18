@@ -28,7 +28,6 @@ wfrOutreachRecordingRouter.post("/", async (req, res) => {
   // for adding usernames to sheet
 
   if (paramToDecide) {
-    console.log("paramToDecide", paramToDecide);
     const { username, columnLetter, spreadsheetId } = paramToDecide;
     try {
       const sheetsAPI = sheets.spreadsheets.values;
