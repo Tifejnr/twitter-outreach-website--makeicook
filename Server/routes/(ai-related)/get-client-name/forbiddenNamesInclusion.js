@@ -222,8 +222,10 @@ const fakeText = "fake";
 const nameText = "name";
 const alsoText = "Also";
 const availableText = "Available";
+const mongoDBText = "mongoDB";
 
 const forbiddenNamesInclusionArray = [
+  mongoDBText,
   availableText,
   alsoText,
   nameText,
