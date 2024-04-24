@@ -223,8 +223,18 @@ const nameText = "name";
 const alsoText = "Also";
 const availableText = "Available";
 const mongoDBText = "mongoDB";
+const exceptionalText = "exceptional";
+const personalityText = "personality";
+const appreciateText = "Appreciate";
+const teamText = "team";
+const partText = "part";
 
 const forbiddenNamesInclusionArray = [
+  partText,
+  appreciateText,
+  teamText,
+  personalityText,
+  exceptionalText,
   mongoDBText,
   availableText,
   alsoText,
