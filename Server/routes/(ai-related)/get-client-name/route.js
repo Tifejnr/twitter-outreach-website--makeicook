@@ -7,6 +7,7 @@ import isTokenValid from "../../../server-utils/middleware/token-validity/isToke
 import containsOneCharacter from "./utils/doesItContainOneXter.js";
 import removeAndTextFromClienName from "./utils/removeAndTextFromClienName.js";
 import isNameAdecimalNumber from "./utils/isNameAdecimalNumber.js";
+import splitTextIntoTwoParts from "./utils/splitTextsIntoTwoEqualParts.js";
 
 const keysObject = getSecretKeys();
 const model = keysObject.huggingFaceModel;

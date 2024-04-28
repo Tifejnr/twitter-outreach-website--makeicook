@@ -1,4 +1,4 @@
-function splitTextIntoTwoParts(text) {
+export default function splitTextIntoTwoParts(text) {
   // Split the text into individual words
   let words = text.split(/\s+/); // Split by whitespace to get words
 
