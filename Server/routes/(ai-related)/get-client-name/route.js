@@ -59,6 +59,8 @@ getClientNameRouter.post("/", async (req, res) => {
 
       let clientNameResponseRaw = result.answer;
 
+      console.log("clientNameResponseRaw", clientNameResponseRaw);
+
       if (clientNameResponseRaw == ".") {
         const result = await hf.questionAnswering({
           model: model,
@@ -71,6 +73,8 @@ getClientNameRouter.post("/", async (req, res) => {
         });
 
         let clientNameResponseRaw = result.answer;
+
+        console.log("clientNameResponseRaw", clientNameResponseRaw);
 
         return res.json({ clientNameResponse: clientNameResponseRaw });
       }
