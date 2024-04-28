@@ -29,7 +29,10 @@ getClientNameRouter.post("/", async (req, res) => {
   if (resultOfTokenValidation.invalidToken)
     return res.json({ invalidToken: true });
 
-  const { prompt } = bodyRequest;
+  let { prompt } = bodyRequest;
+  prompt = `allFeedbacks 
+  ${prompt}
+  `;
 
   const { promptPart1, promptPart2 } = splitTextIntoTwoParts(prompt);
 
