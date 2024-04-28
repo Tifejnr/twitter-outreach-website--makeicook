@@ -30,6 +30,8 @@ getClientNameRouter.post("/", async (req, res) => {
 
   const { prompt } = bodyRequest;
 
+  const { promptPart1, promptPart2 } = splitTextIntoTwoParts(prompt);
+
   try {
     const result = await hf.questionAnswering({
       model: model,
@@ -42,6 +44,40 @@ getClientNameRouter.post("/", async (req, res) => {
     });
 
     let clientNameResponseRaw = result.answer;
+
+    //check if it's because prompt is too long
+    if (clientNameResponseRaw == ".") {
+      const result = await hf.questionAnswering({
+        model: model,
+        inputs: {
+          //instruction for what to extract
+          question: getClientNamePromptHeading,
+          //freelancers feedback
+          context: promptPart1,
+        },
+      });
+
+      let clientNameResponseRaw = result.answer;
+
+      if (clientNameResponseRaw == ".") {
+        const result = await hf.questionAnswering({
+          model: model,
+          inputs: {
+            //instruction for what to extract
+            question: getClientNamePromptHeading,
+            //freelancers feedback
+            context: promptPart2,
+          },
+        });
+
+        let clientNameResponseRaw = result.answer;
+
+        return res.json({ clientNameResponse: clientNameResponseRaw });
+      }
+
+      return res.json({ clientNameResponse: clientNameResponseRaw });
+    }
+
     let clientNameResponse = removeAndTextFromClienName(clientNameResponseRaw);
     clientNameResponse = clientNameResponse.replace(/\s{2,}/g, " ");
 
