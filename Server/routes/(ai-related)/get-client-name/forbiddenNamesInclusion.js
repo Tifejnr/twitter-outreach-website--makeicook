@@ -228,8 +228,10 @@ const personalityText = "personality";
 const appreciateText = "Appreciate";
 const teamText = "team";
 const partText = "part";
+const allFeedbacksText = "allFeedbacks";
 
 const forbiddenNamesInclusionArray = [
+  allFeedbacksText,
   partText,
   appreciateText,
   teamText,
