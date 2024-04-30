@@ -39,11 +39,13 @@ const limiter = exppressLimiter.limit;
 
 const limiterOptions = {
   windows: 5000,
-  max: 3,
+  max: 2,
 };
 
+const rateLimitRoute = limiter(limiterOptions);
+
 //limiter on routes
-app.use(limiter(limiterOptions));
+// app.use(limiter(limiterOptions));
 
 app.use(cors(corsOptions));
 app.use(express.json());
@@ -54,7 +56,7 @@ app.use("/api/users", signUpRouter);
 app.use("/api/auth", signInRouter);
 app.use("/api/forgot-password", forgotPasswordRouter);
 app.use("/api/forgot-password/reset-password", resetPasswordRouter);
-app.use("/api/get-client-name", getClientNameRouter);
+app.use("/api/get-client-name", rateLimitRoute, getClientNameRouter);
 app.use("/api/is-account-authorized", isAccountAuthorizedRouter);
 app.use("/is-account-authorized", isAccountAuthorizedRouter);
 app.use("/api/wfr-outreach-details", wfrOutreachRecordingRouter);
