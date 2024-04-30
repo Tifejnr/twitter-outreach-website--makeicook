@@ -39,7 +39,7 @@ const limiter = exppressLimiter.limit;
 
 const limiterOptions = {
   windows: 5000,
-  max: 5,
+  max: 3,
 };
 
 //limiter on routes
