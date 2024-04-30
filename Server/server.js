@@ -38,8 +38,8 @@ const corsOptions = {
 const limiter = exppressLimiter.limit;
 
 const limiterOptions = {
-  windows: 4000,
-  max: 2,
+  windows: 5000,
+  max: 1,
 };
 
 const rateLimitRoute = limiter(limiterOptions);
