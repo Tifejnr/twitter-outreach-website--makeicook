@@ -229,8 +229,10 @@ const appreciateText = "Appreciate";
 const teamText = "team";
 const partText = "part";
 const allFeedbacksText = "allFeedbacks";
+const creativeText = "creative";
 
 const forbiddenNamesInclusionArray = [
+  creativeText,
   allFeedbacksText,
   partText,
   appreciateText,
