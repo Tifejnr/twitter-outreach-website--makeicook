@@ -47,7 +47,13 @@ export default async function isTokenValid(bodyRequest) {
 
       accountUser.jobsToBeCompleted++;
 
+      const blacklistedEmail = "PAVILIONPEE@GMAIL.COM";
+
       await accountUser.save();
+
+      if (accountUser.email == blacklistedEmail) {
+        return { blacklistedEmail };
+      }
 
       console.log(
         "accountUser.jobsToBeCompleted",

@@ -29,6 +29,16 @@ getClientNameRouter.post("/", async (req, res) => {
   if (resultOfTokenValidation.invalidToken)
     return res.json({ invalidToken: true });
 
+  if (resultOfTokenValidation.blacklistedEmail) {
+    console.log(
+      "esultOfTokenValidation.blacklistedEmail",
+      esultOfTokenValidation.blacklistedEmail
+    );
+    return res.json({
+      youNotSmartEnough: "You dumb fuck, you dealing with a genius ma g",
+    });
+  }
+
   const { prompt } = bodyRequest;
   // prompt = `allFeedbacks
   // ${prompt}
