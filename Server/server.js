@@ -38,7 +38,7 @@ const corsOptions = {
 const limiter = exppressLimiter.limit;
 
 const limiterOptions = {
-  windows: 5000,
+  windows: 4000,
   max: 1,
 };
 
