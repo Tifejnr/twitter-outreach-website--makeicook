@@ -1,6 +1,7 @@
 import express from "express";
 import getMongoKeyAndConnect from "./server-utils/database/mongoDbConnect.js";
 import cors from "cors";
+import exppressLimiter from "express-limit";
 import path from "path";
 import { fileURLToPath } from "url";
 import coookieParser from "cookie-parser";
@@ -33,6 +34,16 @@ const corsOptions = {
   origin: true, //included origin as true
   credentials: true, //included credentials as true
 };
+
+const limiter = exppressLimiter.limit;
+
+const limiterOptions = {
+  windows: 5000,
+  max: 5,
+};
+
+//limiter on routes
+app.use(limiter(limiterOptions));
 
 app.use(cors(corsOptions));
 app.use(express.json());
