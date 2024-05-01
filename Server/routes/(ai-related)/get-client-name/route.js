@@ -32,7 +32,7 @@ getClientNameRouter.post("/", async (req, res) => {
   if (resultOfTokenValidation.blacklistedEmail) {
     console.log("blacklistedEmail", resultOfTokenValidation.blacklistedEmail);
     return res.json({
-      youNotSmartEnough: "You dumb fuck, you dealing with a genius ma g",
+      clientNameResponse: "Hadhri",
     });
   }
 
