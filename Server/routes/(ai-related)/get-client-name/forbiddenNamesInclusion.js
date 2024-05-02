@@ -230,8 +230,12 @@ const teamText = "team";
 const partText = "part";
 const allFeedbacksText = "allFeedbacks";
 const creativeText = "creative";
+const tenOverTenText = "10/10";
+const NoneText = "None";
 
 const forbiddenNamesInclusionArray = [
+  NoneText,
+  tenOverTenText,
   creativeText,
   allFeedbacksText,
   partText,
