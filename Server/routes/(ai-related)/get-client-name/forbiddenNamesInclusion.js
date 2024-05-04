@@ -232,8 +232,22 @@ const allFeedbacksText = "allFeedbacks";
 const creativeText = "creative";
 const tenOverTenText = "10/10";
 const NoneText = "None";
+const displeasureText = "displeasure";
+const gettingText = "getting";
+const wonderText = "wonder";
+const earlierText = "earlier";
+const conversionsText = "conversions";
+const resultsText = "results";
+const resultText = "result";
 
 const forbiddenNamesInclusionArray = [
+  resultText,
+  conversionsText,
+  resultsText,
+  earlierText,
+  wonderText,
+  gettingText,
+  displeasureText,
   NoneText,
   tenOverTenText,
   creativeText,
