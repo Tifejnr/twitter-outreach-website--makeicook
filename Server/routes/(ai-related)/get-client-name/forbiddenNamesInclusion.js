@@ -240,8 +240,10 @@ const conversionsText = "conversions";
 const resultsText = "results";
 const resultText = "result";
 const positiveText = "positive";
+const techText = "Tech";
 
 const forbiddenNamesInclusionArray = [
+  techText,
   positiveText,
   resultText,
   conversionsText,
