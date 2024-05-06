@@ -239,8 +239,10 @@ const earlierText = "earlier";
 const conversionsText = "conversions";
 const resultsText = "results";
 const resultText = "result";
+const positiveText = "positive";
 
 const forbiddenNamesInclusionArray = [
+  positiveText,
   resultText,
   conversionsText,
   resultsText,
