@@ -56,7 +56,7 @@ getClientNameRouter.post("/", async (req, res) => {
     //check if it's because prompt is too long
     if (
       clientNameResponseRaw == "." ||
-      clientNameResponse.includes("ignored")
+      clientNameResponseRaw.includes("ignored")
     ) {
       const result = await hf.questionAnswering({
         model: model,
