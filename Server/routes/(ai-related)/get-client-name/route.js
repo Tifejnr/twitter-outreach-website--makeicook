@@ -8,6 +8,7 @@ import containsOneCharacter from "./utils/doesItContainOneXter.js";
 import removeAndTextFromClienName from "./utils/removeAndTextFromClienName.js";
 import isNameAdecimalNumber from "./utils/isNameAdecimalNumber.js";
 import splitTextIntoTwoParts from "./utils/splitTextsIntoTwoEqualParts.js";
+import removeDuplicateWords from "./utils/removeDublicateWords.js";
 
 const keysObject = getSecretKeys();
 const model = keysObject.huggingFaceModel;
@@ -89,11 +90,14 @@ getClientNameRouter.post("/", async (req, res) => {
         let clientNameResponseRaw = result.answer;
 
         console.log("clientNameResponseRaw", clientNameResponseRaw);
+        const cleanedClientName = removeDuplicateWords(clientNameResponseRaw);
 
-        return res.json({ clientNameResponse: clientNameResponseRaw });
+        return res.json({ clientNameResponse: cleanedClientName });
       }
 
-      return res.json({ clientNameResponse: clientNameResponseRaw });
+      const cleanedClientName = removeDuplicateWords(clientNameResponseRaw);
+
+      return res.json({ clientNameResponse: cleanedClientName });
     }
 
     let clientNameResponse = removeAndTextFromClienName(clientNameResponseRaw);
@@ -136,9 +140,11 @@ getClientNameRouter.post("/", async (req, res) => {
       clientNameResponse = "Hi there";
     }
 
-    console.log("Name", result.answer, clientNameResponse);
+    const cleanedClientName = removeDuplicateWords(clientNameResponse);
 
-    return res.json({ clientNameResponse });
+    console.log("Name", result.answer, cleanedClientName);
+
+    return res.json({ clientNameResponse: cleanedClientName });
   } catch (error) {
     console.log("error,", error);
 
