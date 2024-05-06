@@ -74,7 +74,7 @@ getClientNameRouter.post("/", async (req, res) => {
 
       if (
         clientNameResponseRaw == "." ||
-        clientNameResponse.includes("ignored")
+        clientNameResponseRaw.includes("ignored")
       ) {
         const result = await hf.questionAnswering({
           model: model,
