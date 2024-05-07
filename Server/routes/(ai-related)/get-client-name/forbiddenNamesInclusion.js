@@ -241,8 +241,12 @@ const resultsText = "results";
 const resultText = "result";
 const positiveText = "positive";
 const techText = "Tech";
+const instructionText = "instruction";
+const programmingText = "programming";
 
 const forbiddenNamesInclusionArray = [
+  programmingText,
+  instructionText,
   techText,
   positiveText,
   resultText,
