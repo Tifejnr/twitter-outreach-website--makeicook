@@ -243,8 +243,10 @@ const positiveText = "positive";
 const techText = "Tech";
 const instructionText = "instruction";
 const programmingText = "programming";
+const meCommaText = "me,";
 
 const forbiddenNamesInclusionArray = [
+  meCommaText,
   programmingText,
   instructionText,
   techText,
