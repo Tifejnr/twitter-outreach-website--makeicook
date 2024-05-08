@@ -1,14 +1,11 @@
 import express from "express";
 import { HfInference } from "@huggingface/inference";
-import forbiddenNames from "./forbiddenNames.js";
-import forbiddenNamesInclusionArray from "./forbiddenNamesInclusion.js";
+
 import getSecretKeys from "../../../envVariables/envVariables.js";
 import isTokenValid from "../../../server-utils/middleware/token-validity/isTokenValid.js";
-import containsOneCharacter from "./utils/doesItContainOneXter.js";
-import removeAndTextFromClienName from "./utils/removeAndTextFromClienName.js";
-import isNameAdecimalNumber from "./utils/isNameAdecimalNumber.js";
+
 import splitTextIntoTwoParts from "./utils/splitTextsIntoTwoEqualParts.js";
-import removeDuplicateWords from "./utils/removeDublicateWords.js";
+import processClientNameGotten from "./utils/processClientNameGotten.js";
 
 const keysObject = getSecretKeys();
 const model = keysObject.huggingFaceModel;
@@ -89,60 +86,25 @@ getClientNameRouter.post("/", async (req, res) => {
 
         let clientNameResponseRaw = result.answer;
 
-        console.log("clientNameResponseRaw", clientNameResponseRaw);
-        const cleanedClientName = removeDuplicateWords(clientNameResponseRaw);
+        const cleanedClientName = processClientNameGotten(
+          clientNameResponseRaw
+        );
+
+        console.log("clientNameResponseRaw cleaned", cleanedClientName);
 
         return res.json({ clientNameResponse: cleanedClientName });
       }
 
-      const cleanedClientName = removeDuplicateWords(clientNameResponseRaw);
+      const cleanedClientName = processClientNameGotten(clientNameResponseRaw);
+
+      console.log("clientNameResponseRaw cleaned", cleanedClientName);
 
       return res.json({ clientNameResponse: cleanedClientName });
     }
 
-    let clientNameResponse = removeAndTextFromClienName(clientNameResponseRaw);
-    clientNameResponse = clientNameResponse.replace(/\s{2,}/g, " ");
+    const cleanedClientName = processClientNameGotten(clientNameResponseRaw);
 
-    const clientNameResponseLowercase = clientNameResponse.toLowerCase();
-
-    const isForbiddenNameEqualtTo = forbiddenNames.find(
-      (forbiddenName) =>
-        forbiddenName.toLowerCase() == clientNameResponseLowercase
-    );
-
-    const isForbiddenNameIncludedIn = forbiddenNamesInclusionArray.find(
-      (forbiddenName) =>
-        new RegExp("\\b" + forbiddenName.toLowerCase() + "\\b").test(
-          clientNameResponseLowercase
-        )
-    );
-
-    const doesItContainOneXter = containsOneCharacter(
-      clientNameResponseLowercase
-    );
-
-    const isNameDecimal = isNameAdecimalNumber(clientNameResponseLowercase);
-
-    if (
-      isForbiddenNameIncludedIn ||
-      isForbiddenNameEqualtTo ||
-      doesItContainOneXter ||
-      isNameDecimal ||
-      clientNameResponse.includes("ignored")
-    ) {
-      const includedForbiddenNames = forbiddenNamesInclusionArray.find(
-        (forbiddenName) =>
-          new RegExp("\\b" + forbiddenName.toLowerCase() + "\\b").test(
-            clientNameResponseLowercase
-          )
-      );
-
-      clientNameResponse = "Hi there";
-    }
-
-    const cleanedClientName = removeDuplicateWords(clientNameResponse);
-
-    console.log("Name", result.answer, cleanedClientName);
+    console.log("cleaned Name", result.answer, cleanedClientName);
 
     return res.json({ clientNameResponse: cleanedClientName });
   } catch (error) {
