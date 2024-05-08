@@ -244,8 +244,10 @@ const techText = "Tech";
 const instructionText = "instruction";
 const programmingText = "programming";
 const meCommaText = "me,";
+const clientDotText = "client.";
 
 const forbiddenNamesInclusionArray = [
+  clientDotText,
   meCommaText,
   programmingText,
   instructionText,
