@@ -245,8 +245,10 @@ const instructionText = "instruction";
 const programmingText = "programming";
 const meCommaText = "me,";
 const clientDotText = "client.";
+const tikTokText = "TikTok";
 
 const forbiddenNamesInclusionArray = [
+  tikTokText,
   clientDotText,
   meCommaText,
   programmingText,
