@@ -246,8 +246,10 @@ const programmingText = "programming";
 const meCommaText = "me,";
 const clientDotText = "client.";
 const tikTokText = "TikTok";
+const sheText = "She";
 
 const forbiddenNamesInclusionArray = [
+  sheText,
   tikTokText,
   clientDotText,
   meCommaText,
