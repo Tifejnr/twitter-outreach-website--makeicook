@@ -248,8 +248,14 @@ const clientDotText = "client.";
 const tikTokText = "TikTok";
 const sheText = "She";
 const shoutedText = "shouted";
+const waitText = "wait";
+const itText = "It";
+const iWillShortcutText = "I'll";
 
 const forbiddenNamesInclusionArray = [
+  iWillShortcutText,
+  itText,
+  waitText,
   shoutedText,
   sheText,
   tikTokText,

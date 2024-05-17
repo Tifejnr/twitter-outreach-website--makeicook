@@ -14,6 +14,11 @@ export default function splitTextIntoThreeParts(text) {
   let part2 = words.slice(firstSplitPoint, secondSplitPoint).join(" ");
   let part3 = words.slice(secondSplitPoint).join(" ");
 
+  // Replace empty parts with "Hi there"
+  if (!part1) part1 = "Hi there";
+  if (!part2) part2 = "Hi there";
+  if (!part3) part3 = "Hi there";
+
   // Return the three parts
   return {
     part1,
