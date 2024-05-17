@@ -251,8 +251,12 @@ const shoutedText = "shouted";
 const waitText = "wait";
 const itText = "It";
 const iWillShortcutText = "I'll";
+const curveText = "Curve";
+const recomendText = "recomend";
 
 const forbiddenNamesInclusionArray = [
+  recomendText,
+  curveText,
   iWillShortcutText,
   itText,
   waitText,
