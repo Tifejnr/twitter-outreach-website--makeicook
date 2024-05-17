@@ -4,7 +4,7 @@ import { HfInference } from "@huggingface/inference";
 import getSecretKeys from "../../../envVariables/envVariables.js";
 import isTokenValid from "../../../server-utils/middleware/token-validity/isTokenValid.js";
 
-import splitTextIntoTwoParts from "./utils/splitTextsIntoTwoEqualParts.js";
+import splitTextIntoThreeParts from "./utils/splitTextsIntoThreeEqualParts.js";
 import processClientNameGotten from "./utils/processClientNameGotten.js";
 
 const keysObject = getSecretKeys();
@@ -36,7 +36,7 @@ getClientNameRouter.post("/", async (req, res) => {
 
   const { prompt } = bodyRequest;
 
-  const { promptPart1, promptPart2 } = splitTextIntoTwoParts(prompt);
+  const { part1, part2, part3 } = splitTextIntoThreeParts(prompt);
 
   try {
     // const result = await hf.questionAnswering({
@@ -62,7 +62,7 @@ getClientNameRouter.post("/", async (req, res) => {
         //instruction for what to extract
         question: getClientNamePromptHeading,
         //freelancers feedback
-        context: promptPart1,
+        context: part1,
       },
     });
 
@@ -84,7 +84,7 @@ getClientNameRouter.post("/", async (req, res) => {
           //instruction for what to extract
           question: getClientNamePromptHeading,
           //freelancers feedback
-          context: promptPart2,
+          context: part2,
         },
       });
 
@@ -94,7 +94,40 @@ getClientNameRouter.post("/", async (req, res) => {
 
       console.log("2nd part cleaned", clientNameResponseRaw, cleanedClientName);
 
-      return res.json({ clientNameResponse: cleanedClientName });
+      if (
+        cleanedClientName == "Hi there" ||
+        clientNameResponseRaw == "." ||
+        clientNameResponseRaw.includes("ignored")
+      ) {
+        //second part check
+        const result = await hf.questionAnswering({
+          model: model,
+          inputs: {
+            //instruction for what to extract
+            question: getClientNamePromptHeading,
+            //freelancers feedback
+            context: part3,
+          },
+        });
+
+        let clientNameResponseRaw = result.answer;
+
+        const cleanedClientName = processClientNameGotten(
+          clientNameResponseRaw
+        );
+
+        console.log(
+          "3rd part cleaned",
+          clientNameResponseRaw,
+          cleanedClientName
+        );
+
+        return res.json({ clientNameResponse: cleanedClientName });
+      } else {
+        return res.json({ clientNameResponse: cleanedClientName });
+      }
+
+      // return res.json({ clientNameResponse: cleanedClientName });
     } else {
       return res.json({ clientNameResponse: cleanedClientName });
     }
