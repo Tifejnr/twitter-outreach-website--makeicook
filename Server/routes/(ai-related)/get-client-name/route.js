@@ -131,14 +131,6 @@ getClientNameRouter.post("/", async (req, res) => {
     } else {
       return res.json({ clientNameResponse: cleanedClientName });
     }
-
-    // }
-
-    // const cleanedClientName = processClientNameGotten(clientNameResponseRaw);
-
-    // console.log("cleaned Name", result.answer, cleanedClientName);
-
-    // return res.json({ clientNameResponse: cleanedClientName });
   } catch (error) {
     console.log("error,", error);
 
