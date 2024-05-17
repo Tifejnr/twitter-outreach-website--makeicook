@@ -39,74 +39,73 @@ getClientNameRouter.post("/", async (req, res) => {
   const { promptPart1, promptPart2 } = splitTextIntoTwoParts(prompt);
 
   try {
+    // const result = await hf.questionAnswering({
+    //   model: model,
+    //   inputs: {
+    //     //instruction for what to extract
+    //     question: getClientNamePromptHeading,
+    //     //freelancers feedback
+    //     context: prompt,
+    //   },
+    // });
+
+    // let clientNameResponseRaw = result.answer;
+
+    //check if it's because prompt is too long
+    // if (
+    //   clientNameResponseRaw == "." ||
+    //   clientNameResponseRaw.includes("ignored")
+    // ) {
     const result = await hf.questionAnswering({
       model: model,
       inputs: {
         //instruction for what to extract
         question: getClientNamePromptHeading,
         //freelancers feedback
-        context: prompt,
+        context: promptPart1,
       },
     });
 
     let clientNameResponseRaw = result.answer;
 
-    //check if it's because prompt is too long
+    const cleanedClientName = processClientNameGotten(clientNameResponseRaw);
+
+    console.log("first part cleaned", clientNameResponseRaw, cleanedClientName);
+
     if (
+      cleanedClientName == "Hi there" ||
       clientNameResponseRaw == "." ||
       clientNameResponseRaw.includes("ignored")
     ) {
+      //second part check
       const result = await hf.questionAnswering({
         model: model,
         inputs: {
           //instruction for what to extract
           question: getClientNamePromptHeading,
           //freelancers feedback
-          context: promptPart1,
+          context: promptPart2,
         },
       });
 
       let clientNameResponseRaw = result.answer;
 
-      console.log("clientNameResponseRaw", clientNameResponseRaw);
-
-      if (
-        clientNameResponseRaw == "." ||
-        clientNameResponseRaw.includes("ignored")
-      ) {
-        const result = await hf.questionAnswering({
-          model: model,
-          inputs: {
-            //instruction for what to extract
-            question: getClientNamePromptHeading,
-            //freelancers feedback
-            context: promptPart2,
-          },
-        });
-
-        let clientNameResponseRaw = result.answer;
-
-        const cleanedClientName = processClientNameGotten(
-          clientNameResponseRaw
-        );
-
-        console.log("clientNameResponseRaw cleaned", cleanedClientName);
-
-        return res.json({ clientNameResponse: cleanedClientName });
-      }
-
       const cleanedClientName = processClientNameGotten(clientNameResponseRaw);
 
-      console.log("clientNameResponseRaw cleaned", cleanedClientName);
+      console.log("2nd part cleaned", clientNameResponseRaw, cleanedClientName);
 
+      return res.json({ clientNameResponse: cleanedClientName });
+    } else {
       return res.json({ clientNameResponse: cleanedClientName });
     }
 
-    const cleanedClientName = processClientNameGotten(clientNameResponseRaw);
+    // }
 
-    console.log("cleaned Name", result.answer, cleanedClientName);
+    // const cleanedClientName = processClientNameGotten(clientNameResponseRaw);
 
-    return res.json({ clientNameResponse: cleanedClientName });
+    // console.log("cleaned Name", result.answer, cleanedClientName);
+
+    // return res.json({ clientNameResponse: cleanedClientName });
   } catch (error) {
     console.log("error,", error);
 
