@@ -253,8 +253,10 @@ const itText = "It";
 const iWillShortcutText = "I'll";
 const curveText = "Curve";
 const recomendText = "recomend";
+const manText = "man";
 
 const forbiddenNamesInclusionArray = [
+  manText,
   recomendText,
   curveText,
   iWillShortcutText,
