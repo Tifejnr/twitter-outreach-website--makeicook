@@ -258,8 +258,12 @@ const futureText = "future";
 const doubleExcalamationText = "!!";
 const collaborateText = "collaborate";
 const developmentText = "development";
+const cooperationDotText = "cooperation.";
+const cooperationText = "cooperation";
 
 const forbiddenNamesInclusionArray = [
+  cooperationText,
+  cooperationDotText,
   developmentText,
   collaborateText,
   doubleExcalamationText,
