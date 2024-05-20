@@ -255,8 +255,14 @@ const curveText = "Curve";
 const recomendText = "recomend";
 const manText = "man";
 const futureText = "future";
+const doubleExcalamationText = "!!";
+const collaborateText = "collaborate";
+const developmentText = "development";
 
 const forbiddenNamesInclusionArray = [
+  developmentText,
+  collaborateText,
+  doubleExcalamationText,
   futureText,
   manText,
   recomendText,
