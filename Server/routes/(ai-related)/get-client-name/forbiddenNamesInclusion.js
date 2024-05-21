@@ -260,8 +260,14 @@ const collaborateText = "collaborate";
 const developmentText = "development";
 const cooperationDotText = "cooperation.";
 const cooperationText = "cooperation";
+const WSNText = "WSN";
+const pleasantText = "pleasant";
+const starsSymbolText = "🌟🌟🌟🌟🌟";
 
 const forbiddenNamesInclusionArray = [
+  pleasantText,
+  starsSymbolText,
+  WSNText,
   cooperationText,
   cooperationDotText,
   developmentText,
