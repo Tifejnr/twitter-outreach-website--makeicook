@@ -262,9 +262,25 @@ const cooperationDotText = "cooperation.";
 const cooperationText = "cooperation";
 const WSNText = "WSN";
 const pleasantText = "pleasant";
+const interfereText = "interfere";
 const starsSymbolText = "🌟🌟🌟🌟🌟";
+const requirementsThumbsText = "requirements👍";
+const savvyText = "Savvy";
+const programmersText = "Programmers";
+const postingText = "posting";
+const frequentText = "frequent";
+const messagesText = "messages";
+const askingText = "asking";
 
 const forbiddenNamesInclusionArray = [
+  askingText,
+  messagesText,
+  frequentText,
+  postingText,
+  programmersText,
+  savvyText,
+  requirementsThumbsText,
+  interfereText,
   pleasantText,
   starsSymbolText,
   WSNText,
