@@ -276,8 +276,12 @@ const wentText = "went";
 const smoothlyText = "smoothly";
 const runText = "run";
 const enjoyedText = "enjoyed";
+const StudioText = "Studio";
+const hivesourcedText = "Hivesourced";
 
 const forbiddenNamesInclusionArray = [
+  hivesourcedText,
+  StudioText,
   enjoyedText,
   runText,
   smoothlyText,
