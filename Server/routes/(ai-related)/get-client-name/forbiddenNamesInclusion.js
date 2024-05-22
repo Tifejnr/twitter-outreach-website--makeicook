@@ -271,8 +271,18 @@ const postingText = "posting";
 const frequentText = "frequent";
 const messagesText = "messages";
 const askingText = "asking";
+const codersText = "Coders";
+const wentText = "went";
+const smoothlyText = "smoothly";
+const runText = "run";
+const enjoyedText = "enjoyed";
 
 const forbiddenNamesInclusionArray = [
+  enjoyedText,
+  runText,
+  smoothlyText,
+  wentText,
+  codersText,
   askingText,
   messagesText,
   frequentText,

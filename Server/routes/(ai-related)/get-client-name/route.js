@@ -6,6 +6,7 @@ import isTokenValid from "../../../server-utils/middleware/token-validity/isToke
 
 import splitTextIntoThreeParts from "./utils/splitTextsIntoThreeEqualParts.js";
 import processClientNameGotten from "./utils/processClientNameGotten.js";
+import getTotalWordsLength from "./utils/getTotalWordsLength.js";
 
 const keysObject = getSecretKeys();
 const model = keysObject.huggingFaceModel;
@@ -38,18 +39,33 @@ getClientNameRouter.post("/", async (req, res) => {
 
   const { part1, part2, part3 } = splitTextIntoThreeParts(prompt);
 
-  try {
-    // const result = await hf.questionAnswering({
-    //   model: model,
-    //   inputs: {
-    //     //instruction for what to extract
-    //     question: getClientNamePromptHeading,
-    //     //freelancers feedback
-    //     context: prompt,
-    //   },
-    // });
+  const wordsLengthTotal = getTotalWordsLength(prompt);
 
-    // let clientNameResponseRaw = result.answer;
+  try {
+    //if it's a short prompt
+    if (wordsLengthTotal < 30) {
+      const result = await hf.questionAnswering({
+        model: model,
+        inputs: {
+          //instruction for what to extract
+          question: getClientNamePromptHeading,
+          //freelancers feedback
+          context: prompt,
+        },
+      });
+
+      let clientNameResponseRaw = result.answer;
+
+      const cleanedClientName = processClientNameGotten(clientNameResponseRaw);
+
+      console.log(
+        "less than 30 words",
+        clientNameResponseRaw,
+        cleanedClientName
+      );
+
+      return res.json({ clientNameResponse: cleanedClientName });
+    }
 
     //check if it's because prompt is too long
     // if (
