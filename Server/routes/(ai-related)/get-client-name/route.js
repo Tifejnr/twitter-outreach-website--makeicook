@@ -41,11 +41,11 @@ getClientNameRouter.post("/", async (req, res) => {
 
   const wordsLengthTotal = getTotalWordsLength(prompt);
 
-  console.log("wordsLengthTotal", wordsLengthTotal);
+  // console.log("wordsLengthTotal", wordsLengthTotal);
 
   try {
     //if it's a short prompt
-    if (wordsLengthTotal < 30) {
+    if (wordsLengthTotal < 50) {
       const result = await hf.questionAnswering({
         model: model,
         inputs: {
