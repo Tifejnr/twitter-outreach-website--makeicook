@@ -41,6 +41,8 @@ getClientNameRouter.post("/", async (req, res) => {
 
   const wordsLengthTotal = getTotalWordsLength(prompt);
 
+  console.log("wordsLengthTotal", wordsLengthTotal);
+
   try {
     //if it's a short prompt
     if (wordsLengthTotal < 30) {
