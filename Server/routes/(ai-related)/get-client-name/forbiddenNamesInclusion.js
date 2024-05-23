@@ -288,8 +288,10 @@ const sourceText = "source";
 const fileText = "file";
 const didntText = "didn't";
 const signText = "sign";
+const superbText = "Superb";
 
 const forbiddenNamesInclusionArray = [
+  superbText,
   signText,
   didntText,
   fileText,
