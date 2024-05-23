@@ -278,8 +278,28 @@ const runText = "run";
 const enjoyedText = "enjoyed";
 const StudioText = "Studio";
 const hivesourcedText = "Hivesourced";
+const weText = "we";
+const anythingText = "anything";
+const sayingText = "saying";
+const thatText = "that";
+const willText = "will";
+const getText = "get";
+const sourceText = "source";
+const fileText = "file";
+const didntText = "didn't";
+const signText = "sign";
 
 const forbiddenNamesInclusionArray = [
+  signText,
+  didntText,
+  fileText,
+  sourceText,
+  getText,
+  willText,
+  sayingText,
+  thatText,
+  anythingText,
+  weText,
   hivesourcedText,
   StudioText,
   enjoyedText,
