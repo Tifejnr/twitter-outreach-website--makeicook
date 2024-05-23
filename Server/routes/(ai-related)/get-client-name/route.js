@@ -61,7 +61,7 @@ getClientNameRouter.post("/", async (req, res) => {
       const cleanedClientName = processClientNameGotten(clientNameResponseRaw);
 
       console.log(
-        "less than 30 words",
+        "less than 70 words",
         clientNameResponseRaw,
         cleanedClientName
       );
