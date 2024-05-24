@@ -289,8 +289,14 @@ const fileText = "file";
 const didntText = "didn't";
 const signText = "sign";
 const superbText = "Superb";
+const humbleText = "humble";
+const patientText = "patient";
+const worstText = "Worst";
 
 const forbiddenNamesInclusionArray = [
+  worstText,
+  humbleText,
+  patientText,
   superbText,
   signText,
   didntText,
