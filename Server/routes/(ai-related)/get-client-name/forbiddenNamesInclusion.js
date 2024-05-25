@@ -295,8 +295,14 @@ const worstText = "Worst";
 const guyText = "guy";
 const laughingEmohiPlusPrayText = "😊🙏🙏";
 const alotText = "alot";
+const HeText = "He";
+const scamText = "scam";
+const peopleText = "people";
 
 const forbiddenNamesInclusionArray = [
+  peopleText,
+  scamText,
+  HeText,
   alotText,
   laughingEmohiPlusPrayText,
   guyText,
