@@ -62,3 +62,26 @@ export default function AccountRules() {
     </>
   );
 }
+
+// `
+// 5 Rules to Keep Your Account From Getting Suspended
+
+// 1.Try to be as Professional as possible in your
+// conversations with the clients. Don't chat like you are familiar with the client.
+
+// 2. Don't ever submit your work immediately you
+// accept offer. You must wait for at least 4 hours from accepting
+// offer before submission.
+
+// 3. Don't ever ask for feedback DIRECTLY in chats
+// with the clients. The clients here already know that they should
+// give you a positive feedback.
+
+// 4.Don't ever submit work without first accepting
+// offer from the client. Report in the group if a client is taking
+// too long to send you an offer.
+
+// 5. Don't ever end the contract from your end. Always
+// leave it for the client to end.
+
+// `;

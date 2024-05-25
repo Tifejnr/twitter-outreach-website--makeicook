@@ -292,8 +292,14 @@ const superbText = "Superb";
 const humbleText = "humble";
 const patientText = "patient";
 const worstText = "Worst";
+const guyText = "guy";
+const laughingEmohiPlusPrayText = "😊🙏🙏";
+const alotText = "alot";
 
 const forbiddenNamesInclusionArray = [
+  alotText,
+  laughingEmohiPlusPrayText,
+  guyText,
   worstText,
   humbleText,
   patientText,
