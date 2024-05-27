@@ -294,6 +294,7 @@ const patientText = "patient";
 const worstText = "Worst";
 const guyText = "guy";
 const laughingEmohiPlusPrayText = "😊🙏🙏";
+const laughingEmojiText = "😃 😃";
 const alotText = "alot";
 const HeText = "He";
 const scamText = "scam";
@@ -307,6 +308,7 @@ const perfectText = "Perfect";
 
 const forbiddenNamesInclusionArray = [
   perfectText,
+  laughingEmojiText,
   alwaysText,
   myText,
   recommendationsText,
