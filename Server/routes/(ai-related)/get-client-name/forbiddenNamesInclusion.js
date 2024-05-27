@@ -282,7 +282,7 @@ const weText = "we";
 const anythingText = "anything";
 const sayingText = "saying";
 const thatText = "that";
-const willText = "will";
+const extremelyText = "Extremely";
 const getText = "get";
 const sourceText = "source";
 const fileText = "file";
@@ -315,7 +315,7 @@ const forbiddenNamesInclusionArray = [
   fileText,
   sourceText,
   getText,
-  // willText,
+  extremelyText,
   sayingText,
   thatText,
   anythingText,
