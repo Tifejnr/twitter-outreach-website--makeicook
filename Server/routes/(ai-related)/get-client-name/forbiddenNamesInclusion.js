@@ -315,7 +315,7 @@ const forbiddenNamesInclusionArray = [
   fileText,
   sourceText,
   getText,
-  willText,
+  // willText,
   sayingText,
   thatText,
   anythingText,
