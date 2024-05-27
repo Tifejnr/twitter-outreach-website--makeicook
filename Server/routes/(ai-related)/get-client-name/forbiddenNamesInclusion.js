@@ -298,8 +298,18 @@ const alotText = "alot";
 const HeText = "He";
 const scamText = "scam";
 const peopleText = "people";
+const SuperText = "Super";
+const honestText = "honest";
+const recommendationsText = "recommendations";
+const myText = "my";
+const alwaysText = "always";
 
 const forbiddenNamesInclusionArray = [
+  alwaysText,
+  myText,
+  recommendationsText,
+  honestText,
+  SuperText,
   peopleText,
   scamText,
   HeText,
