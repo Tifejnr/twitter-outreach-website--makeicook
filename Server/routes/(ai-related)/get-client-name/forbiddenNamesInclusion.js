@@ -303,8 +303,10 @@ const honestText = "honest";
 const recommendationsText = "recommendations";
 const myText = "my";
 const alwaysText = "always";
+const perfectText = "Perfect";
 
 const forbiddenNamesInclusionArray = [
+  perfectText,
   alwaysText,
   myText,
   recommendationsText,
