@@ -307,8 +307,10 @@ const alwaysText = "always";
 const perfectText = "Perfect";
 const respondText = "respond";
 const fastText = "fast";
+const freightText = "Freight";
 
 const forbiddenNamesInclusionArray = [
+  freightText,
   fastText,
   respondText,
   perfectText,
