@@ -305,8 +305,12 @@ const recommendationsText = "recommendations";
 const myText = "my";
 const alwaysText = "always";
 const perfectText = "Perfect";
+const respondText = "respond";
+const fastText = "fast";
 
 const forbiddenNamesInclusionArray = [
+  fastText,
+  respondText,
   perfectText,
   laughingEmojiText,
   alwaysText,
