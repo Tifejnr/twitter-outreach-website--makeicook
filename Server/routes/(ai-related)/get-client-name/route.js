@@ -46,17 +46,7 @@ getClientNameRouter.post("/", async (req, res) => {
   try {
     //if it's a short prompt
     if (wordsLengthTotal < 70) {
-      const result = await hf.questionAnswering({
-        model: model,
-        inputs: {
-          //instruction for what to extract
-          question: getClientNamePromptHeading,
-          //freelancers feedback
-          context: prompt,
-        },
-      });
-
-      let clientNameResponseRaw = result.answer;
+      let clientNameResponseRaw = await getResponseFromAi(prompt);
 
       const cleanedClientName = processClientNameGotten(clientNameResponseRaw);
       const cleanedNameLength = getTotalWordsLength(cleanedClientName);
@@ -68,17 +58,9 @@ getClientNameRouter.post("/", async (req, res) => {
       );
 
       if (cleanedNameLength > 4) {
-        const result = await hf.questionAnswering({
-          model: model,
-          inputs: {
-            //instruction for what to extract
-            question: getClientNamePromptHeading,
-            //freelancers feedback
-            context: cleanedClientName,
-          },
-        });
-
-        const clientNameResponseRaw = result.answer;
+        const clientNameResponseRaw = await getResponseFromAi(
+          cleanedClientName
+        );
 
         const cleanedClientName = processClientNameGotten(
           clientNameResponseRaw
@@ -95,17 +77,8 @@ getClientNameRouter.post("/", async (req, res) => {
     //   clientNameResponseRaw == "." ||
     //   clientNameResponseRaw.includes("ignored")
     // ) {
-    const result = await hf.questionAnswering({
-      model: model,
-      inputs: {
-        //instruction for what to extract
-        question: getClientNamePromptHeading,
-        //freelancers feedback
-        context: part1,
-      },
-    });
 
-    let clientNameResponseRaw = result.answer;
+    let clientNameResponseRaw = await getResponseFromAi(part1);
 
     const cleanedClientName = processClientNameGotten(clientNameResponseRaw);
 
@@ -117,17 +90,8 @@ getClientNameRouter.post("/", async (req, res) => {
       clientNameResponseRaw.includes("ignored")
     ) {
       //second part check
-      const result = await hf.questionAnswering({
-        model: model,
-        inputs: {
-          //instruction for what to extract
-          question: getClientNamePromptHeading,
-          //freelancers feedback
-          context: part2,
-        },
-      });
 
-      let clientNameResponseRaw = result.answer;
+      let clientNameResponseRaw = await getResponseFromAi(part2);
 
       const cleanedClientName = processClientNameGotten(clientNameResponseRaw);
 
@@ -138,18 +102,7 @@ getClientNameRouter.post("/", async (req, res) => {
         clientNameResponseRaw == "." ||
         clientNameResponseRaw.includes("ignored")
       ) {
-        //second part check
-        const result = await hf.questionAnswering({
-          model: model,
-          inputs: {
-            //instruction for what to extract
-            question: getClientNamePromptHeading,
-            //freelancers feedback
-            context: part3,
-          },
-        });
-
-        let clientNameResponseRaw = result.answer;
+        let clientNameResponseRaw = await getResponseFromAi(part3);
 
         const cleanedClientName = processClientNameGotten(
           clientNameResponseRaw
@@ -164,17 +117,9 @@ getClientNameRouter.post("/", async (req, res) => {
         const cleanedNameLength = getTotalWordsLength(cleanedClientName);
 
         if (cleanedNameLength > 4) {
-          const result = await hf.questionAnswering({
-            model: model,
-            inputs: {
-              //instruction for what to extract
-              question: getClientNamePromptHeading,
-              //freelancers feedback
-              context: cleanedClientName,
-            },
-          });
-
-          const clientNameResponseRaw = result.answer;
+          const clientNameResponseRaw = await getResponseFromAi(
+            cleanedClientName
+          );
 
           const cleanedClientName = processClientNameGotten(
             clientNameResponseRaw
@@ -188,17 +133,9 @@ getClientNameRouter.post("/", async (req, res) => {
         const cleanedNameLength = getTotalWordsLength(cleanedClientName);
 
         if (cleanedNameLength > 4) {
-          const result = await hf.questionAnswering({
-            model: model,
-            inputs: {
-              //instruction for what to extract
-              question: getClientNamePromptHeading,
-              //freelancers feedback
-              context: cleanedClientName,
-            },
-          });
-
-          const clientNameResponseRaw = result.answer;
+          const clientNameResponseRaw = await getResponseFromAi(
+            cleanedClientName
+          );
 
           const cleanedClientName = processClientNameGotten(
             clientNameResponseRaw
@@ -214,17 +151,9 @@ getClientNameRouter.post("/", async (req, res) => {
       const cleanedNameLength = getTotalWordsLength(cleanedClientName);
 
       if (cleanedNameLength > 4) {
-        const result = await hf.questionAnswering({
-          model: model,
-          inputs: {
-            //instruction for what to extract
-            question: getClientNamePromptHeading,
-            //freelancers feedback
-            context: cleanedClientName,
-          },
-        });
-
-        const clientNameResponseRaw = result.answer;
+        const clientNameResponseRaw = await getResponseFromAi(
+          cleanedClientName
+        );
 
         const cleanedClientName = processClientNameGotten(
           clientNameResponseRaw
@@ -240,5 +169,19 @@ getClientNameRouter.post("/", async (req, res) => {
     return res.json({ error: "Internal server error" });
   }
 });
+
+async function getResponseFromAi(prompt) {
+  const result = await hf.questionAnswering({
+    model: model,
+    inputs: {
+      //instruction for what to extract
+      question: getClientNamePromptHeading,
+      //freelancers feedback
+      context: prompt,
+    },
+  });
+
+  return result.answer;
+}
 
 export default getClientNameRouter;
