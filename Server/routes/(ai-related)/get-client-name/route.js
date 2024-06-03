@@ -108,17 +108,19 @@ getClientNameRouter.post("/", async (req, res) => {
           clientNameResponseRaw
         );
 
+        const thirdCleanClientName = cleanedClientName;
+
         console.log(
           "3rd part cleaned",
           clientNameResponseRaw,
           cleanedClientName
         );
 
-        const cleanedNameLength = getTotalWordsLength(cleanedClientName);
+        const cleanedNameLength = getTotalWordsLength(thirdCleanClientName);
 
         if (cleanedNameLength > 4) {
           const clientNameResponseRaw = await getResponseFromAi(
-            cleanedClientName
+            thirdCleanClientName
           );
 
           const cleanedClientName = processClientNameGotten(
