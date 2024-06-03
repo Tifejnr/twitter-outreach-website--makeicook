@@ -59,6 +59,7 @@ getClientNameRouter.post("/", async (req, res) => {
       let clientNameResponseRaw = result.answer;
 
       const cleanedClientName = processClientNameGotten(clientNameResponseRaw);
+      const cleanedNameLength = getTotalWordsLength(cleanedClientName);
 
       console.log(
         "less than 70 words",
@@ -66,7 +67,27 @@ getClientNameRouter.post("/", async (req, res) => {
         cleanedClientName
       );
 
-      return res.json({ clientNameResponse: cleanedClientName });
+      if (cleanedNameLength > 4) {
+        const result = await hf.questionAnswering({
+          model: model,
+          inputs: {
+            //instruction for what to extract
+            question: getClientNamePromptHeading,
+            //freelancers feedback
+            context: cleanedClientName,
+          },
+        });
+
+        const clientNameResponseRaw = result.answer;
+
+        const cleanedClientName = processClientNameGotten(
+          clientNameResponseRaw
+        );
+
+        return res.json({ clientNameResponse: cleanedClientName });
+      } else {
+        return res.json({ clientNameResponse: cleanedClientName });
+      }
     }
 
     //check if it's because prompt is too long
@@ -140,13 +161,77 @@ getClientNameRouter.post("/", async (req, res) => {
           cleanedClientName
         );
 
+        const cleanedNameLength = getTotalWordsLength(cleanedClientName);
+
+        if (cleanedNameLength > 4) {
+          const result = await hf.questionAnswering({
+            model: model,
+            inputs: {
+              //instruction for what to extract
+              question: getClientNamePromptHeading,
+              //freelancers feedback
+              context: cleanedClientName,
+            },
+          });
+
+          const clientNameResponseRaw = result.answer;
+
+          const cleanedClientName = processClientNameGotten(
+            clientNameResponseRaw
+          );
+
+          return res.json({ clientNameResponse: cleanedClientName });
+        }
+
         return res.json({ clientNameResponse: cleanedClientName });
       } else {
+        const cleanedNameLength = getTotalWordsLength(cleanedClientName);
+
+        if (cleanedNameLength > 4) {
+          const result = await hf.questionAnswering({
+            model: model,
+            inputs: {
+              //instruction for what to extract
+              question: getClientNamePromptHeading,
+              //freelancers feedback
+              context: cleanedClientName,
+            },
+          });
+
+          const clientNameResponseRaw = result.answer;
+
+          const cleanedClientName = processClientNameGotten(
+            clientNameResponseRaw
+          );
+
+          return res.json({ clientNameResponse: cleanedClientName });
+        }
         return res.json({ clientNameResponse: cleanedClientName });
       }
 
       // return res.json({ clientNameResponse: cleanedClientName });
     } else {
+      const cleanedNameLength = getTotalWordsLength(cleanedClientName);
+
+      if (cleanedNameLength > 4) {
+        const result = await hf.questionAnswering({
+          model: model,
+          inputs: {
+            //instruction for what to extract
+            question: getClientNamePromptHeading,
+            //freelancers feedback
+            context: cleanedClientName,
+          },
+        });
+
+        const clientNameResponseRaw = result.answer;
+
+        const cleanedClientName = processClientNameGotten(
+          clientNameResponseRaw
+        );
+
+        return res.json({ clientNameResponse: cleanedClientName });
+      }
       return res.json({ clientNameResponse: cleanedClientName });
     }
   } catch (error) {
