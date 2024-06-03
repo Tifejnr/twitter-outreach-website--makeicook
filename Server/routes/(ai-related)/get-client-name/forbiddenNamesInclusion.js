@@ -308,8 +308,10 @@ const perfectText = "Perfect";
 const respondText = "respond";
 const fastText = "fast";
 const freightText = "Freight";
+const PipedriveText = "Pipedrive";
 
 const forbiddenNamesInclusionArray = [
+  PipedriveText,
   freightText,
   fastText,
   respondText,
