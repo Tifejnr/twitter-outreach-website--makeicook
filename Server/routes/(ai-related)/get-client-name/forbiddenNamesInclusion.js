@@ -309,8 +309,20 @@ const respondText = "respond";
 const fastText = "fast";
 const freightText = "Freight";
 const PipedriveText = "Pipedrive";
+const APlusText = "A+++++";
+const ratherText = "rather";
+const milestoneText = "milestone";
+const OverallText = "Overall";
+const butText = "but";
+const unavailableText = "unavailable";
 
 const forbiddenNamesInclusionArray = [
+  unavailableText,
+  butText,
+  OverallText,
+  milestoneText,
+  ratherText,
+  APlusText,
   PipedriveText,
   freightText,
   fastText,
