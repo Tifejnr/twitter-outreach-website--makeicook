@@ -1,8 +1,6 @@
-import removeDuplicateWords from "./removeDublicateWords.js";
 import isNameAdecimalNumber from "./isNameAdecimalNumber.js";
 import forbiddenNamesInclusionArray from "../forbiddenNamesInclusion.js";
 import forbiddenNames from "../forbiddenNames.js";
-import removeAndTextFromClienName from "./removeAndTextFromClienName.js";
 
 import containsOneCharacter from "./doesItContainOneXter.js";
 

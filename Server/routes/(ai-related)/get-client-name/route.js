@@ -103,14 +103,14 @@ getClientNameRouter.post("/", async (req, res) => {
         );
 
         const thirdCleanClientName = cleanedClientName;
+        const cleanedNameLength = getTotalWordsLength(thirdCleanClientName);
 
         console.log(
           "3rd part cleaned",
           clientNameResponseRaw,
-          cleanedClientName
+          cleanedClientName,
+          cleanedNameLength
         );
-
-        const cleanedNameLength = getTotalWordsLength(thirdCleanClientName);
 
         if (cleanedNameLength > 4) {
           const clientNameResponseRaw = await getResponseFromAi(
@@ -176,8 +176,6 @@ async function getResponseFromAi(prompt) {
       context: prompt,
     },
   });
-
-  console.log("result.answer ", result.answer);
 
   return result.answer;
 }
