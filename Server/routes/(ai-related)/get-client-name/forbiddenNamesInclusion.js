@@ -315,8 +315,10 @@ const milestoneText = "milestone";
 const OverallText = "Overall";
 const butText = "but";
 const unavailableText = "unavailable";
+const EvolveText = "Evolve";
 
 const forbiddenNamesInclusionArray = [
+  EvolveText,
   unavailableText,
   butText,
   OverallText,
