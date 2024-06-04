@@ -9,6 +9,8 @@ import containsOneCharacter from "./doesItContainOneXter.js";
 export default function processClientNameGotten(clientNameResponseRaw) {
   let clientNameResponse = removeAndTextFromClienName(clientNameResponseRaw);
 
+  clientNameResponse = clientNameResponse.replace(/\s{2,}/g, " ");
+
   const clientNameResponseLowercase = clientNameResponse.toLowerCase();
 
   const isForbiddenNameEqualtTo = forbiddenNames.find(
@@ -17,10 +19,13 @@ export default function processClientNameGotten(clientNameResponseRaw) {
   );
 
   const isForbiddenNameIncludedIn = forbiddenNamesInclusionArray.find(
-    (forbiddenName) =>
-      new RegExp("\\b" + forbiddenName.toLowerCase() + "\\b").test(
-        clientNameResponseLowercase
-      )
+    (forbiddenName) => {
+      const escapedForbiddenName = forbiddenName
+        .toLowerCase()
+        .replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      const regex = new RegExp(`\\b${escapedForbiddenName}\\b`);
+      return regex.test(clientNameResponseLowercase);
+    }
   );
 
   const doesItContainOneXter = containsOneCharacter(
