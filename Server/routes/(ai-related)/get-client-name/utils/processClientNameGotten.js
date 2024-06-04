@@ -1,8 +1,9 @@
-import removeDuplicateWords from "./removeDuplicateWords.js";
+import removeDuplicateWords from "./removeDublicateWords.js";
 import isNameAdecimalNumber from "./isNameAdecimalNumber.js";
 import forbiddenNamesInclusionArray from "../forbiddenNamesInclusion.js";
 import forbiddenNames from "../forbiddenNames.js";
 import removeAndTextFromClienName from "./removeAndTextFromClienName.js";
+
 import containsOneCharacter from "./doesItContainOneXter.js";
 
 export default function processClientNameGotten(clientNameResponseRaw) {
@@ -11,18 +12,16 @@ export default function processClientNameGotten(clientNameResponseRaw) {
 
   const clientNameResponseLowercase = clientNameResponse.toLowerCase();
 
-  const isForbiddenNameEqualTo = forbiddenNames.find(
+  const isForbiddenNameEqualtTo = forbiddenNames.find(
     (forbiddenName) =>
-      forbiddenName.toLowerCase() === clientNameResponseLowercase
+      forbiddenName.toLowerCase() == clientNameResponseLowercase
   );
 
   const isForbiddenNameIncludedIn = forbiddenNamesInclusionArray.find(
     (forbiddenName) =>
-      new RegExp(
-        "\\b" +
-          forbiddenName.toLowerCase().replace(/[.*+?^${}()|[\]\\]/g, "\\$&") +
-          "\\b"
-      ).test(clientNameResponseLowercase)
+      new RegExp("\\b" + forbiddenName.toLowerCase() + "\\b").test(
+        clientNameResponseLowercase
+      )
   );
 
   const doesItContainOneXter = containsOneCharacter(
@@ -33,7 +32,7 @@ export default function processClientNameGotten(clientNameResponseRaw) {
 
   if (
     isForbiddenNameIncludedIn ||
-    isForbiddenNameEqualTo ||
+    isForbiddenNameEqualtTo ||
     doesItContainOneXter ||
     isNameDecimal ||
     clientNameResponse.includes("ignored")
@@ -41,7 +40,7 @@ export default function processClientNameGotten(clientNameResponseRaw) {
     clientNameResponse = "Hi there";
   }
 
-  const cleanedClientName = removeDuplicateWords(clientNameResponse);
+  const cleanedClientName = clientNameResponse;
 
   return cleanedClientName;
 }

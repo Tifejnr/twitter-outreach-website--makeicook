@@ -72,12 +72,6 @@ getClientNameRouter.post("/", async (req, res) => {
       }
     }
 
-    //check if it's because prompt is too long
-    // if (
-    //   clientNameResponseRaw == "." ||
-    //   clientNameResponseRaw.includes("ignored")
-    // ) {
-
     let clientNameResponseRaw = await getResponseFromAi(part1);
 
     const cleanedClientName = processClientNameGotten(clientNameResponseRaw);
