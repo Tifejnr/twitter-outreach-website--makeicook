@@ -177,6 +177,8 @@ async function getResponseFromAi(prompt) {
     },
   });
 
+  console.log("result.answer ", result.answer);
+
   return result.answer;
 }
 
