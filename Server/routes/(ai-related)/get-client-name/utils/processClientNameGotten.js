@@ -7,9 +7,9 @@ import removeAndTextFromClienName from "./removeAndTextFromClienName.js";
 import containsOneCharacter from "./doesItContainOneXter.js";
 
 export default function processClientNameGotten(clientNameResponseRaw) {
-  let clientNameResponse = removeAndTextFromClienName(clientNameResponseRaw);
+  // let clientNameResponse = removeAndTextFromClienName(clientNameResponseRaw);
 
-  clientNameResponse = clientNameResponse.replace(/\s{2,}/g, " ");
+  let clientNameResponse = clientNameResponseRaw.replace(/\s{2,}/g, " ");
 
   const clientNameResponseLowercase = clientNameResponse.toLowerCase();
 
