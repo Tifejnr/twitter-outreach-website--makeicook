@@ -3,6 +3,8 @@ import forbiddenNamesInclusionArray from "../forbiddenNamesInclusion.js";
 import forbiddenNames from "../forbiddenNames.js";
 
 import containsOneCharacter from "./doesItContainOneXter.js";
+import removeDuplicateWords from "./removeDublicateWords.js";
+import getTotalWordsLength from "./getTotalWordsLength.js";
 
 export default function processClientNameGotten(clientNameResponseRaw) {
   // let clientNameResponse = removeAndTextFromClienName(clientNameResponseRaw);
@@ -40,6 +42,14 @@ export default function processClientNameGotten(clientNameResponseRaw) {
     clientNameResponse.includes("ignored")
   ) {
     clientNameResponse = "Hi there";
+  }
+
+  clientNameResponse = removeDuplicateWords(clientNameResponse);
+
+  const clientNameResponseLength = getTotalWordsLength(clientNameResponse);
+
+  if (clientNameResponseLength > 4) {
+    clientNameResponse = "client name is greater than 4";
   }
 
   const cleanedClientName = clientNameResponse;
