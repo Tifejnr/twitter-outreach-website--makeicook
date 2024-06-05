@@ -104,6 +104,7 @@ getClientNameRouter.post("/", async (req, res) => {
     if (
       firstCleanedClientName !== "Hi there" ||
       firstClientNameResponseRaw !== "." ||
+      !firstClientNameResponseRaw.includes("ignore") ||
       firstCleanedClientName !== "client name is greater than 4"
     )
       return res.json({ clientNameResponse: firstCleanedClientName });
@@ -125,6 +126,7 @@ getClientNameRouter.post("/", async (req, res) => {
     if (
       secondCleanedClientName !== "Hi there" ||
       secondClientNameResponseRaw !== "." ||
+      !secondClientNameResponseRaw.includes("ignore") ||
       secondCleanedClientName !== "client name is greater than 4"
     )
       return res.json({ clientNameResponse: secondCleanedClientName });
