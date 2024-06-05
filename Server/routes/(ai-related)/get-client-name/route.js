@@ -144,6 +144,46 @@ getClientNameRouter.post("/", async (req, res) => {
       secondCleanedClientName !== "client name is greater than 4"
     )
       return res.json({ clientNameResponse: secondCleanedClientName });
+
+    //third part text
+
+    let thirdClientNameResponseRaw = await getResponseFromAi(part3);
+
+    let thirdCleanedClientName = processClientNameGotten(
+      thirdClientNameResponseRaw
+    );
+
+    console.log(
+      "third part cleaned",
+      thirdClientNameResponseRaw,
+      thirdCleanedClientName
+    );
+
+    if (
+      thirdCleanedClientName !== "Hi there" ||
+      thirdClientNameResponseRaw !== "." ||
+      thirdCleanedClientName !== "client name is greater than 4"
+    )
+      return res.json({ clientNameResponse: thirdCleanedClientName });
+
+    if (thirdCleanedClientName == "client name is greater than 4") {
+      thirdClientNameResponseRaw = await getResponseFromAi(
+        thirdCleanedClientName
+      );
+      thirdCleanedClientName = processClientNameGotten(
+        thirdClientNameResponseRaw
+      );
+    }
+
+    if (
+      thirdCleanedClientName !== "Hi there" ||
+      thirdClientNameResponseRaw !== "." ||
+      thirdCleanedClientName !== "client name is greater than 4"
+    )
+      return res.json({ clientNameResponse: thirdCleanedClientName });
+
+    //return final shit still
+    return res.json({ clientNameResponse: thirdCleanedClientName });
   } catch (error) {
     console.log("error,", error);
 
@@ -163,43 +203,6 @@ async function getResponseFromAi(prompt) {
   });
 
   return result.answer;
-}
-
-async function getNameFromEachPartText(partText) {
-  let thirdClientNameResponseRaw = await getResponseFromAi(partText);
-
-  let thirdCleanedClientName = processClientNameGotten(
-    thirdClientNameResponseRaw
-  );
-
-  console.log(
-    "third part cleaned",
-    thirdClientNameResponseRaw,
-    thirdCleanedClientName
-  );
-
-  if (
-    thirdCleanedClientName !== "Hi there" ||
-    thirdClientNameResponseRaw !== "." ||
-    thirdCleanedClientName !== "client name is greater than 4"
-  )
-    return res.json({ clientNameResponse: thirdCleanedClientName });
-
-  if (thirdCleanedClientName == "client name is greater than 4") {
-    thirdClientNameResponseRaw = await getResponseFromAi(
-      thirdCleanedClientName
-    );
-    thirdCleanedClientName = processClientNameGotten(
-      thirdClientNameResponseRaw
-    );
-  }
-
-  if (
-    thirdCleanedClientName !== "Hi there" ||
-    thirdClientNameResponseRaw !== "." ||
-    thirdCleanedClientName !== "client name is greater than 4"
-  )
-    return res.json({ clientNameResponse: thirdCleanedClientName });
 }
 
 export default getClientNameRouter;
