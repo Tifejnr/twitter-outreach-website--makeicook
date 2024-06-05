@@ -89,8 +89,11 @@ getClientNameRouter.post("/", async (req, res) => {
       firstCleanedClientName !== "Hi there" ||
       firstClientNameResponseRaw !== "." ||
       firstCleanedClientName !== "client name is greater than 4"
-    )
+    ) {
+      console.log("firstCleanedClientName", "Hi there");
+      console.log("firstCleanedClientName", "client name is greater than 4");
       return res.json({ clientNameResponse: firstCleanedClientName });
+    }
 
     if (firstCleanedClientName == "client name is greater than 4") {
       firstClientNameResponseRaw = await getResponseFromAi(
