@@ -128,9 +128,9 @@ getClientNameRouter.post("/", async (req, res) => {
     );
 
     if (
-      secondCleanedClientName !== "Hi there" ||
-      secondClientNameResponseRaw !== "." ||
-      !secondClientNameResponseRaw.includes("ignore") ||
+      secondCleanedClientName !== "Hi there" &&
+      secondClientNameResponseRaw !== "." &&
+      !secondClientNameResponseRaw.includes("ignore") &&
       secondCleanedClientName !== "client name is greater than 4"
     )
       return res.json({ clientNameResponse: secondCleanedClientName });
@@ -145,8 +145,8 @@ getClientNameRouter.post("/", async (req, res) => {
     }
 
     if (
-      secondCleanedClientName !== "Hi there" ||
-      secondClientNameResponseRaw !== "." ||
+      secondCleanedClientName !== "Hi there" &&
+      secondClientNameResponseRaw !== "." &&
       secondCleanedClientName !== "client name is greater than 4"
     )
       return res.json({ clientNameResponse: secondCleanedClientName });
@@ -166,8 +166,8 @@ getClientNameRouter.post("/", async (req, res) => {
     );
 
     if (
-      thirdCleanedClientName !== "Hi there" ||
-      thirdClientNameResponseRaw !== "." ||
+      thirdCleanedClientName !== "Hi there" &&
+      thirdClientNameResponseRaw !== "." &&
       thirdCleanedClientName !== "client name is greater than 4"
     )
       return res.json({ clientNameResponse: thirdCleanedClientName });
@@ -182,8 +182,8 @@ getClientNameRouter.post("/", async (req, res) => {
     }
 
     if (
-      thirdCleanedClientName !== "Hi there" ||
-      thirdClientNameResponseRaw !== "." ||
+      thirdCleanedClientName !== "Hi there" &&
+      thirdClientNameResponseRaw !== "." &&
       thirdCleanedClientName !== "client name is greater than 4"
     )
       return res.json({ clientNameResponse: thirdCleanedClientName });
