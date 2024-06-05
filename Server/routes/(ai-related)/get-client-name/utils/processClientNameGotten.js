@@ -34,11 +34,14 @@ export default function processClientNameGotten(clientNameResponseRaw) {
 
   const isNameDecimal = isNameAdecimalNumber(clientNameResponseLowercase);
 
+  const isNameEmoji = isAllEmojis(clientNameResponseLowercase);
+
   if (
     isForbiddenNameIncludedIn ||
     isForbiddenNameEqualtTo ||
     doesItContainOneXter ||
     isNameDecimal ||
+    isNameEmoji ||
     clientNameResponse.includes("ignored")
   ) {
     clientNameResponse = "Hi there";
@@ -55,4 +58,12 @@ export default function processClientNameGotten(clientNameResponseRaw) {
   const cleanedClientName = clientNameResponse;
 
   return cleanedClientName;
+}
+
+function isAllEmojis(input) {
+  // Regular expression to match most emojis
+  const emojiRegex =
+    /^(?:[\u2700-\u27BF]|[\uE000-\uF8FF]|[\uD83C\uD000-\uDBFF\uDFFF\uE000-\uFFFF]|[\u2600-\u26FF\uD83C\uDD70-\uD83C\uDE51]|[\uD83E\uDD10-\uD83E\uDDFF])+$/;
+
+  return emojiRegex.test(input);
 }
