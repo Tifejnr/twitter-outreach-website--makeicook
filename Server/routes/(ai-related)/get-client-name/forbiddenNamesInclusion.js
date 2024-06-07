@@ -319,8 +319,10 @@ const EvolveText = "Evolve";
 const himText = "him";
 const entrepreneurText = "entrepreneur";
 const serialText = "serial";
+const MajusculeText = "Majuscule";
 
 const forbiddenNamesInclusionArray = [
+  MajusculeText,
   serialText,
   entrepreneurText,
   himText,
