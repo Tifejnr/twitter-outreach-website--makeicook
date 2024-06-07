@@ -316,8 +316,10 @@ const OverallText = "Overall";
 const butText = "but";
 const unavailableText = "unavailable";
 const EvolveText = "Evolve";
+const himText = "him";
 
 const forbiddenNamesInclusionArray = [
+  himText,
   EvolveText,
   unavailableText,
   butText,
