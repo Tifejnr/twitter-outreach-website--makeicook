@@ -317,8 +317,12 @@ const butText = "but";
 const unavailableText = "unavailable";
 const EvolveText = "Evolve";
 const himText = "him";
+const entrepreneurText = "entrepreneur";
+const serialText = "serial";
 
 const forbiddenNamesInclusionArray = [
+  serialText,
+  entrepreneurText,
   himText,
   EvolveText,
   unavailableText,
