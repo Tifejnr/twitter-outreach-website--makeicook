@@ -320,6 +320,7 @@ const himText = "him";
 const entrepreneurText = "entrepreneur";
 const serialText = "serial";
 const MajusculeText = "Majuscule";
+const clientsText = "clients";
 
 const forbiddenNamesInclusionArray = [
   MajusculeText,
