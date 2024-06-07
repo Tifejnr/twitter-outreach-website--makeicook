@@ -323,6 +323,7 @@ const MajusculeText = "Majuscule";
 const clientsText = "clients";
 
 const forbiddenNamesInclusionArray = [
+  clientsText,
   MajusculeText,
   serialText,
   entrepreneurText,
