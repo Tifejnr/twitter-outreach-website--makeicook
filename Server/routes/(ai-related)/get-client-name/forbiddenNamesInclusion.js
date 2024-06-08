@@ -321,8 +321,10 @@ const entrepreneurText = "entrepreneur";
 const serialText = "serial";
 const MajusculeText = "Majuscule";
 const clientsText = "clients";
+const wordPressText = "WordPress";
 
 const forbiddenNamesInclusionArray = [
+  wordPressText,
   clientsText,
   MajusculeText,
   serialText,
