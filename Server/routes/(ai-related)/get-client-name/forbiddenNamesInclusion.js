@@ -145,7 +145,6 @@ const wrongText = "wrong";
 const whatsText = "what's";
 const knowText = "know";
 const copywriterText = "Copywriter";
-// const juniorText = "Junior";
 const threateneText = "threatene";
 const workiText = "worki";
 const gratefulText = "grateful";
