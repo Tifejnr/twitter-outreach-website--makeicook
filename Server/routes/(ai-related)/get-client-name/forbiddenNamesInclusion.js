@@ -322,8 +322,24 @@ const serialText = "serial";
 const MajusculeText = "Majuscule";
 const clientsText = "clients";
 const wordPressText = "WordPress";
+const clearText = "clear";
+const andText = "and";
+const conciseText = "concise";
+const articulationText = "articulation";
+const theirText = "their";
+const requirementsText = "requirements";
+const appreciatedText = "appreciated";
+const iText = "i";
 
 const forbiddenNamesInclusionArray = [
+  iText,
+  appreciatedText,
+  requirementsText,
+  theirText,
+  articulationText,
+  conciseText,
+  andText,
+  clearText,
   wordPressText,
   clientsText,
   MajusculeText,
