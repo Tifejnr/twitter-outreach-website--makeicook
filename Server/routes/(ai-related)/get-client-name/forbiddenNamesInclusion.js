@@ -334,8 +334,10 @@ const prepareText = "prepare";
 const APlusPlusText = "A++";
 const hhighlyText = "Hhighly";
 const reachoutText = "reachout";
+const curvelandText = "Curveland";
 
 const forbiddenNamesInclusionArray = [
+  curvelandText,
   reachoutText,
   hhighlyText,
   APlusPlusText,
