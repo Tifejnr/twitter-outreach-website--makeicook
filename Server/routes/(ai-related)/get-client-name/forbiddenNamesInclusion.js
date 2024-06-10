@@ -329,8 +329,12 @@ const theirText = "their";
 const requirementsText = "requirements";
 const appreciatedText = "appreciated";
 const iText = "i";
+const preparesText = "prepares";
+const prepareText = "prepare";
 
 const forbiddenNamesInclusionArray = [
+  prepareText,
+  preparesText,
   iText,
   appreciatedText,
   requirementsText,
