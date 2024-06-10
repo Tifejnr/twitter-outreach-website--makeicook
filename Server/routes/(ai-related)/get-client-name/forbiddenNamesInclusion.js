@@ -332,8 +332,10 @@ const iText = "i";
 const preparesText = "prepares";
 const prepareText = "prepare";
 const APlusPlusText = "A++";
+const hhighlyText = "Hhighly";
 
 const forbiddenNamesInclusionArray = [
+  hhighlyText,
   APlusPlusText,
   prepareText,
   preparesText,
