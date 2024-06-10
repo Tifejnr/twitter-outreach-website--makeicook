@@ -331,8 +331,10 @@ const appreciatedText = "appreciated";
 const iText = "i";
 const preparesText = "prepares";
 const prepareText = "prepare";
+const APlusPlusText = "A++";
 
 const forbiddenNamesInclusionArray = [
+  APlusPlusText,
   prepareText,
   preparesText,
   iText,
