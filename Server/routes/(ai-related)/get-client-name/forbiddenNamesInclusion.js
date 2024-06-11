@@ -340,8 +340,10 @@ const builderText = "builder";
 const pageText = "page";
 const mediaText = "media";
 const fraudText = "fraud";
+const wastageText = "wastage";
 
 const forbiddenNamesInclusionArray = [
+  wastageText,
   fraudText,
   mediaText,
   pageText,
