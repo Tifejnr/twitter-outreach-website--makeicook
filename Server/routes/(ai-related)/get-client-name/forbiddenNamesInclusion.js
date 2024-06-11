@@ -338,8 +338,10 @@ const curvelandText = "Curveland";
 const buildersText = "builders";
 const builderText = "builder";
 const pageText = "page";
+const mediaText = "media";
 
 const forbiddenNamesInclusionArray = [
+  mediaText,
   pageText,
   builderText,
   buildersText,
