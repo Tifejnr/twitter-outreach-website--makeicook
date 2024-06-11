@@ -341,8 +341,10 @@ const pageText = "page";
 const mediaText = "media";
 const fraudText = "fraud";
 const wastageText = "wastage";
+const wasteText = "waste";
 
 const forbiddenNamesInclusionArray = [
+  wasteText,
   wastageText,
   fraudText,
   mediaText,
