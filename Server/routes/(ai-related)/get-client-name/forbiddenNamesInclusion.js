@@ -342,8 +342,10 @@ const mediaText = "media";
 const fraudText = "fraud";
 const wastageText = "wastage";
 const wasteText = "waste";
+const emojiSignalText = ":)";
 
 const forbiddenNamesInclusionArray = [
+  emojiSignalText,
   wasteText,
   wastageText,
   fraudText,
