@@ -346,8 +346,10 @@ const endedText = "ended";
 const gentelmanText = "gentelman";
 const emojiSignalText = ":)";
 const DesignShoppText = "DesignShopp";
+const outlierText = "Outlier";
 
 const forbiddenNamesInclusionArray = [
+  outlierText,
   DesignShoppText,
   gentelmanText,
   endedText,
