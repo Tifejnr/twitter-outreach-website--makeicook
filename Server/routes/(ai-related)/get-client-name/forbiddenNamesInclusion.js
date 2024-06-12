@@ -322,7 +322,6 @@ const MajusculeText = "Majuscule";
 const clientsText = "clients";
 const wordPressText = "WordPress";
 const clearText = "clear";
-const andText = "and";
 const conciseText = "concise";
 const articulationText = "articulation";
 const theirText = "their";
@@ -373,7 +372,6 @@ const forbiddenNamesInclusionArray = [
   theirText,
   articulationText,
   conciseText,
-  andText,
   clearText,
   wordPressText,
   clientsText,
