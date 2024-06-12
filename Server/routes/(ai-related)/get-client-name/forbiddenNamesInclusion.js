@@ -345,8 +345,10 @@ const wasteText = "waste";
 const endedText = "ended";
 const gentelmanText = "gentelman";
 const emojiSignalText = ":)";
+const DesignShoppText = "DesignShopp";
 
 const forbiddenNamesInclusionArray = [
+  DesignShoppText,
   gentelmanText,
   endedText,
   emojiSignalText,
