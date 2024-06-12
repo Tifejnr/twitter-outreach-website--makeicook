@@ -343,9 +343,11 @@ const fraudText = "fraud";
 const wastageText = "wastage";
 const wasteText = "waste";
 const endedText = "ended";
+const gentelmanText = "gentelman";
 const emojiSignalText = ":)";
 
 const forbiddenNamesInclusionArray = [
+  gentelmanText,
   endedText,
   emojiSignalText,
   wasteText,
