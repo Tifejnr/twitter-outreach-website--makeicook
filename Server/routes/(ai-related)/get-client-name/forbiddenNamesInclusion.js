@@ -342,9 +342,11 @@ const mediaText = "media";
 const fraudText = "fraud";
 const wastageText = "wastage";
 const wasteText = "waste";
+const endedText = "ended";
 const emojiSignalText = ":)";
 
 const forbiddenNamesInclusionArray = [
+  endedText,
   emojiSignalText,
   wasteText,
   wastageText,
