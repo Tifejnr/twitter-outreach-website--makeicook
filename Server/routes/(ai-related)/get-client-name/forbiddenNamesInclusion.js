@@ -349,8 +349,12 @@ const outlierText = "Outlier";
 const competentText = "competent";
 const yesText = "Yes";
 const robotText = "robot";
+const covalentText = "Covalent";
+const logicText = "Logic";
 
 const forbiddenNamesInclusionArray = [
+  logicText,
+  covalentText,
   robotText,
   yesText,
   competentText,
