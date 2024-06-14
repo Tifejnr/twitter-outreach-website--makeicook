@@ -348,8 +348,10 @@ const DesignShoppText = "DesignShopp";
 const outlierText = "Outlier";
 const competentText = "competent";
 const yesText = "Yes";
+const robotText = "robot";
 
 const forbiddenNamesInclusionArray = [
+  robotText,
   yesText,
   competentText,
   outlierText,
