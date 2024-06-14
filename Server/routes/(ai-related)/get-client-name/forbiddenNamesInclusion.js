@@ -347,8 +347,10 @@ const emojiSignalText = ":)";
 const DesignShoppText = "DesignShopp";
 const outlierText = "Outlier";
 const competentText = "competent";
+const yesText = "Yes";
 
 const forbiddenNamesInclusionArray = [
+  yesText,
   competentText,
   outlierText,
   DesignShoppText,
