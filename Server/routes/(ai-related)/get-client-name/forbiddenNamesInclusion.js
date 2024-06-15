@@ -353,8 +353,10 @@ const covalentText = "Covalent";
 const logicText = "Logic";
 const recomandedText = "Recomanded";
 const recomandText = "Recomand";
+const hypothesisText = "Hypothesis";
 
 const forbiddenNamesInclusionArray = [
+  hypothesisText,
   recomandText,
   recomandedText,
   logicText,
