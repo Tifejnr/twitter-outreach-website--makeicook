@@ -351,8 +351,12 @@ const yesText = "Yes";
 const robotText = "robot";
 const covalentText = "Covalent";
 const logicText = "Logic";
+const recomandedText = "Recomanded";
+const recomandText = "Recomand";
 
 const forbiddenNamesInclusionArray = [
+  recomandText,
+  recomandedText,
   logicText,
   covalentText,
   robotText,
