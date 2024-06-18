@@ -18,8 +18,12 @@ const resetPasswordAPIRoute = `${websiteUrl}/api/forgot-password/reset-password`
 const contactUsAPIRoute = `${websiteUrl}/api/contact-us`;
 const emailSentPage = "/email-sent";
 const extensionChromeStoreLink = `https://chromewebstore.google.com/detail/wfr-toolkit-elevate-your/chpmkkhcpfhjdkkeiggiicfejnkhcidb`;
+const youtubeAccountLink = "https://www.youtube.com/@Workforreputation";
+const twitterAccountLink = "https://www.youtube.com/@Workforreputation";
 
 const allLinks = {
+  twitterAccountLink,
+  youtubeAccountLink,
   websiteUrl,
   loginPagePath,
   signUpPage,

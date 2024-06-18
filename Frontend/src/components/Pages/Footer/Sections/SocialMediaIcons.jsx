@@ -1,27 +1,34 @@
 import allIconsContainer from "../../../auth/utils/icons/allIconsContainer";
-
-const linkedInLink = `https://www.linkedin.com/company/collab-for-trello/`;
-const facebookLink = `https://www.facebook.com/people/Collab-for-Trello/61550452245234/`;
-const youtubeLink = `https://www.youtube.com/channel/UCfe6dJjgsxMnLkM9VQmC2wQ`;
+import allLinks from "../../../auth/utils/links/allLinks";
 
 export default function SocialMediaIcons() {
   return (
     <section className="socials-icon-cont">
       <ul>
         <li>
-          <picture>
-            <img
-              src={allIconsContainer.twitterIcon}
-              alt="x icon"
-              title="Our X"
-              width={100}
-              height={100}
-            />
-          </picture>
+          <a
+            href={allLinks.twitterAccountLink}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <picture>
+              <img
+                src={allIconsContainer.twitterIcon}
+                alt="x icon"
+                title="Our X"
+                width={100}
+                height={100}
+              />
+            </picture>
+          </a>
         </li>
 
         <li>
-          <a href={youtubeLink}>
+          <a
+            href={allLinks.youtubeAccountLink}
+            target="_blank"
+            rel="noreferrer"
+          >
             <picture>
               <img
                 src={allIconsContainer.youtubeIcon}
@@ -34,7 +41,7 @@ export default function SocialMediaIcons() {
           </a>
         </li>
 
-        <li>
+        {/* <li>
           <a href={linkedInLink}>
             <picture>
               <img
@@ -60,7 +67,7 @@ export default function SocialMediaIcons() {
               />
             </picture>
           </a>
-        </li>
+        </li> */}
       </ul>
     </section>
   );
