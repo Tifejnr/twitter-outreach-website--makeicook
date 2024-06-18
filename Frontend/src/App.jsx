@@ -14,7 +14,7 @@ import MainContactPage from "./components/Pages/Contact-us-page/MainContactPage"
 import AboutUsPage from "./components/Pages/About-us-page/AboutUs";
 import TermsOfUsePage from "./components/Pages/Terms-and-privacy/TermsOfUsePage";
 import PrivacyPolicyPage from "./components/Pages/Terms-and-privacy/privacyPolicy";
-import HomepageLamz from "./components/home-page/HomepageLamz";
+// import HomepageLamz from "./components/home-page/HomepageLamz";
 
 // import Pricing from "./compnents/Pages/Pricing";
 // import OauthPage from "./compnents/Trello-oauth-page/OauthPage";
@@ -27,7 +27,7 @@ import HomepageLamz from "./components/home-page/HomepageLamz";
 // import PrivacyPolicyPage from "./compnents/Pages/Terms-and-privacy/privacyPolicy";
 // import MainForgotPasswordPage from "./compnents/Pages/ForgotPassword/MainForgotPasswordPage";
 // import ResetPasswordPage from "./compnents/Pages/ForgotPassword/ResetPassword/ResetPasswordPage";
-import OnlyAuthorizedUsersHomeMain from "./components/controller/OnlyAuthorizedUsersHomeMain";
+// import OnlyAuthorizedUsersHomeMain from "./components/controller/OnlyAuthorizedUsersHomeMain";
 
 // const trackingId = "G-67WKHKMDEH";
 
@@ -38,14 +38,14 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route
+        {/* <Route
           path="/home-main"
           element={
             <OnlyAuthorizedUsersHomeMain>
               <HomepageLamz />
             </OnlyAuthorizedUsersHomeMain>
           }
-        />
+        /> */}
         <Route path="/sign-in" element={<SignInPage />} />
         <Route path="/sign-up" element={<SignUpPage />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />

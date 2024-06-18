@@ -1,11 +1,11 @@
 import { allToolsVideosObj } from "../../videos/allToolsVideos";
 
-const heading = `Auto insert client first name in messages`;
+const heading = "Auto Insert Client First Name in Messages";
 
-const overview = `WFR Toolkit helps with auto inserting of client first name in messages.  
+const overview = `WFR Toolkit helps with auto inserting of client first name in messages.   
+Saving you the stress of having to type it every time or copy.
 
 
-Instead of having to type it out every time or copy.
 `;
 const classicWayVideoUrl = allToolsVideosObj.autoInsertClientFirstNameDemo;
 
