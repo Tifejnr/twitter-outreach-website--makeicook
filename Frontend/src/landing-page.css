@@ -1588,6 +1588,7 @@ li img {
   color: #fff;
   background-color: rgb(36, 58, 36);
   margin-bottom: 2rem;
+  cursor: pointer;
 }
 
 .view-demo-btn:hover {
