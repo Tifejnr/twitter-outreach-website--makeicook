@@ -1008,6 +1008,7 @@ body .hero-container {
   color: var(--dark-des-blue);
   margin-top: 2rem;
   font-size: 1.8rem;
+  font-weight: 500;
 }
 
 /* Below Testimonial Block */
@@ -1590,8 +1591,8 @@ li img {
 }
 
 .view-demo-btn:hover {
-  background-color: var(--green-primary);
-  border: 1px solid var(--green-primary);
+  background-color: var(--light-green);
+  border: 1px solid var(--light-green);
 }
 
 .creditsNeededCont:last-child {

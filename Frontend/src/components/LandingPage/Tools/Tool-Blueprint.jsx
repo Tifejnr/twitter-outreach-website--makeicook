@@ -28,7 +28,7 @@ export default function ToolBlueprint(props) {
       </article>
 
       <button onClick={toggleVideoVisibility} className="view-demo-btn">
-        {!isVideoVisible ? "View demo" : "Close demo"}
+        {!isVideoVisible ? "See how it works" : "Close"}
       </button>
       {isVideoVisible && (
         <article

@@ -1,9 +1,12 @@
 import { allToolsVideosObj } from "../../videos/allToolsVideos";
 const heading = "Job Post Directly Above Cover Letter";
-const overview =
-  "Simply save your favorite filters once, then, on the job search page, click a button to apply them all at once. No more tedious clicking through each filter individually – just instant access to tailored job listings. With WFR Toolkit, finding the right opportunity has never been easier.";
+const overview = `
+WFR Toolkit places the job post directly above your cover letter input box ensuring you don't have to scroll upwards to reference information on job post again.
 
-const classicWayVideoUrl = allToolsVideosObj.addingToBoardClassicWay;
+If you don't enjoy scrolling all the way upwards before you can reference information on the job post, you will find this useful.
+`;
+const classicWayVideoUrl =
+  allToolsVideosObj.jobPostDirectlyAboveCoverLetterDemo;
 
 const descriptionAboveCoverLetterObj = {
   heading,
