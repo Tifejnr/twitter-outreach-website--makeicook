@@ -7,6 +7,8 @@ export default function Testimonials() {
       <section className="hero-inner-container">
         <h2>Testimonials</h2>
 
+        <h4>What users of the extension have said :</h4>
+
         <section className="all-testimonials-container">
           {allImagesContainerArray.map((eachImageSrc, index) => (
             <TestimonialPictureBlueprint

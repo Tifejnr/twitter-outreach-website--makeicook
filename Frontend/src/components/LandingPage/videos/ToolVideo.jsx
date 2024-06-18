@@ -1,12 +1,17 @@
-import React from "react";
+import PropTypes from "prop-types";
 
-export default function ToolVideo(props: any) {
+ToolVideo.propTypes = {
+  index: PropTypes.number.isRequired,
+  videoUrl: PropTypes.string.isRequired,
+};
+
+export default function ToolVideo({ videoUrl }) {
   return (
     <div className="iframe-container">
       <iframe
         width="100%"
         height="315"
-        src={props.videoUrl}
+        src={videoUrl}
         title="YouTube video player"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

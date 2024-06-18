@@ -956,12 +956,19 @@ body .hero-container {
 }
 
 .each-testimonial-container img {
-  border: 1px solid gray;
+  border: 1px solid var(--green-primary);
   cursor: pointer;
   width: 200px;
-  height: 150px;
+  height: 200px;
   border-radius: 1rem;
   padding: 1rem;
+}
+
+@media only screen and (min-width: 400px) {
+  .each-testimonial-container img {
+    width: 220px;
+    height: 150px;
+  }
 }
 
 @media only screen and (min-width: 768px) {
@@ -979,12 +986,12 @@ body .hero-container {
   margin-top: 4rem;
   /* border: 2px solid red; */
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Creates 3 columns of equal width */
+  grid-template-columns: repeat(1, 1fr); /* Creates 3 columns of equal width */
   grid-gap: 5rem; /* Optional: Adds space between grid items */
   row-gap: 3rem;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 558px) {
   .all-testimonials-container {
     margin-top: 4rem;
     display: grid;
@@ -995,6 +1002,12 @@ body .hero-container {
     grid-gap: 5rem; /* Optional: Adds space between grid items */
     row-gap: 3rem;
   }
+}
+
+.testimonials-cont h4 {
+  color: var(--dark-des-blue);
+  margin-top: 2rem;
+  font-size: 1.8rem;
 }
 
 /* Below Testimonial Block */
@@ -1501,7 +1514,8 @@ li img {
 
 .each-tool-section p {
   text-align: left;
-  line-height: 1.5;
+  line-height: 1.6;
+  margin-top: 1rem;
 }
 
 .each-tool-section ul {
@@ -1547,6 +1561,37 @@ li img {
     rotate: 0deg;
     border: 0;
   }
+}
+
+.tool-video-hidden {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.5s ease, max-height 0.5s ease;
+}
+
+.tool-video-visible {
+  opacity: 1;
+  max-height: 1000px; /* Adjust as needed */
+  transition: opacity 0.5s ease, max-height 0.5s ease;
+}
+
+.view-demo-btn {
+  position: relative;
+  font-size: 1.6rem;
+  border: 1px solid rgb(36, 58, 36);
+  padding: 1rem;
+  border-radius: 1rem;
+  width: 50%;
+  left: 25%;
+  color: #fff;
+  background-color: rgb(36, 58, 36);
+  margin-bottom: 2rem;
+}
+
+.view-demo-btn:hover {
+  background-color: var(--green-primary);
+  border: 1px solid var(--green-primary);
 }
 
 .creditsNeededCont:last-child {

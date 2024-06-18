@@ -1,7 +1,18 @@
-// import ToolVideo from "../videos/ToolVideo";
+import { useState } from "react";
+import ToolVideo from "../videos/ToolVideo";
 import PropTypes from "prop-types";
 
 export default function ToolBlueprint(props) {
+  // State to track video visibility
+  const [isVideoVisible, setIsVideoVisible] = useState(false);
+
+  // Function to toggle video visibility
+  const toggleVideoVisibility = () => {
+    setIsVideoVisible(!isVideoVisible);
+  };
+
+  // Split the overview text into paragraphs
+  const paragraphs = props.toolDetails.overview.trim().split("\n\n");
   return (
     <section className="each-tool-section">
       <h2>
@@ -9,14 +20,28 @@ export default function ToolBlueprint(props) {
       </h2>
 
       <article>
-        <p>{props.toolDetails.overview}</p>
+        <div>
+          {paragraphs.map((paragraph, index) => (
+            <p key={index}>{paragraph}</p>
+          ))}
+        </div>
       </article>
 
-      <article style={{ width: "100%" }}>
-        {/* {props.toolDetails.classicWayVideoUrl && (
-          <ToolVideo videoUrl={props.toolDetails.classicWayVideoUrl} />
-        )} */}
-      </article>
+      <button onClick={toggleVideoVisibility} className="view-demo-btn">
+        {!isVideoVisible ? "View demo" : "Close demo"}
+      </button>
+      {isVideoVisible && (
+        <article
+          style={{ width: "100%" }}
+          className={
+            isVideoVisible ? "tool-video-visible" : "tool-video-hidden"
+          }
+        >
+          {props.toolDetails.classicWayVideoUrl && (
+            <ToolVideo videoUrl={props.toolDetails.classicWayVideoUrl} />
+          )}
+        </article>
+      )}
     </section>
   );
 }
