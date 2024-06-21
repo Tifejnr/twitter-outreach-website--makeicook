@@ -15,8 +15,6 @@ const wfrOutreachRecordingRouter = express.Router();
 wfrOutreachRecordingRouter.post("/", async (req, res) => {
   const bodyRequest = await req.body;
 
-  console.log("adding username", bodyRequest);
-
   // const resultOfTokenValidation = await isTokenValid(bodyRequest);
 
   // if (resultOfTokenValidation.nullJWTToken)
