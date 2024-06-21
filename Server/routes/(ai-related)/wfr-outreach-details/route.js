@@ -1,8 +1,8 @@
 import { google } from "googleapis";
 import express from "express";
+import credentials from "./credentials.json" assert { type: "json" };
+
 const sheets = google.sheets("v4");
-import credentials from "./credentials.json" assert { type: "json" }; // Replace with the actual path to your credentials file
-import isTokenValid from "../../../server-utils/middleware/token-validity/isTokenValid.js";
 
 // Set up OAuth2 authentication
 const auth = new google.auth.GoogleAuth({
@@ -13,130 +13,112 @@ const auth = new google.auth.GoogleAuth({
 const wfrOutreachRecordingRouter = express.Router();
 
 wfrOutreachRecordingRouter.post("/", async (req, res) => {
-  const bodyRequest = await req.body;
+  const bodyRequest = req.body;
 
-  // const resultOfTokenValidation = await isTokenValid(bodyRequest);
+  try {
+    const authClient = await auth.getClient();
+    const token = await authClient.getAccessToken();
+    console.log("Generated Access Token:", token);
 
-  // if (resultOfTokenValidation.nullJWTToken)
-  //   return res.json({ nullJWTToken: true });
+    const { paramToDecide, paramsToAddToSheet } = bodyRequest;
 
-  // if (resultOfTokenValidation.invalidToken)
-  //   return res.json({ invalidToken: true });
+    if (paramToDecide) {
+      const { username, columnLetter, spreadsheetId } = paramToDecide;
+      try {
+        const sheetsAPI = sheets.spreadsheets.values;
+        const sheetName = "Sheet1";
 
-  const { paramToDecide, paramsToAddToSheet } = bodyRequest;
+        const resultResponse = await sheetsAPI.get({
+          auth,
+          spreadsheetId,
+          range: `${sheetName}!${columnLetter}:${columnLetter}`,
+        });
 
-  // for adding usernames to sheet
+        const values = resultResponse.data.values;
+        const lastRowIndex = values ? values.length : 0;
+        const range = `${sheetName}!${columnLetter}${lastRowIndex + 1}`;
 
-  if (paramToDecide) {
-    const { username, columnLetter, spreadsheetId } = paramToDecide;
-    try {
-      const sheetsAPI = sheets.spreadsheets.values;
+        const result = await sheetsAPI.update({
+          auth,
+          spreadsheetId,
+          range,
+          valueInputOption: "RAW",
+          requestBody: { values: [[username]] },
+        });
 
-      const sheetName = "Sheet1";
-
-      // Find the last row with data in the specified column
-      const resultResponse = await sheetsAPI.get({
-        auth,
-        spreadsheetId,
-        range: `${sheetName}!${columnLetter}:${columnLetter}`,
-      });
-
-      const values = resultResponse.data.values;
-      const lastRowIndex = values ? values.length : 0;
-
-      // Calculate the new cell address at the bottom of the column
-      const range = `${sheetName}!${columnLetter}${lastRowIndex + 1}`;
-
-      // Append the new value to the calculated cell address
-      // Append the new value to the calculated cell address
-      const result = await sheetsAPI.update({
-        auth,
-        spreadsheetId,
-        range,
-        valueInputOption: "RAW",
-        requestBody: { values: [[username]] }, // Use requestBody instead of resource
-      });
-
-      if (result.status == 200) return res.json({ added: true });
-    } catch (error) {
-      console.error("Error appending cell value:", error);
-
-      res.json({ error });
+        if (result.status == 200) return res.json({ added: true });
+      } catch (error) {
+        console.error("Error appending cell value:", error);
+        return res.json({ error: error.message });
+      }
     }
-  }
 
-  if (paramsToAddToSheet) {
-    const {
-      teamName,
-      sportyTeamName,
-      spreadsheetId,
-      rawTeamNamecolumnLetter,
-      sportyTeamNamecolumnLetter,
-    } = paramsToAddToSheet;
-
-    try {
-      const sheetsAPI = sheets.spreadsheets.values;
-
-      const sheetName = "Sheet1";
-
-      // Find the last row with data in the with raw team name column letter
-      const rawTeamAddedresultResponse = await sheetsAPI.get({
-        auth,
+    if (paramsToAddToSheet) {
+      const {
+        teamName,
+        sportyTeamName,
         spreadsheetId,
-        range: `${sheetName}!${rawTeamNamecolumnLetter}:${rawTeamNamecolumnLetter}`,
-      });
+        rawTeamNamecolumnLetter,
+        sportyTeamNamecolumnLetter,
+      } = paramsToAddToSheet;
 
-      const values = rawTeamAddedresultResponse.data.values;
-      const lastRowIndex = values ? values.length : 0;
+      try {
+        const sheetsAPI = sheets.spreadsheets.values;
+        const sheetName = "Sheet1";
 
-      // Calculate the new cell address at the bottom of the column
-      const range = `${sheetName}!${rawTeamNamecolumnLetter}${
-        lastRowIndex + 1
-      }`;
+        const rawTeamAddedresultResponse = await sheetsAPI.get({
+          auth,
+          spreadsheetId,
+          range: `${sheetName}!${rawTeamNamecolumnLetter}:${rawTeamNamecolumnLetter}`,
+        });
 
-      // Append the new value to the calculated cell address
-      const rawTeamAddedresult = await sheetsAPI.update({
-        auth,
-        spreadsheetId,
-        range,
-        valueInputOption: "RAW",
-        requestBody: { values: [[teamName]] }, // Use requestBody instead of resource
-      });
+        const values = rawTeamAddedresultResponse.data.values;
+        const lastRowIndex = values ? values.length : 0;
+        const range = `${sheetName}!${rawTeamNamecolumnLetter}${
+          lastRowIndex + 1
+        }`;
 
-      // Find the last row with data in the with sporty team name column letter
-      const sportyTeamAddedresultResponse = await sheetsAPI.get({
-        auth,
-        spreadsheetId,
-        range: `${sheetName}!${sportyTeamNamecolumnLetter}:${sportyTeamNamecolumnLetter}`,
-      });
+        const rawTeamAddedresult = await sheetsAPI.update({
+          auth,
+          spreadsheetId,
+          range,
+          valueInputOption: "RAW",
+          requestBody: { values: [[teamName]] },
+        });
 
-      const valuesSporty = sportyTeamAddedresultResponse.data.values;
-      const lastRowIndexSporty = valuesSporty ? valuesSporty.length : 0;
+        const sportyTeamAddedresultResponse = await sheetsAPI.get({
+          auth,
+          spreadsheetId,
+          range: `${sheetName}!${sportyTeamNamecolumnLetter}:${sportyTeamNamecolumnLetter}`,
+        });
 
-      // Calculate the new cell address at the bottom of the column
-      const rangeSporty = `${sheetName}!${sportyTeamNamecolumnLetter}${
-        lastRowIndexSporty + 1
-      }`;
+        const valuesSporty = sportyTeamAddedresultResponse.data.values;
+        const lastRowIndexSporty = valuesSporty ? valuesSporty.length : 0;
+        const rangeSporty = `${sheetName}!${sportyTeamNamecolumnLetter}${
+          lastRowIndexSporty + 1
+        }`;
 
-      // Append the new value to the calculated cell address
-      const sportyTeamAddedresult = await sheetsAPI.update({
-        auth,
-        spreadsheetId,
-        range: rangeSporty,
-        valueInputOption: "RAW",
-        requestBody: { values: [[sportyTeamName]] }, // Use requestBody instead of resource
-      });
+        const sportyTeamAddedresult = await sheetsAPI.update({
+          auth,
+          spreadsheetId,
+          range: rangeSporty,
+          valueInputOption: "RAW",
+          requestBody: { values: [[sportyTeamName]] },
+        });
 
-      if (
-        rawTeamAddedresult.status == 200 &&
-        sportyTeamAddedresult.status === 200
-      )
-        return res.json({ added: true });
-    } catch (error) {
-      console.error("Error appending cell value:", error);
-
-      res.json({ error });
+        if (
+          rawTeamAddedresult.status == 200 &&
+          sportyTeamAddedresult.status === 200
+        )
+          return res.json({ added: true });
+      } catch (error) {
+        console.error("Error appending cell value:", error);
+        return res.json({ error: error.message });
+      }
     }
+  } catch (error) {
+    console.error("Error obtaining auth client or access token:", error);
+    return res.json({ error: error.message });
   }
 });
 
