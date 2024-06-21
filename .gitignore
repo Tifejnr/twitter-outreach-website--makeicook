@@ -36,3 +36,6 @@ envVariables.js
 /envVariables
 envVariables/
 envVariables.ts
+
+credentials.json
+/credentials

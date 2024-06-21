@@ -42,3 +42,6 @@ next-env.d.ts
 /envVariables
 envVariables/
 envVariables.ts
+
+credentials.json
+/credentials
