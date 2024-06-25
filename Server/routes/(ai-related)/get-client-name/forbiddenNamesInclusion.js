@@ -358,8 +358,16 @@ const instagramText = "Instagram";
 const logoText = "logo";
 const designerText = "designer";
 const zoomText = "zoom";
+const singularityText = "Singularity";
+const CoFounderText = "Co-Founder";
+const CEOText = "CEO";
+const founderText = "Founder";
 
 const forbiddenNamesInclusionArray = [
+  founderText,
+  CoFounderText,
+  CEOText,
+  singularityText,
   zoomText,
   designerText,
   logoText,
