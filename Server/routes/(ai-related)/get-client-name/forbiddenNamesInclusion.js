@@ -357,8 +357,10 @@ const hypothesisText = "Hypothesis";
 const instagramText = "Instagram";
 const logoText = "logo";
 const designerText = "designer";
+const zoomText = "zoom";
 
 const forbiddenNamesInclusionArray = [
+  zoomText,
   designerText,
   logoText,
   instagramText,
