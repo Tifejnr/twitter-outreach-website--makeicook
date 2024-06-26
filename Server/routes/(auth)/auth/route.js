@@ -13,7 +13,7 @@ signInRouter.post("/", async (req, res) => {
   const keysObject = getSecretKeys();
   const JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
 
-  console.log(cookies().get("wfrAuth"));
+  console.log(req.cookies["wfrAuth"]);
 
   const { error } = signInDetailsValidation(bodyRequest);
 
@@ -34,13 +34,14 @@ signInRouter.post("/", async (req, res) => {
     JWT_PRIVATE_KEY
   );
 
-  cookies().set("wfrAuth", token, {
-    maxAge: 1209600000,
-    httpOnly: true,
-    secure: true,
-  });
-
-  return res.json({ token });
+  // Setting the cookie
+  return res
+    .cookie("wfrAuth", token, {
+      maxAge: 1209600000, // 14 days
+      httpOnly: true,
+      secure: true,
+    })
+    .json({ token });
 });
 
 export default signInRouter;
