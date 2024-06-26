@@ -1,6 +1,8 @@
 import express from "express";
 const signInRouter = express.Router();
 
+signInRouter.use(coookieParser());
+
 import getSecretKeys from "../../../envVariables/envVariables.js";
 import signInDetailsValidation from "../../../server-utils/joi-validations/sign-in/signInValidation.js";
 import bcrypt from "bcryptjs";
