@@ -10,6 +10,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const app = express();
 
+const corsOptions = {
+  origin: true, //included origin as true
+  credentials: true, //included credentials as true
+};
+
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(coookieParser());
@@ -33,11 +38,6 @@ import handlerExtensionRequestRouter from "./routes/(customer-requests)/handle-e
 (async () => {
   await getMongoKeyAndConnect();
 })();
-
-const corsOptions = {
-  origin: true, //included origin as true
-  credentials: true, //included credentials as true
-};
 
 const limiter = exppressLimiter.limit;
 
