@@ -10,6 +10,10 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const app = express();
 
+app.use(cors(corsOptions));
+app.use(express.json());
+app.use(coookieParser());
+
 import setupMiddleware from "./startup/prod.js";
 setupMiddleware(app);
 
@@ -46,10 +50,6 @@ const rateLimitRoute = limiter(limiterOptions);
 
 //limiter on routes
 // app.use(limiter(limiterOptions));
-
-app.use(cors(corsOptions));
-app.use(express.json());
-app.use(coookieParser());
 
 //api routes declaarations
 app.use("/api/users", signUpRouter);
