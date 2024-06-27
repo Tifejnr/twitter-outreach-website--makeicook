@@ -1,5 +1,4 @@
 import express from "express";
-import coookieParser from "cookie-parser";
 const signInRouter = express.Router();
 
 import getSecretKeys from "../../../envVariables/envVariables.js";
