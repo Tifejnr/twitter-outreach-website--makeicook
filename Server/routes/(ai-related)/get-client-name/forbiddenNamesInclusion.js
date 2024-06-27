@@ -362,8 +362,12 @@ const singularityText = "Singularity";
 const CoFounderText = "Co-Founder";
 const CEOText = "CEO";
 const founderText = "Founder";
+const sirDotText = "sir.";
+const StraightforwardText = "Straightforward";
 
 const forbiddenNamesInclusionArray = [
+  StraightforwardText,
+  sirDotText,
   founderText,
   CoFounderText,
   CEOText,
