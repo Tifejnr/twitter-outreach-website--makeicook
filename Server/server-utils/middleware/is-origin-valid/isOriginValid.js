@@ -6,7 +6,7 @@ function validateOrigin(req, res, next) {
   if (allowedOriginArrays.includes(incomingOriginValue)) {
     next();
   } else {
-    console.log("invalid origin", incomingOriginValue);
+    console.log("invalid origin", incomingOriginValue, req.body);
     res.status(400).json({ anErrorOccured: true });
   }
 }
