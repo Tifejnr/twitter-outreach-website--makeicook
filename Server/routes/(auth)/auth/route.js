@@ -2,8 +2,6 @@ import express from "express";
 import coookieParser from "cookie-parser";
 const signInRouter = express.Router();
 
-signInRouter.use(coookieParser());
-
 import getSecretKeys from "../../../envVariables/envVariables.js";
 import signInDetailsValidation from "../../../server-utils/joi-validations/sign-in/signInValidation.js";
 import bcrypt from "bcryptjs";
@@ -15,8 +13,6 @@ signInRouter.post("/", async (req, res) => {
   const bodyRequest = await req.body;
   const keysObject = getSecretKeys();
   const JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
-
-  console.log(req.cookies["wfrAuth"]);
 
   const { error } = signInDetailsValidation(bodyRequest);
 
@@ -38,13 +34,13 @@ signInRouter.post("/", async (req, res) => {
   );
 
   // Setting the cookie
-  return res
-    .cookie("wfrAuth", token, {
-      maxAge: 1209600000, // 14 days
-      httpOnly: true,
-      secure: true,
-    })
-    .json({ token });
+  // .cookie("wfrAuth", token, {
+  //   maxAge: 1209600000, // 14 days
+  //   httpOnly: true,
+  //   secure: true,
+  //   path: "chrome-extension://chpmkkhcpfhjdkkeiggiicfejnkhcidb/sidepanel.html",
+  // })
+  return res.json({ token });
 });
 
 export default signInRouter;
