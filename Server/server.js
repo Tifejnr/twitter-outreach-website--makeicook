@@ -44,7 +44,7 @@ const limiter = exppressLimiter.limit;
 
 const limiterOptions = {
   windows: 4000,
-  max: 2,
+  max: 4,
 };
 
 const rateLimitRoute = limiter(limiterOptions);
@@ -52,34 +52,40 @@ const rateLimitRoute = limiter(limiterOptions);
 //limiter on routes
 // app.use(limiter(limiterOptions));
 // Apply validateOrigin middleware globally
-app.use(validateOrigin);
+// app.use(validateOrigin);
 
 //api routes declaarations
-app.use("/api/users", signUpRouter);
-app.use("/api/auth", signInRouter);
-app.use("/api/forgot-password", forgotPasswordRouter);
+app.use("/api/users", validateOrigin, signUpRouter);
+app.use("/api/auth", validateOrigin, signInRouter);
+app.use("/api/forgot-password", validateOrigin, forgotPasswordRouter);
 app.use(
   "/api/forgot-password/reset-password",
-
+  validateOrigin,
   resetPasswordRouter
 );
-app.use("/api/get-client-name", rateLimitRoute, getClientNameRouter);
+app.use(
+  "/api/get-client-name",
+  [validateOrigin, rateLimitRoute],
+  getClientNameRouter
+);
 app.use(
   "/api/is-account-authorized",
+  validateOrigin,
 
   isAccountAuthorizedRouter
 );
-app.use("/is-account-authorized", isAccountAuthorizedRouter);
+app.use("/is-account-authorized", validateOrigin, isAccountAuthorizedRouter);
 app.use(
   "/api/wfr-outreach-details",
+  validateOrigin,
 
   wfrOutreachRecordingRouter
 );
-app.use("/api/ChatGBT", chatGPTAIResponseRouter);
-app.use("/api/contact-us", contactUsHandlerWebsiteRouter);
+app.use("/api/ChatGBT", validateOrigin, chatGPTAIResponseRouter);
+app.use("/api/contact-us", validateOrigin, contactUsHandlerWebsiteRouter);
 app.use(
   "/api/handle-extension-request",
-
+  validateOrigin,
   handlerExtensionRequestRouter
 );
 
