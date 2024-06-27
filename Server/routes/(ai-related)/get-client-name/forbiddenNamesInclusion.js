@@ -364,8 +364,10 @@ const CEOText = "CEO";
 const founderText = "Founder";
 const sirDotText = "sir.";
 const StraightforwardText = "Straightforward";
+const proffesionalText = "proffesional";
 
 const forbiddenNamesInclusionArray = [
+  proffesionalText,
   StraightforwardText,
   sirDotText,
   founderText,
