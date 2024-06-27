@@ -61,7 +61,11 @@ app.use(
   validateOrigin,
   resetPasswordRouter
 );
-app.use("/api/get-client-name", rateLimitRoute, getClientNameRouter);
+app.use(
+  "/api/get-client-name",
+  [rateLimitRoute, validateOrigin],
+  getClientNameRouter
+);
 app.use(
   "/api/is-account-authorized",
   validateOrigin,
