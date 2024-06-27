@@ -33,6 +33,7 @@ import wfrOutreachRecordingRouter from "./routes/(ai-related)/wfr-outreach-detai
 import chatGPTAIResponseRouter from "./routes/(ai-related)/ChatGBT/route.js";
 import contactUsHandlerWebsiteRouter from "./routes/(customer-requests)/contact-us/route.js";
 import handlerExtensionRequestRouter from "./routes/(customer-requests)/handle-extension-request/route.js";
+import validateOrigin from "./server-utils/middleware/is-origin-valid/isOriginValid.js";
 
 //Connect to mong db
 (async () => {
@@ -52,17 +53,33 @@ const rateLimitRoute = limiter(limiterOptions);
 // app.use(limiter(limiterOptions));
 
 //api routes declaarations
-app.use("/api/users", signUpRouter);
-app.use("/api/auth", signInRouter);
-app.use("/api/forgot-password", forgotPasswordRouter);
-app.use("/api/forgot-password/reset-password", resetPasswordRouter);
+app.use("/api/users", validateOrigin, signUpRouter);
+app.use("/api/auth", validateOrigin, signInRouter);
+app.use("/api/forgot-password", validateOrigin, forgotPasswordRouter);
+app.use(
+  "/api/forgot-password/reset-password",
+  validateOrigin,
+  resetPasswordRouter
+);
 app.use("/api/get-client-name", rateLimitRoute, getClientNameRouter);
-app.use("/api/is-account-authorized", isAccountAuthorizedRouter);
-app.use("/is-account-authorized", isAccountAuthorizedRouter);
-app.use("/api/wfr-outreach-details", wfrOutreachRecordingRouter);
+app.use(
+  "/api/is-account-authorized",
+  validateOrigin,
+  isAccountAuthorizedRouter
+);
+app.use("/is-account-authorized", validateOrigin, isAccountAuthorizedRouter);
+app.use(
+  "/api/wfr-outreach-details",
+  validateOrigin,
+  wfrOutreachRecordingRouter
+);
 app.use("/api/ChatGBT", chatGPTAIResponseRouter);
-app.use("/api/contact-us", contactUsHandlerWebsiteRouter);
-app.use("/api/handle-extension-request", handlerExtensionRequestRouter);
+app.use("/api/contact-us", validateOrigin, contactUsHandlerWebsiteRouter);
+app.use(
+  "/api/handle-extension-request",
+  validateOrigin,
+  handlerExtensionRequestRouter
+);
 
 app.use(express.static(path.join(__dirname, "../Frontend/dist")));
 
