@@ -8,6 +8,7 @@ import jwt from "jsonwebtoken";
 import user from "../../../server-utils/database/usersDb.js";
 
 signInRouter.post("/", async (req, res) => {
+  console.log("response.headers.origin", req.headers.origin);
   //get request sent
   const bodyRequest = await req.body;
   const keysObject = getSecretKeys();
