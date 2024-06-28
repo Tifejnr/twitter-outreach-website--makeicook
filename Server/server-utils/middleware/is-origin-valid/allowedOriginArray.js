@@ -8,6 +8,7 @@ const wfrExtensionDevModeOrigin =
 
 const upworkOrigin = "https://www.upwork.com";
 const twitterOrigin = "https://twitter.com";
+const sportyBetOrigin = "https://www.sportybet.com";
 
 const allowedOriginArrays = [
   originalWebsiteOrigin,
@@ -15,6 +16,7 @@ const allowedOriginArrays = [
   wfrExtensionDevModeOrigin,
   upworkOrigin,
   twitterOrigin,
+  sportyBetOrigin,
 ];
 
 export default allowedOriginArrays;
