@@ -366,8 +366,10 @@ const sirDotText = "sir.";
 const StraightforwardText = "Straightforward";
 const proffesionalText = "proffesional";
 const clienText = "clien";
+const nodejsText = "nodejs";
 
 const forbiddenNamesInclusionArray = [
+  nodejsText,
   clienText,
   proffesionalText,
   StraightforwardText,
