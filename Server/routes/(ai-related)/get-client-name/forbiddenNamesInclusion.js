@@ -367,8 +367,10 @@ const StraightforwardText = "Straightforward";
 const proffesionalText = "proffesional";
 const clienText = "clien";
 const nodejsText = "nodejs";
+const paymentText = "payment";
 
 const forbiddenNamesInclusionArray = [
+  paymentText,
   nodejsText,
   clienText,
   proffesionalText,
