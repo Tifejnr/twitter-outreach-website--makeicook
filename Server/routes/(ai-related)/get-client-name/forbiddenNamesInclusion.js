@@ -368,8 +368,10 @@ const proffesionalText = "proffesional";
 const clienText = "clien";
 const nodejsText = "nodejs";
 const paymentText = "payment";
+const upworkText = "upwork";
 
 const forbiddenNamesInclusionArray = [
+  upworkText,
   paymentText,
   nodejsText,
   clienText,
