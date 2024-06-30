@@ -369,8 +369,12 @@ const clienText = "clien";
 const nodejsText = "nodejs";
 const paymentText = "payment";
 const upworkText = "upwork";
+const ThnaksText = "Thnaks";
+const fraternityText = "fraternity";
 
 const forbiddenNamesInclusionArray = [
+  fraternityText,
+  ThnaksText,
   upworkText,
   paymentText,
   nodejsText,
