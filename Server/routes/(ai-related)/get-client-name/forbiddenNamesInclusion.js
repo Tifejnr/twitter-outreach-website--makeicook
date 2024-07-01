@@ -372,8 +372,10 @@ const upworkText = "upwork";
 const ThnaksText = "Thnaks";
 const fraternityText = "fraternity";
 const elanceText = "Elance";
+const genderText = "Gender";
 
 const forbiddenNamesInclusionArray = [
+  genderText,
   elanceText,
   fraternityText,
   ThnaksText,
