@@ -373,8 +373,14 @@ const ThnaksText = "Thnaks";
 const fraternityText = "fraternity";
 const elanceText = "Elance";
 const genderText = "Gender";
+const clubText = "club";
+const blackText = "black";
+const stoneText = "stone";
 
 const forbiddenNamesInclusionArray = [
+  stoneText,
+  blackText,
+  clubText,
   genderText,
   elanceText,
   fraternityText,
