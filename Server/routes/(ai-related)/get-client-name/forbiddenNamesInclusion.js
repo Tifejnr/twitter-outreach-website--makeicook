@@ -376,8 +376,16 @@ const genderText = "Gender";
 const clubText = "club";
 const blackText = "black";
 const stoneText = "stone";
+const whiteDoubleLoveText = "❤ ❤";
+const adventureText = "Adventure";
+const insteadText = "Instead";
+const academyText = "Academy";
 
 const forbiddenNamesInclusionArray = [
+  academyText,
+  insteadText,
+  adventureText,
+  whiteDoubleLoveText,
   stoneText,
   blackText,
   clubText,
