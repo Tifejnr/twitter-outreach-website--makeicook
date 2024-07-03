@@ -44,7 +44,8 @@ export default function processClientNameGotten(clientNameResponseRaw) {
     doesItContainOneXter ||
     isNameDecimal ||
     isNameEmoji ||
-    clientNameResponse.includes("ignored")
+    clientNameResponse.includes("ignored") ||
+    clientNameResponse == "❤ ❤"
   ) {
     clientNameResponse = "Hi there";
   }
