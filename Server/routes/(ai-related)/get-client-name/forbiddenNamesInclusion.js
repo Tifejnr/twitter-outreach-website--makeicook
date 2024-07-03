@@ -380,8 +380,12 @@ const whiteDoubleLoveText = "❤ ❤";
 const adventureText = "Adventure";
 const insteadText = "Instead";
 const academyText = "Academy";
+const smallText = "small";
+const coolText = "cool";
 
 const forbiddenNamesInclusionArray = [
+  coolText,
+  smallText,
   academyText,
   insteadText,
   adventureText,
