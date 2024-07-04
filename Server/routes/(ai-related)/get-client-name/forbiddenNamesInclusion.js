@@ -382,8 +382,14 @@ const insteadText = "Instead";
 const academyText = "Academy";
 const smallText = "small";
 const coolText = "cool";
+const lovelyText = "Lovely";
+const regardsText = "Regards";
+const somedayText = "someday";
 
 const forbiddenNamesInclusionArray = [
+  somedayText,
+  regardsText,
+  lovelyText,
   coolText,
   smallText,
   academyText,
