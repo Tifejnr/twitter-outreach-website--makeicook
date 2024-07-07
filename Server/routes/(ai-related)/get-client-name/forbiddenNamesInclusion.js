@@ -385,8 +385,10 @@ const coolText = "cool";
 const lovelyText = "Lovely";
 const regardsText = "Regards";
 const somedayText = "someday";
+const corporateText = "corporate";
 
 const forbiddenNamesInclusionArray = [
+  corporateText,
   somedayText,
   regardsText,
   lovelyText,
