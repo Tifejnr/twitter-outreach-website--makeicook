@@ -394,8 +394,10 @@ const sinceText = "since";
 const lastText = "last";
 const fewText = "few";
 const monthText = "month";
+const beawareText = "Beaware";
 
 const forbiddenNamesInclusionArray = [
+  beawareText,
   monthText,
   fewText,
   lastText,
