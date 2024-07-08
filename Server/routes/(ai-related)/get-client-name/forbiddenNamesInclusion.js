@@ -388,8 +388,12 @@ const somedayText = "someday";
 const corporateText = "corporate";
 const themText = "them";
 const firstText = "first";
+const justText = "just";
+const okText = "ok";
 
 const forbiddenNamesInclusionArray = [
+  okText,
+  justText,
   firstText,
   themText,
   corporateText,
