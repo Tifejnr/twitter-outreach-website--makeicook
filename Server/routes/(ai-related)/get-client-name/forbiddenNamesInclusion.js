@@ -390,8 +390,16 @@ const themText = "them";
 const firstText = "first";
 const justText = "just";
 const okText = "ok";
+const sinceText = "since";
+const lastText = "last";
+const fewText = "few";
+const monthText = "month";
 
 const forbiddenNamesInclusionArray = [
+  monthText,
+  fewText,
+  lastText,
+  sinceText,
   okText,
   justText,
   firstText,
