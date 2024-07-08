@@ -395,8 +395,10 @@ const lastText = "last";
 const fewText = "few";
 const monthText = "month";
 const beawareText = "Beaware";
+const qtoolText = "Qtool";
 
 const forbiddenNamesInclusionArray = [
+  qtoolText,
   beawareText,
   monthText,
   fewText,
