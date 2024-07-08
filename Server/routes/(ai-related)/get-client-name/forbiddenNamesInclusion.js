@@ -386,8 +386,12 @@ const lovelyText = "Lovely";
 const regardsText = "Regards";
 const somedayText = "someday";
 const corporateText = "corporate";
+const themText = "them";
+const firstText = "first";
 
 const forbiddenNamesInclusionArray = [
+  firstText,
+  themText,
   corporateText,
   somedayText,
   regardsText,
@@ -520,7 +524,6 @@ const forbiddenNamesInclusionArray = [
   developmentText,
   collaborateText,
   doubleExcalamationText,
-  futureText,
   manText,
   recomendText,
   curveText,
