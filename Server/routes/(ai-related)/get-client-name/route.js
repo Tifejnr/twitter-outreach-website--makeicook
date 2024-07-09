@@ -62,11 +62,11 @@ getClientNameRouter.post("/", async (req, res) => {
           cleanedClientName
         );
 
-        const cleanedClientName = processClientNameGotten(
+        const secondCleanedClientName = processClientNameGotten(
           clientNameResponseRaw
         );
 
-        return res.json({ clientNameResponse: cleanedClientName });
+        return res.json({ clientNameResponse: secondCleanedClientName });
       } else {
         return res.json({ clientNameResponse: cleanedClientName });
       }
