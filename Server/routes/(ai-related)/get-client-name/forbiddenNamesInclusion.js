@@ -396,8 +396,12 @@ const fewText = "few";
 const monthText = "month";
 const beawareText = "Beaware";
 const qtoolText = "Qtool";
+const ABSOLTULETYText = "ABSOLTULETY";
+const absolutelyText = "absolutely";
 
 const forbiddenNamesInclusionArray = [
+  absolutelyText,
+  ABSOLTULETYText,
   qtoolText,
   beawareText,
   monthText,
