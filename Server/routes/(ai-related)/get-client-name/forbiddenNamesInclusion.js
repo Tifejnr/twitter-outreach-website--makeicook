@@ -398,8 +398,12 @@ const beawareText = "Beaware";
 const qtoolText = "Qtool";
 const ABSOLTULETYText = "ABSOLTULETY";
 const absolutelyText = "absolutely";
+const excellantText = "excellant";
+const thxText = "Thx";
 
 const forbiddenNamesInclusionArray = [
+  thxText,
+  excellantText,
   absolutelyText,
   ABSOLTULETYText,
   qtoolText,
