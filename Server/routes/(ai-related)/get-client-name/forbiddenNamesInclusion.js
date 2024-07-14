@@ -401,8 +401,12 @@ const absolutelyText = "absolutely";
 const excellantText = "excellant";
 const thxText = "Thx";
 const UmmText = "Umm!";
+const crowdboticsText = "Crowdbotics";
+const logosText = "logos";
 
 const forbiddenNamesInclusionArray = [
+  logosText,
+  crowdboticsText,
   UmmText,
   thxText,
   excellantText,
