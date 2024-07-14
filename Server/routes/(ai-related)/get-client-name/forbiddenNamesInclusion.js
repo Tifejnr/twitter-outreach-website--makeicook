@@ -400,8 +400,10 @@ const ABSOLTULETYText = "ABSOLTULETY";
 const absolutelyText = "absolutely";
 const excellantText = "excellant";
 const thxText = "Thx";
+const UmmText = "Umm!";
 
 const forbiddenNamesInclusionArray = [
+  UmmText,
   thxText,
   excellantText,
   absolutelyText,
