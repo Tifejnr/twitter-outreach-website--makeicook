@@ -31,15 +31,7 @@ wfrOutreachRecordingRouter.post("/", async (req, res) => {
   // for adding usernames to sheet
 
   if (paramToDecide) {
-    const { username, columnLetter } = paramToDecide;
-
-    let spreadsheetId;
-
-    if (makeIcook) {
-      spreadsheetId = sheetIDooooMFCTeamNames;
-    } else {
-      spreadsheetId = paramToDecide.spreadsheetId;
-    }
+    const { username, columnLetter, spreadsheetId } = paramToDecide;
 
     try {
       const sheetsAPI = sheets.spreadsheets.values;
@@ -78,7 +70,6 @@ wfrOutreachRecordingRouter.post("/", async (req, res) => {
   }
 
   if (paramsToAddToSheet) {
-    let spreadsheetId;
     const {
       teamName,
       sportyTeamName,
@@ -86,11 +77,7 @@ wfrOutreachRecordingRouter.post("/", async (req, res) => {
       sportyTeamNamecolumnLetter,
     } = paramsToAddToSheet;
 
-    if (makeIcook) {
-      spreadsheetId = sheetIDooooMFCTeamNames;
-    } else {
-      spreadsheetId = paramToDecide.spreadsheetId;
-    }
+    const spreadsheetId = sheetIDooooMFCTeamNames;
 
     try {
       const sheetsAPI = sheets.spreadsheets.values;
