@@ -9,6 +9,8 @@ const auth = new google.auth.GoogleAuth({
   scopes: "https://www.googleapis.com/auth/spreadsheets",
 });
 
+const sheetIDooooMFCTeamNames = "1EXygvrShW-XgrGGwneXcHVw3Pksd137WmXH9Ofe_yxw";
+
 const wfrOutreachRecordingRouter = express.Router();
 
 wfrOutreachRecordingRouter.post("/", async (req, res) => {
@@ -27,7 +29,16 @@ wfrOutreachRecordingRouter.post("/", async (req, res) => {
   // for adding usernames to sheet
 
   if (paramToDecide) {
-    const { username, columnLetter, spreadsheetId } = paramToDecide;
+    const { username, columnLetter, makeIcook } = paramToDecide;
+
+    let spreadsheetId;
+
+    if (makeIcook) {
+      spreadsheetId = sheetIDooooMFCTeamNames;
+    } else {
+      spreadsheetId = paramToDecide.spreadsheetId;
+    }
+
     try {
       const sheetsAPI = sheets.spreadsheets.values;
 
@@ -65,13 +76,20 @@ wfrOutreachRecordingRouter.post("/", async (req, res) => {
   }
 
   if (paramsToAddToSheet) {
+    let spreadsheetId;
     const {
       teamName,
       sportyTeamName,
-      spreadsheetId,
       rawTeamNamecolumnLetter,
       sportyTeamNamecolumnLetter,
+      makeIcook,
     } = paramsToAddToSheet;
+
+    if (makeIcook) {
+      spreadsheetId = sheetIDooooMFCTeamNames;
+    } else {
+      spreadsheetId = paramToDecide.spreadsheetId;
+    }
 
     try {
       const sheetsAPI = sheets.spreadsheets.values;
