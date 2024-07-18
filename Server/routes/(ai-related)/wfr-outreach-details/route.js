@@ -26,6 +26,8 @@ wfrOutreachRecordingRouter.post("/", async (req, res) => {
 
   const { paramToDecide, paramsToAddToSheet } = bodyRequest;
 
+  console.log("got here oooo");
+
   // for adding usernames to sheet
 
   if (paramToDecide) {
