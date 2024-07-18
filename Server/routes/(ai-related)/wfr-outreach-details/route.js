@@ -24,14 +24,14 @@ wfrOutreachRecordingRouter.post("/", async (req, res) => {
   // if (resultOfTokenValidation.invalidToken)
   //   return res.json({ invalidToken: true });
 
-  const { paramToDecide, paramsToAddToSheet } = bodyRequest;
+  const { paramToDecide, paramsToAddToSheet, makeIcook } = bodyRequest;
 
-  console.log("got here oooo");
+  console.log("got here oooo", bodyRequest);
 
   // for adding usernames to sheet
 
   if (paramToDecide) {
-    const { username, columnLetter, makeIcook } = paramToDecide;
+    const { username, columnLetter } = paramToDecide;
 
     let spreadsheetId;
 
@@ -84,7 +84,6 @@ wfrOutreachRecordingRouter.post("/", async (req, res) => {
       sportyTeamName,
       rawTeamNamecolumnLetter,
       sportyTeamNamecolumnLetter,
-      makeIcook,
     } = paramsToAddToSheet;
 
     if (makeIcook) {
