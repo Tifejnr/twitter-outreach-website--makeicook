@@ -403,8 +403,12 @@ const thxText = "Thx";
 const UmmText = "Umm!";
 const crowdboticsText = "Crowdbotics";
 const logosText = "logos";
+const hundredOver100 = "100/100";
+const fiveOver5 = "5/5";
 
 const forbiddenNamesInclusionArray = [
+  fiveOver5,
+  hundredOver100,
   logosText,
   crowdboticsText,
   UmmText,
