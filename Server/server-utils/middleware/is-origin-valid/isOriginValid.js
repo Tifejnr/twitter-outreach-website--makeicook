@@ -7,7 +7,7 @@ function validateOrigin(req, res, next) {
     next();
   } else {
     console.log("invalid origin", incomingOriginValue, req.body);
-    res.status(400).json({ anErrorOccured: true });
+    return res.status(400).json({ anErrorOccured: true });
   }
 }
 
