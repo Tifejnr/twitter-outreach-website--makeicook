@@ -405,8 +405,12 @@ const crowdboticsText = "Crowdbotics";
 const logosText = "logos";
 const hundredOver100 = "100/100";
 const fiveOver5 = "5/5";
+const fitText = "fit";
+const noText = "no";
 
 const forbiddenNamesInclusionArray = [
+  noText,
+  fitText,
   fiveOver5,
   hundredOver100,
   logosText,
