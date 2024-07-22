@@ -407,8 +407,16 @@ const hundredOver100 = "100/100";
 const fiveOver5 = "5/5";
 const fitText = "fit";
 const noText = "no";
+const allText = "all";
+const starsText = "stars";
+const aroundExclamationMarkText = "around!";
+const aroundText = "around";
 
 const forbiddenNamesInclusionArray = [
+  aroundText,
+  aroundExclamationMarkText,
+  starsText,
+  allText,
   noText,
   fitText,
   fiveOver5,
