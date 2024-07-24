@@ -411,8 +411,16 @@ const allText = "all";
 const starsText = "stars";
 const aroundExclamationMarkText = "around!";
 const aroundText = "around";
+const freelancersText = "freelancers";
+const fiveStartText = "★★★★★";
+const animationText = "animation";
+const deliverText = "deliver";
 
 const forbiddenNamesInclusionArray = [
+  deliverText,
+  animationText,
+  fiveStartText,
+  freelancersText,
   aroundText,
   aroundExclamationMarkText,
   starsText,
