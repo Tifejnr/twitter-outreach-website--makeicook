@@ -29,7 +29,7 @@ wfrOutreachRecordingRouter.post("/", async (req, res) => {
   const {
     paramToDecide,
     paramsToAddToSheet,
-    paramToAddFailedSimulationReasons,
+    paramToAddFailedSimulationReason,
   } = bodyRequest;
 
   // for adding usernames to sheet
@@ -149,9 +149,9 @@ wfrOutreachRecordingRouter.post("/", async (req, res) => {
   }
 
   //failed simulation reasons
-  if (paramToAddFailedSimulationReasons) {
+  if (paramToAddFailedSimulationReason) {
     const { homeTeamName, awayTeamName, type, value, feedback } =
-      paramToAddFailedSimulationReasons;
+      paramToAddFailedSimulationReason;
 
     const teamsInvolvedText = `${homeTeamName} vs ${awayTeamName}`;
     const teamsInvolvedColumnLetter = "A";
