@@ -417,8 +417,10 @@ const animationText = "animation";
 const deliverText = "deliver";
 const goHighLevelText = "GoHighLevel";
 const reliatusText = "Reliatus";
+const runwaysaleText = "Runwaysale";
 
 const forbiddenNamesInclusionArray = [
+  runwaysaleText,
   reliatusText,
   goHighLevelText,
   deliverText,
