@@ -44,7 +44,7 @@ const limiter = exppressLimiter.limit;
 
 const limiterOptions = {
   windows: 4000,
-  max: 4,
+  max: 10,
 };
 
 const rateLimitRoute = limiter(limiterOptions);
