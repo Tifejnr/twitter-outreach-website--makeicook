@@ -168,6 +168,7 @@ wfrOutreachRecordingRouter.post("/", async (req, res) => {
       //add teams involved text
       const teamsInvolvedSheetParams = {
         sheetsAPI,
+        spreadsheetId,
         columnLetter: teamsInvolvedColumnLetter,
         textToInput: teamsInvolvedText,
       };
@@ -177,6 +178,7 @@ wfrOutreachRecordingRouter.post("/", async (req, res) => {
       //add option chosen text
       const optionChosenSheetParams = {
         sheetsAPI,
+        spreadsheetId,
         columnLetter: optionChosenColumnLetter,
         textToInput: optionChosenText,
       };
@@ -186,6 +188,7 @@ wfrOutreachRecordingRouter.post("/", async (req, res) => {
       //add reason for failure  text
       const reasonForFailureSheetParams = {
         sheetsAPI,
+        spreadsheetId,
         columnLetter: reasonForFailureColumnLetter,
         textToInput: reasonForFailure,
       };
@@ -206,7 +209,7 @@ wfrOutreachRecordingRouter.post("/", async (req, res) => {
 });
 
 async function addTextToASheetColumn(params) {
-  const { sheetsAPI, columnLetter, textToInput } = params;
+  const { sheetsAPI, columnLetter, textToInput, spreadsheetId } = params;
   const sheetName = "Sheet1";
 
   // Find the last row with data in the with raw team name column letter
