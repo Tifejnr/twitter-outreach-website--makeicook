@@ -11,6 +11,8 @@ const auth = new google.auth.GoogleAuth({
 
 const sheetIDooooMFCTeamNames = "1EXygvrShW-XgrGGwneXcHVw3Pksd137WmXH9Ofe_yxw";
 
+const failedTeamNamesSheetId = "1lJzDe86aD-wKgDZ69ru6F_KVVpn7BD_ltKI10NbBI4E";
+
 const wfrOutreachRecordingRouter = express.Router();
 
 wfrOutreachRecordingRouter.post("/", async (req, res) => {
@@ -24,7 +26,11 @@ wfrOutreachRecordingRouter.post("/", async (req, res) => {
   // if (resultOfTokenValidation.invalidToken)
   //   return res.json({ invalidToken: true });
 
-  const { paramToDecide, paramsToAddToSheet, makeIcook } = bodyRequest;
+  const {
+    paramToDecide,
+    paramsToAddToSheet,
+    paramToAddFailedSimulationReasons,
+  } = bodyRequest;
 
   // for adding usernames to sheet
 
@@ -141,6 +147,91 @@ wfrOutreachRecordingRouter.post("/", async (req, res) => {
       res.json({ error });
     }
   }
+
+  //failed simulation reasons
+  if (paramToAddFailedSimulationReasons) {
+    const { homeTeamName, awayTeamName, type, value, feedback } =
+      paramToAddFailedSimulationReasons;
+
+    const teamsInvolvedText = `${homeTeamName} vs ${awayTeamName}`;
+    const teamsInvolvedColumnLetter = "A";
+    const optionChosenText = `${type}- ${value}`;
+    const optionChosenColumnLetter = "B";
+    const reasonForFailure = feedback;
+    const reasonForFailureColumnLetter = "C";
+
+    const spreadsheetId = failedTeamNamesSheetId;
+
+    try {
+      const sheetsAPI = sheets.spreadsheets.values;
+
+      //add teams involved text
+      const teamsInvolvedSheetParams = {
+        sheetsAPI,
+        columnLetter: teamsInvolvedColumnLetter,
+        textToInput: teamsInvolvedText,
+      };
+
+      await addTextToASheetColumn(teamsInvolvedSheetParams);
+
+      //add option chosen text
+      const optionChosenSheetParams = {
+        sheetsAPI,
+        columnLetter: optionChosenColumnLetter,
+        textToInput: optionChosenText,
+      };
+
+      await addTextToASheetColumn(optionChosenSheetParams);
+
+      //add reason for failure  text
+      const reasonForFailureSheetParams = {
+        sheetsAPI,
+        columnLetter: reasonForFailureColumnLetter,
+        textToInput: reasonForFailure,
+      };
+
+      await addTextToASheetColumn(reasonForFailureSheetParams);
+
+      // if (
+      //   rawTeamAddedresult.status == 200 &&
+      //   sportyTeamAddedresult.status === 200
+      // )
+      return res.json({ added: true });
+    } catch (error) {
+      console.error("Error appending cell value:", error);
+
+      res.json({ error });
+    }
+  }
 });
+
+async function addTextToASheetColumn(params) {
+  const { sheetsAPI, columnLetter, textToInput } = params;
+  const sheetName = "Sheet1";
+
+  // Find the last row with data in the with raw team name column letter
+  const additionProcessResponse = await sheetsAPI.get({
+    auth,
+    spreadsheetId,
+    range: `${sheetName}!${columnLetter}:${columnLetter}`,
+  });
+
+  const values = additionProcessResponse.data.values;
+  const lastRowIndex = values ? values.length : 0;
+
+  // Calculate the new cell address at the bottom of the column
+  const range = `${sheetName}!${columnLetter}${lastRowIndex + 1}`;
+
+  // Append the new value to the calculated cell address
+  const isAddedresult = await sheetsAPI.update({
+    auth,
+    spreadsheetId,
+    range,
+    valueInputOption: "RAW",
+    requestBody: { values: [[textToInput]] }, // Use requestBody instead of resource
+  });
+
+  return isAddedresult;
+}
 
 export default wfrOutreachRecordingRouter;
