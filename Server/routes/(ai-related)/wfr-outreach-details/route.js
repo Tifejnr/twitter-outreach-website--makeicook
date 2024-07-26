@@ -157,7 +157,7 @@ wfrOutreachRecordingRouter.post("/", async (req, res) => {
     const teamsInvolvedColumnLetter = "A";
     const optionChosenText = `${type}- ${value}`;
     const optionChosenColumnLetter = "B";
-    const reasonForFailure = `${homeTeamName} vs ${awayTeamName} -  ${type}, ${value} - ${feedback}`;
+    const reasonForFailure = `${homeTeamName} vs ${awayTeamName} |  ${type}, ${value} |  ${feedback}`;
     const reasonForFailureColumnLetter = "A";
 
     const spreadsheetId = failedTeamNamesSheetId;
