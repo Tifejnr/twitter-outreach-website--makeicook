@@ -173,7 +173,9 @@ wfrOutreachRecordingRouter.post("/", async (req, res) => {
         textToInput: reasonForFailure,
       };
 
-      await addTextToASheetColumn(reasonForFailureSheetParams);
+      const failueReasonAddition = await addTextToASheetColumn(
+        reasonForFailureSheetParams
+      );
 
       //add teams involved text
       const teamsInvolvedSheetParams = {
@@ -183,7 +185,9 @@ wfrOutreachRecordingRouter.post("/", async (req, res) => {
         textToInput: teamsInvolvedText,
       };
 
-      await addTextToASheetColumn(teamsInvolvedSheetParams);
+      const teamInvolvedAdditionResult = await addTextToASheetColumn(
+        teamsInvolvedSheetParams
+      );
 
       //add option chosen text
       const optionChosenSheetParams = {
@@ -193,13 +197,16 @@ wfrOutreachRecordingRouter.post("/", async (req, res) => {
         textToInput: optionChosenText,
       };
 
-      await addTextToASheetColumn(optionChosenSheetParams);
+      const optionChosenAdditionResult = await addTextToASheetColumn(
+        optionChosenSheetParams
+      );
 
-      // if (
-      //   rawTeamAddedresult.status == 200 &&
-      //   sportyTeamAddedresult.status === 200
-      // )
-      return res.json({ added: true });
+      if (
+        optionChosenAdditionResult.status == 200 &&
+        teamInvolvedAdditionResult.status === 200 &&
+        failueReasonAddition.status === 200
+      )
+        return res.json({ added: true });
     } catch (error) {
       console.error("Error appending cell value:", error);
 
