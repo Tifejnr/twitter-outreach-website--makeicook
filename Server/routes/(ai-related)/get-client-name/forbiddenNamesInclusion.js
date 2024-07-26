@@ -415,8 +415,12 @@ const freelancersText = "freelancers";
 const fiveStartText = "★★★★★";
 const animationText = "animation";
 const deliverText = "deliver";
+const goHighLevelText = "GoHighLevel";
+const reliatusText = "Reliatus";
 
 const forbiddenNamesInclusionArray = [
+  reliatusText,
+  goHighLevelText,
   deliverText,
   animationText,
   fiveStartText,
