@@ -157,8 +157,8 @@ wfrOutreachRecordingRouter.post("/", async (req, res) => {
     const teamsInvolvedColumnLetter = "A";
     const optionChosenText = `${type}- ${value}`;
     const optionChosenColumnLetter = "B";
-    const reasonForFailure = feedback;
-    const reasonForFailureColumnLetter = "C";
+    const reasonForFailure = `${homeTeamName} vs ${awayTeamName} -  ${type}, ${value} - ${feedback}`;
+    const reasonForFailureColumnLetter = "A";
 
     const spreadsheetId = failedTeamNamesSheetId;
 
@@ -177,33 +177,33 @@ wfrOutreachRecordingRouter.post("/", async (req, res) => {
         reasonForFailureSheetParams
       );
 
-      //add teams involved text
-      const teamsInvolvedSheetParams = {
-        sheetsAPI,
-        spreadsheetId,
-        columnLetter: teamsInvolvedColumnLetter,
-        textToInput: teamsInvolvedText,
-      };
+      // //add teams involved text
+      // const teamsInvolvedSheetParams = {
+      //   sheetsAPI,
+      //   spreadsheetId,
+      //   columnLetter: teamsInvolvedColumnLetter,
+      //   textToInput: teamsInvolvedText,
+      // };
 
-      const teamInvolvedAdditionResult = await addTextToASheetColumn(
-        teamsInvolvedSheetParams
-      );
+      // const teamInvolvedAdditionResult = await addTextToASheetColumn(
+      //   teamsInvolvedSheetParams
+      // );
 
-      //add option chosen text
-      const optionChosenSheetParams = {
-        sheetsAPI,
-        spreadsheetId,
-        columnLetter: optionChosenColumnLetter,
-        textToInput: optionChosenText,
-      };
+      // //add option chosen text
+      // const optionChosenSheetParams = {
+      //   sheetsAPI,
+      //   spreadsheetId,
+      //   columnLetter: optionChosenColumnLetter,
+      //   textToInput: optionChosenText,
+      // };
 
-      const optionChosenAdditionResult = await addTextToASheetColumn(
-        optionChosenSheetParams
-      );
+      // const optionChosenAdditionResult = await addTextToASheetColumn(
+      //   optionChosenSheetParams
+      // );
 
       if (
-        optionChosenAdditionResult.status == 200 &&
-        teamInvolvedAdditionResult.status === 200 &&
+        // optionChosenAdditionResult.status == 200 &&
+        // teamInvolvedAdditionResult.status === 200 &&
         failueReasonAddition.status === 200
       )
         return res.json({ added: true });
