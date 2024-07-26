@@ -165,6 +165,16 @@ wfrOutreachRecordingRouter.post("/", async (req, res) => {
     try {
       const sheetsAPI = sheets.spreadsheets.values;
 
+      //add reason for failure  text
+      const reasonForFailureSheetParams = {
+        sheetsAPI,
+        spreadsheetId,
+        columnLetter: reasonForFailureColumnLetter,
+        textToInput: reasonForFailure,
+      };
+
+      await addTextToASheetColumn(reasonForFailureSheetParams);
+
       //add teams involved text
       const teamsInvolvedSheetParams = {
         sheetsAPI,
@@ -184,16 +194,6 @@ wfrOutreachRecordingRouter.post("/", async (req, res) => {
       };
 
       await addTextToASheetColumn(optionChosenSheetParams);
-
-      //add reason for failure  text
-      const reasonForFailureSheetParams = {
-        sheetsAPI,
-        spreadsheetId,
-        columnLetter: reasonForFailureColumnLetter,
-        textToInput: reasonForFailure,
-      };
-
-      await addTextToASheetColumn(reasonForFailureSheetParams);
 
       // if (
       //   rawTeamAddedresult.status == 200 &&
