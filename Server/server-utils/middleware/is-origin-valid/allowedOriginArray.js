@@ -11,7 +11,11 @@ const twitterOrigin = "https://twitter.com";
 const xOrigin = "https://x.com";
 const sportyBetOrigin = "https://www.sportybet.com";
 
+const makeICookExtensionOrigin =
+  "chrome-extension://cjkognhpiiehofajididiblokfmdekoa";
+
 const allowedOriginArrays = [
+  makeICookExtensionOrigin,
   xOrigin,
   originalWebsiteOrigin,
   wfrToolkitExtensionOrigin,
