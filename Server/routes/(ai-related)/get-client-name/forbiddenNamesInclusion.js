@@ -418,8 +418,14 @@ const deliverText = "deliver";
 const goHighLevelText = "GoHighLevel";
 const reliatusText = "Reliatus";
 const runwaysaleText = "Runwaysale";
+const thankyouText = "Thankyou";
+const commaText = ",";
+const slaveText = "slave";
 
 const forbiddenNamesInclusionArray = [
+  slaveText,
+  commaText,
+  thankyouText,
   runwaysaleText,
   reliatusText,
   goHighLevelText,
