@@ -421,8 +421,10 @@ const runwaysaleText = "Runwaysale";
 const thankyouText = "Thankyou";
 const commaText = ",";
 const slaveText = "slave";
+const collaignoredText = "collaignored";
 
 const forbiddenNamesInclusionArray = [
+  collaignoredText,
   slaveText,
   commaText,
   thankyouText,
