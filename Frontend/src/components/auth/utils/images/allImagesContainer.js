@@ -3,15 +3,15 @@ import abolodeFeedback from "../../../../assets/images/wfr-feedbacks/bean-writer
 import chiefBasiFeedback from "../../../../assets/images/wfr-feedbacks/basic-chrief-feedback.png";
 import mightyFeedback from "../../../../assets/images/wfr-feedbacks/email-beast-feedback.jpg";
 import prakbarFeedback from "../../../../assets/images/wfr-feedbacks/prakabar-feedback-wfr.jpg";
-import tobFeedback from "../../../../assets/images/wfr-feedbacks/tob-feedback-wfr.jpg";
+import tobFeedback from "../../../../assets/images/wfr-feedbacks/kunal-koli-wfr-review.jpg";
 
 const allImagesContainerArray = [
+  tobFeedback,
   taFeedback,
   abolodeFeedback,
   chiefBasiFeedback,
   mightyFeedback,
   prakbarFeedback,
-  tobFeedback,
 ];
 
 export default allImagesContainerArray;
