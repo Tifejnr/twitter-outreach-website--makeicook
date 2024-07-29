@@ -421,9 +421,15 @@ const runwaysaleText = "Runwaysale";
 const thankyouText = "Thankyou";
 const commaText = ",";
 const slaveText = "slave";
+const bathroomDotText = "bathroom.";
+const bathroomText = "bathroom";
 const smileyEmojiText = "☺";
+const pleasurerText = "pleasurer";
 
 const forbiddenNamesInclusionArray = [
+  pleasurerText,
+  bathroomDotText,
+  bathroomText,
   smileyEmojiText,
   slaveText,
   commaText,
