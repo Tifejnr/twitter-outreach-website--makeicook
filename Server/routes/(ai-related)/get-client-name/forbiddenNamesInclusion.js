@@ -425,8 +425,16 @@ const bathroomDotText = "bathroom.";
 const bathroomText = "bathroom";
 const smileyEmojiText = "☺";
 const pleasurerText = "pleasurer";
+const enquiryText = "Enquiry";
+const appsText = "Apps";
+const memoText = "Memo";
+const AAAText = "AAA";
 
 const forbiddenNamesInclusionArray = [
+  AAAText,
+  memoText,
+  appsText,
+  enquiryText,
   pleasurerText,
   bathroomDotText,
   bathroomText,
