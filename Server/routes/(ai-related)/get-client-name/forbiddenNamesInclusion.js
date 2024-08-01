@@ -429,8 +429,12 @@ const enquiryText = "Enquiry";
 const appsText = "Apps";
 const memoText = "Memo";
 const AAAText = "AAA";
+const wouldText = "Would";
+const fixtmanText = "Fixtman";
 
 const forbiddenNamesInclusionArray = [
+  fixtmanText,
+  wouldText,
   AAAText,
   memoText,
   appsText,
