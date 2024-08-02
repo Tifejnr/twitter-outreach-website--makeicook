@@ -431,8 +431,10 @@ const memoText = "Memo";
 const AAAText = "AAA";
 const wouldText = "Would";
 const fixtmanText = "Fixtman";
+const flutterText = "Flutter";
 
 const forbiddenNamesInclusionArray = [
+  flutterText,
   fixtmanText,
   wouldText,
   AAAText,
