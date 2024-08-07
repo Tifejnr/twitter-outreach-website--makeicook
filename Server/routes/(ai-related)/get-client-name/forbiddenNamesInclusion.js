@@ -434,8 +434,16 @@ const fixtmanText = "Fixtman";
 const flutterText = "Flutter";
 const websiteText = "website";
 const expectationsText = "expectations";
+const flexibleText = "flexible";
+const workflowDotText = "workflow.";
+const workflowText = "workflow";
+const newbieText = "newbie";
 
 const forbiddenNamesInclusionArray = [
+  newbieText,
+  workflowText,
+  workflowDotText,
+  flexibleText,
   expectationsText,
   websiteText,
   flutterText,
