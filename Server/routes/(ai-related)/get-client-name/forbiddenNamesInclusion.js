@@ -438,8 +438,20 @@ const flexibleText = "flexible";
 const workflowDotText = "workflow.";
 const workflowText = "workflow";
 const newbieText = "newbie";
+const SOUNDText = "SOUND";
+const CREATIONSText = "CREATIONS";
+const areText = "are";
+const scammerText = "scammer";
+const visionText = "vision";
+const suchText = "such";
 
 const forbiddenNamesInclusionArray = [
+  suchText,
+  visionText,
+  scammerText,
+  areText,
+  CREATIONSText,
+  SOUNDText,
   newbieText,
   workflowText,
   workflowDotText,
