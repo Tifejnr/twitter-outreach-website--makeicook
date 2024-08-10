@@ -445,8 +445,16 @@ const scammerText = "scammer";
 const visionText = "vision";
 const suchText = "such";
 const guildelineText = "guildeline";
+const employerText = "Employer";
+const hadText = "had";
+const useText = "use";
+const personalText = "personal";
 
 const forbiddenNamesInclusionArray = [
+  personalText,
+  useText,
+  hadText,
+  employerText,
   guildelineText,
   suchText,
   visionText,
