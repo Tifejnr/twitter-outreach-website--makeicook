@@ -444,8 +444,10 @@ const areText = "are";
 const scammerText = "scammer";
 const visionText = "vision";
 const suchText = "such";
+const guildelineText = "guildeline";
 
 const forbiddenNamesInclusionArray = [
+  guildelineText,
   suchText,
   visionText,
   scammerText,
