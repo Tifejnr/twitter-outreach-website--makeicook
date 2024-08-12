@@ -449,8 +449,22 @@ const employerText = "Employer";
 const hadText = "had";
 const useText = "use";
 const personalText = "personal";
+const communicateText = "communicate";
+const SingaporeText = "Singapore";
+const softworksText = "Softworks";
+const elementText = "Element";
+const extropyText = "Extropy";
+const terminationText = "termination";
+const contractText = "contract";
 
 const forbiddenNamesInclusionArray = [
+  contractText,
+  terminationText,
+  extropyText,
+  elementText,
+  softworksText,
+  SingaporeText,
+  communicateText,
   personalText,
   useText,
   hadText,
