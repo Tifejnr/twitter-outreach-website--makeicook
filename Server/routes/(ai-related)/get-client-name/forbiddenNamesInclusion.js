@@ -459,8 +459,12 @@ const contractText = "contract";
 const reviewText = "review";
 const keywordsText = "keywords";
 const keywordText = "keyword";
+const collaborativeDotText = "collaborative.";
+const collaborativeText = "collaborative";
 
 const forbiddenNamesInclusionArray = [
+  collaborativeText,
+  collaborativeDotText,
   keywordText,
   keywordsText,
   reviewText,
