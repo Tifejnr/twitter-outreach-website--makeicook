@@ -456,8 +456,10 @@ const elementText = "Element";
 const extropyText = "Extropy";
 const terminationText = "termination";
 const contractText = "contract";
+const reviewText = "review";
 
 const forbiddenNamesInclusionArray = [
+  reviewText,
   contractText,
   terminationText,
   extropyText,
