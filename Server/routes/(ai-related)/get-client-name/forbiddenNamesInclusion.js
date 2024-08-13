@@ -457,8 +457,12 @@ const extropyText = "Extropy";
 const terminationText = "termination";
 const contractText = "contract";
 const reviewText = "review";
+const keywordsText = "keywords";
+const keywordText = "keyword";
 
 const forbiddenNamesInclusionArray = [
+  keywordText,
+  keywordsText,
   reviewText,
   contractText,
   terminationText,
