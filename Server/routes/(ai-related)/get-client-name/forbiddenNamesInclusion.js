@@ -461,8 +461,12 @@ const keywordsText = "keywords";
 const keywordText = "keyword";
 const collaborativeDotText = "collaborative.";
 const collaborativeText = "collaborative";
+const lessThan3SymbolText = "<3";
+const communicaText = "communica";
 
 const forbiddenNamesInclusionArray = [
+  communicaText,
+  lessThan3SymbolText,
   collaborativeText,
   collaborativeDotText,
   keywordText,
