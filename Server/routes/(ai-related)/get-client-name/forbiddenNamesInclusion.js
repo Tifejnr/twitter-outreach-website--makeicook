@@ -463,8 +463,16 @@ const collaborativeDotText = "collaborative.";
 const collaborativeText = "collaborative";
 const lessThan3SymbolText = "<3";
 const communicaText = "communica";
+const employeesText = "employees";
+const betweenText = "between";
+const coordinationText = "coordination";
+const ThaksText = "Thaks";
 
 const forbiddenNamesInclusionArray = [
+  ThaksText,
+  coordinationText,
+  employeesText,
+  betweenText,
   communicaText,
   lessThan3SymbolText,
   collaborativeText,
