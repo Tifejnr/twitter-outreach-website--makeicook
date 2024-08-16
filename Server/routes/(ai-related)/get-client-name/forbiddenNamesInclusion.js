@@ -468,8 +468,10 @@ const betweenText = "between";
 const coordinationText = "coordination";
 const ThaksText = "Thaks";
 const alcidesDotText = "Alcides.";
+const alcidesText = "Alcides";
 
 const forbiddenNamesInclusionArray = [
+  alcidesText,
   alcidesDotText,
   ThaksText,
   coordinationText,
