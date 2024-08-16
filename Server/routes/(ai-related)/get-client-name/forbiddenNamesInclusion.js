@@ -469,8 +469,12 @@ const coordinationText = "coordination";
 const ThaksText = "Thaks";
 const alcidesDotText = "Alcides.";
 const alcidesText = "Alcides";
+const sanctionsText = "Sanctions";
+const sanctionText = "Sanction";
 
 const forbiddenNamesInclusionArray = [
+  sanctionText,
+  sanctionsText,
   alcidesText,
   alcidesDotText,
   ThaksText,
