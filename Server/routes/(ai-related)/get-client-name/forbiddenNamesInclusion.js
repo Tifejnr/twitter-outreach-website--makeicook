@@ -467,8 +467,10 @@ const employeesText = "employees";
 const betweenText = "between";
 const coordinationText = "coordination";
 const ThaksText = "Thaks";
+const alcidesDotText = "Alcides.";
 
 const forbiddenNamesInclusionArray = [
+  alcidesDotText,
   ThaksText,
   coordinationText,
   employeesText,
