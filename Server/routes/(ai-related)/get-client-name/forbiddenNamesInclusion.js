@@ -474,8 +474,10 @@ const sanctionText = "Sanction";
 const facebookText = "Facebook";
 const cooperativeText = "cooperative";
 const ladyText = "lady";
+const willText = "Will";
 
 const forbiddenNamesInclusionArray = [
+  willText,
   ladyText,
   cooperativeText,
   facebookText,
