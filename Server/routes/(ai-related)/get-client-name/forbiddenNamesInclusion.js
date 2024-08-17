@@ -471,8 +471,12 @@ const alcidesDotText = "Alcides.";
 const alcidesText = "Alcides";
 const sanctionsText = "Sanctions";
 const sanctionText = "Sanction";
+const facebookText = "Facebook";
+const cooperativeText = "cooperative";
 
 const forbiddenNamesInclusionArray = [
+  cooperativeText,
+  facebookText,
   sanctionText,
   sanctionsText,
   alcidesText,
