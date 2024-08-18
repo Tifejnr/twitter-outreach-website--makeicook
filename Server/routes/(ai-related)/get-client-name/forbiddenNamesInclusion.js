@@ -475,8 +475,10 @@ const facebookText = "Facebook";
 const cooperativeText = "cooperative";
 const ladyText = "lady";
 const willText = "Will";
+const hopeText = "Hope";
 
 const forbiddenNamesInclusionArray = [
+  hopeText,
   willText,
   ladyText,
   cooperativeText,
