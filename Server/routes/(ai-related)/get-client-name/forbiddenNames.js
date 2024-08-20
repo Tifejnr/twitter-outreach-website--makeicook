@@ -25,8 +25,12 @@ const hiText = "hi";
 const VAText = "VA";
 const futureText = "future";
 const chineseText = "Chinese";
+const onlineText = "Online";
+const accessText = "Access";
 
 const forbiddenNames = [
+  accessText,
+  onlineText,
   chineseText,
   futureText,
   VAText,
