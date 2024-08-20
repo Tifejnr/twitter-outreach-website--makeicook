@@ -34,6 +34,8 @@ import chatGPTAIResponseRouter from "./routes/(ai-related)/ChatGBT/route.js";
 import contactUsHandlerWebsiteRouter from "./routes/(customer-requests)/contact-us/route.js";
 import handlerExtensionRequestRouter from "./routes/(customer-requests)/handle-extension-request/route.js";
 import validateOrigin from "./server-utils/middleware/is-origin-valid/isOriginValid.js";
+// import sendMailToMultipleUsers from "./routes/(customer-requests)/email-users/route.js";
+// sendMailToMultipleUsers();
 
 //Connect to mong db
 (async () => {

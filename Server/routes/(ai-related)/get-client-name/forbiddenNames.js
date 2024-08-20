@@ -23,8 +23,12 @@ const ionText = "ion";
 const herText = "her";
 const hiText = "hi";
 const VAText = "VA";
+const futureText = "future";
+const chineseText = "Chinese";
 
 const forbiddenNames = [
+  chineseText,
+  futureText,
   VAText,
   hiText,
   herText,
