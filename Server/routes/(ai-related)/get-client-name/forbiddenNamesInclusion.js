@@ -476,8 +476,35 @@ const cooperativeText = "cooperative";
 const ladyText = "lady";
 const willText = "Will";
 const hopeText = "Hope";
+const chineseText = "Chinese";
+const onlineText = "Online";
+const accessText = "Access";
+const prefectText = "Prefect";
+const cheaterText = "cheater";
+const RealyText = "Realy";
+const probablyText = "probably";
+const participateText = "participate";
+const adminText = "Admin";
+const tellingText = "telling";
+const withoutText = "without";
+const fromText = "from";
+const leaveText = "Leave";
 
 const forbiddenNamesInclusionArray = [
+  leaveText,
+  fromText,
+  withoutText,
+  tellingText,
+  adminText,
+  participateText,
+  probablyText,
+  RealyText,
+  cheaterText,
+  futureText,
+  prefectText,
+  accessText,
+  onlineText,
+  chineseText,
   hopeText,
   willText,
   ladyText,

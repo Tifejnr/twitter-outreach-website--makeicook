@@ -27,8 +27,10 @@ const futureText = "future";
 const chineseText = "Chinese";
 const onlineText = "Online";
 const accessText = "Access";
+const prefectText = "Prefect";
 
 const forbiddenNames = [
+  prefectText,
   accessText,
   onlineText,
   chineseText,
