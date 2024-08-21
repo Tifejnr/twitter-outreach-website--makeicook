@@ -489,8 +489,16 @@ const tellingText = "telling";
 const withoutText = "without";
 const fromText = "from";
 const leaveText = "Leave";
+const pureText = "pure";
+const breedText = "breed";
+const freelancerText = "freelancer";
+const ethereumText = "ethereum";
 
 const forbiddenNamesInclusionArray = [
+  ethereumText,
+  freelancerText,
+  breedText,
+  pureText,
   leaveText,
   fromText,
   withoutText,
