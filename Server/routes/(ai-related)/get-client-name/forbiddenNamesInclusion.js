@@ -493,8 +493,12 @@ const pureText = "pure";
 const breedText = "breed";
 const freelancerText = "freelancer";
 const ethereumText = "ethereum";
+const badText = "bad";
+const loomText = "Loom ";
 
 const forbiddenNamesInclusionArray = [
+  loomText,
+  badText,
   ethereumText,
   freelancerText,
   breedText,
