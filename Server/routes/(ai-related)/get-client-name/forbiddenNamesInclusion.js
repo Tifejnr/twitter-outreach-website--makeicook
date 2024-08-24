@@ -496,8 +496,10 @@ const ethereumText = "ethereum";
 const badText = "bad";
 const loomText = "Loom";
 const meditationText = "meditation";
+const mateText = "mate";
 
 const forbiddenNamesInclusionArray = [
+  mateText,
   meditationText,
   loomText,
   badText,
