@@ -497,8 +497,10 @@ const badText = "bad";
 const loomText = "Loom";
 const meditationText = "meditation";
 const mateText = "mate";
+const unknownText = "Unknown";
 
 const forbiddenNamesInclusionArray = [
+  unknownText,
   mateText,
   meditationText,
   loomText,
