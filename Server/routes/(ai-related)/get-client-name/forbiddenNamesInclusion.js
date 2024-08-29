@@ -501,8 +501,12 @@ const unknownText = "Unknown";
 const carefullText = "carefull";
 const beText = "be";
 const quicklyText = "quickly";
+const simplifyyText = "Simplifyy";
+const FlutterFlowText = "FlutterFlow";
 
 const forbiddenNamesInclusionArray = [
+  FlutterFlowText,
+  simplifyyText,
   quicklyText,
   beText,
   carefullText,
