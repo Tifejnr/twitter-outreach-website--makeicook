@@ -498,8 +498,14 @@ const loomText = "Loom";
 const meditationText = "meditation";
 const mateText = "mate";
 const unknownText = "Unknown";
+const carefullText = "carefull";
+const beText = "be";
+const quicklyText = "quickly";
 
 const forbiddenNamesInclusionArray = [
+  quicklyText,
+  beText,
+  carefullText,
   unknownText,
   mateText,
   meditationText,
