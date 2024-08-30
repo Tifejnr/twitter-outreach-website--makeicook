@@ -503,8 +503,20 @@ const beText = "be";
 const quicklyText = "quickly";
 const simplifyyText = "Simplifyy";
 const FlutterFlowText = "FlutterFlow";
+const intensivateText = "Intensivate";
+const ProperText = "Proper";
+const povidesText = "povides";
+const MajorTechText = "MajorTech";
+const hewText = "hew";
+const TORText = "TOR";
 
 const forbiddenNamesInclusionArray = [
+  TORText,
+  hewText,
+  MajorTechText,
+  povidesText,
+  ProperText,
+  intensivateText,
   FlutterFlowText,
   simplifyyText,
   quicklyText,

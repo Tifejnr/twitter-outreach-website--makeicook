@@ -45,14 +45,14 @@ getClientNameRouter.post("/", async (req, res) => {
 
   try {
     //if it's a short prompt
-    if (wordsLengthTotal < 70) {
+    if (wordsLengthTotal < 100) {
       let clientNameResponseRaw = await getResponseFromAi(prompt);
 
       const cleanedClientName = processClientNameGotten(clientNameResponseRaw);
       const cleanedNameLength = getTotalWordsLength(cleanedClientName);
 
       console.log(
-        "less than 70 words",
+        "less than 100 words",
         clientNameResponseRaw,
         cleanedClientName
       );
