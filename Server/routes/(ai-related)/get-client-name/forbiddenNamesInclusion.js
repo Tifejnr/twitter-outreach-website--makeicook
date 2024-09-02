@@ -509,8 +509,16 @@ const povidesText = "povides";
 const MajorTechText = "MajorTech";
 const hewText = "hew";
 const TORText = "TOR";
+const notText = "not";
+const indianText = "indian";
+const imStraightText = "im";
+const respecfulText = "respecful";
 
 const forbiddenNamesInclusionArray = [
+  respecfulText,
+  imStraightText,
+  indianText,
+  notText,
   TORText,
   hewText,
   MajorTechText,
