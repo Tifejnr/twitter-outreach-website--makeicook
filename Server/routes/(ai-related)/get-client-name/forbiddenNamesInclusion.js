@@ -513,8 +513,14 @@ const notText = "not";
 const indianText = "indian";
 const imStraightText = "im";
 const respecfulText = "respecful";
+const cientText = "cient";
+const tyText = "ty";
+const CLIETNText = "CLIETN";
 
 const forbiddenNamesInclusionArray = [
+  CLIETNText,
+  tyText,
+  cientText,
   respecfulText,
   imStraightText,
   indianText,
