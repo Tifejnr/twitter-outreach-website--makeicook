@@ -518,8 +518,10 @@ const tyText = "ty";
 const CLIETNText = "CLIETN";
 const communicatorsText = "communicators";
 const FantasticText = "Fantastic";
+const aPlusPlusText = "A++";
 
 const forbiddenNamesInclusionArray = [
+  aPlusPlusText,
   FantasticText,
   communicatorsText,
   CLIETNText,
