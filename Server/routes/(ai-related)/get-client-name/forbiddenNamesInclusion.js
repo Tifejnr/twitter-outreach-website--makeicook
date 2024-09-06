@@ -516,8 +516,12 @@ const respecfulText = "respecful";
 const cientText = "cient";
 const tyText = "ty";
 const CLIETNText = "CLIETN";
+const communicatorsText = "communicators";
+const FantasticText = "Fantastic";
 
 const forbiddenNamesInclusionArray = [
+  FantasticText,
+  communicatorsText,
   CLIETNText,
   tyText,
   cientText,
