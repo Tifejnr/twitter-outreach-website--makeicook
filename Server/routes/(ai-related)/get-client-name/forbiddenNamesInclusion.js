@@ -519,8 +519,14 @@ const CLIETNText = "CLIETN";
 const communicatorsText = "communicators";
 const FantasticText = "Fantastic";
 const aPlusPlusText = "A++";
+const AlawysText = "Alawys";
+const gladyText = "glady";
+const patheticText = "pathetic";
 
 const forbiddenNamesInclusionArray = [
+  patheticText,
+  gladyText,
+  AlawysText,
   aPlusPlusText,
   FantasticText,
   communicatorsText,
