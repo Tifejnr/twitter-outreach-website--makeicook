@@ -521,9 +521,13 @@ const FantasticText = "Fantastic";
 const aPlusPlusText = "A++";
 const AlawysText = "Alawys";
 const gladyText = "glady";
+const gladlyText = "gladly";
 const patheticText = "pathetic";
+const connectionText = "connection";
 
 const forbiddenNamesInclusionArray = [
+  gladlyText,
+  connectionText,
   patheticText,
   gladyText,
   AlawysText,
