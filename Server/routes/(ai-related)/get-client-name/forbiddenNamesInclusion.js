@@ -524,8 +524,10 @@ const gladyText = "glady";
 const gladlyText = "gladly";
 const patheticText = "pathetic";
 const connectionText = "connection";
+const No1Text = "No1";
 
 const forbiddenNamesInclusionArray = [
+  No1Text,
   gladlyText,
   connectionText,
   patheticText,
