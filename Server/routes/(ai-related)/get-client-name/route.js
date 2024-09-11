@@ -43,32 +43,10 @@ getClientNameRouter.post("/", async (req, res) => {
   const { prompt } = bodyRequest;
 
   try {
-    let fullResponse = ""; // Initialize an empty string to store the full response
-
-    for await (const chunk of hf.chatCompletionStream({
-      model: "meta-llama/Meta-Llama-3-8B-Instruct",
-      messages: [
-        {
-          role: "user",
-          content: `${getClientNamePromptHeading}
-          
-  ${prompt} 
-  `,
-        },
-      ],
-      max_tokens: 500,
-    })) {
-      const response = chunk.choices[0]?.delta?.content;
-      if (response) {
-        fullResponse += response; // Concatenate each chunk to the full response
-      }
-    }
-
-    console.log("Final response:", fullResponse); // Log the full response
-    // return fullResponse; // Return the full response
+    const clientNameResponse = await getResponseFromAi(prompt);
 
     //return final shit still
-    return res.json({ clientNameResponse: fullResponse });
+    return res.json({ clientNameResponse });
   } catch (error) {
     console.log("error,", error);
 
