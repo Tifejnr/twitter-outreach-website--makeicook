@@ -44,6 +44,8 @@ getClientNameRouter.post("/", async (req, res) => {
 
   const { prompt } = bodyRequest;
 
+  console.log(" prompt", prompt);
+
   try {
     const clientNameResponse = await getResponseFromAi(prompt);
 
