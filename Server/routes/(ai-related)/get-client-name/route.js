@@ -21,6 +21,8 @@ const getClientNamePromptHeading = `Return only all the human names in the texts
    
    If there are no human names in the text below, return "Hi there".
 
+   Never count "Sir" as part of a name
+
    Text below : 
 `;
 
