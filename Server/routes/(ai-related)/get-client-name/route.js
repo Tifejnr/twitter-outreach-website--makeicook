@@ -15,7 +15,9 @@ const hf = new HfInference(HF_TOKEN);
 
 const getClientNamePromptHeading = `Return only all the human names in the texts below, only return the human names, don't prefix your response with text at all. 
    
-   if there are multiple names, seperate them using comma.
+   if there are multiple different names like John , Stephen, Joseph or John Carl, Joseph Tobias, Ade Yemi, seperate them using comma.
+   
+   if there are multiple different names but with one name showing in all 3 names, for example: John, John Simmons, Sir John, return only the name common to all which is John in this example.
    
    If there are no human names in the text below, return "Hi there".
 
