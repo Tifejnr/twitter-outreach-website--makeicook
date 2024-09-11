@@ -17,9 +17,9 @@ const getClientNamePromptHeading = `Return only all the human names in the texts
    
    if there are multiple names, seperate them using comma.
    
-   If there are no human names, return "Hi there".
+   If there are no human names in the text below, return "Hi there".
 
-   Never autogenerate a name from no where.  Never autogenerate a name from no where 
+   Text below : 
 `;
 
 const getClientNameRouter = express.Router();
