@@ -92,34 +92,38 @@ getClientNameRouter.post("/", async (req, res) => {
     return res.json({ error: "Internal server error" });
   }
 });
-
 async function getResponseFromAi(prompt) {
-  const response = await hf.chatCompletion({
-    model: "meta-llama/Meta-Llama-3-8B-Instruct",
-    messages: [
-      {
-        role: "user",
-        content: `${getClientNamePromptHeading}
-      
+  try {
+    const response = await hf.chatCompletion({
+      model: "meta-llama/Meta-Llama-3-8B-Instruct",
+      messages: [
+        {
+          role: "user",
+          content: `${getClientNamePromptHeading}
+        
 ${prompt}`,
-      },
-    ],
-    max_tokens: 500,
-  });
+        },
+      ],
+      max_tokens: 500,
+    });
 
-  const fullResponse = response.choices[0]?.message?.content;
+    const fullResponse = response.choices[0]?.message?.content;
 
-  console.log("fullResponse", fullResponse);
+    console.log("fullResponse", fullResponse);
 
-  if (fullResponse.includes(theyAreCompanyText)) {
-    return theyAreCompanyText;
-  } else if (fullResponse.includes(theyAreATeamText)) {
-    return theyAreATeamText;
-  } else if (fullResponse.includes(helloText)) {
-    return helloText;
+    if (fullResponse.includes(theyAreCompanyText)) {
+      return theyAreCompanyText;
+    } else if (fullResponse.includes(theyAreATeamText)) {
+      return theyAreATeamText;
+    } else if (fullResponse.includes(helloText)) {
+      return helloText;
+    }
+
+    return fullResponse; // Return the full response at once
+  } catch (error) {
+    console.error("Error fetching AI response:", error);
+    throw error; // Handle errors appropriately
   }
-
-  return fullResponse; // Return the full response
 }
 
 // async function editNameWithAiToMakeItMorePerfect(promptInstruction, prompt) {
