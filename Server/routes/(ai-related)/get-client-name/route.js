@@ -17,6 +17,8 @@ const helloText = "Hello!";
 const getClientNamePromptHeading = `The texts below are freelancers feedback to their clients. 
 
    Read through patiently searching for human names.
+
+  Don't count praisy phrases like " Great person" "Great client" as human name.
   
    if there are multiple names, seperate them using comma.
 
@@ -30,7 +32,7 @@ const getClientNamePromptHeading = `The texts below are freelancers feedback to 
 
    Only return any of  ${helloText}, or the client names or name.
    
-   Note: praising client phrases like " Great person" "Great client" etc is not human name.
+   Praisy phrases like " Great person" "Great client" etc is not human name.
    Note: Never repeat the same name.
 
    Freelancers feedback to their clients Texts : 
