@@ -70,7 +70,7 @@ getClientNameRouter.post("/", async (req, res) => {
     console.log("isThereSameAppearingName", isThereSameAppearingName);
 
     if (doesItHasMoreThan3Words == false)
-      return res.json({ clientNameResponse });
+      return res.json({ clientNameResponse: isThereSameAppearingName });
 
     console.log("has more than 3 words");
 
