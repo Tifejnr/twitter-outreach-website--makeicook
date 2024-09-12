@@ -9,17 +9,17 @@ const model = keysObject.huggingFaceModel;
 const HF_TOKEN = keysObject.HF_TOKEN;
 const hf = new HfInference(HF_TOKEN);
 
-const theyAreCompanyText = "They are company";
-const theyAreATeamText = "They are team";
+const theyAreCompanyText = "Hi there";
+const theyAreATeamText = "Hi";
 const helloText = "Hello!";
 
 const getClientNamePromptHeading = `The texts below are freelancers feedback to their clients. 
 
-   Read through patiently searching for all the human names or company-like name, or if it appears that it is a team of people.
+   Read through patiently searching for all the human names or company like name, or if it appears that the client is a team of people.
    
-   If you see a company-like name, return ${theyAreCompanyText} and stop. 
+   If you see a company like name, return ${theyAreCompanyText} and stop. 
 
-   If you see a team-like name, return ${theyAreATeamText} and stop.
+   If you see a team like name, return "${theyAreATeamText} and stop.
 
    if there are multiple names, seperate them using comma. and stop.
 
