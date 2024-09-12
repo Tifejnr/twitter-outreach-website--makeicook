@@ -65,14 +65,18 @@ getClientNameRouter.post("/", async (req, res) => {
 
     const doesItHasMoreThan3Words = hasMoreThanThreeWords(clientNameResponse);
 
+    console.log("doesItHasMoreThan3Words", doesItHasMoreThan3Words);
+
     if (!doesItHasMoreThan3Words) return res.json({ clientNameResponse });
 
     console.log("has more than 3 words");
 
     const isThereACommonName = findCommonName(clientNameResponse);
 
-    if (isThereACommonName)
+    if (isThereACommonName) {
+      console.log("isThereACommonName", isThereACommonName);
       return res.json({ clientNameResponse: isThereACommonName });
+    }
 
     console.log("clientNameResponse", clientNameResponse);
 
