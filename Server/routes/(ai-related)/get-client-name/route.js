@@ -27,7 +27,7 @@ const getClientNamePromptHeading = `The texts below are freelancers feedback to 
 
    Never count "Sir" as part of a name
 
-   don't prefix your response with things like "Here is the output:" and don't close with any message.
+   don't prefix your response with things like "Here is the output:" or "Here are the responses based on the instructions:" or anything that looks like that and don't close with any message.
 
    Only return any of ${theyAreCompanyText} , "${theyAreATeamText},  ${helloText}, or the client names or name.
 
