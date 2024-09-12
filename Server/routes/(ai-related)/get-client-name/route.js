@@ -72,12 +72,12 @@ getClientNameRouter.post("/", async (req, res) => {
 
     const isThereACommonName = findCommonName(clientNameResponse);
 
+    console.log("isThereACommonName", isThereACommonName);
+
     if (isThereACommonName) {
       console.log("isThereACommonName", isThereACommonName);
       return res.json({ clientNameResponse: isThereACommonName });
     }
-
-    console.log("clientNameResponse", clientNameResponse);
 
     // editNameWithAiToMakeItMorePerfect(promptInstruction, prompt)
 
