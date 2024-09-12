@@ -4,32 +4,32 @@ import { HfInference } from "@huggingface/inference";
 import getSecretKeys from "../../../envVariables/envVariables.js";
 import isTokenValid from "../../../server-utils/middleware/token-validity/isTokenValid.js";
 
-import splitTextIntoThreeParts from "./utils/splitTextsIntoThreeEqualParts.js";
-import processClientNameGotten from "./utils/processClientNameGotten.js";
-import getTotalWordsLength from "./utils/getTotalWordsLength.js";
-
 const keysObject = getSecretKeys();
 const model = keysObject.huggingFaceModel;
 const HF_TOKEN = keysObject.HF_TOKEN;
 const hf = new HfInference(HF_TOKEN);
 
+const theyAreCompanyText = "They are company";
+const theyAreATeamText = "They are team";
+const helloText = "Hello!";
+
 const getClientNamePromptHeading = `The texts below are freelancers feedback to their clients. 
 
    Read through patiently searching for all the human names or company like name, or if it appears that the client is a team of people.
    
-   If you see a company like name, return "They are company" and stop. 
+   If you see a company like name, return ${theyAreCompanyText} and stop. 
 
-   If you see a team like name, return "They are team" and stop.
+   If you see a team like name, return "${theyAreATeamText} and stop.
 
    if there are multiple names, seperate them using comma. and stop.
 
-   If there are no human names in the text below, return "Hello!". and stop.
+   If there are no human names in the text below, return ${helloText}. and stop.
 
    Never count "Sir" as part of a name
 
    don't prefix your response with things like "Here is the output:" and don't close with any message.
 
-   Only return any of "They are company" , "They are team",  "Hello!", or the client names or name.
+   Only return any of ${theyAreCompanyText} , "${theyAreATeamText},  ${helloText}, or the client names or name.
 
 
    Freelancers feedback to their clients Texts : 
@@ -94,24 +94,15 @@ ${prompt}
     const response = chunk.choices[0]?.delta?.content;
     if (response) {
       fullResponse += response; // Concatenate each chunk to the full response
-
-      // Check for any of the specific strings and return the match
-      if (fullResponse.includes("They are company")) {
-        fullResponse = "They are company";
-      } else if (fullResponse.includes("They are team")) {
-        fullResponse = "They are team";
-      } else if (fullResponse.includes("Hello!")) {
-        fullResponse = "Hello!";
-      }
     }
   }
 
-  if (fullResponse.includes("They are company")) {
-    return "They are company";
-  } else if (fullResponse.includes("They are team")) {
-    return "They are team";
-  } else if (fullResponse.includes("Hello!")) {
-    return "Hello!";
+  if (fullResponse.includes(theyAreCompanyText)) {
+    return theyAreCompanyText;
+  } else if (fullResponse.includes(theyAreATeamText)) {
+    return theyAreATeamText;
+  } else if (fullResponse.includes(helloText)) {
+    return helloText;
   }
 
   return fullResponse; // Return the full response
