@@ -3,6 +3,7 @@ import { HfInference } from "@huggingface/inference";
 
 import getSecretKeys from "../../../envVariables/envVariables.js";
 import isTokenValid from "../../../server-utils/middleware/token-validity/isTokenValid.js";
+import forbiddenNamesInclusionArray from "./forbiddenNamesInclusion.js";
 
 const keysObject = getSecretKeys();
 const model = keysObject.huggingFaceModel;
@@ -29,6 +30,7 @@ const getClientNamePromptHeading = `The texts below are freelancers feedback to 
 
    Only return any of  ${helloText}, or the client names or name.
    
+   Note: praising client phrases like " Great person" "Great client" etc is not human name.
    Note: Never repeat the same name.
 
    Freelancers feedback to their clients Texts : 
