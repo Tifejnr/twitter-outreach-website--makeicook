@@ -27,10 +27,9 @@ const getClientNamePromptHeading = `The texts below are freelancers feedback to 
 
    Never count "Sir" as part of a name
 
-   don't prefix your response with things like "Here is the output:" or "Here are the responses based on the instructions:" or anything that looks like that and don't close with any message.
+   don't prefix your response with things like "Here is the output:" or "Here are the responses based on the instructions:" or "Here are the client names or company like names" or anything that looks like that and don't close with any message.
 
    Only return any of ${theyAreCompanyText} , "${theyAreATeamText},  ${helloText}, or the client names or name.
-
 
    Freelancers feedback to their clients Texts : 
 
@@ -64,7 +63,20 @@ getClientNameRouter.post("/", async (req, res) => {
   try {
     const clientNameResponse = await getResponseFromAi(prompt);
 
+    const doesItHasMoreThan3Words = hasMoreThanThreeWords(clientNameResponse);
+
+    if (!doesItHasMoreThan3Words) return res.json({ clientNameResponse });
+
+    console.log("has more than 3 words");
+
+    const isThereACommonName = findCommonName(clientNameResponse);
+
+    if (isThereACommonName)
+      return res.json({ clientNameResponse: isThereACommonName });
+
     console.log("clientNameResponse", clientNameResponse);
+
+    // editNameWithAiToMakeItMorePerfect(promptInstruction, prompt)
 
     //return final shit still
     return res.json({ clientNameResponse });
@@ -106,6 +118,49 @@ ${prompt}
   }
 
   return fullResponse; // Return the full response
+}
+
+// async function editNameWithAiToMakeItMorePerfect(promptInstruction, prompt) {
+//   let fullResponse = ""; // Initialize an empty string to store the full response
+
+//   for await (const chunk of hf.chatCompletionStream({
+//     model: "meta-llama/Meta-Llama-3-8B-Instruct",
+//     messages: [
+//       {
+//         role: "user",
+//         content: `${promptInstruction}
+
+// ${prompt}
+// `,
+//       },
+//     ],
+//     max_tokens: 500,
+//   })) {
+//     const response = chunk.choices[0]?.delta?.content;
+//     if (response) {
+//       fullResponse += response; // Concatenate each chunk to the full response
+//     }
+//   }
+
+//   return fullResponse; // Return the full response
+// }
+
+function hasMoreThanThreeWords(text) {
+  // Split the text into words based on spaces and filter out any empty strings
+  const words = text.trim().split(/\s+/); // \s+ matches one or more spaces
+  return words.length > 3;
+}
+
+function findCommonName(names) {
+  // Split each name into words and store as sets
+  let common = names[0].split(" ");
+
+  for (let i = 1; i < names.length; i++) {
+    let currentWords = names[i].split(" ");
+    common = common.filter((word) => currentWords.includes(word));
+  }
+
+  return common.length > 0 ? common.join(" ") : false;
 }
 
 export default getClientNameRouter;
