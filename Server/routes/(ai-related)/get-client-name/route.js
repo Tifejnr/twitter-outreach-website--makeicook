@@ -15,7 +15,7 @@ const helloText = "Hello!";
 
 const getClientNamePromptHeading = `The texts below are freelancers feedback to their clients. 
 
-   Read through patiently searching for all the human names or company like name, or if it appears that the client is a team of people.
+   Read through patiently searching for all the human names or company like name, or if it appears that it is a team of people.
    
    If you see a company like name, return ${theyAreCompanyText} and stop. 
 
