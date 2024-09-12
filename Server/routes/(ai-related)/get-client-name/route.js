@@ -16,9 +16,7 @@ const hf = new HfInference(HF_TOKEN);
 const getClientNamePromptHeading = `Return only all the human names in the texts below, only return the human names, don't prefix your response with text at all. 
    
    if there are multiple names, seperate them using comma.
-   
-   if there are more than one different names but with a name showing in all other names, for example: John, John Simmons, Sir John, return only the name common to all which is John in this example.
-   
+
    If there are no human names in the text below, return "Hi there".
 
    Never count "Sir" as part of a name
@@ -48,7 +46,7 @@ getClientNameRouter.post("/", async (req, res) => {
 
   const { prompt } = bodyRequest;
 
-  console.log(" prompt", prompt);
+  // console.log(" prompt", prompt);
 
   try {
     const clientNameResponse = await getResponseFromAi(prompt);
