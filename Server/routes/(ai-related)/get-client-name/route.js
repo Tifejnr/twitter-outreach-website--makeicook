@@ -155,7 +155,7 @@ function hasMoreThanThreeWords(text) {
 }
 
 function findCommonName(names) {
-  // Split each name into words, removing commas first
+  // Split the input string into words, removing commas first
   let common = names[0].replace(/,/g, "").split(" ");
 
   for (let i = 1; i < names.length; i++) {
