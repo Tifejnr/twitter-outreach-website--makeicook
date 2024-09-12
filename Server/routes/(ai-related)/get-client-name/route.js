@@ -27,7 +27,9 @@ const getClientNamePromptHeading = `The texts below are freelancers feedback to 
 
    Never count "Sir" as part of a name
 
-   don't prefix your response with any text at all. 
+   don't prefix your response with things like "Here is the output:" and don't close with any message.
+
+   Only return any of "They are company" , "They are team",  "Hello!", or the client names or name.
 
 
    Freelancers feedback to their clients Texts : 
