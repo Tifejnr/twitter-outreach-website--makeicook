@@ -94,28 +94,20 @@ getClientNameRouter.post("/", async (req, res) => {
 });
 
 async function getResponseFromAi(prompt) {
-  let fullResponse = ""; // Initialize an empty string to store the full response
-
-  for await (const chunk of hf.chatCompletionStream({
+  const response = await hf.chatCompletion({
     model: "meta-llama/Meta-Llama-3-8B-Instruct",
     messages: [
       {
         role: "user",
         content: `${getClientNamePromptHeading}
       
-${prompt}
-`,
+${prompt}`,
       },
     ],
     max_tokens: 500,
-  })) {
-    const response = chunk.choices[0]?.delta?.content;
+  });
 
-    console.log("response", response);
-    if (response) {
-      fullResponse += response; // Concatenate each chunk to the full response
-    }
-  }
+  const fullResponse = response.choices[0]?.message?.content;
 
   if (fullResponse.includes(theyAreCompanyText)) {
     return theyAreCompanyText;
