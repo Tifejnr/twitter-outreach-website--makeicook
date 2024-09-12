@@ -13,15 +13,26 @@ const model = keysObject.huggingFaceModel;
 const HF_TOKEN = keysObject.HF_TOKEN;
 const hf = new HfInference(HF_TOKEN);
 
-const getClientNamePromptHeading = `Return only all the human names in the texts below, only return the human names, don't prefix your response with text at all. 
+const getClientNamePromptHeading = `The texts below are freelancers feedback to their clients. 
+
+   Read through patiently line by line, word by word searching for all the human names or company like name, or if it appears that the client is a team of people.
    
+   If you see a company like name, return "They are company"
+
+   If you see a team like name, return "They are team"
+
    if there are multiple names, seperate them using comma.
 
-   If there are no human names in the text below, return "Hi there".
+   If there are no human names in the text below, return "Hello!".
 
    Never count "Sir" as part of a name
 
-   Text below : 
+   don't prefix your response with any text at all. 
+   
+
+   Freelancers feedback to their clients Texts : 
+
+   
 `;
 
 const getClientNameRouter = express.Router();
