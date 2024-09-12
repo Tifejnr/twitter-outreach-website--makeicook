@@ -89,9 +89,17 @@ ${prompt}
     ],
     max_tokens: 500,
   })) {
-    const response = chunk.choices[0]?.delta?.content;
     if (response) {
       fullResponse += response; // Concatenate each chunk to the full response
+
+      // Stop the loop if a valid response is found (i.e., response matches a condition)
+      if (
+        fullResponse.includes("They are company") ||
+        fullResponse.includes("They are team") ||
+        fullResponse.includes("Hello!")
+      ) {
+        break;
+      }
     }
   }
 
