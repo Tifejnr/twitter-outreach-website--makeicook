@@ -60,10 +60,14 @@ getClientNameRouter.post("/", async (req, res) => {
   try {
     const clientNameResponse = await getResponseFromAi(prompt);
 
-    const doesItHasMoreThan3Words = hasMoreThanThreeWords(clientNameResponse);
+    const isThereSameAppearingName = findCommonName(clientNameResponse);
+
+    const doesItHasMoreThan3Words = hasMoreThanThreeWords(
+      isThereSameAppearingName
+    );
 
     console.log("doesItHasMoreThan3Words", doesItHasMoreThan3Words);
-    console.log("clientNameResponse", clientNameResponse);
+    console.log("isThereSameAppearingName", isThereSameAppearingName);
 
     if (doesItHasMoreThan3Words == false)
       return res.json({ clientNameResponse });
@@ -73,11 +77,7 @@ getClientNameRouter.post("/", async (req, res) => {
     const isThereACommonName = findCommonName(clientNameResponse);
 
     console.log("isThereACommonName", isThereACommonName);
-
-    if (isThereACommonName) {
-      console.log("isThereACommonName", isThereACommonName);
-      return res.json({ clientNameResponse: isThereACommonName });
-    }
+    return res.json({ clientNameResponse: isThereACommonName });
 
     // editNameWithAiToMakeItMorePerfect(promptInstruction, prompt)
 
@@ -164,7 +164,7 @@ function findCommonName(names) {
     common = common.filter((word) => currentWords.includes(word));
   }
 
-  return common.length > 0 ? common.join(" ") : false;
+  return common.length > 0 ? common.join(" ") : names;
 }
 
 export default getClientNameRouter;
