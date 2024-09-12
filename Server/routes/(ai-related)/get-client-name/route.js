@@ -109,6 +109,8 @@ ${prompt}`,
 
   const fullResponse = response.choices[0]?.message?.content;
 
+  console.log("fullResponse", fullResponse);
+
   if (fullResponse.includes(theyAreCompanyText)) {
     return theyAreCompanyText;
   } else if (fullResponse.includes(theyAreATeamText)) {
