@@ -15,9 +15,9 @@ const hf = new HfInference(HF_TOKEN);
 
 const getClientNamePromptHeading = `The texts below are freelancers feedback to their clients. 
 
-   Read through patiently line by line, word by word searching for all the human names or company like name, or if it appears that the client is a team of people.
+   Read through patiently searching for all the human names or company like name, or if it appears that the client is a team of people.
    
-   If you see a company like name, return "They are company"
+   If you see a company like name, return "They are company" 
 
    If you see a team like name, return "They are team"
 
@@ -28,7 +28,7 @@ const getClientNamePromptHeading = `The texts below are freelancers feedback to 
    Never count "Sir" as part of a name
 
    don't prefix your response with any text at all. 
-   
+
 
    Freelancers feedback to their clients Texts : 
 
