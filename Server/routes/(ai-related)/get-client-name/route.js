@@ -15,15 +15,15 @@ const helloText = "Hello!";
 
 const getClientNamePromptHeading = `The texts below are freelancers feedback to their clients. 
 
-   Read through patiently searching for human names or company like name, or if it is a team of different people .
+   Read through patiently searching for all the human names or company like name, or if it appears that the client is a team of people.
    
-   If you see a company like name, return ${theyAreCompanyText}. 
+   If you see a company like name, return ${theyAreCompanyText} and stop. 
 
-   If you see a team like name, return "${theyAreATeamText}.
+   If you see a team like name, return "${theyAreATeamText} and stop.
 
-   if there are multiple names, seperate them using comma.
+   if there are multiple names, seperate them using comma. and stop.
 
-   If there are no human names in the text below, return ${helloText}.
+   If there are no human names in the text below, return ${helloText}. and stop.
 
    Never count "Sir" as part of a name
 
@@ -63,26 +63,7 @@ getClientNameRouter.post("/", async (req, res) => {
   try {
     const clientNameResponse = await getResponseFromAi(prompt);
 
-    const doesItHasMoreThan3Words = hasMoreThanThreeWords(clientNameResponse);
-
-    console.log("doesItHasMoreThan3Words", doesItHasMoreThan3Words);
     console.log("clientNameResponse", clientNameResponse);
-
-    if (doesItHasMoreThan3Words == false)
-      return res.json({ clientNameResponse });
-
-    console.log("has more than 3 words");
-
-    const isThereACommonName = findCommonName(clientNameResponse);
-
-    if (isThereACommonName) {
-      console.log("isThereACommonName", isThereACommonName);
-      return res.json({ clientNameResponse: isThereACommonName });
-    }
-
-    console.log("clientNameResponse", clientNameResponse);
-
-    // editNameWithAiToMakeItMorePerfect(promptInstruction, prompt)
 
     //return final shit still
     return res.json({ clientNameResponse });
@@ -92,81 +73,71 @@ getClientNameRouter.post("/", async (req, res) => {
     return res.json({ error: "Internal server error" });
   }
 });
+
 async function getResponseFromAi(prompt) {
-  try {
-    const response = await hf.chatCompletion({
-      model: "meta-llama/Meta-Llama-3-8B-Instruct",
-      messages: [
-        {
-          role: "user",
-          content: `${getClientNamePromptHeading}
-        
-${prompt}`,
-        },
-      ],
-      max_tokens: 500,
-    });
+  let fullResponse = ""; // Initialize an empty string to store the full response
 
-    const fullResponse = response.choices[0]?.message?.content;
-
-    console.log("fullResponse", fullResponse);
-
-    if (fullResponse.includes(theyAreCompanyText)) {
-      return theyAreCompanyText;
-    } else if (fullResponse.includes(theyAreATeamText)) {
-      return theyAreATeamText;
-    } else if (fullResponse.includes(helloText)) {
-      return helloText;
+  for await (const chunk of hf.chatCompletionStream({
+    model: "meta-llama/Meta-Llama-3-8B-Instruct",
+    messages: [
+      {
+        role: "user",
+        content: `${getClientNamePromptHeading}
+      
+${prompt}
+`,
+      },
+    ],
+    max_tokens: 500,
+  })) {
+    const response = chunk.choices[0]?.delta?.content;
+    if (response) {
+      fullResponse += response; // Concatenate each chunk to the full response
     }
-
-    return fullResponse; // Return the full response at once
-  } catch (error) {
-    console.error("Error fetching AI response:", error);
-    throw error; // Handle errors appropriately
-  }
-}
-
-// async function editNameWithAiToMakeItMorePerfect(promptInstruction, prompt) {
-//   let fullResponse = ""; // Initialize an empty string to store the full response
-
-//   for await (const chunk of hf.chatCompletionStream({
-//     model: "meta-llama/Meta-Llama-3-8B-Instruct",
-//     messages: [
-//       {
-//         role: "user",
-//         content: `${promptInstruction}
-
-// ${prompt}
-// `,
-//       },
-//     ],
-//     max_tokens: 500,
-//   })) {
-//     const response = chunk.choices[0]?.delta?.content;
-//     if (response) {
-//       fullResponse += response; // Concatenate each chunk to the full response
-//     }
-//   }
-
-//   return fullResponse; // Return the full response
-// }
-
-function hasMoreThanThreeWords(text) {
-  // Split the text into words based on spaces and filter out any empty strings
-  const words = text.trim().split(/\s+/); // \s+ matches one or more spaces
-  return words.length > 3;
-}
-
-function findCommonName(names) {
-  // Split each name into words and store as sets
-  let common = names[0].split(" ");
-
-  for (let i = 1; i < names.length; i++) {
-    let currentWords = names[i].split(" ");
-    common = common.filter((word) => currentWords.includes(word));
   }
 
-  return common.length > 0 ? common.join(" ") : false;
+  if (fullResponse.includes(theyAreCompanyText)) {
+    return theyAreCompanyText;
+  } else if (fullResponse.includes(theyAreATeamText)) {
+    return theyAreATeamText;
+  } else if (fullResponse.includes(helloText)) {
+    return helloText;
+  }
+
+  return fullResponse; // Return the full response
+}
+
+async function editNameWithAiToMakeItMorePerfect(promptInstruction, prompt) {
+  let fullResponse = ""; // Initialize an empty string to store the full response
+
+  for await (const chunk of hf.chatCompletionStream({
+    model: "meta-llama/Meta-Llama-3-8B-Instruct",
+    messages: [
+      {
+        role: "user",
+        content: `${promptInstruction}
+      
+${prompt}
+`,
+      },
+    ],
+    max_tokens: 500,
+  })) {
+    const response = chunk.choices[0]?.delta?.content;
+    if (response) {
+      fullResponse += response; // Concatenate each chunk to the full response
+    }
+  }
+
+  if (fullResponse.includes(theyAreCompanyText)) {
+    return theyAreCompanyText;
+  } else if (fullResponse.includes(theyAreATeamText)) {
+    return theyAreATeamText;
+  } else if (fullResponse.includes(helloText)) {
+    return helloText;
+  }
+
+  return fullResponse; // Return the full response
 }
 
 export default getClientNameRouter;
