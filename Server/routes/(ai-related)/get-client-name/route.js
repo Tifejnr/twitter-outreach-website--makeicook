@@ -82,13 +82,14 @@ async function getResponseFromAi(prompt) {
       {
         role: "user",
         content: `${getClientNamePromptHeading}
-        
-${prompt} 
+      
+${prompt}
 `,
       },
     ],
     max_tokens: 500,
   })) {
+    const response = chunk.choices[0]?.delta?.content;
     if (response) {
       fullResponse += response; // Concatenate each chunk to the full response
 
@@ -96,7 +97,7 @@ ${prompt}
       if (
         fullResponse.includes("They are company") ||
         fullResponse.includes("They are team") ||
-        fullResponse.includes("Hello!")
+        fullResponse.includes("Hello!") /* check for a human name */
       ) {
         break;
       }
