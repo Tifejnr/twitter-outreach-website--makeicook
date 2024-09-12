@@ -17,13 +17,13 @@ const getClientNamePromptHeading = `The texts below are freelancers feedback to 
 
    Read through patiently searching for human names or company like name, or if it is a team of different people .
    
-   If you see a company like name, return ${theyAreCompanyText} and stop. 
+   If you see a company like name, return ${theyAreCompanyText}. 
 
-   If you see a team like name, return "${theyAreATeamText} and stop.
+   If you see a team like name, return "${theyAreATeamText}.
 
-   if there are multiple names, seperate them using comma. and stop.
+   if there are multiple names, seperate them using comma.
 
-   If there are no human names in the text below, return ${helloText}. and stop.
+   If there are no human names in the text below, return ${helloText}.
 
    Never count "Sir" as part of a name
 
