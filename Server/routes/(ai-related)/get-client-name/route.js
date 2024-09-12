@@ -26,7 +26,7 @@ const getClientNamePromptHeading = `The texts below are freelancers feedback to 
 
    don't prefix your response with things like "Here is the output:" or "Here are the responses based on the instructions:" or "Here are the client names or company like names" or anything that looks like that and don't close with any message.
 
-   Only return any of ${theyAreCompanyText} , "${theyAreATeamText},  ${helloText}, or the client names or name.
+   Only return any of  ${helloText}, or the client names or name.
 
    Freelancers feedback to their clients Texts : 
 
