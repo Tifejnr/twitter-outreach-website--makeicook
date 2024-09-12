@@ -19,7 +19,7 @@ const getClientNamePromptHeading = `The texts below are freelancers feedback to 
    
    If you see a company like name, return ${theyAreCompanyText} and stop. 
 
-   If you see a team like name, return "${theyAreATeamText} and stop.
+   If it seems like they are a team, return ${theyAreATeamText} and stop.
 
    if there are multiple names, seperate them using comma. and stop.
 
