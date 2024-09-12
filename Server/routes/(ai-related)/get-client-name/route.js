@@ -20,7 +20,7 @@ const getClientNamePromptHeading = `The texts below are freelancers feedback to 
 
    if there are multiple names, seperate them using comma.
 
-   Never repeat the same name twice.
+   Never repeat the same name.
 
    If there are no human names in the text below, return ${helloText}.
 
