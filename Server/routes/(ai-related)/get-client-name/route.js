@@ -64,6 +64,8 @@ getClientNameRouter.post("/", async (req, res) => {
   try {
     const clientNameResponse = await getResponseFromAi(prompt);
 
+    console.log("clientNameResponse", clientNameResponse);
+
     //return final shit still
     return res.json({ clientNameResponse });
   } catch (error) {
@@ -95,16 +97,23 @@ ${prompt}
 
       // Check for any of the specific strings and return the match
       if (fullResponse.includes("They are company")) {
-        return "They are company";
+        fullResponse = "They are company";
       } else if (fullResponse.includes("They are team")) {
-        return "They are team";
+        fullResponse = "They are team";
       } else if (fullResponse.includes("Hello!")) {
-        return "Hello!";
+        fullResponse = "Hello!";
       }
     }
   }
 
-  console.log("Final response:", fullResponse); // Log the full response
+  if (fullResponse.includes("They are company")) {
+    return "They are company";
+  } else if (fullResponse.includes("They are team")) {
+    return "They are team";
+  } else if (fullResponse.includes("Hello!")) {
+    return "Hello!";
+  }
+
   return fullResponse; // Return the full response
 }
 
