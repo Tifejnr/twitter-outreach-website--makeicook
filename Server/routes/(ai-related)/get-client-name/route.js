@@ -93,13 +93,13 @@ ${prompt}
     if (response) {
       fullResponse += response; // Concatenate each chunk to the full response
 
-      // Stop the loop if a valid response is found (i.e., response matches a condition)
-      if (
-        fullResponse.includes("They are company") ||
-        fullResponse.includes("They are team") ||
-        fullResponse.includes("Hello!") /* check for a human name */
-      ) {
-        break;
+      // Check for any of the specific strings and return the match
+      if (fullResponse.includes("They are company")) {
+        return "They are company";
+      } else if (fullResponse.includes("They are team")) {
+        return "They are team";
+      } else if (fullResponse.includes("Hello!")) {
+        return "Hello!";
       }
     }
   }
