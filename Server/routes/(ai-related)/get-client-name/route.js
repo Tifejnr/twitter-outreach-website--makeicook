@@ -110,6 +110,8 @@ ${prompt}
     max_tokens: 500,
   })) {
     const response = chunk.choices[0]?.delta?.content;
+
+    console.log("response", response);
     if (response) {
       fullResponse += response; // Concatenate each chunk to the full response
     }
