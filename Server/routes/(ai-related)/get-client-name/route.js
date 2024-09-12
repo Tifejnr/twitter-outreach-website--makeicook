@@ -66,8 +66,10 @@ getClientNameRouter.post("/", async (req, res) => {
     const doesItHasMoreThan3Words = hasMoreThanThreeWords(clientNameResponse);
 
     console.log("doesItHasMoreThan3Words", doesItHasMoreThan3Words);
+    console.log("clientNameResponse", clientNameResponse);
 
-    if (!doesItHasMoreThan3Words) return res.json({ clientNameResponse });
+    if (doesItHasMoreThan3Words == false)
+      return res.json({ clientNameResponse });
 
     console.log("has more than 3 words");
 
