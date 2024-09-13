@@ -348,7 +348,10 @@ function isItASingleNameAllThrough(names) {
   );
   console.log("passedArray.length", passedArray.length);
 
-  if (passedArray.length >= lengthToGiveSpaceForTwoErrorInAlphabets) {
+  if (
+    passedArray.length - shortest.length >=
+    lengthToGiveSpaceForTwoErrorInAlphabets
+  ) {
     return true;
   }
 
