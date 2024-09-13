@@ -142,6 +142,10 @@ ${prompt}`,
         },
       ],
       max_tokens: 500,
+      temperature: 0.2, // Low temperature for less creativity
+      top_p: 0.9, // Restrict randomness
+      frequency_penalty: 0.5, // Lower frequency of repeated phrases
+      presence_penalty: 0.0,
     });
 
     const fullResponse = response.choices[0]?.message?.content;
@@ -164,26 +168,24 @@ ${prompt}`,
 }
 
 async function editNameWithAiToMakeItMorePerfect(promptInstruction, prompt) {
-  let fullResponse = ""; // Initialize an empty string to store the full response
-
-  for await (const chunk of hf.chatCompletionStream({
+  const response = await hf.chatCompletion({
     model: "meta-llama/Meta-Llama-3-8B-Instruct",
     messages: [
       {
         role: "user",
         content: `${promptInstruction}
-
-${prompt}
-`,
+      
+${prompt}`,
       },
     ],
     max_tokens: 500,
-  })) {
-    const response = chunk.choices[0]?.delta?.content;
-    if (response) {
-      fullResponse += response; // Concatenate each chunk to the full response
-    }
-  }
+    temperature: 0.2, // Low temperature for less creativity
+    top_p: 0.9, // Restrict randomness
+    frequency_penalty: 0.5, // Lower frequency of repeated phrases
+    presence_penalty: 0.0,
+  });
+
+  const fullResponse = response.choices[0]?.message?.content;
 
   return fullResponse; // Return the full response
 }
