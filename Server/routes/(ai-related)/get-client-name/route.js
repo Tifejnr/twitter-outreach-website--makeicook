@@ -54,7 +54,11 @@ const getClientNamePromptHeading = `The texts below are freelancers feedback to 
 `;
 
 const editFirstNamePromptInstruction = `
+
+
   Read through the text below patiently searching for human names.
+
+  Don't prefix your response with "Here is the list of human names mentioned in the feedback:" only return name(s).
 
   Extract only the unique human name(s) from the text below, and return them in a comma-separated format.
 
