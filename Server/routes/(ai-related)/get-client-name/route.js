@@ -63,6 +63,8 @@ const editFirstNamePromptInstruction = `
 
   Enusre no name is repeated twice in your response.
 
+  Don't count company-like names as human name.
+
   Don't count praisy phrases like " Great person" "Great client", "wonderful client" as human name.
 
   Don't count personal pronouns "he" , "She", "him" , "her", "his" as human name.
