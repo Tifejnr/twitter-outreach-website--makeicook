@@ -97,13 +97,13 @@ If the name sound more human than company, return "No".
 const doesTheNameSoundLikeitsOneClient = `
 Return "Yes" or "No" only for this.
 
-super distinct names in this context are names that differ with at least two alphabets ignoring symbols in the names.
+If the names are totally different from each other. It is super different.
 
-if any of the names can be spelt within other names, it is not super distinct.
+super different names in this context are names that differ with at least two alphabets ignoring symbols in the names.
 
-If the names are totally different from each other. It is super distinct.
+if any of the names can be spelt within other names, it is not super different.
 
-Are these super distinct names?
+Are the names below super different?
 `;
 
 const getClientNameRouter = express.Router();
