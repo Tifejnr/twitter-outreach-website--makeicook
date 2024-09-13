@@ -10,12 +10,11 @@ const model = keysObject.huggingFaceModel;
 const HF_TOKEN = keysObject.HF_TOKEN;
 const hf = new HfInference(HF_TOKEN);
 
+const realNoNamesFoundResponse = "No names found";
 const theyAreCompanyText = "Hi there";
 const theyAreATeamText = "Hi";
-const helloText = "Hello!";
+const helloText = realNoNamesFoundResponse;
 const noNamesFoundText = "(no names found)";
-
-const realNoNamesFoundResponse = "No names found";
 
 const getClientNamePromptHeading = `The texts below are freelancers feedback to their clients. 
 
@@ -90,7 +89,10 @@ Return "Yes" or "No" only for this.
 
 Note, human names are not company names in this context.
 
+
 do any of the words below sound like a company name ?
+
+If the name sound more human than company, return "No".
 
 `;
 
