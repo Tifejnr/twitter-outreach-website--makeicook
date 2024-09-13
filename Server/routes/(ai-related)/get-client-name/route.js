@@ -15,6 +15,8 @@ const theyAreATeamText = "Hi";
 const helloText = "Hello!";
 const noNamesFoundText = "(no names found)";
 
+const realNoNamesFoundResponse = "No names found";
+
 const getClientNamePromptHeading = `The texts below are freelancers feedback to their clients. 
 
   Read through patiently searching for human names.
@@ -90,6 +92,14 @@ do any of the words below sound like a company name ?
 
 `;
 
+const doesTheNameSoundLikeitsOneClient = `
+Return "Yes" or "No" only for this.
+
+Ignoring minor spelling mistakes.
+
+do the names below sound like it's still for a single individual?
+`;
+
 const getClientNameRouter = express.Router();
 
 getClientNameRouter.post("/", async (req, res) => {
@@ -127,14 +137,24 @@ getClientNameRouter.post("/", async (req, res) => {
       clientNameResponse
     );
 
-    if (isItCompanyNameResponse == "Yes")
+    if (isItCompanyNameResponse == "Yes") {
+      console.log(" isItCompanyNameResponse", isItCompanyNameResponse);
       return res.json({ clientNameResponse: "It's a Company" });
-
-    console.log(" isItCompanyNameResponse", isItCompanyNameResponse);
+    }
 
     console.log("clientNameResponse", clientNameResponse);
 
     const finalName = findCommonName(clientNameResponse);
+
+    const isItSingleClientName = await editNameWithAiToMakeItMorePerfect(
+      doesTheNameSoundLikeitsOneClient,
+      finalName
+    );
+
+    if (isItSingleClientName == "No") {
+      console.log(" isItSingleClientName", isItSingleClientName);
+      return res.json({ clientNameResponse: "Multiple names, Team" });
+    }
 
     console.log("finalName", finalName);
 
@@ -187,12 +207,16 @@ ${prompt}`,
 
     if (fullResponse.includes(theyAreCompanyText)) {
       return theyAreCompanyText;
-    } else if (fullResponse.includes(theyAreATeamText)) {
+    }
+    if (fullResponse.includes(theyAreATeamText)) {
       return theyAreATeamText;
-    } else if (fullResponse.includes(helloText)) {
+    }
+    if (fullResponse.includes(helloText)) {
       return helloText;
-    } else if (fullResponse.includes(noNamesFoundText)) {
-      return helloText;
+    }
+    if (fullResponse == noNamesFoundText) {
+      console.log("noNamesFoundText", noNamesFoundText);
+      return realNoNamesFoundResponse;
     }
 
     return fullResponse; // Return the full response at once
