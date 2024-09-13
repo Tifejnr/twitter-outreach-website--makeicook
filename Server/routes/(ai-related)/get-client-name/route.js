@@ -181,8 +181,6 @@ getClientNameRouter.post("/", async (req, res) => {
       });
     }
 
-    console.log("finalName", finalName);
-
     const isForbiddenNameIncludedIn = forbiddenNamesInclusionArray.find(
       (forbiddenName) => {
         const escapedForbiddenName = forbiddenName
@@ -193,11 +191,15 @@ getClientNameRouter.post("/", async (req, res) => {
       }
     );
 
+    const nameToFreelancer = isForbiddenNameIncludedIn
+      ? realNoNamesFoundResponse
+      : finalName;
+
+    console.log("nameToFreelancer", nameToFreelancer);
+
     //return final shit still
     return res.json({
-      clientNameResponse: isForbiddenNameIncludedIn
-        ? realNoNamesFoundResponse
-        : finalName,
+      clientNameResponse: nameToFreelancer,
     });
   } catch (error) {
     console.log("error,", error);
