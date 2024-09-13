@@ -44,6 +44,21 @@ const getClientNamePromptHeading = `The texts below are freelancers feedback to 
    
 `;
 
+const editFirstNamePromptInstruction = `
+  Read through the text below patiently searching for human names.
+
+  Enusre no name is repeated twice in your response.
+
+  Don't count praisy phrases like " Great person" "Great client" as human name.
+
+  Don't count any phrase including personal pronouns " he" , "She", "him" , "her", "his" as human name.
+  
+  if there are multiple names, seperate them using comma.
+
+   Never repeat the same name.
+
+`;
+
 const getClientNameRouter = express.Router();
 
 getClientNameRouter.post("/", async (req, res) => {
@@ -69,23 +84,33 @@ getClientNameRouter.post("/", async (req, res) => {
   // console.log(" prompt", prompt);
 
   try {
-    const clientNameResponse = await getResponseFromAi(prompt);
+    const clientNameResponseRaw = await getResponseFromAi(prompt);
 
-    const isThereSameAppearingName = findCommonName(clientNameResponse);
-
-    const doesItHasMoreThan3Words = hasMoreThanThreeWords(
-      isThereSameAppearingName
+    const clientNameResponse = await editFirstNamePromptInstruction(
+      editFirstNamePromptInstruction,
+      clientNameResponseRaw
     );
 
-    if (doesItHasMoreThan3Words == false)
-      return res.json({ clientNameResponse: isThereSameAppearingName });
+    console.log("clientNameResponse", clientNameResponse);
 
-    console.log("has more than 3 words");
+    //return final shit still
+    return res.json({ clientNameResponse });
 
-    const isThereACommonName = findCommonName(clientNameResponse);
+    // const isThereSameAppearingName = findCommonName(clientNameResponse);
 
-    console.log("isThereACommonName", isThereACommonName);
-    return res.json({ clientNameResponse: isThereACommonName });
+    // const doesItHasMoreThan3Words = hasMoreThanThreeWords(
+    //   isThereSameAppearingName
+    // );
+
+    // if (doesItHasMoreThan3Words == false)
+    //   return res.json({ clientNameResponse: isThereSameAppearingName });
+
+    // console.log("has more than 3 words");
+
+    // const isThereACommonName = findCommonName(clientNameResponse);
+
+    // console.log("isThereACommonName", isThereACommonName);
+    // return res.json({ clientNameResponse: isThereACommonName });
 
     // editNameWithAiToMakeItMorePerfect(promptInstruction, prompt)
 
@@ -131,30 +156,30 @@ ${prompt}`,
   }
 }
 
-// async function editNameWithAiToMakeItMorePerfect(promptInstruction, prompt) {
-//   let fullResponse = ""; // Initialize an empty string to store the full response
+async function editNameWithAiToMakeItMorePerfect(promptInstruction, prompt) {
+  let fullResponse = ""; // Initialize an empty string to store the full response
 
-//   for await (const chunk of hf.chatCompletionStream({
-//     model: "meta-llama/Meta-Llama-3-8B-Instruct",
-//     messages: [
-//       {
-//         role: "user",
-//         content: `${promptInstruction}
+  for await (const chunk of hf.chatCompletionStream({
+    model: "meta-llama/Meta-Llama-3-8B-Instruct",
+    messages: [
+      {
+        role: "user",
+        content: `${promptInstruction}
 
-// ${prompt}
-// `,
-//       },
-//     ],
-//     max_tokens: 500,
-//   })) {
-//     const response = chunk.choices[0]?.delta?.content;
-//     if (response) {
-//       fullResponse += response; // Concatenate each chunk to the full response
-//     }
-//   }
+${prompt}
+`,
+      },
+    ],
+    max_tokens: 500,
+  })) {
+    const response = chunk.choices[0]?.delta?.content;
+    if (response) {
+      fullResponse += response; // Concatenate each chunk to the full response
+    }
+  }
 
-//   return fullResponse; // Return the full response
-// }
+  return fullResponse; // Return the full response
+}
 
 function hasMoreThanThreeWords(text) {
   // Split the text into words based on spaces and filter out any empty strings
