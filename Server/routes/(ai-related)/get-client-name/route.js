@@ -13,6 +13,7 @@ const hf = new HfInference(HF_TOKEN);
 const theyAreCompanyText = "Hi there";
 const theyAreATeamText = "Hi";
 const helloText = "Hello!";
+const noNamesFoundText = "(no names found)";
 
 const getClientNamePromptHeading = `The texts below are freelancers feedback to their clients. 
 
@@ -169,6 +170,8 @@ ${prompt}`,
     } else if (fullResponse.includes(theyAreATeamText)) {
       return theyAreATeamText;
     } else if (fullResponse.includes(helloText)) {
+      return helloText;
+    } else if (fullResponse.includes(noNamesFoundText)) {
       return helloText;
     }
 
