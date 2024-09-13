@@ -97,7 +97,7 @@ Return "Yes" or "No" only for this.
 
 Ignoring minor spelling mistakes.
 
-do the names below sound like it's still for a single individual?
+do the names below each seperated by comma appear like it's still for a single individual where individual can only have a name?
 `;
 
 const getClientNameRouter = express.Router();
@@ -138,7 +138,11 @@ getClientNameRouter.post("/", async (req, res) => {
     );
 
     if (isItCompanyNameResponse == "Yes") {
-      console.log(" isItCompanyNameResponse", isItCompanyNameResponse);
+      console.log(
+        " isItCompanyNameResponse",
+        isItCompanyNameResponse,
+        clientNameResponse
+      );
       return res.json({ clientNameResponse: "It's a Company" });
     }
 
@@ -152,7 +156,7 @@ getClientNameRouter.post("/", async (req, res) => {
     );
 
     if (isItSingleClientName == "No") {
-      console.log(" isItSingleClientName", isItSingleClientName);
+      console.log("isItSingleClientName", isItSingleClientName);
       return res.json({ clientNameResponse: "Multiple names, Team" });
     }
 
