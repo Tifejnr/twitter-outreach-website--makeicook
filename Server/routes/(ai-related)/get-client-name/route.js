@@ -18,7 +18,9 @@ const getClientNamePromptHeading = `The texts below are freelancers feedback to 
 
   Read through patiently searching for human names.
 
-  Never repeat the same name.
+  Never repeat the same name. 
+
+  Never autogenerate anything.
 
   Don't count praisy phrases like " Great person" "Great client" as human name.
 
@@ -28,7 +30,7 @@ const getClientNamePromptHeading = `The texts below are freelancers feedback to 
 
   Pronouns "he" , "She", "him" , "her", "his" are not human names.
   
-   if there are multiple names, seperate them using comma.
+  if there are multiple names, seperate them using comma.
 
    Never repeat the same name.
 
@@ -36,7 +38,7 @@ const getClientNamePromptHeading = `The texts below are freelancers feedback to 
 
    Never count "Sir" as part of a name
 
-   don't prefix your response with things like "Here is the output:" or "Here are the responses based on the instructions:" or "Here are the client names or company like names" or anything that looks like that and don't close with any message.
+   don't prefix your response with things like "Here is the output:" or "Here are the responses based on the instructions:" or "Here are the client names or company like names" or "Here is the list of human names mentioned in the feedback" or anything that looks like that and don't close with any message.
 
    Only return any of  ${helloText}, or the client names or name.
    
@@ -66,7 +68,7 @@ const editFirstNamePromptInstruction = `
   
   if there are multiple names, seperate them using comma.
 
-   Never repeat the same name.
+  Never repeat the same name.
 
   Extract only the unique human name(s) from the text below, and return only the names(s) in a comma-separated format.
 
