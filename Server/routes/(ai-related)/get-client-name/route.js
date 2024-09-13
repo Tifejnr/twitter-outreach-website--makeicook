@@ -37,6 +37,7 @@ const getClientNamePromptHeading = `The texts below are freelancers feedback to 
    Only return any of  ${helloText}, or the client names or name.
    
    Praisy phrases like " Great person" "Great client" etc is not human name.
+
    Note: Never repeat the same name.
 
    Freelancers feedback to their clients Texts : 
@@ -47,6 +48,8 @@ const getClientNamePromptHeading = `The texts below are freelancers feedback to 
 const editFirstNamePromptInstruction = `
   Read through the text below patiently searching for human names.
 
+  Extract only the unique human name(s) from the text below, and return them in a comma-separated format.
+
   Enusre no name is repeated twice in your response.
 
   Don't count praisy phrases like " Great person" "Great client" as human name.
@@ -56,6 +59,8 @@ const editFirstNamePromptInstruction = `
   if there are multiple names, seperate them using comma.
 
    Never repeat the same name.
+
+  Extract only the unique human name(s) from the text below, and return them in a comma-separated format.
 
 `;
 
