@@ -98,7 +98,7 @@ Return "Yes" or "No" only for this.
 
 Ignoring minor spelling mistakes.
 
-do the names below each seperated by comma appear like it's still for a single individual where individual can only have a name?
+Are these super distinct names?
 `;
 
 const getClientNameRouter = express.Router();
