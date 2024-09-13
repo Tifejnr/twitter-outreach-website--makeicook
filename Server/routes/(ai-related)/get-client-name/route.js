@@ -200,7 +200,9 @@ ${prompt}`,
     const fullResponse = response.choices[0]?.message?.content;
 
     return fullResponse; // Return the full response
-  } catch (error) {}
+  } catch (error) {
+    return "error occured";
+  }
 }
 
 function hasMoreThanThreeWords(text) {
@@ -211,15 +213,19 @@ function hasMoreThanThreeWords(text) {
 
 function findCommonName(names) {
   const namesArray = names.split(", ");
-  // Split the input string into words, removing commas first
-  let common = namesArray[0].replace(/,/g, "").split(" ");
 
-  for (let i = 1; i < namesArray.length; i++) {
+  // Find the shortest name in the array
+  let shortest = namesArray
+    .reduce((a, b) => (a.length <= b.length ? a : b))
+    .replace(/,/g, "")
+    .split(" ");
+
+  for (let i = 0; i < namesArray.length; i++) {
     let currentWords = namesArray[i].replace(/,/g, "").split(" ");
-    common = common.filter((word) => currentWords.includes(word));
+    shortest = shortest.filter((word) => currentWords.includes(word));
   }
 
-  return common.length > 0 ? common.join(" ") : names;
+  return shortest.length > 0 ? shortest.join(" ") : names;
 }
 
 export default getClientNameRouter;
