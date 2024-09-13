@@ -97,11 +97,11 @@ If the name sound more human than company, return "No".
 const doesTheNameSoundLikeitsOneClient = `
 Return "Yes" or "No" only for this.
 
-Ignoring minor spelling mistakes.
+super distinct names in this context are names that differ with at least two alphabets ignoring symbols in the names.
 
 if the name is without comma, it is not super distinct.
 
-super distinct names in this context are names that differ with at least two alphabets ignoring symbols in the names.
+if any of the names is included in every other name, it is not super distinct.
 
 Are these super distinct names?
 `;
@@ -160,25 +160,27 @@ getClientNameRouter.post("/", async (req, res) => {
     console.log("clientNameResponse", clientNameResponse);
 
     const finalName = findCommonName(clientNameResponse);
-
-    const areTheNamesSuperDistinct = await editNameWithAiToMakeItMorePerfect(
-      doesTheNameSoundLikeitsOneClient,
-      finalName
-    );
-
-    if (areTheNamesSuperDistinct == "Yes") {
-      console.log(
-        "areTheNamesSuperDistinct",
-        areTheNamesSuperDistinct,
+    
+    if (finalName.includes(",")) {
+      const areTheNamesSuperDistinct = await editNameWithAiToMakeItMorePerfect(
+        doesTheNameSoundLikeitsOneClient,
         finalName
       );
 
-      return res.json({
-        clientNameResponse:
-          finalName == realNoNamesFoundResponse
-            ? realNoNamesFoundResponse
-            : "Multiple distinct names",
-      });
+      if (areTheNamesSuperDistinct == "Yes") {
+        console.log(
+          "areTheNamesSuperDistinct",
+          areTheNamesSuperDistinct,
+          finalName
+        );
+
+        return res.json({
+          clientNameResponse:
+            finalName == realNoNamesFoundResponse
+              ? realNoNamesFoundResponse
+              : "Multiple distinct names",
+        });
+      }
     }
 
     const isForbiddenNameIncludedIn = forbiddenNamesInclusionArray.find(
