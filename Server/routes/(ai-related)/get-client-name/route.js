@@ -60,8 +60,9 @@ const editFirstNamePromptInstruction = `
 
    Never repeat the same name.
 
-  Extract only the unique human name(s) from the text below, and return them in a comma-separated format.
+  Extract only the unique human name(s) from the text below, and return only the names(s) in a comma-separated format.
 
+  Don't prefix your response with "After carefully reading the text, I found one unique human name:"
 `;
 
 const getClientNameRouter = express.Router();
@@ -142,11 +143,12 @@ ${prompt}`,
         },
       ],
       max_tokens: 500,
+      temperature: 0.1,
     });
 
     const fullResponse = response.choices[0]?.message?.content;
 
-    console.log("fullResponse", fullResponse);
+    console.log("fullResponse first one", fullResponse);
 
     if (fullResponse.includes(theyAreCompanyText)) {
       return theyAreCompanyText;
@@ -175,6 +177,7 @@ ${prompt}`,
       },
     ],
     max_tokens: 500,
+    temperature: 0.1,
   });
 
   const fullResponse = response.choices[0]?.message?.content;
