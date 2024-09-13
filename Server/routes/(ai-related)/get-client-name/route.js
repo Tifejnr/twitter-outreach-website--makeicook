@@ -159,7 +159,7 @@ getClientNameRouter.post("/", async (req, res) => {
       const isItASingleName = isItASingleNameAllThrough(finalName);
 
       if (isItASingleName == false) {
-        console.log("isItASingleName", isItASingleName, finalName);
+        console.log("Multiple distinct names found", finalName);
 
         return res.json({
           clientNameResponse:
@@ -340,13 +340,7 @@ function isItASingleNameAllThrough(names) {
 
   // Check if the length of the shortest name is equal to the final pushed array length
   const lengthToGiveSpaceForTwoErrorInAlphabets =
-    shortest.length * namesArray.length - (2 * namesArray.length - 1);
-
-  console.log(
-    "lengthToGiveSpaceForTwoErrorInAlphabets",
-    lengthToGiveSpaceForTwoErrorInAlphabets
-  );
-  console.log("passedArray.length", passedArray.length);
+    shortest.length * namesArray.length - (1 * namesArray.length - 1);
 
   if (
     passedArray.length - shortest.length >=
