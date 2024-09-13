@@ -55,15 +55,13 @@ const getClientNamePromptHeading = `The texts below are freelancers feedback to 
 `;
 
 const editFirstNamePromptInstruction = `
-  Read through the text below patiently searching for human names.
+  Read through the text below patiently searching for human names, Don't count company-like names as human name here.
 
   Extract only the unique human name(s) from the text below, and return them in a comma-separated format.
 
   count two letter nicknames as unique human name only if they are in the text, never autogenerate anything.
 
   Enusre no name is repeated twice in your response.
-
-  Don't count company-like names as human name. 
 
   Any name that sounds like a company or business name is not a human name here.
 
