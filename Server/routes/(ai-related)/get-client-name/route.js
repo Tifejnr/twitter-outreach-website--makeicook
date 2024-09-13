@@ -156,15 +156,18 @@ getClientNameRouter.post("/", async (req, res) => {
 
     const finalName = findCommonName(clientNameResponse);
 
-    const isItSingleClientName = await editNameWithAiToMakeItMorePerfect(
+    const areTheNamesSuperDistinct = await editNameWithAiToMakeItMorePerfect(
       doesTheNameSoundLikeitsOneClient,
       finalName
     );
 
-    console.log("isItSingleClientName", isItSingleClientName);
+    if (areTheNamesSuperDistinct == "Yes") {
+      console.log(
+        "areTheNamesSuperDistinct",
+        areTheNamesSuperDistinct,
+        finalName
+      );
 
-    if (isItSingleClientName == "No") {
-      console.log("isItSingleClientName", isItSingleClientName);
       return res.json({
         clientNameResponse:
           finalName == realNoNamesFoundResponse
