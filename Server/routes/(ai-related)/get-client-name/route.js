@@ -99,6 +99,8 @@ Return "Yes" or "No" only for this.
 
 Ignoring minor spelling mistakes.
 
+if the name is without comma, it is not super distinct.
+
 super distinct names in this context are names that differ with at least two alphabets ignoring symbols in the names.
 
 Are these super distinct names?
