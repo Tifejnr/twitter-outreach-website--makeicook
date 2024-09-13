@@ -86,7 +86,7 @@ getClientNameRouter.post("/", async (req, res) => {
   try {
     const clientNameResponseRaw = await getResponseFromAi(prompt);
 
-    const clientNameResponse = await editFirstNamePromptInstruction(
+    const clientNameResponse = await editNameWithAiToMakeItMorePerfect(
       editFirstNamePromptInstruction,
       clientNameResponseRaw
     );
