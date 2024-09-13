@@ -172,7 +172,7 @@ getClientNameRouter.post("/", async (req, res) => {
         clientNameResponse:
           finalName == realNoNamesFoundResponse
             ? realNoNamesFoundResponse
-            : "Multiple names, Team",
+            : "Multiple distinct names",
       });
     }
 
