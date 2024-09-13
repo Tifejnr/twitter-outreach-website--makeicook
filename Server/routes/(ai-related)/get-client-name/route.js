@@ -158,7 +158,7 @@ getClientNameRouter.post("/", async (req, res) => {
     if (finalName.includes(",")) {
       const isItASingleName = isItASingleNameAllThrough(finalName);
 
-      if (!isItASingleName) {
+      if (isItASingleName == false) {
         console.log("isItASingleName", isItASingleName, finalName);
 
         return res.json({
@@ -346,6 +346,7 @@ function isItASingleNameAllThrough(names) {
     "lengthToGiveSpaceForTwoErrorInAlphabets",
     lengthToGiveSpaceForTwoErrorInAlphabets
   );
+  console.log("passedArray.length", passedArray.length);
 
   if (passedArray.length >= lengthToGiveSpaceForTwoErrorInAlphabets) {
     return true;
