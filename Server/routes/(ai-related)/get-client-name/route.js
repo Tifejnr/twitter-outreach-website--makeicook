@@ -151,24 +151,15 @@ getClientNameRouter.post("/", async (req, res) => {
       });
     }
 
-    console.log("clientNameResponse", clientNameResponse);
-
     const finalName = findCommonName(clientNameResponse);
 
+    console.log("returned name", finalName);
+
     if (finalName.includes(",")) {
-      const areTheNamesSuperDistinct = await editNameWithAiToMakeItMorePerfect(
-        doesTheNameSoundLikeitsOneClient,
-        finalName
-      );
+      const isItASingleName = isItASingleNameAllThrough(finalName);
 
-      console.log("areTheNamesSuperDistinct", areTheNamesSuperDistinct);
-
-      if (areTheNamesSuperDistinct == "Yes") {
-        console.log(
-          "areTheNamesSuperDistinct",
-          areTheNamesSuperDistinct,
-          finalName
-        );
+      if (!isItASingleName) {
+        console.log("isItASingleName", isItASingleName, finalName);
 
         return res.json({
           clientNameResponse:
@@ -177,6 +168,27 @@ getClientNameRouter.post("/", async (req, res) => {
               : "Multiple distinct names",
         });
       }
+      // const areTheNamesSuperDistinct = await editNameWithAiToMakeItMorePerfect(
+      //   doesTheNameSoundLikeitsOneClient,
+      //   finalName
+      // );
+
+      // console.log("areTheNamesSuperDistinct", areTheNamesSuperDistinct);
+
+      // if (areTheNamesSuperDistinct == "Yes") {
+      //   console.log(
+      //     "areTheNamesSuperDistinct",
+      //     areTheNamesSuperDistinct,
+      //     finalName
+      //   );
+
+      //   return res.json({
+      //     clientNameResponse:
+      //       finalName == realNoNamesFoundResponse
+      //         ? realNoNamesFoundResponse
+      //         : "Multiple distinct names",
+      //   });
+      // }
     }
 
     const isForbiddenNameIncludedIn = forbiddenNamesInclusionArray.find(
@@ -270,11 +282,11 @@ ${prompt}`,
   }
 }
 
-function hasMoreThanThreeWords(text) {
-  // Split the text into words based on spaces and filter out any empty strings
-  const words = text.trim().split(/\s+/); // \s+ matches one or more spaces
-  return words.length > 3;
-}
+// function hasMoreThanThreeWords(text) {
+//   // Split the text into words based on spaces and filter out any empty strings
+//   const words = text.trim().split(/\s+/); // \s+ matches one or more spaces
+//   return words.length > 3;
+// }
 function findCommonName(names) {
   const namesWithHypghenRemoved = names.replace(/-/g, "");
 
@@ -300,6 +312,46 @@ function findCommonName(names) {
     return longestName;
   }
   return names;
+}
+
+function isItASingleNameAllThrough(names) {
+  const namesWithHyphenRemoved = names.replace(/-/g, "");
+  const namesArray = namesWithHyphenRemoved.split(", ");
+
+  // Find the shortest name in the array
+  let shortest = namesArray
+    .reduce((a, b) => (a.length <= b.length ? a : b))
+    .toLowerCase();
+
+  const passedArray = [];
+
+  // Loop through each name except the shortest
+  for (let i = 0; i < namesArray.length; i++) {
+    let currentName = namesArray[i].toLowerCase();
+
+    // For every letter in the shortest name
+    for (let char of shortest) {
+      // Check if the letter is present in the current name
+      if (currentName.includes(char)) {
+        passedArray.push(1); // Push 1 for each match
+      }
+    }
+  }
+
+  // Check if the length of the shortest name is equal to the final pushed array length
+  const lengthToGiveSpaceForTwoErrorInAlphabets =
+    shortest.length * namesArray.length - (2 * namesArray.length - 1);
+
+  console.log(
+    "lengthToGiveSpaceForTwoErrorInAlphabets",
+    lengthToGiveSpaceForTwoErrorInAlphabets
+  );
+
+  if (passedArray.length >= lengthToGiveSpaceForTwoErrorInAlphabets) {
+    return true;
+  }
+
+  return false;
 }
 
 export default getClientNameRouter;
