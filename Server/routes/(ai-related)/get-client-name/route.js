@@ -88,6 +88,8 @@ const doesTheNameSoundLikeCompany = `
 
 Return "Yes" or "No" only for this.
 
+Note, human names are not company names in this context.
+
 do any of the words below sound like a company name ?
 
 `;
