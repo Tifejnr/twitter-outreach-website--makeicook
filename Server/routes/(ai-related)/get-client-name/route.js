@@ -50,9 +50,11 @@ const editFirstNamePromptInstruction = `
 
   Extract only the unique human name(s) from the text below, and return them in a comma-separated format.
 
+  count two letter nicknames like "Al", "Bj"  as unique human name.
+
   Enusre no name is repeated twice in your response.
 
-  Don't count praisy phrases like " Great person" "Great client" as human name.
+  Don't count praisy phrases like " Great person" "Great client", "wonderful client" as human name.
 
   Don't count any phrase including personal pronouns " he" , "She", "him" , "her", "his" as human name.
   
