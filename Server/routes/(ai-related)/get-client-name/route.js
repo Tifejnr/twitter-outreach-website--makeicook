@@ -127,6 +127,9 @@ getClientNameRouter.post("/", async (req, res) => {
       clientNameResponse
     );
 
+    if (isItCompanyNameResponse == "Yes")
+      return res.json({ clientNameResponse: "It's a Company" });
+
     console.log(" isItCompanyNameResponse", isItCompanyNameResponse);
 
     console.log("clientNameResponse", clientNameResponse);
