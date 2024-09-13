@@ -91,6 +91,8 @@ getClientNameRouter.post("/", async (req, res) => {
       clientNameResponseRaw
     );
 
+    console.log(" clientNameResponseRaw", clientNameResponseRaw);
+
     console.log("clientNameResponse", clientNameResponse);
 
     //return final shit still
