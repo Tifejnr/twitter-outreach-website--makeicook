@@ -71,8 +71,6 @@ const editFirstNamePromptInstruction = `
 
   Don't count any phrase including personal pronouns " he" , "She", "him" , "her", "his" as human name.
 
- If you ever come across a name called "Will", check for the context surrounding the name "Will" before choosing it as human name, check this well.
-  
   if there are multiple names, seperate them using comma.
 
   Never repeat the same name.
