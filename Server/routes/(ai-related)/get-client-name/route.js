@@ -4,6 +4,7 @@ import { HfInference } from "@huggingface/inference";
 import getSecretKeys from "../../../envVariables/envVariables.js";
 import isTokenValid from "../../../server-utils/middleware/token-validity/isTokenValid.js";
 import forbiddenNamesInclusionArray from "./forbiddenNamesInclusion.js";
+import processClientNameGotten from "./utils/processClientNameGotten.js";
 
 const keysObject = getSecretKeys();
 const model = keysObject.huggingFaceModel;
@@ -180,8 +181,22 @@ getClientNameRouter.post("/", async (req, res) => {
 
     console.log("finalName", finalName);
 
+    const isForbiddenNameIncludedIn = forbiddenNamesInclusionArray.find(
+      (forbiddenName) => {
+        const escapedForbiddenName = forbiddenName
+          .toLowerCase()
+          .replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        const regex = new RegExp(`\\b${escapedForbiddenName}\\b`);
+        return regex.test(finalName.toLowerCase());
+      }
+    );
+
     //return final shit still
-    return res.json({ clientNameResponse: finalName });
+    return res.json({
+      clientNameResponse: isForbiddenNameIncludedIn
+        ? realNoNamesFoundResponse
+        : finalName,
+    });
   } catch (error) {
     console.log("error,", error);
 

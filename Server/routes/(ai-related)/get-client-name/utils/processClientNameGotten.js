@@ -52,11 +52,11 @@ export default function processClientNameGotten(clientNameResponseRaw) {
 
   clientNameResponse = removeDuplicateWords(clientNameResponse);
 
-  const clientNameResponseLength = getTotalWordsLength(clientNameResponse);
+  // const clientNameResponseLength = getTotalWordsLength(clientNameResponse);
 
-  if (clientNameResponseLength > 4) {
-    clientNameResponse = "client name is greater than 4";
-  }
+  // if (clientNameResponseLength > 4) {
+  //   clientNameResponse = "client name is greater than 4";
+  // }
 
   const cleanedClientName = clientNameResponse;
 
