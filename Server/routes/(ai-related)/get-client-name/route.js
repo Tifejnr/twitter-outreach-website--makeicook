@@ -142,10 +142,6 @@ ${prompt}`,
         },
       ],
       max_tokens: 500,
-      temperature: 0.2, // Low temperature for less creativity
-      top_p: 0.9, // Restrict randomness
-      frequency_penalty: 0.5, // Lower frequency of repeated phrases
-      presence_penalty: 0.0,
     });
 
     const fullResponse = response.choices[0]?.message?.content;
@@ -179,10 +175,6 @@ ${prompt}`,
       },
     ],
     max_tokens: 500,
-    temperature: 0.2, // Low temperature for less creativity
-    top_p: 0.9, // Restrict randomness
-    frequency_penalty: 0.5, // Lower frequency of repeated phrases
-    presence_penalty: 0.0,
   });
 
   const fullResponse = response.choices[0]?.message?.content;
