@@ -165,7 +165,12 @@ getClientNameRouter.post("/", async (req, res) => {
 
     if (isItSingleClientName == "No") {
       console.log("isItSingleClientName", isItSingleClientName);
-      return res.json({ clientNameResponse: "Multiple names, Team" });
+      return res.json({
+        clientNameResponse:
+          finalName == realNoNamesFoundResponse
+            ? realNoNamesFoundResponse
+            : "Multiple names, Team",
+      });
     }
 
     console.log("finalName", finalName);
