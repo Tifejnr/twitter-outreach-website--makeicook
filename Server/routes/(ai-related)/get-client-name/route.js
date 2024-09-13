@@ -214,14 +214,16 @@ function hasMoreThanThreeWords(text) {
 function findCommonName(names) {
   const namesArray = names.split(", ");
 
-  // Find the shortest name in the array
+  // Find the shortest name in the array and remove both commas and hyphens
   let shortest = namesArray
     .reduce((a, b) => (a.length <= b.length ? a : b))
-    .replace(/,/g, "")
+    .replace(/[-,]/g, "") // Remove commas and hyphens
     .split(" ");
 
+  console.log("shortest", shortest);
+
   for (let i = 0; i < namesArray.length; i++) {
-    let currentWords = namesArray[i].replace(/,/g, "").split(" ");
+    let currentWords = namesArray[i].replace(/[-,]/g, "").split(" "); // Remove commas and hyphens
     shortest = shortest.filter((word) => currentWords.includes(word));
   }
 
