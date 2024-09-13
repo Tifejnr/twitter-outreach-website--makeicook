@@ -52,7 +52,7 @@ const editFirstNamePromptInstruction = `
 
   Extract only the unique human name(s) from the text below, and return them in a comma-separated format.
 
-  count two letter nicknames like "Al", "Bj"  as unique human name.
+  count two letter nicknames as unique human name only if they are in the text, never autogenerate anything.
 
   Enusre no name is repeated twice in your response.
 
