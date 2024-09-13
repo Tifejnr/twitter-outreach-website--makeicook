@@ -217,13 +217,11 @@ function findCommonName(names) {
   // Find the shortest name in the array and remove both commas and hyphens
   let shortest = namesArray
     .reduce((a, b) => (a.length <= b.length ? a : b))
-    .replace(/[-,]/g, "") // Remove commas and hyphens
-    .split(" ");
-
-  console.log("shortest", shortest);
+    .replace(/[-,]/g, " ") // Replace hyphens and commas with spaces
+    .split(/\s+/); // Split by spaces (including multiple spaces)
 
   for (let i = 0; i < namesArray.length; i++) {
-    let currentWords = namesArray[i].replace(/[-,]/g, "").split(" "); // Remove commas and hyphens
+    let currentWords = namesArray[i].replace(/[-,]/g, " ").split(/\s+/); // Replace hyphens and commas with spaces
     shortest = shortest.filter((word) => currentWords.includes(word));
   }
 
