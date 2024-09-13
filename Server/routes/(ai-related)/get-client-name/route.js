@@ -62,8 +62,6 @@ const editFirstNamePromptInstruction = `
 
   Enusre no name is repeated twice in your response.
 
-  If a name is present in all the comma seperated names, return only that name only.
-
   Don't count praisy phrases like " Great person" "Great client", "wonderful client" as human name.
 
   Don't count personal pronouns "he" , "She", "him" , "her", "his" as human name.
@@ -113,12 +111,14 @@ getClientNameRouter.post("/", async (req, res) => {
       clientNameResponseRaw
     );
 
-    console.log(" clientNameResponseRaw", clientNameResponseRaw);
-
     console.log("clientNameResponse", clientNameResponse);
 
+    const finalName = findCommonName(names);
+
+    console.log("finalName", finalName);
+
     //return final shit still
-    return res.json({ clientNameResponse });
+    return res.json({ clientNameResponse: finalName });
 
     // const isThereSameAppearingName = findCommonName(clientNameResponse);
 
