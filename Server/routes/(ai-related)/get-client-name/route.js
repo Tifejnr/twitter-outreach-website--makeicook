@@ -96,8 +96,6 @@ If the name sound more human than company, return "No".
 const doesTheNameSoundLikeitsOneClient = `
 Return "Yes" or "No" only for this.
 
-Ignoring minor spelling mistakes.
-
 Are these super distinct names?
 `;
 
