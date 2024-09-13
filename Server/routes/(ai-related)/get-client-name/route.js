@@ -212,7 +212,9 @@ function hasMoreThanThreeWords(text) {
 }
 
 function findCommonName(names) {
-  const namesArray = names.split(", ");
+  const namesWithHypghenRemoved = names.replace(/-/g, "");
+
+  const namesArray = namesWithHypghenRemoved.split(", ");
 
   // Find the shortest name in the array and remove both commas and hyphens
   let shortest = namesArray
