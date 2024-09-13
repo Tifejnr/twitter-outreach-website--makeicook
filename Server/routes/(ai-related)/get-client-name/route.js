@@ -161,13 +161,13 @@ getClientNameRouter.post("/", async (req, res) => {
 
     const finalName = findCommonName(clientNameResponse);
 
-    console.log("finalName.includes(", ")", finalName.includes(","));
-
     if (finalName.includes(",")) {
       const areTheNamesSuperDistinct = await editNameWithAiToMakeItMorePerfect(
         doesTheNameSoundLikeitsOneClient,
         finalName
       );
+
+      console.log("areTheNamesSuperDistinct", areTheNamesSuperDistinct);
 
       if (areTheNamesSuperDistinct == "Yes") {
         console.log(
