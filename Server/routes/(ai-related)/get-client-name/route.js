@@ -113,7 +113,7 @@ getClientNameRouter.post("/", async (req, res) => {
 
     console.log("clientNameResponse", clientNameResponse);
 
-    const finalName = findCommonName(names);
+    const finalName = findCommonName(clientNameResponse);
 
     console.log("finalName", finalName);
 
