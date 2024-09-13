@@ -147,7 +147,12 @@ getClientNameRouter.post("/", async (req, res) => {
         isItCompanyNameResponse,
         clientNameResponse
       );
-      return res.json({ clientNameResponse: "They're a Company" });
+      return res.json({
+        clientNameResponse:
+          clientNameResponse == realNoNamesFoundResponse
+            ? realNoNamesFoundResponse
+            : "They're a Company",
+      });
     }
 
     console.log("clientNameResponse", clientNameResponse);
