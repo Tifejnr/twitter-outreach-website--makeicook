@@ -16,9 +16,13 @@ const helloText = "Hello!";
 
 const getClientNamePromptHeading = `The texts below are freelancers feedback to their clients. 
 
-   Read through patiently searching for human names.
+  Read through patiently searching for human names.
+
+  Never repeat the same name.
 
   Don't count praisy phrases like " Great person" "Great client" as human name.
+
+  Don't count pronouns  like " he,she, him, her, his" as human name.
   
    if there are multiple names, seperate them using comma.
 
