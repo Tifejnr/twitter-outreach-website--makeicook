@@ -210,26 +210,30 @@ function hasMoreThanThreeWords(text) {
   const words = text.trim().split(/\s+/); // \s+ matches one or more spaces
   return words.length > 3;
 }
-
 function findCommonName(names) {
   const namesWithHypghenRemoved = names.replace(/-/g, "");
 
-  console.log("namesWithHypghenRemoved", namesWithHypghenRemoved);
+  const passedArray = [];
 
   const namesArray = namesWithHypghenRemoved.split(", ");
 
   // Find the shortest name in the array and remove both commas and hyphens
-  let shortest = namesArray
-    .reduce((a, b) => (a.length <= b.length ? a : b))
-    .replace(/[-,]/g, " ") // Replace hyphens and commas with spaces
-    .split(/\s+/); // Split by spaces (including multiple spaces)
+  let shortest = namesArray.reduce((a, b) => (a.length <= b.length ? a : b));
+
+  const namesArrayLength = namesArray.length;
 
   for (let i = 0; i < namesArray.length; i++) {
-    let currentWords = namesArray[i].replace(/[-,]/g, " ").split(/\s+/); // Replace hyphens and commas with spaces
-    shortest = shortest.filter((word) => currentWords.includes(word));
+    const currentName = namesArray[i];
+
+    if (currentName.includes(shortest)) {
+      passedArray.push(1);
+    }
   }
 
-  return shortest.length > 0 ? shortest.join(" ") : names;
+  if (passedArray.length == namesArrayLength) {
+    return shortest;
+  }
+  return names;
 }
 
 export default getClientNameRouter;
