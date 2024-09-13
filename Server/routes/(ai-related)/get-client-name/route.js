@@ -64,8 +64,6 @@ const editFirstNamePromptInstruction = `
 
   Enusre no name is repeated twice in your response.
 
-  Any name that sounds like a company or business name is not a human name here.
-
   Don't count praisy phrases like " Great person" "Great client", "wonderful client" as human name.
 
   Don't count personal pronouns "he" , "She", "him" , "her", "his" as human name.
@@ -88,7 +86,6 @@ const doesTheNameSoundLikeCompany = `
 Return "Yes" or "No" only for this.
 
 Note, human names are not company names in this context.
-
 
 do any of the words below sound like a company name ?
 
