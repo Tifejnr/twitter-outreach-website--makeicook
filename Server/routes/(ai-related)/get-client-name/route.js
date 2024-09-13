@@ -82,6 +82,14 @@ const editFirstNamePromptInstruction = `
   ONLY Return the names, no additional text or commentary or explanation.
 `;
 
+const doesTheNameSoundLikeCompany = `
+
+Return "Yes" or "No" only for this.
+
+do any of the words below sound like a company name ?
+
+`;
+
 const getClientNameRouter = express.Router();
 
 getClientNameRouter.post("/", async (req, res) => {
@@ -113,6 +121,13 @@ getClientNameRouter.post("/", async (req, res) => {
       editFirstNamePromptInstruction,
       clientNameResponseRaw
     );
+
+    const isItCompanyNameResponse = await editNameWithAiToMakeItMorePerfect(
+      isItCompanyNameResponse,
+      clientNameResponse
+    );
+
+    console.log(" isItCompanyNameResponse", isItCompanyNameResponse);
 
     console.log("clientNameResponse", clientNameResponse);
 
@@ -162,7 +177,7 @@ ${prompt}`,
         },
       ],
       max_tokens: 500,
-      temperature: 0.8,
+      temperature: 0.1,
     });
 
     const fullResponse = response.choices[0]?.message?.content;
@@ -199,7 +214,7 @@ ${prompt}`,
         },
       ],
       max_tokens: 500,
-      temperature: 0.8,
+      temperature: 0.1,
     });
 
     const fullResponse = response.choices[0]?.message?.content;
