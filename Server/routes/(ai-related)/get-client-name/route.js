@@ -62,6 +62,8 @@ const editFirstNamePromptInstruction = `
 
   Enusre no name is repeated twice in your response.
 
+  If a name is present in all the comma seperated names, return only that name only.
+
   Don't count praisy phrases like " Great person" "Great client", "wonderful client" as human name.
 
   Don't count personal pronouns "he" , "She", "him" , "her", "his" as human name.
@@ -162,8 +164,6 @@ ${prompt}`,
 
     const fullResponse = response.choices[0]?.message?.content;
 
-    console.log("fullResponse first one", fullResponse);
-
     if (fullResponse.includes(theyAreCompanyText)) {
       return theyAreCompanyText;
     } else if (fullResponse.includes(theyAreATeamText)) {
@@ -175,28 +175,32 @@ ${prompt}`,
     return fullResponse; // Return the full response at once
   } catch (error) {
     console.error("Error fetching AI response:", error);
+
+    return "error occured";
     throw error; // Handle errors appropriately
   }
 }
 
 async function editNameWithAiToMakeItMorePerfect(promptInstruction, prompt) {
-  const response = await hf.chatCompletion({
-    model: "meta-llama/Meta-Llama-3-8B-Instruct",
-    messages: [
-      {
-        role: "user",
-        content: `${promptInstruction}
+  try {
+    const response = await hf.chatCompletion({
+      model: "meta-llama/Meta-Llama-3-8B-Instruct",
+      messages: [
+        {
+          role: "user",
+          content: `${promptInstruction}
       
 ${prompt}`,
-      },
-    ],
-    max_tokens: 500,
-    temperature: 0.1,
-  });
+        },
+      ],
+      max_tokens: 500,
+      temperature: 0.1,
+    });
 
-  const fullResponse = response.choices[0]?.message?.content;
+    const fullResponse = response.choices[0]?.message?.content;
 
-  return fullResponse; // Return the full response
+    return fullResponse; // Return the full response
+  } catch (error) {}
 }
 
 function hasMoreThanThreeWords(text) {
