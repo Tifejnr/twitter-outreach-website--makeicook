@@ -24,7 +24,7 @@ const getClientNamePromptHeading = `The texts below are freelancers feedback to 
 
   Don't count praisy phrases like " Great person" "Great client" as human name.
 
-  "he" , "She", "him" , "her", "his" is not a human name.
+  These words : "he" , "She", "him" , "her", "his" are not a human name.
 
   Don't count any phrase including personal pronouns " he" , "She", "him" , "her", "his" as human name.
 
@@ -38,7 +38,9 @@ const getClientNamePromptHeading = `The texts below are freelancers feedback to 
 
    Never count "Sir" as part of a name
 
-   don't prefix your response with things like "Here is the output:" or "Here are the responses based on the instructions:" or "Here are the client names or company like names" or "Here is the list of human names mentioned in the feedback" or anything that looks like that and don't close with any message.
+   Don't prefix your response with things like "Here is the output:" or "Here are the responses based on the instructions:" or "Here are the client names or company like names" or 
+   
+   "Here is the list of human names mentioned in the feedback" or anything that looks like that and don't close with any message.
 
    Only return any of  ${helloText}, or the client names or name.
    
