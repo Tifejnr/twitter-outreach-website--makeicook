@@ -63,7 +63,9 @@ const editFirstNamePromptInstruction = `
 
   Enusre no name is repeated twice in your response.
 
-  Don't count company-like names as human name.
+  Don't count company-like names as human name. 
+
+  Any name that sounds like a company or business name is not a human name here.
 
   Don't count praisy phrases like " Great person" "Great client", "wonderful client" as human name.
 
