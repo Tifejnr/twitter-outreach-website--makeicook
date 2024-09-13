@@ -22,7 +22,7 @@ const getClientNamePromptHeading = `The texts below are freelancers feedback to 
 
   Don't count praisy phrases like " Great person" "Great client" as human name.
 
-  Don't count personal pronouns " he" , "She", "him" , "her", "his" as human name.
+  "he" , "She", "him" , "her", "his" is not a human name.
 
   Don't count any phrase including personal pronouns " he" , "She", "him" , "her", "his" as human name.
 
