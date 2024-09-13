@@ -99,9 +99,9 @@ Return "Yes" or "No" only for this.
 
 super distinct names in this context are names that differ with at least two alphabets ignoring symbols in the names.
 
-if the name is without comma, it is not super distinct.
+if any of the names can be spelt within other names, it is not super distinct.
 
-if any of the names is included in every other name, it is not super distinct.
+If the names are totally different from each other. It is super distinct.
 
 Are these super distinct names?
 `;
@@ -160,7 +160,7 @@ getClientNameRouter.post("/", async (req, res) => {
     console.log("clientNameResponse", clientNameResponse);
 
     const finalName = findCommonName(clientNameResponse);
-    
+
     if (finalName.includes(",")) {
       const areTheNamesSuperDistinct = await editNameWithAiToMakeItMorePerfect(
         doesTheNameSoundLikeitsOneClient,
