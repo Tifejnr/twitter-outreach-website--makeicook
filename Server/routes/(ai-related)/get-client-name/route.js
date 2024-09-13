@@ -123,7 +123,7 @@ getClientNameRouter.post("/", async (req, res) => {
     );
 
     const isItCompanyNameResponse = await editNameWithAiToMakeItMorePerfect(
-      isItCompanyNameResponse,
+      doesTheNameSoundLikeCompany,
       clientNameResponse
     );
 
