@@ -145,7 +145,7 @@ getClientNameRouter.post("/", async (req, res) => {
         isItCompanyNameResponse,
         clientNameResponse
       );
-      return res.json({ clientNameResponse: "It's a Company" });
+      return res.json({ clientNameResponse: "They're a Company" });
     }
 
     console.log("clientNameResponse", clientNameResponse);
@@ -157,6 +157,8 @@ getClientNameRouter.post("/", async (req, res) => {
       finalName
     );
 
+    console.log("isItSingleClientName", isItSingleClientName);
+
     if (isItSingleClientName == "No") {
       console.log("isItSingleClientName", isItSingleClientName);
       return res.json({ clientNameResponse: "Multiple names, Team" });
@@ -166,27 +168,6 @@ getClientNameRouter.post("/", async (req, res) => {
 
     //return final shit still
     return res.json({ clientNameResponse: finalName });
-
-    // const isThereSameAppearingName = findCommonName(clientNameResponse);
-
-    // const doesItHasMoreThan3Words = hasMoreThanThreeWords(
-    //   isThereSameAppearingName
-    // );
-
-    // if (doesItHasMoreThan3Words == false)
-    //   return res.json({ clientNameResponse: isThereSameAppearingName });
-
-    // console.log("has more than 3 words");
-
-    // const isThereACommonName = findCommonName(clientNameResponse);
-
-    // console.log("isThereACommonName", isThereACommonName);
-    // return res.json({ clientNameResponse: isThereACommonName });
-
-    // editNameWithAiToMakeItMorePerfect(promptInstruction, prompt)
-
-    //return final shit still
-    return res.json({ clientNameResponse });
   } catch (error) {
     console.log("error,", error);
 
