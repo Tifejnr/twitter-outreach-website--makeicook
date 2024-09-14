@@ -188,6 +188,7 @@ getClientNameRouter.post("/", async (req, res) => {
 
         return res.json({
           clientNameResponse: nameToFreelancer,
+          multipleNames: "Multiple names",
         });
       }
     }
