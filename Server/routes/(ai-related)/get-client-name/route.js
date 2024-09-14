@@ -155,9 +155,19 @@ getClientNameRouter.post("/", async (req, res) => {
     console.log("returned name", finalName);
 
     if (finalName.includes(",")) {
-      const isItASingleName = isItASingleNameAllThrough(finalName);
+      const promptToCheckForSingleNames = `
+      return "Yes" or "No" only.
+      
+      Do these names share almost the same set of letters?
+      `;
 
-      if (isItASingleName == false) {
+      // console.log("response", response);
+      const isItASingleName = await editNameWithAiToMakeItMorePerfect(
+        promptToCheckForSingleNames,
+        finalName
+      );
+
+      if (isItASingleName == "No") {
         console.log("Multiple distinct names found", finalName);
 
         const isForbiddenNameIncludedIn = forbiddenNamesInclusionArray.find(
@@ -305,42 +315,42 @@ function findCommonName(names) {
   return names;
 }
 
-function isItASingleNameAllThrough(names) {
-  const namesWithHyphenRemoved = names.replace(/-/g, "");
-  const namesArray = namesWithHyphenRemoved.split(", ");
+// function isItASingleNameAllThrough(names) {
+//   const namesWithHyphenRemoved = names.replace(/-/g, "");
+//   const namesArray = namesWithHyphenRemoved.split(", ");
 
-  // Find the shortest name in the array
-  let shortest = namesArray
-    .reduce((a, b) => (a.length <= b.length ? a : b))
-    .toLowerCase();
+//   // Find the shortest name in the array
+//   let shortest = namesArray
+//     .reduce((a, b) => (a.length <= b.length ? a : b))
+//     .toLowerCase();
 
-  const passedArray = [];
+//   const passedArray = [];
 
-  // Loop through each name except the shortest
-  for (let i = 0; i < namesArray.length; i++) {
-    let currentName = namesArray[i].toLowerCase();
+//   // Loop through each name except the shortest
+//   for (let i = 0; i < namesArray.length; i++) {
+//     let currentName = namesArray[i].toLowerCase();
 
-    // For every letter in the shortest name
-    for (let char of shortest) {
-      // Check if the letter is present in the current name
-      if (currentName.includes(char)) {
-        passedArray.push(1); // Push 1 for each match
-      }
-    }
-  }
+//     // For every letter in the shortest name
+//     for (let char of shortest) {
+//       // Check if the letter is present in the current name
+//       if (currentName.includes(char)) {
+//         passedArray.push(1); // Push 1 for each match
+//       }
+//     }
+//   }
 
-  // Check if the length of the shortest name is equal to the final pushed array length
-  const lengthToGiveSpaceForTwoErrorInAlphabets =
-    shortest.length * namesArray.length - (1 * namesArray.length - 1);
+//   // Check if the length of the shortest name is equal to the final pushed array length
+//   const lengthToGiveSpaceForTwoErrorInAlphabets =
+//     shortest.length * namesArray.length - (1 * namesArray.length - 1);
 
-  if (
-    passedArray.length - shortest.length >=
-    lengthToGiveSpaceForTwoErrorInAlphabets
-  ) {
-    return true;
-  }
+//   if (
+//     passedArray.length - shortest.length >=
+//     lengthToGiveSpaceForTwoErrorInAlphabets
+//   ) {
+//     return true;
+//   }
 
-  return false;
-}
+//   return false;
+// }
 
 export default getClientNameRouter;
