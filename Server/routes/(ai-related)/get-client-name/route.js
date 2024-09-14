@@ -168,7 +168,7 @@ getClientNameRouter.post("/", async (req, res) => {
       );
 
       if (isItASingleName == "No") {
-        console.log("Multiple distinct names found", finalName);
+        console.log("Multiple names found", finalName);
 
         const isForbiddenNameIncludedIn = forbiddenNamesInclusionArray.find(
           (forbiddenName) => {
@@ -182,7 +182,7 @@ getClientNameRouter.post("/", async (req, res) => {
 
         const nameToFreelancer = isForbiddenNameIncludedIn
           ? realNoNamesFoundResponse
-          : "Multiple distinct names";
+          : "Multiple names";
 
         console.log("nameToFreelancer", nameToFreelancer);
 
