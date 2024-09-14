@@ -180,27 +180,6 @@ getClientNameRouter.post("/", async (req, res) => {
           clientNameResponse: nameToFreelancer,
         });
       }
-      // const areTheNamesSuperDistinct = await editNameWithAiToMakeItMorePerfect(
-      //   doesTheNameSoundLikeitsOneClient,
-      //   finalName
-      // );
-
-      // console.log("areTheNamesSuperDistinct", areTheNamesSuperDistinct);
-
-      // if (areTheNamesSuperDistinct == "Yes") {
-      //   console.log(
-      //     "areTheNamesSuperDistinct",
-      //     areTheNamesSuperDistinct,
-      //     finalName
-      //   );
-
-      //   return res.json({
-      //     clientNameResponse:
-      //       finalName == realNoNamesFoundResponse
-      //         ? realNoNamesFoundResponse
-      //         : "Multiple distinct names",
-      //   });
-      // }
     }
 
     const isForbiddenNameIncludedIn = forbiddenNamesInclusionArray.find(

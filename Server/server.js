@@ -84,7 +84,7 @@ app.use(
   wfrOutreachRecordingRouter
 );
 app.use(
-  "/api/personalize-dm-name",
+  "/api/get-name-for-dm-personalization",
   validateOrigin,
   getNameRouterToPersonalizeDmRouter
 );
