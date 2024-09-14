@@ -4,10 +4,9 @@ import { HfInference } from "@huggingface/inference";
 import getSecretKeys from "../../../envVariables/envVariables.js";
 import isTokenValid from "../../../server-utils/middleware/token-validity/isTokenValid.js";
 import forbiddenNamesInclusionArray from "./forbiddenNamesInclusion.js";
-import processClientNameGotten from "./utils/processClientNameGotten.js";
 
 const keysObject = getSecretKeys();
-const model = keysObject.huggingFaceModel;
+const model = keysObject.aiModel;
 const HF_TOKEN = keysObject.HF_TOKEN;
 const hf = new HfInference(HF_TOKEN);
 
@@ -220,7 +219,7 @@ getClientNameRouter.post("/", async (req, res) => {
 async function getResponseFromAi(prompt) {
   try {
     const response = await hf.chatCompletion({
-      model: "meta-llama/Meta-Llama-3-8B-Instruct",
+      model,
       messages: [
         {
           role: "user",
@@ -261,7 +260,7 @@ ${prompt}`,
 async function editNameWithAiToMakeItMorePerfect(promptInstruction, prompt) {
   try {
     const response = await hf.chatCompletion({
-      model: "meta-llama/Meta-Llama-3-8B-Instruct",
+      model,
       messages: [
         {
           role: "user",
