@@ -34,6 +34,7 @@ import chatGPTAIResponseRouter from "./routes/(ai-related)/ChatGBT/route.js";
 import contactUsHandlerWebsiteRouter from "./routes/(customer-requests)/contact-us/route.js";
 import handlerExtensionRequestRouter from "./routes/(customer-requests)/handle-extension-request/route.js";
 import validateOrigin from "./server-utils/middleware/is-origin-valid/isOriginValid.js";
+import getNameRouterToPersonalizeDmRouter from "./routes/(ai-related)/get-name-to-personalize-DM/route.js";
 // import sendMailToMultipleUsers from "./routes/(customer-requests)/email-users/route.js";
 // sendMailToMultipleUsers();
 
@@ -80,8 +81,12 @@ app.use("/is-account-authorized", validateOrigin, isAccountAuthorizedRouter);
 app.use(
   "/api/wfr-outreach-details",
   validateOrigin,
-
   wfrOutreachRecordingRouter
+);
+app.use(
+  "/api/personalize-dm-name",
+  validateOrigin,
+  getNameRouterToPersonalizeDmRouter
 );
 app.use("/api/ChatGBT", validateOrigin, chatGPTAIResponseRouter);
 app.use("/api/contact-us", validateOrigin, contactUsHandlerWebsiteRouter);
