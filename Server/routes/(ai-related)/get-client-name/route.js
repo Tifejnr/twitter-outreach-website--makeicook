@@ -160,11 +160,24 @@ getClientNameRouter.post("/", async (req, res) => {
       if (isItASingleName == false) {
         console.log("Multiple distinct names found", finalName);
 
+        const isForbiddenNameIncludedIn = forbiddenNamesInclusionArray.find(
+          (forbiddenName) => {
+            const escapedForbiddenName = forbiddenName
+              .toLowerCase()
+              .replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+            const regex = new RegExp(`\\b${escapedForbiddenName}\\b`);
+            return regex.test(finalName.toLowerCase());
+          }
+        );
+
+        const nameToFreelancer = isForbiddenNameIncludedIn
+          ? realNoNamesFoundResponse
+          : "Multiple distinct names";
+
+        console.log("nameToFreelancer", nameToFreelancer);
+
         return res.json({
-          clientNameResponse:
-            finalName == realNoNamesFoundResponse
-              ? realNoNamesFoundResponse
-              : "Multiple distinct names",
+          clientNameResponse: nameToFreelancer,
         });
       }
       // const areTheNamesSuperDistinct = await editNameWithAiToMakeItMorePerfect(
