@@ -39,3 +39,4 @@ envVariables.ts
 
 credentials.json
 /credentials
+Server/envVariables/envVariables.js
