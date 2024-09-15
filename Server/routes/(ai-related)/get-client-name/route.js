@@ -205,10 +205,15 @@ getClientNameRouter.post("/", async (req, res) => {
     console.log("nameToFreelancer", nameToFreelancer);
 
     //get client personality
-    const clientPersonality = await getStraightAiResponse(
+    const clientPersonalityRaw = await getStraightAiResponse(
       clientPersonalityPromptsObj.promptToActForClientSummary,
       prompt
     );
+
+    const prefixToRemove =
+      "Here is a summary of how freelancers described working with the client:";
+
+    const clientPersonality = clientNameResponseRaw.replace(prefixToRemove, "");
 
     console.log("clientPersonality", clientPersonality);
 
