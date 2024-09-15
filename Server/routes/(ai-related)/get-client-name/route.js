@@ -165,6 +165,20 @@ getClientNameRouter.post("/", async (req, res) => {
       if (isItASingleName == "No") {
         console.log("Multiple names found", finalName);
 
+        //get client personality
+        const clientPersonalityRaw = await getStraightAiResponse(
+          clientPersonalityPromptsObj.promptToActForClientSummary,
+          prompt
+        );
+
+        const prefixToRemove =
+          "Here is a summary of how freelancers described working with the client:";
+
+        const clientPersonality = clientPersonalityRaw.replace(
+          prefixToRemove,
+          ""
+        );
+
         const isForbiddenNameIncludedIn = forbiddenNamesInclusionArray.find(
           (forbiddenName) => {
             const escapedForbiddenName = forbiddenName
@@ -184,6 +198,7 @@ getClientNameRouter.post("/", async (req, res) => {
         return res.json({
           clientNameResponse: nameToFreelancer,
           multipleNames: isForbiddenNameIncludedIn ? "" : finalName,
+          clientPersonality,
         });
       }
     }
