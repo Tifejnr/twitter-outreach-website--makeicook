@@ -213,7 +213,7 @@ getClientNameRouter.post("/", async (req, res) => {
     const prefixToRemove =
       "Here is a summary of how freelancers described working with the client:";
 
-    const clientPersonality = clientNameResponseRaw.replace(prefixToRemove, "");
+    const clientPersonality = clientPersonalityRaw.replace(prefixToRemove, "");
 
     console.log("clientPersonality", clientPersonality);
 
