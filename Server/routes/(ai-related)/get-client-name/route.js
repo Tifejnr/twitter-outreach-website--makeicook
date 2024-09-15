@@ -4,6 +4,7 @@ import { HfInference } from "@huggingface/inference";
 import getSecretKeys from "../../../envVariables/envVariables.js";
 import isTokenValid from "../../../server-utils/middleware/token-validity/isTokenValid.js";
 import forbiddenNamesInclusionArray from "./forbiddenNamesInclusion.js";
+import clientPersonalityPromptsObj from "./clientPersonalityPromptsObj.js";
 
 const keysObject = getSecretKeys();
 const model = keysObject.aiModel;
@@ -93,12 +94,6 @@ If the name sound more human than company, return "No".
 
 `;
 
-const doesTheNameSoundLikeitsOneClient = `
-Return "Yes" or "No" only for this.
-
-Are the names below different?
-`;
-
 const getClientNameRouter = express.Router();
 
 getClientNameRouter.post("/", async (req, res) => {
@@ -126,12 +121,12 @@ getClientNameRouter.post("/", async (req, res) => {
   try {
     const clientNameResponseRaw = await getResponseFromAi(prompt);
 
-    const clientNameResponse = await editNameWithAiToMakeItMorePerfect(
+    const clientNameResponse = await getStraightAiResponse(
       editFirstNamePromptInstruction,
       clientNameResponseRaw
     );
 
-    const isItCompanyNameResponse = await editNameWithAiToMakeItMorePerfect(
+    const isItCompanyNameResponse = await getStraightAiResponse(
       doesTheNameSoundLikeCompany,
       clientNameResponse
     );
@@ -162,7 +157,7 @@ getClientNameRouter.post("/", async (req, res) => {
       `;
 
       // console.log("response", response);
-      const isItASingleName = await editNameWithAiToMakeItMorePerfect(
+      const isItASingleName = await getStraightAiResponse(
         promptToCheckForSingleNames,
         finalName
       );
@@ -188,7 +183,7 @@ getClientNameRouter.post("/", async (req, res) => {
 
         return res.json({
           clientNameResponse: nameToFreelancer,
-          multipleNames: finalName,
+          multipleNames: isForbiddenNameIncludedIn ? "" : finalName,
         });
       }
     }
@@ -209,9 +204,18 @@ getClientNameRouter.post("/", async (req, res) => {
 
     console.log("nameToFreelancer", nameToFreelancer);
 
+    //get client personality
+    const clientPersonality = await getStraightAiResponse(
+      clientPersonalityPromptsObj.promptToActForClientSummary,
+      prompt
+    );
+
+    console.log("clientPersonality", clientPersonality);
+
     //return final shit still
     return res.json({
       clientNameResponse: nameToFreelancer,
+      clientPersonality,
     });
   } catch (error) {
     console.log("error,", error);
@@ -260,7 +264,11 @@ ${prompt}`,
   }
 }
 
-async function editNameWithAiToMakeItMorePerfect(promptInstruction, prompt) {
+async function getStraightAiResponse(
+  promptInstruction,
+  prompt,
+  customTemperature
+) {
   try {
     const response = await hf.chatCompletion({
       model,
@@ -273,7 +281,7 @@ ${prompt}`,
         },
       ],
       max_tokens: 500,
-      temperature: 0.1,
+      temperature: customTemperature ? customTemperature : 0.1,
     });
 
     const fullResponse = response.choices[0]?.message?.content;
