@@ -215,8 +215,6 @@ getClientNameRouter.post("/", async (req, res) => {
 
     const clientPersonality = clientPersonalityRaw.replace(prefixToRemove, "");
 
-    console.log("clientPersonality", clientPersonality);
-
     //return final shit still
     return res.json({
       clientNameResponse: nameToFreelancer,
