@@ -2,6 +2,9 @@ import user from "../../../server-utils/database/usersDb.js";
 import emailTemplateFolderSrc from "../../../server-utils/emailTemplates/template-folder-src/emailTemplateFolderSrc.js";
 import sendEmail from "../../../server-utils/emailTemplates/sendEmail.js";
 import getFirstName from "./getFirstname.js";
+import invalidEmailsListArray from "./invalidEmailsList.js";
+import emailMessage from "./emailMessageObj.js";
+import emailMessageObj from "./emailMessageObj.js";
 
 async function sendMailToMultipleUsers() {
   const allUsers = await user.find();
@@ -22,17 +25,40 @@ async function sendMailToMultipleUsers() {
   // const startIndex = 179;
   // const slicedArray = allUsersThatHaveUsedExtensionOnce.slice(startIndex);
 
-  runWithDelay(allUsersThatHaveUsedExtensionOnce, sendMailFunction);
+  // console.log(
+  //   allUsersThatHaveUsedExtensionOnce[
+  //     allUsersThatHaveUsedExtensionOnce.length - 1
+  //   ]
+  // );
+
+  // sendMailFunction(
+  //   allUsersThatHaveUsedExtensionOnce[
+  //     allUsersThatHaveUsedExtensionOnce.length - 1
+  //   ]
+  // );
+
+  // runWithDelay(allUsersThatHaveUsedExtensionOnce, sendMailFunction);
 }
 
 async function sendMailFunction(user) {
   const { email, name } = user;
+
+  const isEmailInValid = invalidEmailsListArray.find((forbiddenEmail) => {
+    const escapedEmail = forbiddenEmail
+      .toLowerCase()
+      .replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const regex = new RegExp(`\\b${escapedEmail}\\b`);
+    return regex.test(email.toLowerCase());
+  });
+
+  if (isEmailInValid) return console.log("invalide email", email);
+
   const firstNameNow = getFirstName(name);
 
-  const message = `Are you able to see retrieved client names on the proposal submission page when trying to submit proposals on Upwork?`;
+  const message = emailMessageObj.message;
 
   try {
-    const subject = `${firstNameNow}, is the WFR Toolkit extension working as it used to work on your end?`;
+    const subject = `${firstNameNow}, ${emailMessageObj.emailHeading}`;
     const folderDir = `${emailTemplateFolderSrc}/email-to-multiple/to-client`;
 
     const customerParams = {

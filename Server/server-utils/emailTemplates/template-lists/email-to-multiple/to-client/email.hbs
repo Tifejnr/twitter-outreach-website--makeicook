@@ -7,8 +7,10 @@
     <title>Reset Password Work for Reputation</title>
     <style>
       body { display: flex; justify-content: center; font-size: 1.1rem; }
-      section { padding: 0.5rem; } p { line-height: 1.5; font-weight: 400;
-      color: hsl(238, 29%, 16%); } #resetPasswordHref{ transform:
+      section { padding: 0.5rem; } p { font-family: "Helvetica Neue",
+      "Helvetica", Helvetica, Arial, sans-serif; box-sizing: border-box;
+      font-size: 14px; line-height: 1.5; margin-bottom: 14px; font-weight:
+      normal; color: hsl(238, 29%, 16%); } #resetPasswordHref{ transform:
       translate(-50%, -50%); left: 50%; } button { width: 60%; border-radius:
       0.7rem; margin-top: 1rem; border: 0; padding: 1rem; font-size: 1.2rem;
       text-align: center; justify-self: center; background-color: #14a800;
@@ -23,12 +25,38 @@
       <p>
         Hi
         {{customerName}},
-        {{message}}
+        {{message.message1}}
 
       </p>
 
       <p>
-        Your reply will help us further improve the tookit. Thank you.
+        {{message.message2}}
+      </p>
+
+      <p>
+        {{message.message3}}
+      </p>
+
+      <p>
+        {{message.message4}}
+      </p>
+
+      <p>
+        {{message.message5}}
+      </p>
+      <p>
+        {{message.message6}}
+      </p>
+      <p>
+        <b>NOTE: {{message.message7}}</b>
+      </p>
+
+      <p>
+        Best regards,
+      </p>
+
+      <p>
+        WFR Toolkit Team
       </p>
 
     </section>
