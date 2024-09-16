@@ -526,8 +526,10 @@ const patheticText = "pathetic";
 const connectionText = "connection";
 const No1Text = "No1";
 const peasureText = "peasure";
+const NiceText = "Nice";
 
 const forbiddenNamesInclusionArray = [
+  NiceText,
   peasureText,
   No1Text,
   gladlyText,

@@ -94,6 +94,9 @@ If the name sound more human than company, return "No".
 
 `;
 
+const prefixToRemove =
+  "Here is a summary of how freelancers described working with the client:";
+
 const getClientNameRouter = express.Router();
 
 getClientNameRouter.post("/", async (req, res) => {
@@ -119,6 +122,15 @@ getClientNameRouter.post("/", async (req, res) => {
   // console.log(" prompt", prompt);
 
   try {
+    //get client personality
+    const clientPersonalityRaw = await getStraightAiResponse(
+      clientPersonalityPromptsObj.promptToActForClientSummary,
+      prompt
+    );
+
+    const clientPersonality = clientPersonalityRaw.replace(prefixToRemove, "");
+
+    //get client name
     const clientNameResponseRaw = await getResponseFromAi(prompt);
 
     const clientNameResponse = await getStraightAiResponse(
@@ -142,6 +154,9 @@ getClientNameRouter.post("/", async (req, res) => {
           clientNameResponse == realNoNamesFoundResponse
             ? realNoNamesFoundResponse
             : "They're a Company",
+
+        clientPersonality,
+        multipleNames: clientNameResponse,
       });
     }
 
@@ -156,28 +171,15 @@ getClientNameRouter.post("/", async (req, res) => {
       Do these names share almost the same set of letters?
       `;
 
-      // console.log("response", response);
       const isItASingleName = await getStraightAiResponse(
         promptToCheckForSingleNames,
         finalName
       );
 
+      //for multiple names found
+
       if (isItASingleName == "No") {
         console.log("Multiple names found", finalName);
-
-        //get client personality
-        const clientPersonalityRaw = await getStraightAiResponse(
-          clientPersonalityPromptsObj.promptToActForClientSummary,
-          prompt
-        );
-
-        const prefixToRemove =
-          "Here is a summary of how freelancers described working with the client:";
-
-        const clientPersonality = clientPersonalityRaw.replace(
-          prefixToRemove,
-          ""
-        );
 
         const isForbiddenNameIncludedIn = forbiddenNamesInclusionArray.find(
           (forbiddenName) => {
@@ -218,17 +220,6 @@ getClientNameRouter.post("/", async (req, res) => {
       : finalName;
 
     console.log("nameToFreelancer", nameToFreelancer);
-
-    //get client personality
-    const clientPersonalityRaw = await getStraightAiResponse(
-      clientPersonalityPromptsObj.promptToActForClientSummary,
-      prompt
-    );
-
-    const prefixToRemove =
-      "Here is a summary of how freelancers described working with the client:";
-
-    const clientPersonality = clientPersonalityRaw.replace(prefixToRemove, "");
 
     //return final shit still
     return res.json({
