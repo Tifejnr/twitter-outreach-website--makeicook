@@ -13,7 +13,6 @@ const hf = new HfInference(HF_TOKEN);
 
 const realNoNamesFoundResponse = "No names found";
 const theyAreCompanyText = "Hi there";
-const theyAreATeamText = "Hi";
 const helloText = realNoNamesFoundResponse;
 const noNamesFoundText = "(no names found)";
 
@@ -52,7 +51,6 @@ const getClientNamePromptHeading = `The texts below are freelancers feedback to 
    Note: Never repeat the same name.
 
    Freelancers feedback to their clients Texts : 
-
    
 `;
 
@@ -254,9 +252,7 @@ ${prompt}`,
     if (fullResponse.includes(theyAreCompanyText)) {
       return theyAreCompanyText;
     }
-    if (fullResponse.includes(theyAreATeamText)) {
-      return theyAreATeamText;
-    }
+
     if (fullResponse.includes(helloText)) {
       return helloText;
     }

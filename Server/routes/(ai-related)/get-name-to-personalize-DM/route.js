@@ -2,9 +2,6 @@ import express from "express";
 import { HfInference } from "@huggingface/inference";
 
 import getSecretKeys from "../../../envVariables/envVariables.js";
-import isTokenValid from "../../../server-utils/middleware/token-validity/isTokenValid.js";
-import forbiddenNamesInclusionArray from "./forbiddenNamesInclusion.js";
-import processClientNameGotten from "./utils/processClientNameGotten.js";
 
 const keysObject = getSecretKeys();
 const model = keysObject.aiModel;
@@ -51,10 +48,12 @@ getNameRouterToPersonalizeDmRouter.post("/", async (req, res) => {
 
   const { prompt, username, displayName } = bodyRequest;
 
-  // console.log(" prompt", prompt);
+  console.log("bodyRequest", bodyRequest);
 
   try {
     const finalName = await getNameToPersonlizeMessage(username, displayName);
+
+    console.log("finalName", finalName);
 
     //return final shit still
     return res.json({

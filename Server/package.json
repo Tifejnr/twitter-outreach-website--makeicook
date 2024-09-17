@@ -9,7 +9,7 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "@huggingface/inference": "^2.6.4",
+    "@huggingface/inference": "^2.8.0",
     "axios": "^0.27.2",
     "bard-ai": "^2.0.3",
     "bcrypt": "^5.1.0",
