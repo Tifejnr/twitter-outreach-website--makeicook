@@ -191,7 +191,7 @@ getClientNameRouter.post("/", async (req, res) => {
       clientNameResponse
     );
 
-    if (isItCompanyNameResponse == "Yes") {
+    if (isItCompanyNameResponse == "Yes" && !finalName.includes(",")) {
       console.log(
         " isItCompanyNameResponse",
         isItCompanyNameResponse,
@@ -229,13 +229,13 @@ getClientNameRouter.post("/", async (req, res) => {
       //for multiple names found
 
       if (isItASingleName == "No") {
-        // const isForbiddenNameIncludedIn = await getStraightAiResponse(
+        // const isNameAHumanName = await getStraightAiResponse(
         //   confirmNamePrompt,
         //   finalName
         // );
 
         const nameToFreelancer = "Multiple names";
-        // isForbiddenNameIncludedIn == "No"
+        // isNameAHumanName == "No"
         //   ? realNoNamesFoundResponse
         console.log(
           "nameToFreelancer",
@@ -252,21 +252,21 @@ getClientNameRouter.post("/", async (req, res) => {
       }
     }
 
-    const isForbiddenNameIncludedIn = await getStraightAiResponse(
+    const isNameAHumanName = await getStraightAiResponse(
       confirmNamePrompt,
       finalName
     );
 
     const nameToFreelancer =
-      isForbiddenNameIncludedIn == "No" && !finalName.includes(",")
+      isNameAHumanName == "No" && !finalName.includes(",")
         ? realNoNamesFoundResponse
         : finalName;
 
     console.log(
       "nameToFreelancer",
       nameToFreelancer,
-      "isForbiddenNameIncludedIn",
-      isForbiddenNameIncludedIn
+      "isNameAHumanName",
+      isNameAHumanName
     );
 
     //return final shit still
