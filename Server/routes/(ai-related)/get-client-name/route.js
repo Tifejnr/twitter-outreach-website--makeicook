@@ -14,7 +14,7 @@ const keysObject = getSecretKeys();
 
 import { HfInference } from "@huggingface/inference";
 
-import getSecretKeys from "../../../../envVariables/envVariables";
+// import getSecretKeys from "../../../../envVariables/envVariables";
 
 // const keysObject = getSecretKeys();
 const model = keysObject.aiModel;
