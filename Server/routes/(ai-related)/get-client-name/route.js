@@ -224,6 +224,8 @@ getClientNameRouter.post("/", async (req, res) => {
         finalName
       );
 
+      console.log("isItASingleName", isItASingleName);
+
       //for multiple names found
 
       if (isItASingleName == "No") {
