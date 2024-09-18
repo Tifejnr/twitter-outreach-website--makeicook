@@ -176,7 +176,7 @@ getClientNameRouter.post("/", async (req, res) => {
     const clientNameResponseRaw = await getStraightAiResponse(
       getClientNamePromptHeading,
       prompt,
-      0.2
+      0.1
     );
 
     const clientNameResponse = await getStraightAiResponse(
