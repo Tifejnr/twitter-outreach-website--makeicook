@@ -21,7 +21,7 @@ Only return one of the name that sound the most like a human name.
 No preceeding text explaining how you took your decision.
 `;
 
-const confirmNamePrompt = `Return "Yes" or "No" for this question.
+export const confirmNamePrompt = `Return "Yes" or "No" for this question.
 
 Ignoring numbers or symbols in the name.
 

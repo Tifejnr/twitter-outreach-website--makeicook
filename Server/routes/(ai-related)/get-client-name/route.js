@@ -5,6 +5,8 @@ import getSecretKeys from "../../../envVariables/envVariables.js";
 import isTokenValid from "../../../server-utils/middleware/token-validity/isTokenValid.js";
 import forbiddenNamesInclusionArray from "./forbiddenNamesInclusion.js";
 import clientPersonalityPromptsObj from "./clientPersonalityPromptsObj.js";
+import getStraightAiResponse from "./getStraightAiREsponse.js";
+import { confirmNamePrompt } from "../get-name-to-personalize-DM/route.js";
 
 const keysObject = getSecretKeys();
 const model = keysObject.aiModel;
@@ -130,7 +132,11 @@ getClientNameRouter.post("/", async (req, res) => {
     const clientPersonality = clientPersonalityRaw.replace(prefixToRemove, "");
 
     //get client name
-    const clientNameResponseRaw = await getResponseFromAi(prompt);
+    const clientNameResponseRaw = await getStraightAiResponse(
+      getClientNamePromptHeading,
+      prompt,
+      0.2
+    );
 
     const clientNameResponse = await getStraightAiResponse(
       editFirstNamePromptInstruction,
@@ -180,19 +186,15 @@ getClientNameRouter.post("/", async (req, res) => {
       if (isItASingleName == "No") {
         console.log("Multiple names found", finalName);
 
-        const isForbiddenNameIncludedIn = forbiddenNamesInclusionArray.find(
-          (forbiddenName) => {
-            const escapedForbiddenName = forbiddenName
-              .toLowerCase()
-              .replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-            const regex = new RegExp(`\\b${escapedForbiddenName}\\b`);
-            return regex.test(finalName.toLowerCase());
-          }
+        const isForbiddenNameIncludedIn = await getStraightAiResponse(
+          confirmNamePrompt,
+          finalName
         );
 
-        const nameToFreelancer = isForbiddenNameIncludedIn
-          ? realNoNamesFoundResponse
-          : "Multiple names";
+        const nameToFreelancer =
+          isForbiddenNameIncludedIn == "No"
+            ? realNoNamesFoundResponse
+            : "Multiple names";
 
         console.log("nameToFreelancer", nameToFreelancer);
 
@@ -204,19 +206,13 @@ getClientNameRouter.post("/", async (req, res) => {
       }
     }
 
-    const isForbiddenNameIncludedIn = forbiddenNamesInclusionArray.find(
-      (forbiddenName) => {
-        const escapedForbiddenName = forbiddenName
-          .toLowerCase()
-          .replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-        const regex = new RegExp(`\\b${escapedForbiddenName}\\b`);
-        return regex.test(finalName.toLowerCase());
-      }
+    const isForbiddenNameIncludedIn = await getStraightAiResponse(
+      confirmNamePrompt,
+      finalName
     );
 
-    const nameToFreelancer = isForbiddenNameIncludedIn
-      ? realNoNamesFoundResponse
-      : finalName;
+    const nameToFreelancer =
+      isForbiddenNameIncludedIn == "No" ? realNoNamesFoundResponse : finalName;
 
     console.log("nameToFreelancer", nameToFreelancer);
 
@@ -231,72 +227,6 @@ getClientNameRouter.post("/", async (req, res) => {
     return res.json({ error: "Internal server error" });
   }
 });
-async function getResponseFromAi(prompt) {
-  try {
-    const response = await hf.chatCompletion({
-      model,
-      messages: [
-        {
-          role: "user",
-          content: `${getClientNamePromptHeading}
-        
-${prompt}`,
-        },
-      ],
-      max_tokens: 500,
-      temperature: 0.1,
-    });
-
-    const fullResponse = response.choices[0]?.message?.content;
-
-    if (fullResponse.includes(theyAreCompanyText)) {
-      return theyAreCompanyText;
-    }
-
-    if (fullResponse.includes(helloText)) {
-      return helloText;
-    }
-    if (fullResponse == noNamesFoundText) {
-      console.log("noNamesFoundText", noNamesFoundText);
-      return realNoNamesFoundResponse;
-    }
-
-    return fullResponse; // Return the full response at once
-  } catch (error) {
-    console.error("Error fetching AI response:", error);
-
-    return "error occured";
-    throw error; // Handle errors appropriately
-  }
-}
-
-async function getStraightAiResponse(
-  promptInstruction,
-  prompt,
-  customTemperature
-) {
-  try {
-    const response = await hf.chatCompletion({
-      model,
-      messages: [
-        {
-          role: "user",
-          content: `${promptInstruction}
-      
-${prompt}`,
-        },
-      ],
-      max_tokens: 500,
-      temperature: customTemperature ? customTemperature : 0.1,
-    });
-
-    const fullResponse = response.choices[0]?.message?.content;
-
-    return fullResponse; // Return the full response
-  } catch (error) {
-    return "error occured";
-  }
-}
 
 // function hasMoreThanThreeWords(text) {
 //   // Split the text into words based on spaces and filter out any empty strings
@@ -329,43 +259,5 @@ function findCommonName(names) {
   }
   return names;
 }
-
-// function isItASingleNameAllThrough(names) {
-//   const namesWithHyphenRemoved = names.replace(/-/g, "");
-//   const namesArray = namesWithHyphenRemoved.split(", ");
-
-//   // Find the shortest name in the array
-//   let shortest = namesArray
-//     .reduce((a, b) => (a.length <= b.length ? a : b))
-//     .toLowerCase();
-
-//   const passedArray = [];
-
-//   // Loop through each name except the shortest
-//   for (let i = 0; i < namesArray.length; i++) {
-//     let currentName = namesArray[i].toLowerCase();
-
-//     // For every letter in the shortest name
-//     for (let char of shortest) {
-//       // Check if the letter is present in the current name
-//       if (currentName.includes(char)) {
-//         passedArray.push(1); // Push 1 for each match
-//       }
-//     }
-//   }
-
-//   // Check if the length of the shortest name is equal to the final pushed array length
-//   const lengthToGiveSpaceForTwoErrorInAlphabets =
-//     shortest.length * namesArray.length - (1 * namesArray.length - 1);
-
-//   if (
-//     passedArray.length - shortest.length >=
-//     lengthToGiveSpaceForTwoErrorInAlphabets
-//   ) {
-//     return true;
-//   }
-
-//   return false;
-// }
 
 export default getClientNameRouter;

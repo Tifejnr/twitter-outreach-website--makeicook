@@ -252,7 +252,7 @@ const itText = "It";
 const iWillShortcutText = "I'll";
 const curveText = "Curve";
 const recomendText = "recomend";
-const manText = "man";
+// const manText = "man";
 const futureText = "future";
 const doubleExcalamationText = "!!";
 const collaborateText = "collaborate";
@@ -801,7 +801,7 @@ const forbiddenNamesInclusionArray = [
   developmentText,
   collaborateText,
   doubleExcalamationText,
-  manText,
+  // manText,
   recomendText,
   curveText,
   iWillShortcutText,
