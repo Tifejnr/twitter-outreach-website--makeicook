@@ -250,7 +250,12 @@ getClientNameRouter.post("/", async (req, res) => {
     const nameToFreelancer =
       isForbiddenNameIncludedIn == "No" ? realNoNamesFoundResponse : finalName;
 
-    console.log("nameToFreelancer", nameToFreelancer);
+    console.log(
+      "nameToFreelancer",
+      nameToFreelancer,
+      "isForbiddenNameIncludedIn",
+      isForbiddenNameIncludedIn
+    );
 
     //return final shit still
     return res.json({
