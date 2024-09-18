@@ -48,9 +48,7 @@ async function getStraightAiResponse(
   }
 }
 
-const confirmNamePrompt = `
-
-Return "Yes" or "No".
+const confirmNamePrompt = `Return "Yes" or "No".
 
 Is the text below a human name?
 
@@ -239,7 +237,12 @@ getClientNameRouter.post("/", async (req, res) => {
             ? realNoNamesFoundResponse
             : "Multiple names";
 
-        console.log("nameToFreelancer", nameToFreelancer);
+        console.log(
+          "nameToFreelancer",
+          nameToFreelancer,
+          "isForbiddenNameIncludedIn",
+          isForbiddenNameIncludedIn
+        );
 
         return res.json({
           clientNameResponse: nameToFreelancer,
