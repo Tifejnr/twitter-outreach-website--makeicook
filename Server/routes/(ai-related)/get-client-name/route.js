@@ -1,11 +1,10 @@
 import express from "express";
-import { HfInference } from "@huggingface/inference";
 
 import getSecretKeys from "../../../envVariables/envVariables.js";
 import isTokenValid from "../../../server-utils/middleware/token-validity/isTokenValid.js";
 // import forbiddenNamesInclusionArray from "./forbiddenNamesInclusion.js";
 import clientPersonalityPromptsObj from "./clientPersonalityPromptsObj.js";
-import getStraightAiResponse from "./getStraightAiREsponse.js";
+import getStraightAiResponse from "./get-ai-response/getStraightAiResponse.js";
 import { confirmNamePrompt } from "../get-name-to-personalize-DM/route.js";
 
 const keysObject = getSecretKeys();

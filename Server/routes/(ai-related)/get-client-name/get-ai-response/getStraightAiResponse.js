@@ -1,13 +1,13 @@
 import { HfInference } from "@huggingface/inference";
 
-import getSecretKeys from "../../../envVariables/envVariables.js";
+import getSecretKeys from "../../../../envVariables/envVariables";
 
 const keysObject = getSecretKeys();
 const model = keysObject.aiModel;
 const HF_TOKEN = keysObject.HF_TOKEN;
 const hf = new HfInference(HF_TOKEN);
 
-export default async function getStraightAiResponse(
+async function getStraightAiResponse(
   promptInstruction,
   prompt,
   customTemperature
@@ -34,3 +34,5 @@ export default async function getStraightAiResponse(
     return "error occured";
   }
 }
+
+export default getStraightAiResponse;
