@@ -9,9 +9,9 @@ import getStraightAiResponse from "./getStraightAiREsponse.js";
 import { confirmNamePrompt } from "../get-name-to-personalize-DM/route.js";
 
 const keysObject = getSecretKeys();
-const model = keysObject.aiModel;
-const HF_TOKEN = keysObject.HF_TOKEN;
-const hf = new HfInference(HF_TOKEN);
+// const model = keysObject.aiModel;
+// const HF_TOKEN = keysObject.HF_TOKEN;
+// const hf = new HfInference(HF_TOKEN);
 
 const realNoNamesFoundResponse = "No names found";
 const theyAreCompanyText = "Hi there";
