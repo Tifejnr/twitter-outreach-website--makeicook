@@ -246,7 +246,7 @@ getClientNameRouter.post("/", async (req, res) => {
 
         return res.json({
           clientNameResponse: nameToFreelancer,
-          multipleNames: isForbiddenNameIncludedIn ? "" : finalName,
+          multipleNames: isForbiddenNameIncludedIn == "No" ? "" : finalName,
           clientPersonality,
         });
       }
