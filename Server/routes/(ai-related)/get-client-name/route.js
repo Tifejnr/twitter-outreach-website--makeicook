@@ -256,7 +256,9 @@ getClientNameRouter.post("/", async (req, res) => {
     );
 
     const nameToFreelancer =
-      isForbiddenNameIncludedIn == "No" ? realNoNamesFoundResponse : finalName;
+      isForbiddenNameIncludedIn == "No" && !finalName.includes(",")
+        ? realNoNamesFoundResponse
+        : finalName;
 
     console.log(
       "nameToFreelancer",
