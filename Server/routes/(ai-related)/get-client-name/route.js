@@ -5,7 +5,6 @@ import isTokenValid from "../../../server-utils/middleware/token-validity/isToke
 // import forbiddenNamesInclusionArray from "./forbiddenNamesInclusion.js";
 import clientPersonalityPromptsObj from "./clientPersonalityPromptsObj.js";
 // import getStraightAiResponse from "./get-ai-response/getStraightAiResponse.js";
-import { confirmNamePrompt } from "../get-name-to-personalize-DM/route.js";
 
 const keysObject = getSecretKeys();
 // const model = keysObject.aiModel;
@@ -48,6 +47,14 @@ async function getStraightAiResponse(
     return "error occured";
   }
 }
+
+const confirmNamePrompt = `
+
+Return "Yes" or "No".
+
+Is the text below a human name?
+
+`;
 
 const realNoNamesFoundResponse = "No names found";
 const theyAreCompanyText = "Hi there";
