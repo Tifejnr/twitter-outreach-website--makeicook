@@ -216,7 +216,7 @@ getClientNameRouter.post("/", async (req, res) => {
       const promptToCheckForSingleNames = `
       return "Yes" or "No" only.
       
-      Do these names share almost the same set of letters?
+      Do these names share 90% almost the same set of letters?
       `;
 
       const isItASingleName = await getStraightAiResponse(
