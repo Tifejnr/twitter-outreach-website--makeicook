@@ -225,28 +225,24 @@ getClientNameRouter.post("/", async (req, res) => {
       //for multiple names found
 
       if (isItASingleName == "No") {
-        console.log("Multiple names found", finalName);
+        // const isForbiddenNameIncludedIn = await getStraightAiResponse(
+        //   confirmNamePrompt,
+        //   finalName
+        // );
 
-        const isForbiddenNameIncludedIn = await getStraightAiResponse(
-          confirmNamePrompt,
-          finalName
-        );
-
-        const nameToFreelancer =
-          isForbiddenNameIncludedIn == "No"
-            ? realNoNamesFoundResponse
-            : "Multiple names";
-
+        const nameToFreelancer = "Multiple names";
+        // isForbiddenNameIncludedIn == "No"
+        //   ? realNoNamesFoundResponse
         console.log(
           "nameToFreelancer",
           nameToFreelancer,
-          "isForbiddenNameIncludedIn",
-          isForbiddenNameIncludedIn
+          "Multiple names found",
+          finalName
         );
 
         return res.json({
           clientNameResponse: nameToFreelancer,
-          multipleNames: isForbiddenNameIncludedIn == "No" ? "" : finalName,
+          multipleNames: finalName,
           clientPersonality,
         });
       }
