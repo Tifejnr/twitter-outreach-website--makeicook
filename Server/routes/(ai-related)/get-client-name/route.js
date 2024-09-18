@@ -50,7 +50,9 @@ async function getStraightAiResponse(
 
 const confirmNamePrompt = `Return "Yes" or "No".
 
-Is any of the name below a human name?
+Check all names 
+
+Is any of the names below a human name ?
 
 `;
 
