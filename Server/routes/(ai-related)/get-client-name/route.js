@@ -231,39 +231,39 @@ getClientNameRouter.post("/", async (req, res) => {
       //for multiple names found
 
       if (isItASingleName == "No") {
-        const promptToCheckIfItsSurnameAndFirstname = `
-      Names : ${finalName}
+        //   const promptToCheckIfItsSurnameAndFirstname = `
+        // Names : ${finalName}
 
-      return "Yes" or "No" only.
-      
-      Do these names sound like different people from the text below? 
-  
-        `;
-        const isItMultipleNameResponse = await getStraightAiResponse(
-          promptToCheckIfItsSurnameAndFirstname,
-          prompt
-        );
+        // return "Yes" or "No" only.
 
-        console.log("isItMultipleNameResponse", isItMultipleNameResponse);
+        // Do these names sound like different people from the text below?
 
-        //its firstname and last name seperated by comma
-        if (isItMultipleNameResponse == "Noaaa") {
-          const nameToFreelancer = finalName.replace(",", "");
+        //   `;
+        //   const isItMultipleNameResponse = await getStraightAiResponse(
+        //     promptToCheckIfItsSurnameAndFirstname,
+        //     prompt
+        //   );
 
-          console.log(
-            "nameToFreelancer",
-            nameToFreelancer,
-            "isItMultipleNameResponse",
-            isItMultipleNameResponse
-          );
+        //   console.log("isItMultipleNameResponse", isItMultipleNameResponse);
 
-          res.json({
-            clientNameResponse: nameToFreelancer,
-            clientPersonality,
-          });
+        //   //its firstname and last name seperated by comma
+        //   if (isItMultipleNameResponse == "Noaaa") {
+        //     const nameToFreelancer = finalName.replace(",", "");
 
-          return;
-        }
+        //     console.log(
+        //       "nameToFreelancer",
+        //       nameToFreelancer,
+        //       "isItMultipleNameResponse",
+        //       isItMultipleNameResponse
+        //     );
+
+        //     res.json({
+        //       clientNameResponse: nameToFreelancer,
+        //       clientPersonality,
+        //     });
+
+        //     return;
+        //   }
 
         const isNameAHumanName = await getStraightAiResponse(
           confirmNamePrompt,
