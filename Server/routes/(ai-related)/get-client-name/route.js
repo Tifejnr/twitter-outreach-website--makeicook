@@ -236,7 +236,7 @@ getClientNameRouter.post("/", async (req, res) => {
 
       return "Yes" or "No" only.
       
-      Are these names joined by "and" anywhere in the texts below: 
+     Does it seems 90% sure that the same person bears these names from the texts below: 
   
         `;
         const isItMultipleNameResponse = await getStraightAiResponse(
