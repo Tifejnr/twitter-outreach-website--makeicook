@@ -196,7 +196,7 @@ getClientNameRouter.post("/", async (req, res) => {
 
     const doesTheNameSoundLikeCompany = `Return "Yes" or "No" only for this.
 
-Does ${finalName} sound like it's company in the context  below?
+Does ${finalName} sound like it's a company name in the context where it is found below?
 
 `;
 
