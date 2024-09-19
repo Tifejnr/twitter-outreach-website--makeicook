@@ -194,13 +194,17 @@ getClientNameRouter.post("/", async (req, res) => {
 
     console.log("returned name", finalName);
 
-    const doesTheNameSoundLikeCompany = `Return "Yes" or "No" only for this.
+    const doesTheNameSoundLikeCompany = `
 
-    Human names are not counted as company name in this conext
-
-Does the name below sound like a company name?
-
-`;
+    Return "Yes" or "No" only for this.
+    
+    Note, human names are not company names in this context.
+    
+    do any of the words below sound like a company name ?
+    
+    If the name sound more human than company, return "No".
+    
+    `;
 
     const isItCompanyNameResponse = await getStraightAiResponse(
       doesTheNameSoundLikeCompany,
