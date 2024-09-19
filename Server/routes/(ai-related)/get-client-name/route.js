@@ -244,6 +244,8 @@ getClientNameRouter.post("/", async (req, res) => {
           prompt
         );
 
+        console.log("isItMultipleNameResponse", isItMultipleNameResponse);
+
         //its firstname and last name seperated by comma
         if (isItMultipleNameResponse == "No") {
           const nameToFreelancer = finalName.replace(",", "");
