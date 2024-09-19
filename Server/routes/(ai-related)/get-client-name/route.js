@@ -265,7 +265,17 @@ getClientNameRouter.post("/", async (req, res) => {
           return;
         }
 
-        const nameToFreelancer = "Multiple names";
+        const isNameAHumanName = await getStraightAiResponse(
+          confirmNamePrompt,
+          finalName
+        );
+
+        const nameToFreelancer =
+          isNameAHumanName == "No"
+            ? realNoNamesFoundResponse
+            : "Multiple names";
+
+        // const nameToFreelancer = "Multiple names";
         // isNameAHumanName == "No"
         //   ? realNoNamesFoundResponse
         console.log(
@@ -277,7 +287,7 @@ getClientNameRouter.post("/", async (req, res) => {
 
         return res.json({
           clientNameResponse: nameToFreelancer,
-          multipleNames: finalName,
+          multipleNames: isNameAHumanName == "No" ? "" : finalName,
           clientPersonality,
         });
       }
