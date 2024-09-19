@@ -231,13 +231,14 @@ getClientNameRouter.post("/", async (req, res) => {
       //for multiple names found
 
       if (isItASingleName == "No") {
-        const promptToCheckIfItsSurnameAndFirstname = `return "Yes" or "No" only.
-        
-        Do these names appear like as surname and firstname for a single person in the texts below: 
-  
-        Names : ${finalName}
-  
-        Text: 
+        const promptToCheckIfItsSurnameAndFirstname = `
+      return "Yes" or "No" only.
+      
+      Do these names appear together at any instance like its surname and firstname for a single person in the texts below: 
+
+      Names : ${namesooo}
+
+      Text: 
   
         `;
         const isItFirstNameAndSurname = await getStraightAiResponse(
