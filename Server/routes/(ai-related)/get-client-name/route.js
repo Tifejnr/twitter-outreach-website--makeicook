@@ -236,7 +236,7 @@ getClientNameRouter.post("/", async (req, res) => {
 
       return "Yes" or "No" and why.
       
-      Do these names appear anywhere without being joined by "and" all through the texts below: 
+      Do these names appear anywhere without being joined by "and" in the texts below: 
   
         `;
         const isItFirstNameAndSurname = await getStraightAiResponse(
