@@ -228,15 +228,41 @@ getClientNameRouter.post("/", async (req, res) => {
         finalName
       );
 
-      console.log("isItASingleName", isItASingleName);
-
       //for multiple names found
 
       if (isItASingleName == "No") {
-        // const isNameAHumanName = await getStraightAiResponse(
-        //   confirmNamePrompt,
-        //   finalName
-        // );
+        const promptToCheckIfItsSurnameAndFirstname = `return "Yes" or "No" only.
+        
+        Do these names appear like as surname and firstname for a single person in the texts below: 
+  
+        Names : ${finalName}
+  
+        Text: 
+  
+        `;
+        const isItFirstNameAndSurname = await getStraightAiResponse(
+          promptToCheckIfItsSurnameAndFirstname,
+          prompt
+        );
+
+        //its firstname and last name seperated by comma
+        if (isItFirstNameAndSurname == "Yes") {
+          const nameToFreelancer = finalName.replace(",", "");
+
+          console.log(
+            "nameToFreelancer",
+            nameToFreelancer,
+            "isItFirstNameAndSurname",
+            isItFirstNameAndSurname
+          );
+
+          res.json({
+            clientNameResponse: nameToFreelancer,
+            clientPersonality,
+          });
+
+          return;
+        }
 
         const nameToFreelancer = "Multiple names";
         // isNameAHumanName == "No"
