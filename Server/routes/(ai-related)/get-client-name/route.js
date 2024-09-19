@@ -195,6 +195,10 @@ getClientNameRouter.post("/", async (req, res) => {
       clientNameResponse
     );
 
+    const finalName = findCommonName(clientNameResponse);
+
+    console.log("returned name", finalName);
+
     if (isItCompanyNameResponse == "Yes" && !finalName.includes(",")) {
       console.log(
         " isItCompanyNameResponse",
@@ -205,16 +209,12 @@ getClientNameRouter.post("/", async (req, res) => {
         clientNameResponse:
           clientNameResponse == realNoNamesFoundResponse
             ? realNoNamesFoundResponse
-            : "They're a Company",
+            : "Likely a Company",
 
         clientPersonality,
         multipleNames: clientNameResponse,
       });
     }
-
-    const finalName = findCommonName(clientNameResponse);
-
-    console.log("returned name", finalName);
 
     if (finalName.includes(",")) {
       const promptToCheckForSingleNames = `
