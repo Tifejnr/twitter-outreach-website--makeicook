@@ -194,15 +194,9 @@ getClientNameRouter.post("/", async (req, res) => {
 
     console.log("returned name", finalName);
 
-    const doesTheNameSoundLikeCompany = `
-
-Return "Yes" or "No" only for this.
-
-Note, human names are not company names in this context.
+    const doesTheNameSoundLikeCompany = `Return "Yes" or "No" only for this.
 
 Does ${finalName} sound like a company name within the context it was used in the text below?
-
-If the name sound more human than company, return "No".
 
 `;
 
@@ -297,10 +291,16 @@ If the name sound more human than company, return "No".
       }
     }
 
-    const isNameAHumanName = await getStraightAiResponse(
-      confirmNamePrompt,
-      finalName
-    );
+    let isNameAHumanName;
+
+    if (finalName.includes(realNoNamesFoundResponse)) {
+      isNameAHumanName = "No";
+    } else {
+      isNameAHumanName = await getStraightAiResponse(
+        confirmNamePrompt,
+        finalName
+      );
+    }
 
     const nameToFreelancer =
       isNameAHumanName == "No" && !finalName.includes(",")
