@@ -234,7 +234,7 @@ getClientNameRouter.post("/", async (req, res) => {
         const promptToCheckIfItsSurnameAndFirstname = `
       Names : ${finalName}
 
-      return "Yes" or "No" only.
+      return "Yes" or "No" and why.
       
       Do these names appear anywhere without "and" in between them within the texts below: 
   
