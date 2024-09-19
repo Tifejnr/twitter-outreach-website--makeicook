@@ -125,17 +125,17 @@ const editFirstNamePromptInstruction = `
   ONLY Return the names, no additional text or commentary or explanation.
 `;
 
-const doesTheNameSoundLikeCompany = `
+// const doesTheNameSoundLikeCompany = `
 
-Return "Yes" or "No" only for this.
+// Return "Yes" or "No" only for this.
 
-Note, human names are not company names in this context.
+// Note, human names are not company names in this context.
 
-do any of the words below sound like a company name ?
+// do any of the words below sound like a company name ?
 
-If the name sound more human than company, return "No".
+// If the name sound more human than company, return "No".
 
-`;
+// `;
 
 const prefixToRemove =
   "Here is a summary of how freelancers described working with the client:";
@@ -190,14 +190,26 @@ getClientNameRouter.post("/", async (req, res) => {
       clientNameResponseRaw
     );
 
+    const finalName = findCommonName(clientNameResponse);
+
+    console.log("returned name", finalName);
+
+    const doesTheNameSoundLikeCompany = `
+
+Return "Yes" or "No" only for this.
+
+Note, human names are not company names in this context.
+
+Does ${finalName} sound like a company name within the context it was used in the text below?
+
+If the name sound more human than company, return "No".
+
+`;
+
     const isItCompanyNameResponse = await getStraightAiResponse(
       doesTheNameSoundLikeCompany,
       clientNameResponse
     );
-
-    const finalName = findCommonName(clientNameResponse);
-
-    console.log("returned name", finalName);
 
     if (isItCompanyNameResponse == "Yes" && !finalName.includes(",")) {
       console.log(
