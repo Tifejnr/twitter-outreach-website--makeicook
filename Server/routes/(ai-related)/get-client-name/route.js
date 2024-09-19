@@ -236,7 +236,7 @@ getClientNameRouter.post("/", async (req, res) => {
       
       Do these names appear together at any instance like its surname and firstname for a single person in the texts below: 
 
-      Names : ${namesooo}
+      Names : ${finalName}
 
       Text: 
   
