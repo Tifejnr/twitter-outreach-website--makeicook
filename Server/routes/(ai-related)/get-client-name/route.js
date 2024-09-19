@@ -244,6 +244,8 @@ getClientNameRouter.post("/", async (req, res) => {
           prompt
         );
 
+        console.log("isItFirstNameAndSurname", isItFirstNameAndSurname);
+
         //its firstname and last name seperated by comma
         if (isItFirstNameAndSurname == "Yes") {
           const nameToFreelancer = finalName.replace(",", "");
