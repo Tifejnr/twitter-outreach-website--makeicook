@@ -231,39 +231,31 @@ getClientNameRouter.post("/", async (req, res) => {
       //for multiple names found
 
       if (isItASingleName == "No") {
-        //   const promptToCheckIfItsSurnameAndFirstname = `
-        // Names : ${finalName}
+        const isItReallySingleNameResponse = checkNameInText(finalName, prompt);
 
-        // return "Yes" or "No" only.
+        console.log(
+          "isItReallySingleNameResponse",
+          isItReallySingleNameResponse
+        );
 
-        // Do these names sound like different people from the text below?
+        //its firstname and last name seperated by comma
+        if (isItReallySingleNameResponse) {
+          const nameToFreelancer = finalName.replace(",", "");
 
-        //   `;
-        //   const isItMultipleNameResponse = await getStraightAiResponse(
-        //     promptToCheckIfItsSurnameAndFirstname,
-        //     prompt
-        //   );
+          console.log(
+            "nameToFreelancer",
+            nameToFreelancer,
+            "isItReallySingleNameResponse",
+            isItReallySingleNameResponse
+          );
 
-        //   console.log("isItMultipleNameResponse", isItMultipleNameResponse);
+          res.json({
+            clientNameResponse: nameToFreelancer,
+            clientPersonality,
+          });
 
-        //   //its firstname and last name seperated by comma
-        //   if (isItMultipleNameResponse == "Noaaa") {
-        //     const nameToFreelancer = finalName.replace(",", "");
-
-        //     console.log(
-        //       "nameToFreelancer",
-        //       nameToFreelancer,
-        //       "isItMultipleNameResponse",
-        //       isItMultipleNameResponse
-        //     );
-
-        //     res.json({
-        //       clientNameResponse: nameToFreelancer,
-        //       clientPersonality,
-        //     });
-
-        //     return;
-        //   }
+          return;
+        }
 
         const isNameAHumanName = await getStraightAiResponse(
           confirmNamePrompt,
@@ -352,6 +344,24 @@ function findCommonName(names) {
     return longestName;
   }
   return names;
+}
+
+function checkNameInText(name, incomingText) {
+  // Step 1: Ensure the name is only separated by a comma (with optional spaces around it)
+  const commaSeparatedPattern = /^\s*[^,]+,\s*[^,]+\s*$/;
+
+  if (!commaSeparatedPattern.test(name)) {
+    return false; // Return false if the name is not correctly separated by a comma
+  }
+
+  // Step 2: Remove the comma and trim the name
+  const cleanedName = name.replace(",", "").trim();
+
+  // Step 3: Trim the incoming text
+  const trimmedText = incomingText.trim();
+
+  // Step 4: Check if the trimmed text includes the cleaned name
+  return trimmedText.includes(cleanedName);
 }
 
 export default getClientNameRouter;
