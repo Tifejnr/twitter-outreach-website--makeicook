@@ -234,7 +234,7 @@ getClientNameRouter.post("/", async (req, res) => {
         const promptToCheckIfItsSurnameAndFirstname = `
       Names : ${finalName}
 
-      return "Yes" or "No" and why.
+      return "Yes" or "No" only.
       
       Are these names joined by "and" anywhere in the texts below: 
   
@@ -243,8 +243,6 @@ getClientNameRouter.post("/", async (req, res) => {
           promptToCheckIfItsSurnameAndFirstname,
           prompt
         );
-
-        console.log("isItMultipleNameResponse", isItMultipleNameResponse);
 
         //its firstname and last name seperated by comma
         if (isItMultipleNameResponse == "No") {
