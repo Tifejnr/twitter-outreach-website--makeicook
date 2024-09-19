@@ -239,22 +239,22 @@ getClientNameRouter.post("/", async (req, res) => {
       Are these names joined by "and" anywhere in the texts below: 
   
         `;
-        const isItFirstNameAndSurname = await getStraightAiResponse(
+        const isItMultipleNameResponse = await getStraightAiResponse(
           promptToCheckIfItsSurnameAndFirstname,
           prompt
         );
 
-        console.log("isItFirstNameAndSurname", isItFirstNameAndSurname);
+        console.log("isItMultipleNameResponse", isItMultipleNameResponse);
 
         //its firstname and last name seperated by comma
-        if (isItFirstNameAndSurname == "Yes") {
+        if (isItMultipleNameResponse == "No") {
           const nameToFreelancer = finalName.replace(",", "");
 
           console.log(
             "nameToFreelancer",
             nameToFreelancer,
-            "isItFirstNameAndSurname",
-            isItFirstNameAndSurname
+            "isItMultipleNameResponse",
+            isItMultipleNameResponse
           );
 
           res.json({
