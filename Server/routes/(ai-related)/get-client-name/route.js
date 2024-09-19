@@ -232,13 +232,14 @@ getClientNameRouter.post("/", async (req, res) => {
 
       if (isItASingleName == "No") {
         const promptToCheckIfItsSurnameAndFirstname = `
-      return "Yes" or "No" only.
-      
-      Do these names appear together without "and" or comma in the texts below: 
-      
       Names : ${finalName}
 
-      Text: 
+      return "Yes" or "No" only.
+      
+      Do these names appear together without "and" in the texts below: 
+
+
+     Text: 
   
         `;
         const isItFirstNameAndSurname = await getStraightAiResponse(
