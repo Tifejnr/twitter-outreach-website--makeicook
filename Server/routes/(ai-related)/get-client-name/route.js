@@ -234,8 +234,8 @@ getClientNameRouter.post("/", async (req, res) => {
         const promptToCheckIfItsSurnameAndFirstname = `
       return "Yes" or "No" only.
       
-      Do these names appear together at any instance like its surname and firstname for a single person in the texts below: 
-
+      Do these names appear together without "and" or comma in the texts below: 
+      
       Names : ${finalName}
 
       Text: 
