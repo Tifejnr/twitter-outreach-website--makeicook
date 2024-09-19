@@ -202,7 +202,7 @@ Does ${finalName} sound like a company name within the context it was used in th
 
     const isItCompanyNameResponse = await getStraightAiResponse(
       doesTheNameSoundLikeCompany,
-      clientNameResponse
+      prompt
     );
 
     if (isItCompanyNameResponse == "Yes" && !finalName.includes(",")) {
