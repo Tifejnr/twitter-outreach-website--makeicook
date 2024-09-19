@@ -236,10 +236,7 @@ getClientNameRouter.post("/", async (req, res) => {
 
       return "Yes" or "No" only.
       
-      Do these names appear together without "and" in the texts below: 
-
-
-     Text: 
+      Do these names appear anywhere without "and" in between them within the texts below: 
   
         `;
         const isItFirstNameAndSurname = await getStraightAiResponse(
