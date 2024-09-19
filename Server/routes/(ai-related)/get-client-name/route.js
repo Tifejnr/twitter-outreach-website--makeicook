@@ -173,7 +173,7 @@ getClientNameRouter.post("/", async (req, res) => {
     const clientPersonalityRaw = await getStraightAiResponse(
       clientPersonalityPromptsObj.promptToActForClientSummary,
       prompt,
-      0.7
+      0.9
     );
 
     const clientPersonality = clientPersonalityRaw.replace(prefixToRemove, "");
