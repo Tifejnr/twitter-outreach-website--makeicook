@@ -236,7 +236,7 @@ getClientNameRouter.post("/", async (req, res) => {
 
       return "Yes" or "No" only.
       
-     Does it seems 90% sure that the same person bears these names from the texts below: 
+      Do these names sound like different people from the text below? 
   
         `;
         const isItMultipleNameResponse = await getStraightAiResponse(
