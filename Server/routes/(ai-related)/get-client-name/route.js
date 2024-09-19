@@ -160,7 +160,11 @@ getClientNameRouter.post("/", async (req, res) => {
     });
   }
 
-  const { prompt } = bodyRequest;
+  const ignoredText = "ignored";
+
+  const rawPrompt = bodyRequest.prompt;
+
+  const prompt = rawPrompt.replace(ignoredText, "...");
 
   // console.log(" prompt", prompt);
 
