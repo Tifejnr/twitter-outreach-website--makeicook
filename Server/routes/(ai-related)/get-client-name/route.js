@@ -52,6 +52,8 @@ const confirmNamePrompt = `Return "Yes" or "No".
 
 Check all names 
 
+Pronouns "he" , "She", "him", "her", "his" are not human names.
+
 Is any of the names below a human name ?
 
 `;
