@@ -309,9 +309,7 @@ getClientNameRouter.post("/", async (req, res) => {
     }
 
     const nameToFreelancer =
-      isNameAHumanName == "No" && !finalName.includes(",")
-        ? realNoNamesFoundResponse
-        : finalName;
+      isNameAHumanName == "No" ? realNoNamesFoundResponse : finalName;
 
     console.log(
       "nameToFreelancer",
