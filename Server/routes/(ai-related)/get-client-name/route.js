@@ -180,6 +180,8 @@ getClientNameRouter.post("/", async (req, res) => {
 
     const clientPersonality = clientPersonalityRaw.replace(prefixToRemove, "");
 
+    console.log("clientPersonality", clientPersonality);
+
     //get client name
     const clientNameResponseRaw = await getStraightAiResponse(
       getClientNamePromptHeading,
