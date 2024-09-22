@@ -127,7 +127,7 @@ const editFirstNamePromptInstruction = `
   ONLY Return the names, no additional text or commentary or explanation.
 `;
 
-// const doesTheNameSoundLikeCompany = `
+// const doesTheNameSoundLikeCompanyPrompt = `
 
 // Return "Yes" or "No" only for this.
 
@@ -196,7 +196,7 @@ getClientNameRouter.post("/", async (req, res) => {
 
     console.log("returned name", finalName);
 
-    const doesTheNameSoundLikeCompany = `
+    const doesTheNameSoundLikeCompanyPrompt = `
 
     Return "Yes" or "No" only for this.
     
@@ -209,25 +209,38 @@ getClientNameRouter.post("/", async (req, res) => {
     `;
 
     const isItCompanyNameResponse = await getStraightAiResponse(
-      doesTheNameSoundLikeCompany,
+      doesTheNameSoundLikeCompanyPrompt,
       finalName
     );
 
     if (isItCompanyNameResponse == "Yes" && !finalName.includes(",")) {
-      console.log(
-        " isItCompanyNameResponse",
-        isItCompanyNameResponse,
-        clientNameResponse
-      );
-      return res.json({
-        clientNameResponse:
-          clientNameResponse == realNoNamesFoundResponse
-            ? realNoNamesFoundResponse
-            : "Likely a Company",
+      const finalCheckIfHumanNamePrompt = `
+ignoring USA and UK Names, is the probability of Navacara appearing as a human name in countries all over the world more than 0.0001? 
 
-        clientPersonality,
-        multipleNames: clientNameResponse,
-      });
+return "Yes" or "No" only as response.
+
+      `;
+      const finalCheckIfHumanNameResponse = await getStraightAiResponse(
+        finalCheckIfHumanNamePrompt,
+        finalName
+      );
+
+      if (finalCheckIfHumanNameResponse == "No") {
+        console.log(
+          " isItCompanyNameResponse",
+          isItCompanyNameResponse,
+          clientNameResponse
+        );
+        return res.json({
+          clientNameResponse:
+            clientNameResponse == realNoNamesFoundResponse
+              ? realNoNamesFoundResponse
+              : "Likely a Company",
+
+          clientPersonality,
+          multipleNames: clientNameResponse,
+        });
+      }
     }
 
     if (finalName.includes(",")) {
