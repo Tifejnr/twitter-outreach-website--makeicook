@@ -209,8 +209,6 @@ getClientNameRouter.post("/", async (req, res) => {
       prompt
     );
 
-    console.log("isFinalNamePresentInFeedback", isFinalNamePresentInFeedback);
-
     if (isFinalNamePresentInFeedback == "No") {
       return res.json({
         clientNameResponse: realNoNamesFoundResponse,

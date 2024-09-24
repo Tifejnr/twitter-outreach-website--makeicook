@@ -25,7 +25,7 @@ export default async function isTokenValid(bodyRequest) {
   try {
     const decodedPayload = jwt.verify(token, JWT_PRIVATE_KEY);
 
-    if (!decodedPayload) return { invalidToken: true };
+    if (!decodedPayload) return { invalidTokenDecoddedPayload: true };
 
     if (isJssHomePage) {
       const accountUser = await user.findById(decodedPayload._id);
@@ -69,6 +69,6 @@ export default async function isTokenValid(bodyRequest) {
 
     return { decodedPayload };
   } catch (ex) {
-    return { invalidTokenError: true };
+    return { invalidToken: true };
   }
 }
