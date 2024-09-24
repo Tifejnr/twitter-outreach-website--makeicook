@@ -46,9 +46,9 @@ import isAccountAuthorizedMakeICookRouter from "./routes/(auth)/make-i-cook-part
 (async () => {
   await getMongoKeyAndConnect();
 
-  setTimeout(async () => {
-    await makeIcookMongConnect();
-  }, 3000);
+  // setTimeout(async () => {
+  //   await makeIcookMongConnect();
+  // }, 3000);
 })();
 
 const limiter = exppressLimiter.limit;
