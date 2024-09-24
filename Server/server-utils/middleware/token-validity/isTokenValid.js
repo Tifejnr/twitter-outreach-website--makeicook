@@ -69,6 +69,6 @@ export default async function isTokenValid(bodyRequest) {
 
     return { decodedPayload };
   } catch (ex) {
-    return { invalidToken: true };
+    return { invalidTokenError: true };
   }
 }
