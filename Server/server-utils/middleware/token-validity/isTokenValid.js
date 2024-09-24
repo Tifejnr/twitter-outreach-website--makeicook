@@ -41,6 +41,7 @@ export default async function isTokenValid(bodyRequest) {
 
     //if request is to get client name from wfr extension
     if (prompt) {
+      console.log("decodedPayload._id", decodedPayload._id);
       const accountUser = await user.findById(decodedPayload._id);
 
       if (!accountUser) return { invalidTokenAccountUser: true };
