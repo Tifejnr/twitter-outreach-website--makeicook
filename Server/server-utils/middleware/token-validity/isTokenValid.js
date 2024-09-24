@@ -30,7 +30,7 @@ export default async function isTokenValid(bodyRequest) {
     if (isJssHomePage) {
       const accountUser = await user.findById(decodedPayload._id);
 
-      if (!accountUser) return { invalidTokenUserNotFound: true };
+      if (!accountUser) return { invalidToken: true };
 
       if (accountUser.jobsCompleted && accountUser.jobsCompleted < 10) {
         return { notAuthorizedOnJSSHomePage: true };
@@ -43,7 +43,7 @@ export default async function isTokenValid(bodyRequest) {
     if (prompt) {
       const accountUser = await user.findById(decodedPayload._id);
 
-      if (!accountUser) return { invalidToken: true };
+      if (!accountUser) return { invalidTokenAccountUser: true };
 
       accountUser.jobsToBeCompleted++;
 
