@@ -145,6 +145,8 @@ const getClientNameRouter = express.Router();
 getClientNameRouter.post("/", async (req, res) => {
   const bodyRequest = await req.body;
 
+  console.log("bodyRequestjajajj");
+
   const resultOfTokenValidation = await isTokenValid(bodyRequest);
 
   if (resultOfTokenValidation.nullJWTToken)
