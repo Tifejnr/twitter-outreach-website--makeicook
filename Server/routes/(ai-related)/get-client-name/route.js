@@ -168,7 +168,7 @@ getClientNameRouter.post("/", async (req, res) => {
 
   const prompt = rawPrompt.replace(ignoredText, "...");
 
-  console.log(" prompt", prompt);
+  // console.log(" prompt", prompt);
 
   try {
     //get client personality
@@ -195,6 +195,28 @@ getClientNameRouter.post("/", async (req, res) => {
     const finalName = findCommonName(clientNameResponse);
 
     console.log("returned name", finalName);
+
+    //check if returned name is within freelancers feedback
+
+    const isNameWithinTextRangePrompt = `
+    return "Yes" or "No" only.
+
+    is  ${finalName} present in the text below :
+`;
+
+    const isFinalNamePresentInFeedback = await getStraightAiResponse(
+      isNameWithinTextRangePrompt,
+      prompt
+    );
+
+    console.log("isFinalNamePresentInFeedback", isFinalNamePresentInFeedback);
+
+    if (isFinalNamePresentInFeedback == "No") {
+      return res.json({
+        clientNameResponse: realNoNamesFoundResponse,
+        clientPersonality,
+      });
+    }
 
     const doesTheNameSoundLikeCompanyPrompt = `
 
