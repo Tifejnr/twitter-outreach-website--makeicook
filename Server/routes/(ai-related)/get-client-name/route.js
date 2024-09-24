@@ -95,7 +95,7 @@ const getClientNamePromptHeading = `The texts below are freelancers feedback to 
    
    Praisy phrases like " Great person" "Great client" etc is not human name.
 
-   Note: Never repeat the same name.
+   Note: Never autogenerate a random name not found in the text.
 
    Freelancers feedback to their clients Texts : 
    
