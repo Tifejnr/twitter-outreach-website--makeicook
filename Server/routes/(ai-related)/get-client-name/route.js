@@ -152,8 +152,8 @@ getClientNameRouter.post("/", async (req, res) => {
   if (resultOfTokenValidation.nullJWTToken)
     return res.json({ nullJWTToken: true });
 
-  // if (resultOfTokenValidation.invalidToken)
-  //   return res.json({ invalidToken: true });
+  if (resultOfTokenValidation.invalidToken)
+    return res.json({ invalidToken: true });
 
   if (resultOfTokenValidation.blacklistedEmail) {
     console.log("blacklistedEmail", resultOfTokenValidation.blacklistedEmail);

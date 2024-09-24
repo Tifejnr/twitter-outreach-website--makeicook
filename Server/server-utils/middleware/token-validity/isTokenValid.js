@@ -43,10 +43,7 @@ export default async function isTokenValid(bodyRequest) {
     if (prompt) {
       const accountUser = await user.findById(decodedPayload._id);
 
-      console.log("decodedPayload._id", decodedPayload._id);
-      console.log("accountUser", accountUser);
-
-      if (!accountUser) return { invalidTokenAccountUser: true };
+      if (!accountUser) return { invalidToken: true };
 
       accountUser.jobsToBeCompleted++;
 
