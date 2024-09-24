@@ -25,12 +25,12 @@ export default async function isTokenValid(bodyRequest) {
   try {
     const decodedPayload = jwt.verify(token, JWT_PRIVATE_KEY);
 
-    if (!decodedPayload) return { invalidTokenDecoddedPayload: true };
+    if (!decodedPayload) return { invalidToken: true };
 
     if (isJssHomePage) {
       const accountUser = await user.findById(decodedPayload._id);
 
-      if (!accountUser) return { invalidToken: true };
+      if (!accountUser) return { invalidTokenUserNotFound: true };
 
       if (accountUser.jobsCompleted && accountUser.jobsCompleted < 10) {
         return { notAuthorizedOnJSSHomePage: true };
