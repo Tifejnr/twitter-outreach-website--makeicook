@@ -66,6 +66,6 @@ export default async function isTokenValidMakeICook(bodyRequest) {
 
     return { decodedPayload };
   } catch (ex) {
-    return { invalidToken: true };
+    return { invalidTokenmakeicook: true };
   }
 }
