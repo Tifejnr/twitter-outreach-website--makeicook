@@ -209,7 +209,7 @@ getClientNameRouter.post("/", async (req, res) => {
       prompt
     );
 
-    if (isFinalNamePresentInFeedback == "No") {
+    if (isFinalNamePresentInFeedback == "No" && !finalName.includes(",")) {
       return res.json({
         clientNameResponse: realNoNamesFoundResponse,
         clientPersonality,
