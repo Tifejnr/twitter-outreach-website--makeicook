@@ -1,7 +1,7 @@
 import { google } from "googleapis";
 import express from "express";
 const sheets = google.sheets("v4");
-import credentials from "./credentials.json" assert { type: "json" }; // Replace with the actual path to your credentials file
+// import credentials from "./credentials.json" assert { type: "json" }; // Replace with the actual path to your credentials file
 
 // Set up OAuth2 authentication
 const auth = new google.auth.GoogleAuth({

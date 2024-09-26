@@ -416,3 +416,5 @@ function checkNameInText(name, incomingText) {
 }
 
 export default getClientNameRouter;
+
+// https://www.upwork.com/jobs/~021839341791060043020  Can was chosen as name, use probabi;ity to filter it as a name

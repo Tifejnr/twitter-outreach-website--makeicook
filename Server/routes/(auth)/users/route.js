@@ -23,6 +23,8 @@ signUpRouter.post("/", async (req, res) => {
   if (fromExtension) {
     const { error } = extensionSignUpValidation(bodyRequest);
 
+    const { entryCode } = bodyRequest;
+
     if (error) return res.json({ joiError: error.details[0].message });
 
     let accountUser = await user.findOne({ email: bodyRequest.email });
@@ -36,7 +38,11 @@ signUpRouter.post("/", async (req, res) => {
 
     accountUser.password = await bcrypt.hash(accountUser.password, salt);
 
-    accountUser.entryCode = keysObject.extensionEntryCode;
+    accountUser.entryCode = entryCode
+      ? entryCode
+      : keysObject.extensionEntryCode;
+
+    // accountUser.isEmailVerified = true;
 
     await accountUser.save();
 
@@ -72,6 +78,8 @@ signUpRouter.post("/", async (req, res) => {
   if (isPaidAlready == keysObject.threeLetterslamzStudentsIdentifier) {
     accountUser.isPaid = true;
   }
+
+  // accountUser.isEmailVerified = true;
 
   await accountUser.save();
 

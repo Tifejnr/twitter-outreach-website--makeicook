@@ -35,10 +35,12 @@ import contactUsHandlerWebsiteRouter from "./routes/(customer-requests)/contact-
 import handlerExtensionRequestRouter from "./routes/(customer-requests)/handle-extension-request/route.js";
 import validateOrigin from "./server-utils/middleware/is-origin-valid/isOriginValid.js";
 import getNameRouterToPersonalizeDmRouter from "./routes/(ai-related)/get-name-to-personalize-DM/route.js";
-import makeIcookMongConnect from "./server-utils/database/make-i-cook/makeIcookMongConnect.js";
+// import makeIcookMongConnect from "./server-utils/database/make-i-cook/makeIcookMongConnect.js";
 import signInMakeICookRouter from "./routes/(auth)/make-i-cook-part/login/signInUser.js";
 import signUpMakeICookRouter from "./routes/(auth)/make-i-cook-part/sign-up/signUp.js";
 import isAccountAuthorizedMakeICookRouter from "./routes/(auth)/make-i-cook-part/is-account-authorized/isAccountAuthorized.js";
+import sendEmailVerificationCodeRouter from "./routes/(auth)/verify-email/sendVerificationCodeToUser.js";
+
 // import sendMailToMultipleUsers from "./routes/(customer-requests)/email-users/route.js";
 // sendMailToMultipleUsers();
 
@@ -70,7 +72,12 @@ app.use("/api/sign-up-mic", signUpMakeICookRouter);
 app.use("/api/sign-in-mic", signInMakeICookRouter);
 app.use("/is-account-authorized-mic", isAccountAuthorizedMakeICookRouter);
 
-//api routes declaarations
+//api routes declarations
+app.use(
+  "/api/new-user-sign-up",
+  validateOrigin,
+  sendEmailVerificationCodeRouter
+);
 app.use("/api/users", validateOrigin, signUpRouter);
 app.use("/api/auth", validateOrigin, signInRouter);
 app.use("/api/forgot-password", validateOrigin, forgotPasswordRouter);

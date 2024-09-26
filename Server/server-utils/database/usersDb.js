@@ -32,12 +32,18 @@ const userSchema = new mongoose.Schema({
     default: false,
   },
 
+  isEmailVerified: {
+    type: Boolean,
+    default: false,
+  },
+
   paidFor: {
     type: String,
     minlength: 2,
     maxlength: 1250,
     default: "NA",
   },
+
   profileLink: {
     type: String,
     maxlength: 1000,
