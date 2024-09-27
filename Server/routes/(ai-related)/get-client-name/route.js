@@ -147,8 +147,6 @@ getClientNameRouter.post("/", async (req, res) => {
 
   const resultOfTokenValidation = await isTokenValid(bodyRequest);
 
-  console.log("resultOfTokenValidation", resultOfTokenValidation);
-
   if (resultOfTokenValidation.nullJWTToken)
     return res.json({ nullJWTToken: true });
 
@@ -341,6 +339,31 @@ return "Yes" or "No" only as response.
         confirmNamePrompt,
         finalName
       );
+
+      //cfinal confirmation if it's  ahuman name or not.
+      if (isNameAHumanName == "No") {
+        const isNameFoundInAnyCountryPrompt = `
+      Return "Yes" or "No" only. 
+      
+      If name is a pronoun, return "No"
+      
+      If name is a common term used to refer to a person, return "No"
+      
+      Is the name is found as a given name in any country in the world? return "Yes" 
+      
+      `;
+
+        const nameAndContext = `name : ${finalName}
+     
+     Context : ${prompt}
+     `;
+
+        isNameAHumanName = await getStraightAiResponse(
+          isNameFoundInAnyCountryPrompt,
+          nameAndContext,
+          0.1
+        );
+      }
     }
 
     const nameToFreelancer =
