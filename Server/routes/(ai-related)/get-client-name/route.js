@@ -192,6 +192,15 @@ getClientNameRouter.post("/", async (req, res) => {
 
     const finalName = findCommonName(clientNameResponse);
 
+    if (finalName == "clint") {
+      console.log("wrong spelling of client likely");
+
+      return res.json({
+        clientNameResponse: realNoNamesFoundResponse,
+        clientPersonality,
+      });
+    }
+
     console.log("returned name", finalName);
 
     //check if returned name is within freelancers feedback

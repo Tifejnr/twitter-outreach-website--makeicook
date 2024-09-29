@@ -62,6 +62,40 @@ const userSchema = new mongoose.Schema({
     min: 0,
     default: 0,
   },
+
+  credits: {
+    type: Number,
+    min: 0,
+    default: 0,
+  },
+
+  noOfTimesUsedAllTime: {
+    type: Number,
+    min: 0,
+    default: 0,
+  },
+
+  noOfTimesUsedDailyOnly: {
+    type: Number,
+    min: 0,
+    default: 0,
+  },
+
+  totalNoOfPossibleUsageIfUsedDailyOnly: {
+    type: Number,
+    min: 0,
+    default: 0,
+  },
+
+  lastFiveUsedDates: {
+    type: [String], // Changed to an array of strings
+    default: [], // Default as an empty array
+  },
+
+  hasItBeenUsedToday: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const user = mongoose.models.User || mongoose.model("User", userSchema);

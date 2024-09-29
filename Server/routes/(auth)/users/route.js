@@ -42,7 +42,7 @@ signUpRouter.post("/", async (req, res) => {
       ? entryCode
       : keysObject.extensionEntryCode;
 
-    // accountUser.isEmailVerified = true;
+    accountUser.isEmailVerified = true;
 
     await accountUser.save();
 

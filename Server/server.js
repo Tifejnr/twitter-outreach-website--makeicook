@@ -1,9 +1,11 @@
+import cron from "node-cron";
 import express from "express";
 import getMongoKeyAndConnect from "./server-utils/database/mongoDbConnect.js";
 import cors from "cors";
 import exppressLimiter from "express-limit";
 import path from "path";
 import { fileURLToPath } from "url";
+
 import coookieParser from "cookie-parser";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -40,9 +42,16 @@ import signInMakeICookRouter from "./routes/(auth)/make-i-cook-part/login/signIn
 import signUpMakeICookRouter from "./routes/(auth)/make-i-cook-part/sign-up/signUp.js";
 import isAccountAuthorizedMakeICookRouter from "./routes/(auth)/make-i-cook-part/is-account-authorized/isAccountAuthorized.js";
 import sendEmailVerificationCodeRouter from "./routes/(auth)/verify-email/sendVerificationCodeToUser.js";
+import resetStatsBy12AmDaily from "./routes/(auth)/users-stats/reset-stats-daily/resetStatsBy12AmDaily.js";
+import userStatsRouter from "./routes/(auth)/users-stats/userStats.js";
 
 // import sendMailToMultipleUsers from "./routes/(customer-requests)/email-users/route.js";
 // sendMailToMultipleUsers();
+
+// Runs at 12:00 AM every day (Nigerian time, UTC+1)
+cron.schedule("0 0 * * *", () => {
+  resetStatsBy12AmDaily();
+});
 
 //Connect to mong db
 (async () => {
@@ -80,6 +89,7 @@ app.use(
 );
 app.use("/api/users", validateOrigin, signUpRouter);
 app.use("/api/auth", validateOrigin, signInRouter);
+app.use("/api/process-usage", validateOrigin, userStatsRouter);
 app.use("/api/forgot-password", validateOrigin, forgotPasswordRouter);
 app.use(
   "/api/forgot-password/reset-password",

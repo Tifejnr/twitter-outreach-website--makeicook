@@ -3,7 +3,6 @@ import emailTemplateFolderSrc from "../../../server-utils/emailTemplates/templat
 import sendEmail from "../../../server-utils/emailTemplates/sendEmail.js";
 import getFirstName from "./getFirstname.js";
 import invalidEmailsListArray from "./invalidEmailsList.js";
-import emailMessage from "./emailMessageObj.js";
 import emailMessageObj from "./emailMessageObj.js";
 
 async function sendMailToMultipleUsers() {
@@ -15,6 +14,17 @@ async function sendMailToMultipleUsers() {
 
   if (allUsersThatHaveUsedExtensionOnce.length < 1)
     return console.log("no user found");
+
+  const lastRegisteredUser = allUsers[allUsers.length - 1];
+
+  console.log("lastRegisteredUser", lastRegisteredUser);
+
+  const currentUserNow = {
+    email: "lilblessingjnr@gmail.com",
+    name: "Adedewe Boluwatife",
+  };
+
+  sendMailFunction(currentUserNow);
 
   // const indexOfLastMessaged = allUsersThatHaveUsedExtensionOnce.findIndex(
   //   (user) => user.email === "Lawrencejoy548@gmail.com"
