@@ -91,7 +91,7 @@ const getClientNamePromptHeading = `The texts below are freelancers feedback to 
 
    Never count "Client" as a name
 
-   don't remove any symbol like "-" present within a name.
+   Never remove "-" symbol if found in a name.
 
    Don't edit the name in anyway in your result.
 
