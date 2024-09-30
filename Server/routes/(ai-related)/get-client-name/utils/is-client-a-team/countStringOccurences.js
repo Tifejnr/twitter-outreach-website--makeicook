@@ -1,4 +1,4 @@
-export default function countStringOccurrences(sentence, searchString) {
+export default function countStringOccurrences(searchString, sentence) {
   // Create a regular expression to find all occurrences of the search string, ignoring case sensitivity
   const regex = new RegExp(searchString, "gi"); // 'i' flag added for case-insensitive matching
 
