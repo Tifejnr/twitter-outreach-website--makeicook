@@ -263,7 +263,7 @@ return "Yes" or "No" only as response.
         console.log(
           " isItCompanyNameResponse",
           isItCompanyNameResponse,
-          clientNameResponse
+          finalName
         );
         return res.json({
           clientNameResponse:
@@ -276,35 +276,35 @@ return "Yes" or "No" only as response.
         });
       }
     }
-    const doesTheNameSoundLikeTeamNamePrompt = `
+    // const doesTheNameSoundLikeTeamNamePrompt = `
 
-    Return "Yes" or "No" only for this.
+    // Return "Yes" or "No" only for this.
 
-    Based on the context below:
-    
-    does the client name ${finalName} appears as a team most of time?
-    
-    `;
+    // Based on the context below:
 
-    const isItATeamNameResponse = await getStraightAiResponse(
-      doesTheNameSoundLikeTeamNamePrompt,
-      prompt
-    );
+    // Does the client name ${finalName} appears as a team most of time?
 
-    console.log("isItATeamNameResponse", isItATeamNameResponse);
+    // `;
 
-    if (isItATeamNameResponse == "Yes") {
-      console.log(" isItATeamNameResponse", isItATeamNameResponse, finalName);
-      return res.json({
-        clientNameResponse:
-          clientNameResponse == realNoNamesFoundResponse
-            ? realNoNamesFoundResponse
-            : "Likely a team",
+    // const isItATeamNameResponse = await getStraightAiResponse(
+    //   doesTheNameSoundLikeTeamNamePrompt,
+    //   prompt
+    // );
 
-        clientPersonality,
-        multipleNames: finalName,
-      });
-    }
+    // console.log("isItATeamNameResponse", isItATeamNameResponse);
+
+    // if (isItATeamNameResponse == "Yes") {
+    //   console.log(" isItATeamNameResponse", isItATeamNameResponse, finalName);
+    //   return res.json({
+    //     clientNameResponse:
+    //       clientNameResponse == realNoNamesFoundResponse
+    //         ? realNoNamesFoundResponse
+    //         : "Likely a team",
+
+    //     clientPersonality,
+    //     multipleNames: finalName,
+    //   });
+    // }
 
     if (finalName.includes(",")) {
       const promptToCheckForSingleNames = `
