@@ -291,12 +291,6 @@ return "Yes" or "No" only as response.
       noOfTimeTeamNameWasFound
     );
 
-    console.log(
-      " isItATeamNameResponse",
-      isItATeamNameResponse,
-      noOfTimePureNameWasFound,
-      noOfTimeTeamNameWasFound
-    );
     if (isItATeamNameResponse) {
       console.log(" isItATeamNameResponse", isItATeamNameResponse, finalName);
       return res.json({
