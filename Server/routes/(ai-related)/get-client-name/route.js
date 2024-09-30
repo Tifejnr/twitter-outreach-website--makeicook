@@ -91,6 +91,10 @@ const getClientNamePromptHeading = `The texts below are freelancers feedback to 
 
    Never count "Client" as a name
 
+   If you are unsure if the name is not a client name based on the context, return "No names found".
+
+   Don't edit the name in anyway in your result.
+
    Don't prefix your response with things like "Here is the output:" or "Here are the responses based on the instructions:" or "Here are the client names or company like names" or 
    
    "Here is the list of human names mentioned in the feedback" or anything that looks like that and don't close with any message.
