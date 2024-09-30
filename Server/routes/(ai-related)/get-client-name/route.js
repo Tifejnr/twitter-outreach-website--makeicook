@@ -279,14 +279,16 @@ return "Yes" or "No" only as response.
     const doesTheNameSoundLikeTeamNamePrompt = `
 
     Return "Yes" or "No" only for this.
+
+    Based on the context below:
     
-    does the client name appears as a team most of time?
+    does the client name ${finalName} appears as a team most of time?
     
     `;
 
     const isItATeamNameResponse = await getStraightAiResponse(
       doesTheNameSoundLikeTeamNamePrompt,
-      finalName
+      prompt
     );
 
     console.log("isItATeamNameResponse", isItATeamNameResponse);
