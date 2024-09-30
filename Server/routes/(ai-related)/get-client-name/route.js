@@ -54,6 +54,8 @@ Check all names
 
 Pronouns "he" , "She", "him", "her", "his" are not human names.
 
+return "No" if name is "Client".
+
 Is any of the names below a human name ?
 
 `;
