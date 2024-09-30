@@ -281,16 +281,22 @@ return "Yes" or "No" only as response.
 
     const noOfTimePureNameWasFound = countStringOccurrences(finalName, prompt);
 
-    const noOfTimeNameWasFoundAsTeam = countStringOccurrences(
+    const noOfTimeTeamNameWasFound = countStringOccurrences(
       `${finalName} team`,
       prompt
     );
 
     const isItATeamNameResponse = checkIfNameAndTeamVariationAppearAtEqualTime(
       noOfTimePureNameWasFound,
-      noOfTimeNameWasFoundAsTeam
+      noOfTimeTeamNameWasFound
     );
 
+    console.log(
+      " isItATeamNameResponse",
+      isItATeamNameResponse,
+      noOfTimePureNameWasFound,
+      noOfTimeTeamNameWasFound
+    );
     if (isItATeamNameResponse) {
       console.log(" isItATeamNameResponse", isItATeamNameResponse, finalName);
       return res.json({
