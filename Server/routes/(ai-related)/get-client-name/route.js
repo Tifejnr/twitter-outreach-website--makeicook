@@ -89,6 +89,8 @@ const getClientNamePromptHeading = `The texts below are freelancers feedback to 
 
    Never count "Sir" as part of a name
 
+   Never count "Client" as a name
+
    Don't prefix your response with things like "Here is the output:" or "Here are the responses based on the instructions:" or "Here are the client names or company like names" or 
    
    "Here is the list of human names mentioned in the feedback" or anything that looks like that and don't close with any message.
