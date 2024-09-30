@@ -64,6 +64,7 @@ const realNoNamesFoundResponse = "No names found";
 const theyAreCompanyText = "Hi there";
 const helloText = realNoNamesFoundResponse;
 const noNamesFoundText = "(no names found)";
+const clientIsATeamText = "Likely a team";
 
 const getClientNamePromptHeading = `The texts below are freelancers feedback to their clients. 
 
@@ -90,8 +91,6 @@ const getClientNamePromptHeading = `The texts below are freelancers feedback to 
    Never count "Sir" as part of a name
 
    Never count "Client" as a name
-
-   Never remove "-" symbol if found in a name.
 
    Don't edit the name in anyway in your result.
 
@@ -276,6 +275,33 @@ return "Yes" or "No" only as response.
           multipleNames: clientNameResponse,
         });
       }
+    }
+    const doesTheNameSoundLikeTeamNamePrompt = `
+
+    Return "Yes" or "No" only for this.
+    
+    does the client name appears as a team most of time?
+    
+    `;
+
+    const isItATeamNameResponse = await getStraightAiResponse(
+      doesTheNameSoundLikeTeamNamePrompt,
+      finalName
+    );
+
+    console.log("isItATeamNameResponse", isItATeamNameResponse);
+
+    if (isItATeamNameResponse == "Yes") {
+      console.log(" isItATeamNameResponse", isItATeamNameResponse, finalName);
+      return res.json({
+        clientNameResponse:
+          clientNameResponse == realNoNamesFoundResponse
+            ? realNoNamesFoundResponse
+            : "Likely a team",
+
+        clientPersonality,
+        multipleNames: finalName,
+      });
     }
 
     if (finalName.includes(",")) {
