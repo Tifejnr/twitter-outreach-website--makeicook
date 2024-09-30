@@ -91,7 +91,7 @@ const getClientNamePromptHeading = `The texts below are freelancers feedback to 
 
    Never count "Client" as a name
 
-   If you are unsure if the name is not a client name based on the context, return "No names found".
+   don't remove any symbol like "-" present within a name.
 
    Don't edit the name in anyway in your result.
 
