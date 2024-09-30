@@ -12,6 +12,8 @@ const keysObject = getSecretKeys();
 // const hf = new HfInference(HF_TOKEN);
 
 import { HfInference } from "@huggingface/inference";
+import countStringOccurrences from "./utils/is-client-a-team/countStringOccurences.js";
+import checkIfNameAndTeamVariationAppearAtEqualTime from "./utils/is-client-a-team/checkIfNameAndTeamVariationAppearAtEqualTime.js";
 
 // import getSecretKeys from "../../../../envVariables/envVariables";
 
@@ -276,35 +278,31 @@ return "Yes" or "No" only as response.
         });
       }
     }
-    // const doesTheNameSoundLikeTeamNamePrompt = `
 
-    // Return "Yes" or "No" only for this.
+    const noOfTimePureNameWasFound = countStringOccurrences(finalName, prompt);
 
-    // Based on the context below:
+    const noOfTimeNameWasFoundAsTeam = countStringOccurrences(
+      `${finalName} team`,
+      prompt
+    );
 
-    // Does the client name ${finalName} appears as a team most of time?
+    const isItATeamNameResponse = checkIfNameAndTeamVariationAppearAtEqualTime(
+      noOfTimePureNameWasFound,
+      noOfTimeNameWasFoundAsTeam
+    );
 
-    // `;
+    if (isItATeamNameResponse) {
+      console.log(" isItATeamNameResponse", isItATeamNameResponse, finalName);
+      return res.json({
+        clientNameResponse:
+          clientNameResponse == realNoNamesFoundResponse
+            ? realNoNamesFoundResponse
+            : "Likely a team",
 
-    // const isItATeamNameResponse = await getStraightAiResponse(
-    //   doesTheNameSoundLikeTeamNamePrompt,
-    //   prompt
-    // );
-
-    // console.log("isItATeamNameResponse", isItATeamNameResponse);
-
-    // if (isItATeamNameResponse == "Yes") {
-    //   console.log(" isItATeamNameResponse", isItATeamNameResponse, finalName);
-    //   return res.json({
-    //     clientNameResponse:
-    //       clientNameResponse == realNoNamesFoundResponse
-    //         ? realNoNamesFoundResponse
-    //         : "Likely a team",
-
-    //     clientPersonality,
-    //     multipleNames: finalName,
-    //   });
-    // }
+        clientPersonality,
+        multipleNames: `${finalName} team`,
+      });
+    }
 
     if (finalName.includes(",")) {
       const promptToCheckForSingleNames = `
