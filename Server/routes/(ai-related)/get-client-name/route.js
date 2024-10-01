@@ -14,6 +14,7 @@ const keysObject = getSecretKeys();
 import { HfInference } from "@huggingface/inference";
 import countStringOccurrences from "./utils/is-client-a-team/countStringOccurences.js";
 import checkIfNameAndTeamVariationAppearAtEqualTime from "./utils/is-client-a-team/checkIfNameAndTeamVariationAppearAtEqualTime.js";
+import getTotalWordsLength from "./utils/getTotalWordsLength.js";
 
 // import getSecretKeys from "../../../../envVariables/envVariables";
 
@@ -194,10 +195,18 @@ getClientNameRouter.post("/", async (req, res) => {
       0.1
     );
 
-    const clientNameResponse = await getStraightAiResponse(
-      editFirstNamePromptInstruction,
-      clientNameResponseRaw
-    );
+    const totalWordsLength = getTotalWordsLength(clientNameResponseRaw);
+
+    let clientNameResponse;
+
+    if (totalWordsLength > 8) {
+      clientNameResponse = await getStraightAiResponse(
+        editFirstNamePromptInstruction,
+        clientNameResponseRaw
+      );
+    } else {
+      clientNameResponse = clientNameResponseRaw;
+    }
 
     const finalName = findCommonName(clientNameResponse);
 
