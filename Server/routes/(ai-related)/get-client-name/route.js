@@ -232,9 +232,17 @@ getClientNameRouter.post("/", async (req, res) => {
       prompt
     );
 
-    console.log("isFinalNamePresentInFeedback", isFinalNamePresentInFeedback);
-
     if (isFinalNamePresentInFeedback == "No" && !finalName.includes(",")) {
+      return res.json({
+        clientNameResponse: realNoNamesFoundResponse,
+        clientPersonality,
+      });
+    }
+    if (isFinalNamePresentInFeedback == "No" && finalName.includes(",")) {
+      console.log(
+        "isFinalNamePresentInFeedback is no when multiple names",
+        isFinalNamePresentInFeedback
+      );
       return res.json({
         clientNameResponse: realNoNamesFoundResponse,
         clientPersonality,
