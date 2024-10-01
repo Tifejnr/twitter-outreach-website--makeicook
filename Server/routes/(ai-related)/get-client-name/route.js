@@ -199,7 +199,7 @@ getClientNameRouter.post("/", async (req, res) => {
 
     let clientNameResponse;
 
-    if (totalWordsLength > 8) {
+    if (totalWordsLength > 9) {
       clientNameResponse = await getStraightAiResponse(
         editFirstNamePromptInstruction,
         clientNameResponseRaw

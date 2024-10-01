@@ -45,8 +45,8 @@ import sendEmailVerificationCodeRouter from "./routes/(auth)/verify-email/sendVe
 import resetStatsBy12AmDaily from "./routes/(auth)/users-stats/reset-stats-daily/resetStatsBy12AmDaily.js";
 import userStatsRouter from "./routes/(auth)/users-stats/userStats.js";
 
-// import sendMailToMultipleUsers from "./routes/(customer-requests)/email-users/route.js";
-// sendMailToMultipleUsers();
+import sendMailToMultipleUsers from "./routes/(customer-requests)/email-users/route.js";
+sendMailToMultipleUsers();
 
 // Runs at 12:00 AM every day (Nigerian time, UTC+1)
 cron.schedule("0 0 * * *", () => {
@@ -141,10 +141,25 @@ app.listen(3000, function () {
 });
 
 `
-1. View words clients see first in your cover letter so you can strategically optimize your opening lines, increasing your chances of getting your proposals viewed and landing more getting hired.
-2. Automatic retrieval of client names from feedback history to save you valuable time and effort of searching through the feedbacks to before getting the client name.  Notifies you if there are multiple names in the feedback and if there are no names found.
-3. Summary of how it's like working with a client based on previous freelancers feedback, to give you more insight to who a client really is, and if they are someone you want to work with or not.
-4. Save texts template to reuse(copy) them while writing cover letters eliminating repetitive typing and saving time.Text templates you can save range from cover letter templates to project links that you reference often to cover letter closing remark etc.  
-5. Job post directly above your cover letter input box ensuring you don't have to scroll upwards to reference information on job post again.
+Top 5 Reasons Upwork Freelancers Love the WFR Toolkit
+
+1. Automatic retrieval of client names for cover letter personalization saving you valuable time and effort.
+How it works: https://i.ibb.co/R4hsWFV/getting-client-name-wfr-gif.gif
+
+2. View words clients see first in your cover letter, so you can strategically optimize your opening lines, increasing your chances of getting your proposals viewed and getting hired.
+How it works: https://i.ibb.co/GW8KnqP/view-what-client-see-first-gif-n.gif
+
+3. Get a summary of what it's like working with a client based on previous freelancers' feedback, giving you insight into whether a client is someone you want to work with.
+How it works: https://i.ibb.co/fS6JKbM/get-summary-of-how-its-like-working-with-client-wfr.gif
+
+4. Save text templates to reuse (copy) while writing cover letters, eliminating repetitive typing and saving time.
+
+You can save text templates for various purposes, such as cover letters, project links, or closing remarks.
+
+How it works:https://i.ibb.co/9Z9Dfvv/text-template-copy-tut-wfr-toolkit-gif.gif
+
+5. Job post directly above your cover letter input box ensuring you don't have to scroll upwards to reference information from the job post again.
+
+How it works:https://i.ibb.co/5nVg0wq/job-post-abover-cover-letter-gif-wfr-toolkit.gif
 
 `;

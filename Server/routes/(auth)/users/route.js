@@ -7,6 +7,7 @@ import websiteSignUpValidation from "../../../server-utils/joi-validations/sign-
 import extensionSignUpValidation from "../../../server-utils/joi-validations/sign-up/extensionSignUpValidation.js";
 import getFirst3Letters from "../../../server-utils/users-identifers/getFirst3Letters.js";
 import getSecretKeys from "../../../envVariables/envVariables.js";
+import emailTemplateFolderSrc from "../../../server-utils/emailTemplates/template-folder-src/emailTemplateFolderSrc.js";
 
 const signUpRouter = express.Router();
 
@@ -46,10 +47,35 @@ signUpRouter.post("/", async (req, res) => {
 
     await accountUser.save();
 
-    const token = jwt.sign(
-      { _id: accountUser._id, isPaid: accountUser.isPaid },
-      JWT_PRIVATE_KEY
-    );
+    //send welcome to new user
+    const subject = "Welcome to Work for Reputation - WFR Toolkit!";
+    const folderDir = `${emailTemplateFolderSrc}/welcome-email`;
+
+    const fullName = bodyRequest.name;
+    const customerEmail = bodyRequest.email;
+
+    const name = getFirstName(fullName);
+
+    const customerParams = {
+      subject: subject,
+      folderDir: folderDir,
+      customerEmail,
+    };
+
+    const emailContextParamsNow = {
+      name,
+    };
+
+    const result = await sendEmail(customerParams, emailContextParamsNow);
+
+    if (result) {
+      const token = jwt.sign(
+        { _id: accountUser._id, isPaid: accountUser.isPaid },
+        JWT_PRIVATE_KEY
+      );
+
+      return res.json({ token });
+    }
 
     return res.json({ token });
   }
