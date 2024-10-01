@@ -8,6 +8,7 @@ import extensionSignUpValidation from "../../../server-utils/joi-validations/sig
 import getFirst3Letters from "../../../server-utils/users-identifers/getFirst3Letters.js";
 import getSecretKeys from "../../../envVariables/envVariables.js";
 import emailTemplateFolderSrc from "../../../server-utils/emailTemplates/template-folder-src/emailTemplateFolderSrc.js";
+import getFirstName from "../../(customer-requests)/email-users/getFirstname.js";
 
 const signUpRouter = express.Router();
 
