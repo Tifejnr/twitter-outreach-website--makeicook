@@ -47,7 +47,7 @@ import userStatsRouter from "./routes/(auth)/users-stats/userStats.js";
 
 import deleteUsersWithEmail from "./routes/(auth)/users/delete-users/deleteUserWithEmail.js";
 
-deleteUsersWithEmail("akovahh@gmail.com");
+// deleteUsersWithEmail("akovahh@gmail.com");
 
 // import sendMailToMultipleUsers from "./routes/(customer-requests)/email-users/route.js";
 // sendMailToMultipleUsers();
