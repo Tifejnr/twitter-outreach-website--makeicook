@@ -176,8 +176,6 @@ getClientNameRouter.post("/", async (req, res) => {
 
   const prompt = rawPrompt.replace(ignoredText, "...");
 
-  console.log(" prompt", prompt);
-
   try {
     //get client personality
     const clientPersonalityRaw = await getStraightAiResponse(
@@ -233,6 +231,8 @@ getClientNameRouter.post("/", async (req, res) => {
       isNameWithinTextRangePrompt,
       prompt
     );
+
+    console.log("isFinalNamePresentInFeedback", isFinalNamePresentInFeedback);
 
     if (isFinalNamePresentInFeedback == "No" && !finalName.includes(",")) {
       return res.json({
