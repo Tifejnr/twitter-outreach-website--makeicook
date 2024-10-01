@@ -45,8 +45,8 @@ import sendEmailVerificationCodeRouter from "./routes/(auth)/verify-email/sendVe
 import resetStatsBy12AmDaily from "./routes/(auth)/users-stats/reset-stats-daily/resetStatsBy12AmDaily.js";
 import userStatsRouter from "./routes/(auth)/users-stats/userStats.js";
 
-import sendMailToMultipleUsers from "./routes/(customer-requests)/email-users/route.js";
-sendMailToMultipleUsers();
+// import sendMailToMultipleUsers from "./routes/(customer-requests)/email-users/route.js";
+// sendMailToMultipleUsers();
 
 // Runs at 12:00 AM every day (Nigerian time, UTC+1)
 cron.schedule("0 0 * * *", () => {
