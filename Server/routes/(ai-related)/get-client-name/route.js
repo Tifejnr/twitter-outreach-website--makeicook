@@ -50,7 +50,7 @@ async function getStraightAiResponse(
   }
 }
 
-const confirmNamePrompt = `Return "Yes" or "No".
+const confirmNamePrompt = `Return "Yes" or "No" only.
 
 Check all names 
 
