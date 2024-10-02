@@ -46,6 +46,7 @@ import resetStatsBy12AmDaily from "./routes/(auth)/users-stats/reset-stats-daily
 import userStatsRouter from "./routes/(auth)/users-stats/userStats.js";
 import deleteUsersWithEmail from "./routes/(auth)/users/delete-users/deleteUserWithEmail.js";
 import handlePaymentsRouter from "./routes/subscription-payment/handlePayment.js";
+import webhookPaystackRouter from "./routes/subscription-payment/webhook/webhookPaystack.js";
 
 // deleteUsersWithEmail("akovahh@gmail.com");
 
@@ -66,6 +67,12 @@ cron.schedule("0 0 * * *", () => {
   // }, 3000);
 })();
 
+//webhook at the top
+
+app.use("/api/test/webhooks", webhookPaystackRouter);
+const paystackWebhookCallbackUrl =
+  "https://workforreputation.com/api/test/webhooks";
+
 const limiter = exppressLimiter.limit;
 
 const limiterOptions = {
@@ -81,7 +88,7 @@ const rateLimitRoute = limiter(limiterOptions);
 // app.use(validateOrigin);
 
 //api routes declaarations makeICook
-app.use("/api/sign-up-mic", signUpMakeICookRouter);
+
 app.use("/api/sign-in-mic", signInMakeICookRouter);
 app.use("/is-account-authorized-mic", isAccountAuthorizedMakeICookRouter);
 

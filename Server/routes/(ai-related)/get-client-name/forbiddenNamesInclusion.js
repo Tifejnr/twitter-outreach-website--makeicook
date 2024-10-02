@@ -368,7 +368,6 @@ const proffesionalText = "proffesional";
 const clienText = "clien";
 const nodejsText = "nodejs";
 const paymentText = "payment";
-const upworkText = "upwork";
 const ThnaksText = "Thnaks";
 const fraternityText = "fraternity";
 const elanceText = "Elance";
@@ -645,7 +644,6 @@ const forbiddenNamesInclusionArray = [
   aroundExclamationMarkText,
   starsText,
   allText,
-  noText,
   fitText,
   fiveOver5,
   hundredOver100,
@@ -682,7 +680,6 @@ const forbiddenNamesInclusionArray = [
   elanceText,
   fraternityText,
   ThnaksText,
-  upworkText,
   paymentText,
   nodejsText,
   clienText,

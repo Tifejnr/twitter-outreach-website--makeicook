@@ -11,7 +11,7 @@ const freePlanObj = {
 
 const basicPlanObj = {
   planName: "Standard",
-  perCreditInfo: 5,
+  perCreditInfo: 10,
   planCreditsAmount: 3000,
   planPrice: 4900,
   suitabilityTimeUsage: "less than 10",
@@ -22,7 +22,7 @@ const basicPlanObj = {
 
 const standardPlanObj = {
   planName: "Business",
-  perCreditInfo: 3,
+  perCreditInfo: 7,
   planCreditsAmount: 14900,
   planPrice: 14900,
   suitabilityTimeUsage: "more than 20",

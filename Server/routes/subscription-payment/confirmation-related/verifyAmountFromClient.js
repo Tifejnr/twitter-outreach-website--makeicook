@@ -1,12 +1,10 @@
 import isDataFromClientValid from "./isDataFromClientValid.js";
 import user from "../../../server-utils/database/usersDb.js";
 import { validatePaymentParams } from "../joiValidationPayments/paymentValidations.js";
-import paramsFromServer from "./pricesOfCredits.js";
 import isTokenValid from "../../../server-utils/middleware/token-validity/isTokenValid.js";
+import allPricingPlansObj from "../all-plan-obj/allPlanObj.js";
 
 async function nowVerifyAmount(req, res, next) {
-  const paramsFromServerObj = paramsFromServer();
-  const { pricesObjToClient } = paramsFromServerObj;
   const bodyRequest = req.body;
 
   const { error } = validatePaymentParams(bodyRequest);
@@ -24,7 +22,7 @@ async function nowVerifyAmount(req, res, next) {
   const accountUser = await user.findById(decodedPayload._id);
   if (!accountUser) return res.status(401).json({ invalidToken: true });
 
-  const { creditAmount } = bodyRequest;
+  const { planPrice } = bodyRequest;
 
   // Extract necessary values
   const email = accountUser.email;
@@ -41,9 +39,9 @@ async function nowVerifyAmount(req, res, next) {
   req.customerName = customerName;
   req.coachCode = coachCode;
   req.customizedParams = customizedParams;
-  req.creditAmount = creditAmount;
+  req.planPrice = planPrice;
 
-  const isPriceValid = isDataFromClientValid(pricesObjToClient, creditAmount);
+  const isPriceValid = isDataFromClientValid(allPricingPlansObj, planPrice);
 
   if (isPriceValid) {
     next();

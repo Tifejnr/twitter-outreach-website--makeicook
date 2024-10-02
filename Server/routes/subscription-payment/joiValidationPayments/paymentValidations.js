@@ -10,7 +10,7 @@ function validateGetNamereq(reqBody) {
 
 function validatePaymentParams(reqBody) {
   const schema = Joi.object({
-    creditAmount: Joi.number().min(100).max(50000).required(),
+    planPrice: Joi.number().min(3).max(50000).required(),
     fromExtension: Joi.boolean().required(),
     token: Joi.string().required(),
   });

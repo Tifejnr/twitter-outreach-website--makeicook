@@ -24,12 +24,12 @@ const handlePaymentsRouter = express.Router();
 handlePaymentsRouter.use(coookieParser());
 
 const keysObject = getSecretKeys();
-const PAYSTACK_SECRET = keysObject.PAYSTACK_SECRET;
+// const PAYSTACK_SECRET = keysObject.PAYSTACK_SECRET;
+const PAYSTACK_SECRET = "sk_test_77f56feec74a6a039f819388e83cb24feeb1e572";
 const JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
 
 handlePaymentsRouter.post("/payment", [nowVerifyAmount], async (req, res) => {
-  const { email, customerName, coachCode, customizedParams, creditAmount } =
-    req;
+  const { email, customerName, coachCode, customizedParams, planPrice } = req;
 
   const customTransactionReference = customTransRefGen(customizedParams);
 
@@ -41,7 +41,7 @@ handlePaymentsRouter.post("/payment", [nowVerifyAmount], async (req, res) => {
     return res.status(401).json({ invalidToken: true });
   }
 
-  const amount = creditAmount; // multiply by 100 to convert it to kobo
+  const amount = planPrice; // multiply by 100 to convert it to kobo
   const Paystack = PaystackAPI(PAYSTACK_SECRET);
 
   const paymentData = {
