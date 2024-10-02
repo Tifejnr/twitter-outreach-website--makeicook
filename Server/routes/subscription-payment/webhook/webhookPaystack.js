@@ -1,9 +1,9 @@
 import express from "express";
 import crypto from "crypto";
 import bodyParser from "body-parser";
-import user from "../../../server-utils/database/usersDb";
-import getSecretKeys from "../../../envVariables/envVariables";
-import allPricingPlansObj from "../all-plan-obj/allPlanObj";
+import user from "../../../server-utils/database/usersDb.js";
+import getSecretKeys from "../../../envVariables/envVariables.js";
+import allPricingPlansObj from "../all-plan-obj/allPlanObj.js";
 
 const keysObjects = getSecretKeys();
 const secret = "sk_test_77f56feec74a6a039f819388e83cb24feeb1e572";
