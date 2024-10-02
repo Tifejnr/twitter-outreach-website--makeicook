@@ -14,6 +14,7 @@ import MainContactPage from "./components/Pages/Contact-us-page/MainContactPage"
 import AboutUsPage from "./components/Pages/About-us-page/AboutUs";
 import TermsOfUsePage from "./components/Pages/Terms-and-privacy/TermsOfUsePage";
 import PrivacyPolicyPage from "./components/Pages/Terms-and-privacy/privacyPolicy";
+import PaymentCallbackUrlPage from "./components/Pages/call-back-url-page/PaymentCallbackUrlPage";
 // import HomepageLamz from "./components/home-page/HomepageLamz";
 
 // import Pricing from "./compnents/Pages/Pricing";
@@ -65,6 +66,7 @@ function App() {
         <Route path="/about-us" element={<AboutUsPage />} />
         <Route path="/terms-of-service" element={<TermsOfUsePage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+        <Route path="/verify-payment" element={<PaymentCallbackUrlPage />} />
       </Routes>
     </>
   );

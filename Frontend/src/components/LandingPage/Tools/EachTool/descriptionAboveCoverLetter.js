@@ -1,5 +1,6 @@
 import { allToolsVideosObj } from "../../videos/allToolsVideos";
-const heading = "Job Post Directly Above Cover Letter";
+const heading =
+  "Job post directly above your cover letter input box ensuring you don't have to scroll upwards to reference information from the job post again.";
 const overview = `
 WFR Toolkit places the job post directly above your cover letter input box ensuring you don't have to scroll upwards to reference information on job post again.
 

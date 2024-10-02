@@ -1,7 +1,7 @@
 // const heroSecondHeadingtext =
 //   "Write, proofread and submit persuasive Upwork cover letters 3 times faster with WFR Toolkit";
 
-const heroSecondHeadingtext = `Write converting Upwork cover letters with more ease using WFR Toolkit`;
+const heroSecondHeadingtext = `Land more jobs on Upwork with less stress while saving valuable time`;
 
 const belowFaqFirstHeadingText =
   "Don't miss out on tripling your Upwork efficiency using WFR Toolkit";

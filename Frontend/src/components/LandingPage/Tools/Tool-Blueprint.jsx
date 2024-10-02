@@ -12,20 +12,20 @@ export default function ToolBlueprint(props) {
   };
 
   // Split the overview text into paragraphs
-  const paragraphs = props.toolDetails.overview.trim().split("\n\n");
+  // const paragraphs = props.toolDetails.overview.trim().split("\n\n");
   return (
     <section className="each-tool-section">
       <h2>
         <span>{props.indexNo + 1}.</span> {props.toolDetails.heading}
       </h2>
 
-      <article>
+      {/* <article>
         <div>
           {paragraphs.map((paragraph, index) => (
             <p key={index}>{paragraph}</p>
           ))}
         </div>
-      </article>
+      </article> */}
 
       <button onClick={toggleVideoVisibility} className="view-demo-btn">
         {!isVideoVisible ? "See how it works" : "Close"}

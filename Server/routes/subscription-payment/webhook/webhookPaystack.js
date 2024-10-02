@@ -50,15 +50,6 @@ webhookPaystackRouter.post("/", async (req, res) => {
     res.sendStatus(200);
 
     return;
-
-    if (!crypto.timingSafeEqual(generatedSigFromBody, headerSignarture))
-      return res.status(403).json({ error: "Invalid signature." });
-    // Signature is valid, process the webhook event
-
-    //destructuring data sent to get needed details
-
-    console.log("suucceful ooooooooooooo");
-    return res.sendStatus(200);
     // const { data, meta } = req.body;
     // const { event_name, custom_data } = meta;
     // const { user_id } = custom_data;

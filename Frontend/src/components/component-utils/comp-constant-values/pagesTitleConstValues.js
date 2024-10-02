@@ -7,8 +7,10 @@ const resetPassword = `Reset your Password | ${mainName}`;
 const termsOfService = `Terms of Service | ${mainName}`;
 const aboutUs = `Know more about us | ${mainName}`;
 const contactUs = `Got questions? Contact us | ${mainName}`;
+const paymentVerificationPage = `Verify payment | ${mainName}`;
 
 const pagesTitleConstValues = {
+  paymentVerificationPage,
   signIn,
   signUp,
   forgotPassword,

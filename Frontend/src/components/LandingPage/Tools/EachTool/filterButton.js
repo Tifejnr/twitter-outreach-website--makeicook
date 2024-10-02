@@ -1,5 +1,6 @@
 import { allToolsVideosObj } from "../../videos/allToolsVideos";
-const heading = "One-Click Filtering on Job Search Page";
+const heading =
+  "Save text templates to reuse (copy) while writing cover letters, eliminating repetitive typing and saving time.";
 
 const overview = `Simply save all your favorite filters once. 
 

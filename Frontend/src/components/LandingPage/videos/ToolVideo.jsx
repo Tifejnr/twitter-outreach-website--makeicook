@@ -8,7 +8,8 @@ ToolVideo.propTypes = {
 export default function ToolVideo({ videoUrl }) {
   return (
     <div className="iframe-container">
-      <iframe
+      <img src={videoUrl} alt="wfr-tool" />
+      {/* <iframe
         width="100%"
         height="315"
         src={videoUrl}
@@ -17,7 +18,7 @@ export default function ToolVideo({ videoUrl }) {
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowFullScreen
         loading="lazy"
-      ></iframe>
+      ></iframe> */}
     </div>
   );
 }

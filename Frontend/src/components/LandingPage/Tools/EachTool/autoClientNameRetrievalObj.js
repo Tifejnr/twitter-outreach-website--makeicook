@@ -1,5 +1,6 @@
 import { allToolsVideosObj } from "../../videos/allToolsVideos";
-const heading = "Automatic Client Name Retrieval";
+const heading =
+  " Automatic retrieval of client names for cover letter personalization saving you valuable time and effort.";
 const overview = `
 Do you prioritise greeting client with their name in your cover letter ?
 

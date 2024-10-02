@@ -11,6 +11,7 @@ import PaystackAPI from "paystack-api";
 import emailTemplateFolderSrc from "../../server-utils/emailTemplates/template-folder-src/emailTemplateFolderSrc.js";
 import allPricingPlansObj from "./all-plan-obj/allPlanObj.js";
 import getSecretKeys from "../../envVariables/envVariables.js";
+import getCreditsAwarded from "./confirmation-related/getCreditsAwarded.js";
 
 // const {
 //   calculateAffliateFees,
@@ -43,12 +44,13 @@ handlePaymentsRouter.post("/payment", [nowVerifyAmount], async (req, res) => {
 
   const amount = planPrice; // multiply by 100 to convert it to kobo
   const Paystack = PaystackAPI(PAYSTACK_SECRET);
+  const creditsAwarded = getCreditsAwarded(planPrice);
 
   const paymentData = {
     email: email,
     amount: amount * 100, // in kobo
     reference: customTransactionReference,
-    callback_url: `${keysObject.websiteURL}/api/pricing/paystack-verify`,
+    callback_url: `${keysObject.websiteURL}/verify-payment`,
     channels: ["card"],
 
     metadata: {
@@ -56,8 +58,9 @@ handlePaymentsRouter.post("/payment", [nowVerifyAmount], async (req, res) => {
       custom_fields: [
         {
           name: customerName,
-          paid_For: `${amount} credits`,
-          credits_Awarded: amount,
+          paid_For: `${creditsAwarded} credits`,
+          credits_Awarded: creditsAwarded,
+          amount_Paid: planPrice,
         },
       ],
     },
