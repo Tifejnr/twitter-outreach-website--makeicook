@@ -54,7 +54,7 @@ handlePaymentsRouter.post("/payment", [nowVerifyAmount], async (req, res) => {
     channels: ["card"],
 
     metadata: {
-      cancel_action: "https://your-cancel-url.com",
+      cancel_action: "https://workforreputation.com/cancel-payment",
       custom_fields: [
         {
           name: customerName,

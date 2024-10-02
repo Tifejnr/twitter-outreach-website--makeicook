@@ -1,4 +1,4 @@
-import allPricingPlansObj from "../all-plan-obj/allPlanObj";
+import allPricingPlansObj from "../all-plan-obj/allPlanObj.js";
 
 export default function getCreditsAwarded(planPrice) {
   const { nairaPricingPlansObjArray, dollarPricingPlansObjArray } =
