@@ -23,6 +23,7 @@ webhookPaystackRouter.use(
 
 // Endpoint to handle incoming webhook events
 webhookPaystackRouter.post("/", async (req, res) => {
+  console.log("on webhook page hahahahah");
   if (!req.rawBody) return console.log(" req.rawBody  does not exist");
 
   try {
