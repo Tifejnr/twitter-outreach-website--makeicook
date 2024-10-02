@@ -207,7 +207,7 @@ getClientNameRouter.post("/", async (req, res) => {
       clientNameResponse = clientNameResponseRaw;
     }
 
-    const finalName = findCommonName(clientNameResponse);
+    let finalName = findCommonName(clientNameResponse);
 
     const isForbiddenNameIncludedIn = forbiddenNamesInclusionArray.find(
       (forbiddenName) => {
@@ -220,15 +220,32 @@ getClientNameRouter.post("/", async (req, res) => {
     );
 
     if (finalName == "clint" || isForbiddenNameIncludedIn) {
-      console.log(
-        "wrong spelling of client or forbidden name icnluded",
-        finalName
-      );
+      if (finalName.includes(",")) {
+        // Split the names by comma and trim any extra spaces
+        let nameParts = finalName.split(",").map((name) => name.trim());
 
-      return res.json({
-        clientNameResponse: realNoNamesFoundResponse,
-        clientPersonality,
-      });
+        // Filter out any forbidden names
+        nameParts = nameParts.filter((name) => {
+          const lowerName = name.toLowerCase();
+          return !forbiddenNamesInclusionArray.some((forbiddenName) => {
+            const escapedForbiddenName = forbiddenName
+              .toLowerCase()
+              .replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+            const regex = new RegExp(`\\b${escapedForbiddenName}\\b`);
+            return regex.test(lowerName);
+          });
+        });
+
+        if (nameParts.length == 0) {
+          return res.json({
+            clientNameResponse: realNoNamesFoundResponse,
+            clientPersonality,
+          });
+        }
+
+        // Join the remaining names back together
+        finalName = nameParts.join(", ");
+      }
     }
 
     console.log("returned name", finalName);

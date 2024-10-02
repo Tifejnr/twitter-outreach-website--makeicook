@@ -2001,11 +2001,15 @@ article.creditsNeededCont {
   color: #101c77;
 }
 
+h2.title {
+  margin-top: 2rem;
+}
+
 /* Progress bar dsign block*/
 .barHolder {
   background: rgba(247, 93, 0, 0.6);
   width: 90%;
-  height: 3.5rem;
+  height: 4rem;
   border-radius: 0.4rem;
   position: absolute;
   top: -4rem;
