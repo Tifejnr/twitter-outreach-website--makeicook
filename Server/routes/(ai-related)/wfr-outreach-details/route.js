@@ -1,23 +1,7 @@
 import { google } from "googleapis";
 import express from "express";
 const sheets = google.sheets("v4");
-// import credentials from "./credentials.json" assert { type: "json" }; // Replace with the actual path to your credentials file
-const credentials = {
-  type: "service_account",
-  project_id: "outreach-sheet-details",
-  private_key_id: "815c8748b3bcb3c39f4d1ef4064e8b30d0307a02",
-  private_key:
-    "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC3HeuFb6Ra+Di7\nKnXC9hVGH1QJpg63iEsb5YNIVnKaJVUNcsJ9h/6TRJQFQBHVzWoQOJBSiW+wCDLB\nSKXxVUreFEi41v60nx7VRJ+fTWO+/F6I/0oem+oDT+vzERLLmRkMld/xu5961ewa\ndQUgotqCUZnmD6wwkyWS2PY4D/vzKgNoWIla2u7Q9ef9mJyaFJ98NBl8PHlXQL0p\n3cq1IRQHQGLh2tWB7npstoGkmUFxP7wPA5gFxMIQ8clb3xAVhgnbUMml+PZOJp0G\nR/lOfC3adRVBi/zXPGnkINsaJnxPznXysPmrdB59eNbra1sa98R71nq5D3PvnEne\n+OCYM89XAgMBAAECggEAKu1ZLqVO5sKE7h+UjrlIoHEsrrxee9j4HpiNz7HwWMGC\nsE3kWTA91kE/4AE2jSQEBrxz3N16MM6jM1t4B1zC2c/wgmBoQmiA/mcBcoNebEHW\nWZBbTFSppdAhFJC+krsXu7MQ1ibxSocGu+cN5io3RlCh3uRyrcp5BvVUtyzMGCMt\n2tTDjo8U9c0Tzy+Q8392gqP2PIeQzBRuXtQ1i6KSRzHo3ICsWSeGQPbZhq5LP4SC\nCqVduU8nkoeFFgv4IQxPnc9G9o59JSbPyYDjgkmVh3MF/oJuBdJpal5+wFRF7/v5\nPm+VOYQYR2oeZ0MaOWON4VmSOkSiH+koYCs/hGe1CQKBgQDrunaK7Rxd0vGOgXLP\naRpfYXraGdOeq8qkeo8OhCh5lcZ6crYbbN7gmk/9aQJ7+BEzqr7/KL+nIt4YjmOq\nG5L95Js24tXsVk7WPbWq5lydfR0pE4oOqmYhZJ2xa74XpZ19pkA5RJJQaFafTU0J\nY0aud3IhYH07Jker2Jizb9FTyQKBgQDG3ThTeHkU9tFoyRDHbugSMksw/wTUcZqh\nbsEYMIkyYROp5DudpmNmZGHTexo7+XkoDX9iyhfLaWW0DyQhyIUeeWGaw2EYr/wn\nDmk3JphSou9fUdE7i4Q9Vm55Tsd3lMoQhyWIXw/Uzk0vfPex5VGA2CtnAP5S8CZ7\nOjY5ejZaHwKBgQCnBGwtLqaki2r+zxTrg8pdvhFvKlFX4NwpAXUOkfCjhM0lwNTq\nRY78kBkQsTBDaZW2h8nfu51e7EN0Hp7azcKuBSU8FCgB1XzyKrLmrWT9aMIacm+k\nyHKoQkPAi1gaJQubFQn4CW+pbOPC5uAoQKC5yIOixly0ZgDt7v7yU816kQKBgHuY\nqpVWXwrkjCpwLPmGuL32fD0rgrj3EoAa8fAy2lJxe2Mv8s18yHKvGQ3ziM6VsvNt\n0Cp6KGfITemnL3G/ytyx3DPwErzhQ/qSPlqEpk9V7Sh1FXHIuJvWyDqk99weoae8\nF1u2mYRN5DMLnHb4a7uEnxUZzPeHQqN7/o+ioX1JAoGAT6fp3yHM3CsB52qg2FAt\n+gLWgvEO4EJoOQYr2ws/n0n2jORsHlmJcGeL7zVe+xFNNNdBIe5miufXR2wP+cxk\n2diBVYmdAOYfPEHw9DNH6x/ekiLz8lCV0Mm+XiH8TYnaMzjtjHx9Av7bGtXbM64r\nrXC4FgOLdK0X7HdLnn05tn0=\n-----END PRIVATE KEY-----\n",
-  client_email:
-    "akovah-sheet-config@outreach-sheet-details.iam.gserviceaccount.com",
-  client_id: "104626105116433872661",
-  auth_uri: "https://accounts.google.com/o/oauth2/auth",
-  token_uri: "https://oauth2.googleapis.com/token",
-  auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
-  client_x509_cert_url:
-    "https://www.googleapis.com/robot/v1/metadata/x509/akovah-sheet-config%40outreach-sheet-details.iam.gserviceaccount.com",
-  universe_domain: "googleapis.com",
-};
+import credentials from "./credentials.json" assert { type: "json" }; // Replace with the actual path to your credentials file
 
 // Set up OAuth2 authentication
 const auth = new google.auth.GoogleAuth({
