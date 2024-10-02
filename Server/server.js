@@ -44,8 +44,8 @@ import isAccountAuthorizedMakeICookRouter from "./routes/(auth)/make-i-cook-part
 import sendEmailVerificationCodeRouter from "./routes/(auth)/verify-email/sendVerificationCodeToUser.js";
 import resetStatsBy12AmDaily from "./routes/(auth)/users-stats/reset-stats-daily/resetStatsBy12AmDaily.js";
 import userStatsRouter from "./routes/(auth)/users-stats/userStats.js";
-
 import deleteUsersWithEmail from "./routes/(auth)/users/delete-users/deleteUserWithEmail.js";
+import handlePaymentsRouter from "./routes/subscription-payment/handlePayment.js";
 
 // deleteUsersWithEmail("akovahh@gmail.com");
 
@@ -93,6 +93,7 @@ app.use(
 );
 app.use("/api/users", validateOrigin, signUpRouter);
 app.use("/api/auth", validateOrigin, signInRouter);
+app.use("/api/pricing", validateOrigin, handlePaymentsRouter);
 app.use("/api/process-usage", validateOrigin, userStatsRouter);
 app.use("/api/forgot-password", validateOrigin, forgotPasswordRouter);
 app.use(

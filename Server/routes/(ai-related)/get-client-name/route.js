@@ -15,6 +15,7 @@ import { HfInference } from "@huggingface/inference";
 import countStringOccurrences from "./utils/is-client-a-team/countStringOccurences.js";
 import checkIfNameAndTeamVariationAppearAtEqualTime from "./utils/is-client-a-team/checkIfNameAndTeamVariationAppearAtEqualTime.js";
 import getTotalWordsLength from "./utils/getTotalWordsLength.js";
+import forbiddenNamesInclusionArray from "./forbiddenNamesInclusion.js";
 
 // import getSecretKeys from "../../../../envVariables/envVariables";
 
@@ -208,13 +209,19 @@ getClientNameRouter.post("/", async (req, res) => {
 
     const finalName = findCommonName(clientNameResponse);
 
-    if (
-      finalName == "clint" ||
-      finalName.includes("Client") ||
-      finalName.includes("client")
-    ) {
+    const isForbiddenNameIncludedIn = forbiddenNamesInclusionArray.find(
+      (forbiddenName) => {
+        const escapedForbiddenName = forbiddenName
+          .toLowerCase()
+          .replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        const regex = new RegExp(`\\b${escapedForbiddenName}\\b`);
+        return regex.test(finalName.toLowerCase());
+      }
+    );
+
+    if (finalName == "clint" || isForbiddenNameIncludedIn) {
       console.log(
-        "wrong spelling of client likely or name includes Client",
+        "wrong spelling of client or forbidden name icnluded",
         finalName
       );
 

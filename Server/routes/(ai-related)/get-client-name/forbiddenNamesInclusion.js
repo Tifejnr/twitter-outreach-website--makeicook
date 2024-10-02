@@ -473,8 +473,6 @@ const sanctionText = "Sanction";
 const facebookText = "Facebook";
 const cooperativeText = "cooperative";
 const ladyText = "lady";
-// const willText = "Will";
-const hopeText = "Hope";
 const chineseText = "Chinese";
 const onlineText = "Online";
 const accessText = "Access";
@@ -525,10 +523,10 @@ const patheticText = "pathetic";
 const connectionText = "connection";
 const No1Text = "No1";
 const peasureText = "peasure";
-const NiceText = "Nice";
+const heText = "he";
 
 const forbiddenNamesInclusionArray = [
-  NiceText,
+  heText,
   peasureText,
   No1Text,
   gladlyText,
@@ -580,8 +578,6 @@ const forbiddenNamesInclusionArray = [
   accessText,
   onlineText,
   chineseText,
-  hopeText,
-  // willText,
   ladyText,
   cooperativeText,
   facebookText,
