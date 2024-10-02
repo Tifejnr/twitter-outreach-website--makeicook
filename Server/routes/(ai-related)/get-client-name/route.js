@@ -208,8 +208,15 @@ getClientNameRouter.post("/", async (req, res) => {
 
     const finalName = findCommonName(clientNameResponse);
 
-    if (finalName == "clint") {
-      console.log("wrong spelling of client likely");
+    if (
+      finalName == "clint" ||
+      finalName.includes("Client") ||
+      finalName.includes("client")
+    ) {
+      console.log(
+        "wrong spelling of client likely or name includes Client",
+        finalName
+      );
 
       return res.json({
         clientNameResponse: realNoNamesFoundResponse,
@@ -332,8 +339,6 @@ return "Yes" or "No" only as response.
         promptToCheckForSingleNames,
         finalName
       );
-
-      console.log("isItASingleName", isItASingleName);
 
       //for multiple names found
 
