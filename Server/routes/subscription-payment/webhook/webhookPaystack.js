@@ -13,31 +13,34 @@ const orderCreatedEvent = "order_created";
 
 const webhookPaystackRouter = express.Router();
 // Custom middleware to capture the raw request body before parsing it
-webhookPaystackRouter.use(
-  bodyParser.json({
-    verify: (req, res, buf) => {
-      req.rawBody = buf.toString();
-    },
-  })
-);
+// webhookPaystackRouter.use(
+//   bodyParser.json({
+//     verify: (req, res, buf) => {
+//       req.rawBody = buf.toString();
+//     },
+//   })
+// );
 
 // Endpoint to handle incoming webhook events
 webhookPaystackRouter.post("/", async (req, res) => {
   console.log("on webhook page hahahahah");
-  if (!req.rawBody) return console.log(" req.rawBody  does not exist");
 
   try {
-    const headerSignarture = Buffer.from(
-      req.get("x-paystack-signature") || "",
-      "utf8"
-    );
+    //validate event
+    const hash = crypto
+      .createHmac("sha512", secret)
+      .update(JSON.stringify(req.body))
+      .digest("hex");
+    if (hash == req.headers["x-paystack-signature"]) {
+      // Retrieve the request's body
+      const event = req.body;
 
-    // Verify the signature
-    const hmac = crypto.createHmac("sha256", secret);
-    const generatedSigFromBody = Buffer.from(
-      hmac.update(req.rawBody).digest("hex"),
-      "utf8"
-    );
+      console.log("suucceful ooooooooooooo", event);
+      // Do something with event
+    }
+    res.send(200);
+
+    return;
 
     if (!crypto.timingSafeEqual(generatedSigFromBody, headerSignarture))
       return res.status(403).json({ error: "Invalid signature." });
