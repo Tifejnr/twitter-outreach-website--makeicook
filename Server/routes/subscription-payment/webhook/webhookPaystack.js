@@ -11,6 +11,8 @@ const secret = "sk_test_77f56feec74a6a039f819388e83cb24feeb1e572";
 
 const orderCreatedEvent = "order_created";
 
+const chargeSuccessEvent = "charge.success";
+
 const webhookPaystackRouter = express.Router();
 // Custom middleware to capture the raw request body before parsing it
 // webhookPaystackRouter.use(
@@ -33,12 +35,19 @@ webhookPaystackRouter.post("/", async (req, res) => {
       .digest("hex");
     if (hash == req.headers["x-paystack-signature"]) {
       // Retrieve the request's body
-      const event = req.body;
+      const { event, data } = req.body;
+
+      const { metadata } = data;
+      const { custom_fields } = metadata;
 
       console.log("suucceful ooooooooooooo", event);
+
+      if (event == chargeSuccessEvent) {
+        console.log("custom_fields", custom_fields);
+      }
       // Do something with event
     }
-    res.send(200);
+    res.sendStatus(200);
 
     return;
 
