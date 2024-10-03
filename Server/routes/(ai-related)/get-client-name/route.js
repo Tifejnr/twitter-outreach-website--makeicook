@@ -220,6 +220,12 @@ getClientNameRouter.post("/", async (req, res) => {
     );
 
     if (finalName == "clint" || isForbiddenNameIncludedIn) {
+      if (!finalName.includes(",")) {
+        return res.json({
+          clientNameResponse: realNoNamesFoundResponse,
+          clientPersonality,
+        });
+      }
       if (finalName.includes(",")) {
         // Split the names by comma and trim any extra spaces
         let nameParts = finalName.split(",").map((name) => name.trim());
@@ -235,6 +241,8 @@ getClientNameRouter.post("/", async (req, res) => {
             return regex.test(lowerName);
           });
         });
+
+        console.log(" nameParts", nameParts);
 
         if (nameParts.length == 0) {
           return res.json({
