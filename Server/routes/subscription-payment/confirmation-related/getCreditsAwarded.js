@@ -34,5 +34,7 @@ export default function getCreditsAwarded(planPrice) {
     planPriceForCreditCalaucaltion / perCreditInfo
   );
 
+  console.log("creditsAmount", creditsAmount, pricingPlanFound);
+
   return creditsAmount;
 }

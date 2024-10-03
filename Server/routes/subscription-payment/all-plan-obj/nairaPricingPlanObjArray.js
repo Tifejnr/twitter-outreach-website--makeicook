@@ -16,7 +16,6 @@ const basicPlanObj = {
   planPrice: 4900,
   suitabilityTimeUsage: "less than 10",
   naira: true,
-  howLongWillItTakeToExhaust: "3 months",
   noOfDailyJobsItCanBeUsedToApplyTo: 10,
 };
 
@@ -27,7 +26,6 @@ const standardPlanObj = {
   planPrice: 14900,
   suitabilityTimeUsage: "more than 20",
   naira: true,
-  howLongWillItTakeToExhaust: "8 months",
   noOfDailyJobsItCanBeUsedToApplyTo: 20,
 };
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import LandingPageToggle from "../../Main-nav-bar/LandingPageToggle";
 import PagesNavItems from "../PagesNavItems";
 import NavLogo from "../../auth/utils/components/NavLogo";
