@@ -9,19 +9,9 @@ const keysObjects = getSecretKeys();
 const secret = "sk_test_77f56feec74a6a039f819388e83cb24feeb1e572";
 // const secret = keysObjects.PAYSTACK_SECRET;
 
-const orderCreatedEvent = "order_created";
-
 const chargeSuccessEvent = "charge.success";
 
 const webhookPaystackRouter = express.Router();
-// Custom middleware to capture the raw request body before parsing it
-// webhookPaystackRouter.use(
-//   bodyParser.json({
-//     verify: (req, res, buf) => {
-//       req.rawBody = buf.toString();
-//     },
-//   })
-// );
 
 // Endpoint to handle incoming webhook events
 webhookPaystackRouter.post("/", async (req, res) => {
@@ -40,10 +30,30 @@ webhookPaystackRouter.post("/", async (req, res) => {
       const { metadata } = data;
       const { custom_fields } = metadata;
 
-      console.log("suucceful ooooooooooooo", event);
+      console.log("suucceful ooooooooooooo", data);
 
       if (event == chargeSuccessEvent) {
         console.log("custom_fields", custom_fields);
+
+        const { user_id, name, credits_Awarded, amount_Paid, paymentChannel } =
+          custom_fields;
+
+        const accountUser = await user.findById(user_id);
+        if (!accountUser) return res.status(400).json({ invalid_User: true });
+
+        //set  user status to paid
+        accountUser.isPaid = true;
+
+        //add the payed for credit to current users credits
+        const currentUserCredit = accountUser.credits;
+        accountUser.credits = currentUserCredit + credits_Awarded;
+
+        console.log("accountUser", accountUser);
+
+        //save user details
+        await accountUser.save();
+
+        //send receipts
       }
       // Do something with event
     }
@@ -55,8 +65,8 @@ webhookPaystackRouter.post("/", async (req, res) => {
     // const { user_id } = custom_data;
 
     // if (event_name === orderCreatedEvent) {
-    //   const accountUser = await user.findById(user_id);
-    //   if (!accountUser) return res.status(400).json({ invalid_User: true });
+    // const accountUser = await user.findById(user_id);
+    // if (!accountUser) return res.status(400).json({ invalid_User: true });
 
     //   //destructuring data sent to get payment details
     //   const { attributes } = data;

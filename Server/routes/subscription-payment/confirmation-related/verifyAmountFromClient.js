@@ -28,6 +28,7 @@ async function nowVerifyAmount(req, res, next) {
   const email = accountUser.email;
   const customerName = accountUser.name;
   const coachCodeRaw = accountUser.entryCode;
+  const user_id = accountUser._id;
   const coachCode = getFirst3Letters(coachCodeRaw);
 
   const customizedParams = {
@@ -40,6 +41,7 @@ async function nowVerifyAmount(req, res, next) {
   req.coachCode = coachCode;
   req.customizedParams = customizedParams;
   req.planPrice = planPrice;
+  req.user_id = user_id;
 
   const isPriceValid = isDataFromClientValid(allPricingPlansObj, planPrice);
 

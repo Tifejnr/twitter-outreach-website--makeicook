@@ -1,0 +1,106 @@
+<html>
+
+  <head>
+    <style>
+      #body { background: rgba(209, 255, 189, 0.3); --green: #14a800;
+      padding-bottom: 5rem; } table, td, th { border-bottom: 1px solid #f2f2f2;
+      border-collapse: collapse; padding: 0.4rem; color: #17252a; } table {
+      margin: auto auto; padding: 2rem 0; height: 60%; width: 56%; border-top:
+      3px solid #14a800; background-color: #fff; } tbody { background-color:
+      #fff; } .removeBorder { border: none; padding: 1rem 0; font-size: 1rem; }
+      .paymentDetails { padding-top: 2rem; font-weight: 500; border-bottom:
+      none; border-top: 1px solid #f2f2f2; } .amountBold { font-weight: 700;
+      font-size: 1.6rem; } .paymentDetailsTable { width: 80%; height: 80%; }
+      .paymentDetailsTable td { border: 5px solid transparent; background:
+      rgba(209, 255, 189, 0.3); } tfoot th { font-weight: 500; } tfoot {
+      padding-top: 1rem; margin-bottom: 5rem; } header { text-align: center;
+      color: #14a800; padding-top: 2.5rem; } header h2 { font-size: 1rem;
+      font-weight: 700; margin: 0; }
+    </style>
+  </head>
+
+  <body id="body">
+
+    <table>
+      <tr class="logo-container">
+        <td align="center">
+          <img
+            src="https://i.imghippo.com/files/qY5NU1727694513.jpg"
+            alt="wfr toolkit logo"
+          />
+        </td>
+      </tr>
+
+      <thead>
+        <tr>
+          <th colspan="2" class="removeBorder" class="removeBorder">
+            Receipt From Work For Reputataion
+          </th>
+        </tr>
+      </thead>
+      <thead>
+        <tr>
+          <th colspan="2" class="removeBorder">
+            Your payment has been received by Work For Reputataion
+          </th>
+        </tr>
+      </thead>
+      <thead>
+        <tr>
+          <th colspan="2" class="removeBorder amountBold">{{amount}}</th>
+        </tr>
+      </thead>
+      <thead>
+        <tr>
+          <th colspan="2" class="paymentDetails">Payment Details</th>
+        </tr>
+      </thead>
+      <table class="paymentDetailsTable">
+        <tbody>
+          <tr>
+            <td class="padded">Amount</td>
+            <td style="text-align: right" class="padded">{{amount_Paid}}</td>
+          </tr>
+
+          <tr>
+            <td>Name</td>
+            <td style="text-align: right">{{name}}</td>
+          </tr>
+
+          <tr>
+            <td>Paid For</td>
+            <td
+              style="text-align: right; font-weight: 600"
+            >{{credits_Awarded}}</td>
+          </tr>
+          <tr>
+            <td>Channel</td>
+            <td
+              style="text-align: right; font-weight: 600"
+            >{{paymentChannel}}</td>
+          </tr>
+          <tr>
+            <td>Reference</td>
+            <td style="text-align: right; font-weight: 600">
+              {{transReference}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <tfoot>
+        <tr>
+          <th colspan="2">{{time}}</th>
+        </tr>
+        <tr>
+          <th colspan="2">
+            If you have questions or issues with this payment, contact Work For
+            Reputataion at workforreputation@gmail.com or simply reply to this
+            email.
+          </th>
+        </tr>
+      </tfoot>
+    </table>
+  </body>
+
+</html>

@@ -45,7 +45,5 @@ export default function getCreditsAwarded(planPrice, naira) {
     creditsAmount = creditsAmount + additionalCredits;
   }
 
-  console.log("creditsAmount", creditsAmount, pricingPlanFound);
-
   return creditsAmount;
 }

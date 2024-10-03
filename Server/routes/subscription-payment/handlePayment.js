@@ -30,7 +30,14 @@ const PAYSTACK_SECRET = "sk_test_77f56feec74a6a039f819388e83cb24feeb1e572";
 const JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
 
 handlePaymentsRouter.post("/payment", [nowVerifyAmount], async (req, res) => {
-  const { email, customerName, coachCode, customizedParams, planPrice } = req;
+  const {
+    email,
+    customerName,
+    coachCode,
+    customizedParams,
+    planPrice,
+    user_id,
+  } = req;
 
   const customTransactionReference = customTransRefGen(customizedParams);
 
@@ -48,8 +55,6 @@ handlePaymentsRouter.post("/payment", [nowVerifyAmount], async (req, res) => {
   const Paystack = PaystackAPI(PAYSTACK_SECRET);
   const creditsAwarded = getCreditsAwarded(planPrice, naira);
 
-  console.log("creditsAwarded", creditsAwarded);
-
   const paymentData = {
     email: email,
     amount: amount * 100, // in kobo
@@ -65,6 +70,9 @@ handlePaymentsRouter.post("/payment", [nowVerifyAmount], async (req, res) => {
           paid_For: `${creditsAwarded} credits`,
           credits_Awarded: creditsAwarded,
           amount_Paid: planPrice,
+          user_id,
+          transReference: customTransactionReference,
+          paymentChannel: "Card",
         },
       ],
     },
