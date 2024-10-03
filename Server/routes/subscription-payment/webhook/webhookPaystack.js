@@ -41,7 +41,7 @@ webhookPaystackRouter.post("/", async (req, res) => {
 
         const accountUser = await user.findById(user_id);
 
-        console.log("accountUser", accountUser);
+        console.log("accountUser", accountUser, user_id);
         if (!accountUser) return res.status(400).json({ invalid_User: true });
 
         //set  user status to paid

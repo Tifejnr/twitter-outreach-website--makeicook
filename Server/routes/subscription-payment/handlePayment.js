@@ -39,6 +39,7 @@ handlePaymentsRouter.post("/payment", [nowVerifyAmount], async (req, res) => {
     user_id,
   } = req;
 
+  console.log("user_id", user_id);
   const customTransactionReference = customTransRefGen(customizedParams);
 
   const bodyRequest = await req.body;
