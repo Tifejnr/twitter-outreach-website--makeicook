@@ -21,6 +21,7 @@ const standardPlanObj = {
   perCreditInfo: 0.005,
   planCreditsAmount: 14900,
   planPrice: 9.99,
+  additionalCredits: 150,
   suitabilityTimeUsage: "more than 20",
   noOfDailyJobsItCanBeUsedToApplyTo: 20,
 };
