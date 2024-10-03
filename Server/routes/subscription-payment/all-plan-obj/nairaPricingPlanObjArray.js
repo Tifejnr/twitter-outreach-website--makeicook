@@ -26,6 +26,7 @@ const standardPlanObj = {
   planPrice: 14900,
   suitabilityTimeUsage: "more than 20",
   naira: true,
+  additionalCredits: 7,
   noOfDailyJobsItCanBeUsedToApplyTo: 20,
 };
 
