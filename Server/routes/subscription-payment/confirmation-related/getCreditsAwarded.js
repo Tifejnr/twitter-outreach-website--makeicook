@@ -1,6 +1,6 @@
 import allPricingPlansObj from "../all-plan-obj/allPlanObj.js";
 
-export default function getCreditsAwarded(planPrice) {
+export default function getCreditsAwarded(planPrice, naira) {
   const { nairaPricingPlansObjArray, dollarPricingPlansObjArray } =
     allPricingPlansObj;
 
@@ -29,10 +29,21 @@ export default function getCreditsAwarded(planPrice) {
 
   const { perCreditInfo } = pricingPlanFound;
 
-  const planPriceForCreditCalaucaltion = planPrice + 100;
-  const creditsAmount = Math.round(
+  let planPriceForCreditCalaucaltion;
+
+  if (naira) {
+    planPriceForCreditCalaucaltion = planPrice + 100;
+  } else {
+    planPriceForCreditCalaucaltion = planPrice + 0.01;
+  }
+
+  let creditsAmount = Math.round(
     planPriceForCreditCalaucaltion / perCreditInfo
   );
+
+  if (additionalCredits) {
+    creditsAmount = creditsAmount + additionalCredits;
+  }
 
   console.log("creditsAmount", creditsAmount, pricingPlanFound);
 

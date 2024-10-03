@@ -362,7 +362,7 @@ const singularityText = "Singularity";
 const CoFounderText = "Co-Founder";
 const CEOText = "CEO";
 const founderText = "Founder";
-const sirDotText = "sir.";
+const partnersText = "Partners";
 const StraightforwardText = "Straightforward";
 const proffesionalText = "proffesional";
 const clienText = "clien";
@@ -525,6 +525,7 @@ const peasureText = "peasure";
 const heText = "he";
 
 const forbiddenNamesInclusionArray = [
+  partnersText,
   heText,
   peasureText,
   No1Text,
@@ -685,7 +686,6 @@ const forbiddenNamesInclusionArray = [
   clienText,
   proffesionalText,
   StraightforwardText,
-  sirDotText,
   founderText,
   CoFounderText,
   CEOText,
