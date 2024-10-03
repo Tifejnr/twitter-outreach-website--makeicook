@@ -72,7 +72,6 @@ handlePaymentsRouter.post("/payment", [nowVerifyAmount], async (req, res) => {
           amount_Paid: planPrice,
           user_id,
           transReference: customTransactionReference,
-          paymentChannel: "Card",
         },
       ],
     },
@@ -136,6 +135,7 @@ handlePaymentsRouter.get("/paystack-verify", async (req, res) => {
       const paymentTime = paymentDateRawSplitted[4];
 
       const paymentDate = `${paymentDayName} ${paymentMonth} ${paymentDayNo} ${paymentYear} ${paymentTime}`;
+
       // If the payment was successful, redirect to a success page
       if (status === "success") {
         const exactAmount = transaction.amount / 100; //to kobo

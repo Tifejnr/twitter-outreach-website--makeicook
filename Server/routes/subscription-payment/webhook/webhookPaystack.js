@@ -35,8 +35,9 @@ webhookPaystackRouter.post("/", async (req, res) => {
       if (event == chargeSuccessEvent) {
         console.log("custom_fields", custom_fields);
 
-        const { user_id, name, credits_Awarded, amount_Paid, paymentChannel } =
-          custom_fields;
+        const { paid_at, channel } = data;
+
+        const { user_id, name, credits_Awarded, amount_Paid } = custom_fields;
 
         const accountUser = await user.findById(user_id);
         if (!accountUser) return res.status(400).json({ invalid_User: true });
@@ -48,10 +49,30 @@ webhookPaystackRouter.post("/", async (req, res) => {
         const currentUserCredit = accountUser.credits;
         accountUser.credits = currentUserCredit + credits_Awarded;
 
-        console.log("accountUser", accountUser);
-
         //save user details
         await accountUser.save();
+
+        const paymentChannel = channel;
+
+        const paymentDateRaw = new Date(paid_at);
+        const paymentDateRawStringified = paymentDateRaw.toString();
+        const paymentDateRawSplitted = paymentDateRawStringified.split(" ");
+        const paymentDayName = paymentDateRawSplitted[0];
+        const paymentMonth = paymentDateRawSplitted[1];
+        const paymentDayNo = paymentDateRawSplitted[2];
+        const paymentYear = paymentDateRawSplitted[3];
+        const paymentTime = paymentDateRawSplitted[4];
+
+        const paymentDate = `${paymentDayName} ${paymentMonth} ${paymentDayNo} ${paymentYear} ${paymentTime}`;
+
+        const customerEmailParams = {
+          name,
+          paymentChannel,
+          paymentDate,
+          amount_Paid,
+        };
+
+        console.log("customerEmailParams", customerEmailParams);
 
         //send receipts
       }
@@ -60,46 +81,6 @@ webhookPaystackRouter.post("/", async (req, res) => {
     res.sendStatus(200);
 
     return;
-    // const { data, meta } = req.body;
-    // const { event_name, custom_data } = meta;
-    // const { user_id } = custom_data;
-
-    // if (event_name === orderCreatedEvent) {
-    // const accountUser = await user.findById(user_id);
-    // if (!accountUser) return res.status(400).json({ invalid_User: true });
-
-    //   //destructuring data sent to get payment details
-    //   const { attributes } = data;
-    //   const { first_order_item, status_formatted } = attributes;
-    //   const { variant_id } = first_order_item;
-    //   console.log(status_formatted);
-
-    //   if (status_formatted != "Paid") return res.sendStatus(204);
-    //   //getting product details to update
-    //   const product = allPlansArrayObj.find(
-    //     (planObj) => planObj.variantId == variant_id
-    //   );
-
-    //   if (!product) {
-    //     console.log("product not found");
-    //     return res.status(402).json({ notFound: true });
-    //   }
-    //   //set  user status to paid
-    //   accountUser.isPaid = true;
-
-    //   //add the payed for credit to current users credits
-    //   const currentUserCredit = accountUser.credits;
-    //   accountUser.credits = currentUserCredit + product.credits;
-
-    //   //save user details
-    //   await accountUser.save();
-
-    // Respond with a 200 status to acknowledge receipt of the webhook
-    return res.sendStatus(200);
-    // } else {
-    //   // For other events, respond with a 204 status to indicate that the event is not handled by this endpoint
-    //   return res.sendStatus(204);
-    // }
   } catch (error) {
     console.log(error);
   }
