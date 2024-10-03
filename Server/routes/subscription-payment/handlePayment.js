@@ -44,6 +44,8 @@ handlePaymentsRouter.post("/payment", [nowVerifyAmount], async (req, res) => {
 
   const { naira, planPrice } = bodyRequest;
 
+  console.log(" bodyRequest", bodyRequest);
+
   const amount = planPrice; // multiply by 100 to convert it to kobo
   const Paystack = PaystackAPI(PAYSTACK_SECRET);
   const creditsAwarded = getCreditsAwarded(planPrice, naira);

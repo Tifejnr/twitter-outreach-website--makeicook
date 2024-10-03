@@ -11,6 +11,12 @@ function isDataFromClientValid(allPricingPlansObj, planPrice) {
     (eachPrice) => eachPrice.planPrice === planPrice
   );
 
+  console.log(
+    "isNairaOwnValid || isDollarOwnValid",
+    isNairaOwnValid,
+    isDollarOwnValid
+  );
+
   if (isNairaOwnValid || isDollarOwnValid) return true;
   return false;
 }
