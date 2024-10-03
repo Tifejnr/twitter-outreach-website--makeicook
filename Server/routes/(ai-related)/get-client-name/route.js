@@ -413,9 +413,7 @@ return "Yes" or "No" only as response.
         );
 
         const nameToFreelancer =
-          isNameAHumanName == "No"
-            ? realNoNamesFoundResponse
-            : "Multiple names";
+          isNameAHumanName == "No" ? realNoNamesFoundResponse : "Names";
 
         // const nameToFreelancer = "Multiple names";
         // isNameAHumanName == "No"
