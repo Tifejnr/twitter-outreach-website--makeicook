@@ -15,7 +15,7 @@ export default function getCreditsAwarded(planPrice, naira) {
     (eachPrice) => eachPrice.planPrice === planPrice
   );
 
-  if (!isNairaOwnValid || !isDollarOwnValid) return false;
+  if (!isNairaOwnValid && !isDollarOwnValid) return false;
 
   let pricingPlanFound;
 
@@ -27,7 +27,7 @@ export default function getCreditsAwarded(planPrice, naira) {
     pricingPlanFound = isDollarOwnValid;
   }
 
-  const { perCreditInfo } = pricingPlanFound;
+  const { perCreditInfo, additionalCredits } = pricingPlanFound;
 
   let planPriceForCreditCalaucaltion;
 
