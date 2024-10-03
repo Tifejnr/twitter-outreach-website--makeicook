@@ -43,6 +43,8 @@ async function nowVerifyAmount(req, res, next) {
 
   const isPriceValid = isDataFromClientValid(allPricingPlansObj, planPrice);
 
+  console.log("isPriceValid", isPriceValid);
+
   if (isPriceValid) {
     next();
   } else {
