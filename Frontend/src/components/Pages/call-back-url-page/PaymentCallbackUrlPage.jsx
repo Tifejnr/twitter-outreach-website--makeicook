@@ -12,7 +12,7 @@ export default function PaymentCallbackUrlPage() {
   changeTabTitle(pagesTitleConstValues.paymentVerificationPage);
 
   useEffect(() => {
-    const duration = 10; // Total duration in seconds
+    const duration = 6; // Total duration in seconds
     const intervalTime = 100; // Time interval in milliseconds
     const steps = (duration * 1000) / intervalTime; // Total steps for 30 seconds
     const increment = 100 / steps; // Percentage increment per step
