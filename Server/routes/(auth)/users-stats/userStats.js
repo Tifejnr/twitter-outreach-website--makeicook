@@ -24,9 +24,12 @@ userStatsRouter.post("/", async (req, res) => {
 
     if (!accountUser) return { invalidToken: true };
 
-    console.log("accountUser", accountUser);
-
     accountUser.noOfTimesUsedAllTime++;
+
+    console.log(
+      "aaccountUser.noOfTimesUsedAllTime",
+      accountUser.noOfTimesUsedAllTime
+    );
 
     //check if  user has used it today to update daily stats
     const { hasItBeenUsedToday, lastFiveUsedDates } = accountUser;

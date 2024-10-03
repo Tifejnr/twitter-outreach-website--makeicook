@@ -253,12 +253,16 @@ getClientNameRouter.post("/", async (req, res) => {
           });
         }
 
-        // Join the remaining names back together
-        finalName = nameParts.join(", ");
+        if (nameParts.length == 1) {
+          finalName = nameParts[0];
+        } else {
+          // Join the remaining names back together
+          finalName = nameParts.join(", ");
+        }
       }
     }
 
-    console.log("returned name", finalName);
+    console.log("final name", finalName);
 
     //check if returned name is within freelancers feedback
 
