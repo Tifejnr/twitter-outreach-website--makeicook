@@ -55,7 +55,9 @@ webhookPaystackRouter.post("/", async (req, res) => {
       if (event == chargeSuccessEvent) {
         // console.log("custom_fields", custom_fields);
 
-        let { user_id, name, credits_Awarded, paid_For } = custom_fields[0];
+        const { user_id, name, credits_Awarded, paid_For } = custom_fields[0];
+
+        console.log("credits_Awarded", credits_Awarded);
 
         const { email } = customer;
 
