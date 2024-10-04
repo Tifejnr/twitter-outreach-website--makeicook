@@ -75,14 +75,18 @@ webhookPaystackRouter.post("/", async (req, res) => {
 
         // const credistAwardedNumber = extractNumber(credits_Awarded);
         //add the payed for credit to current users credits
-        const currentUserCredit = accountUser.credits;
+        let currentUserCredits = accountUser.credits;
+
+        if (!isFinite(currentUserCredits)) {
+          currentUserCredits = 0;
+        }
 
         console.log(
-          "currentUserCredit + credits_Awarded",
-          Number(currentUserCredit),
+          "currentUserCredits + credits_Awarded",
+          currentUserCredits,
           credits_Awarded
         );
-        const totalAccountCredits = currentUserCredit + credits_Awarded;
+        const totalAccountCredits = currentUserCredits + credits_Awarded;
         accountUser.credits = totalAccountCredits;
 
         //save user details
