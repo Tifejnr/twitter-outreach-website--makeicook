@@ -39,8 +39,9 @@ webhookPaystackRouter.post("/", async (req, res) => {
 
         const { user_id, name, credits_Awarded, amount_Paid } = custom_fields;
 
-        const objectId = user_id;
-        const idValue = objectId
+        console.log("user_id", user_id);
+
+        const idValue = user_id
           .toString()
           .replace('ObjectId("', "")
           .replace('")', "");
