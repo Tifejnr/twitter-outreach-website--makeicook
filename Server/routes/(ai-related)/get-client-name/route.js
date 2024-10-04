@@ -7,24 +7,21 @@ import clientPersonalityPromptsObj from "./clientPersonalityPromptsObj.js";
 // import getStraightAiResponse from "./get-ai-response/getStraightAiResponse.js";
 
 const keysObject = getSecretKeys();
-// const model = keysObject.aiModel;
-// const HF_TOKEN = keysObject.HF_TOKEN;
-// const hf = new HfInference(HF_TOKEN);
 
 import { HfInference } from "@huggingface/inference";
 import countStringOccurrences from "./utils/is-client-a-team/countStringOccurences.js";
 import checkIfNameAndTeamVariationAppearAtEqualTime from "./utils/is-client-a-team/checkIfNameAndTeamVariationAppearAtEqualTime.js";
 import getTotalWordsLength from "./utils/getTotalWordsLength.js";
 import forbiddenNamesInclusionArray from "./forbiddenNamesInclusion.js";
+import areAllNamesForbidden from "./utils/are-all-names-forbidden/areAllNamesForbidden.js";
+import findCommonName from "./utils/find-common-name/findCommonName.js";
+import areAllNamesHumanNames from "./utils/are-all-names-forbidden/areAllNamesHumanNames.js";
 
-// import getSecretKeys from "../../../../envVariables/envVariables";
-
-// const keysObject = getSecretKeys();
 const model = keysObject.aiModel;
 const HF_TOKEN = keysObject.HF_TOKEN;
 const hf = new HfInference(HF_TOKEN);
 
-async function getStraightAiResponse(
+export async function getStraightAiResponse(
   promptInstruction,
   prompt,
   customTemperature
@@ -64,7 +61,7 @@ Is any of the names below a human name ?
 
 `;
 
-const realNoNamesFoundResponse = "No names found";
+export const realNoNamesFoundResponse = "No names found";
 const theyAreCompanyText = "Hi there";
 const helloText = realNoNamesFoundResponse;
 const noNamesFoundText = "(no names found)";
@@ -229,36 +226,10 @@ getClientNameRouter.post("/", async (req, res) => {
         });
       }
       if (finalName.includes(",")) {
-        // Split the names by comma and trim any extra spaces
-        let nameParts = finalName.split(",").map((name) => name.trim());
+        const incommingFinalName = finalName;
+        finalName = areAllNamesForbidden(incommingFinalName);
 
-        // Filter out any forbidden names
-        nameParts = nameParts.filter((name) => {
-          const lowerName = name.toLowerCase();
-          return !forbiddenNamesInclusionArray.some((forbiddenName) => {
-            const escapedForbiddenName = forbiddenName
-              .toLowerCase()
-              .replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-            const regex = new RegExp(`\\b${escapedForbiddenName}\\b`);
-            return regex.test(lowerName);
-          });
-        });
-
-        console.log(" nameParts", nameParts);
-
-        if (nameParts.length == 0) {
-          return res.json({
-            clientNameResponse: realNoNamesFoundResponse,
-            clientPersonality,
-          });
-        }
-
-        if (nameParts.length == 1) {
-          finalName = nameParts[0];
-        } else {
-          // Join the remaining names back together
-          finalName = nameParts.join(", ");
-        }
+        console.log("checked forbiddent final name result", finalName);
       }
     }
 
@@ -283,6 +254,7 @@ getClientNameRouter.post("/", async (req, res) => {
         clientPersonality,
       });
     }
+
     if (isFinalNamePresentInFeedback == "No" && finalName.includes(",")) {
       console.log(
         "isFinalNamePresentInFeedback is no when multiple names",
@@ -407,19 +379,32 @@ return "Yes" or "No" only as response.
           return;
         }
 
-        const isNameAHumanName = await getStraightAiResponse(
-          confirmNamePrompt,
-          finalName
-        );
+        //check if each of the names are human names.
+        const returnedHumanNames = await areAllNamesHumanNames(finalName);
 
-        const nameToFreelancer =
-          isNameAHumanName == "No" ? realNoNamesFoundResponse : "Names";
+        if (returnedHumanNames == realNoNamesFoundResponse) {
+          console.log("none of  comma seperated name is human", finalName);
+          return res.json({
+            clientNameResponse: returnedHumanNames,
+            clientPersonality,
+          });
+        }
+        //only one name is human name
+        if (!returnedHumanNames.includes(",")) {
+          console.log(
+            "none of  comma seperated name is human,nly one name is human name",
+            finalName
+          );
+          return res.json({
+            clientNameResponse: returnedHumanNames,
+            clientPersonality,
+          });
+        }
 
-        // const nameToFreelancer = "Multiple names";
-        // isNameAHumanName == "No"
-        //   ? realNoNamesFoundResponse
+        const nameToFreelancer = "Names";
+
         console.log(
-          "nameToFreelancer",
+          "nameToFreelancer with comma for sure",
           nameToFreelancer,
           "Multiple names found",
           finalName
@@ -427,7 +412,7 @@ return "Yes" or "No" only as response.
 
         return res.json({
           clientNameResponse: nameToFreelancer,
-          multipleNames: isNameAHumanName == "No" ? "" : finalName,
+          multipleNames: finalName,
           clientPersonality,
         });
       }
@@ -496,32 +481,6 @@ return "Yes" or "No" only as response.
 //   const words = text.trim().split(/\s+/); // \s+ matches one or more spaces
 //   return words.length > 3;
 // }
-function findCommonName(names) {
-  const namesWithHypghenRemoved = names.replace(/-/g, "");
-
-  const passedArray = [];
-
-  const namesArray = namesWithHypghenRemoved.split(", ");
-
-  // Find the shortest name in the array and remove both commas and hyphens
-  let shortest = namesArray.reduce((a, b) => (a.length <= b.length ? a : b));
-  let longestName = namesArray.reduce((a, b) => (a.length >= b.length ? a : b));
-
-  const namesArrayLength = namesArray.length;
-
-  for (let i = 0; i < namesArray.length; i++) {
-    const currentName = namesArray[i].toLowerCase();
-
-    if (currentName.includes(shortest.toLowerCase())) {
-      passedArray.push(1);
-    }
-  }
-
-  if (passedArray.length == namesArrayLength) {
-    return longestName;
-  }
-  return names;
-}
 
 function checkNameInText(name, incomingText) {
   // Step 1: Ensure the name is only separated by a comma (with optional spaces around it)
