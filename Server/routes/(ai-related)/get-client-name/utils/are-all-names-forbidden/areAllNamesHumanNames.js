@@ -1,10 +1,9 @@
 import {
   getStraightAiResponse,
   realNoNamesFoundResponse,
-  confirmNamePrompt,
 } from "../../route.js";
 
-export default async function areAllNamesHumanNames(finalName) {
+export default async function areAllNamesHumanNames(finalName, prompt) {
   // Split the names by comma and trim any extra spaces
   let nameParts = finalName.split(",").map((name) => name.trim());
 
@@ -13,9 +12,17 @@ export default async function areAllNamesHumanNames(finalName) {
 
   // Loop through the nameParts array
   for (let name of nameParts) {
+    const confirmNamePrompt = `
+    Return "Yes" or "No" only.
+    
+    Based on the context below
+    
+    Is the ${name} below a human name ?
+`;
+
     const isNameAHumanName = await getStraightAiResponse(
       confirmNamePrompt,
-      name
+      prompt
     );
 
     // Check if the response doesn't include "No"

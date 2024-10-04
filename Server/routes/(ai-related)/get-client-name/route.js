@@ -380,7 +380,10 @@ return "Yes" or "No" only as response.
         }
 
         //check if each of the names are human names.
-        const returnedHumanNames = await areAllNamesHumanNames(finalName);
+        const returnedHumanNames = await areAllNamesHumanNames(
+          finalName,
+          prompt
+        );
 
         if (returnedHumanNames == realNoNamesFoundResponse) {
           console.log("none of  comma seperated name is human", finalName);
