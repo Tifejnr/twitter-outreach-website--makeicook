@@ -1,4 +1,7 @@
-import { getStraightAiResponse, realNoNamesFoundResponse } from "../../route";
+import {
+  getStraightAiResponse,
+  realNoNamesFoundResponse,
+} from "../../route.js";
 
 export default async function areAllNamesHumanNames(finalName) {
   // Split the names by comma and trim any extra spaces

@@ -1,5 +1,5 @@
-import forbiddenNamesInclusionArray from "../../forbiddenNamesInclusion";
-import { realNoNamesFoundResponse } from "../../route";
+import forbiddenNamesInclusionArray from "../../forbiddenNamesInclusion.js";
+import { realNoNamesFoundResponse } from "../../route.js";
 
 export default function areAllNamesForbidden(finalName) {
   // Split the names by comma and trim any extra spaces
