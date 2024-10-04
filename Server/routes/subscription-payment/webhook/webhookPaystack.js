@@ -37,7 +37,8 @@ webhookPaystackRouter.post("/", async (req, res) => {
 
         const { paid_at, channel } = data;
 
-        const { user_id, name, credits_Awarded, amount_Paid } = custom_fields;
+        const { user_id, name, credits_Awarded, amount_Paid } =
+          custom_fields[0];
 
         console.log("custom_fields", custom_fields);
 
