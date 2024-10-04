@@ -71,7 +71,7 @@ handlePaymentsRouter.post("/payment", [nowVerifyAmount], async (req, res) => {
           paid_For: `${creditsAwarded} credits`,
           credits_Awarded: creditsAwarded,
           amount_Paid: planPrice,
-          user_id,
+          user_id: user_id,
           transReference: customTransactionReference,
         },
       ],
