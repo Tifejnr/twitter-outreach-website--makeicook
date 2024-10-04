@@ -57,8 +57,6 @@ webhookPaystackRouter.post("/", async (req, res) => {
 
         const { user_id, name, credits_Awarded, paid_For } = custom_fields[0];
 
-        console.log("credits_Awarded", credits_Awarded);
-
         const { email } = customer;
 
         const accountUser = await user.findById(user_id);
@@ -70,7 +68,13 @@ webhookPaystackRouter.post("/", async (req, res) => {
 
         //add the payed for credit to current users credits
         const currentUserCredit = accountUser.credits;
-        accountUser.credits = currentUserCredit + credits_Awarded;
+
+        console.log(
+          "currentUserCredit + credits_Awarded",
+          currentUserCredit + credits_Awarded
+        );
+        const totalAccountCredits = currentUserCredit + credits_Awarded;
+        accountUser.credits = totalAccountCredits;
 
         //save user details
         await accountUser.save();
