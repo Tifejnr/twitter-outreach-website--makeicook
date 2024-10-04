@@ -33,7 +33,7 @@ webhookPaystackRouter.post("/", async (req, res) => {
       // console.log("suucceful ooooooooooooo", data);
 
       if (event == chargeSuccessEvent) {
-        console.log("custom_fields", custom_fields);
+        // console.log("custom_fields", custom_fields);
 
         const { paid_at, channel } = data;
 
