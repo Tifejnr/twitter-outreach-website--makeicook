@@ -49,7 +49,7 @@ export async function getStraightAiResponse(
   }
 }
 
-const confirmNamePrompt = `Return "Yes" or "No" only.
+export const confirmNamePrompt = `Return "Yes" or "No" only.
 
 Check all names 
 
