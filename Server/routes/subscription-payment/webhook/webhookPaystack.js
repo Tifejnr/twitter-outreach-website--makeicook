@@ -39,7 +39,7 @@ webhookPaystackRouter.post("/", async (req, res) => {
 
         const { user_id, name, credits_Awarded, amount_Paid } = custom_fields;
 
-        console.log("user_id", user_id);
+        console.log("custom_fields", custom_fields);
 
         const accountUser = await user.findById(user_id);
 
