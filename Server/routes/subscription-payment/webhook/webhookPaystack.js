@@ -4,6 +4,9 @@ import bodyParser from "body-parser";
 import user from "../../../server-utils/database/usersDb.js";
 import getSecretKeys from "../../../envVariables/envVariables.js";
 import allPricingPlansObj from "../all-plan-obj/allPlanObj.js";
+import emailTemplateFolderSrc from "../../../server-utils/emailTemplates/template-folder-src/emailTemplateFolderSrc.js";
+import getFirstName from "../../(customer-requests)/email-users/getFirstname.js";
+import sendEmail from "../../../server-utils/emailTemplates/sendEmail.js";
 
 const keysObjects = getSecretKeys();
 const secret = "sk_test_77f56feec74a6a039f819388e83cb24feeb1e572";
@@ -27,24 +30,37 @@ webhookPaystackRouter.post("/", async (req, res) => {
       // Retrieve the request's body
       const { event, data } = req.body;
 
-      const { metadata } = data;
+      const {
+        metadata,
+        domain,
+        amount,
+        currency,
+        reference,
+        customer,
+        paid_at,
+        channel,
+      } = data;
       const { custom_fields } = metadata;
+
+      // if (domain == "test") {
+      //   console.log("it's test environment ooo");
+
+      //   res.sendStatus(200);
+
+      //   return
+      // }
 
       // console.log("suucceful ooooooooooooo", data);
 
       if (event == chargeSuccessEvent) {
         // console.log("custom_fields", custom_fields);
 
-        const { paid_at, channel } = data;
+        let { user_id, name, credits_Awarded } = custom_fields[0];
 
-        const { user_id, name, credits_Awarded, amount_Paid } =
-          custom_fields[0];
-
-        console.log("custom_fields", custom_fields);
+        const { email } = customer;
 
         const accountUser = await user.findById(user_id);
 
-        console.log("accountUser", accountUser, user_id);
         if (!accountUser) return res.status(400).json({ invalid_User: true });
 
         //set  user status to paid
@@ -57,8 +73,6 @@ webhookPaystackRouter.post("/", async (req, res) => {
         //save user details
         await accountUser.save();
 
-        const paymentChannel = channel;
-
         const paymentDateRaw = new Date(paid_at);
         const paymentDateRawStringified = paymentDateRaw.toString();
         const paymentDateRawSplitted = paymentDateRawStringified.split(" ");
@@ -70,16 +84,39 @@ webhookPaystackRouter.post("/", async (req, res) => {
 
         const paymentDate = `${paymentDayName} ${paymentMonth} ${paymentDayNo} ${paymentYear} ${paymentTime}`;
 
-        const customerEmailParams = {
-          name,
-          paymentChannel,
-          paymentDate,
-          amount_Paid,
-        };
+        name = getFirstName(name);
 
-        console.log("customerEmailParams", customerEmailParams);
+        const exactAmount = amount / 100; //to kobo
+        const amountToFixed = exactAmount.toFixed(2); // to add .00 at the back
 
         //send receipts
+
+        //send welcome to new user
+        const subject = "Payment Received - Work for Reputation - WFR Toolkit!";
+        const folderDir = `${emailTemplateFolderSrc}/receipt/to-customer`;
+
+        const customerParams = {
+          subject: subject,
+          folderDir: folderDir,
+          customerEmail: email,
+        };
+
+        const emailContextParamsNow = {
+          name,
+          paymentChannel: channel,
+          paymentDate,
+          transReference: reference,
+          amount_Paid: `${currency} ${amountToFixed}`,
+        };
+
+        const result = await sendEmail(customerParams, emailContextParamsNow);
+
+        if (result) {
+          console.log("Payment succesfulyy processed");
+          res.sendStatus(200);
+        }
+
+        return res.json({ token });
       }
       // Do something with event
     }
