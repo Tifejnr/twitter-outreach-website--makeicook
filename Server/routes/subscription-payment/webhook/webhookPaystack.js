@@ -55,7 +55,7 @@ webhookPaystackRouter.post("/", async (req, res) => {
       if (event == chargeSuccessEvent) {
         // console.log("custom_fields", custom_fields);
 
-        let { user_id, name, credits_Awarded } = custom_fields[0];
+        let { user_id, name, credits_Awarded, paid_For } = custom_fields[0];
 
         const { email } = customer;
 
@@ -84,8 +84,6 @@ webhookPaystackRouter.post("/", async (req, res) => {
 
         const paymentDate = `${paymentDayName} ${paymentMonth} ${paymentDayNo} ${paymentYear} ${paymentTime}`;
 
-        name = getFirstName(name);
-
         const exactAmount = amount / 100; //to kobo
         const amountToFixed = exactAmount.toFixed(2); // to add .00 at the back
 
@@ -106,6 +104,7 @@ webhookPaystackRouter.post("/", async (req, res) => {
           paymentChannel: channel,
           paymentDate,
           transReference: reference,
+          paid_For,
           amount_Paid: `${currency} ${amountToFixed}`,
         };
 
@@ -114,9 +113,11 @@ webhookPaystackRouter.post("/", async (req, res) => {
         if (result) {
           console.log("Payment succesfulyy processed");
           res.sendStatus(200);
+
+          return;
         }
 
-        return res.json({ token });
+        return res.sendStatus(200);
       }
       // Do something with event
     }
