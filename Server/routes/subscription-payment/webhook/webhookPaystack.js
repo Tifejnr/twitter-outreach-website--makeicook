@@ -65,13 +65,22 @@ webhookPaystackRouter.post("/", async (req, res) => {
 
         //set  user status to paid
         accountUser.isPaid = true;
+        // function extractNumber(str) {
+        //   // Use a regular expression to remove all non-digit characters
+        //   const numberOnly = str.replace(/\D/g, "");
 
+        //   // Convert the resulting string to a number
+        //   return Number(numberOnly);
+        // }
+
+        // const credistAwardedNumber = extractNumber(credits_Awarded);
         //add the payed for credit to current users credits
         const currentUserCredit = accountUser.credits;
 
         console.log(
           "currentUserCredit + credits_Awarded",
-          currentUserCredit + credits_Awarded
+          Number(currentUserCredit),
+          credits_Awarded
         );
         const totalAccountCredits = currentUserCredit + credits_Awarded;
         accountUser.credits = totalAccountCredits;
