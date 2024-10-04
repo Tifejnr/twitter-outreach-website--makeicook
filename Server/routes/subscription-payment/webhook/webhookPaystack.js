@@ -30,7 +30,7 @@ webhookPaystackRouter.post("/", async (req, res) => {
       const { metadata } = data;
       const { custom_fields } = metadata;
 
-      console.log("suucceful ooooooooooooo", data);
+      // console.log("suucceful ooooooooooooo", data);
 
       if (event == chargeSuccessEvent) {
         console.log("custom_fields", custom_fields);
