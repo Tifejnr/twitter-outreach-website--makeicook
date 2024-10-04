@@ -65,15 +65,7 @@ webhookPaystackRouter.post("/", async (req, res) => {
 
         //set  user status to paid
         accountUser.isPaid = true;
-        // function extractNumber(str) {
-        //   // Use a regular expression to remove all non-digit characters
-        //   const numberOnly = str.replace(/\D/g, "");
 
-        //   // Convert the resulting string to a number
-        //   return Number(numberOnly);
-        // }
-
-        // const credistAwardedNumber = extractNumber(credits_Awarded);
         //add the payed for credit to current users credits
         let currentUserCredits = accountUser.credits;
 
@@ -106,9 +98,7 @@ webhookPaystackRouter.post("/", async (req, res) => {
         const exactAmount = amount / 100; //to kobo
         const amountToFixed = exactAmount.toFixed(2); // to add .00 at the back
 
-        //send receipts
-
-        //send welcome to new user
+        //send payment received receipts
         const subject = "Payment Received - Work for Reputation - WFR Toolkit!";
         const folderDir = `${emailTemplateFolderSrc}/receipt/to-customer`;
 
