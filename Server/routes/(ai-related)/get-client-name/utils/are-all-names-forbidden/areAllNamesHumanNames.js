@@ -15,9 +15,7 @@ export default async function areAllNamesHumanNames(finalName, prompt) {
     const confirmNamePrompt = `
     Return "Yes" or "No" only.
     
-    Based on the context below
-    
-    Is the ${name} below a human name ?
+    Is ${name} found as a given name in any country in the world ?
 `;
 
     const isNameAHumanName = await getStraightAiResponse(
