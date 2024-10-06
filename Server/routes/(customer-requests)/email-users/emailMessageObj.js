@@ -1,5 +1,5 @@
 const message1 = `
-We’re excited to introduce a powerful new feature on WFR Toolkit extension that will help you better assess clients and tailor your proposals more effectively!
+Version 3.1 of the extension requires 
 `;
 
 const message2 = `Now, before accepting a project, you can read what other freelancers have said about the client. This feedback helps you get a clear idea of whether a client is great to work with or not. 
@@ -27,7 +27,8 @@ const message = {
   message7,
 };
 
-const emailHeading = `Boost your proposals with insights from other freelancers`;
+const emailHeading = `Important: Please Re-enable the WFR Toolkit Extension`;
+// const emailHeading = `Boost your proposals with insights from other freelancers`;
 
 const emailMessageObj = {
   emailHeading,

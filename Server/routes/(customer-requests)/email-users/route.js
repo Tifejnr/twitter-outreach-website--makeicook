@@ -15,16 +15,16 @@ async function sendMailToMultipleUsers() {
   if (allUsersThatHaveUsedExtensionOnce.length < 1)
     return console.log("no user found");
 
-  const lastRegisteredUser = allUsers[allUsers.length - 1];
+  // const lastRegisteredUser = allUsers[allUsers.length - 1];
 
-  console.log("lastRegisteredUser", lastRegisteredUser);
+  // console.log("lastRegisteredUser", lastRegisteredUser);
 
-  const currentUserNow = {
-    email: "lilblessingjnr@gmail.com",
-    name: "Adedewe Boluwatife",
-  };
+  // const currentUserNow = {
+  //   email: "lilblessingjnr@gmail.com",
+  //   name: "Adedewe Boluwatife",
+  // };
 
-  sendMailFunction(currentUserNow);
+  // sendMailFunction(currentUserNow);
 
   // const indexOfLastMessaged = allUsersThatHaveUsedExtensionOnce.findIndex(
   //   (user) => user.email === "Lawrencejoy548@gmail.com"
@@ -47,21 +47,20 @@ async function sendMailToMultipleUsers() {
   //   ]
   // );
 
-  // runWithDelay(allUsersThatHaveUsedExtensionOnce, sendMailFunction);
+  runWithDelay(allUsersThatHaveUsedExtensionOnce, sendMailFunction);
 }
 
 async function sendMailFunction(user) {
   const { email, name } = user;
 
   const isEmailInValid = invalidEmailsListArray.find((forbiddenEmail) => {
-    const escapedEmail = forbiddenEmail
-      .toLowerCase()
-      .replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const regex = new RegExp(`\\b${escapedEmail}\\b`);
-    return regex.test(email.toLowerCase());
+    return email == forbiddenEmail;
   });
 
-  if (isEmailInValid) return console.log("invalide email", email);
+  if (isEmailInValid) {
+    console.log("invalid email", email);
+    return;
+  }
 
   const firstNameNow = getFirstName(name);
 
