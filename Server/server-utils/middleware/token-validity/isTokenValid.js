@@ -7,7 +7,8 @@ export default async function isTokenValid(bodyRequest) {
   const keysObject = getSecretKeys();
   const JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
 
-  const { fromExtension, isJssHomePage, prompt, jobId } = bodyRequest;
+  const { fromExtension, isJssHomePage, prompt, jobId, currentUrl } =
+    bodyRequest;
 
   let token;
 
@@ -63,7 +64,7 @@ export default async function isTokenValid(bodyRequest) {
         "accountUser.jobsToBeCompleted",
         accountUser.jobsToBeCompleted,
         accountUser.email,
-        jobId
+        currentUrl
       );
     }
 
