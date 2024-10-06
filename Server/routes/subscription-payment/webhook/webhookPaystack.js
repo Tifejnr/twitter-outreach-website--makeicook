@@ -73,12 +73,10 @@ webhookPaystackRouter.post("/", async (req, res) => {
           currentUserCredits = 0;
         }
 
-        console.log(
-          "currentUserCredits + credits_Awarded",
-          currentUserCredits,
-          credits_Awarded
-        );
         const totalAccountCredits = currentUserCredits + credits_Awarded;
+
+        console.log("totalAccountCredits", totalAccountCredits);
+
         accountUser.credits = totalAccountCredits;
 
         //save user details

@@ -47,6 +47,7 @@ import userStatsRouter from "./routes/(auth)/users-stats/userStats.js";
 import deleteUsersWithEmail from "./routes/(auth)/users/delete-users/deleteUserWithEmail.js";
 import handlePaymentsRouter from "./routes/subscription-payment/handlePayment.js";
 import webhookPaystackRouter from "./routes/subscription-payment/webhook/webhookPaystack.js";
+import accountDetailsRouter from "./routes/(auth)/users/account-details/accountDetails.js";
 
 // deleteUsersWithEmail("akovahh@gmail.com");
 
@@ -99,6 +100,7 @@ app.use(
   sendEmailVerificationCodeRouter
 );
 app.use("/api/users", validateOrigin, signUpRouter);
+app.use("/api/account-details", validateOrigin, accountDetailsRouter);
 app.use("/api/auth", validateOrigin, signInRouter);
 app.use("/api/pricing", validateOrigin, handlePaymentsRouter);
 app.use("/api/process-usage", validateOrigin, userStatsRouter);
