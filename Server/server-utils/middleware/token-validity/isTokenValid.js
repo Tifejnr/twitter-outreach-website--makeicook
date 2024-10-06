@@ -64,6 +64,7 @@ export default async function isTokenValid(bodyRequest) {
         "accountUser.jobsToBeCompleted",
         accountUser.jobsToBeCompleted,
         accountUser.email,
+        jobId,
         currentUrl
       );
     }
