@@ -28,8 +28,16 @@ accountDetailsRouter.post("/", async (req, res) => {
     const accountUser = await user.findById(decodedPayload._id);
 
     if (!accountUser) return { invalidToken: true };
+    const { name, email, credits } = accountUser;
+
+    const detailsToSendToClient = {
+      name,
+      email,
+      credits,
+    };
+
     return res.json({
-      accountDetails: accountUser,
+      accountDetails: detailsToSendToClient,
     });
   } catch (error) {
     console.log("error,", error);
