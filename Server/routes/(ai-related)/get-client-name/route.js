@@ -204,8 +204,6 @@ getClientNameRouter.post("/", async (req, res) => {
       clientNameResponse = clientNameResponseRaw;
     }
 
-    console.log("clientNameResponseRaw", clientNameResponse);
-
     let finalName = findCommonName(clientNameResponse);
 
     const isForbiddenNameIncludedIn = forbiddenNamesInclusionArray.find(
@@ -218,7 +216,7 @@ getClientNameRouter.post("/", async (req, res) => {
       }
     );
 
-    if (finalName == "clint" || finalName == "" || isForbiddenNameIncludedIn) {
+    if (finalName == "clint" || isForbiddenNameIncludedIn) {
       //if it's single name
       if (!finalName.includes(",")) {
         console.log("name includes forbidden keywords or empty", finalName);

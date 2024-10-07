@@ -20,13 +20,12 @@ export default function areAllNamesForbidden(finalName) {
   console.log("nameParts", nameParts);
 
   if (nameParts.length == 0) {
-    finalName = realNoNamesFoundResponse;
+    return realNoNamesFoundResponse;
   }
 
   if (nameParts.length == 1) {
     finalName = nameParts[0];
   } else {
-    // Join the remaining names back together
     finalName = nameParts.join(", ");
   }
 
