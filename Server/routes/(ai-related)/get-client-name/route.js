@@ -191,8 +191,6 @@ getClientNameRouter.post("/", async (req, res) => {
       0.1
     );
 
-    console.log("clientNameResponseRaw", clientNameResponseRaw);
-
     const totalWordsLength = getTotalWordsLength(clientNameResponseRaw);
 
     let clientNameResponse;
@@ -205,6 +203,8 @@ getClientNameRouter.post("/", async (req, res) => {
     } else {
       clientNameResponse = clientNameResponseRaw;
     }
+
+    console.log("clientNameResponseRaw", clientNameResponse);
 
     let finalName = findCommonName(clientNameResponse);
 
