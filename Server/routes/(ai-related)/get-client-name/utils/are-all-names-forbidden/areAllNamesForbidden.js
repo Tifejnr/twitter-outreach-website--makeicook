@@ -24,10 +24,8 @@ export default function areAllNamesForbidden(finalName) {
   }
 
   if (nameParts.length == 1) {
-    finalName = nameParts[0];
+    return nameParts[0];
   } else {
-    finalName = nameParts.join(", ");
+    return nameParts.join(", ");
   }
-
-  return finalName;
 }
