@@ -523,8 +523,10 @@ const connectionText = "connection";
 const No1Text = "No1";
 const peasureText = "peasure";
 const heText = "he";
+const sirText = "sir";
 
 const forbiddenNamesInclusionArray = [
+  sirText,
   partnersText,
   heText,
   peasureText,
