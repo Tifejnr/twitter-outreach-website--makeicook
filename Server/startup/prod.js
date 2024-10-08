@@ -12,6 +12,7 @@ const setupMiddleware = (app) => {
           "chrome-extension://chpmkkhcpfhjdkkeiggiicfejnkhcidb",
           "https://www.google-analytics.com",
           "https://www.youtube.com",
+          "https://i.ibb.co",
         ],
         scriptSrc: [
           "'self'",
@@ -19,6 +20,11 @@ const setupMiddleware = (app) => {
           "'unsafe-inline'",
         ],
         frameSrc: ["'self'", "https://www.youtube.com"],
+        imgSrc: [
+          "'self'",
+          "data:", // Allow inline images or data URIs
+          "https://i.ibb.co", // Allow external images from i.ibb.co
+        ],
       },
     })
   );

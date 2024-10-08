@@ -219,7 +219,7 @@ getClientNameRouter.post("/", async (req, res) => {
     if (finalName == "clint" || isForbiddenNameIncludedIn) {
       //if it's single name
       if (!finalName.includes(",")) {
-        console.log("name includes forbidden keywords or empty", finalName);
+        console.log("name includes forbidden keywords:", finalName);
         return res.json({
           clientNameResponse: realNoNamesFoundResponse,
           clientPersonality,
