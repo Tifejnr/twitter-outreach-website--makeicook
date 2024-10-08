@@ -28,12 +28,14 @@ export default async function orderOfMultipleNames(finalName, prompt) {
     return nameObjWithOccurenceArray[0];
   } else {
     // Join the remaining names back together
-    nameObjWithOccurenceArray = sortArrayAscending(nameObjWithOccurenceArray);
-    console.log("nameObjWithOccurenceArray", nameObjWithOccurenceArray);
-    return nameObjWithOccurenceArray.join(", ");
+    const sortedNameArray = sortByCharactersBeforeFirst(
+      nameObjWithOccurenceArray
+    );
+    console.log("nameObjWithOccurenceArray", sortedNameArray);
+    return sortedNameArray.join(", ");
   }
 }
 
-function sortArrayAscending(arr) {
+function sortByCharactersBeforeFirst(arr) {
   return arr.sort((a, b) => a.charactersBeforeFirst - b.charactersBeforeFirst);
 }
