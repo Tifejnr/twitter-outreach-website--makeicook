@@ -29,6 +29,11 @@ export default async function orderOfMultipleNames(finalName, prompt) {
     return nameObjWithOccurenceArray[0];
   } else {
     // Join the remaining names back together
+    nameObjWithOccurenceArray = sortArrayAscending(nameObjWithOccurenceArray);
     return nameObjWithOccurenceArray.join(", ");
   }
+}
+
+function sortArrayAscending(arr) {
+  return arr.sort((a, b) => a.index - b.index);
 }
