@@ -13,7 +13,7 @@ const basicPlanObj = {
   planName: "Standard",
   perCreditInfo: 10,
   planCreditsAmount: 3000,
-  planPrice: 4900,
+  planPrice: 500,
   suitabilityTimeUsage: "less than 10",
   naira: true,
   noOfDailyJobsItCanBeUsedToApplyTo: 10,
