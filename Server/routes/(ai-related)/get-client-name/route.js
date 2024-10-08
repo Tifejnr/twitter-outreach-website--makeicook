@@ -386,6 +386,8 @@ return "Yes" or "No" only as response.
           prompt
         );
 
+        console.log("returnedHumanNames", returnedHumanNames);
+
         if (returnedHumanNames == realNoNamesFoundResponse) {
           console.log("none of  comma seperated name is human", finalName);
           return res.json({
@@ -393,6 +395,7 @@ return "Yes" or "No" only as response.
             clientPersonality,
           });
         }
+
         //only one name is human name
         if (!returnedHumanNames.includes(",")) {
           console.log(
