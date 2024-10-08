@@ -327,7 +327,7 @@ return "Yes" or "No" only as response.
       noOfTimeTeamNameWasFound
     );
 
-    if (isItATeamNameResponse || doesTeamNameAppearMoreThanOnce) {
+    if (isItATeamNameResponse) {
       console.log(" isItATeamNameResponse", isItATeamNameResponse, finalName);
       return res.json({
         clientNameResponse:
