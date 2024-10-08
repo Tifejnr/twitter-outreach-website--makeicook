@@ -1,6 +1,6 @@
 export default function getOccurenceNoAndFirstXtersNo(statement, substring) {
-  // Find all occurrences of the substring in the statement
-  let regex = new RegExp(substring, "g");
+  // Find all occurrences of the substring in the statement (case insensitive)
+  let regex = new RegExp(substring, "gi"); // Added 'i' flag for case insensitivity
   let matches = [...statement.matchAll(regex)];
 
   // Number of times the substring was found

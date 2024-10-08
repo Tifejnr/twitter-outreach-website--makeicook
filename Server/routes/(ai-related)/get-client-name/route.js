@@ -17,6 +17,7 @@ import areAllNamesForbidden from "./utils/are-all-names-forbidden/areAllNamesFor
 import findCommonName from "./utils/find-common-name/findCommonName.js";
 import areAllNamesHumanNames from "./utils/are-all-names-forbidden/areAllNamesHumanNames.js";
 import orderOfMultipleNames from "./utils/order-of-multiple-names/orderOfMultipleNames.js";
+import getOccurenceNoAndFirstXtersNo from "./utils/order-of-multiple-names/getOccurenceNoAndFirstXtersNo.js";
 
 const model = keysObject.aiModel;
 const HF_TOKEN = keysObject.HF_TOKEN;
@@ -326,7 +327,7 @@ return "Yes" or "No" only as response.
       noOfTimeTeamNameWasFound
     );
 
-    if (isItATeamNameResponse) {
+    if (isItATeamNameResponse || doesTeamNameAppearMoreThanOnce) {
       console.log(" isItATeamNameResponse", isItATeamNameResponse, finalName);
       return res.json({
         clientNameResponse:
@@ -338,6 +339,19 @@ return "Yes" or "No" only as response.
         multipleNames: `${finalName} team`,
       });
     }
+
+    // const doesTeamNameAppearMoreThanOnce = getOccurenceNoAndFirstXtersNo(
+    //   prompt,
+    //   "team"
+    // );
+
+    // if (doesTeamNameAppearMoreThanOnce) {
+    //   console.log(" isItATeamNameResponse", isItATeamNameResponse, finalName);
+    //   return res.json({
+    //     clientNameResponse: "They're a team",
+    //     clientPersonality,
+    //   });
+    // }
 
     if (finalName.includes(",")) {
       const promptToCheckForSingleNames = `
