@@ -50,11 +50,11 @@ import webhookPaystackRouter from "./routes/subscription-payment/webhook/webhook
 import accountDetailsRouter from "./routes/(auth)/users/account-details/accountDetails.js";
 // import giveUsers50Credits from "./routes/(auth)/users-stats/reset-stats-daily/giveUsers50Credits.js";
 
-// runNow();
-// async function runNow() {
-//   // await giveUsers50Credits();
-//   await deleteUsersWithEmail("akovahh@gmail.com");
-// }
+runNow();
+async function runNow() {
+  // await giveUsers50Credits();
+  await deleteUsersWithEmail("akovahh@gmail.com");
+}
 
 // import sendMailToMultipleUsers from "./routes/(customer-requests)/email-users/route.js";
 // sendMailToMultipleUsers();
@@ -75,7 +75,7 @@ cron.schedule("0 0 * * *", () => {
 
 //webhook at the top
 
-app.use("/api/test/webhooks", webhookPaystackRouter);
+app.use("/api/webhooks", webhookPaystackRouter);
 const paystackWebhookCallbackUrl =
   "https://workforreputation.com/api/test/webhooks";
 

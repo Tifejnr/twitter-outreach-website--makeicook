@@ -9,8 +9,8 @@ import getFirstName from "../../(customer-requests)/email-users/getFirstname.js"
 import sendEmail from "../../../server-utils/emailTemplates/sendEmail.js";
 
 const keysObjects = getSecretKeys();
-const secret = "sk_test_77f56feec74a6a039f819388e83cb24feeb1e572";
-// const secret = keysObjects.PAYSTACK_SECRET;
+// const secret = "sk_test_77f56feec74a6a039f819388e83cb24feeb1e572";
+const secret = keysObjects.PAYSTACK_SECRET;
 
 const chargeSuccessEvent = "charge.success";
 

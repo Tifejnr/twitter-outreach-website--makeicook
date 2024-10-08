@@ -25,8 +25,8 @@ const handlePaymentsRouter = express.Router();
 handlePaymentsRouter.use(coookieParser());
 
 const keysObject = getSecretKeys();
-// const PAYSTACK_SECRET = keysObject.PAYSTACK_SECRET;
-const PAYSTACK_SECRET = "sk_test_77f56feec74a6a039f819388e83cb24feeb1e572";
+const PAYSTACK_SECRET = keysObject.PAYSTACK_SECRET;
+// const PAYSTACK_SECRET = "sk_test_77f56feec74a6a039f819388e83cb24feeb1e572";
 const JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
 
 handlePaymentsRouter.post("/payment", [nowVerifyAmount], async (req, res) => {
