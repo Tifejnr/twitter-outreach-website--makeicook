@@ -48,8 +48,13 @@ import deleteUsersWithEmail from "./routes/(auth)/users/delete-users/deleteUserW
 import handlePaymentsRouter from "./routes/subscription-payment/handlePayment.js";
 import webhookPaystackRouter from "./routes/subscription-payment/webhook/webhookPaystack.js";
 import accountDetailsRouter from "./routes/(auth)/users/account-details/accountDetails.js";
+// import giveUsers50Credits from "./routes/(auth)/users-stats/reset-stats-daily/giveUsers50Credits.js";
 
-// deleteUsersWithEmail("akovahh@gmail.com");
+// runNow();
+// async function runNow() {
+//   // await giveUsers50Credits();
+//   await deleteUsersWithEmail("akovahh@gmail.com");
+// }
 
 // import sendMailToMultipleUsers from "./routes/(customer-requests)/email-users/route.js";
 // sendMailToMultipleUsers();

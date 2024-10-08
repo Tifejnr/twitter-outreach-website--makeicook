@@ -25,10 +25,12 @@ userStatsRouter.post("/", async (req, res) => {
     if (!accountUser) return { invalidToken: true };
 
     accountUser.noOfTimesUsedAllTime++;
+    accountUser.credits--;
 
     console.log(
       "aaccountUser.noOfTimesUsedAllTime",
-      accountUser.noOfTimesUsedAllTime
+      accountUser.noOfTimesUsedAllTime,
+      accountUser.credits
     );
 
     //check if  user has used it today to update daily stats
