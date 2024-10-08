@@ -15,7 +15,7 @@ export default async function orderOfMultipleNames(finalName, prompt) {
     const { occurrences, charactersBeforeFirst } = nameOccurentObj;
 
     // Push formatted string into the array
-    nameObjWithOccurenceArray.push(`${name}-${occurrences}`);
+    nameObjWithOccurenceArray.push(`${name} -${occurrences}`);
 
     occurenceObjArray.push(nameOccurentObj);
   }
