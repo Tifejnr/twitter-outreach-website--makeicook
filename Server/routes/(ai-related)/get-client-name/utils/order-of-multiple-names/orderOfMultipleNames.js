@@ -22,7 +22,6 @@ export default async function orderOfMultipleNames(finalName, prompt) {
 
   // Log the valid name parts
   console.log("occurenceObjArray", occurenceObjArray);
-  console.log("nameObjWithOccurenceArray", nameObjWithOccurenceArray);
 
   // Handle different cases based on the length of valid names
   if (occurenceObjArray.length == 1) {
@@ -30,10 +29,11 @@ export default async function orderOfMultipleNames(finalName, prompt) {
   } else {
     // Join the remaining names back together
     nameObjWithOccurenceArray = sortArrayAscending(nameObjWithOccurenceArray);
+    console.log("nameObjWithOccurenceArray", nameObjWithOccurenceArray);
     return nameObjWithOccurenceArray.join(", ");
   }
 }
 
 function sortArrayAscending(arr) {
-  return arr.sort((a, b) => a.index - b.index);
+  return arr.sort((a, b) => a.charactersBeforeFirst - b.charactersBeforeFirst);
 }
