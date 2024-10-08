@@ -16,6 +16,7 @@ import forbiddenNamesInclusionArray from "./forbiddenNamesInclusion.js";
 import areAllNamesForbidden from "./utils/are-all-names-forbidden/areAllNamesForbidden.js";
 import findCommonName from "./utils/find-common-name/findCommonName.js";
 import areAllNamesHumanNames from "./utils/are-all-names-forbidden/areAllNamesHumanNames.js";
+import orderOfMultipleNames from "./utils/order-of-multiple-names/orderOfMultipleNames.js";
 
 const model = keysObject.aiModel;
 const HF_TOKEN = keysObject.HF_TOKEN;
@@ -380,7 +381,7 @@ return "Yes" or "No" only as response.
         }
 
         //check if each of the names are human names.
-        const returnedHumanNames = await areAllNamesHumanNames(
+        const returnedHumanNames = await orderOfMultipleNames(
           finalName,
           prompt
         );

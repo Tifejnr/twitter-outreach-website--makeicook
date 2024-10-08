@@ -1,4 +1,4 @@
-<html lang="en"></html>
+<html lang="en">
 
   <head>
     <meta charset="UTF-8" />
@@ -6,47 +6,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Verify Email - Work for Reputation</title>
     <style>
-      body { display: flex; flex-direction: column; justify-content: center; font-size: 15px; }
-      nav{
-        width: 140px;
-        height: 50px;
-        margin: auto;
-      }
-      section { padding: 0.5rem; } p { line-height: 1.5; font-weight: 400; font-size: 14px;
-      color: hsl(238, 29%, 16%); } #resetPasswordHref{ transform:
-      translate(-50%, -50%); left: 50%; } button { width: 60%; border-radius:
-      0.7rem; margin-top: 1rem; border: 0; padding: 1rem; font-size: 1.2rem;
-      text-align: center; justify-self: center; background-color: #14a800;
-      color: #fff; cursor: pointer; touch-action: manipulation; transition: 0.3s
-      ease-in-out; } button:hover { background-color: #70c964; }
-
-      b.verification-code{
-        font-size: 20px;
-        font-weight: 700;
+      body { display: flex; flex-direction: column; justify-content: center;
+      font-size: 15px; } nav{ width: 140px; height: 50px; margin: auto; }
+      section { padding: 0.5rem; } p { line-height: 1.5; font-weight: 400;
+      font-size: 14px; color: hsl(238, 29%, 16%); } #resetPasswordHref{
+      transform: translate(-50%, -50%); left: 50%; } button { width: 60%;
+      border-radius: 0.7rem; margin-top: 1rem; border: 0; padding: 1rem;
+      font-size: 1.2rem; text-align: center; justify-self: center;
+      background-color: #14a800; color: #fff; cursor: pointer; touch-action:
+      manipulation; transition: 0.3s ease-in-out; } button:hover {
+      background-color: #70c964; } b.verification-code{ font-size: 20px;
+      font-weight: 700; } .logo-container img { width: 150px; height: auto; /*
+      Maintain aspect ratio */ display: block; margin: 0 auto; /* Center logo */
       }
     </style>
   </head>
 
   <body>
     <nav>
-        <picture>
-            <img src="https://i.imghippo.com/files/qY5NU1727694513.jpg"  alt="wfr toolkit logo" >
-        </picture>
+      <tr class="logo-container">
+        <td align="center">
+          <img
+            src="https://i.ibb.co/6Yg7Qrc/new-wfr-email-logo.jpg"
+            alt="wfr toolkit logo"
+          />
+        </td>
+      </tr>
     </nav>
 
     <section>
 
       <p>
         Hi
-        {{name}}, <b class="verification-code">{{verificationCode}}</b> is your email verification code.
-     
+        {{name}},
+        <b class="verification-code">{{verificationCode}}</b>
+        is your email verification code.
+
       </p>
 
       <p>It will only be valid for the next <b>15 minutes.</b>. </p>
-      
+
       <p>After that, you’ll need to request a new one.</p>
 
-      
     </section>
   </body>
 
