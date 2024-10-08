@@ -1,7 +1,3 @@
-import {
-  getStraightAiResponse,
-  realNoNamesFoundResponse,
-} from "../../route.js";
 import getOccurenceNoAndFirstXtersNo from "./getOccurenceNoAndFirstXtersNo.js";
 
 export default async function orderOfMultipleNames(finalName, prompt) {
@@ -18,7 +14,8 @@ export default async function orderOfMultipleNames(finalName, prompt) {
 
     const { occurrences, charactersBeforeFirst } = nameOccurentObj;
 
-    nameObjWithOccurenceArray = `${name}- ${occurrences}`;
+    // Push formatted string into the array
+    nameObjWithOccurenceArray.push(`${name} - ${occurrences}`);
 
     occurenceObjArray.push(nameOccurentObj);
   }
@@ -34,6 +31,4 @@ export default async function orderOfMultipleNames(finalName, prompt) {
     // Join the remaining names back together
     return nameObjWithOccurenceArray.join(", ");
   }
-
-  //   return finalName;
 }
