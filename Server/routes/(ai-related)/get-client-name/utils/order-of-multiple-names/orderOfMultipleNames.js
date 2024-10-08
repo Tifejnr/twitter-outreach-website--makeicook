@@ -2,6 +2,7 @@ import {
   getStraightAiResponse,
   realNoNamesFoundResponse,
 } from "../../route.js";
+import getOccurenceNoAndFirstXtersNo from "./getOccurenceNoAndFirstXtersNo.js";
 
 export default async function orderOfMultipleNames(finalName, prompt) {
   // Split the names by comma and trim any extra spaces

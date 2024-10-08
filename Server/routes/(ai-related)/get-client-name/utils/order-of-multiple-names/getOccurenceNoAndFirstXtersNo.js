@@ -1,4 +1,4 @@
-function getOccurenceNoAndFirstXtersNo(statement, substring) {
+export default function getOccurenceNoAndFirstXtersNo(statement, substring) {
   // Find all occurrences of the substring in the statement
   let regex = new RegExp(substring, "g");
   let matches = [...statement.matchAll(regex)];
