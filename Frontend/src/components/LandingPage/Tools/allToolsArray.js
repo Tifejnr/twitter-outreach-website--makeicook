@@ -8,8 +8,9 @@ import { viewWordsClientSeeFirstInCoverLetterObj } from "./EachTool/viewWordsCli
 export const allToolsArray = [
   autoClientNameRetrievalObj,
   viewWordsClientSeeFirstInCoverLetterObj,
-  descriptionAboveCoverLetterObj,
   filterButtonObj,
   simulationFeatureObj,
+  descriptionAboveCoverLetterObj,
+
   // autoInsertClientFirstNameObj,
 ];

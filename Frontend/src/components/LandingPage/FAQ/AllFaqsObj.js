@@ -1,9 +1,35 @@
 export const faqArray = [
   {
+    question:
+      "Will using this extension guarantee winning more jobs on Upwork?",
+    answer:
+      "Yes, we have had testimonials of people who got jobs using this extension, here is a link to one : https://x.com/iamrichygold/status/1812123443082498074",
+  },
+
+  {
     question: "Do you provide Tutorials on how to use WFR toolkit extension?",
     answer: "Yes. WFR toolkit tutorials can be found by clicking: ",
     toolsTutorial: true,
   },
+
+  {
+    question: "Are there any costs associated with using this extension?",
+    answer:
+      "Yes, Credits are only deducted when you access the proposal submission page.",
+  },
+
+  {
+    question: "Do you have a Refund Policy?",
+    answer:
+      "No, we do not have a refund policy. You get 20 credits for free trial to test the tool before deciding to buy credits",
+  },
+
+  {
+    question:
+      "Will using this extension lead to my Upwork account being banned?",
+    answer: `No. We've received no reports of users experiencing issues with Upwork as a result of using our extension. It is designed to align with Upwork's terms and conditions, particularly in relation to ethical AI use. `,
+  },
+
   {
     question: "Is this extension secure?",
     answer:
@@ -24,13 +50,13 @@ export const faqArray = [
   {
     question: "Where can I install WFR Toolkit extension?",
     answer:
-      "It’s easy to add our extension to your Chrome browser. Just visit this link:",
+      "It's easy to add our extension to your Chrome browser. Just visit this link: ",
     extensionChromeStoreLink: true,
   },
 
   {
     question: "How do I update the extension?",
-    answer: `Once a new version of the extension is published to the Chrome Web Store, you will get automatically within 24 to 48 hours. You will notice auto opening of our extension homepage once the update takes place.  it’s as simple as that!`,
+    answer: `Once a new version of the extension is published to the Chrome Web Store, you will get automatically within 24 to 48 hours. It's as simple as that!`,
   },
 
   {
@@ -38,29 +64,6 @@ export const faqArray = [
     answer: `You need to create an account to log in. Click the SIGN-UP button, enter your email, and create a new password.`,
   },
 
-  {
-    question:
-      "Will using this extension guarantee winning more jobs on Upwork?",
-    answer:
-      "While we can’t promise an increase in job offers, our users have reported that their speed of proposal submissions have greatly increased when using WFR Toolkit extension. They have become the first to be seen by clients on Upwork",
-  },
-
-  {
-    question:
-      "Will using this extension lead to my Upwork account being banned?",
-    answer: `No. We’ve received no reports of users experiencing issues with Upwork as a result of using our extension. It is designed to align with Upwork’s terms and conditions, particularly in relation to ethical AI use. `,
-  },
-
-  // {
-  //   question: "Do you have a Refund Policy?",
-  //   answer: "No, we do not have a refund policy.",
-  // },
-
-  {
-    question: "Are there any costs associated with using this extension?",
-    answer:
-      "No costs associated for now, but we may add tools that will incure costs in the future. Be rest assured that the current features will always be free.",
-  },
   {
     question: "Where can I report an Issue?",
     answer:
