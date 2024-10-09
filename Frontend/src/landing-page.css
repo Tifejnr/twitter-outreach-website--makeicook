@@ -1244,7 +1244,7 @@ a .buy-credits-nav-home:hover {
 @media screen and (min-width: 580px) {
   .pricing-section header,
   .tools-section-cont header {
-    margin: 4rem 0;
+    margin: 5rem 0;
   }
 }
 
@@ -1254,6 +1254,7 @@ a .buy-credits-nav-home:hover {
   font-size: 3.3rem;
   letter-spacing: 0.3px;
   color: var(--green-primary);
+  line-height: 1.5;
 }
 
 .tools-section-cont h2 {
@@ -1468,7 +1469,7 @@ li img {
 
 .each-tool-section h2 {
   color: var(--dark-des-blue);
-  font-weight: 550;
+  font-weight: 400;
   text-align: left;
   line-height: 1.4;
   font-size: 1.8rem;

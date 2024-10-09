@@ -4,7 +4,7 @@ import allLinks from "../../auth/utils/links/allLinks";
 import PropTypes from "prop-types";
 
 const contactPageLink = "/contact-us";
-const toolsTutorialPage = "tools-tutorial";
+const toolsTutorialPage = "/tutorials";
 
 // Add PropTypes validation
 Blueprint.propTypes = {

@@ -56,7 +56,7 @@ export const faqArray = [
 
   {
     question: "How do I update the extension?",
-    answer: `Once a new version of the extension is published to the Chrome Web Store, you will get automatically within 24 to 48 hours. It's as simple as that!`,
+    answer: `Once a new version of the extension is published to the Chrome Web Store, you will get it automatically within 24 to 48 hours. It's as simple as that!`,
   },
 
   {

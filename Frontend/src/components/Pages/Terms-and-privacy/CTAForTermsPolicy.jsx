@@ -8,7 +8,7 @@ CTAForTermsPolicy.propTypes = {
 export default function CTAForTermsPolicy(props) {
   return (
     <section className="about-us-CTA-section cta-for-seo-section">
-      <h1>{props.title} for free</h1>
+      <h1>{props.title}</h1>
 
       <GetStartedIcon />
     </section>

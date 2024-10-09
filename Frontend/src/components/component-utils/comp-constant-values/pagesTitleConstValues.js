@@ -8,8 +8,10 @@ const termsOfService = `Terms of Service | ${mainName}`;
 const aboutUs = `Know more about us | ${mainName}`;
 const contactUs = `Got questions? Contact us | ${mainName}`;
 const paymentVerificationPage = `Verify payment | ${mainName}`;
+const tutorialsPage = `Tutorials | ${mainName}`;
 
 const pagesTitleConstValues = {
+  tutorialsPage,
   paymentVerificationPage,
   signIn,
   signUp,

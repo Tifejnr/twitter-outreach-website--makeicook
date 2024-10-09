@@ -66,7 +66,7 @@ export default function AboutUsPage() {
               <p>
                 Our mission is simple: to revolutionize the freelance experience
                 on Upwork by streamlining tasks and enabling you to focus on
-                what you do best – delivering exceptional work.
+                what you do best - delivering exceptional work.
               </p>
 
               <p>
@@ -84,23 +84,34 @@ export default function AboutUsPage() {
                 including:
                 <ul>
                   <li>
-                    Automatic retrieval of client names for personalized
-                    proposals, saving you valuable time and effort.
+                    Automatic retrieval of client names for cover letter
+                    personalization saving you valuable time and effort.
                   </li>
                   <li>
-                    One-click filtering for tailored job searches, ensuring you
-                    only see opportunities that match your preferences.
+                    View words clients see first in your cover letter, so you
+                    can strategically optimize your opening lines, increasing
+                    your chances of getting your proposals viewed and getting
+                    hired on Upwork.
                   </li>
 
                   <li>
-                    Convenient display of job posts above cover letters,
-                    eliminating the need for constant scrolling and
-                    multitasking.
+                    Get a summary of what it&apos;s like working with a client
+                    based on previous freelancers&apos; feedback, giving you
+                    insight into whether a client is someone you want to work
+                    with.
+                    <p>
+                      This reduces the chances of working with bad clients which
+                      may negatively affect your Job Success Score (JSS).
+                    </p>
                   </li>
                   <li>
-                    Simplified selection of payment terms and profile options,
-                    making the proposal submission process smoother and more
-                    efficient.
+                    Save text templates to reuse (copy) while writing cover
+                    letters, eliminating repetitive typing and saving time.
+                  </li>
+                  <li>
+                    Job post directly above your cover letter input box ensuring
+                    you don&apos;t have to scroll upwards to reference
+                    information from the job post again.
                   </li>
                 </ul>
               </div>
@@ -119,7 +130,7 @@ export default function AboutUsPage() {
               <p>
                 Ready to take your Upwork game to the next level? Install WFR
                 Toolkit extension today and discover the transformative power of
-                automation. Your success story awaits – one click at a time.
+                automation. Your success story awaits - one click at a time.
               </p>
             </section>
           </article>

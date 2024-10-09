@@ -16,12 +16,14 @@ const forgotPasswordPage = "/forgot-password";
 const forgotPasswordAPIRoute = `${websiteUrl}/api/forgot-password`;
 const resetPasswordAPIRoute = `${websiteUrl}/api/forgot-password/reset-password`;
 const contactUsAPIRoute = `${websiteUrl}/api/contact-us`;
+const tutorialsObjArrayFromServerRoute = `${websiteUrl}/api/get-tutorials`;
 const emailSentPage = "/email-sent";
 const extensionChromeStoreLink = `https://chromewebstore.google.com/detail/wfr-toolkit-elevate-your/chpmkkhcpfhjdkkeiggiicfejnkhcidb`;
-const youtubeAccountLink = "https://www.youtube.com/@Workforreputation";
+const youtubeAccountLink = "https://www.youtube.com/@WFRToolkit";
 const twitterAccountLink = "https://twitter.com/work4reputation";
 
 const allLinks = {
+  tutorialsObjArrayFromServerRoute,
   twitterAccountLink,
   youtubeAccountLink,
   websiteUrl,

@@ -4,7 +4,7 @@
 const heroSecondHeadingtext = `Land more jobs on Upwork with less stress while saving valuable time`;
 
 const belowFaqFirstHeadingText =
-  "Don't miss out on tripling your Upwork efficiency using WFR Toolkit";
+  "The Ultimate Upwork advantage: land jobs, cut stress, save time - All in WFR Toolkit";
 const heroFirstHeadingText =
   "Up your Upwork game: land more jobs with WFR Toolkit";
 
@@ -15,14 +15,14 @@ const userIdCookieName = "wfr-user-id";
 const callToActionTextUnder =
   "WFR Toolkit is only available as a chrome extension";
 
-const aboutUsPageCTA = "Enjoy Upwork automatic client name retrieval";
+const aboutUsPageCTA = "Best tool to land jobs as an Upwork freelancer";
 
-const contactUsPageCTA = "Enjoy Upwork one-click filtering on job search page";
+const contactUsPageCTA =
+  "The Ultimate Upwork advantage: land jobs, cut stress, save time - All in WFR Toolkit";
 
-const termsOfServicePageCTA =
-  "Enjoy viewing Upwork job post directly above cover letter";
+const termsOfServicePageCTA = "Best tool to land jobs as an Upwork freelancer";
 
-const privacyPolicyPageCTA = `Enjoy Upwork "payment terms" and "profile options" simulation`;
+const privacyPolicyPageCTA = `Land jobs on Upwork using WFR Toolkit`;
 
 const compConstValues = {
   heroSecondHeadingtext,

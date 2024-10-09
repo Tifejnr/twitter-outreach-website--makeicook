@@ -14,7 +14,10 @@ const sportyBetOrigin = "https://www.sportybet.com";
 const makeICookExtensionOrigin =
   "chrome-extension://cjkognhpiiehofajididiblokfmdekoa";
 
+const localHost5173 = "http://localhost:5173";
+
 const allowedOriginArrays = [
+  localHost5173,
   makeICookExtensionOrigin,
   xOrigin,
   originalWebsiteOrigin,

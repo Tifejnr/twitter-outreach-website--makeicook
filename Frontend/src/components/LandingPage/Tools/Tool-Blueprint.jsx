@@ -16,7 +16,10 @@ export default function ToolBlueprint(props) {
   return (
     <section className="each-tool-section">
       <h2>
-        <span>{props.indexNo + 1}.</span> {props.toolDetails.heading}
+        <span>
+          <b>{props.indexNo + 1}. </b>
+        </span>
+        {props.toolDetails.heading}
       </h2>
 
       {/* <article>
