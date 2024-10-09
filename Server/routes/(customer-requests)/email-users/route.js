@@ -98,7 +98,7 @@ function runWithDelay(array, func) {
     return promise.then(() => {
       return new Promise((resolve) => {
         func(item);
-        setTimeout(resolve, 2000); // 2 seconds delay
+        setTimeout(resolve, 4000); // 2 seconds delay
       });
     });
   }, Promise.resolve());
