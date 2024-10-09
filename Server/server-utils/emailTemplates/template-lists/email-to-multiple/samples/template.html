@@ -6,100 +6,65 @@
     <title>New update - Work for Reputation</title>
     <style>
       body {
+        display: flex;
+        justify-content: center;
         font-size: 15px;
-        background-color: rgba(222, 225, 228, 0.2);
-        font-family: "Segoe UI", sans-serif;
-        margin: 0;
-        line-height: 24px;
       }
-      table {
-        max-width: 600px;
-        width: 100%;
-        margin: 0 auto;
-        background-color: #fff;
-        border-collapse: collapse;
-      }
-      td {
-        padding: 10px;
-        color: hsl(238, 29%, 16%);
-      }
-      h2 {
-        text-align: center;
+      section {
+        padding: 0.5rem;
       }
       p {
+        font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+        box-sizing: border-box;
         font-size: 14px;
         line-height: 1.5;
         margin-bottom: 14px;
         font-weight: normal;
+        color: hsl(238, 29%, 16%);
       }
-      a#resetPasswordHref {
-        text-decoration: none;
+      #resetPasswordHref {
+        transform: translate(-50%, -50%);
+        left: 50%;
       }
       button {
-        width: 100%; /* Make button full-width
-      */
-        max-width: 200px; /* Limit max width */
+        width: 60%;
         border-radius: 0.7rem;
         margin-top: 1rem;
         border: 0;
         padding: 1rem;
         font-size: 1.2rem;
         text-align: center;
+        justify-self: center;
         background-color: #14a800;
         color: #fff;
         cursor: pointer;
         touch-action: manipulation;
         transition: 0.3s ease-in-out;
       }
-      ul {
-        list-style: none;
-        padding-left: 0;
+      button:hover {
+        background-color: #70c964;
       }
-      ul li {
-        margin-bottom: 15px;
+      picture {
+        width: 80%;
+        height: auto;
       }
-      ul li img {
+      picture img {
+        width: 100%;
+      }
+      img {
         margin-bottom: 20px;
         max-width: 100%;
         border: 1px solid gray;
-        border-radius: 5px; /* Ensure images scale */
-        height: auto; /* Maintain
-      aspect ratio */
+        border-radius: 5px; /* Ensure images scale
+      */
+        height: auto; /* Maintain aspect ratio */
       }
-      .logo-container img {
-        width: 150px;
-        height: auto; /*
-      Maintain aspect ratio */
-        display: block;
-        margin: 0 auto; /* Center logo */
-      }
-      a#resetPasswordHref:hover {
-        background-color: #70c964;
-      } /* Media
-      Queries for Mobile Responsiveness */
-      @media (max-width: 600px) {
-        body {
-          font-size: 14px; /* Slightly smaller font */
-        }
-        td {
-          padding: 8px; /* Less
-      padding on small screens */
-        }
-        button {
-          width: 90%; /* Wider button on
-      mobile */
-        }
-        h2 {
-          font-size: 1.9em; /* Slightly larger heading */
-          margin: 2rem 0;
-        }
-        p {
-          font-size: 13px; /* Smaller text on mobile */
-        }
-      }
-
       h2 {
         text-align: left;
+        margin: 2rem 0;
+      }
+      .logo-container img {
+        border: none;
       }
     </style>
   </head>
@@ -116,8 +81,8 @@
 
       <section>
         <p>
-          Hi {{customerName}}, I hope you're finding our tool useful in crafting
-          personalized proposals!
+          Hi {{customerName}}, hope you're finding our WFR toolkit useful in
+          crafting personalized proposals!
         </p>
 
         <p>
@@ -125,49 +90,68 @@
           efficient, especially when dealing with multiple client names.
         </p>
 
-        <p>Here’s how the new functionality works:</p>
+        <p>Here's how the new functionality works:</p>
 
-        <h2>What's New?</h2>
-
-        <ul>
-          <li>
-            <p>
-              <b> Name Occurrence Count:</b> You'll now see how many times each
-              client name appears in freelancer feedback.
-            </p>
-          </li>
-        </ul>
+        <h2>What's New for multiple client names?</h2>
 
         <p>
-          This <b>new data point</b> will help you craft the most effective
-          greeting every time. Here's how to use it:
+          <b>Number of times each name was mentioned:</b>
+          You'll now see the number of times each client name was mentioned in
+          the feedback history.
         </p>
 
+        <p>
+          This number is placed immediately after the client name e.g
+          <b>"James -6".</b>
+        </p>
+
+        <p>
+          This means the name
+          <b>"James"</b>
+          was mentioned
+          <b>6 times</b>
+          in the feedback history.
+        </p>
+
+        <p>
+          This
+          <b>new data point</b>
+          will help you craft the most effective greeting every time.
+        </p>
+
+        <p>Here's how to use it:</p>
+
         <article>
-          <h2>Scenario 1: Multiple Names, Same Number of Occurrence</h2>
+          <h2>
+            Scenario 1: Multiple names, same number of times they were mentioned
+          </h2>
 
           <p>
-            If all the names retrieved have the same no of occurence like in the
-            picture below.
+            If all the names retrieved names were mentioned the same number of
+            times in feedback, like in the picture below where
+            <b>Nitish, Ashani, and Deep </b>
+            were all mentioned
+            <b>twice(2)</b>
           </p>
 
           <p>
             <img
               src="https://i.ibb.co/4pQSsZQ/no-of-occurences-2-across-all-callout.png"
-              alt="same no of occurences"
+              alt="same number of times it was mentioneds"
             />
           </p>
 
-          <p>They're likely a team</p>
+          <p>This means they're likely a team of people running the account</p>
 
-          <p>In this case, <b>use "Hi"</b> for personalization</p>
+          <p>In such case, <b>use "Hi"</b> for personalization</p>
         </article>
         <article>
           <h2>Scenario 2: One Name Dominates</h2>
 
           <p>
-            If the number of occurence of the first name totally dominates the
-            other, like in the picture below.
+            If the number of times the first name was mentioned in the feedback
+            totally dominates the other, like in the picture below where the
+            name<b>Marc </b> totally dominates<b>Nelson</b>
           </p>
 
           <p>
@@ -178,15 +162,21 @@
           </p>
 
           <p>
-            <b>"Marc"</b> no of occurence - 12, totally dominates
-            <b>"Nelson"</b> no of occurence - 1.
+            Number of times<b>Marc</b>
+            was mentioned -
+            <b>12</b>
+            , totally dominates number of times
+            <b>Nelson</b>
+            was mentioned -
+            <b>1</b>.
           </p>
 
-          <p>There's a 95% chance <b>"Marc"</b> runs the account.</p>
+          <p>This means there's a 95% chance <b>"Marc"</b> runs the account.</p>
 
           <p>
-            In this scenario, <b>use the dominating name <b>("Marc")</b></b> for
-            personalization
+            In this scenario,
+            <b>use the dominating name "Marc"</b>
+            for personalization
           </p>
         </article>
 
@@ -211,17 +201,23 @@
           <h2>Important Update: Changes Starting Wednesday, October 16th</h2>
 
           <p>
-            From Wednesday, October 16th, some of our features will move to paid
-            plans, and you’ll need to purchase credits to access them. All other
-            features will remain free, but here’s what will require credits:
+            <b>From Wednesday, October 16th,</b>
+            some of our features will move to
+            <b>paid plans,</b>
+            and you'll need to purchase credits to access them.
           </p>
 
-          <ul>
+          <p>
+            All other features will remain free, but here are the features that
+            will require credits:
+          </p>
+
+          <ul style="list-style: disc">
             <li>
               <p><b>Auto-fetching of client names</b></p>
             </li>
             <li>
-              <p><b>Summary of what it’s like working with a client</b></p>
+              <p><b>Summary of what it's like working with a client</b></p>
             </li>
             <li>
               <p><b>Text templates for quick copy</b></p>
@@ -234,25 +230,40 @@
           <h2>How Credits Work:</h2>
 
           <p>
-            <b>Credits</b> are only deducted when you <b>access</b> the
+            <b>Credits</b>
+            are only deducted when you
+            <b>access</b>
+            the
             <b> proposal submission page.</b>
           </p>
 
           <p>
-            That means you’ll only be <b>charged</b> when you’re closest to
-            submitting a proposal and most productive—taking that final step to
-            land a job on Upwork.
+            That means you'll only be
+            <b>charged</b>
+            when you're closest to submitting a proposal and most
+            productive—taking that final step to land a job on Upwork.
           </p>
 
           <p>
-            And considering you spend about <b>₦2500</b> when you use
-            <b>10 connects</b> to apply to a job.
+            And considering you spend about
+            <b>₦2500</b>
+            when you use
+            <b>10 connects</b>
+            to apply to a job.
           </p>
 
           <p>
-            Our credits are super affordable for any regular Upwork freelancer!
-            It’s just about <b>₦12</b> for each time you access the proposal
-            submission page.
+            Our credits will be super affordable for
+            <b>any regular Upwork freelancer!</b>
+            It's just about
+            <b>₦12</b>
+            per credit.
+          </p>
+
+          <p>
+            So, you spend about
+            <b>₦12</b>
+            for each time you access the proposal submission page.
           </p>
         </article>
 
