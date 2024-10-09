@@ -27,7 +27,7 @@ const message = {
   message7,
 };
 
-const emailHeading = `Important: Please Re-enable the WFR Toolkit Extension`;
+const emailHeading = `New Personalization Tips & Upcoming Changes to Paid Features`;
 // const emailHeading = `Boost your proposals with insights from other freelancers`;
 
 const emailMessageObj = {
