@@ -30,7 +30,7 @@ export default async function orderOfMultipleNames(finalName, prompt) {
 
     // Map the sorted array back to the original name format
     const sortedNameArray = occurenceObjArray.map(
-      (obj) => `${obj.name} - ${obj.occurrences}`
+      (obj) => `${obj.name} -${obj.occurrences}`
     );
 
     console.log("sortedNameArray", sortedNameArray);
