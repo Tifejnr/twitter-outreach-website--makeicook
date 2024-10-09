@@ -1,14 +1,13 @@
 import PropTypes from "prop-types";
 
-ToolVideo.propTypes = {
+TutorialsVideoBp.propTypes = {
   videoUrl: PropTypes.string.isRequired,
 };
 
-export default function ToolVideo({ videoUrl }) {
+export default function TutorialsVideoBp({ videoUrl }) {
   return (
     <div className="iframe-container">
-      <img src={videoUrl} alt="wfr-tool" />
-      {/* <iframe
+      <iframe
         width="100%"
         height="315"
         src={videoUrl}
@@ -17,7 +16,7 @@ export default function ToolVideo({ videoUrl }) {
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowFullScreen
         loading="lazy"
-      ></iframe> */}
+      ></iframe>
     </div>
   );
 }
