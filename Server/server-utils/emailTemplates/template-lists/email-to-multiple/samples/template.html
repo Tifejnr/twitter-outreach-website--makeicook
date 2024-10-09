@@ -5,28 +5,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>New update - Work for Reputation</title>
     <style>
-      body { font-size: 15px; background-color: rgba(222, 225, 228, 0.2);
-      font-family: "Segoe UI", sans-serif; margin: 0; line-height: 24px; } table
-      { max-width: 600px; width: 100%; margin: 0 auto; background-color: #fff;
-      border-collapse: collapse; } td { padding: 10px; color: hsl(238, 29%,
-      16%); } h2 { text-align: center; } p { font-size: 14px; line-height: 1.5;
-      margin-bottom: 14px; font-weight: normal; } a#resetPasswordHref {
-      text-decoration: none; } button { width: 100%; /* Make button full-width
-      */ max-width: 200px; /* Limit max width */ border-radius: 0.7rem;
-      margin-top: 1rem; border: 0; padding: 1rem; font-size: 1.2rem; text-align:
-      center; background-color: #14a800; color: #fff; cursor: pointer;
-      touch-action: manipulation; transition: 0.3s ease-in-out; } ul {
-      list-style: none; padding-left: 0; } ul li { margin-bottom: 15px; } ul li
-      img { margin-bottom: 20px; max-width: 100%; border: 1px solid gray;
-      border-radius: 5px; /* Ensure images scale */ height: auto; /* Maintain
-      aspect ratio */ } .logo-container img { width: 150px; height: auto; /*
-      Maintain aspect ratio */ display: block; margin: 0 auto; /* Center logo */
-      } a#resetPasswordHref:hover { background-color: #70c964; } /* Media
-      Queries for Mobile Responsiveness */ @media (max-width: 600px) { body {
-      font-size: 14px; /* Slightly smaller font */ } td { padding: 8px; /* Less
-      padding on small screens */ } button { width: 90%; /* Wider button on
-      mobile */ } h2 { font-size: 1.9em; /* Slightly larger heading */ margin:
-      2rem 0; } p { font-size: 13px; /* Smaller text on mobile */ } }
+      body {
+        font-size: 15px;
+        background-color: rgba(222, 225, 228, 0.2);
+        font-family: "Segoe UI", sans-serif;
+        margin: 0;
+        line-height: 24px;
+      }
+      table {
+        max-width: 600px;
+        width: 100%;
+        margin: 0 auto;
+        background-color: #fff;
+        border-collapse: collapse;
+      }
+      td {
+        padding: 10px;
+        color: hsl(238, 29%, 16%);
+      }
+      h2 {
+        text-align: center;
+      }
+      p {
+        font-size: 14px;
+        line-height: 1.5;
+        margin-bottom: 14px;
+        font-weight: normal;
+      }
+      a#resetPasswordHref {
+        text-decoration: none;
+      }
+      button {
+        width: 100%; /* Make button full-width
+      */
+        max-width: 200px; /* Limit max width */
+        border-radius: 0.7rem;
+        margin-top: 1rem;
+        border: 0;
+        padding: 1rem;
+        font-size: 1.2rem;
+        text-align: center;
+        background-color: #14a800;
+        color: #fff;
+        cursor: pointer;
+        touch-action: manipulation;
+        transition: 0.3s ease-in-out;
+      }
+      ul {
+        list-style: none;
+        padding-left: 0;
+      }
+      ul li {
+        margin-bottom: 15px;
+      }
+      ul li img {
+        margin-bottom: 20px;
+        max-width: 100%;
+        border: 1px solid gray;
+        border-radius: 5px; /* Ensure images scale */
+        height: auto; /* Maintain
+      aspect ratio */
+      }
+      .logo-container img {
+        width: 150px;
+        height: auto; /*
+      Maintain aspect ratio */
+        display: block;
+        margin: 0 auto; /* Center logo */
+      }
+      a#resetPasswordHref:hover {
+        background-color: #70c964;
+      } /* Media
+      Queries for Mobile Responsiveness */
+      @media (max-width: 600px) {
+        body {
+          font-size: 14px; /* Slightly smaller font */
+        }
+        td {
+          padding: 8px; /* Less
+      padding on small screens */
+        }
+        button {
+          width: 90%; /* Wider button on
+      mobile */
+        }
+        h2 {
+          font-size: 1.9em; /* Slightly larger heading */
+          margin: 2rem 0;
+        }
+        p {
+          font-size: 13px; /* Smaller text on mobile */
+        }
+      }
     </style>
   </head>
   <body style="background-color: rgba(222, 225, 228, 0.2)">
@@ -42,8 +112,7 @@
 
       <section>
         <p>
-          Hi
-          {{customerName}}, I hope you're finding our tool useful in crafting
+          Hi {{customerName}}, I hope you're finding our tool useful in crafting
           personalized proposals!
         </p>
 
@@ -59,18 +128,15 @@
         <ul>
           <li>
             <p>
-              <b> Name Occurrence Count:</b>
-              You'll now see how many times each client name appears in
-              freelancer feedback.
+              <b> Name Occurrence Count:</b> You'll now see how many times each
+              client name appears in freelancer feedback.
             </p>
           </li>
         </ul>
 
         <p>
-          This
-          <b>new data point</b>
-          will help you craft the most effective greeting every time. Here's how
-          to use it:
+          This <b>new data point</b> will help you craft the most effective
+          greeting every time. Here's how to use it:
         </p>
 
         <article>
@@ -108,18 +174,15 @@
           </p>
 
           <p>
-            <b>"Marc"</b>
-            no of occurence - 12, totally dominates
-            <b>"Nelson"</b>
-            no of occurence - 1.
+            <b>"Marc"</b> no of occurence - 12, totally dominates
+            <b>"Nelson"</b> no of occurence - 1.
           </p>
 
           <p>There's a 95% chance <b>"Marc"</b> runs the account.</p>
 
           <p>
-            In this scenario,
-            <b>use the dominating name <b>("Marc")</b></b>
-            for personalization
+            In this scenario, <b>use the dominating name <b>("Marc")</b></b> for
+            personalization
           </p>
         </article>
 
@@ -134,7 +197,8 @@
           free to reach out with any feedback!
         </p>
         <p>
-          <b>P.S. This feature is now live, so be sure to try it out when next
+          <b
+            >P.S. This feature is now live, so be sure to try it out when next
             you access the proposal submission page.
           </b>
         </p>
@@ -166,33 +230,25 @@
           <h2>How Credits Work:</h2>
 
           <p>
-            <b>Credits</b>
-            are only deducted when you
-            <b>access</b>
-            the
+            <b>Credits</b> are only deducted when you <b>access</b> the
             <b> proposal submission page.</b>
           </p>
 
           <p>
-            That means you’ll only be
-            <b>charged</b>
-            when you’re closest to submitting a proposal and most
-            productive—taking that final step to land a job on Upwork.
+            That means you’ll only be <b>charged</b> when you’re closest to
+            submitting a proposal and most productive—taking that final step to
+            land a job on Upwork.
           </p>
 
           <p>
-            And considering you spend about
-            <b>₦2500</b>
-            when you use
-            <b>10 connects</b>
-            to apply to a job.
+            And considering you spend about <b>₦2500</b> when you use
+            <b>10 connects</b> to apply to a job.
           </p>
 
           <p>
             Our credits are super affordable for any regular Upwork freelancer!
-            It’s just about
-            <b>₦12</b>
-            for each time you access the proposal submission page.
+            It’s just about <b>₦12</b> for each time you access the proposal
+            submission page.
           </p>
         </article>
 
