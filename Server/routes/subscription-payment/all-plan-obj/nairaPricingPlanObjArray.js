@@ -9,8 +9,8 @@ const freePlanObj = {
   noOfDailyJobsItCanBeUsedToApplyTo: 0,
 };
 
-const basicPlanObj = {
-  planName: "Standard",
+const regularPlanObj = {
+  planName: "Regular",
   perCreditInfo: 10,
   planCreditsAmount: 3000,
   planPrice: 4900,
@@ -19,7 +19,7 @@ const basicPlanObj = {
   noOfDailyJobsItCanBeUsedToApplyTo: 10,
 };
 
-const standardPlanObj = {
+const businessPlanObj = {
   planName: "Business",
   perCreditInfo: 7,
   planCreditsAmount: 14900,
@@ -30,6 +30,10 @@ const standardPlanObj = {
   noOfDailyJobsItCanBeUsedToApplyTo: 20,
 };
 
-const nairaPricingPlansObjArray = [freePlanObj, basicPlanObj, standardPlanObj];
+const nairaPricingPlansObjArray = [
+  businessPlanObj,
+  regularPlanObj,
+  freePlanObj,
+];
 
 export default nairaPricingPlansObjArray;
