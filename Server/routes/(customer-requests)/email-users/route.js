@@ -20,7 +20,7 @@ async function sendMailToMultipleUsers() {
   // console.log("lastRegisteredUser", lastRegisteredUser);
 
   const currentUserNow = {
-    email: "lilblessingjnr@gmail.com",
+    email: "akovahh@gmail.com",
     name: "Adedewe Boluwatife",
   };
 
