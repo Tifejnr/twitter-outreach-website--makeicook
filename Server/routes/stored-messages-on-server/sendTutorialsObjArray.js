@@ -1,5 +1,5 @@
 import express from "express";
-import allVideoTutorialsArray from "../../video-tutorials/allVideoTutorialsArray";
+import allVideoTutorialsArray from "../../video-tutorials/allVideoTutorialsArray.js";
 
 const sendTutorialsObjArrayRouter = express.Router();
 

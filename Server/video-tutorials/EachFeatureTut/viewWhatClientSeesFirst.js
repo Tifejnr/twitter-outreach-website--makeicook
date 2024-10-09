@@ -1,4 +1,4 @@
-import allYoutubeVideoLinksObj from "../all-youtube-video-links/allYouTubeVideoLinksObj";
+import allYoutubeVideoLinksObj from "../all-youtube-video-links/allYouTubeVideoLinksObj.js";
 
 const heading = `17 seconds - View words clients see first in your cover letter - how it works`;
 

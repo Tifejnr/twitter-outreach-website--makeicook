@@ -1,4 +1,4 @@
-import allYoutubeVideoLinksObj from "../all-youtube-video-links/allYouTubeVideoLinksObj";
+import allYoutubeVideoLinksObj from "../all-youtube-video-links/allYouTubeVideoLinksObj.js";
 
 const heading = `24 seconds - Job post directly above cover letter - how it works`;
 

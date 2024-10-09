@@ -1,4 +1,4 @@
-import allYoutubeVideoLinksObj from "../all-youtube-video-links/allYouTubeVideoLinksObj";
+import allYoutubeVideoLinksObj from "../all-youtube-video-links/allYouTubeVideoLinksObj.js";
 
 const heading = `2 mins tutorial showing how to copy saved text template`;
 
