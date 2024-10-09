@@ -48,6 +48,7 @@ import deleteUsersWithEmail from "./routes/(auth)/users/delete-users/deleteUserW
 import handlePaymentsRouter from "./routes/subscription-payment/handlePayment.js";
 import webhookPaystackRouter from "./routes/subscription-payment/webhook/webhookPaystack.js";
 import accountDetailsRouter from "./routes/(auth)/users/account-details/accountDetails.js";
+import sendTutorialsObjArrayRouter from "./routes/stored-messages-on-server/sendTutorialsObjArray.js";
 // import giveUsers50Credits from "./routes/(auth)/users-stats/reset-stats-daily/giveUsers50Credits.js";
 
 // runNow();
@@ -106,6 +107,7 @@ app.use(
 );
 app.use("/api/users", validateOrigin, signUpRouter);
 app.use("/api/account-details", validateOrigin, accountDetailsRouter);
+app.use("/api/get-tutorials", validateOrigin, sendTutorialsObjArrayRouter);
 app.use("/api/auth", validateOrigin, signInRouter);
 app.use("/api/pricing", validateOrigin, handlePaymentsRouter);
 app.use("/api/process-usage", validateOrigin, userStatsRouter);
