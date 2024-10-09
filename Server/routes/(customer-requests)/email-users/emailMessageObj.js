@@ -27,7 +27,7 @@ const message = {
   message7,
 };
 
-const emailHeading = `New Personalization Tips & Upcoming Changes to Paid Features`;
+const emailHeading = `Don't Miss These Powerful Personalization Tips—Try Them Free Before Oct 16th!`;
 // const emailHeading = `Boost your proposals with insights from other freelancers`;
 
 const emailMessageObj = {
