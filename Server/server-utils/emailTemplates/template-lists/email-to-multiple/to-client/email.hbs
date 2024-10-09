@@ -9,24 +9,24 @@
       font-family: "Segoe UI", sans-serif; margin: 0; line-height: 24px; } table
       { max-width: 600px; width: 100%; margin: 0 auto; background-color: #fff;
       border-collapse: collapse; } td { padding: 10px; color: hsl(238, 29%,
-      16%); } h2 { text-align: center; } p { font-size: 14px; line-height: 1.5;
-      margin-bottom: 14px; font-weight: normal; } a#resetPasswordHref {
-      text-decoration: none; } button { width: 100%; max-width: 200px;
-      border-radius: 0.7rem; margin-top: 1rem; border: 0; padding: 1rem;
-      font-size: 1.2rem; text-align: center; background-color: #14a800; color:
-      #fff; cursor: pointer; touch-action: manipulation; transition: 0.3s
-      ease-in-out; } ul { list-style: none; padding-left: 0; } ul li {
-      margin-bottom: 15px; } ul li img { margin-bottom: 20px; max-width: 100%;
-      border: 1px solid gray; border-radius: 5px; height: auto; }
+      16%); } h2 { text-align: left; } td h2 { font-size: 1.5em; /* Adjusted
+      font size for h2 in td */ margin: 2rem 0; } td p { font-size: 14px;
+      line-height: 1.5; margin-bottom: 14px; font-weight: normal; }
+      a#resetPasswordHref { text-decoration: none; } button { width: 100%;
+      max-width: 200px; border-radius: 0.7rem; margin-top: 1rem; border: 0;
+      padding: 1rem; font-size: 1.2rem; text-align: center; background-color:
+      #14a800; color: #fff; cursor: pointer; touch-action: manipulation;
+      transition: 0.3s ease-in-out; } ul { list-style: none; padding-left: 0; }
+      ul li { margin-bottom: 15px; } ul li img { margin-bottom: 20px; max-width:
+      100%; border: 1px solid gray; border-radius: 5px; height: auto; }
       .logo-container img { width: 150px; height: auto; display: block; margin:
       0 auto; } a#resetPasswordHref:hover { background-color: #70c964; } /*
       Media Queries for Mobile Responsiveness */ @media (max-width: 600px) {
       body { font-size: 16px; /* Increased font size for better readability */ }
-      td,p { padding: 12px; /* More padding on small screens */ } button {
-      width: 90%; /* Wider button on mobile */ } h2 { font-size: 2em; /*
-      Increased heading size */ margin: 2rem 0; } p { font-size: 15px; /* Larger
-      text on mobile */ line-height: 1.6; /* Increased line height for better
-      readability */ } } h2 { text-align: left; }
+      td { padding: 12px; /* More padding on small screens */ } button { width:
+      90%; /* Wider button on mobile */ } td h2 { font-size: 2em; /* Increased
+      heading size */ } td p { font-size: 15px; /* Larger text on mobile */
+      line-height: 1.6; /* Increased line height for better readability */ } }
     </style>
   </head>
   <body style="background-color: rgba(222, 225, 228, 0.2)">
@@ -40,197 +40,232 @@
         </td>
       </tr>
 
-      <section>
-        <p>
+      <tr>
+        <td>
           Hi
           {{customerName}}, hope you're finding our tool useful in crafting
           personalized proposals!
-        </p>
+        </td>
+      </tr>
 
-        <p>
+      <tr>
+        <td>
           We've just rolled out a few enhancements to make your work even more
           efficient, especially when dealing with multiple client names.
-        </p>
+        </td>
+      </tr>
 
-        <p>Here's how the new functionality works:</p>
+      <tr>
+        <td>Here's how the new functionality works:</td>
+      </tr>
 
-        <h2>What's New for multiple client names?</h2>
+      <tr>
+        <td>
+          <h2>What's New for multiple client names?</h2>
+        </td>
+      </tr>
 
-        <p>
+      <tr>
+        <td>
           <b>Number of times each name was mentioned:</b>
           You'll now see the number of times each client name was mentioned in
           the feedback history.
-        </p>
+        </td>
+      </tr>
 
-        <p>
+      <tr>
+        <td>
           This number is placed immediately after the client name e.g
           <b>"James -6".</b>
-        </p>
+        </td>
+      </tr>
 
-        <p>
+      <tr>
+        <td>
           This means the name
           <b>"James"</b>
           was mentioned
           <b>6 times</b>
           in the feedback history.
-        </p>
+        </td>
+      </tr>
 
-        <p>
+      <tr>
+        <td>
           This
           <b>new data point</b>
           will help you craft the most effective greeting every time.
-        </p>
+        </td>
+      </tr>
 
-        <p>Here's how to use it:</p>
+      <tr>
+        <td>Here's how to use it:</td>
+      </tr>
 
-        <article>
+      <tr>
+        <td>
           <h2>Scenario 1: Multiple names, same number of times they were
             mentioned</h2>
+        </td>
+      </tr>
 
-          <p>
-            If all the names retrieved names were mentioned the same number of
-            times in feedback, like in the picture below where
-            <b>Nitish, Ashani, and Deep </b>
-            were all mentioned
-            <b>twice(2)</b>
-          </p>
+      <tr>
+        <td>
+          If all the names retrieved names were mentioned the same number of
+          times in feedback, like in the picture below where
+          <b>Nitish, Ashani, and Deep </b>
+          were all mentioned
+          <b>twice(2)</b>
+        </td>
+      </tr>
 
-          <p>
-            <img
-              src="https://i.ibb.co/4pQSsZQ/no-of-occurences-2-across-all-callout.png"
-              alt="same number of times it was mentioneds"
-            />
-          </p>
+      <tr>
+        <td>
+          <img
+            src="https://i.ibb.co/4pQSsZQ/no-of-occurences-2-across-all-callout.png"
+            alt="same number of times it was mentioneds"
+          />
+        </td>
+      </tr>
 
-          <p>This means they're likely a team of people running the account</p>
+      <tr>
+        <td>This means they're likely a team of people running the account</td>
+      </tr>
 
-          <p>In such case, <b>use "Hi"</b> for personalization</p>
-        </article>
-        <article>
+      <tr>
+        <td>In such case, <b>use "Hi"</b> for personalization</td>
+      </tr>
+
+      <tr>
+        <td>
           <h2>Scenario 2: One Name Dominates</h2>
+        </td>
+      </tr>
 
-          <p>
-            If the number of times the first name was mentioned in the feedback
-            totally dominates the other, like in the picture below where the
-            name<b>Marc </b>
-            totally dominates<b>Nelson</b>
-          </p>
+      <tr>
+        <td>
+          If the number of times the first name was mentioned in the feedback
+          totally dominates the other, like in the picture below where the name
+          <b>Marc </b>
+          totally dominates
+          <b>Nelson</b>
+        </td>
+      </tr>
 
-          <p>
-            <img
-              src="https://i.ibb.co/0fwhQQH/no-of-occurence12to1-callout.png"
-              alt="dominating no of ocuurence"
-            />
-          </p>
+      <tr>
+        <td>
+          <img
+            src="https://i.ibb.co/0fwhQQH/no-of-occurence12to1-callout.png"
+            alt="dominating no of ocuurence"
+          />
+        </td>
+      </tr>
 
-          <p>
-            Number of times<b>Marc</b>
-            was mentioned -
-            <b>12</b>
-            , totally dominates number of times
-            <b>Nelson</b>
-            was mentioned -
-            <b>1</b>.
-          </p>
+      <tr>
+        <td>
+          Number of times
+          <b>Marc</b>
+          was mentioned -
+          <b>12</b>, totally dominates number of times
+          <b>Nelson</b>
+          was mentioned -
+          <b>1</b>.
+        </td>
+      </tr>
 
-          <p>This means there's a 95% chance <b>"Marc"</b> runs the account.</p>
+      <tr>
+        <td>This means there's a 95% chance <b>"Marc"</b> runs the account.</td>
+      </tr>
 
-          <p>
-            In this scenario,
-            <b>use the dominating name "Marc"</b>
-            for personalization
-          </p>
-        </article>
+      <tr>
+        <td>
+          In this scenario,
+          <b>use the dominating name "Marc"</b>
+          for personalization
+        </td>
+      </tr>
 
-        <p>
+      <tr>
+        <td>
           These strategies, combined with our new insights, will help you
           confidently address your clients and make your cover letters more
           personalized and effective.
-        </p>
+        </td>
+      </tr>
 
-        <p>
+      <tr>
+        <td>
           Let us know how these updates are working for you, and as always, feel
           free to reach out with any feedback!
-        </p>
-        <p>
+        </td>
+      </tr>
+      <tr>
+        <td>
           <b>P.S. This feature is now live, so be sure to try it out when next
-            you access the proposal submission page.
-          </b>
-        </p>
+            you access the proposal submission page.</b>
+        </td>
+      </tr>
 
-        <article>
+      <tr>
+        <td>
           <h2>Important Update: Changes Starting Wednesday, October 16th</h2>
+        </td>
+      </tr>
 
-          <p>
-            <b>From Wednesday, October 16th,</b>
-            some of our features will move to
-            <b>paid plans,</b>
-            and you'll need to purchase credits to access them.
-          </p>
+      <tr>
+        <td>
+          <b>From Wednesday, October 16th,</b>
+          some of our features will move to
+          <b>paid plans,</b>
+          and you'll need to purchase credits to access them.
+        </td>
+      </tr>
 
-          <p>All other features will remain free, but here are the features that
-            will require credits:</p>
+      <tr>
+        <td>All other features will remain free, but here are the features that
+          will require credits:</td>
+      </tr>
 
+      <tr>
+        <td>
           <ul style="list-style: disc;">
             <li>
-              <p><b>Auto-fetching of client names</b></p>
+              <b>Auto-fetching of client names</b>
             </li>
             <li>
-              <p><b>Summary of what it's like working with a client</b></p>
+              <b>Summary of what it's like working with a client</b>
             </li>
             <li>
-              <p><b>Text templates for quick copy</b></p>
+              <b>Text templates for quick copy</b>
             </li>
             <li>
-              <p><b>Viewing "About client" details</b></p>
+              <b>Viewing "About client" details</b>
             </li>
           </ul>
+        </td>
+      </tr>
 
+      <tr>
+        <td>
           <h2>How Credits Work:</h2>
+        </td>
+      </tr>
 
-          <p>
-            <b>Credits</b>
-            are only deducted when you
-            <b>access</b>
-            the
-            <b> proposal submission page.</b>
-          </p>
+      <tr>
+        <td>
+          You will be charged
+          <b>₦12</b>
+          for each time you access the proposal submission page.
+        </td>
+      </tr>
 
-          <p>
-            That means you'll only be
-            <b>charged</b>
-            when you're closest to submitting a proposal and most
-            productive—taking that final step to land a job on Upwork.
-          </p>
+      <tr>
+        <td>Best regards,</td>
+      </tr>
 
-          <p>
-            And considering you spend about
-            <b>₦2500</b>
-            when you use
-            <b>10 connects</b>
-            to apply to a job.
-          </p>
-
-          <p>
-            Our credits will be super affordable for
-            <b>any regular Upwork freelancer!</b>
-            It's just about
-            <b>₦12</b>
-            per credit.
-          </p>
-
-          <p>A credit is only deducted each time you access the proposal
-            submission page.</p>
-
-          <p>So, you spend about
-            <b>₦12</b>
-            for each time you access the proposal submission page.</p>
-        </article>
-
-        <p>Best regards,</p>
-
-        <p>WFR Toolkit Team</p>
-      </section>
+      <tr>
+        <td>WFR Toolkit Team</td>
+      </tr>
     </table>
   </body>
 </html>
