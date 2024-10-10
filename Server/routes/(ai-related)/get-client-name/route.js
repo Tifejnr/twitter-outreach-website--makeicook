@@ -354,88 +354,66 @@ return "Yes" or "No" only as response.
     // }
 
     if (finalName.includes(",")) {
-      const promptToCheckForSingleNames = `
-      return "Yes" or "No" only.
-      
-      Do these names share 90% almost the same set of letters?
-      `;
+      const isItReallySingleNameResponse = checkNameInText(finalName, prompt);
 
-      const isItASingleName = await getStraightAiResponse(
-        promptToCheckForSingleNames,
-        finalName
-      );
+      console.log("isItReallySingleNameResponse", isItReallySingleNameResponse);
 
-      console.log("isItASingleName", isItASingleName);
-      //for multiple names found
-
-      if (isItASingleName == "No") {
-        const isItReallySingleNameResponse = checkNameInText(finalName, prompt);
+      //its firstname and last name seperated by comma
+      if (isItReallySingleNameResponse) {
+        const nameToFreelancer = finalName.replace(",", "");
 
         console.log(
+          "nameToFreelancer",
+          nameToFreelancer,
           "isItReallySingleNameResponse",
           isItReallySingleNameResponse
         );
 
-        //its firstname and last name seperated by comma
-        if (isItReallySingleNameResponse) {
-          const nameToFreelancer = finalName.replace(",", "");
-
-          console.log(
-            "nameToFreelancer",
-            nameToFreelancer,
-            "isItReallySingleNameResponse",
-            isItReallySingleNameResponse
-          );
-
-          res.json({
-            clientNameResponse: nameToFreelancer,
-            clientPersonality,
-          });
-
-          return;
-        }
-
-        //check if each of the names are human names.
-        const returnedHumanNames = await orderOfMultipleNames(
-          finalName,
-          prompt
-        );
-
-        if (returnedHumanNames == realNoNamesFoundResponse) {
-          console.log("none of  comma seperated name is human", finalName);
-          return res.json({
-            clientNameResponse: returnedHumanNames,
-            clientPersonality,
-          });
-        }
-
-        //only one name is human name
-        if (!returnedHumanNames.includes(",")) {
-          console.log(
-            "none of  comma seperated name is human,nly one name is human name",
-            finalName
-          );
-          return res.json({
-            clientNameResponse: returnedHumanNames,
-            clientPersonality,
-          });
-        }
-
-        const nameToFreelancer = "Names";
-
-        console.log(
-          "nameToFreelancer with comma for sure",
-          nameToFreelancer,
-          "Multiple names found",
-          returnedHumanNames
-        );
-
-        return res.json({
+        res.json({
           clientNameResponse: nameToFreelancer,
-          multipleNames: returnedHumanNames,
+          clientPersonality,
+        });
+
+        return;
+      }
+
+      //check if each of the names are human names.
+      const returnedHumanNames = await orderOfMultipleNames(finalName, prompt);
+
+      if (returnedHumanNames == realNoNamesFoundResponse) {
+        console.log("none of  comma seperated name is human", finalName);
+        return res.json({
+          clientNameResponse: returnedHumanNames,
           clientPersonality,
         });
       }
+
+      //only one name is human name
+      if (!returnedHumanNames.includes(",")) {
+        console.log(
+          "none of  comma seperated name is human,nly one name is human name",
+          finalName
+        );
+        return res.json({
+          clientNameResponse: returnedHumanNames,
+          clientPersonality,
+        });
+      }
+
+      const nameToFreelancer = "Names";
+
+      console.log(
+        "nameToFreelancer with comma for sure",
+        nameToFreelancer,
+        "Multiple names found",
+        returnedHumanNames
+      );
+
+      return res.json({
+        clientNameResponse: nameToFreelancer,
+        multipleNames: returnedHumanNames,
+        clientPersonality,
+      });
     }
 
     let isNameAHumanName;
