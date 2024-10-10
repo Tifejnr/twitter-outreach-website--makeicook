@@ -93,8 +93,6 @@ const getClientNamePromptHeading = `The texts below are freelancers feedback to 
 
    Never count "Sir" as part of a name
 
-   Never count "Client" as a name
-
    Don't edit the name in anyway in your result.
 
    Don't prefix your response with things like "Here is the output:" or "Here are the responses based on the instructions:" or "Here are the client names or company like names" or 
@@ -186,7 +184,7 @@ getClientNameRouter.post("/", async (req, res) => {
     const clientNameResponseRaw = await getStraightAiResponse(
       getClientNamePromptHeading,
       prompt,
-      0.1
+      0
     );
 
     const totalWordsLength = getTotalWordsLength(clientNameResponseRaw);

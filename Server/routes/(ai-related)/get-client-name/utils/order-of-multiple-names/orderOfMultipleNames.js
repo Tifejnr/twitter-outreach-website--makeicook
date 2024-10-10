@@ -1,3 +1,4 @@
+import { realNoNamesFoundResponse } from "../../route.js";
 import getOccurenceNoAndFirstXtersNo from "./getOccurenceNoAndFirstXtersNo.js";
 
 export default async function orderOfMultipleNames(finalName, prompt) {
@@ -11,11 +12,13 @@ export default async function orderOfMultipleNames(finalName, prompt) {
   // Loop through the nameParts array
   for (let name of nameParts) {
     const nameOccurentObj = getOccurenceNoAndFirstXtersNo(prompt, name);
-    const { occurrences, charactersBeforeFirst } = nameOccurentObj;
+    const { occurrences } = nameOccurentObj;
 
-    // Push the occurrence object and formatted string into respective arrays
-    nameObjWithOccurenceArray.push({ name, occurrences });
-    occurenceObjArray.push({ ...nameOccurentObj, name });
+    // Only push to arrays if occurrences is greater than 0
+    if (occurrences > 0) {
+      nameObjWithOccurenceArray.push({ name, occurrences });
+      occurenceObjArray.push({ ...nameOccurentObj, name });
+    }
   }
 
   // Log the valid name parts
@@ -34,6 +37,11 @@ export default async function orderOfMultipleNames(finalName, prompt) {
     );
 
     console.log("sortedNameArray", sortedNameArray);
+
+    if (!sortedNameArray || sortedNameArray.length == 0) {
+      return realNoNamesFoundResponse;
+    }
+
     return sortedNameArray.join(", ");
   }
 }
