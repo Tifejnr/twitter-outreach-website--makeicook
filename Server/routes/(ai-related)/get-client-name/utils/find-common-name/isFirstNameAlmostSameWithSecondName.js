@@ -1,4 +1,4 @@
-import areFirstTwoXtersTheSame from "./areFirstTwoXtersTheSame";
+import areFirstTwoXtersTheSame from "./areFirstTwoXtersTheSame.js";
 
 export default function isFirstNameAlmostSameWithSecondName(
   firstName,

@@ -1,4 +1,4 @@
-import isFirstNameAlmostSameWithSecondName from "./isFirstNameAlmostSameWithSecondName";
+import isFirstNameAlmostSameWithSecondName from "./isFirstNameAlmostSameWithSecondName.js";
 
 export default function eachNameAgainstOtherNamesSimilarityCheck(
   arrayNoForNameInTurn,

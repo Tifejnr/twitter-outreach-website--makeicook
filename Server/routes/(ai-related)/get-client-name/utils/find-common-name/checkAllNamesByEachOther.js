@@ -1,5 +1,5 @@
-import eachNameAgainstOtherNamesSimilarityCheck from "./eachNameSimilarityCheck";
-import removeDuplicateNameFromTheEnd from "./removeDuplicateNameFromTheEnd";
+import eachNameAgainstOtherNamesSimilarityCheck from "./eachNameSimilarityCheck.js";
+import removeDuplicateNameFromTheEnd from "./removeDuplicateNameFromTheEnd.js";
 
 export default function checkAllNamesByEachOther(names) {
   names.trim();

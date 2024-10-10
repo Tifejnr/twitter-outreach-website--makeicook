@@ -1,4 +1,4 @@
-import checkAllNamesByEachOther from "./checkAllNamesByEachOther";
+import checkAllNamesByEachOther from "./checkAllNamesByEachOther.js";
 
 export default function findCommonName(names) {
   const finalNamesArray = checkAllNamesByEachOther(names);
