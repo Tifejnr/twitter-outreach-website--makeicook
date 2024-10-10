@@ -17,6 +17,10 @@ export const faqArray = [
     answer:
       "Yes, Credits are only deducted when you access the proposal submission page.",
   },
+  {
+    question: "Do credits expire ?",
+    answer: "No, Credits have no expiration",
+  },
 
   {
     question: "Do you have a Refund Policy?",
