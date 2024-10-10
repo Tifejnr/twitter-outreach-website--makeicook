@@ -172,8 +172,6 @@ getClientNameRouter.post("/", async (req, res) => {
 
   const { prompt } = bodyRequest;
 
-  console.log("prompt", prompt);
-
   try {
     //get client personality
     const clientPersonalityRaw = await getStraightAiResponse(
