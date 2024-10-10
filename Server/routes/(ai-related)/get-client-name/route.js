@@ -170,11 +170,7 @@ getClientNameRouter.post("/", async (req, res) => {
     });
   }
 
-  const ignoredText = "ignored";
-
-  const rawPrompt = bodyRequest.prompt;
-
-  const prompt = rawPrompt.replace(ignoredText, "...");
+  const { prompt } = bodyRequest;
 
   try {
     //get client personality
