@@ -235,6 +235,17 @@ getClientNameRouter.post("/", async (req, res) => {
 
     //check if returned name is within freelancers feedback
 
+    if (!finalName.includes(",")) {
+      const occurenceObj = getOccurenceNoAndFirstXtersNo(prompt, finalName);
+
+      const { occurrences } = occurenceObj;
+
+      if (occurrences == 0) {
+        console.log("occurences is 0", finalName);
+        finalName = realNoNamesFoundResponse;
+      }
+    }
+
     const isNameWithinTextRangePrompt = `
     return "Yes" or "No" only.
 
