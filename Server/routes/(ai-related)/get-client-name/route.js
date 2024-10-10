@@ -365,6 +365,7 @@ return "Yes" or "No" only as response.
         finalName
       );
 
+      console.log("isItASingleName", isItASingleName);
       //for multiple names found
 
       if (isItASingleName == "No") {
