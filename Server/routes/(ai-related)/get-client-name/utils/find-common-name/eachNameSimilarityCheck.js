@@ -1,3 +1,5 @@
+import isFirstNameAlmostSameWithSecondName from "./isFirstNameAlmostSameWithSecondName";
+
 export default function eachNameAgainstOtherNamesSimilarityCheck(
   arrayNoForNameInTurn,
   namesArray

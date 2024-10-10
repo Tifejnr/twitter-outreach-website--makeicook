@@ -1,3 +1,6 @@
+import eachNameAgainstOtherNamesSimilarityCheck from "./eachNameSimilarityCheck";
+import removeDuplicateNameFromTheEnd from "./removeDuplicateNameFromTheEnd";
+
 export default function checkAllNamesByEachOther(names) {
   names.trim();
   const namesArray = names.replace(/-/g, "").split(", ");
@@ -7,7 +10,8 @@ export default function checkAllNamesByEachOther(names) {
     fourthArrayNo = 3,
     fifthArrayNo = 4,
     sixthArrayNo = 5,
-    seventhArrayNo = 6;
+    seventhArrayNo = 6,
+    eightArrayNo = 7;
 
   let firstNameResponse,
     secondNameResponse,
@@ -15,7 +19,8 @@ export default function checkAllNamesByEachOther(names) {
     fourthNameResponse,
     fifthNameResponse,
     sixthNameResponse,
-    seventhNameResponse;
+    seventhNameResponse,
+    eightNameResponse;
 
   // Check each name against every other name
   //firstname result
@@ -59,6 +64,11 @@ export default function checkAllNamesByEachOther(names) {
     seventhArrayNo,
     namesArray
   );
+  //rightName result
+  eightNameResponse = eachNameAgainstOtherNamesSimilarityCheck(
+    eightArrayNo,
+    namesArray
+  );
 
   //inputting them back in the name array
 
@@ -88,9 +98,11 @@ export default function checkAllNamesByEachOther(names) {
     namesArray[seventhArrayNo] = seventhNameResponse;
   }
 
-  const arrayWithDuplicatesRemoved = removeDuplicatesFromEnd(namesArray);
+  if (eightNameResponse) {
+    namesArray[eightArrayNo] = eightNameResponse;
+  }
 
-  console.log("namesArray", namesArray);
+  const arrayWithDuplicatesRemoved = removeDuplicateNameFromTheEnd(namesArray);
 
   return arrayWithDuplicatesRemoved;
 }

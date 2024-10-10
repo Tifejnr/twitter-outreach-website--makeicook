@@ -1,3 +1,5 @@
+import areFirstTwoXtersTheSame from "./areFirstTwoXtersTheSame";
+
 export default function isFirstNameAlmostSameWithSecondName(
   firstName,
   secondName
