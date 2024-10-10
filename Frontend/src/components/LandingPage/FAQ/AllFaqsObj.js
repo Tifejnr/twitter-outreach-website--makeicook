@@ -21,7 +21,7 @@ export const faqArray = [
   {
     question: "Do you have a Refund Policy?",
     answer:
-      "No, we do not have a refund policy. You get 20 credits for free trial to test the tool before deciding to buy credits",
+      "No, we don't have a refund policy. You get 20 credits for free trial to test the tool before deciding to buy more credits",
   },
 
   {
@@ -40,6 +40,26 @@ export const faqArray = [
     question: "Does the extension access my Upwork profile?",
     answer:
       "No, the extension does not read your profile. Hence, why you need to manually enter your details when you sign up",
+  },
+
+  {
+    question: "Can I disable features I don't want?",
+    answer: `Yes. Click on 'Change settings' option, search through the list of all available features and toggle 
+    your unwanted feature(s) OFF to disable it.`,
+  },
+
+  {
+    question: "Can I request features I will like?",
+    answer: `Yes. Click on 'Freely request feature' option, describe what feature you will like integrated and submit it. 
+    We will review your request and get back to you with our conclusion on your request.`,
+  },
+
+  {
+    question: "Why are some of the features not working on my end?",
+    answer: `If you encounter any feature not working as expected, you can let us know by clicking the 'Make complaint' option, 
+    describe the problem you are encountering with the feature(s) not working as expected, and submit it. 
+    We will review your complaint and get back to you to help find solution to the issue.
+    Your complaints helps us improve the tool for everyone. Thank you!`,
   },
   {
     question: "Why do I see a warning when installing the extension?",
