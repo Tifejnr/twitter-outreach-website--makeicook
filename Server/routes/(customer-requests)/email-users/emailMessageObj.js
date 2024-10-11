@@ -27,7 +27,8 @@ const message = {
   message7,
 };
 
-const emailHeading = `Don't Miss These Powerful Personalization Tips—Try Them Free Before Oct 16th!`;
+const emailHeading = `Stop Wasting Time on Proposals - Save Hours with "Text Templates" using WFR Toolkit!`;
+// const emailHeading = `Don't Miss These Powerful Personalization Tips—Try Them Free Before Oct 16th!`;
 // const emailHeading = `Boost your proposals with insights from other freelancers`;
 
 const emailMessageObj = {
