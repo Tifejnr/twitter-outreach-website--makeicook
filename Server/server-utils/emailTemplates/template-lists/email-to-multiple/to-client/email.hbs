@@ -3,222 +3,259 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>New update - Work for Reputation</title>
+    <title>Welcome - Work for Reputation</title>
     <style>
-      body { display: flex; flex-direction: column; justify-content: center;
-      font-size: 15px; margin: 0; padding: 0; } section { padding: 0.5rem; } p {
-      font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-      box-sizing: border-box; font-size: 14px; line-height: 1.5; margin-bottom:
-      14px; font-weight: normal; color: hsl(238, 29%, 16%); } #resetPasswordHref
-      { transform: translate(-50%, -50%); left: 50%; } button { width: 60%;
-      border-radius: 0.7rem; margin-top: 1rem; border: 0; padding: 1rem;
-      font-size: 1.2rem; text-align: center; justify-self: center;
-      background-color: #14a800; color: #fff; cursor: pointer; touch-action:
-      manipulation; transition: 0.3s ease-in-out; } button:hover {
-      background-color: #70c964; } picture { width: 80%; height: auto; } picture
-      img { width: 100%; } img { margin-bottom: 20px; max-width: 100%; border:
-      1px solid gray; border-radius: 5px; height: auto; } h2 { text-align: left;
-      margin: 2rem 0; } .logo-container img { border: none; } a {
-      text-decoration: underline; } tr.logo-container { width: 100%; } /* Media
-      query for PC screens */ @media only screen and (min-width: 1024px) { body
-      { width: 70%; margin: 0 auto; } }
+      body { font-size: 15px; background-color: rgba(222, 225, 228, 0.2);
+      font-family: "Segoe UI", sans-serif; margin: 0; line-height: 24px; } table
+      { max-width: 600px; width: 100%; margin: 0 auto; background-color: #fff;
+      border-collapse: collapse; } td { padding: 10px; color: hsl(238, 29%,
+      16%); } h2 { text-align: center; } p { font-size: 14px; line-height: 1.5;
+      margin-bottom: 14px; font-weight: normal; } a#resetPasswordHref {
+      text-decoration: none; } button { width: 100%; /* Make button full-width
+      */ max-width: 200px; /* Limit max width */ border-radius: 0.7rem;
+      margin-top: 1rem; border: 0; padding: 1rem; font-size: 1.2rem; text-align:
+      center; background-color: #14a800; color: #fff; cursor: pointer;
+      touch-action: manipulation; transition: 0.3s ease-in-out; } ul {
+      list-style: none; padding-left: 0; } ul li { margin-bottom: 15px; } ul li
+      img { margin-bottom: 20px; max-width: 100%; border: 1px solid gray;
+      border-radius: 5px; /* Ensure images scale */ height: auto; /* Maintain
+      aspect ratio */ } .logo-container img { width: 150px; height: auto; /*
+      Maintain aspect ratio */ display: block; margin: 0 auto; /* Center logo */
+      } a#resetPasswordHref:hover { background-color: #70c964; } /* Media
+      Queries for Mobile Responsiveness */ @media (max-width: 600px) { body {
+      font-size: 14px; /* Slightly smaller font */ } td { padding: 8px; /* Less
+      padding on small screens */ } button { width: 90%; /* Wider button on
+      mobile */ } h2 { font-size: 1.5em; /* Slightly larger heading */ } p {
+      font-size: 13px; /* Smaller text on mobile */ } } a { text-decoration:
+      underline;}
     </style>
   </head>
-  <body style="background-color: rgba(222, 225, 228, 0.644)">
-    <tr class="logo-container">
-      <td align="center">
-        <img
-          src="https://i.ibb.co/6Yg7Qrc/new-wfr-email-logo.jpg"
-          alt="wfr toolkit logo"
-        />
-      </td>
-    </tr>
-
+  <body style="background-color: rgba(222, 225, 228, 0.2)">
     <table>
-      <section>
-        <p>
-          Hi
-          {{customerName}}, Exciting news! We’ve just added a powerful new
-          feature to WFR Toolkit that's designed to make your Upwork workflow
-          faster and more efficient:
-          <b> Text Templates.</b>
-        </p>
-
-        <p>
+      <tr class="logo-container">
+        <td align="center">
           <img
-            src="https://i.ibb.co/3CM7zt5/text-templates-picfront.jpg"
-            alt="text templates on wfr toolkit homepage"
+            src="https://i.ibb.co/6Yg7Qrc/new-wfr-email-logo.jpg"
+            alt="wfr toolkit logo"
           />
-        </p>
+        </td>
+      </tr>
 
-        <h2>With <b>Text Templates</b>, you can now:</h2>
-
-        <h2>1. Save and Store Multiple Cover Letter Templates</h2>
-
-        <p>
-          No more rewriting! Create and save different cover letter templates,
-          and
-          <b> insert them with just one click while writing proposals.</b>
-        </p>
-
-        <p>
-          <img
-            src="https://i.ibb.co/txMhmc6/template-saved-gif-video-1.gif"
-            alt="template-saved-gif-video"
-          />
-        </p>
-
-        <h2>2. Quickly Save and Access Project Links</h2>
-
-        <p>
-          Keep all your project showcase links handy, and
-          <b>paste them instantly</b>
-          into your cover letters without having to leave the proposal
-          submission page.
-        </p>
-
-        <p>
-          <img
-            src="https://i.ibb.co/G55LyPq/text-template-copy-tut-wfr-toolkit-gif-now.gif"
-            alt="text-template-copy-tut"
-          />
-        </p>
-
-        <h2>Here's why this feature will change the game for you:</h2>
-
-        <ul>
-          <li>
-            <p>
-              <b> Eliminate repetitive typing</b>
-              - Have your most-used cover letter templates ready at your
-              fingertips.
-            </p>
-          </li>
-          <li>
-            <p>
-              <b>Stay focused</b>
-              - Everything you need for your proposals, from
-              <b>cover letter templates to project links</b>, is right where you
-              need it—
-              <b> no tab-switching!</b>
-            </p>
-          </li>
-          <li>
-            <p>
-              <b> Completely customizable</b>
-              - Store as many
-              <b> cover leter templates</b>
-              and
-              <b>project links</b>
-              as you want, making your proposal submissions faster and easier.
-            </p>
-          </li>
-        </ul>
-
-        <p>
-          This is your
-          <b> secret weapon </b>
-          for saving time and submitting more proposals effortlessly, all while
-          keeping everything professional and personalized.
-        </p>
-
-        <p>
-          You can
-          <b>watch a 2 minutes</b>
-          step by step
-          <b>tutorial</b>
-          on how to use this feature effectively on youtube by following this
-          link:
-          <a
-            target="_blank"
-            href="https://www.youtube.com/watch?v=4w_Ks6LA6Ew"
-          >2 mins tutorial (How to save and copy Text templates)</a>
-        </p>
-
-        <p>
-          Let us know how these updates are working for you, and as always, feel
-          free to reach out with any feedback!
-        </p>
-        <p>
-          <b>P.S. This feature is now live, so be sure to try it out when next
-            you access the proposal submission page.
-          </b>
-        </p>
-
-        <article>
-          <h2>Important Update: Changes Starting Wednesday, October 16th</h2>
-
+      <tr>
+        <td>
+          <p>Hi {{customerName}},</p>
           <p>
-            <b>From Wednesday, October 16th,</b>
-            some of our features will move to
-            <b>paid plans,</b>
-            and you'll need to purchase credits to access them.
+            Exciting news! We’ve just added a powerful new feature to WFR
+            Toolkit that's designed to make your Upwork workflow faster and more
+            efficient:
+            <b> Text Templates.</b>
           </p>
 
           <p>
-            All other features will remain free, but here are the features that
-            will require credits:
+            <img
+              src="https://i.ibb.co/3CM7zt5/text-templates-picfront.jpg"
+              alt="text templates on wfr toolkit homepage"
+            />
           </p>
+        </td>
+      </tr>
 
-          <ul style="list-style: disc">
+      <tr>
+        <td>
+          <h2>With <b>Text Templates</b>, you can now:</h2>
+          <ul>
             <li>
-              <p><b>Auto-fetching of client names</b></p>
+              <p><b>1. Save and Store</b> Multiple Cover Letter Templates</p>
+
+              <p>
+                No more rewriting! Create and save different cover letter
+                templates, and
+                <b> insert them with just one click while writing proposals.</b>
+              </p>
+
+              <img
+                src="https://i.ibb.co/txMhmc6/template-saved-gif-video-1.gif"
+                alt="template-saved-gif-video"
+              />
             </li>
             <li>
-              <p><b>Summary of what it's like working with a client</b></p>
-            </li>
-            <li>
-              <p><b>Text templates for quick copy</b></p>
-            </li>
-            <li>
-              <p><b>Viewing "About client" details</b></p>
+              <p>
+                <b>2. Quickly Save</b>
+                and Access Project Link
+              </p>
+
+              <p>
+                Keep all your project showcase links handy, and
+                <b>paste them instantly</b>
+                into your cover letters without having to leave the proposal
+                submission page.
+              </p>
+
+              <img
+                src="https://i.ibb.co/G55LyPq/text-template-copy-tut-wfr-toolkit-gif-now.gif"
+                alt="text-template-copy-tut"
+              />
             </li>
           </ul>
+        </td>
+      </tr>
 
-          <h2>How Credits Work:</h2>
+      <tr>
+        <td>
+          <h2>Here's why this feature will change the game for you:</h2>
 
+          <ul>
+            <li>
+              <p>
+                <b> Eliminate repetitive typing</b>
+                - Have your most-used cover letter templates ready at your
+                fingertips.
+              </p>
+            </li>
+            <li>
+              <p>
+                <b>Stay focused</b>
+                - Everything you need for your proposals, from
+                <b>cover letter templates to project links</b>, is right where
+                you need it—
+                <b> no tab-switching!</b>
+              </p>
+            </li>
+            <li>
+              <p>
+                <b> Completely customizable</b>
+                - Store as many
+                <b> cover leter templates</b>
+                and
+                <b>project links</b>
+                as you want, making your proposal submissions faster and easier.
+              </p>
+            </li>
+          </ul>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
           <p>
-            <b>Credits</b>
-            are only deducted when you
-            <b>access</b>
-            the
-            <b> proposal submission page.</b>
+            This is your
+            <b> secret weapon </b>
+            for saving time and submitting more proposals effortlessly, all
+            while keeping everything professional and personalized.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            You can
+            <b>watch a 2 minutes</b>
+            step by step
+            <b>tutorial</b>
+            on how to use this feature effectively on youtube by following this
+            link:
+            <a
+              target="_blank"
+              href="https://www.youtube.com/watch?v=4w_Ks6LA6Ew"
+            >2 mins tutorial (How to save and copy Text templates)</a>
           </p>
 
           <p>
-            That means you'll only be
-            <b>charged</b>
-            when you're closest to submitting a proposal and most
-            productive—taking that final step to land a job on Upwork.
+            Let us know how these updates are working for you, and as always,
+            feel free to reach out with any feedback!
           </p>
 
           <p>
-            And considering you spend about
-            <b>₦2500</b>
-            when you use
-            <b>10 connects</b>
-            to apply to a job.
+            <b>P.S. This feature is now live, so be sure to try it out when next
+              you access the proposal submission page.
+            </b>
           </p>
+        </td>
+      </tr>
 
+      <tr>
+        <td>
+          <article>
+            <h2>Important Update: Changes Starting Wednesday, October 16th</h2>
+
+            <p>
+              <b>From Wednesday, October 16th,</b>
+              some of our features will move to
+              <b>paid plans,</b>
+              and you'll need to purchase credits to access them.
+            </p>
+
+            <p>
+              All other features will remain free, but here are the features
+              that will require credits:
+            </p>
+
+            <ul style="list-style: disc">
+              <li>
+                <p><b>Auto-fetching of client names</b></p>
+              </li>
+              <li>
+                <p><b>Summary of what it's like working with a client</b></p>
+              </li>
+              <li>
+                <p><b>Text templates for quick copy</b></p>
+              </li>
+              <li>
+                <p><b>Viewing "About client" details</b></p>
+              </li>
+            </ul>
+
+            <h2>How Credits Work:</h2>
+
+            <p>
+              <b>Credits</b>
+              are only deducted when you
+              <b>access</b>
+              the
+              <b> proposal submission page.</b>
+            </p>
+
+            <p>
+              That means you'll only be
+              <b>charged</b>
+              when you're closest to submitting a proposal and most
+              productive—taking that final step to land a job on Upwork.
+            </p>
+
+            <p>
+              And considering you spend about
+              <b>₦2500</b>
+              when you use
+              <b>10 connects</b>
+              to apply to a job.
+            </p>
+
+            <p>
+              Our credits will be super affordable for
+              <b>any regular Upwork freelancer!</b>
+              It's just about
+              <b>₦12</b>
+              per credit.
+            </p>
+
+            <p>
+              So, you spend about
+              <b>₦12</b>
+              for each time you access the proposal submission page.
+            </p>
+          </article>
+        </td>
+      </tr>
+      <tr>
+        <td>
           <p>
-            Our credits will be super affordable for
-            <b>any regular Upwork freelancer!</b>
-            It's just about
-            <b>₦12</b>
-            per credit.
+            Questions or concerns? Get in touch with us at
+            workforreputation@gmail.com
           </p>
-
-          <p>
-            So, you spend about
-            <b>₦12</b>
-            for each time you access the proposal submission page.
-          </p>
-        </article>
-
-        <p>Best regards,</p>
-
-        <p>WFR Toolkit Team</p>
-      </section>
+          <p>Best regards,</p>
+          <p>WFR Toolkit Team</p>
+        </td>
+      </tr>
     </table>
   </body>
 </html>
