@@ -145,6 +145,8 @@ const editFirstNamePromptInstruction = `
 
 // `;
 
+const creditsIsZeroText = "0 credits";
+
 const prefixToRemove =
   "Here is a summary of how freelancers described working with the client:";
 
@@ -169,6 +171,7 @@ getClientNameRouter.post("/", async (req, res) => {
   }
 
   const { prompt } = bodyRequest;
+  const { credits } = resultOfTokenValidation;
 
   try {
     //get client personality
@@ -216,6 +219,14 @@ getClientNameRouter.post("/", async (req, res) => {
       //if it's single name
       if (!finalName.includes(",")) {
         console.log("name includes forbidden keywords:", finalName);
+
+        if (credits == 0) {
+          return res.json({
+            clientNameResponse: creditsIsZeroText,
+            clientPersonality: creditsIsZeroText,
+          });
+        }
+
         return res.json({
           clientNameResponse: realNoNamesFoundResponse,
           clientPersonality,
@@ -258,6 +269,14 @@ getClientNameRouter.post("/", async (req, res) => {
     console.log("isFinalNamePresentInFeedback,", isFinalNamePresentInFeedback);
 
     if (isFinalNamePresentInFeedback == "No" && !finalName.includes(",")) {
+      //check if credits is zero
+      if (credits == 0) {
+        return res.json({
+          clientNameResponse: creditsIsZeroText,
+          clientPersonality: creditsIsZeroText,
+        });
+      }
+
       return res.json({
         clientNameResponse: realNoNamesFoundResponse,
         clientPersonality,
@@ -269,6 +288,15 @@ getClientNameRouter.post("/", async (req, res) => {
         "isFinalNamePresentInFeedback is no when multiple names",
         isFinalNamePresentInFeedback
       );
+
+      //check if credits is zero
+      if (credits == 0) {
+        return res.json({
+          clientNameResponse: creditsIsZeroText,
+          clientPersonality: creditsIsZeroText,
+        });
+      }
+
       return res.json({
         clientNameResponse: realNoNamesFoundResponse,
         clientPersonality,
@@ -310,6 +338,15 @@ return "Yes" or "No" only as response.
           isItCompanyNameResponse,
           finalName
         );
+
+        //check if credits is zero
+        if (credits == 0) {
+          return res.json({
+            clientNameResponse: creditsIsZeroText,
+            clientPersonality: creditsIsZeroText,
+          });
+        }
+
         return res.json({
           clientNameResponse:
             clientNameResponse == realNoNamesFoundResponse
@@ -336,6 +373,15 @@ return "Yes" or "No" only as response.
 
     if (isItATeamNameResponse) {
       console.log(" isItATeamNameResponse", isItATeamNameResponse, finalName);
+
+      //check if credits is zero
+      if (credits == 0) {
+        return res.json({
+          clientNameResponse: creditsIsZeroText,
+          clientPersonality: creditsIsZeroText,
+        });
+      }
+
       return res.json({
         clientNameResponse:
           clientNameResponse == realNoNamesFoundResponse
@@ -376,6 +422,14 @@ return "Yes" or "No" only as response.
           isItReallySingleNameResponse
         );
 
+        //check if credits is zero
+        if (credits == 0) {
+          return res.json({
+            clientNameResponse: creditsIsZeroText,
+            clientPersonality: creditsIsZeroText,
+          });
+        }
+
         res.json({
           clientNameResponse: nameToFreelancer,
           clientPersonality,
@@ -389,6 +443,15 @@ return "Yes" or "No" only as response.
 
       if (returnedHumanNames == realNoNamesFoundResponse) {
         console.log("none of  comma seperated name is human", finalName);
+
+        //check if credits is zero
+        if (credits == 0) {
+          return res.json({
+            clientNameResponse: creditsIsZeroText,
+            clientPersonality: creditsIsZeroText,
+          });
+        }
+
         return res.json({
           clientNameResponse: returnedHumanNames,
           clientPersonality,
@@ -401,6 +464,15 @@ return "Yes" or "No" only as response.
           "none of  comma seperated name is human,nly one name is human name",
           finalName
         );
+
+        //check if credits is zero
+        if (credits == 0) {
+          return res.json({
+            clientNameResponse: creditsIsZeroText,
+            clientPersonality: creditsIsZeroText,
+          });
+        }
+
         return res.json({
           clientNameResponse: returnedHumanNames,
           clientPersonality,
@@ -415,6 +487,14 @@ return "Yes" or "No" only as response.
         "Multiple names found",
         returnedHumanNames
       );
+
+      //check if credits is zero
+      if (credits == 0) {
+        return res.json({
+          clientNameResponse: creditsIsZeroText,
+          clientPersonality: creditsIsZeroText,
+        });
+      }
 
       return res.json({
         clientNameResponse: nameToFreelancer,
@@ -470,6 +550,14 @@ return "Yes" or "No" only as response.
     );
 
     //return final shit still
+    //check if credits is zero
+    if (credits == 0) {
+      return res.json({
+        clientNameResponse: creditsIsZeroText,
+        clientPersonality: creditsIsZeroText,
+      });
+    }
+
     return res.json({
       clientNameResponse: nameToFreelancer,
       clientPersonality,

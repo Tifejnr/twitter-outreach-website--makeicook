@@ -68,6 +68,8 @@ export default async function isTokenValid(bodyRequest) {
         jobId,
         currentUrl
       );
+
+      return { decodedPayload, credits };
     }
 
     return { decodedPayload };
