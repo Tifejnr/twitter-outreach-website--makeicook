@@ -51,14 +51,14 @@ import accountDetailsRouter from "./routes/(auth)/users/account-details/accountD
 import sendTutorialsObjArrayRouter from "./routes/stored-messages-on-server/sendTutorialsObjArray.js";
 import giveUsers50Credits from "./routes/(auth)/users-stats/reset-stats-daily/giveUsers50Credits.js";
 
-// runNow();
-// async function runNow() {
-//   await giveUsers50Credits();
-//   // await deleteUsersWithEmail("akovahh@gmail.com");
-// }
+runNow();
+async function runNow() {
+  // await giveUsers50Credits();
+  await deleteUsersWithEmail("lewisashleyel97@gmail.com");
+}
 
-import sendMailToMultipleUsers from "./routes/(customer-requests)/email-users/route.js";
-sendMailToMultipleUsers();
+// import sendMailToMultipleUsers from "./routes/(customer-requests)/email-users/route.js";
+// sendMailToMultipleUsers();
 
 // Runs at 12:00 AM every day (Nigerian time, UTC+1)
 cron.schedule("0 0 * * *", () => {
