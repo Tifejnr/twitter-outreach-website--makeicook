@@ -7,6 +7,7 @@ const invalidEmailsListArray = [
   "techinacalravirajcool54@gamil.com",
   "asdasd@gmail.com",
   "adewaleabiodun2018@gmail.com",
+  "akovahhh@gmail.com",
 ];
 
 export default invalidEmailsListArray;

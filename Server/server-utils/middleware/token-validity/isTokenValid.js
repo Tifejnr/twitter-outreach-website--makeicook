@@ -69,7 +69,7 @@ export default async function isTokenValid(bodyRequest) {
         currentUrl
       );
 
-      return { decodedPayload, credits };
+      // return { decodedPayload, credits };
     }
 
     return { decodedPayload };
