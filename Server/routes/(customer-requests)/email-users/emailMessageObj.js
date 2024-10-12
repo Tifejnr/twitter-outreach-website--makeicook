@@ -27,7 +27,7 @@ const message = {
   message7,
 };
 
-const emailHeading = `Important Update: Unlock Exclusive Features with WFR Toolkit Starting October 16th!`;
+const emailHeading = ` Urgent: Last Chance to Access Powerful WFR Toolkit Features for Free - Changes on October 16th!`;
 // const emailHeading = `Don't Miss These Powerful Personalization Tips—Try Them Free Before Oct 16th!`;
 // const emailHeading = `Boost your proposals with insights from other freelancers`;
 
