@@ -222,7 +222,7 @@ getClientNameRouter.post("/", async (req, res) => {
       if (!finalName.includes(",")) {
         console.log("name includes forbidden keywords:", finalName);
 
-        if (credits == 0) {
+        if (credits === 0) {
           return res.json({
             clientNameResponse: creditsIsZeroText,
             clientPersonality: creditsIsZeroText,
@@ -251,7 +251,7 @@ getClientNameRouter.post("/", async (req, res) => {
 
       const { occurrences } = occurenceObj;
 
-      if (occurrences == 0) {
+      if (occurrences === 0) {
         console.log("occurences is 0", finalName);
         finalName = realNoNamesFoundResponse;
       }
@@ -272,7 +272,7 @@ getClientNameRouter.post("/", async (req, res) => {
 
     if (isFinalNamePresentInFeedback == "No" && !finalName.includes(",")) {
       //check if credits is zero
-      if (credits == 0) {
+      if (credits === 0) {
         return res.json({
           clientNameResponse: creditsIsZeroText,
           clientPersonality: creditsIsZeroText,
@@ -292,7 +292,7 @@ getClientNameRouter.post("/", async (req, res) => {
       );
 
       //check if credits is zero
-      if (credits == 0) {
+      if (credits === 0) {
         return res.json({
           clientNameResponse: creditsIsZeroText,
           clientPersonality: creditsIsZeroText,
@@ -342,7 +342,7 @@ return "Yes" or "No" only as response.
         );
 
         //check if credits is zero
-        if (credits == 0) {
+        if (credits === 0) {
           return res.json({
             clientNameResponse: creditsIsZeroText,
             clientPersonality: creditsIsZeroText,
@@ -377,7 +377,7 @@ return "Yes" or "No" only as response.
       console.log(" isItATeamNameResponse", isItATeamNameResponse, finalName);
 
       //check if credits is zero
-      if (credits == 0) {
+      if (credits === 0) {
         return res.json({
           clientNameResponse: creditsIsZeroText,
           clientPersonality: creditsIsZeroText,
@@ -425,7 +425,7 @@ return "Yes" or "No" only as response.
         );
 
         //check if credits is zero
-        if (credits == 0) {
+        if (credits === 0) {
           return res.json({
             clientNameResponse: creditsIsZeroText,
             clientPersonality: creditsIsZeroText,
@@ -447,7 +447,7 @@ return "Yes" or "No" only as response.
         console.log("none of  comma seperated name is human", finalName);
 
         //check if credits is zero
-        if (credits == 0) {
+        if (credits === 0) {
           return res.json({
             clientNameResponse: creditsIsZeroText,
             clientPersonality: creditsIsZeroText,
@@ -468,7 +468,7 @@ return "Yes" or "No" only as response.
         );
 
         //check if credits is zero
-        if (credits == 0) {
+        if (credits === 0) {
           return res.json({
             clientNameResponse: creditsIsZeroText,
             clientPersonality: creditsIsZeroText,
@@ -491,7 +491,7 @@ return "Yes" or "No" only as response.
       );
 
       //check if credits is zero
-      if (credits == 0) {
+      if (credits === 0) {
         return res.json({
           clientNameResponse: creditsIsZeroText,
           clientPersonality: creditsIsZeroText,
@@ -553,7 +553,7 @@ return "Yes" or "No" only as response.
 
     //return final shit still
     //check if credits is zero
-    if (credits == 0) {
+    if (credits === 0) {
       return res.json({
         clientNameResponse: creditsIsZeroText,
         clientPersonality: creditsIsZeroText,
