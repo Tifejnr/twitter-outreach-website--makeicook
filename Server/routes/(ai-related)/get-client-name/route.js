@@ -173,6 +173,8 @@ getClientNameRouter.post("/", async (req, res) => {
   const { prompt } = bodyRequest;
   const { credits } = resultOfTokenValidation;
 
+  console.log("credits", credits);
+
   try {
     //get client personality
     const clientPersonalityRaw = await getStraightAiResponse(

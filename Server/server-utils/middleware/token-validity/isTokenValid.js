@@ -32,8 +32,6 @@ export default async function isTokenValid(bodyRequest) {
 
     const { credits } = accountUser;
 
-    console.log("credits", credits);
-
     if (isJssHomePage) {
       const accountUser = await user.findById(decodedPayload._id);
 
@@ -78,7 +76,7 @@ export default async function isTokenValid(bodyRequest) {
       // return { decodedPayload, credits };
     }
 
-    return { decodedPayload };
+    return { decodedPayload, credits };
   } catch (ex) {
     return { invalidToken: true };
   }
