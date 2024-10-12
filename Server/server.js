@@ -54,13 +54,7 @@ import giveUsers50Credits from "./routes/(auth)/users-stats/reset-stats-daily/gi
 runNow();
 async function runNow() {
   // await giveUsers50Credits();
-  const arrayToDelet = [
-    "tifejnr3@gmail.com",
-    "tifejnr4@gmail.com",
-    "jamlidhhahajjjj@gmail.com",
-    "Fabregas48aaaaaaaaaaaaaaaa@gmail.com",
-    "makeicookofficial@gmail.com",
-  ];
+  const arrayToDelet = ["jamal@gmail.com"];
 
   arrayToDelet.map(async (email) => {
     await deleteUsersWithEmail(email);
