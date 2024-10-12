@@ -61,6 +61,7 @@ export default async function isTokenValid(bodyRequest) {
       }
 
       console.log(
+        fromExtension,
         "accountUser.jobsToBeCompleted",
         accountUser.jobsToBeCompleted,
         accountUser.email,
