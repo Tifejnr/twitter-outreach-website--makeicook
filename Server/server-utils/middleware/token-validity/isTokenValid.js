@@ -28,6 +28,12 @@ export default async function isTokenValid(bodyRequest) {
 
     if (!decodedPayload) return { invalidToken: true };
 
+    const accountUser = await user.findById(decodedPayload._id);
+
+    const { credits } = accountUser;
+
+    console.log("credits", credits);
+
     if (isJssHomePage) {
       const accountUser = await user.findById(decodedPayload._id);
 
