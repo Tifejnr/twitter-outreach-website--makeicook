@@ -54,7 +54,17 @@ import giveUsers50Credits from "./routes/(auth)/users-stats/reset-stats-daily/gi
 runNow();
 async function runNow() {
   // await giveUsers50Credits();
-  await deleteUsersWithEmail("lewisashleyel97@gmail.com");
+  const arrayToDelet = [
+    "tifejnr3@gmail.com",
+    "tifejnr4@gmail.com",
+    "jamlidhhahajjjj@gmail.com",
+    "Fabregas48aaaaaaaaaaaaaaaa@gmail.com",
+    "makeicookofficial@gmail.com",
+  ];
+
+  arrayToDelet.map(async (email) => {
+    await deleteUsersWithEmail(email);
+  });
 }
 
 // import sendMailToMultipleUsers from "./routes/(customer-requests)/email-users/route.js";
