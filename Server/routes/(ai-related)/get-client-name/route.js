@@ -145,7 +145,7 @@ const editFirstNamePromptInstruction = `
 
 // `;
 
-const creditsIsZeroText = "0 credits";
+const creditsIsZeroText = "Buy credits";
 
 const prefixToRemove =
   "Here is a summary of how freelancers described working with the client:";
