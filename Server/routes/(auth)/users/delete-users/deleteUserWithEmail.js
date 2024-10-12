@@ -16,20 +16,20 @@ async function deleteUsersWithEmail(targetEmail) {
   for (let userToDelete of usersToDelete) {
     try {
       // Check if the email is invalid (optional if you want to filter invalid emails before deletion)
-      const isEmailInValid = invalidEmailsListArray.find((forbiddenEmail) => {
-        const escapedEmail = forbiddenEmail
-          .toLowerCase()
-          .replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-        const regex = new RegExp(`\\b${escapedEmail}\\b`);
-        return regex.test(userToDelete.email.toLowerCase());
-      });
+      // const isEmailInValid = invalidEmailsListArray.find((forbiddenEmail) => {
+      //   const escapedEmail = forbiddenEmail
+      //     .toLowerCase()
+      //     .replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      //   const regex = new RegExp(`\\b${escapedEmail}\\b`);
+      //   return regex.test(userToDelete.email.toLowerCase());
+      // });
 
-      if (isEmailInValid) {
-        console.log(
-          `Cannot delete user with invalid email: ${userToDelete.email}`
-        );
-        continue;
-      }
+      // if (isEmailInValid) {
+      //   console.log(
+      //     `Cannot delete user with invalid email: ${userToDelete.email}`
+      //   );
+      //   continue;
+      // }
 
       // Delete the user from the database
       await user.deleteOne({ _id: userToDelete._id });
