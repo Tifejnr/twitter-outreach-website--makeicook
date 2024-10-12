@@ -54,11 +54,10 @@ import giveUsers50Credits from "./routes/(auth)/users-stats/reset-stats-daily/gi
 runNow();
 async function runNow() {
   // await giveUsers50Credits();
-  const arrayToDelet = ["jamal@gmail.com"];
-
-  arrayToDelet.map(async (email) => {
-    await deleteUsersWithEmail(email);
-  });
+  // const arrayToDelet = ["jamal@gmail.com"];
+  // arrayToDelet.map(async (email) => {
+  //   await deleteUsersWithEmail(email);
+  // });
 }
 
 // import sendMailToMultipleUsers from "./routes/(customer-requests)/email-users/route.js";

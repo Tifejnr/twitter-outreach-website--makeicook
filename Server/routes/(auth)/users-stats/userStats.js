@@ -25,11 +25,15 @@ userStatsRouter.post("/", async (req, res) => {
     if (!accountUser) return { invalidToken: true };
 
     accountUser.noOfTimesUsedAllTime++;
-    accountUser.credits--;
+
+    if (accountUser.credits !== 0) {
+      accountUser.credits--;
+    }
 
     console.log(
       "aaccountUser.noOfTimesUsedAllTime",
       accountUser.noOfTimesUsedAllTime,
+      accountUser.email,
       accountUser.credits
     );
 
