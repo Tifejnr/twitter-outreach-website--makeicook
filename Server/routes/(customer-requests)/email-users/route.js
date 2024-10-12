@@ -21,14 +21,14 @@ async function sendMailToMultipleUsers() {
 
   // console.log("lastRegisteredUser", lastRegisteredUser);
 
-  const currentUserNow = {
-    email: "akovahh@gmail.com",
-    name: "Adedewe Boluwatife",
-  };
+  // const currentUserNow = {
+  //   email: "akovahh@gmail.com",
+  //   name: "Adedewe Boluwatife",
+  // };
 
-  sendMailFunction(currentUserNow);
+  // sendMailFunction(currentUserNow);
 
-  return;
+  // return;
 
   // const indexOfLastMessaged = allUsersThatHaveUsedExtensionOnce.findIndex(
   //   (user) => user.email === "Lawrencejoy548@gmail.com"
@@ -51,7 +51,7 @@ async function sendMailToMultipleUsers() {
   //   ]
   // );
   console.log("start sending jajaj");
-  // runWithDelay(allUsersThatHaveUsedExtensionOnce, sendMailFunction);
+  runWithDelay(allUsersThatHaveUsedExtensionOnce, sendMailFunction);
 }
 
 async function sendMailFunction(user) {
