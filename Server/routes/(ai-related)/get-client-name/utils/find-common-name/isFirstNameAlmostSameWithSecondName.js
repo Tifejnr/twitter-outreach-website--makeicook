@@ -12,15 +12,13 @@ export default function isFirstNameAlmostSameWithSecondName(
   firstName = firstName
     .toLowerCase()
     .replace(/\bmr\.?\b/gi, "")
+    .replace(/\bsir\.?\b/gi, "")
     .trim();
   secondName = secondName
     .toLowerCase()
     .replace(/\bmr\.?\b/gi, "")
+    .replace(/\bsir\.?\b/gi, "")
     .trim();
-
-  console.log(" firstName", firstName);
-
-  console.log(" secondName", secondName);
 
   const firstNameLength = firstName.length;
 
