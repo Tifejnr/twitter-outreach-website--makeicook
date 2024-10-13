@@ -46,7 +46,6 @@ signUpRouter.post("/", async (req, res) => {
     const isEntryCodeValid = entryCodesArray.find(
       (eachAffliateObj) => eachAffliateObj.code == entryCode
     );
-    console.log("entry code now", isEntryCodeValid, entryCode);
 
     accountUser.entryCode = isEntryCodeValid
       ? entryCode
