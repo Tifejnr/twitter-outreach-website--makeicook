@@ -10,6 +10,7 @@ import getSecretKeys from "../../../envVariables/envVariables.js";
 import emailTemplateFolderSrc from "../../../server-utils/emailTemplates/template-folder-src/emailTemplateFolderSrc.js";
 import getFirstName from "../../(customer-requests)/email-users/getFirstname.js";
 import sendEmail from "../../../server-utils/emailTemplates/sendEmail.js";
+import entryCodesArray from "./entry-codes-array/entryCodesArray.js";
 
 const signUpRouter = express.Router();
 
@@ -41,7 +42,13 @@ signUpRouter.post("/", async (req, res) => {
 
     accountUser.password = await bcrypt.hash(accountUser.password, salt);
 
-    accountUser.entryCode = entryCode
+    //is entry code valid
+    const isEntryCodeValid = entryCodesArray.find(
+      (eachAffliateObj) => eachAffliateObj.code == entryCode
+    );
+    console.log("entry code now", isEntryCodeValid);
+
+    accountUser.entryCode = isEntryCodeValid
       ? entryCode
       : keysObject.extensionEntryCode;
 
