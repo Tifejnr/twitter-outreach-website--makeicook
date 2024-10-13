@@ -9,8 +9,18 @@ export default function isFirstNameAlmostSameWithSecondName(
   if (firstName == secondName) return false;
 
   const uniqueSecondNameComing = secondName;
-  firstName = firstName.toLowerCase().trim().replace(/mr\.?/i, "");
-  secondName = secondName.toLowerCase().trim().replace(/mr\.?/i, "");
+  firstName = firstName
+    .toLowerCase()
+    .replace(/\bmr\.?\b/gi, "")
+    .trim();
+  secondName = secondName
+    .toLowerCase()
+    .replace(/\bmr\.?\b/gi, "")
+    .trim();
+
+  console.log(" firstName", firstName);
+
+  console.log(" secondName", secondName);
 
   const firstNameLength = firstName.length;
 
