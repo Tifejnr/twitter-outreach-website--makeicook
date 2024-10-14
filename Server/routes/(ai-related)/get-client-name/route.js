@@ -257,9 +257,7 @@ getClientNameRouter.post("/", async (req, res) => {
       }
     }
 
-    const doesTheNameSoundLikeCompanyPrompt = `
-
-    Return "Yes" or "No" only for this.
+    const doesTheNameSoundLikeCompanyPrompt = `Return "Yes" or "No" only for this.
     
     Note, human names are not company names in this context.
     
