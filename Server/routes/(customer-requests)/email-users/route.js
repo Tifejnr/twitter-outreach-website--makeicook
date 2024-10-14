@@ -50,8 +50,8 @@ async function sendMailToMultipleUsers() {
   //     allUsersThatHaveUsedExtensionOnce.length - 1
   //   ]
   // );
-  console.log("start sending jajaj");
-  runWithDelay(allUsersThatHaveUsedExtensionOnce, sendMailFunction);
+  // console.log("start sending jajaj");
+  // runWithDelay(allUsersThatHaveUsedExtensionOnce, sendMailFunction);
 }
 
 async function sendMailFunction(user) {
