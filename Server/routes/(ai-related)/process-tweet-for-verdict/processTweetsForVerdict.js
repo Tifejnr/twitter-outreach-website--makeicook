@@ -1,5 +1,5 @@
 import express from "express";
-import getStraightAiResponse from "../get-client-name/get-ai-response/getStraightAiResponse";
+import getStraightAiResponse from "../get-client-name/get-ai-response/getStraightAiResponse.js";
 
 const processTweetsForVerdictRouter = express.Router();
 
