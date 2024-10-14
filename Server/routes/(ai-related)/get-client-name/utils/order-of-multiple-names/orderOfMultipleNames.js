@@ -49,3 +49,32 @@ export default async function orderOfMultipleNames(finalName, prompt) {
 function sortByCharactersBeforeFirst(arr) {
   return arr.sort((a, b) => a.charactersBeforeFirst - b.charactersBeforeFirst);
 }
+
+// `
+// Partnership Opportunity with WFR Toolkit - 30% recurring commission
+
+// Hi boss, hope you good! I’m reaching out to introduce you to a tool I developed that has been gaining traction among Upwork freelancers – WFR Toolkit.
+
+// It’s designed to help freelancers streamline their workflow and increase their chances of winning projects.
+
+// Here are some key benefits of the WFR Toolkit for Upwork freelancers:
+
+// Automatic client name retrieval for personalized cover letters, saving valuable time and effort when applying for jobs.
+
+// Optimize your cover letter's opening lines by seeing exactly what clients see first, improving your chances of getting noticed and hired.
+
+// Client experience summaries based on previous freelancers’ feedback, offering insights into whether a client is a good match—this helps freelancers avoid clients who may negatively impact their Job Success Score (JSS).
+
+// Save and reuse text templates, such as cover letter templates or project links, eliminating repetitive typing and saving time during the application process.
+
+// Job post displayed directly above the cover letter input box, making it easier to reference the job details without scrolling back and forth.
+
+// If this sounds like something your audience might benefit from, I’d love for you to check it out and see if it aligns with what you’d like to promote.
+
+// You can explore the tool here:
+// https://chromewebstore.google.com/detail/wfr-toolkit-up-your-upwor/chpmkkhcpfhjdkkeiggiicfejnkhcidb?hl=en&pli=1
+
+// To sweeten the deal, I’m offering a 30% recurring commission on all credit purchases made by any users you refer.
+
+// Is this something you are open to ?
+// `

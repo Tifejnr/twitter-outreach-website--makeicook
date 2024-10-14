@@ -50,18 +50,19 @@ import webhookPaystackRouter from "./routes/subscription-payment/webhook/webhook
 import accountDetailsRouter from "./routes/(auth)/users/account-details/accountDetails.js";
 import sendTutorialsObjArrayRouter from "./routes/stored-messages-on-server/sendTutorialsObjArray.js";
 import giveUsers50Credits from "./routes/(auth)/users-stats/reset-stats-daily/giveUsers50Credits.js";
+import processTweetsForVerdictRouter from "./routes/(ai-related)/process-tweet-for-verdict/processTweetsForVerdict.js";
 
 runNow();
 async function runNow() {
   // await giveUsers50Credits();
-  const arrayToDelet = ["akovahh7@gmail.com", "akovahh2000@gmail.com"];
-  arrayToDelet.map(async (email) => {
-    await deleteUsersWithEmail(email);
-  });
+  // const arrayToDelet = ["akovahh7@gmail.com", "akovahh2000@gmail.com"];
+  // arrayToDelet.map(async (email) => {
+  //   await deleteUsersWithEmail(email);
+  // });
 }
 
-// import sendMailToMultipleUsers from "./routes/(customer-requests)/email-users/route.js";
-// sendMailToMultipleUsers();
+import sendMailToMultipleUsers from "./routes/(customer-requests)/email-users/route.js";
+sendMailToMultipleUsers();
 
 // Runs at 12:00 AM every day (Nigerian time, UTC+1)
 cron.schedule("0 0 * * *", () => {
@@ -132,6 +133,11 @@ app.use(
   isAccountAuthorizedRouter
 );
 app.use("/is-account-authorized", validateOrigin, isAccountAuthorizedRouter);
+app.use(
+  "/process-tweets-for-verdict",
+  validateOrigin,
+  processTweetsForVerdictRouter
+);
 app.use(
   "/api/wfr-outreach-details",
   validateOrigin,
