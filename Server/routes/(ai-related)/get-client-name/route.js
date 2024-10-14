@@ -257,54 +257,6 @@ getClientNameRouter.post("/", async (req, res) => {
       }
     }
 
-    const isNameWithinTextRangePrompt = `
-    return "Yes" or "No" only.
-
-    is  ${finalName} present in the text below :
-`;
-
-    const isFinalNamePresentInFeedback = await getStraightAiResponse(
-      isNameWithinTextRangePrompt,
-      prompt
-    );
-
-    console.log("isFinalNamePresentInFeedback,", isFinalNamePresentInFeedback);
-
-    if (isFinalNamePresentInFeedback == "No" && !finalName.includes(",")) {
-      //check if credits is zero
-      if (credits === 0) {
-        return res.json({
-          clientNameResponse: creditsIsZeroText,
-          clientPersonality: creditsIsZeroText,
-        });
-      }
-
-      return res.json({
-        clientNameResponse: realNoNamesFoundResponse,
-        clientPersonality,
-      });
-    }
-
-    if (isFinalNamePresentInFeedback == "No" && finalName.includes(",")) {
-      console.log(
-        "isFinalNamePresentInFeedback is no when multiple names",
-        isFinalNamePresentInFeedback
-      );
-
-      //check if credits is zero
-      if (credits === 0) {
-        return res.json({
-          clientNameResponse: creditsIsZeroText,
-          clientPersonality: creditsIsZeroText,
-        });
-      }
-
-      return res.json({
-        clientNameResponse: realNoNamesFoundResponse,
-        clientPersonality,
-      });
-    }
-
     const doesTheNameSoundLikeCompanyPrompt = `
 
     Return "Yes" or "No" only for this.

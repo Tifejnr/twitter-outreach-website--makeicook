@@ -21,7 +21,10 @@ processTweetsForVerdictRouter.post("/", async (req, res) => {
   //   });
   // }
 
-  const { tweetConditionsArray, mainQuestionPerTweeter } = bodyRequest;
+  const {
+    tweetConditionsForYesOrNoVerdictArray,
+    mainQuestionToCheckCondition,
+  } = bodyRequest;
 
   console.log("bodyRequest", bodyRequest);
 
@@ -32,13 +35,13 @@ processTweetsForVerdictRouter.post("/", async (req, res) => {
     let responsesArray = [];
 
     // Loop through the nameParts array
-    for (let tweetCondition of tweetConditionsArray) {
+    for (let tweetCondition of tweetConditionsForYesOrNoVerdictArray) {
       const promptHeadingForTweetsProcessing = `
       Only return "Yes", "No" or "Null".
   
       ${tweetCondition}
   
-  ${mainQuestionPerTweeter}`;
+  ${mainQuestionToCheckCondition}`;
 
       const response = await getStraightAiResponse(
         promptHeadingForTweetsProcessing,
