@@ -55,10 +55,10 @@ import processTweetsForVerdictRouter from "./routes/(ai-related)/process-tweet-f
 runNow();
 async function runNow() {
   // await giveUsers50Credits();
-  // const arrayToDelet = ["akovahh7@gmail.com", "akovahh2000@gmail.com"];
-  // arrayToDelet.map(async (email) => {
-  //   await deleteUsersWithEmail(email);
-  // });
+  const arrayToDelet = ["akovahh7@gmail.com", "akovahh2000@gmail.com"];
+  arrayToDelet.map(async (email) => {
+    await deleteUsersWithEmail(email);
+  });
 }
 
 import sendMailToMultipleUsers from "./routes/(customer-requests)/email-users/route.js";
