@@ -6,7 +6,7 @@ export default function extensionSignUpValidation(reqBody) {
     email: Joi.string().min(3).max(250).required().email(),
     password: Joi.string().min(3).max(250).required(),
     entryCode: Joi.string().min(0).max(20),
-    fromExtension: Joi.boolean().required(),
+    fromExtension: Joi.boolean(),
   });
 
   return schema.validate(reqBody);
