@@ -524,8 +524,12 @@ const No1Text = "No1";
 const peasureText = "peasure";
 const heText = "he";
 const sirText = "sir";
+const ClintText = "Clint";
+const clintText = "clint";
 
 const forbiddenNamesInclusionArray = [
+  clintText,
+  ClintText,
   sirText,
   partnersText,
   heText,
