@@ -54,15 +54,15 @@ import processTweetsForVerdictRouter from "./routes/(ai-related)/process-tweet-f
 
 runNow();
 async function runNow() {
-  await giveUsers50Credits();
+  // await giveUsers50Credits();
   // const arrayToDelet = ["abedolapo2020@gmail.com", "twitterhottest3@gmail.com"];
   // arrayToDelet.map(async (email) => {
   //   await deleteUsersWithEmail(email);
   // });
 }
 
-import sendMailToMultipleUsers from "./routes/(customer-requests)/email-users/route.js";
-sendMailToMultipleUsers();
+// import sendMailToMultipleUsers from "./routes/(customer-requests)/email-users/route.js";
+// sendMailToMultipleUsers();
 
 // Runs at 12:00 AM every day (Nigerian time, UTC+1)
 cron.schedule("0 0 * * *", () => {
