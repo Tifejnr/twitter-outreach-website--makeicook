@@ -61,8 +61,8 @@ async function runNow() {
   // });
 }
 
-// import sendMailToMultipleUsers from "./routes/(customer-requests)/email-users/route.js";
-// sendMailToMultipleUsers();
+import sendMailToMultipleUsers from "./routes/(customer-requests)/email-users/route.js";
+sendMailToMultipleUsers();
 
 // Runs at 12:00 AM every day (Nigerian time, UTC+1)
 cron.schedule("0 0 * * *", () => {
