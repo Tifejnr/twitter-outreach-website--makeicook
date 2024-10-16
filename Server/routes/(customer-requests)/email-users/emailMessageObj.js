@@ -27,7 +27,7 @@ const message = {
   message7,
 };
 
-const emailHeading = `Important: Some WFR Toolkit Features Will Move to Paid Plans on October 16th`;
+const emailHeading = `You've Got 20 Free Credits! Here's How to Use Them Wisely`;
 // const emailHeading = `Don't Miss These Powerful Personalization Tips—Try Them Free Before Oct 16th!`;
 // const emailHeading = `Boost your proposals with insights from other freelancers`;
 

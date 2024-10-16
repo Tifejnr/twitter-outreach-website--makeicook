@@ -6,7 +6,7 @@ export default async function giveUsers50Credits() {
     await user.updateMany(
       {}, // No filter, apply to all users
       {
-        $set: { credits: 50 }, // Reset credits to 50
+        $set: { credits: 20 }, // Reset credits to 50
       }
     );
     console.log("Credits set to 50 successfully for all users");
