@@ -40,16 +40,17 @@ export default function isFirstNameAlmostSameWithSecondName(
     secondName
   );
 
-  console.log(
-    `   passedArray.length >= firstNameLength - 1 &&
-    areFirstTwoAlphabetsTheSame`,
-    passedArray.length,
-    firstNameLength - 1,
-    areFirstTwoAlphabetsTheSame
-  );
+  // console.log(
+  //   `   passedArray.length >= firstNameLength - 1 &&
+  //   areFirstTwoAlphabetsTheSame`,
+  //   passedArray.length,
+  //   firstNameLength - 1,
+  //   areFirstTwoAlphabetsTheSame
+  // );
 
   if (
     passedArray.length >= firstNameLength - 1 &&
+    firstNameLength <= secondName.length &&
     areFirstTwoAlphabetsTheSame
   ) {
     return uniqueSecondNameComing;

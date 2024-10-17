@@ -21,7 +21,11 @@ export default function eachNameAgainstOtherNamesSimilarityCheck(
     }
   }
 
-  console.log("firstNameResultsArray, ", firstNameResultsArray);
+  console.log(
+    "firstNameResultsArray, ",
+    firstNameResultsArray,
+    doesNameMatchAnyNameResult
+  );
 
   if (firstNameResultsArray.length == 0) return false;
 
