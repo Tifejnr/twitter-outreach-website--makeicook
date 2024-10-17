@@ -16,16 +16,12 @@ export default function eachNameAgainstOtherNamesSimilarityCheck(
       namesArray[i]
     );
 
-    console.log(
-      "doesNameMatchAnyNameResult, ",
-      doesNameMatchAnyNameResult,
-      firstNameNow
-    );
-
     if (doesNameMatchAnyNameResult) {
       firstNameResultsArray.push(doesNameMatchAnyNameResult);
     }
   }
+
+  console.log("firstNameResultsArray, ", firstNameResultsArray);
 
   if (firstNameResultsArray.length == 0) return false;
 
