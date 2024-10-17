@@ -15,7 +15,7 @@ export default async function orderOfMultipleNames(finalName, prompt) {
     const { occurrences } = nameOccurentObj;
 
     // Only push to arrays if occurrences is greater than 0
-    if (occurrences > 0) {
+    if (occurrences > 0 && name !== "") {
       nameObjWithOccurenceArray.push({ name, occurrences });
       occurenceObjArray.push({ ...nameOccurentObj, name });
     }

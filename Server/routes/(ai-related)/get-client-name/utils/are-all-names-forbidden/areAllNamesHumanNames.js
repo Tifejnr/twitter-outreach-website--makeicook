@@ -46,7 +46,7 @@ export default async function areAllNamesHumanNames(finalName, prompt) {
 }
 
 function removeLastComma(str) {
-  if (str.slice(-1) === ",") {
+  if (str.slice(-1) == ",") {
     return str.slice(0, -1);
   }
   return str;
