@@ -4,6 +4,8 @@ export default function isFirstNameAlmostSameWithSecondName(
   firstName,
   secondName
 ) {
+  if (firstName == "" || secondName == "") return false;
+
   if (!firstName || !secondName) return false;
 
   if (firstName == secondName) return false;
