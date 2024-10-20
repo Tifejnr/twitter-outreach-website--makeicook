@@ -20,6 +20,9 @@ const corsOptions = {
 
 // Use bodyParser.text() middleware for LemonSqueezy routes
 app.use("/api/lemon-webhooks", bodyParser.text({ type: "*/*" }));
+import webhookLemonsqueezyRouter from "./routes/subscription-payment/webhook/webhookLemonsqueezy.js";
+app.use("/api/lemon-webhooks", webhookLemonsqueezyRouter);
+
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(coookieParser());
@@ -54,7 +57,6 @@ import accountDetailsRouter from "./routes/(auth)/users/account-details/accountD
 import sendTutorialsObjArrayRouter from "./routes/stored-messages-on-server/sendTutorialsObjArray.js";
 import giveUsers50Credits from "./routes/(auth)/users-stats/reset-stats-daily/giveUsers50Credits.js";
 import processTweetsForVerdictRouter from "./routes/(ai-related)/process-tweet-for-verdict/processTweetsForVerdict.js";
-import webhookLemonsqueezyRouter from "./routes/subscription-payment/webhook/webhookLemonsqueezy.js";
 
 runNow();
 async function runNow() {
