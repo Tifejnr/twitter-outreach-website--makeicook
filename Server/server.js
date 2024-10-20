@@ -18,6 +18,8 @@ const corsOptions = {
   credentials: true, //included credentials as true
 };
 
+// Use bodyParser.text() middleware for LemonSqueezy routes
+app.use("/api/lemon-webhooks", bodyParser.text({ type: "*/*" }));
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(coookieParser());
@@ -81,8 +83,6 @@ cron.schedule("0 0 * * *", () => {
 })();
 
 //webhook at the top
-// Use bodyParser.text() middleware for LemonSqueezy routes
-app.use("/api/lemon-webhooks", bodyParser.text({ type: "*/*" }));
 
 app.use("/api/webhooks", webhookPaystackRouter);
 const paystackWebhookCallbackUrl =
