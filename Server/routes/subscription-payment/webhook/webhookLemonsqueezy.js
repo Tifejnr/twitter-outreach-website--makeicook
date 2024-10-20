@@ -50,8 +50,6 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
       return res.status(403).json({ error: "Invalid signature." });
     }
 
-    console.log("git here hahahhaaaaaaaaaa, mf", req.body);
-
     // Signature is valid, proceed with processing the event
     const { data, meta } = req.body;
     const { event_name, custom_data } = meta;
@@ -63,18 +61,15 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
 
       // Destructure data to get payment details
       const { attributes } = data;
-      const { first_order_item, status_formatted } = attributes;
-      const { variant_id } = first_order_item;
+      const { status_formatted } = attributes;
 
-      console.log("variant_id", variant_id);
-
-      console.log(status_formatted);
+      console.log("variantId", variantId);
 
       if (status_formatted !== "Paid") return res.sendStatus(204); // Ignore unpaid orders
 
       // Get product details based on variant_id
       const product = dollarPricingPlansObjArray.find(
-        (planObj) => planObj.variantId == variant_id
+        (planObj) => `${planObj.variantId}` == variantId
       );
 
       if (!product) {

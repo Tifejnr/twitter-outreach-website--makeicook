@@ -117,6 +117,7 @@ handlePaymentsRouter.post("/payment", [nowVerifyAmount], async (req, res) => {
           custom: {
             user_id: user_id,
             creditsAwarded: `${creditsAwarded}`,
+            variantId: `${variantId}`,
           },
         },
         custom_price: productPrice * 100,
