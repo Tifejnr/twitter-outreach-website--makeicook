@@ -84,7 +84,7 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
 
       // Set user status to paid and update credits
       accountUser.isPaid = true;
-      accountUser.credits = (accountUser.credits || 0) + creditsAwarded;
+      accountUser.credits = (accountUser.credits || 0) + Number(creditsAwarded);
 
       // Save updated user details
       await accountUser.save();
