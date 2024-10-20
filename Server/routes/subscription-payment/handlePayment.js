@@ -104,7 +104,7 @@ handlePaymentsRouter.post("/payment", [nowVerifyAmount], async (req, res) => {
         return res.status(402).json({ notFound: true });
       }
 
-      const productName = `${product.planName} Plan`;
+      const productName = `${product.planName} - ${creditsAwarded} credits`;
       const productDescp = `You will get ${creditsAwarded} credits`;
       const variantId = product.variantId;
       const productPrice = product.planPrice;
@@ -116,7 +116,7 @@ handlePaymentsRouter.post("/payment", [nowVerifyAmount], async (req, res) => {
           email: email,
           custom: {
             user_id: user_id,
-            creditsAwarded,
+            creditsAwarded: `${creditsAwarded}`,
           },
         },
         custom_price: productPrice * 100,
