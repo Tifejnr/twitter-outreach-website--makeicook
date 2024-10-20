@@ -3,10 +3,10 @@ import crypto from "crypto";
 import bodyParser from "body-parser";
 import user from "../../../server-utils/database/usersDb.js";
 import getSecretKeys from "../../../envVariables/envVariables.js";
-import allPricingPlansObj from "../all-plan-obj/allPlanObj.js";
 import emailTemplateFolderSrc from "../../../server-utils/emailTemplates/template-folder-src/emailTemplateFolderSrc.js";
 import getFirstName from "../../(customer-requests)/email-users/getFirstname.js";
 import sendEmail from "../../../server-utils/emailTemplates/sendEmail.js";
+import dollarPricingPlansObjArray from "../all-plan-obj/dollarPricingPlanObjArray.js";
 
 const keysObjects = getSecretKeys();
 const secret = keysObjects.webHookSecretLemon;
@@ -73,7 +73,7 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
       if (status_formatted !== "Paid") return res.sendStatus(204); // Ignore unpaid orders
 
       // Get product details based on variant_id
-      const product = allPricingPlansObj.find(
+      const product = dollarPricingPlansObjArray.find(
         (planObj) => planObj.variantId === variant_id
       );
 
