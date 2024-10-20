@@ -1,51 +1,31 @@
-//Lemon squuezy payment checkou url getting
 import express from "express";
 import crypto from "crypto";
-import bodyParser from "body-parser";
 import user from "../../../server-utils/database/usersDb.js";
 import getSecretKeys from "../../../envVariables/envVariables.js";
 import allPricingPlansObj from "../all-plan-obj/allPlanObj.js";
-import emailTemplateFolderSrc from "../../../server-utils/emailTemplates/template-folder-src/emailTemplateFolderSrc.js";
-import getFirstName from "../../(customer-requests)/email-users/getFirstname.js";
-import sendEmail from "../../../server-utils/emailTemplates/sendEmail.js";
 
 const keysObjects = getSecretKeys();
 const secret = keysObjects.webHookSecretLemon;
-
 const orderCreatedEvent = "order_created";
 
 const webhookLemonsqueezyRouter = express.Router();
 
-// Custom middleware to capture the raw request body before parsing it
+// Middleware to capture raw body as a buffer (using express.raw())
 webhookLemonsqueezyRouter.use(
-  bodyParser.json({
-    verify: (req, res, buf, encoding) => {
-      if (buf && buf.length) {
-        req.rawBody = buf.toString(encoding || "utf8"); // Ensure rawBody is set
-      } else {
-        req.rawBody = null; // Set to null if empty
-      }
-    },
-  })
+  express.raw({ type: "application/json" }) // Capture raw body for json content type
 );
 
 webhookLemonsqueezyRouter.post("/", async (req, res) => {
-  console.log("req.body", req.body);
-  console.log("req.rawBody", req.rawBody); // Log raw body to check if it was captured
+  console.log("req.body", req.body); // This will now log a buffer if it's properly captured
+  console.log("req.rawBody", req.body.toString()); // Log the raw body as a string
 
   try {
     const headerSignature = Buffer.from(req.get("X-Signature") || "", "utf8");
 
-    if (!req.rawBody) {
-      return res
-        .status(400)
-        .json({ error: "Invalid or missing request body." });
-    }
-
     // Verify the signature
     const hmac = crypto.createHmac("sha256", secret);
     const generatedSigFromBody = Buffer.from(
-      hmac.update(req.rawBody).digest("hex"), // Use req.rawBody
+      hmac.update(req.body).digest("hex"), // Use req.body (which is a buffer now)
       "utf8"
     );
 
@@ -54,9 +34,10 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
     }
 
     // Signature is valid, process the webhook event
-    console.log("Webhook event received:", req.body);
+    const parsedBody = JSON.parse(req.body); // Parse raw body to JSON
+    console.log("Parsed webhook event:", parsedBody);
 
-    const { data, meta } = req.body;
+    const { data, meta } = parsedBody;
     const { event_name, custom_data } = meta;
     const { user_id } = custom_data;
 
