@@ -5,6 +5,7 @@ import cors from "cors";
 import exppressLimiter from "express-limit";
 import path from "path";
 import { fileURLToPath } from "url";
+import bodyParser from "body-parser";
 
 import coookieParser from "cookie-parser";
 
@@ -80,6 +81,8 @@ cron.schedule("0 0 * * *", () => {
 })();
 
 //webhook at the top
+// Use bodyParser.text() middleware for LemonSqueezy routes
+app.use("/api/lemon-webhooks", bodyParser.text({ type: "*/*" }));
 
 app.use("/api/webhooks", webhookPaystackRouter);
 const paystackWebhookCallbackUrl =
