@@ -53,7 +53,7 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
     // Signature is valid, proceed with processing the event
     const { data, meta } = req.body;
     const { event_name, custom_data } = meta;
-    const { user_id, creditsAwarded } = custom_data;
+    const { user_id, creditsAwarded, variantId } = custom_data;
 
     if (event_name === orderCreatedEvent) {
       const accountUser = await user.findById(user_id);
