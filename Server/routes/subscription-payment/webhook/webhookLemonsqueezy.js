@@ -15,34 +15,47 @@ const secret = keysObjects.webHookSecretLemon;
 const orderCreatedEvent = "order_created";
 
 const webhookLemonsqueezyRouter = express.Router();
+
 // Custom middleware to capture the raw request body before parsing it
 webhookLemonsqueezyRouter.use(
   bodyParser.json({
-    verify: (req, res, buf) => {
-      req.rawBody = buf; // Keep this as a buffer
+    verify: (req, res, buf, encoding) => {
+      if (buf && buf.length) {
+        req.rawBody = buf.toString(encoding || "utf8"); // Ensure rawBody is set
+      } else {
+        req.rawBody = null; // Set to null if empty
+      }
     },
   })
 );
 
 webhookLemonsqueezyRouter.post("/", async (req, res) => {
   console.log("req.body", req.body);
+  console.log("req.rawBody", req.rawBody); // Log raw body to check if it was captured
+
   try {
-    const headerSignarture = Buffer.from(req.get("X-Signature") || "y", "utf8");
+    const headerSignature = Buffer.from(req.get("X-Signature") || "", "utf8");
+
+    if (!req.rawBody) {
+      return res
+        .status(400)
+        .json({ error: "Invalid or missing request body." });
+    }
 
     // Verify the signature
     const hmac = crypto.createHmac("sha256", secret);
     const generatedSigFromBody = Buffer.from(
-      hmac.update(req.rawBody).digest("hex"), // Use req.rawBody instead of req.body
+      hmac.update(req.rawBody).digest("hex"), // Use req.rawBody
       "utf8"
     );
 
-    if (!crypto.timingSafeEqual(generatedSigFromBody, headerSignarture))
+    if (!crypto.timingSafeEqual(generatedSigFromBody, headerSignature)) {
       return res.status(403).json({ error: "Invalid signature." });
+    }
 
     // Signature is valid, process the webhook event
-    console.log("eeeee reach ooo", req.body);
+    console.log("Webhook event received:", req.body);
 
-    // Process the event...
     const { data, meta } = req.body;
     const { event_name, custom_data } = meta;
     const { user_id } = custom_data;
@@ -74,7 +87,8 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
       return res.sendStatus(204);
     }
   } catch (error) {
-    console.log(error);
+    console.log("Error:", error);
+    return res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
