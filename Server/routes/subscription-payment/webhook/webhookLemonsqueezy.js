@@ -57,8 +57,6 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
     const { event_name, custom_data } = meta;
     const { user_id, creditsAwarded } = custom_data;
 
-    console.log("variant_id", variant_id);
-
     if (event_name === orderCreatedEvent) {
       const accountUser = await user.findById(user_id);
       if (!accountUser) return res.status(400).json({ invalid_User: true });
@@ -67,6 +65,8 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
       const { attributes } = data;
       const { first_order_item, status_formatted } = attributes;
       const { variant_id } = first_order_item;
+
+      console.log("variant_id", variant_id);
 
       console.log(status_formatted);
 
