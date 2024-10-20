@@ -17,17 +17,18 @@ const orderCreatedEvent = "order_created";
 const webhookLemonsqueezyRouter = express.Router();
 
 // Custom middleware to capture the raw request body before parsing it
-webhookLemonsqueezyRouter.use(
-  bodyParser.json({
-    verify: (req, res, buf) => {
-      req.rawBody = buf.toString();
-    },
-  })
-);
+// webhookLemonsqueezyRouter.use(
+//   bodyParser.json({
+//     verify: (req, res, buf) => {
+//       req.rawBody = buf.toString();
+//     },
+//   })
+// );
 
 // Endpoint to handle incoming webhook events
 webhookLemonsqueezyRouter.post("/", async (req, res) => {
-  if (!req.rawBody) return console.log(" req.rawBody  does not exist");
+  console.log("req.body each", req.body);
+  if (!req.rawBody) return console.log("req.rawBody  does not exist");
 
   try {
     const headerSignarture = Buffer.from(req.get("X-Signature") || "", "utf8");
