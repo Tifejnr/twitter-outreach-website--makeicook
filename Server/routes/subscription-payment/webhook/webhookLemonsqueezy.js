@@ -27,9 +27,6 @@ const webhookLemonsqueezyRouter = express.Router();
 
 // Endpoint to handle incoming webhook events
 webhookLemonsqueezyRouter.post("/", async (req, res) => {
-  console.log("req.body each", req.body);
-  if (!req.rawBody) return console.log("req.rawBody  does not exist");
-
   try {
     const headerSignarture = Buffer.from(req.get("X-Signature") || "", "utf8");
 
