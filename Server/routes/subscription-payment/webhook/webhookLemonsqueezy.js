@@ -50,49 +50,51 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
       return res.status(403).json({ error: "Invalid signature." });
     }
 
-    console.log("git here hahahhaaaaaaaaaa,", req.body);
+    console.log("git here hahahhaaaaaaaaaa, mf");
 
     // Signature is valid, proceed with processing the event
-    // const { data, meta } = req.body;
-    // const { event_name, custom_data } = meta;
-    // const { user_id } = custom_data;
+    const { data, meta } = req.body;
+    const { event_name, custom_data } = meta;
+    const { user_id, creditsAwarded } = custom_data;
 
-    // if (event_name === orderCreatedEvent) {
-    //   const accountUser = await user.findById(user_id);
-    //   if (!accountUser) return res.status(400).json({ invalid_User: true });
+    console.log("creditsAwarded", creditsAwarded);
 
-    //   // Destructure data to get payment details
-    //   const { attributes } = data;
-    //   const { first_order_item, status_formatted } = attributes;
-    //   const { variant_id } = first_order_item;
+    if (event_name === orderCreatedEvent) {
+      const accountUser = await user.findById(user_id);
+      if (!accountUser) return res.status(400).json({ invalid_User: true });
 
-    //   console.log(status_formatted);
+      // Destructure data to get payment details
+      const { attributes } = data;
+      const { first_order_item, status_formatted } = attributes;
+      const { variant_id } = first_order_item;
 
-    //   if (status_formatted !== "Paid") return res.sendStatus(204); // Ignore unpaid orders
+      console.log(status_formatted);
 
-    //   // Get product details based on variant_id
-    //   const product = allPricingPlansObj.find(
-    //     (planObj) => planObj.variantId === variant_id
-    //   );
+      if (status_formatted !== "Paid") return res.sendStatus(204); // Ignore unpaid orders
 
-    //   if (!product) {
-    //     console.log("Product not found");
-    //     return res.status(402).json({ notFound: true });
-    //   }
+      // Get product details based on variant_id
+      const product = allPricingPlansObj.find(
+        (planObj) => planObj.variantId === variant_id
+      );
 
-    //   // Set user status to paid and update credits
-    //   accountUser.isPaid = true;
-    //   accountUser.credits = (accountUser.credits || 0) + product.credits;
+      if (!product) {
+        console.log("Product not found");
+        return res.status(402).json({ notFound: true });
+      }
 
-    //   // Save updated user details
-    //   await accountUser.save();
+      // Set user status to paid and update credits
+      accountUser.isPaid = true;
+      accountUser.credits = (accountUser.credits || 0) + creditsAwarded;
 
-    // Respond with a 200 status to acknowledge receipt of the webhook
-    return res.sendStatus(200);
-    // } else {
-    //   // For other events, respond with a 204 status to indicate that the event is not handled by this endpoint
-    //   return res.sendStatus(204);
-    // }
+      // Save updated user details
+      await accountUser.save();
+
+      // Respond with a 200 status to acknowledge receipt of the webhook
+      return res.sendStatus(200);
+    } else {
+      // For other events, respond with a 204 status to indicate that the event is not handled by this endpoint
+      return res.sendStatus(204);
+    }
   } catch (error) {
     console.error("Error processing webhook:", error);
     return res.status(500).json({ error: "Internal server error" });
