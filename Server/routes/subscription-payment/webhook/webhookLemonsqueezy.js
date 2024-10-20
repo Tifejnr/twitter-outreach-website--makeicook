@@ -17,23 +17,24 @@ const orderCreatedEvent = "order_created";
 const webhookLemonsqueezyRouter = express.Router();
 
 // Custom middleware to capture the raw request body before parsing it
-// webhookLemonsqueezyRouter.use(
-//   bodyParser.json({
-//     verify: (req, res, buf) => {
-//       req.rawBody = buf.toString();
-//     },
-//   })
-// );
+webhookLemonsqueezyRouter.use(
+  bodyParser.json({
+    verify: (req, res, buf) => {
+      req.rawBody = buf.toString();
+    },
+  })
+);
 
 // Endpoint to handle incoming webhook events
 webhookLemonsqueezyRouter.post("/", async (req, res) => {
+  console.log("req.body", req.body);
   try {
-    const headerSignarture = Buffer.from(req.get("X-Signature") || "", "utf8");
+    const headerSignarture = Buffer.from(req.get("X-Signature") || "y", "utf8");
 
     // Verify the signature
     const hmac = crypto.createHmac("sha256", secret);
     const generatedSigFromBody = Buffer.from(
-      hmac.update(req.rawBody).digest("hex"),
+      hmac.update(req.body).digest("hex"),
       "utf8"
     );
 
