@@ -10,22 +10,20 @@ const orderCreatedEvent = "order_created";
 
 const webhookLemonsqueezyRouter = express.Router();
 
-// Middleware to capture raw body as a buffer (using express.raw())
+// Middleware to capture raw body
 webhookLemonsqueezyRouter.use(
-  express.raw({ type: "application/json" }) // Capture raw body for json content type
+  express.raw({ type: "application/json" }) // Capture raw body for JSON content type
 );
 
 webhookLemonsqueezyRouter.post("/", async (req, res) => {
-  console.log("req.body", req.body); // This will now log a buffer if it's properly captured
-  console.log("req.rawBody", req.body.toString()); // Log the raw body as a string
-
   try {
+    const rawBody = req.body; // This will be a buffer
     const headerSignature = Buffer.from(req.get("X-Signature") || "", "utf8");
 
     // Verify the signature
     const hmac = crypto.createHmac("sha256", secret);
     const generatedSigFromBody = Buffer.from(
-      hmac.update(req.body).digest("hex"), // Use req.body (which is a buffer now)
+      hmac.update(rawBody).digest("hex"), // Use rawBody, which is a buffer
       "utf8"
     );
 
@@ -34,7 +32,7 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
     }
 
     // Signature is valid, process the webhook event
-    const parsedBody = JSON.parse(req.body); // Parse raw body to JSON
+    const parsedBody = JSON.parse(rawBody.toString()); // Parse raw body to JSON
     console.log("Parsed webhook event:", parsedBody);
 
     const { data, meta } = parsedBody;
