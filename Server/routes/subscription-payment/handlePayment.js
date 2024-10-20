@@ -1,17 +1,14 @@
-import user from "../../server-utils/database/usersDb.js";
-import jwt from "jsonwebtoken";
 import coookieParser from "cookie-parser";
 import express from "express";
-import axios from "axios";
+import { createCheckout } from "lemonsqueezy.ts/checkout";
 import customTransRefGen from "../../server-utils/payments-related/custom-trans-ref-gen/customTransRefGen.js";
 import isTokenValid from "../../server-utils/middleware/token-validity/isTokenValid.js";
 import { nowVerifyAmount } from "./confirmation-related/verifyAmountFromClient.js";
-import sendEmail from "../../server-utils/emailTemplates/sendEmail.js";
 import PaystackAPI from "paystack-api";
-import emailTemplateFolderSrc from "../../server-utils/emailTemplates/template-folder-src/emailTemplateFolderSrc.js";
 import allPricingPlansObj from "./all-plan-obj/allPlanObj.js";
 import getSecretKeys from "../../envVariables/envVariables.js";
 import getCreditsAwarded from "./confirmation-related/getCreditsAwarded.js";
+import dollarPricingPlansObjArray from "./all-plan-obj/dollarPricingPlanObjArray.js";
 
 // const {
 //   calculateAffliateFees,
@@ -28,6 +25,11 @@ const keysObject = getSecretKeys();
 const PAYSTACK_SECRET = keysObject.PAYSTACK_SECRET;
 // const PAYSTACK_SECRET = "sk_test_77f56feec74a6a039f819388e83cb24feeb1e572";
 const JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
+const apiKey = keysObject.lemonApiKey;
+const storeId = keysObject.storeId;
+
+// const redirectUrl = `${keysObject.websiteURL}/verify-payment`;
+const redirectUrl = `https://workforreputation.com/verify-payment`;
 
 handlePaymentsRouter.post("/payment", [nowVerifyAmount], async (req, res) => {
   const {
@@ -39,7 +41,6 @@ handlePaymentsRouter.post("/payment", [nowVerifyAmount], async (req, res) => {
     user_id,
   } = req;
 
-  console.log("user_id", user_id);
   const customTransactionReference = customTransRefGen(customizedParams);
 
   const bodyRequest = await req.body;
@@ -52,173 +53,96 @@ handlePaymentsRouter.post("/payment", [nowVerifyAmount], async (req, res) => {
 
   const { naira } = bodyRequest;
 
-  const amount = planPrice; // multiply by 100 to convert it to kobo
-  const Paystack = PaystackAPI(PAYSTACK_SECRET);
-  const creditsAwarded = getCreditsAwarded(planPrice, naira);
+  console.log("naira", naira);
 
-  const paymentData = {
-    email: email,
-    amount: amount * 100, // in kobo
-    reference: customTransactionReference,
-    callback_url: `${keysObject.websiteURL}/verify-payment`,
-    channels: ["card"],
+  if (naira) {
+    const amount = planPrice; // multiply by 100 to convert it to kobo
+    const Paystack = PaystackAPI(PAYSTACK_SECRET);
+    const creditsAwarded = getCreditsAwarded(planPrice, naira);
 
-    metadata: {
-      cancel_action: "https://workforreputation.com/cancel-payment",
-      custom_fields: [
-        {
-          name: customerName,
-          paid_For: `${creditsAwarded} credits`,
-          credits_Awarded: Number(creditsAwarded),
-          user_id: user_id,
-        },
-      ],
-    },
-  };
+    const paymentData = {
+      email: email,
+      amount: amount * 100, // in kobo
+      reference: customTransactionReference,
+      callback_url: redirectUrl,
+      channels: ["card"],
 
-  Paystack.transaction
-    .initialize(paymentData)
-    .then(function (body) {
-      const paymentLink = body.data.authorization_url;
-      res.json({ paymentLink: paymentLink });
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-});
-
-//payment verification
-handlePaymentsRouter.get("/paystack-verify", async (req, res) => {
-  //get request sent
-  const token = req.cookies.authToken;
-
-  console.log("token", token);
-
-  const decodedPayload = jwt.verify(token, JWT_PRIVATE_KEY);
-
-  if (!decodedPayload) return { invalidToken: true };
-
-  const reference = req.query.reference;
-
-  console.log("reference", reference);
-
-  const accountUser = await user.findById(req.user._id);
-  const customerEmail = accountUser.email;
-
-  const keysObject = getSecretKeys();
-  const PAYSTACK_SECRET = keysObject.PAYSTACK_SECRET;
-
-  await axios
-    .get(`https://api.paystack.co/transaction/verify/${reference}`, {
-      headers: {
-        authorization: `Bearer ${PAYSTACK_SECRET}`,
-        "content-type": "application/json",
-        "cache-control": "no-cache",
+      metadata: {
+        cancel_action: "https://workforreputation.com/cancel-payment",
+        custom_fields: [
+          {
+            name: customerName,
+            paid_For: `${creditsAwarded} credits`,
+            credits_Awarded: Number(creditsAwarded),
+            user_id: user_id,
+          },
+        ],
       },
-    })
-    .then((response) => {
-      const transaction = response.data.data;
-      const status = transaction.status;
-      const creditsPaidFor = transaction.metadata.custom_fields[0].paid_For;
-      const name = transaction.metadata.custom_fields[0].name;
-      const creditsAwarded =
-        transaction.metadata.custom_fields[0].credits_Awarded;
+    };
 
-      const paymentDateRaw = new Date(transaction.paid_at);
-      const paymentDateRawStringified = paymentDateRaw.toString();
-      const paymentDateRawSplitted = paymentDateRawStringified.split(" ");
-      const paymentDayName = paymentDateRawSplitted[0];
-      const paymentMonth = paymentDateRawSplitted[1];
-      const paymentDayNo = paymentDateRawSplitted[2];
-      const paymentYear = paymentDateRawSplitted[3];
-      const paymentTime = paymentDateRawSplitted[4];
+    Paystack.transaction
+      .initialize(paymentData)
+      .then(function (body) {
+        const paymentLink = body.data.authorization_url;
+        res.json({ paymentLink: paymentLink });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  } else {
+    try {
+      const creditsAwarded = getCreditsAwarded(planPrice, naira);
 
-      const paymentDate = `${paymentDayName} ${paymentMonth} ${paymentDayNo} ${paymentYear} ${paymentTime}`;
+      //getting product details first
+      //is it dollar payment.
+      const product = dollarPricingPlansObjArray.find(
+        (eachPrice) => eachPrice.planPrice === planPrice
+      );
 
-      // If the payment was successful, redirect to a success page
-      if (status === "success") {
-        const exactAmount = transaction.amount / 100; //to kobo
-        const amount = exactAmount.toFixed(2); // to add .00 at the back
-
-        // const affliateFeeTotal = calculateAffliateFees(creditsPaidFor);
-
-        // const affliateFeeInNaira = `${
-        //   transaction.currency
-        // } ${affliateFeeTotal.toFixed(2)}`;
-        // console.log(affliateFeeInNaira);
-
-        const emailReceiptParams = {
-          name: name,
-          amount: `${transaction.currency} ${amount}`,
-          creditsPaidFor: creditsPaidFor,
-          paymentMethod: transaction.channel,
-          time: paymentDate,
-          transReference: transaction.reference,
-        };
-
-        const subject = "Payment Received";
-        const folderDir = `${emailTemplateFolderSrc}/payment-receipt/to-client`;
-
-        const customerParams = {
-          subject: subject,
-          folderDir: folderDir,
-          customerEmail: customerEmail,
-        };
-
-        // const updateAffliateParams = {
-        //   affliateFeesNow: affliateFeeTotal,
-        //   threeLettersEntryCode: coachCode,
-        // };
-        saveInfoToDb();
-        async function saveInfoToDb() {
-          accountUser.set({
-            isPaid: true,
-            paidFor: creditsPaidFor,
-          });
-
-          accountUser.credits += +creditsAwarded;
-
-          console.log("accountUser.credits", accountUser.credits);
-
-          const savingUserToDb = await accountUser.save();
-          //   const saveAffliate = await updateAffliateAmount(updateAffliateParams);
-
-          //   const affliatEmailReceiptParams = {
-          //     name: name,
-          //     commission: affliateFeeInNaira,
-          //     weeklyEarnings: saveAffliate.weeklyEarnings,
-          //     totalEarned: saveAffliate.totalEarned,
-          //     purchasedService: creditsPaidFor,
-          //     time: paymentDate,
-          //     transReference: transaction.reference,
-          //   };
-
-          //   const affliateMailHeading = "Your Comission";
-          //   const affliateFolder = "/root/Wfr-Digital-Ocean/zAffliatesReceipt";
-
-          //   const afflateParams = {
-          //     subject: affliateMailHeading,
-          //     folderDir: affliateFolder,
-          //     customerEmail: saveAffliate.affliateEmail,
-          //   };
-
-          if (savingUserToDb) {
-            sendEmail(customerParams, emailReceiptParams);
-            // sendEmail(afflateParams, affliatEmailReceiptParams);
-            res.redirect("/homepage");
-          } else {
-            console.log("eror, somthing happended g");
-          }
-        }
-      } else {
-        console.log("Unknown Error has Occured");
-        res.redirect("/error");
+      if (!product) {
+        console.log("product not found");
+        return res.status(402).json({ notFound: true });
       }
-    })
 
-    .catch((error) => {
-      console.log(error);
-    });
+      const productName = `${product.planName} Plan`;
+      const productDescp = `You will get ${creditsAwarded} credits`;
+      const variantId = product.variantId;
+      const productPrice = product.planPrice;
+
+      //create checkout url link
+      const newCheckout = await createCheckout({
+        apiKey,
+        checkout_data: {
+          email: email,
+          custom: {
+            user_id: user_id,
+          },
+        },
+        custom_price: productPrice * 100,
+        product_options: {
+          description: productDescp,
+          name: productName,
+          receipt_button_text: "Buy now",
+          receipt_link_url: redirectUrl,
+          receipt_thank_you_note: "Thank you for your purchase",
+          redirect_url: redirectUrl,
+        },
+        store: storeId,
+        variant: variantId,
+      });
+
+      if (!newCheckout) {
+        console.log("checkout not sucessfull");
+        res.json({ error: "An error cocured, retry" });
+      }
+
+      const checkoutUrl = newCheckout.data.attributes.url;
+      return res.json({ paymentLink: checkoutUrl });
+    } catch (error) {
+      console.log("An error occurred in checkout:", error);
+      res.json({ error });
+    }
+  }
 });
 
 handlePaymentsRouter.post("/getPrices", async (req, res) => {

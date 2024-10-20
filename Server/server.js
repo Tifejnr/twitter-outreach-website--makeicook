@@ -51,6 +51,7 @@ import accountDetailsRouter from "./routes/(auth)/users/account-details/accountD
 import sendTutorialsObjArrayRouter from "./routes/stored-messages-on-server/sendTutorialsObjArray.js";
 import giveUsers50Credits from "./routes/(auth)/users-stats/reset-stats-daily/giveUsers50Credits.js";
 import processTweetsForVerdictRouter from "./routes/(ai-related)/process-tweet-for-verdict/processTweetsForVerdict.js";
+import webhookLemonsqueezyRouter from "./routes/subscription-payment/webhook/webhookLemonsqueezy.js";
 
 runNow();
 async function runNow() {
@@ -83,6 +84,10 @@ cron.schedule("0 0 * * *", () => {
 app.use("/api/webhooks", webhookPaystackRouter);
 const paystackWebhookCallbackUrl =
   "https://workforreputation.com/api/test/webhooks";
+
+app.use("/api/lemon-webhooks", webhookLemonsqueezyRouter);
+const lemonSqueezyWebhookCallbackUrl =
+  "https://workforreputation.com/api/lemon-webhooks";
 
 const limiter = exppressLimiter.limit;
 

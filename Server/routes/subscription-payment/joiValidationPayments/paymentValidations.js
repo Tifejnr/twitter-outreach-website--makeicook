@@ -13,7 +13,7 @@ function validatePaymentParams(reqBody) {
     planPrice: Joi.number().min(3).max(50000).required(),
     fromExtension: Joi.boolean().required(),
     token: Joi.string().required(),
-    naira: Joi.boolean().required(),
+    naira: Joi.boolean(),
   });
 
   return schema.validate(reqBody);

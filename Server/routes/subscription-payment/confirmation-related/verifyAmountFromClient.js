@@ -28,10 +28,8 @@ async function nowVerifyAmount(req, res, next) {
   const email = accountUser.email;
   const customerName = accountUser.name;
   const coachCodeRaw = accountUser.entryCode;
-  const user_id = accountUser._id
-    .toString()
-    .replace('ObjectId("', "")
-    .replace('")', "");
+  const user_id = accountUser._id;
+
   const coachCode = getFirst3Letters(coachCodeRaw);
 
   const customizedParams = {

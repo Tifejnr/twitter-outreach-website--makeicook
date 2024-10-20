@@ -7,6 +7,9 @@ const freePlanObj = {
   noOfDailyJobsItCanBeUsedToApplyTo: 0,
 };
 
+const variantIdRegular = "563237";
+const variantIdRegularTest = "563935";
+
 const regularPlanObj = {
   planName: "Regular",
   perCreditInfo: 0.008,
@@ -14,8 +17,11 @@ const regularPlanObj = {
   planPrice: 3.99,
   suitabilityTimeUsage: "less than 10",
   noOfDailyJobsItCanBeUsedToApplyTo: 10,
+  variantId: variantIdRegularTest,
 };
 
+const variantIdBusiness = "563239";
+const variantIdBusinessTest = "563936";
 const businessPlanObj = {
   planName: "Business",
   perCreditInfo: 0.005,
@@ -24,6 +30,7 @@ const businessPlanObj = {
   additionalCredits: 150,
   suitabilityTimeUsage: "more than 20",
   noOfDailyJobsItCanBeUsedToApplyTo: 20,
+  variantId: variantIdBusinessTest,
 };
 
 const dollarPricingPlansObjArray = [
