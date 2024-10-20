@@ -50,14 +50,14 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
       return res.status(403).json({ error: "Invalid signature." });
     }
 
-    console.log("git here hahahhaaaaaaaaaa, mf");
+    console.log("git here hahahhaaaaaaaaaa, mf", req.body);
 
     // Signature is valid, proceed with processing the event
     const { data, meta } = req.body;
     const { event_name, custom_data } = meta;
     const { user_id, creditsAwarded } = custom_data;
 
-    console.log("creditsAwarded", creditsAwarded);
+    console.log("variant_id", variant_id);
 
     if (event_name === orderCreatedEvent) {
       const accountUser = await user.findById(user_id);
@@ -74,7 +74,7 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
 
       // Get product details based on variant_id
       const product = dollarPricingPlansObjArray.find(
-        (planObj) => planObj.variantId === variant_id
+        (planObj) => planObj.variantId == variant_id
       );
 
       if (!product) {
