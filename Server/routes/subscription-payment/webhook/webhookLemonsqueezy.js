@@ -65,7 +65,6 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
         created_at,
         user_name,
         user_email,
-        currency,
         order_number,
         total_formatted,
       } = attributes;
@@ -118,6 +117,8 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
         folderDir: folderDir,
         customerEmail: user_email,
       };
+
+      const channel = "Card";
 
       const emailContextParamsNow = {
         name: user_name,
