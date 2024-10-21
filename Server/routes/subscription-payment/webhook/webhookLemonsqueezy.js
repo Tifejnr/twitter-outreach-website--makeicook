@@ -67,6 +67,7 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
         user_email,
         currency,
         order_number,
+        total_formatted,
       } = attributes;
 
       if (status_formatted !== "Paid") return res.sendStatus(204); // Ignore unpaid orders
@@ -108,9 +109,6 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
       const paymentDate = formatCustomDate(created_at);
       const reference = customTransRefGenLemonsqueezy(coachCode, order_number);
 
-      const exactAmount = amount / 100; //to kobo
-      const amountToFixed = exactAmount.toFixed(2); // to add .00 at the back
-
       //send payment received receipts
       const subject = "Payment Received - Work for Reputation - WFR Toolkit!";
       const folderDir = `${emailTemplateFolderSrc}/receipt/to-customer`;
@@ -127,7 +125,7 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
         paymentDate,
         transReference: reference,
         paid_For: `${creditsAwarded} credits`,
-        amount_Paid: `${currency} ${amountToFixed}`,
+        amount_Paid: total_formatted,
       };
 
       const result = await sendEmail(customerParams, emailContextParamsNow);
