@@ -7,6 +7,8 @@ import emailTemplateFolderSrc from "../../../server-utils/emailTemplates/templat
 import getFirstName from "../../(customer-requests)/email-users/getFirstname.js";
 import sendEmail from "../../../server-utils/emailTemplates/sendEmail.js";
 import dollarPricingPlansObjArray from "../all-plan-obj/dollarPricingPlanObjArray.js";
+import formatCustomDate from "../../../server-utils/format-custom-date/formatCustomDate.js";
+import customTransRefGenLemonsqueezy from "../../../server-utils/payments-related/custom-trans-ref-gen/customTransRefGenLemonsqueezy.js";
 
 const keysObjects = getSecretKeys();
 const secret = keysObjects.webHookSecretLemon;
@@ -53,17 +55,19 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
     // Signature is valid, proceed with processing the event
     const { data, meta } = req.body;
     const { event_name, custom_data } = meta;
-    const { user_id, creditsAwarded, variantId } = custom_data;
+    const { user_id, creditsAwarded, variantId, coachCode } = custom_data;
 
     if (event_name === orderCreatedEvent) {
-      const accountUser = await user.findById(user_id);
-      if (!accountUser) return res.status(400).json({ invalid_User: true });
-
       // Destructure data to get payment details
       const { attributes } = data;
-      const { status_formatted } = attributes;
-
-      console.log("variantId", variantId);
+      const {
+        status_formatted,
+        created_at,
+        user_name,
+        user_email,
+        currency,
+        order_number,
+      } = attributes;
 
       if (status_formatted !== "Paid") return res.sendStatus(204); // Ignore unpaid orders
 
@@ -78,11 +82,62 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
       }
 
       // Set user status to paid and update credits
-      accountUser.isPaid = true;
-      accountUser.credits = (accountUser.credits || 0) + Number(creditsAwarded);
+      const accountUser = await user.findById(user_id);
+      if (!accountUser) return res.status(400).json({ invalid_User: true });
 
-      // Save updated user details
+      //set  user status to paid
+      accountUser.isPaid = true;
+
+      //add the payed for credit to current users credits
+      let currentUserCredits = accountUser.credits;
+
+      if (!isFinite(currentUserCredits)) {
+        currentUserCredits = 0;
+      }
+
+      const totalAccountCredits =
+        Number(currentUserCredits) + Number(creditsAwarded);
+
+      console.log("totalAccountCredits", totalAccountCredits);
+
+      accountUser.credits = totalAccountCredits;
+
+      //save user details
       await accountUser.save();
+
+      const paymentDate = formatCustomDate(created_at);
+      const reference = customTransRefGenLemonsqueezy(coachCode, order_number);
+
+      const exactAmount = amount / 100; //to kobo
+      const amountToFixed = exactAmount.toFixed(2); // to add .00 at the back
+
+      //send payment received receipts
+      const subject = "Payment Received - Work for Reputation - WFR Toolkit!";
+      const folderDir = `${emailTemplateFolderSrc}/receipt/to-customer`;
+
+      const customerParams = {
+        subject: subject,
+        folderDir: folderDir,
+        customerEmail: user_email,
+      };
+
+      const emailContextParamsNow = {
+        name: user_name,
+        paymentChannel: channel,
+        paymentDate,
+        transReference: reference,
+        paid_For: `${creditsAwarded} credits`,
+        amount_Paid: `${currency} ${amountToFixed}`,
+      };
+
+      const result = await sendEmail(customerParams, emailContextParamsNow);
+
+      if (result) {
+        console.log("Payment succesfulyy processed");
+        res.sendStatus(200);
+
+        return;
+      }
 
       // Respond with a 200 status to acknowledge receipt of the webhook
       return res.sendStatus(200);
