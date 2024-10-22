@@ -78,7 +78,7 @@ signUpRouter.post("/", async (req, res) => {
     const result = await sendEmail(customerParams, emailContextParamsNow);
 
     // const trialCreditsGivenEmailResult=
-    const trialCreditsSubject = `${name}, You’ve Received ${accountUser.credits} Free Credits – Here's How to Make the Most of Them!y`;
+    const trialCreditsSubject = `${name}, You’ve Received ${accountUser.credits} Free Credits – Here's How to Make the Most of Them!`;
     const folderDirTrialCredits = `${emailTemplateFolderSrc}/trial-credits-given-email`;
 
     const customerParamsTrialCredits = {

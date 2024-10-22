@@ -55,13 +55,13 @@ import sendTutorialsObjArrayRouter from "./routes/stored-messages-on-server/send
 // import giveUsers50Credits from "./routes/(auth)/users-stats/reset-stats-daily/giveUsers50Credits.js";
 import processTweetsForVerdictRouter from "./routes/(ai-related)/process-tweet-for-verdict/processTweetsForVerdict.js";
 
-runNow();
-async function runNow() {
-  const arrayToDelet = ["akovahh@gmail.com", "twitterhottest3@gmail.com"];
-  arrayToDelet.map(async (email) => {
-    await deleteUsersWithEmail(email);
-  });
-}
+// runNow();
+// async function runNow() {
+//   const arrayToDelet = ["akovahh@gmail.com", "twitterhottest3@gmail.com"];
+//   arrayToDelet.map(async (email) => {
+//     await deleteUsersWithEmail(email);
+//   });
+// }
 
 // import sendMailToMultipleUsers from "./routes/(customer-requests)/email-users/route.js";
 // sendMailToMultipleUsers();
