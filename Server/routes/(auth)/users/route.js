@@ -77,6 +77,26 @@ signUpRouter.post("/", async (req, res) => {
 
     const result = await sendEmail(customerParams, emailContextParamsNow);
 
+    // const trialCreditsGivenEmailResult=
+    const trialCreditsSubject = `${name}, You’ve Received ${accountUser.credits} Free Credits – Here's How to Make the Most of Them!y`;
+    const folderDirTrialCredits = `${emailTemplateFolderSrc}/trial-credits-given-email`;
+
+    const customerParamsTrialCredits = {
+      subject: trialCreditsSubject,
+      folderDir: folderDirTrialCredits,
+      customerEmail,
+    };
+
+    const emailContextParamsNowTrialCredits = {
+      customerName: name,
+      credits: accountUser.credits,
+    };
+
+    await sendEmail(
+      customerParamsTrialCredits,
+      emailContextParamsNowTrialCredits
+    );
+
     if (result) {
       const token = jwt.sign(
         { _id: accountUser._id, isPaid: accountUser.isPaid },
