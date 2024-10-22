@@ -52,16 +52,15 @@ import handlePaymentsRouter from "./routes/subscription-payment/handlePayment.js
 import webhookPaystackRouter from "./routes/subscription-payment/webhook/webhookPaystack.js";
 import accountDetailsRouter from "./routes/(auth)/users/account-details/accountDetails.js";
 import sendTutorialsObjArrayRouter from "./routes/stored-messages-on-server/sendTutorialsObjArray.js";
-import giveUsers50Credits from "./routes/(auth)/users-stats/reset-stats-daily/giveUsers50Credits.js";
+// import giveUsers50Credits from "./routes/(auth)/users-stats/reset-stats-daily/giveUsers50Credits.js";
 import processTweetsForVerdictRouter from "./routes/(ai-related)/process-tweet-for-verdict/processTweetsForVerdict.js";
 
 runNow();
 async function runNow() {
-  // await giveUsers50Credits();
-  // const arrayToDelet = ["abedolapo2020@gmail.com", "twitterhottest3@gmail.com"];
-  // arrayToDelet.map(async (email) => {
-  //   await deleteUsersWithEmail(email);
-  // });
+  const arrayToDelet = ["akovahh@gmail.com", "twitterhottest3@gmail.com"];
+  arrayToDelet.map(async (email) => {
+    await deleteUsersWithEmail(email);
+  });
 }
 
 // import sendMailToMultipleUsers from "./routes/(customer-requests)/email-users/route.js";
