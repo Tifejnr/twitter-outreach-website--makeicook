@@ -35,7 +35,7 @@ async function sendMailToMultipleUsers() {
 
   sendMailFunction(currentUserNow);
 
-  // return;
+  return;
 
   // const indexOfLastMessaged = allUsersThatHaveUsedExtensionOnce.findIndex(
   //   (user) => user.email === "Lawrencejoy548@gmail.com"
