@@ -27,7 +27,7 @@ const message = {
   message7,
 };
 
-const emailHeading = `You've Got 20 Free Credits! Here's How to Use Them Wisely`;
+const emailHeading = `Unlock Premium Features Again - Get 500 Credits for Only $3.99!`;
 // const emailHeading = `Don't Miss These Powerful Personalization Tips—Try Them Free Before Oct 16th!`;
 // const emailHeading = `Boost your proposals with insights from other freelancers`;
 

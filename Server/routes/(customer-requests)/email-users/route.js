@@ -13,6 +13,13 @@ async function sendMailToMultipleUsers() {
   // .filter(
   //   (user) => user.jobsToBeCompleted > 0
   // );
+  // .filter(
+  //   (user) => user.jobsToBeCompleted > 0
+  // );
+
+  const allUsersWith0Credits = allUsers.filter((user) => user.credits == 0);
+
+  console.log("allUsersWith0Credits", allUsersWith0Credits);
 
   if (allUsersThatHaveUsedExtensionOnce.length < 1)
     return console.log("no user found");
@@ -21,12 +28,12 @@ async function sendMailToMultipleUsers() {
 
   // console.log("lastRegisteredUser", lastRegisteredUser);
 
-  // const currentUserNow = {
-  //   email: "akovahh@gmail.com",
-  //   name: "Adedewe Boluwatife",
-  // };
+  const currentUserNow = {
+    email: "akovahh@gmail.com",
+    name: "Adedewe Boluwatife",
+  };
 
-  // sendMailFunction(currentUserNow);
+  sendMailFunction(currentUserNow);
 
   // return;
 
@@ -50,8 +57,8 @@ async function sendMailToMultipleUsers() {
   //     allUsersThatHaveUsedExtensionOnce.length - 1
   //   ]
   // );
-  console.log("start sending jajaj");
-  runWithDelay(allUsersThatHaveUsedExtensionOnce, sendMailFunction);
+  // console.log("start sending jajaj");
+  // runWithDelay(allUsersThatHaveUsedExtensionOnce, sendMailFunction);
 }
 
 async function sendMailFunction(user) {

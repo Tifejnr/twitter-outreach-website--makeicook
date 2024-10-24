@@ -148,6 +148,7 @@ handlePaymentsRouter.post("/payment", [nowVerifyAmount], async (req, res) => {
   }
 });
 
+
 handlePaymentsRouter.post("/getPrices", async (req, res) => {
   console.log("someone clicked on pricing page within extension oo");
   try {
