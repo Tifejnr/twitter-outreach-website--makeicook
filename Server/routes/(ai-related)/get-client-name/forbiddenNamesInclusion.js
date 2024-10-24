@@ -209,7 +209,6 @@ const frendlyText = "frendly";
 const WriterText = "Writer";
 const FixMyStreetText = "FixMyStreet";
 const TheignoredText = "Theignored";
-const quickText = "quick";
 const urgentText = "urgent";
 const wordsText = "words";
 const wordText = "word";
@@ -845,7 +844,6 @@ const forbiddenNamesInclusionArray = [
   wordText,
   wordsText,
   urgentText,
-  quickText,
   TheignoredText,
   FixMyStreetText,
   WriterText,
