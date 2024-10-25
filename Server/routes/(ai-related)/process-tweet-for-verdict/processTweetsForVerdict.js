@@ -21,12 +21,12 @@ processTweetsForVerdictRouter.post("/", async (req, res) => {
   //   });
   // }
 
+  const { details, tweet } = bodyRequest;
+
   const {
     tweetConditionsForYesOrNoVerdictArray,
     mainQuestionToCheckCondition,
-  } = bodyRequest;
-
-  console.log("bodyRequest", bodyRequest);
+  } = details;
 
   // const mainquestajajajj =
   //   "does this tweet sounds like tweeter freelances on Upwork ?";
