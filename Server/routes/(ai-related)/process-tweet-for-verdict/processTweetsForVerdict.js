@@ -34,14 +34,14 @@ processTweetsForVerdictRouter.post("/", async (req, res) => {
   try {
     let responsesArray = [];
 
-    // Loop through the nameParts array
+    // Loop through the tweetConditions array
     for (let tweetCondition of tweetConditionsForYesOrNoVerdictArray) {
       const promptHeadingForTweetsProcessing = `
-      Only return "Yes", "No" or "Null".
-  
-      ${tweetCondition}
-  
-  ${mainQuestionToCheckCondition}`;
+        Only return "Yes", "No" or "Null".
+    
+        ${tweetCondition}
+    
+        ${mainQuestionToCheckCondition}`;
 
       const response = await getStraightAiResponse(
         promptHeadingForTweetsProcessing,
@@ -49,25 +49,20 @@ processTweetsForVerdictRouter.post("/", async (req, res) => {
       );
 
       responsesArray.push(response);
+
+      // Stop the loop if "Yes" is found
+      if (response == "Yes") {
+        console.log("Yeah, an Upwork freelancer!");
+
+        return res.json({
+          verdict: "Yes",
+        });
+      }
     }
 
-    console.log("responsesArrya", responsesArray);
+    console.log("responsesArray", responsesArray);
 
-    //check if yes was found
-
-    const isYesFound = responsesArray.find(
-      (eachResponse) => eachResponse == "Yes"
-    );
-
-    if (isYesFound) {
-      console.log("Yeah, an upwork freelancer oooo");
-
-      return res.json({
-        verdict: "Yes",
-      });
-    }
-
-    //return final shit still
+    // If no "Yes" was found in the loop, return "No"
     return res.json({
       verdict: "No",
     });
