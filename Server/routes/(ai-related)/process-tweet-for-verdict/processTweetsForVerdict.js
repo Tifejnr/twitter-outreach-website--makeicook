@@ -60,8 +60,6 @@ processTweetsForVerdictRouter.post("/", async (req, res) => {
       }
     }
 
-    console.log("responsesArray", responsesArray);
-
     // If no "Yes" was found in the loop, return "No"
     return res.json({
       verdict: "No",
