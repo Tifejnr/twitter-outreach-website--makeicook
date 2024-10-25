@@ -15,8 +15,11 @@ const makeICookExtensionOrigin =
   "chrome-extension://cjkognhpiiehofajididiblokfmdekoa";
 
 const localHost5173 = "http://localhost:5173";
+const realOutreachBotExtension =
+  "chrome-extension://nknhbhcdkfbflbabhjpjnjnaofkbkeph";
 
 const allowedOriginArrays = [
+  realOutreachBotExtension,
   localHost5173,
   makeICookExtensionOrigin,
   xOrigin,
