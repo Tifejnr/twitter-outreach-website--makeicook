@@ -51,7 +51,7 @@ processTweetsForVerdictRouter.post("/", async (req, res) => {
       responsesArray.push(response);
 
       // Stop the loop if "Yes" is found
-      if (response == "Yes") {
+      if (response.includes("Yes")) {
         console.log("Yeah, an Upwork freelancer!");
 
         return res.json({
