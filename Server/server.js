@@ -52,6 +52,7 @@ import handlePaymentsRouter from "./routes/subscription-payment/handlePayment.js
 import webhookPaystackRouter from "./routes/subscription-payment/webhook/webhookPaystack.js";
 import accountDetailsRouter from "./routes/(auth)/users/account-details/accountDetails.js";
 import sendTutorialsObjArrayRouter from "./routes/stored-messages-on-server/sendTutorialsObjArray.js";
+import optimizeCoverLetterOpeningRouter from "./routes/(ai-related)/optimize-cover-letter-opening/optimizeCoverLetterOpening.js";
 // import giveUsers50Credits from "./routes/(auth)/users-stats/reset-stats-daily/giveUsers50Credits.js";
 import processTweetsForVerdictRouter from "./routes/(ai-related)/process-tweet-for-verdict/processTweetsForVerdict.js";
 
@@ -153,6 +154,11 @@ app.use(
   "/api/get-name-for-dm-personalization",
   validateOrigin,
   getNameRouterToPersonalizeDmRouter
+);
+app.use(
+  "/api/optimize-cover-letter-opening",
+  validateOrigin,
+  optimizeCoverLetterOpeningRouter
 );
 app.use("/api/ChatGBT", validateOrigin, chatGPTAIResponseRouter);
 app.use("/api/contact-us", validateOrigin, contactUsHandlerWebsiteRouter);

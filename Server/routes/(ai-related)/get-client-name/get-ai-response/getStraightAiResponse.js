@@ -10,7 +10,8 @@ const hf = new HfInference(HF_TOKEN);
 async function getStraightAiResponse(
   promptInstruction,
   prompt,
-  customTemperature
+  customTemperature,
+  customToken
 ) {
   try {
     const response = await hf.chatCompletion({
@@ -23,7 +24,7 @@ async function getStraightAiResponse(
   ${prompt}`,
         },
       ],
-      max_tokens: 500,
+      max_tokens: customToken ? customToken : 500,
       temperature: customTemperature ? customTemperature : 0.1,
     });
 

@@ -23,5 +23,5 @@ export default function eachNameAgainstOtherNamesSimilarityCheck(
 
   if (firstNameResultsArray.length == 0) return false;
 
-  return firstNameResultsArray[0];
+  return firstNameResultsArray[0] == "Sir" ? "" : firstNameResultsArray[0];
 }
