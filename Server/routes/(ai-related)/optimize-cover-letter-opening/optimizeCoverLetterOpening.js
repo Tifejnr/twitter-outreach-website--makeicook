@@ -3,6 +3,7 @@ import express from "express";
 import isTokenValid from "../../../server-utils/middleware/token-validity/isTokenValid.js";
 import getStraightAiResponse from "../get-client-name/get-ai-response/getStraightAiResponse.js";
 import promptsObjsForCoverLetterOptimization from "./promptObjsForCoverLetterOptimizing.js";
+import unwrapQuotes from "./utils/unwrappQuotes.js";
 
 const creditsIsZeroText = "Buy credits";
 
@@ -72,10 +73,12 @@ ${promptsObjsForCoverLetterOptimization.craftIrresistibleCoverLetterLastPart}
       maxTokens
     );
 
-    console.log("reducedTo250xters", reducedTo250xters);
+    const withoutQotes = unwrapQuotes(reducedTo250xters);
+
+    console.log("withoutQotes", withoutQotes);
 
     return res.json({
-      optimizedOpeningLine: reducedTo250xters,
+      optimizedOpeningLine: withoutQotes,
     });
   } catch (error) {
     console.log("error,", error);
