@@ -4,7 +4,7 @@ describe all the client pain points from this job description.
 
 const reduceTo250xters = `Reduce this cover letter opening to 250 characters without losing its structure 
 
-Only return the reduced cover letter opening. don't explain anything, don't prefix the main cover letter with any explanantion or any revision.
+Only return the reduced cover letter opening. don't quote your response, don't explain anything, don't prefix the main cover letter with any explanantion or any revision.
 `;
 
 const irresistiabiltyRangeCheck = `
