@@ -84,30 +84,4 @@ ${promptsObjsForCoverLetterOptimization.craftIrresistibleCoverLetterLastPart}
   }
 });
 
-// function hasMoreThanThreeWords(text) {
-//   // Split the text into words based on spaces and filter out any empty strings
-//   const words = text.trim().split(/\s+/); // \s+ matches one or more spaces
-//   return words.length > 3;
-// }
-
-function checkNameInText(name, incomingText) {
-  // Step 1: Ensure the name is only separated by a comma (with optional spaces around it)
-  const commaSeparatedPattern = /^\s*[^,]+,\s*[^,]+\s*$/;
-
-  if (!commaSeparatedPattern.test(name)) {
-    return false; // Return false if the name is not correctly separated by a comma
-  }
-
-  // Step 2: Remove the comma and trim the name
-  const cleanedName = name.replace(",", "").trim();
-
-  // Step 3: Trim the incoming text
-  const trimmedText = incomingText.trim();
-
-  // Step 4: Check if the trimmed text includes the cleaned name
-  return trimmedText.includes(cleanedName);
-}
-
 export default optimizeCoverLetterOpeningRouter;
-
-// https://www.upwork.com/jobs/~021839341791060043020  Can was chosen as name, use probabi;ity to filter it as a name
