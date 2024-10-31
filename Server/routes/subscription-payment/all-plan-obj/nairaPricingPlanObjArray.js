@@ -16,7 +16,7 @@ const regularPlanObj = {
   planPrice: 4900,
   suitabilityTimeUsage: "less than 10",
   naira: true,
-  noOfDailyJobsItCanBeUsedToApplyTo: 10,
+  noOfDailyJobsItCanBeUsedToApplyTo: 12,
 };
 
 const businessPlanObj = {
