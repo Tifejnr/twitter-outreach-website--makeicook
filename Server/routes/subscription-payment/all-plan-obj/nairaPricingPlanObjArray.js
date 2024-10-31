@@ -11,7 +11,7 @@ const freePlanObj = {
 
 const regularPlanObj = {
   planName: "Regular",
-  perCreditInfo: 10,
+  perCreditInfo: 10 * 2,
   planCreditsAmount: 3000,
   planPrice: 4900,
   suitabilityTimeUsage: "less than 10",
@@ -21,7 +21,7 @@ const regularPlanObj = {
 
 const businessPlanObj = {
   planName: "Business",
-  perCreditInfo: 7,
+  perCreditInfo: 7 * 2,
   planCreditsAmount: 14900,
   planPrice: 14900,
   suitabilityTimeUsage: "more than 20",
