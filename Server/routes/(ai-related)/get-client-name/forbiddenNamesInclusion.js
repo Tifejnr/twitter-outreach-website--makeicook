@@ -526,8 +526,12 @@ const heText = "he";
 const ClintText = "Clint";
 const clintText = "clint";
 const SkratchText = "Skratch";
+const ManText = "Man";
+const manText = "man";
 
 const forbiddenNamesInclusionArray = [
+  manText,
+  ManText,
   SkratchText,
   clintText,
   ClintText,
