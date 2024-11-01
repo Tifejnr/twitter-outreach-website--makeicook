@@ -23,8 +23,6 @@ Do not say you are excited or thrilled to apply to their job, be professional.
 
 Keep your crafted cover letter opening within 250 characters.
 
-You are an individual freelancer.
-
 Only return the cover letter opening you crafted. don't explain anything, don't prefix the main cover letter with any explanantion or any revision.
       `;
 
