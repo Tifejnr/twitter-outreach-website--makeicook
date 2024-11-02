@@ -52,6 +52,8 @@ getNameRouterToPersonalizeDmRouter.post("/", async (req, res) => {
   try {
     const finalName = await getNameToPersonlizeMessage(username, displayName);
 
+    console.log("name to use for dm", finalName);
+
     const namesArray = finalName.split(" ");
 
     if (namesArray.length == 1) {
