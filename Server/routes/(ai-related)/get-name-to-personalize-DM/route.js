@@ -2,6 +2,7 @@ import express from "express";
 import { HfInference } from "@huggingface/inference";
 
 import getSecretKeys from "../../../envVariables/envVariables.js";
+import confirmAllAreRealNames from "./confirmAllAreRealNames.js";
 
 const keysObject = getSecretKeys();
 const model = keysObject.aiModel;
@@ -46,18 +47,24 @@ getNameRouterToPersonalizeDmRouter.post("/", async (req, res) => {
   //   });
   // }
 
-  const { prompt, username, displayName } = bodyRequest;
-
-  console.log("bodyRequest", bodyRequest);
+  const { username, displayName } = bodyRequest;
 
   try {
     const finalName = await getNameToPersonlizeMessage(username, displayName);
 
-    console.log("finalName", finalName);
+    const namesArray = finalName.replace.split(" ");
 
-    //return final shit still
+    if (namesArray.length == 1) {
+      //return final shit still
+      return res.json({
+        finalName,
+      });
+    }
+
+    const finalNameNow = await confirmAllAreRealNames(namesArray);
+
     return res.json({
-      finalName,
+      finalNameNow,
     });
   } catch (error) {
     console.log("error,", error);
@@ -105,7 +112,7 @@ async function getNameToPersonlizeMessage(username, displayName) {
   }
 }
 
-async function getNameToGreetWithFromAi(promptInstruction, prompt) {
+export async function getNameToGreetWithFromAi(promptInstruction, prompt) {
   try {
     const response = await hf.chatCompletion({
       model,
