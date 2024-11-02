@@ -52,7 +52,7 @@ getNameRouterToPersonalizeDmRouter.post("/", async (req, res) => {
   try {
     const finalName = await getNameToPersonlizeMessage(username, displayName);
 
-    const namesArray = finalName.replace.split(" ");
+    const namesArray = finalName.split(" ");
 
     if (namesArray.length == 1) {
       //return final shit still
