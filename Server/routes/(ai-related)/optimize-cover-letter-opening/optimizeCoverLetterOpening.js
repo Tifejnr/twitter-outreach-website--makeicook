@@ -4,6 +4,7 @@ import isTokenValid from "../../../server-utils/middleware/token-validity/isToke
 import getStraightAiResponse from "../get-client-name/get-ai-response/getStraightAiResponse.js";
 import promptsObjsForCoverLetterOptimization from "./promptObjsForCoverLetterOptimizing.js";
 import unwrapQuotes from "./utils/unwrappQuotes.js";
+import getGreetingToStartWith from "./utils/getGreetingToStartWith.js";
 
 const creditsIsZeroText = "Buy credits";
 
@@ -38,9 +39,7 @@ optimizeCoverLetterOpeningRouter.post("/", async (req, res) => {
   const temperature = 0.8;
   const maxTokens = 1500;
 
-  let nameToUseForPersonalization = clientName;
-
-  console.log("nameToUseForPersonalization", nameToUseForPersonalization);
+  const greetingToStartWithNow = getGreetingToStartWith(clientName);
 
   try {
     //get client pain points from decription
@@ -62,8 +61,10 @@ optimizeCoverLetterOpeningRouter.post("/", async (req, res) => {
     //craft 10/10 irresistible offer
     const promptForCraftingIrresisitibleOpening = `Putting the client pain point into context : ${clientPainPointsRaw}
 
-  This is the response you gave when I asked you to rate from 0-10 how irresistible my cover letter opening words were to a client who wants to hire someone.
+This is the response you gave when I asked you to rate from 0-10 how irresistible my cover letter opening words were to a client who wants to hire someone.
  ${irresistibleVeridctFromAi}
+
+Start with this greeting:${greetingToStartWithNow} 
 
 ${promptsObjsForCoverLetterOptimization.craftIrresistibleCoverLetterLastPart}
     `;
