@@ -27,12 +27,20 @@ optimizeCoverLetterOpeningRouter.post("/", async (req, res) => {
     });
   }
 
-  const { fullCoverLetter, openingLineOfCoverLetter, jobDescription } =
-    bodyRequest;
+  const {
+    fullCoverLetter,
+    clientName,
+    openingLineOfCoverLetter,
+    jobDescription,
+  } = bodyRequest;
   const { credits } = resultOfTokenValidation;
 
   const temperature = 0.8;
   const maxTokens = 1500;
+
+  let nameToUseForPersonalization = clientName;
+
+  console.log("nameToUseForPersonalization", nameToUseForPersonalization);
 
   try {
     //get client pain points from decription
