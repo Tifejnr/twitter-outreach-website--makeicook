@@ -85,7 +85,7 @@ async function getNameToPersonlizeMessage(username, displayName) {
   );
 
   if (isUsernameAHumanName == "No" && isDisplayNameAHumanName == "No") {
-    console.log("None are human names");
+    // console.log("None are human names");
 
     return "there";
   }
@@ -98,7 +98,7 @@ async function getNameToPersonlizeMessage(username, displayName) {
       namesNow
     );
 
-    console.log("theMostHumanName", theMostHumanName);
+    // console.log("theMostHumanName", theMostHumanName);
 
     return theMostHumanName;
   }
