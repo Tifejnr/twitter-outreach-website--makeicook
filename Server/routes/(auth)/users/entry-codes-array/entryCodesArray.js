@@ -8,7 +8,7 @@ const entryCodesArray = [
     email: "lilblessingjnr@gmail.com",
   },
   {
-    code: "Atom01",
+    code: "josephUpwork",
     email: "lilblessingjnr@gmail.com",
   },
 ];
