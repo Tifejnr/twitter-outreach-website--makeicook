@@ -394,10 +394,7 @@ return "Yes" or "No" only as response.
       const returnedHumanNames = await orderOfMultipleNames(finalName, prompt);
 
       if (returnedHumanNames == realNoNamesFoundResponse) {
-        console.log(
-          "none of  comma seperated name is human, returnedHumanNames",
-          returnedHumanNames
-        );
+        console.log("none of  comma seperated name is human", finalName);
 
         //check if credits is zero
         if (credits === 0) {

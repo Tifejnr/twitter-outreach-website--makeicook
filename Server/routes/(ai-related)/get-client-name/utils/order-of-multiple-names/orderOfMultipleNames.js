@@ -26,7 +26,7 @@ export default async function orderOfMultipleNames(finalName, prompt) {
 
   // Handle cases based on the length of valid names
   if (occurenceObjArray.length == 1) {
-    return `${nameObjWithOccurenceArray[0].name} - ${nameObjWithOccurenceArray[0].occurrences}`;
+    return `${nameObjWithOccurenceArray[0].name}`;
   } else {
     // Sort the occurrenceObjArray based on charactersBeforeFirst
     occurenceObjArray = sortByCharactersBeforeFirst(occurenceObjArray);
@@ -39,7 +39,6 @@ export default async function orderOfMultipleNames(finalName, prompt) {
     console.log("sortedNameArray", sortedNameArray);
 
     if (!sortedNameArray || sortedNameArray.length == 0) {
-      console.log("all names entered have no occurence", sortedNameArray);
       return realNoNamesFoundResponse;
     }
 
