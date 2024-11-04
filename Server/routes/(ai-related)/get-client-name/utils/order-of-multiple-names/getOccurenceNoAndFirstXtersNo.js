@@ -1,5 +1,5 @@
 export default function getOccurenceNoAndFirstXtersNo(statement, substringRaw) {
-  const substring = ` ${substringRaw} `;
+  const substring = ` ${substringRaw} `.trim();
   // Find all occurrences of the substring in the statement (case insensitive)
   let regex = new RegExp(substring, "gi"); // Added 'i' flag for case insensitivity
   let matches = [...statement.matchAll(regex)];
