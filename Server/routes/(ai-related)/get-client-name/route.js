@@ -166,11 +166,14 @@ getClientNameRouter.post("/", async (req, res) => {
     });
   }
 
-  const { prompt } = bodyRequest;
+  const promptRaw = bodyRequest.prompt;
   const { credits } = resultOfTokenValidation;
 
+  const timelyText = "Timely";
+
+  const prompt = promptRaw.replace(timelyText, "");
+
   console.log("credits", credits);
-  console.log("prompt", prompt);
 
   try {
     //get client personality
