@@ -170,6 +170,7 @@ getClientNameRouter.post("/", async (req, res) => {
   const { credits } = resultOfTokenValidation;
 
   console.log("credits", credits);
+  console.log("prompt", prompt);
 
   try {
     //get client personality
