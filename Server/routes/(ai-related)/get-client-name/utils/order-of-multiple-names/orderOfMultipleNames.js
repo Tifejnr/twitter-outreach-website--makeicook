@@ -39,6 +39,7 @@ export default async function orderOfMultipleNames(finalName, prompt) {
     console.log("sortedNameArray", sortedNameArray);
 
     if (!sortedNameArray || sortedNameArray.length == 0) {
+      console.log("all names entered have no occurence", sortedNameArray);
       return realNoNamesFoundResponse;
     }
 
