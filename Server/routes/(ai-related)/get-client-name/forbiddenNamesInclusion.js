@@ -224,7 +224,6 @@ const mongoDBText = "mongoDB";
 const exceptionalText = "exceptional";
 const personalityText = "personality";
 const appreciateText = "Appreciate";
-const teamText = "team";
 const partText = "part";
 const allFeedbacksText = "allFeedbacks";
 const creativeText = "creative";
@@ -833,7 +832,6 @@ const forbiddenNamesInclusionArray = [
   allFeedbacksText,
   partText,
   appreciateText,
-  teamText,
   personalityText,
   exceptionalText,
   mongoDBText,
