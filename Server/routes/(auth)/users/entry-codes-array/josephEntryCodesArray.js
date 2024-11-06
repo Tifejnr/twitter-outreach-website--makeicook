@@ -10,8 +10,6 @@ export default async function isJosephEntryCodesArrayValid(inputedEntryCode) {
 
   const entryCodesAndDatesArray = getDateAndEntryCodeObj(allEntryCodesArray);
 
-  console.log("entryCodesAndDatesArray", entryCodesAndDatesArray);
-
   const isEntryCodePresent = entryCodesAndDatesArray.find(
     (element) => element.entryCode.trim() == inputedEntryCode.trim()
   );

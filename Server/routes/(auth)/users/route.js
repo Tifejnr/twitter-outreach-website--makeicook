@@ -44,7 +44,7 @@ signUpRouter.post("/", async (req, res) => {
     accountUser.password = await bcrypt.hash(accountUser.password, salt);
 
     //is entry code valid
-    const isEntryCodeValid = isJosephEntryCodesArrayValid(entryCode);
+    const isEntryCodeValid = await isJosephEntryCodesArrayValid(entryCode);
 
     console.log("isEntryCodeValid", isEntryCodeValid);
 
