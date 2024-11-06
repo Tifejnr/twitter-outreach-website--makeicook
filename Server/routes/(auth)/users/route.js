@@ -11,6 +11,7 @@ import emailTemplateFolderSrc from "../../../server-utils/emailTemplates/templat
 import getFirstName from "../../(customer-requests)/email-users/getFirstname.js";
 import sendEmail from "../../../server-utils/emailTemplates/sendEmail.js";
 import entryCodesArray from "./entry-codes-array/entryCodesArray.js";
+import isJosephEntryCodesArrayValid from "./entry-codes-array/josephEntryCodesArray.js";
 
 const signUpRouter = express.Router();
 
@@ -43,16 +44,17 @@ signUpRouter.post("/", async (req, res) => {
     accountUser.password = await bcrypt.hash(accountUser.password, salt);
 
     //is entry code valid
-    const isEntryCodeValid = entryCodesArray.find(
-      (eachAffliateObj) => eachAffliateObj.code == entryCode
-    );
+    const isEntryCodeValid = isJosephEntryCodesArrayValid(entryCode);
+
+    const creditsToGiveUser =
+      isEntryCodeValid === false ? 10 : isEntryCodeValid === null ? 20 : 40;
 
     accountUser.entryCode = isEntryCodeValid
       ? entryCode
       : keysObject.extensionEntryCode;
 
     accountUser.isEmailVerified = true;
-    accountUser.credits = isEntryCodeValid ? 20 : 10;
+    accountUser.credits = creditsToGiveUser;
 
     await accountUser.save();
 
