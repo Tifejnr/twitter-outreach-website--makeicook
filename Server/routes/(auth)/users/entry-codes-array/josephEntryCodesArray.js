@@ -1,5 +1,5 @@
-import fetchDataFromSheet from "../../../../server-utils/fetch-data-from-sheet/fetchDataFromSheet";
-import { getDateAndEntryCodeObj } from "./getDateAndEntryCodeObj";
+import fetchDataFromSheet from "../../../../server-utils/fetch-data-from-sheet/fetchDataFromSheet.js";
+import { getDateAndEntryCodeObj } from "./getDateAndEntryCodeObj.js";
 const sheetLink =
   "https://docs.google.com/spreadsheets/d/1hh50lbbyBV-lbZpc6PxV0Ow_kd6qZwgykP__Yn8NDzg/gviz/tq?";
 
