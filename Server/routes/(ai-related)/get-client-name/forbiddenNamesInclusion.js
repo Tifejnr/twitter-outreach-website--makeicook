@@ -335,7 +335,7 @@ const curvelandText = "Curveland";
 const buildersText = "builders";
 const builderText = "builder";
 const pageText = "page";
-const mediaText = "media";
+// const mediaText = "media";
 const fraudText = "fraud";
 const wastageText = "wastage";
 const wasteText = "waste";
@@ -720,7 +720,7 @@ const forbiddenNamesInclusionArray = [
   wasteText,
   wastageText,
   fraudText,
-  mediaText,
+  // mediaText,
   pageText,
   builderText,
   buildersText,

@@ -320,24 +320,26 @@ function interceptRequests() {
         const payload = this.responseText;
         const lines = payload.split("\n");
 
+        console.log("lines", lines);
+
         const data1 = JSON.parse(lines[0]);
         const firstPost = parseFirstLevelJson(data1);
         console.log("firstPost", firstPost);
 
         const data2 = JSON.parse(lines[1]);
-        const secondPost = parseSecondLevelJson(data2);
-        console.log("secondPost", secondPost);
+        // const secondPost = parseSecondLevelJson(data2);
+        // console.log("secondPost", secondPost);
 
-        const data3 = JSON.parse(lines[2]);
-        const thirdPost = parseThirdLevelJson(data3);
-        console.log("thirdPost", thirdPost);
+        // const data3 = JSON.parse(lines[2]);
+        // const thirdPost = parseThirdLevelJson(data3);
+        // console.log("thirdPost", thirdPost);
 
-        allContent.push(firstPost.post);
-        addCommentsToAllContent(firstPost.topLevelComments);
-        allContent.push(secondPost.post);
-        addCommentsToAllContent(secondPost.topLevelComments);
-        allContent.push(thirdPost.post);
-        addCommentsToAllContent(thirdPost.topLevelComments);
+        // allContent.push(firstPost.post);
+        // addCommentsToAllContent(firstPost.topLevelComments);
+        // allContent.push(secondPost.post);
+        // addCommentsToAllContent(secondPost.topLevelComments);
+        // allContent.push(thirdPost.post);
+        // addCommentsToAllContent(thirdPost.topLevelComments);
         //
       } else if (requestBody?.includes("CometFocusedStoryViewUFIQuery")) {
         console.log("getting comments");
@@ -397,7 +399,7 @@ function interceptRequests() {
 }
 
 async function run() {
-  interceptRequests();
+  // interceptRequests();
   console.log("starting...");
   let posts = getAllPosts();
   console.log("posts.length", posts.length);
@@ -405,6 +407,8 @@ async function run() {
 
   while (i < posts.length) {
     const post = posts[i];
+
+    console.log("post", post);
     console.log(
       `while you're waiting, why not check out https://thewebscrapingguy.com/? 😅`
     );
@@ -424,8 +428,8 @@ async function run() {
     }
   }
 
-  createCSV(allContent, "facebookGroupPostsAndComments.csv");
-  console.log("allContent", allContent);
+  // createCSV(allContent, "facebookGroupPostsAndComments.csv");
+
   console.log("done!");
   console.log(
     `Congrats! 🎉 You scraped a sh*t ton of posts! If you need any custom scrapers built, email me: adrian@thewebscrapingguy.com`
