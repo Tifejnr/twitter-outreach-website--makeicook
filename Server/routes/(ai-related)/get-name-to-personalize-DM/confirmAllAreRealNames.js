@@ -1,3 +1,4 @@
+import isNameAMixtureOfTwoNames from "./isNameAMixtureOfTwoNames.js";
 import { getNameToGreetWithFromAi, confirmNamePrompt } from "./route.js";
 
 export default async function confirmAllAreRealNames(namesArray) {
@@ -18,5 +19,9 @@ export default async function confirmAllAreRealNames(namesArray) {
 
   if (firstNameResultsArray.length == 0) return "there";
 
-  return firstNameResultsArray[0];
+  const nameNow = firstNameResultsArray[0];
+
+  const pureName = await isNameAMixtureOfTwoNames(nameNow);
+
+  return pureName;
 }

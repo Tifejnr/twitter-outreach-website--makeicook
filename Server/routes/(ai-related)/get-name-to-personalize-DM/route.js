@@ -3,6 +3,7 @@ import { HfInference } from "@huggingface/inference";
 
 import getSecretKeys from "../../../envVariables/envVariables.js";
 import confirmAllAreRealNames from "./confirmAllAreRealNames.js";
+import isNameAMixtureOfTwoNames from "./isNameAMixtureOfTwoNames.js";
 
 const keysObject = getSecretKeys();
 const model = keysObject.aiModel;
@@ -57,9 +58,15 @@ getNameRouterToPersonalizeDmRouter.post("/", async (req, res) => {
     const namesArray = finalName ? finalName.split(" ") : "there";
 
     if (namesArray.length == 1) {
+      if (finalName.includes("there")) {
+        return res.json({
+          finalName,
+        });
+      }
+      const pureName = await isNameAMixtureOfTwoNames(finalName);
       //return final shit still
       return res.json({
-        finalName,
+        finalName: pureName,
       });
     }
 
