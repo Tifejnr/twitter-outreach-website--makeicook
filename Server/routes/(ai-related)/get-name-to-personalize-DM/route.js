@@ -70,7 +70,7 @@ getNameRouterToPersonalizeDmRouter.post("/", async (req, res) => {
       });
     }
 
-    const finalNameNow = await confirmAllAreRealNames(namesArray);
+    const finalNameNow = await confirmAllAreRealNames(namesArray, finalName);
 
     return res.json({
       finalName: finalNameNow,
