@@ -142,7 +142,7 @@ const editFirstNamePromptInstruction = `
 // `;
 
 const creditsIsZeroText = "Buy credits";
-const errorOcuured = "error occured";
+const errorOcuured = "An error occured";
 
 const prefixToRemove =
   "Here is a summary of how freelancers described working with the client:";
@@ -196,7 +196,7 @@ getClientNameRouter.post("/", async (req, res) => {
     if (clientNameResponseRaw.includes(errorOcuured)) {
       return res.json({
         clientNameResponse: errorOcuured,
-        clientPersonality: errorOcuured,
+        clientPersonality: "",
       });
     }
 
