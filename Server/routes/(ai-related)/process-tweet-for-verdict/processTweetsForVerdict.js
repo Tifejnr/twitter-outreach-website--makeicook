@@ -53,8 +53,17 @@ processTweetsForVerdictRouter.post("/", async (req, res) => {
       );
 
       if (tweetCondition == onlyServiceoFfered) {
-        console.log("tweetCondition", response);
-        isServiceoFferedOnlyResponse = response;
+        const promptNow = `
+            Only return "Yes", "No" or "Null".
+        ${tweetCondition} 
+        `;
+
+        const responseNow = await getStraightAiResponse(
+          promptHeadingForTweetsProcessing,
+          tweet
+        );
+        console.log("tweetCondition", responseNow);
+        isServiceoFferedOnlyResponse = responseNow;
       }
 
       responsesArray.push(response);
