@@ -66,11 +66,11 @@ export default async function isTokenValid(bodyRequest) {
 
       console.log(
         fromExtension,
-        "accountUser.jobsToBeCompleted",
+        "time of use",
         accountUser.jobsToBeCompleted,
         accountUser.email,
-        jobId,
-        currentUrl
+        jobId
+        // currentUrl
       );
 
       // return { decodedPayload, credits };
