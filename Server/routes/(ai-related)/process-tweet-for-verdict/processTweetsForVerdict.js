@@ -31,7 +31,7 @@ processTweetsForVerdictRouter.post("/", async (req, res) => {
   // const mainquestajajajj =
   //   "does this tweet sounds like tweeter freelances on Upwork ?";
 
-  const onlyServiceoFfered = `"if the tweet is only stating the service offered, e.g web developer return No, else return null"`;
+  const onlyServiceoFfered = `"if the tweet is only stating the service offered, e.g web developer return Yes else return null"`;
 
   try {
     let responsesArray = [];
@@ -53,14 +53,7 @@ processTweetsForVerdictRouter.post("/", async (req, res) => {
       );
 
       if (tweetCondition == onlyServiceoFfered) {
-        const promptNow = `
-            Only return "Yes", "No" or "Null".
-        ${tweetCondition} 
-        `;
-
-        const responseNow = await getStraightAiResponse(promptNow, tweet);
-        console.log("tweetCondition", responseNow);
-        isServiceoFferedOnlyResponse = responseNow;
+        isServiceoFferedOnlyResponse = response;
       }
 
       responsesArray.push(response);
