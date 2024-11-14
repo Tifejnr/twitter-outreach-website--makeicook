@@ -50,7 +50,7 @@ export async function getStraightAiResponse(
 
     return fullResponse; // Return the full response
   } catch (error) {
-    console.log("error", error);
+    // console.log("error", error);
     return errorOcuured;
   }
 }
