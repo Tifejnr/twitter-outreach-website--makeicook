@@ -33,8 +33,6 @@ processTweetsForVerdictRouter.post("/", async (req, res) => {
 
   const onlyServiceoFfered = `"if the tweet is only stating the service offered, e.g web developer return No, else return null"`;
 
-  console.log("onlyServiceoFfered", onlyServiceoFfered);
-
   try {
     let responsesArray = [];
 
@@ -55,7 +53,7 @@ processTweetsForVerdictRouter.post("/", async (req, res) => {
       );
 
       if (tweetCondition == onlyServiceoFfered) {
-        console.log("tweetCondition", tweetCondition);
+        console.log("tweetCondition", response);
         isServiceoFferedOnlyResponse = response;
       }
 
