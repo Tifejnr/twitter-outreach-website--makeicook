@@ -31,8 +31,13 @@ processTweetsForVerdictRouter.post("/", async (req, res) => {
   // const mainquestajajajj =
   //   "does this tweet sounds like tweeter freelances on Upwork ?";
 
+  const onlyServiceoFfered =
+    "if the tweet is only stating the service offered, e.g web developer return No, else return null";
+
   try {
     let responsesArray = [];
+
+    let isServiceoFferedOnlyResponse;
 
     // Loop through the tweetConditions array
     for (let tweetCondition of tweetConditionsForYesOrNoVerdictArray) {
@@ -48,15 +53,23 @@ processTweetsForVerdictRouter.post("/", async (req, res) => {
         tweet
       );
 
+      if (tweetCondition == onlyServiceoFfered) {
+        isServiceoFferedOnlyResponse = response;
+      }
+
       responsesArray.push(response);
 
       // Stop the loop if "Yes" is found
-      if (response.includes("Yes")) {
+      if (
+        response.includes("Yes") &&
+        !isServiceoFferedOnlyResponse.includes("Yes")
+      ) {
         // console.log("Yeah, an Upwork freelancer!");
 
-        return res.json({
-          verdict: "Yes",
-        });
+        if (onlyServiceoFfered)
+          return res.json({
+            verdict: "Yes",
+          });
       }
     }
 
