@@ -31,13 +31,12 @@ processTweetsForVerdictRouter.post("/", async (req, res) => {
   // const mainquestajajajj =
   //   "does this tweet sounds like tweeter freelances on Upwork ?";
 
-  const onlyServiceoFfered =
-    "if the tweet is only stating the service offered, e.g web developer return No, else return null";
+  const onlyServiceoFfered = `"if the tweet is only stating the service offered, e.g web developer return No, else return null"`;
 
   try {
     let responsesArray = [];
 
-    let isServiceoFferedOnlyResponse;
+    let isServiceoFferedOnlyResponse = "No";
 
     // Loop through the tweetConditions array
     for (let tweetCondition of tweetConditionsForYesOrNoVerdictArray) {
