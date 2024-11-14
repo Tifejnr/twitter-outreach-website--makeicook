@@ -52,6 +52,8 @@ processTweetsForVerdictRouter.post("/", async (req, res) => {
         tweet
       );
 
+      console.log("response", response);
+
       // if (tweetCondition == onlyServiceoFfered) {
       //   isServiceoFferedOnlyResponse = response;
       // }
