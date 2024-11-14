@@ -58,10 +58,7 @@ processTweetsForVerdictRouter.post("/", async (req, res) => {
         ${tweetCondition} 
         `;
 
-        const responseNow = await getStraightAiResponse(
-          promptHeadingForTweetsProcessing,
-          tweet
-        );
+        const responseNow = await getStraightAiResponse(promptNow, tweet);
         console.log("tweetCondition", responseNow);
         isServiceoFferedOnlyResponse = responseNow;
       }
