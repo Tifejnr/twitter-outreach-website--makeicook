@@ -175,7 +175,12 @@ getClientNameRouter.post("/", async (req, res) => {
 
   const prompt = promptRaw.replace(timelyText, "");
 
-  console.log("credits", credits);
+  if (credits === 0) {
+    return res.json({
+      clientNameResponse: creditsIsZeroText,
+      clientPersonality: creditsIsZeroText,
+    });
+  }
 
   try {
     //get client personality
@@ -230,13 +235,6 @@ getClientNameRouter.post("/", async (req, res) => {
       //if it's single name
       if (!finalName.includes(",")) {
         console.log("name includes forbidden keywords:", finalName);
-
-        if (credits === 0) {
-          return res.json({
-            clientNameResponse: creditsIsZeroText,
-            clientPersonality: creditsIsZeroText,
-          });
-        }
 
         return res.json({
           clientNameResponse: realNoNamesFoundResponse,
@@ -300,14 +298,6 @@ return "Yes" or "No" only as response.
           finalName
         );
 
-        //check if credits is zero
-        if (credits === 0) {
-          return res.json({
-            clientNameResponse: creditsIsZeroText,
-            clientPersonality: creditsIsZeroText,
-          });
-        }
-
         return res.json({
           clientNameResponse:
             clientNameResponse == realNoNamesFoundResponse
@@ -334,14 +324,6 @@ return "Yes" or "No" only as response.
 
     if (isItATeamNameResponse) {
       console.log(" isItATeamNameResponse", isItATeamNameResponse, finalName);
-
-      //check if credits is zero
-      if (credits === 0) {
-        return res.json({
-          clientNameResponse: creditsIsZeroText,
-          clientPersonality: creditsIsZeroText,
-        });
-      }
 
       return res.json({
         clientNameResponse:
@@ -383,14 +365,6 @@ return "Yes" or "No" only as response.
           isItReallySingleNameResponse
         );
 
-        //check if credits is zero
-        if (credits === 0) {
-          return res.json({
-            clientNameResponse: creditsIsZeroText,
-            clientPersonality: creditsIsZeroText,
-          });
-        }
-
         res.json({
           clientNameResponse: nameToFreelancer,
           clientPersonality,
@@ -405,14 +379,6 @@ return "Yes" or "No" only as response.
       if (returnedHumanNames == realNoNamesFoundResponse) {
         console.log("none of  comma seperated name is human", finalName);
 
-        //check if credits is zero
-        if (credits === 0) {
-          return res.json({
-            clientNameResponse: creditsIsZeroText,
-            clientPersonality: creditsIsZeroText,
-          });
-        }
-
         return res.json({
           clientNameResponse: returnedHumanNames,
           clientPersonality,
@@ -425,14 +391,6 @@ return "Yes" or "No" only as response.
           "none of  comma seperated name is human,nly one name is human name",
           finalName
         );
-
-        //check if credits is zero
-        if (credits === 0) {
-          return res.json({
-            clientNameResponse: creditsIsZeroText,
-            clientPersonality: creditsIsZeroText,
-          });
-        }
 
         return res.json({
           clientNameResponse: returnedHumanNames,
@@ -448,14 +406,6 @@ return "Yes" or "No" only as response.
         "Multiple names found",
         returnedHumanNames
       );
-
-      //check if credits is zero
-      if (credits === 0) {
-        return res.json({
-          clientNameResponse: creditsIsZeroText,
-          clientPersonality: creditsIsZeroText,
-        });
-      }
 
       return res.json({
         clientNameResponse: nameToFreelancer,
@@ -511,7 +461,7 @@ return "Yes" or "No" only as response.
     );
 
     //return final shit still
-    //check if credits is zero
+
     if (credits === 0) {
       return res.json({
         clientNameResponse: creditsIsZeroText,
