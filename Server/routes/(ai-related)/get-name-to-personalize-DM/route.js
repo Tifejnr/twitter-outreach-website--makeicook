@@ -100,7 +100,7 @@ async function getNameToPersonlizeMessage(username, displayName) {
   }
 
   if (isUsernameAHumanName == "Yes" && isDisplayNameAHumanName == "Yes") {
-    const namesNow = `${displayName}, ${username}`;
+    const namesNow = `${username}, ${displayName}`;
 
     const theMostHumanName = await getNameToGreetWithFromAi(
       gettingNameToUseBtwUsernameAndDisplayNamePrompt,

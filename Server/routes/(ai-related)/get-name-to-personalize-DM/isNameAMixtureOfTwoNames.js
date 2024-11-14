@@ -25,6 +25,11 @@ export default async function isNameAMixtureOfTwoNames(nameToCheck) {
       promptReturnTheFirstNameFromMixture,
       nameToCheck
     );
+
+    const isNamePlainAlphabetNow = isNamePlainAlphabet(firstNameToUse);
+
+    if (isNamePlainAlphabetNow) return firstNameToUse;
+
     const purefirstNameToUse = await getNameToGreetWithFromAi(
       promptReturnPureFormOfTheName,
       firstNameToUse
@@ -33,10 +38,19 @@ export default async function isNameAMixtureOfTwoNames(nameToCheck) {
     return purefirstNameToUse;
   }
 
+  const isNamePlainAlphabetNow = isNamePlainAlphabet(firstNameToUse);
+
+  if (isNamePlainAlphabetNow) return nameToCheck;
+
   const purefirstNameToUse = await getNameToGreetWithFromAi(
     promptReturnPureFormOfTheName,
     nameToCheck
   );
 
   return purefirstNameToUse;
+}
+
+function isNamePlainAlphabet(str) {
+  const plainAlphabetRegex = /^[a-zA-Z]+$/;
+  return plainAlphabetRegex.test(str);
 }
