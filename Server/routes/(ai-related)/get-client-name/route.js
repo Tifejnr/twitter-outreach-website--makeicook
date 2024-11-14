@@ -23,6 +23,9 @@ const model = keysObject.aiModel;
 const HF_TOKEN = keysObject.HF_TOKEN;
 const hf = new HfInference(HF_TOKEN);
 
+const creditsIsZeroText = "Buy credits";
+const errorOcuured = "An error occured";
+
 export async function getStraightAiResponse(
   promptInstruction,
   prompt,
@@ -47,7 +50,8 @@ export async function getStraightAiResponse(
 
     return fullResponse; // Return the full response
   } catch (error) {
-    return "error occured";
+    console.log("error", error);
+    return errorOcuured;
   }
 }
 
@@ -140,9 +144,6 @@ const editFirstNamePromptInstruction = `
 // If the name sound more human than company, return "No".
 
 // `;
-
-const creditsIsZeroText = "Buy credits";
-const errorOcuured = "An error occured";
 
 const prefixToRemove =
   "Here is a summary of how freelancers described working with the client:";
