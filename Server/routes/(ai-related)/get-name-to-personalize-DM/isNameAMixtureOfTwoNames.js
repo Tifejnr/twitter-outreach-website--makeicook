@@ -38,7 +38,7 @@ export default async function isNameAMixtureOfTwoNames(nameToCheck) {
     return purefirstNameToUse;
   }
 
-  const isNamePlainAlphabetNow = isNamePlainAlphabet(firstNameToUse);
+  const isNamePlainAlphabetNow = isNamePlainAlphabet(nameToCheck);
 
   if (isNamePlainAlphabetNow) return nameToCheck;
 
