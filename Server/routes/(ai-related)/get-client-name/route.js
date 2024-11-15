@@ -418,36 +418,6 @@ return "Yes" or "No" only as response.
 
     if (finalName.includes(realNoNamesFoundResponse)) {
       isNameAHumanName = "No";
-    } else {
-      isNameAHumanName = await getStraightAiResponse(
-        confirmNamePrompt,
-        finalName
-      );
-
-      //cfinal confirmation if it's  ahuman name or not.
-      if (isNameAHumanName == "No") {
-        const isNameFoundInAnyCountryPrompt = `
-      Return "Yes" or "No" only. 
-      
-      If name is a pronoun, return "No"
-      
-      If name is a common term used to refer to a person, return "No"
-      
-      Is the name is found as a given name in any country in the world? return "Yes" 
-      
-      `;
-
-        const nameAndContext = `name : ${finalName}
-     
-     Context : ${prompt}
-     `;
-
-        isNameAHumanName = await getStraightAiResponse(
-          isNameFoundInAnyCountryPrompt,
-          nameAndContext,
-          0.1
-        );
-      }
     }
 
     const nameToFreelancer =

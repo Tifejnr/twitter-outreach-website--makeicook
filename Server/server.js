@@ -55,6 +55,7 @@ import sendTutorialsObjArrayRouter from "./routes/stored-messages-on-server/send
 import optimizeCoverLetterOpeningRouter from "./routes/(ai-related)/optimize-cover-letter-opening/optimizeCoverLetterOpening.js";
 // import giveUsers50Credits from "./routes/(auth)/users-stats/reset-stats-daily/giveUsers50Credits.js";
 import processTweetsForVerdictRouter from "./routes/(ai-related)/process-tweet-for-verdict/processTweetsForVerdict.js";
+import getTweeterProfilePersonaRouter from "./routes/(ai-related)/get-tweeter-profile-persona/getTweeterProfilePersona.js";
 
 // runNow();
 // async function runNow() {
@@ -145,6 +146,7 @@ app.use(
   validateOrigin,
   processTweetsForVerdictRouter
 );
+app.use("/get-profile-persona", validateOrigin, getTweeterProfilePersonaRouter);
 app.use(
   "/api/wfr-outreach-details",
   validateOrigin,
