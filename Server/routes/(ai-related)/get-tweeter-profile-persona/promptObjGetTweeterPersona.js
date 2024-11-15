@@ -27,3 +27,5 @@ const promptObjGetTweeterPersona = {
   getUserInterestAndStruggleFromTweets,
   getUserInterestAndStruggleFromRetweets,
 };
+
+export default promptObjGetTweeterPersona;

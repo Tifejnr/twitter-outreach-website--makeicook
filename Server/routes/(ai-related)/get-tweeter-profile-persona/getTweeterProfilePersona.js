@@ -1,6 +1,7 @@
 import express from "express";
 import getStraightAiResponse from "../get-client-name/get-ai-response/getStraightAiResponse.js";
 import convertArrayToTweets from "./utils/convertArrayToTweets.js";
+import promptObjGetTweeterPersona from "./promptObjGetTweeterPersona.js";
 
 const getTweeterProfilePersonaRouter = express.Router();
 
