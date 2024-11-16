@@ -27,7 +27,10 @@ getTweeterProfilePersonaRouter.post("/", async (req, res) => {
   const { tweetsTextArray, retweetsTextArray } = tweetsRetweetDetails;
 
   const userTweets = convertArrayToTweets(tweetsTextArray, "Tweet");
-  const userRetweets = convertArrayToTweets(tweetsTextArray, "Endorsed tweet");
+  const userRetweets = convertArrayToTweets(
+    retweetsTextArray,
+    "Endorsed tweet"
+  );
 
   // const mainquestajajajj =
   //   "does this tweet sounds like tweeter freelances on Upwork ?";
