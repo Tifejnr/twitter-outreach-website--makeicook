@@ -182,6 +182,8 @@ getClientNameRouter.post("/", async (req, res) => {
     });
   }
 
+  console.log("credits", credits);
+
   try {
     //get client personality
     const clientPersonalityRaw = await getStraightAiResponse(
