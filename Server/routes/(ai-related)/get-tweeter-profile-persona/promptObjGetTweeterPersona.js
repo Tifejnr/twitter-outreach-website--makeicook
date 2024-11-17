@@ -15,9 +15,9 @@ Only return the response. don't explain anything, don't prefix your response wit
 `;
 
 const getUserEgoFromBio = `
-This is what a twitter user used to describe themselve on their bio.
+This is what a twitter user used to describe themselve on this bio.
 
-In 200 words, Taking their bio only into context, Tell me how this user sees themselves, what is their ego, what is their profession?
+In 200 words, Taking this user's bio only into context, Tell me how this user sees themselves, what is this user's profession, what is this user's ego?
 
 Only return the response. don't explain anything, don't prefix your response with anything.
  `;
