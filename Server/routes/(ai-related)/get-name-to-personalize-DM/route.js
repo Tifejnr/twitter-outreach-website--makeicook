@@ -27,8 +27,10 @@ export const confirmNamePrompt = `Return "Yes" or "No" for this question.
 
 Ignoring numbers or symbols in the name.
 
-Is the name below a human name or a human nickname ?
+Is the name below likely a human name or a human nickname ?
 `;
+
+const thereText = "";
 
 getNameRouterToPersonalizeDmRouter.post("/", async (req, res) => {
   const bodyRequest = await req.body;
@@ -55,10 +57,10 @@ getNameRouterToPersonalizeDmRouter.post("/", async (req, res) => {
 
     // console.log("name to use for dm", finalName);
 
-    const namesArray = finalName ? finalName.split(" ") : "there";
+    const namesArray = finalName ? finalName.split(" ") : thereText;
 
     if (namesArray.length == 1) {
-      if (finalName.includes("there")) {
+      if (finalName.includes(thereText)) {
         return res.json({
           finalName,
         });
@@ -83,42 +85,42 @@ getNameRouterToPersonalizeDmRouter.post("/", async (req, res) => {
 });
 
 async function getNameToPersonlizeMessage(username, displayName) {
-  const isUsernameAHumanName = await getNameToGreetWithFromAi(
-    confirmNamePrompt,
-    username
-  );
-
   const isDisplayNameAHumanName = await getNameToGreetWithFromAi(
     confirmNamePrompt,
     displayName
   );
 
-  if (isUsernameAHumanName == "No" && isDisplayNameAHumanName == "No") {
-    // console.log("None are human names");
-
-    return "there";
+  if (isDisplayNameAHumanName.includes("Yes")) {
+    return displayName;
   }
 
-  if (isUsernameAHumanName == "Yes" && isDisplayNameAHumanName == "Yes") {
-    const namesNow = `${username}, ${displayName}`;
+  const isUsernameAHumanName = await getNameToGreetWithFromAi(
+    confirmNamePrompt,
+    username
+  );
 
-    const theMostHumanName = await getNameToGreetWithFromAi(
-      gettingNameToUseBtwUsernameAndDisplayNamePrompt,
-      namesNow
-    );
-
-    // console.log("theMostHumanName", theMostHumanName);
-
-    return theMostHumanName;
-  }
-
-  if (isUsernameAHumanName == "Yes") {
+  if (isUsernameAHumanName.includes("Yes")) {
     return username;
   }
 
-  if (isDisplayNameAHumanName == "Yes") {
-    return displayName;
-  }
+  // if (isUsernameAHumanName.includes("No" )&& isDisplayNameAHumanName.includes("No")) {
+  // console.log("None are human names");
+
+  return thereText;
+  // }
+
+  // if (isUsernameAHumanName.includes("Yes") && isDisplayNameAHumanName.includes("Yes")) {
+  //   const namesNow = `${username}, ${displayName}`;
+
+  //   const theMostHumanName = await getNameToGreetWithFromAi(
+  //     gettingNameToUseBtwUsernameAndDisplayNamePrompt,
+  //     namesNow
+  //   );
+
+  //   // console.log("theMostHumanName", theMostHumanName);
+
+  //   return theMostHumanName;
+  // }
 }
 
 export async function getNameToGreetWithFromAi(promptInstruction, prompt) {

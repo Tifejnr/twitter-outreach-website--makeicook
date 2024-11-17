@@ -2,6 +2,8 @@ import countStringOccurrences from "../get-client-name/utils/is-client-a-team/co
 import isNameAMixtureOfTwoNames from "./isNameAMixtureOfTwoNames.js";
 import { getNameToGreetWithFromAi, confirmNamePrompt } from "./route.js";
 
+const thereText = "";
+
 export default async function confirmAllAreRealNames(namesArray, finalName) {
   let firstNameResultsArray = [];
 
@@ -18,7 +20,7 @@ export default async function confirmAllAreRealNames(namesArray, finalName) {
     }
   }
 
-  if (firstNameResultsArray.length == 0) return "there";
+  if (firstNameResultsArray.length == 0) return thereText;
 
   const nameNow = firstNameResultsArray[0];
 
@@ -26,7 +28,7 @@ export default async function confirmAllAreRealNames(namesArray, finalName) {
 
   const noOfNameOccurenceTime = countStringOccurrences(finalName, pureName);
 
-  if (noOfNameOccurenceTime == 0) return "there";
+  if (noOfNameOccurenceTime == 0) return thereText;
 
   return pureName;
 }
