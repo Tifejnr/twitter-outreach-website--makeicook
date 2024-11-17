@@ -49,7 +49,7 @@ signUpRouter.post("/", async (req, res) => {
     console.log("isEntryCodeValid", isEntryCodeValid);
 
     const creditsToGiveUser =
-      isEntryCodeValid === false ? 10 : isEntryCodeValid === null ? 20 : 40;
+      isEntryCodeValid === false ? 10 : isEntryCodeValid === null ? 20 : 30;
 
     accountUser.entryCode = isEntryCodeValid
       ? entryCode
