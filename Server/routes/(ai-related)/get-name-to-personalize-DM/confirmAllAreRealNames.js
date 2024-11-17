@@ -7,9 +7,7 @@ const thereText = "";
 export default async function confirmAllAreRealNames(namesArray, finalName) {
   let firstNameResultsArray = [];
 
-  for (let i = 0; i < namesArray.length; i++) {
-    const firstNameNow = namesArray[i];
-
+  for (let firstNameNow of namesArray) {
     const isNameARealName = await getNameToGreetWithFromAi(
       confirmNamePrompt,
       firstNameNow

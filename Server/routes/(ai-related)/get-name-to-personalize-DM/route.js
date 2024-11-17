@@ -141,7 +141,7 @@ export async function getNameToGreetWithFromAi(promptInstruction, prompt) {
 
     const fullResponse = response.choices[0]?.message?.content;
 
-    console.log("name reponse", fullResponse, prompt);
+    console.log("name reponse", fullResponse, prompt, promptInstruction);
 
     return fullResponse; // Return the full response
   } catch (error) {
