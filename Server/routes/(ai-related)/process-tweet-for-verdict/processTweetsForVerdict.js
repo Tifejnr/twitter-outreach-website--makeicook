@@ -83,3 +83,74 @@ processTweetsForVerdictRouter.post("/", async (req, res) => {
 });
 
 export default processTweetsForVerdictRouter;
+
+`
+
+If the tweet does not contain any language that suggests the tweeter is a freelancer on Upwork return No else return null.  
+****  
+If the tweet provides a link to the user's Upwork profile return Yes else return null.  
+****  
+If the tweet sounds like tweeter is just recommending Upwork return No else return null.  
+****  
+If the tweet sounds like tweeter is just telling people to join Upwork return No else return null.  
+****  
+If the tweet sounds like tweeter is not a big fan of Upwork return No else return null.  
+****  
+If the tweet sounds like tweeter hires others on Upwork return No else return null.  
+****  
+If the tweet sounds like tweeter has given up on Upwork return No else return null.  
+****  
+If the tweet sounds like tweeter is telling others to check a job posted on Upwork return No else return null.  
+****  
+If the tweet sounds like tweeter is saying he wants to try working on Upwork return No else return null.  
+****  
+If the tweet sounds like tweeter says Upwork is too hard return No else return null.  
+****  
+If the tweet sounds like tweeter who is complaining about Upwork hires people on Upwork return No else return null.  
+****  
+If the tweet sounds like tweeter is complaining about how Upwork isn't suitable for hiring or job post price is high return No else return null.  
+****  
+If the tweet sounds like it is not related to Upwork freelancing just #Upwork hashtag return No else return null.  
+****  
+If the tweet doesn't have Upwork as a keyword in it return No else return null.  
+****  
+If the tweet sounds like tweeter is advertising Upwork as a platform for finding talents with skills to hire return No else return null.  
+****  
+If the tweet sounds like tweeter is complaining about Upwork freelancers return No else return null.  
+****  
+If the tweet sounds like tweeter is just telling people to consider joining Upwork return No else return null.  
+****  
+If the tweet sounds like tweeter is just telling people about a job post on Upwork return No else return null.  
+****  
+If the tweet sounds like tweeter is just seeking a talent to hire on Upwork return No else return null.  
+****  
+If the tweet sounds like tweeter is saying Upwork blocked his/her account return No else return null.  
+****  
+If the tweet sounds like tweeter is saying there's talent on Upwork return No else return null.  
+****  
+If the tweet sounds like tweeter is saying he has quit Upwork return No else return null.  
+****  
+If the tweet sounds like tweeter is saying Upwork rejected him/her return No else return null.  
+****  
+If the tweet sounds like tweeter is complaining about Upwork not verifying his/her account return No else return null.  
+****  
+If the tweet sounds like tweeter wants to hire on Upwork return No else return null.  
+****  
+If the tweet sounds like tweeter is telling others that they can find jobs on Upwork return No else return null.  
+****  
+If the tweet sounds like tweeter is complaining about his/her Upwork account being blocked return No else return null.  
+****  
+If the tweet sounds like Upwork account got blocked return No else return null.  
+****  
+If the tweet sounds like tweeter has ever got paid through Upwork return Yes else return null.  
+****  
+If the tweet sounds like tweeter is complaining about Upwork return Yes else return null.  
+****  
+If the tweet sounds like tweeter is explaining something about Upwork e.g. connects JSS return Yes else return null.  
+****  
+If the tweet sounds like tweeter is just greeting or congratulating return No else return null.  
+****  
+If the tweet contains Upwork or top rated return Yes else return null.  
+****  
+If the tweet is only stating the service offered, e.g web developer return No, else return null.
+`;
