@@ -55,7 +55,7 @@ getNameRouterToPersonalizeDmRouter.post("/", async (req, res) => {
   try {
     const finalName = await getNameToPersonlizeMessage(username, displayName);
 
-    // console.log("name to use for dm", finalName);
+    console.log("name to use for dm", finalName);
 
     const namesArray = finalName ? finalName.split(" ") : thereText;
 
@@ -73,6 +73,8 @@ getNameRouterToPersonalizeDmRouter.post("/", async (req, res) => {
     }
 
     const finalNameNow = await confirmAllAreRealNames(namesArray, finalName);
+
+    console.log("finalNameNow", finalNameNow);
 
     return res.json({
       finalName: finalNameNow,
@@ -140,8 +142,6 @@ export async function getNameToGreetWithFromAi(promptInstruction, prompt) {
     });
 
     const fullResponse = response.choices[0]?.message?.content;
-
-    console.log("name reponse", fullResponse, prompt, promptInstruction);
 
     return fullResponse; // Return the full response
   } catch (error) {
