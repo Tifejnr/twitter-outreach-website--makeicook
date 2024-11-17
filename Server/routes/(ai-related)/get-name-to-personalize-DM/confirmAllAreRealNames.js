@@ -22,8 +22,9 @@ export default async function confirmAllAreRealNames(namesArray, finalName) {
 
   const nameNow = firstNameResultsArray[0];
 
-  console.log("nameNow ", nameNow);
   const pureName = await isNameAMixtureOfTwoNames(nameNow);
+
+  console.log("pureName ", pureName);
 
   const noOfNameOccurenceTime = countStringOccurrences(finalName, pureName);
 
