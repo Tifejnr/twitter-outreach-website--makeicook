@@ -74,8 +74,6 @@ getNameRouterToPersonalizeDmRouter.post("/", async (req, res) => {
 
     const finalNameNow = await confirmAllAreRealNames(namesArray, finalName);
 
-    console.log("finalNameNow", finalNameNow);
-
     return res.json({
       finalName: finalNameNow,
     });
