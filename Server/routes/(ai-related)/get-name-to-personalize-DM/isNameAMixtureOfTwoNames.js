@@ -10,7 +10,7 @@ const promptDoesTHisContainMixtureOfTwoNames = `Return Yes or No only.
 Is this a mixture of two different names together.`;
 
 const promptReturnPureFormOfTheName = `
-Only  return the first pure from of the name without quotes. don't explain anything, don't prefix your response with anything.
+Only return the first pure from of the name without quotes. don't explain anything, don't prefix your response with anything.
 `;
 
 export default async function isNameAMixtureOfTwoNames(nameToCheck) {

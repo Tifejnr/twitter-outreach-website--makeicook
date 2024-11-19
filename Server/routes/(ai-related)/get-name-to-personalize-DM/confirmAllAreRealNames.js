@@ -24,9 +24,24 @@ export default async function confirmAllAreRealNames(namesArray, finalName) {
 
   const pureName = await isNameAMixtureOfTwoNames(nameNow);
 
-  const noOfNameOccurenceTime = countStringOccurrences(pureName, finalName);
+  const areAllCharactersFound = canFindAllCharacters(pureName, finalName);
 
-  if (noOfNameOccurenceTime == 0) return thereText;
+  if (areAllCharactersFound) return pureName;
 
-  return pureName;
+  return thereText;
+}
+
+function canFindAllCharacters(searchString, sentence) {
+  // Convert both searchString and sentence to lowercase for case-insensitive comparison
+  const lowerSearchString = searchString.toLowerCase();
+  const lowerSentence = sentence.toLowerCase();
+
+  // Use a loop to check if each character in the searchString exists in the sentence
+  for (const char of lowerSearchString) {
+    if (!lowerSentence.includes(char)) {
+      return false; // If any character is not found, return false
+    }
+  }
+
+  return true; // If all characters are found, return true
 }
