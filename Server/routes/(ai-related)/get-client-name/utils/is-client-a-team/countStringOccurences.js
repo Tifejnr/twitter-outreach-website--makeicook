@@ -1,4 +1,8 @@
 export default function countStringOccurrences(searchString, sentence) {
+  const signsToReplace = ".";
+
+  searchString = searchString.replace(signsToReplace, "");
+  sentence = sentence.replace(signsToReplace, "");
   // Create a regular expression to find all occurrences of the search string, ignoring case sensitivity
   const regex = new RegExp(searchString, "gi"); // 'i' flag added for case-insensitive matching
 
