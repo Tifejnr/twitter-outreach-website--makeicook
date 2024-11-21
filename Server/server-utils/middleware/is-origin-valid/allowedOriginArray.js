@@ -17,8 +17,14 @@ const makeICookExtensionOrigin =
 const localHost5173 = "http://localhost:5173";
 const realOutreachBotExtension =
   "chrome-extension://nknhbhcdkfbflbabhjpjnjnaofkbkeph";
+const twitterXOutreachExtensionChromeStore =
+  "chrome-extension://dngpbgapdaebamnpbjikicbjchejbgle";
+const twitterXOutreachExtensionDevModeAcct =
+  "chrome-extension://nknhbhcdkfbflbabhjpjnjnaofkbkeph";
 
 const allowedOriginArrays = [
+  twitterXOutreachExtensionDevModeAcct,
+  twitterXOutreachExtensionChromeStore,
   realOutreachBotExtension,
   localHost5173,
   makeICookExtensionOrigin,
