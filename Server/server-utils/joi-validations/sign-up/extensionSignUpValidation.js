@@ -6,6 +6,7 @@ export default function extensionSignUpValidation(reqBody) {
     email: Joi.string().min(3).max(250).required().email(),
     password: Joi.string().min(3).max(250).required(),
     entryCode: Joi.string().min(0).max(20),
+    fromMakeICookExtension: Joi.boolean(),
     fromExtension: Joi.alternatives().try(Joi.boolean(), Joi.string()),
   });
 

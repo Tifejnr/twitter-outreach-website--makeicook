@@ -96,6 +96,11 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+
+  fromMakeICookExtension: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const user = mongoose.models.User || mongoose.model("User", userSchema);

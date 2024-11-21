@@ -28,7 +28,7 @@ signUpRouter.post("/", async (req, res) => {
   if (fromExtension) {
     const { error } = extensionSignUpValidation(bodyRequest);
 
-    const { entryCode } = bodyRequest;
+    const { entryCode, fromMakeICookExtension } = bodyRequest;
 
     if (error) return res.json({ joiError: error.details[0].message });
 
@@ -58,54 +58,62 @@ signUpRouter.post("/", async (req, res) => {
     accountUser.isEmailVerified = true;
     accountUser.credits = creditsToGiveUser;
 
+    if (fromMakeICookExtension) {
+      accountUser.fromMakeICookExtension = true;
+    }
+
     await accountUser.save();
 
-    //send welcome to new user
-    const subject = "Welcome to Work for Reputation - WFR Toolkit!";
-    const folderDir = `${emailTemplateFolderSrc}/welcome-email`;
+    if (!fromMakeICookExtension) {
+      //send welcome to new user
+      const subject = "Welcome to Work for Reputation - WFR Toolkit!";
+      const folderDir = `${emailTemplateFolderSrc}/welcome-email`;
 
-    const fullName = bodyRequest.name;
-    const customerEmail = bodyRequest.email;
+      const fullName = bodyRequest.name;
+      const customerEmail = bodyRequest.email;
 
-    const name = getFirstName(fullName);
+      const name = getFirstName(fullName);
 
-    const customerParams = {
-      subject: subject,
-      folderDir: folderDir,
-      customerEmail,
-    };
+      const customerParams = {
+        subject: subject,
+        folderDir: folderDir,
+        customerEmail,
+      };
 
-    const emailContextParamsNow = {
-      name,
-    };
+      const emailContextParamsNow = {
+        name,
+      };
 
-    const result = await sendEmail(customerParams, emailContextParamsNow);
+      const result = await sendEmail(customerParams, emailContextParamsNow);
 
-    // const trialCreditsGivenEmailResult=
-    const trialCreditsSubject = `${name}, You’ve Received ${accountUser.credits} Free Credits – Here's How to Make the Most of Them!`;
-    const folderDirTrialCredits = `${emailTemplateFolderSrc}/trial-credits-given-email`;
+      // const trialCreditsGivenEmailResult=
+      const trialCreditsSubject = `${name}, You’ve Received ${accountUser.credits} Free Credits – Here's How to Make the Most of Them!`;
+      const folderDirTrialCredits = `${emailTemplateFolderSrc}/trial-credits-given-email`;
 
-    const customerParamsTrialCredits = {
-      subject: trialCreditsSubject,
-      folderDir: folderDirTrialCredits,
-      customerEmail,
-    };
+      const customerParamsTrialCredits = {
+        subject: trialCreditsSubject,
+        folderDir: folderDirTrialCredits,
+        customerEmail,
+      };
 
-    const emailContextParamsNowTrialCredits = {
-      customerName: name,
-      credits: accountUser.credits,
-    };
+      const emailContextParamsNowTrialCredits = {
+        customerName: name,
+        credits: accountUser.credits,
+      };
 
-    await sendEmail(
-      customerParamsTrialCredits,
-      emailContextParamsNowTrialCredits
-    );
-
-    if (result) {
-      const token = jwt.sign(
-        { _id: accountUser._id, isPaid: accountUser.isPaid },
-        JWT_PRIVATE_KEY
+      await sendEmail(
+        customerParamsTrialCredits,
+        emailContextParamsNowTrialCredits
       );
+
+      if (result) {
+        const token = jwt.sign(
+          { _id: accountUser._id, isPaid: accountUser.isPaid },
+          JWT_PRIVATE_KEY
+        );
+
+        return res.json({ token });
+      }
 
       return res.json({ token });
     }
