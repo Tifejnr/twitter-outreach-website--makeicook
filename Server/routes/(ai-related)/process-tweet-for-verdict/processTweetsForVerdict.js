@@ -21,7 +21,7 @@ processTweetsForVerdictRouter.post("/", async (req, res) => {
   //   });
   // }
 
-  const { details, tweet } = bodyRequest;
+  const { details, tweet, isItReplyToTweet } = bodyRequest;
 
   const {
     tweetConditionsForYesOrNoVerdictArray,
@@ -33,6 +33,12 @@ processTweetsForVerdictRouter.post("/", async (req, res) => {
 
   // const onlyServiceoFfered = `"if the tweet is only stating the service offered, e.g web developer return Yes else return null"`;
 
+  const postedTweetIfItWasReplyPattern =
+    tweetConditionsForYesOrNoVerdictArray[0];
+
+  console.log("postedTweetIfItWasReplyPattern", postedTweetIfItWasReplyPattern);
+
+  console.log(" isItReplyToTweet", isItReplyToTweet);
   try {
     let responsesArray = [];
 
@@ -47,8 +53,22 @@ processTweetsForVerdictRouter.post("/", async (req, res) => {
     
         ${mainQuestionToCheckCondition}`;
 
+      const promptHeadingForRepliesProcessing = `
+        Only return "Yes", "No" or "Null".
+
+        Putting this tweet that this user replied to in context :
+      
+        ${postedTweetIfItWasReplyPattern}
+
+    
+        ${tweetCondition}
+    
+        ${mainQuestionToCheckCondition}`;
+
       const response = await getStraightAiResponse(
-        promptHeadingForTweetsProcessing,
+        isItReplyToTweet
+          ? promptHeadingForRepliesProcessing
+          : promptHeadingForTweetsProcessing,
         tweet
       );
 
