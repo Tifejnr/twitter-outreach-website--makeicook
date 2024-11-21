@@ -35,9 +35,6 @@ processTweetsForVerdictRouter.post("/", async (req, res) => {
 
   const postedTweetIfItWasReplyPattern = isItReplyToTweet;
 
-  console.log("postedTweetIfItWasReplyPattern", postedTweetIfItWasReplyPattern);
-
-  console.log(" isItReplyToTweet", isItReplyToTweet);
   try {
     let responsesArray = [];
 
