@@ -33,8 +33,7 @@ processTweetsForVerdictRouter.post("/", async (req, res) => {
 
   // const onlyServiceoFfered = `"if the tweet is only stating the service offered, e.g web developer return Yes else return null"`;
 
-  const postedTweetIfItWasReplyPattern =
-    tweetConditionsForYesOrNoVerdictArray[0];
+  const postedTweetIfItWasReplyPattern = isItReplyToTweet;
 
   console.log("postedTweetIfItWasReplyPattern", postedTweetIfItWasReplyPattern);
 
