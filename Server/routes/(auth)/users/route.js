@@ -64,6 +64,11 @@ signUpRouter.post("/", async (req, res) => {
 
     await accountUser.save();
 
+    const token = jwt.sign(
+      { _id: accountUser._id, isPaid: accountUser.isPaid },
+      JWT_PRIVATE_KEY
+    );
+
     if (!fromMakeICookExtension) {
       //send welcome to new user
       const subject = "Welcome to Work for Reputation - WFR Toolkit!";
@@ -107,11 +112,6 @@ signUpRouter.post("/", async (req, res) => {
       );
 
       if (result) {
-        const token = jwt.sign(
-          { _id: accountUser._id, isPaid: accountUser.isPaid },
-          JWT_PRIVATE_KEY
-        );
-
         return res.json({ token });
       }
 
