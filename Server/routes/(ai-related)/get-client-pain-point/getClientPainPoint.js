@@ -8,7 +8,7 @@ const describeClientPainPoints = `
 describe all the client pain points from this job description ranked in order of importance.
 
 
-Only return the response. don't explain anything, don't prefix your response with anything.
+Only return the response.  don't prefix your response with anything.
 `;
 
 getClientPainPointRouter.post("/", async (req, res) => {
