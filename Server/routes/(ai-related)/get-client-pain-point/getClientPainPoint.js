@@ -1,9 +1,12 @@
 import express from "express";
 import isTokenValid from "../../../server-utils/middleware/token-validity/isTokenValid.js";
 import getStraightAiResponse from "../get-client-name/get-ai-response/getStraightAiResponse.js";
-import promptsObjsForCoverLetterOptimization from "./promptObjsForCoverLetterOptimizing.js";
 
 const getClientPainPointRouter = express.Router();
+
+const describeClientPainPoints = `
+describe all the client pain points from this job description.
+`;
 
 getClientPainPointRouter.post("/", async (req, res) => {
   const bodyRequest = await req.body;
@@ -37,7 +40,7 @@ getClientPainPointRouter.post("/", async (req, res) => {
   try {
     //get client pain points from description
     const clientPainPoints = await getStraightAiResponse(
-      promptsObjsForCoverLetterOptimization.describeClientPainPoints,
+      describeClientPainPoints,
       jobDescription,
       temperature,
       maxTokens
