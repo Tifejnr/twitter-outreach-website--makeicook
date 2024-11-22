@@ -6,6 +6,10 @@ const getClientPainPointRouter = express.Router();
 
 const describeClientPainPoints = `
 describe all the client pain points from this job description.
+
+don't hallucinate. 
+
+Only return the response. don't explain anything, don't prefix your response with anything.
 `;
 
 getClientPainPointRouter.post("/", async (req, res) => {
