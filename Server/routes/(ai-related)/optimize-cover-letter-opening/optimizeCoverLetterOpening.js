@@ -42,7 +42,7 @@ optimizeCoverLetterOpeningRouter.post("/", async (req, res) => {
   const greetingToStartWithNow = getGreetingToStartWith(clientName);
 
   try {
-    //get client pain points from decription
+    //get client pain points from description
     const clientPainPointsRaw = await getStraightAiResponse(
       promptsObjsForCoverLetterOptimization.describeClientPainPoints,
       jobDescription,

@@ -56,6 +56,7 @@ import optimizeCoverLetterOpeningRouter from "./routes/(ai-related)/optimize-cov
 // import giveUsers50Credits from "./routes/(auth)/users-stats/reset-stats-daily/giveUsers50Credits.js";
 import processTweetsForVerdictRouter from "./routes/(ai-related)/process-tweet-for-verdict/processTweetsForVerdict.js";
 import getTweeterProfilePersonaRouter from "./routes/(ai-related)/get-tweeter-profile-persona/getTweeterProfilePersona.js";
+import getClientPainPointRouter from "./routes/(ai-related)/get-client-pain-point/getClientPainPoint.js";
 
 // runNow();
 // async function runNow() {
@@ -161,6 +162,11 @@ app.use(
   "/api/optimize-cover-letter-opening",
   validateOrigin,
   optimizeCoverLetterOpeningRouter
+);
+app.use(
+  "/api/get-client-pain-points",
+  validateOrigin,
+  getClientPainPointRouter
 );
 app.use("/api/ChatGBT", validateOrigin, chatGPTAIResponseRouter);
 app.use("/api/contact-us", validateOrigin, contactUsHandlerWebsiteRouter);
