@@ -5,9 +5,8 @@ import getStraightAiResponse from "../get-client-name/get-ai-response/getStraigh
 const getClientPainPointRouter = express.Router();
 
 const describeClientPainPoints = `
-describe all the client pain points from this job description.
+describe all the client pain points from this job description ranked in order of importance.
 
-don't hallucinate. 
 
 Only return the response. don't explain anything, don't prefix your response with anything.
 `;
