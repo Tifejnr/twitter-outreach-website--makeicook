@@ -5,10 +5,10 @@ import getStraightAiResponse from "../get-client-name/get-ai-response/getStraigh
 const getClientPainPointRouter = express.Router();
 
 const describeClientPainPoints = `
-describe all the client pain points from this job description ranked in order of importance.
+describe all the client pain points from this job description to me as a freelancer who wants to apply to this job.
 
 
-Only return the response. don't explain anything, don't prefix your response with anything.
+Only return the response straight forward. don't prefix your response with any brief.
 `;
 
 getClientPainPointRouter.post("/", async (req, res) => {
