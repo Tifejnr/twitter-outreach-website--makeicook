@@ -64,7 +64,7 @@ optimizeCoverLetterOpeningRouter.post("/", async (req, res) => {
     
     Keep your crafted cover letter opening within 250 characters.
     
-    Ensure "you need" follows immediately after the greeting.
+    "you need" must follow immediately after the greeting. Never follow with "I".
     
     Ensure it follow this format "${youFocusApproachFormat}" but with the pain point "${clientPainPointsRaw}" being addressed. 
     
