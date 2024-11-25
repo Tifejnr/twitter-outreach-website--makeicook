@@ -1,7 +1,7 @@
 const describeClientPainPoints = `
 From this job description to me as a freelancer who wants to apply to this job.
 
-Return client pain point that you feel will most likely grab the client's attention if adressed.
+Return client pain point that you feel will most likely grab the client's attention if addressed.
 
 Only return the response straight forward. don't prefix your response with any brief.
 `;

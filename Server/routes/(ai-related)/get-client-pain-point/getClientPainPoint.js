@@ -12,9 +12,7 @@ Highlight the pain point that you feel will most likely grab the client's attent
 Only return the response straight forward. don't prefix your response with any brief.
 `;
 const describeClientPainPointsFlip = `
-Without changing anything except for position.
-
-Let the most likely pain point to grab client attention statement come first, while other pain points follow after it.
+Let the most likely pain point to grab client attention statement come first, while other pain points headed with "Pain points" follow on a new paragrapgh.
 
 Only return the response straight forward. don't prefix your response with any brief.
 `;
