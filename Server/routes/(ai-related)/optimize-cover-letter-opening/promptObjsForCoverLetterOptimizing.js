@@ -6,7 +6,7 @@ Return client pain point that you feel will most likely grab the client's attent
 Only return the response straight forward. don't prefix your response with any brief.
 `;
 
-const reduceTo250xters = `Reduce this cover letter opening line to 250 characters without losing its structure. 
+const reduceTo250xters = `Reduce this cover letter opening line to 260 characters without losing its structure. 
 
 Make it human readable and understandable. 
 
@@ -19,13 +19,12 @@ This is the opening line that the client will first read once he sights my cover
 On a scale of 0-10, how irrestible is this for a client who needs to hire someone ?
 `;
 
-const craftIrresistibleCoverLetterLastPart = `Using this pain point that is most likely to grab the client attention, craft a 10/10 irrestitble cover letter opening for me.
+const craftIrresistibleCoverLetterLastPart = `Using this pain point to grab the client attention, craft a 10/10 irrestitble cover letter opening for me.
 
-Acknowledge the client's pain point in the beginning to get their attention.
 
-Use a "You" focus approach to restate the client pain point to prove you understand exactly what the client wants.
+a "You focus" approach must start with "You need", followed by client pain point need.
 
-Follow this You focus approach example : "You are having issues with updating the UI when you inject the code into the page".
+Use a "You focus" approach to restate the client pain point to prove you understand exactly what the client wants.
 
 Keep your crafted cover letter opening within 250 characters.
 
