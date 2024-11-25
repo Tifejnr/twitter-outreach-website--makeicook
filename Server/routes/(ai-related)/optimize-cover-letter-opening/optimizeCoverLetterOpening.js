@@ -52,15 +52,20 @@ optimizeCoverLetterOpeningRouter.post("/", async (req, res) => {
 
     console.log("clientPainPointsRaw", clientPainPointsRaw);
 
-    //check how irresistible the current opening line is.
-    // const irresistibleVeridctFromAi = await getStraightAiResponse(
-    //   promptsObjsForCoverLetterOptimization.irresistiabiltyRangeCheck,
-    //   openingLineOfCoverLetter,
-    //   temperature,
-    //   maxTokens
-    // );
+    const craftIrresistibleCoverLetterLastPart = `Using the pain point "${clientPainPointsRaw}" to grab the client attention.
 
-    //craft 10/10 irresistible offer
+    a "You focus" approach must start with "You need", followed by demonstrating you understand the client pain point.
+    
+    Use a "You focus" approach to restate the client pain point to prove you understand exactly what the client wants.
+    
+    craft a 10/10 irrestitble cover letter opening for me.
+    
+    Keep your crafted cover letter opening within 250 characters.
+    
+    Ensure it follow this format   "${youFocusApproachFormat}" but with the pain point "${clientPainPointsRaw}" being addressed. 
+    
+    Only return the cover letter opening you crafted. don't explain anything, don't prefix the main cover letter with any explanantion or any revision.
+    `;
     const promptForCraftingIrresisitibleOpening = `
 
 You must start the cover letter with this greeting: ${greetingToStartWithNow} 
@@ -68,7 +73,7 @@ You must start the cover letter with this greeting: ${greetingToStartWithNow}
 
 Client pain point : ${clientPainPointsRaw}
 
-${promptsObjsForCoverLetterOptimization.craftIrresistibleCoverLetterLastPart}
+${craftIrresistibleCoverLetterLastPart}
 `;
     const irresistibleOpeningLineCraftedByAiNow = await getStraightAiResponse(
       promptForCraftingIrresisitibleOpening,
