@@ -1,6 +1,7 @@
 const clientHasNoJobHistoryText = "Client has no job history";
 const errorOccuredMessage = "Check your internet, and retry";
 const hiText = "Hi, ";
+const noNamesFoundText = "No names found";
 
 export default function getGreetingToStartWith(clientName) {
   if (!clientName) return hiText;
@@ -8,6 +9,7 @@ export default function getGreetingToStartWith(clientName) {
   const invalidNameToShowArray = [
     errorOccuredMessage,
     clientHasNoJobHistoryText,
+    noNamesFoundText,
   ];
 
   const isUsingHiOnlyBetter = invalidNameToShowArray.find(
