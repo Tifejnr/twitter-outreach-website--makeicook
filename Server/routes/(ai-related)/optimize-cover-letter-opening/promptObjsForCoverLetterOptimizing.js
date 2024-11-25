@@ -25,6 +25,8 @@ Acknowledge the client's pain point in the beginning to get their attention.
 
 Use a "You" focus approach to restate the client pain point to prove you understand exactly what the client wants.
 
+Follow this You focus approach example : "You are having issues with updating the UI when you inject the code into the page".
+
 Keep your crafted cover letter opening within 250 characters.
 
 Only return the cover letter opening you crafted. don't explain anything, don't prefix the main cover letter with any explanantion or any revision.

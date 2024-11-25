@@ -51,18 +51,16 @@ optimizeCoverLetterOpeningRouter.post("/", async (req, res) => {
     );
 
     //check how irresistible the current opening line is.
-    const irresistibleVeridctFromAi = await getStraightAiResponse(
-      promptsObjsForCoverLetterOptimization.irresistiabiltyRangeCheck,
-      openingLineOfCoverLetter,
-      temperature,
-      maxTokens
-    );
+    // const irresistibleVeridctFromAi = await getStraightAiResponse(
+    //   promptsObjsForCoverLetterOptimization.irresistiabiltyRangeCheck,
+    //   openingLineOfCoverLetter,
+    //   temperature,
+    //   maxTokens
+    // );
 
     //craft 10/10 irresistible offer
     const promptForCraftingIrresisitibleOpening = `Putting the client pain point into context : ${clientPainPointsRaw}
 
-This is the response you gave when I asked you to rate from 0-10 how irresistible my cover letter opening words were to a client who wants to hire someone.
- ${irresistibleVeridctFromAi}
 
 Start with this greeting:${greetingToStartWithNow} 
 
