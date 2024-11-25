@@ -63,6 +63,7 @@ optimizeCoverLetterOpeningRouter.post("/", async (req, res) => {
 
 You must start the cover letter with this greeting: ${greetingToStartWithNow} 
 
+
 Client pain point : ${clientPainPointsRaw}
 
 ${promptsObjsForCoverLetterOptimization.craftIrresistibleCoverLetterLastPart}

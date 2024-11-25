@@ -21,13 +21,15 @@ On a scale of 0-10, how irrestible is this for a client who needs to hire someon
 
 const craftIrresistibleCoverLetterLastPart = `Using the pain point above to grab the client attention.
 
-a "You focus" approach must start with "You need", followed by demnonstrating you understand the client pain point.
+a "You focus" approach must start with "You need", followed by demonstrating you understand the client pain point.
 
 Use a "You focus" approach to restate the client pain point to prove you understand exactly what the client wants.
 
 craft a 10/10 irrestitble cover letter opening for me.
 
 Keep your crafted cover letter opening within 250 characters.
+
+Write like you are talking directly to the client.
 
 Only return the cover letter opening you crafted. don't explain anything, don't prefix the main cover letter with any explanantion or any revision.
 `;
