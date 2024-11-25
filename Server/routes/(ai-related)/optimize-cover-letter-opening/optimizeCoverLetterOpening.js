@@ -85,6 +85,8 @@ ${craftIrresistibleCoverLetterLastPart}
     const finalFormattingPrompt = `
     Write like you are ${getRandomLegendaryCopyWriter()}
 
+    with a "You focused" format like this  "${youFocusApproachFormat}"
+
     ${promptsObjsForCoverLetterOptimization.reduceTo250xters}
     `;
 
