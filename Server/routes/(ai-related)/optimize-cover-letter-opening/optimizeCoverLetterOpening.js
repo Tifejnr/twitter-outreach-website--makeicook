@@ -7,6 +7,9 @@ import unwrapQuotes from "./utils/unwrappQuotes.js";
 import getGreetingToStartWith from "./utils/getGreetingToStartWith.js";
 
 const creditsIsZeroText = "Buy credits";
+const youFocusApproachFormat = `
+Hi, you need a storyteller who can unravel intricate concepts and ignite action in your readers to make them buy more of you stories.
+`;
 
 const optimizeCoverLetterOpeningRouter = express.Router();
 
