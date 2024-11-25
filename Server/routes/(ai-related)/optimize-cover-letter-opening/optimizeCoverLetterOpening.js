@@ -50,6 +50,8 @@ optimizeCoverLetterOpeningRouter.post("/", async (req, res) => {
       maxTokens
     );
 
+    console.log("clientPainPointsRaw", clientPainPointsRaw);
+
     //check how irresistible the current opening line is.
     // const irresistibleVeridctFromAi = await getStraightAiResponse(
     //   promptsObjsForCoverLetterOptimization.irresistiabiltyRangeCheck,
