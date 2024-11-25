@@ -7,7 +7,7 @@ const getClientPainPointRouter = express.Router();
 const describeClientPainPoints = `
 describe all the client pain points from this job description to me as a freelancer who wants to apply to this job.
 
-Let this come first in your reponse: Highlight the pain point that you feel will most likely grab the client's attention the most if addressed.
+Let this come first in your reponse: Briefly, concisely highlight the pain point that you feel will most likely grab the client's attention the most if addressed.
 
 Only return the response straight forward. don't prefix your response with any brief.
 `;
