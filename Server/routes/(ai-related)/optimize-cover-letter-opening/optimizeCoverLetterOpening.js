@@ -70,6 +70,8 @@ optimizeCoverLetterOpeningRouter.post("/", async (req, res) => {
 
 You must start the cover letter with this greeting: ${greetingToStartWithNow} 
 
+Followed by "you need" , using it to address the client pain point. 
+
 
 Client pain point : ${clientPainPointsRaw}
 
