@@ -62,10 +62,10 @@ optimizeCoverLetterOpeningRouter.post("/", async (req, res) => {
     const promptForCraftingIrresisitibleOpening = `Putting the client pain point into context : ${clientPainPointsRaw}
 
 
-Start with this greeting:${greetingToStartWithNow} 
+You must start with this greeting: ${greetingToStartWithNow} 
 
 ${promptsObjsForCoverLetterOptimization.craftIrresistibleCoverLetterLastPart}
-    `;
+`;
     const irresistibleOpeningLineCraftedByAiNow = await getStraightAiResponse(
       promptForCraftingIrresisitibleOpening,
       openingLineOfCoverLetter,
