@@ -1,14 +1,20 @@
 const describeClientPainPoints = `
 From this job description to me as a freelancer who wants to apply to this job.
 
-Return client pain point that you feel will most likely grab the client's attention the most if adressed.
+Return client pain point that you feel will most likely grab the client's attention if adressed.
 
 Only return the response straight forward. don't prefix your response with any brief.
+`;
+
+const youFocusApproachFormat = `
+Hi, you need a storyteller who can unravel intricate concepts and ignite action in your readers to make them buy more of you stories.
 `;
 
 const reduceTo250xters = `Reduce this cover letter opening line to 260 characters without losing its structure. 
 
 Make it human readable and understandable. 
+
+Ensure it follow this format : ${youFocusApproachFormat}
 
 Only return the reduced cover letter opening. don't explain anything, don't prefix the main cover letter with any explanantion or any revision.
 `;
@@ -29,7 +35,6 @@ craft a 10/10 irrestitble cover letter opening for me.
 
 Keep your crafted cover letter opening within 250 characters.
 
-Write like you are talking directly to the client.
 
 Only return the cover letter opening you crafted. don't explain anything, don't prefix the main cover letter with any explanantion or any revision.
 `;
