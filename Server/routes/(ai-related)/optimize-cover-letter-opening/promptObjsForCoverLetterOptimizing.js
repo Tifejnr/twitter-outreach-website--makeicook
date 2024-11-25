@@ -35,6 +35,7 @@ craft a 10/10 irrestitble cover letter opening for me.
 
 Keep your crafted cover letter opening within 250 characters.
 
+Ensure it follow this format : ${youFocusApproachFormat}
 
 Only return the cover letter opening you crafted. don't explain anything, don't prefix the main cover letter with any explanantion or any revision.
 `;
