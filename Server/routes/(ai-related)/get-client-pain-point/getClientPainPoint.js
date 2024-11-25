@@ -32,6 +32,7 @@ getClientPainPointRouter.post("/", async (req, res) => {
 
   const { jobDescription } = bodyRequest;
   const { credits } = resultOfTokenValidation;
+
   if (credits === 0) {
     return res.json({
       buyCredits: true,
