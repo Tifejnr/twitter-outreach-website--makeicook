@@ -54,9 +54,11 @@ optimizeCoverLetterOpeningRouter.post("/", async (req, res) => {
       maxTokens
     );
 
-    console.log("clientPainPointsRaw", clientPainPointsRaw);
+    const craftIrresistibleCoverLetterLastPart = `
+    
+    Using the pain point "${clientPainPointsRaw}" to grab the client attention.
 
-    const craftIrresistibleCoverLetterLastPart = `Using the pain point "${clientPainPointsRaw}" to grab the client attention.
+    Write like you are ${getRandomLegendaryCopyWriter()}
 
     craft a 10/10 irrestitble cover letter opening for me.
     
@@ -82,16 +84,12 @@ ${craftIrresistibleCoverLetterLastPart}
       maxTokens
     );
 
-    const finalFormattingPrompt = `
-    Write like you are ${getRandomLegendaryCopyWriter()}
-
-    with a "You focused" format like this  "${youFocusApproachFormat}"
-
-    ${promptsObjsForCoverLetterOptimization.reduceTo250xters}
-    `;
+    // const finalFormattingPrompt = `
+    // ${promptsObjsForCoverLetterOptimization.reduceTo250xters}
+    // `;
 
     const reducedTo250xters = await getStraightAiResponse(
-      finalFormattingPrompt,
+      promptsObjsForCoverLetterOptimization.reduceTo250xters,
       irresistibleOpeningLineCraftedByAiNow,
       temperature,
       maxTokens
