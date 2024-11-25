@@ -14,7 +14,7 @@ const reduceTo250xters = `Reduce this cover letter opening line to 260 character
 
 Make it human readable and understandable. 
 
-Only return the reduced cover letter opening. don't explain anything, don't prefix the main cover letter with any explanantion or any revision.
+Only return the reduced cover letter opening. don't explain anything, don't prefix the main cover letter with any explanantion like : "Here is the reduced cover letter opening:".
 `;
 
 const irresistiabiltyRangeCheck = `
