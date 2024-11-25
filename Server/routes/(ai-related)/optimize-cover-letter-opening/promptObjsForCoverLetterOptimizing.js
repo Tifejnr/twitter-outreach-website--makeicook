@@ -14,8 +14,6 @@ const reduceTo250xters = `Reduce this cover letter opening line to 260 character
 
 Make it human readable and understandable. 
 
-Ensure it follow this format : ${youFocusApproachFormat}
-
 Only return the reduced cover letter opening. don't explain anything, don't prefix the main cover letter with any explanantion or any revision.
 `;
 

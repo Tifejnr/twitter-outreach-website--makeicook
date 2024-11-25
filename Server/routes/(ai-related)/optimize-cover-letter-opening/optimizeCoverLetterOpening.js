@@ -5,6 +5,7 @@ import getStraightAiResponse from "../get-client-name/get-ai-response/getStraigh
 import promptsObjsForCoverLetterOptimization from "./promptObjsForCoverLetterOptimizing.js";
 import unwrapQuotes from "./utils/unwrappQuotes.js";
 import getGreetingToStartWith from "./utils/getGreetingToStartWith.js";
+import getRandomLegendaryCopyWriter from "./utils/getRandomLegendaryCopyWriter.js";
 
 const creditsIsZeroText = "Buy credits";
 const youFocusApproachFormat = `
@@ -57,10 +58,6 @@ optimizeCoverLetterOpeningRouter.post("/", async (req, res) => {
 
     const craftIrresistibleCoverLetterLastPart = `Using the pain point "${clientPainPointsRaw}" to grab the client attention.
 
-    a "You focus" approach must start with "You need", followed by demonstrating you understand the client pain point.
-    
-    Use a "You focus" approach to restate the client pain point to prove you understand exactly what the client wants.
-    
     craft a 10/10 irrestitble cover letter opening for me.
     
     Keep your crafted cover letter opening within 250 characters.
@@ -85,8 +82,14 @@ ${craftIrresistibleCoverLetterLastPart}
       maxTokens
     );
 
+    const finalFormattingPrompt = `
+    Write like you are ${getRandomLegendaryCopyWriter()}
+
+    ${promptsObjsForCoverLetterOptimization.reduceTo250xters}
+    `;
+
     const reducedTo250xters = await getStraightAiResponse(
-      promptsObjsForCoverLetterOptimization.reduceTo250xters,
+      finalFormattingPrompt,
       irresistibleOpeningLineCraftedByAiNow,
       temperature,
       maxTokens
