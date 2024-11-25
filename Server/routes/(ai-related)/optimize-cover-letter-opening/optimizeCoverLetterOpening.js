@@ -59,10 +59,11 @@ optimizeCoverLetterOpeningRouter.post("/", async (req, res) => {
     // );
 
     //craft 10/10 irresistible offer
-    const promptForCraftingIrresisitibleOpening = `Putting the client pain point into context : ${clientPainPointsRaw}
+    const promptForCraftingIrresisitibleOpening = `
 
+You must start the cover letter with this greeting: ${greetingToStartWithNow} 
 
-You must start with this greeting: ${greetingToStartWithNow} 
+Client pain point : ${clientPainPointsRaw}
 
 ${promptsObjsForCoverLetterOptimization.craftIrresistibleCoverLetterLastPart}
 `;

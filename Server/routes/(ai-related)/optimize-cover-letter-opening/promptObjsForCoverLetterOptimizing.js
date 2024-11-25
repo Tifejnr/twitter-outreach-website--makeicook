@@ -19,12 +19,13 @@ This is the opening line that the client will first read once he sights my cover
 On a scale of 0-10, how irrestible is this for a client who needs to hire someone ?
 `;
 
-const craftIrresistibleCoverLetterLastPart = `Using this pain point to grab the client attention, craft a 10/10 irrestitble cover letter opening for me.
+const craftIrresistibleCoverLetterLastPart = `Using the pain point above to grab the client attention.
 
-
-a "You focus" approach must start with "You need", followed by client pain point need.
+a "You focus" approach must start with "You need", followed by demnonstrating you understand the client pain point.
 
 Use a "You focus" approach to restate the client pain point to prove you understand exactly what the client wants.
+
+craft a 10/10 irrestitble cover letter opening for me.
 
 Keep your crafted cover letter opening within 250 characters.
 

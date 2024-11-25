@@ -11,6 +11,13 @@ Highlight the pain point that you feel will most likely grab the client's attent
 
 Only return the response straight forward. don't prefix your response with any brief.
 `;
+const describeClientPainPointsFlip = `
+Without changing anything except for position.
+
+Let the most likely pain point to grab client attention statement come first, while other pain points follow after it.
+
+Only return the response straight forward. don't prefix your response with any brief.
+`;
 
 getClientPainPointRouter.post("/", async (req, res) => {
   const bodyRequest = await req.body;
@@ -44,9 +51,16 @@ getClientPainPointRouter.post("/", async (req, res) => {
 
   try {
     //get client pain points from description
-    const clientPainPoints = await getStraightAiResponse(
+    const clientPainPointsRaw = await getStraightAiResponse(
       describeClientPainPoints,
       jobDescription,
+      temperature,
+      maxTokens
+    );
+    //get client pain points from description
+    const clientPainPoints = await getStraightAiResponse(
+      describeClientPainPointsFlip,
+      clientPainPointsRaw,
       temperature,
       maxTokens
     );
