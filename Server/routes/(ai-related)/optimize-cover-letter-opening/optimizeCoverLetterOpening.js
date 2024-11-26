@@ -40,8 +40,8 @@ optimizeCoverLetterOpeningRouter.post("/", async (req, res) => {
   } = bodyRequest;
   const { credits } = resultOfTokenValidation;
 
-  const temperature = 0.5;
-  const maxTokens = 1000;
+  const temperature = 0.3;
+  const maxTokens = 500;
 
   const greetingToStartWithNow = getGreetingToStartWith(clientName);
 
