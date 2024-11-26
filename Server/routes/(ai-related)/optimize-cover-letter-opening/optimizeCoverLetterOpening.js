@@ -10,6 +10,8 @@ import getRandomLegendaryCopyWriter from "./utils/getRandomLegendaryCopyWriter.j
 const creditsIsZeroText = "Buy credits";
 const youFocusApproachFormat = `
 {Greeting} you need {address client pain point}
+
+"you need" is a must, after greeting.
 `;
 
 const optimizeCoverLetterOpeningRouter = express.Router();
