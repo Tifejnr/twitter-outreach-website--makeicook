@@ -38,8 +38,8 @@ getClientPainPointRouter.post("/", async (req, res) => {
     });
   }
 
-  const temperature = 0.5;
-  const maxTokens = 1000;
+  const temperature = 0.3;
+  const maxTokens = 500;
 
   try {
     //get client pain points from description
