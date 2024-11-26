@@ -63,7 +63,7 @@ You must start the cover letter with : ${greetingToStartWithNow}
 
 You must follow ${greetingToStartWithNow}  with :  "you need" phrase.
 
-You must follow this format "${youFocusApproachFormat}" but with the client pain point below being addressed in the opening line.
+You must follow this format strictly please "${youFocusApproachFormat}" but with the client pain point below being addressed.
 
 Client pain point : ${clientPainPointsRaw}
 
