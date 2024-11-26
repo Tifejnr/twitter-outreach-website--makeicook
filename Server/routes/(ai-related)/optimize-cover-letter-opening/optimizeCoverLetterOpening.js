@@ -56,17 +56,20 @@ optimizeCoverLetterOpeningRouter.post("/", async (req, res) => {
 
     const promptForCraftingIrresisitibleOpening = `
 
-Always start with : ${greetingToStartWithNow} 
-Always start with : ${greetingToStartWithNow} 
+Craft a cover letter opening line only for me like you are ${getRandomLegendaryCopyWriter()}, but following strictly the structure below.   
+
+You must start the cover letter with : ${greetingToStartWithNow} 
 
 
-Followed by "you need" , using it to address the client pain point below. 
+You must follow ${greetingToStartWithNow}  with :  "you need" phrase.
+
+You must follow this format "${youFocusApproachFormat}" but with the client pain point below being addressed in the opening line.
 
 Client pain point : ${clientPainPointsRaw}
 
-Ensure your cover letter follows this format strictly "${youFocusApproachFormat}" but with the pain point above being addressed.
 
-Craft a cover letter for me following strictly the format I stated above
+
+
 
 `;
     const irresistibleOpeningLineCraftedByAiNow = await getStraightAiResponse(
