@@ -56,7 +56,7 @@ optimizeCoverLetterOpeningRouter.post("/", async (req, res) => {
 
     const promptForCraftingIrresisitibleOpening = `
 
-You must start the cover letter with this greeting: ${greetingToStartWithNow} 
+Always start the cover letter with : ${greetingToStartWithNow} 
 
 Followed by "you need" , using it to address the client pain point below. 
 
