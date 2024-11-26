@@ -64,9 +64,9 @@ Followed by "you need" , using it to address the client pain point below.
 
 Client pain point : ${clientPainPointsRaw}
 
-Ensure it follow this format "${youFocusApproachFormat}" but with the pain point above being addressed.
+Ensure your cover letter follows this format strictly "${youFocusApproachFormat}" but with the pain point above being addressed.
 
-
+Craft a cover letter for me following strictly the format I stated above
 
 `;
     const irresistibleOpeningLineCraftedByAiNow = await getStraightAiResponse(
