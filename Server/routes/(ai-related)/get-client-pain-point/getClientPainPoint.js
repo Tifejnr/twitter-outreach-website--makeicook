@@ -5,9 +5,9 @@ import getStraightAiResponse from "../get-client-name/get-ai-response/getStraigh
 const getClientPainPointRouter = express.Router();
 
 const describeClientPainPoints = `
-describe all the client pain points from this job description to me as a freelancer who wants to apply to this job.
+Briefly highlight the pain point that you feel will most likely grab the client's attention the most if addressed, as your first statment.
 
-Let this come first in your reponse: Briefly, concisely highlight the pain point that you feel will most likely grab the client's attention the most if addressed.
+describe all the client pain points from this job description in bullet points, make this your last statement.
 
 Only return the response straight forward. don't prefix your response with any brief.
 `;
