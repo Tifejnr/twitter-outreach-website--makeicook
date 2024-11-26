@@ -5,9 +5,9 @@ import getStraightAiResponse from "../get-client-name/get-ai-response/getStraigh
 const getClientPainPointRouter = express.Router();
 
 const describeClientPainPoints = `
-Briefly highlight the pain point that you feel will most likely grab the client's attention the most if addressed, as your first statment.
+Briefly highlight the client pain point from this job decsription that you feel will most likely grab the client's attention if addressed.
 
-describe all the client pain points from this job description in bullet points, make this your last statement.
+describe all the client pain points from this job description in bullet points.
 
 Only return the response straight forward. don't prefix your response with any brief.
 `;
@@ -38,8 +38,8 @@ getClientPainPointRouter.post("/", async (req, res) => {
     });
   }
 
-  const temperature = 0.3;
-  const maxTokens = 500;
+  const temperature = 0.8;
+  const maxTokens = 1500;
 
   try {
     //get client pain points from description
