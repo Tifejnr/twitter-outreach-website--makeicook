@@ -66,7 +66,7 @@ Client pain point : ${clientPainPointsRaw}
 
 Ensure it follow this format "${youFocusApproachFormat}" but with the pain point above being addressed.
 
-write like you are ${getRandomLegendaryCopyWriter()}, but following the structure above.
+
 
 `;
     const irresistibleOpeningLineCraftedByAiNow = await getStraightAiResponse(
