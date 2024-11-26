@@ -9,7 +9,7 @@ import getRandomLegendaryCopyWriter from "./utils/getRandomLegendaryCopyWriter.j
 
 const creditsIsZeroText = "Buy credits";
 const youFocusApproachFormat = `
-Hi, you need a storyteller who can unravel intricate concepts and ignite action in your readers to make them buy more of you stories.
+{Greeting} you need {address client pain point}
 `;
 
 const optimizeCoverLetterOpeningRouter = express.Router();
