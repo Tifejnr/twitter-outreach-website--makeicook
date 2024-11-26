@@ -38,7 +38,7 @@ getClientPainPointRouter.post("/", async (req, res) => {
     });
   }
 
-  const temperature = 0.3;
+  const temperature = 0.5;
   const maxTokens = 1000;
 
   try {
