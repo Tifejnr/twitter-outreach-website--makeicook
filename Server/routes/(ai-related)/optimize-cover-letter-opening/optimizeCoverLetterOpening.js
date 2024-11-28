@@ -62,8 +62,9 @@ Craft a cover letter opening line only for me like you are ${getRandomLegendaryC
 
 You must start the cover letter with : ${greetingToStartWithNow} 
 
-
 You must follow ${greetingToStartWithNow}  with :  "you need" phrase.
+
+You must not be too fancy.
 
 You must follow this format strictly please "${youFocusApproachFormat}" but with the client pain point below being addressed.
 

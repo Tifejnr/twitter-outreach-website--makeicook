@@ -5,7 +5,7 @@ import getStraightAiResponse from "../get-client-name/get-ai-response/getStraigh
 const getClientPainPointRouter = express.Router();
 
 const describeClientPainPoints = `
-Highlight the client pain point from this job decsription that you feel will most likely grab the client's attention if addressed by me as a freelancer applying to this job, this must be your first paragrapgh.
+Highlight briefly the client pain point from this job decsription that you feel will most likely grab the client's attention if addressed when applying to this job.
 
 describe all the client pain points from this job description in bullet points.
 
@@ -38,7 +38,7 @@ getClientPainPointRouter.post("/", async (req, res) => {
     });
   }
 
-  const temperature = 0.8;
+  const temperature = 0.5;
   const maxTokens = 1500;
 
   try {
@@ -59,3 +59,30 @@ getClientPainPointRouter.post("/", async (req, res) => {
 });
 
 export default getClientPainPointRouter;
+
+`Do clients rarely view your proposals? WFR Toolkit will help you out. 
+
+On Upwork, Do you know that only the first 250 characters of your cover letter are first shown to the client?
+
+Alright, so your first 250 characters highly determine whether the client will view the rest of your proposal.
+
+This means the first 250 characters of your cover letter must always grab the client's attention right away to increase your chances of getting hired.
+
+WFR Toolkit extension tells you which of the pain points from the job description to address to get the client's attention within the first 250 characters of your cover letter.
+
+Or better still.
+
+WFR Toolkit extension help you generate  attention-grabbing hook-up line for your cover letter.
+
+like this: 
+
+
+Ready to increase the chances of clients viewing your proposals and getting hired on Upwork ? 
+
+
+Join over 200 Upwork freelancers already using WFR Toolkit today. 
+
+WFR Toolkit works with both Light Mode and Dark Mode themes.
+
+Install WFR Toolkit now.
+`;
