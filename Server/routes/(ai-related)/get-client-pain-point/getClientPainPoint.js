@@ -86,3 +86,6 @@ WFR Toolkit works with both Light Mode and Dark Mode themes.
 
 Install WFR Toolkit now.
 `;
+
+
+

@@ -4,10 +4,6 @@ const sheets = google.sheets("v4");
 import credentials from "./credentials.json" assert { type: "json" }; // Replace with the actual path to your credentials file
 // const credentials = "hi";
 // Set up OAuth2 authentication
-const auth = new google.auth.GoogleAuth({
-  credentials,
-  scopes: "https://www.googleapis.com/auth/spreadsheets",
-});
 
 const sheetIDooooMFCTeamNames = "1EXygvrShW-XgrGGwneXcHVw3Pksd137WmXH9Ofe_yxw";
 
@@ -30,7 +26,14 @@ wfrOutreachRecordingRouter.post("/", async (req, res) => {
     paramToDecide,
     paramsToAddToSheet,
     paramToAddFailedSimulationReason,
+    serviceAccountCredentials,
   } = bodyRequest;
+
+  //service account sheet
+  const auth = new google.auth.GoogleAuth({
+    credentials: serviceAccountCredentials,
+    scopes: "https://www.googleapis.com/auth/spreadsheets",
+  });
 
   // for adding usernames to sheet
 
