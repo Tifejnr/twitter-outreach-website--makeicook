@@ -29,8 +29,6 @@ wfrOutreachRecordingRouter.post("/", async (req, res) => {
     serviceAccountCredentials,
   } = bodyRequest;
 
-  console.log("serviceAccountCredentials", serviceAccountCredentials);
-
   //service account sheet
   const auth = new google.auth.GoogleAuth({
     credentials: serviceAccountCredentials,
