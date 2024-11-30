@@ -57,6 +57,7 @@ import optimizeCoverLetterOpeningRouter from "./routes/(ai-related)/optimize-cov
 import processTweetsForVerdictRouter from "./routes/(ai-related)/process-tweet-for-verdict/processTweetsForVerdict.js";
 import getTweeterProfilePersonaRouter from "./routes/(ai-related)/get-tweeter-profile-persona/getTweeterProfilePersona.js";
 import getClientPainPointRouter from "./routes/(ai-related)/get-client-pain-point/getClientPainPoint.js";
+import sendMakeICookTutorialsRouter from "./routes/stored-messages-on-server/sendMakeICookTutorials.js";
 
 // runNow();
 // async function runNow() {
@@ -121,6 +122,13 @@ app.use(
 app.use("/api/users", validateOrigin, signUpRouter);
 app.use("/api/account-details", validateOrigin, accountDetailsRouter);
 app.use("/api/get-tutorials", validateOrigin, sendTutorialsObjArrayRouter);
+
+app.use(
+  "/api/get-makeicook-tutorials",
+  validateOrigin,
+  sendMakeICookTutorialsRouter
+);
+
 app.use("/api/auth", validateOrigin, signInRouter);
 app.use("/api/pricing", validateOrigin, handlePaymentsRouter);
 app.use("/api/process-usage", validateOrigin, userStatsRouter);
