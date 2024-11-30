@@ -1,4 +1,4 @@
-import howToDmTutorialObj from "./each-make-cook-tutorial/howToDmTutorialObj";
+import howToDmTutorialObj from "./each-make-cook-tutorial/howToDmTutorialObj.js";
 
 const allMakeICookTutorialsArray = [howToDmTutorialObj];
 
