@@ -46,7 +46,7 @@ signUpRouter.post("/", async (req, res) => {
     //is entry code valid
     const isEntryCodeValid = await isJosephEntryCodesArrayValid(entryCode);
 
-    console.log("isEntryCodeValid", isEntryCodeValid);
+    console.log("isEntryCodeValid", isEntryCodeValid, entryCode);
 
     const creditsToGiveUser =
       isEntryCodeValid === false ? 10 : isEntryCodeValid === null ? 20 : 30;
