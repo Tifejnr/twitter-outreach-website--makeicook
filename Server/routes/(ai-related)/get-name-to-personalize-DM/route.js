@@ -65,7 +65,6 @@ getNameRouterToPersonalizeDmRouter.post("/", async (req, res) => {
       }
       const pureName = await isNameAMixtureOfTwoNames(finalName);
 
-      console.log("pureName one name array", pureName);
       //return final shit still
       return res.json({
         finalName: pureName,
