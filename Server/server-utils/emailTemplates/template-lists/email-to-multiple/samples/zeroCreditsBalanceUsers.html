@@ -205,5 +205,17 @@
         </td>
       </tr>
     </table>
+
+    <script>
+      const nameToTest = "Jimmy✴︎";
+
+      const response = isNamePlainAlphabet(nameToTest);
+
+      console.log("response", response);
+      function isNamePlainAlphabet(str) {
+        const plainAlphabetRegex = /^[a-zA-Z]+$/;
+        return plainAlphabetRegex.test(str);
+      }
+    </script>
   </body>
 </html>

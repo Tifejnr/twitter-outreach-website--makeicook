@@ -40,6 +40,8 @@ export default async function isNameAMixtureOfTwoNames(nameToCheck) {
 
   const isNamePlainAlphabetNow = isNamePlainAlphabet(nameToCheck);
 
+  console.log("isNamePlainAlphabetNowonly", isNamePlainAlphabetNow);
+
   if (isNamePlainAlphabetNow) return nameToCheck;
 
   const purefirstNameToUse = await getNameToGreetWithFromAi(
