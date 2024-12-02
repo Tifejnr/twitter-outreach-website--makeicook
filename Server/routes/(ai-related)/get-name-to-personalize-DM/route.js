@@ -57,11 +57,8 @@ getNameRouterToPersonalizeDmRouter.post("/", async (req, res) => {
 
     const namesArray = finalName ? finalName.split(" ") : thereText;
 
-    console.log("finalName", finalName);
-    console.log("namesArray", namesArray);
-
     if (namesArray.length == 1) {
-      if (finalName.includes(thereText)) {
+      if (finalName == thereText) {
         return res.json({
           finalName,
         });

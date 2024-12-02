@@ -20,8 +20,6 @@ export default async function isNameAMixtureOfTwoNames(nameToCheck) {
     nameToCheck
   );
 
-  console.log("isItAMixtureOfTwoNames", isItAMixtureOfTwoNames);
-
   if (isItAMixtureOfTwoNames.includes("Yes")) {
     const firstNameToUse = await getNameToGreetWithFromAi(
       promptReturnTheFirstNameFromMixture,
@@ -41,8 +39,6 @@ export default async function isNameAMixtureOfTwoNames(nameToCheck) {
   }
 
   const isNamePlainAlphabetNow = isNamePlainAlphabet(nameToCheck);
-
-  console.log("isNamePlainAlphabetNowonly", isNamePlainAlphabetNow);
 
   if (isNamePlainAlphabetNow) return nameToCheck;
 
