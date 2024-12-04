@@ -41,7 +41,7 @@ export default function NavItemsLandingPage() {
       <li>
         <ul className="inner-nav-item-container">
           <li className="nav-list" onClick={toolsClick}>
-            <h3 id="tools">Toolkit</h3>
+            <h3 id="tools">Benefits</h3>
           </li>
           {/* <li className="nav-list" onClick={pricingClick}>
             <h3 className="pricing">Pricing</h3>

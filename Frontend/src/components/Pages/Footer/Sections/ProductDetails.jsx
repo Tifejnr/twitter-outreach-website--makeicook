@@ -8,7 +8,7 @@ export default function ProductDetails() {
 
         <ul>
           <a href={pagesLinkObj.toolsLink} target="_blank" rel="noreferrer">
-            <p>WFR Toolkit</p>
+            <p>Benefits</p>
           </a>
 
           <a href={pagesLinkObj.faqLink} target="_blank" rel="noreferrer">

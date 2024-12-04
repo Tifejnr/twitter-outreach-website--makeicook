@@ -28,7 +28,7 @@ export default function AboutUsPage() {
       <section className="tools-section-cont main-pricing-section-alone about-us-main">
         <section className="pricing-section about-section-inner-cont">
           <header>
-            <h2>About Work for Reputation</h2>
+            <h2>About Make I Cook</h2>
             <p>Learn about us</p>
           </header>
         </section>
@@ -36,11 +36,12 @@ export default function AboutUsPage() {
           <article>
             <section>
               <p>
-                Work for Reputation (WFR) is your ultimate companion for
-                mastering Upwork, where efficiency meets excellence. With our
-                innovative features in WFR Toolkit, you can bid farewell to
-                wasting time and effort and hello to winning projects in record
-                time.
+                Make I Cook (Twitter outreach extension) is your ultimate
+                companion for making more sales through Twitter outreach, where
+                efficiency meets excellence. With our innovative features in
+                Twitter outreach extension, you can bid farewell to wasting time
+                and effort and hello to closing more sales through twitter
+                outreach.
               </p>
             </section>
 
@@ -48,70 +49,71 @@ export default function AboutUsPage() {
               <h3>Our Purpose</h3>
 
               <p>
-                At Work for Reputation (WFR), our driving force is to empower
-                Upwork freelancers to thrive on Upwork by simplifying the
-                intricacies of the platform.
+                At Make I Cook (Twitter outreach extension), our driving force
+                is to empower twitter outreach teams or individuals to make more
+                sales by helping them with tools needed to make twitter outreach
+                process safer, faster, and highly converting.
               </p>
 
               <p>
-                We understand the challenges Upwork freelancers face in crafting
-                converting cover letters to win jobs, which is why we&apos;re
-                dedicated to providing solutions that streamline your workflow
-                and maximize your productivity.
+                We understand the challenges twitter outreach teams or
+                individuals face in sending hundreds of Dms per day to qualified
+                leads to close sales, which is why we&apos;re dedicated to
+                providing solutions that streamline your workflow and maximize
+                your productivity.
               </p>
             </section>
 
             <section>
               <h3>Our Mission</h3>
               <p>
-                Our mission is simple: to revolutionize the freelance experience
-                on Upwork by streamlining tasks and enabling you to focus on
-                what you do best - delivering exceptional work.
+                Our mission is simple: to make twitter outreach teams make more
+                sales with great ease, while keeping their accounts 100% safe.
               </p>
 
               <p>
-                We strive to equip Upwork freelancers with the tools they need
-                to succeed in a competitive marketplace, allowing them to
-                achieve their goals with confidence and efficiency.
+                We strive to equip twitter outreach teams or individuals with
+                the tools they need to scrape as much as possible leads, process
+                these leads, mass message processed leads, chat effectively with
+                prospects, mass follow up prospects who don&apos;t reply, in a
+                competitive marketplace, allowing them to achieve make more
+                sales with confidence and efficiency.
               </p>
             </section>
 
             <section>
               <h3>How We Help</h3>
               <div>
-                Work for Reputation Toolkit or WFR Toolkit simplifies freelancer
-                experience on Upwork by streamlining a wide range of tasks,
-                including:
+                Make I Cook or Twitter outreach extension simplifies twitter
+                outreach experience by streamlining a wide range of tasks,
+                including allowing you:
                 <ul>
                   <li>
-                    Automatic retrieval of client names for cover letter
-                    personalization saving you valuable time and effort.
+                    scrape leads from : Twitter search results, An
+                    account&apos;s followers list, An account&apos;s following
+                    list, Replies under a tweet
                   </li>
                   <li>
-                    View words clients see first in your cover letter, so you
-                    can strategically optimize your opening lines, increasing
-                    your chances of getting your proposals viewed and getting
-                    hired on Upwork.
+                    Mass message Twitter profiles with 𝗭𝗲𝗿𝗼 𝗿𝗶𝘀𝗸 of your account
+                    getting banned, and with perfectly personalized greeting
+                    lines that increase reply rate.
                   </li>
 
                   <li>
-                    Get a summary of what it&apos;s like working with a client
-                    based on previous freelancers&apos; feedback, giving you
-                    insight into whether a client is someone you want to work
-                    with.
-                    <p>
-                      This reduces the chances of working with bad clients which
-                      may negatively affect your Job Success Score (JSS).
-                    </p>
+                    Save all your reply scripts and access them instantly while
+                    chatting with prospects with just a button click.
                   </li>
                   <li>
-                    Save text templates to reuse (copy) while writing cover
-                    letters, eliminating repetitive typing and saving time.
+                    Add messaged Twitter profiles to a Google Sheet, enabling
+                    you to continue the messaging process on any device while
+                    ensuring that people who have already been messaged on
+                    another device are not contacted again.
                   </li>
                   <li>
-                    Job post directly above your cover letter input box ensuring
-                    you don&apos;t have to scroll upwards to reference
-                    information from the job post again.
+                    Get comprehensive information summary about each prospect
+                    who replies your message, based on their bio, tweets, and
+                    retweets, enabling you to adjust your messaging to each
+                    propsect personality
                   </li>
                 </ul>
               </div>
@@ -120,17 +122,17 @@ export default function AboutUsPage() {
             <section>
               <h3>Our Customers</h3>
               <p>
-                Work for Reputation caters to Upwork freelancers of all levels,
-                from newcomers looking to establish themselves to seasoned
-                professionals seeking to optimize their workflow. Our diverse
+                Make I Cook caters to twitter outreach teams or individuals at
+                all levels, from newcomers looking to establish themselves to
+                seasoned professionals seeking to make more sales. Our diverse
                 customer base spans various industries and skill sets, united by
-                a common goal: to succeed on Upwork.
+                a common goal: to make more sales through twitter outreach.
               </p>
 
               <p>
-                Ready to take your Upwork game to the next level? Install WFR
-                Toolkit extension today and discover the transformative power of
-                automation. Your success story awaits - one click at a time.
+                Ready to make more sales through Twitter Outreach? Install
+                Twitter outreach extension today and start making more sales.
+                Your success story awaits - one click at a time.
               </p>
             </section>
           </article>

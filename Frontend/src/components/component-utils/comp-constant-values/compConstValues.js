@@ -10,13 +10,13 @@ const userIdCookieName = "wfr-user-id";
 
 const callToActionTextUnder = "Only available as a chrome extension";
 
-const aboutUsPageCTA = "Best tool to land jobs as an Upwork freelancer";
+const aboutUsPageCTA = "Best Twitter Dm extension for mass messaging";
 
 const contactUsPageCTA = "Want to make more sales from Twitter outreach ?";
 
-const termsOfServicePageCTA = "Best tool to land jobs as an Upwork freelancer";
+const termsOfServicePageCTA = "Best Twitter Dm extension for mass messaging";
 
-const privacyPolicyPageCTA = `Land jobs on Upwork using WFR Toolkit`;
+const privacyPolicyPageCTA = `Make more sales through Twitter Dm outreach`;
 
 const compConstValues = {
   heroSecondHeadingtext,
