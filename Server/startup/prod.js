@@ -5,15 +5,15 @@ const setupMiddleware = (app) => {
   app.use(
     helmet.contentSecurityPolicy({
       directives: {
-        defaultSrc: ["'self'"],
-        connectSrc: [
-          "'self'",
-          "https://www.makeicook.com",
-          "chrome-extension://chpmkkhcpfhjdkkeiggiicfejnkhcidb",
-          "https://www.google-analytics.com",
-          "https://www.youtube.com",
-          "https://i.ibb.co",
-        ],
+        // defaultSrc: ["'self'"],
+        // connectSrc: [
+        //   "'self'",
+        //   "https://www.makeicook.com",
+        //   "chrome-extension://chpmkkhcpfhjdkkeiggiicfejnkhcidb",
+        //   "https://www.google-analytics.com",
+        //   "https://www.youtube.com",
+        //   "https://i.ibb.co",
+        // ],
         scriptSrc: [
           "'self'",
           "https://www.googletagmanager.com",
