@@ -1,12 +1,12 @@
-const websiteUrl = "https://workforreputation.com";
+const websiteUrl = "https://makeicook.com";
 // const websiteUrl = "http://localhost:3000";
 const loginPagePath = "/sign-in";
 const signUpPage = "/sign-up";
 const homePagePath = "/";
 const lamStudHomePage = "/homepage";
-const privacyPolicyLink = "https://workforreputation.com/privacy-policy";
-const termsOfServiceLink = "https://workforreputation.com/terms-of-service";
-const forgotPasswordLink = "https://workforreputation.com/forgot-password";
+const privacyPolicyLink = "https://makeicook.com/privacy-policy";
+const termsOfServiceLink = "https://makeicook.com/terms-of-service";
+const forgotPasswordLink = "https://makeicook.com/forgot-password";
 const userDashboardLink = "/userDashboard";
 // const apiRouteSignIn = `${websiteUrl}/api/sign-in`;
 const apiRouteSignIn = `${websiteUrl}/api/auth`;
@@ -18,9 +18,9 @@ const resetPasswordAPIRoute = `${websiteUrl}/api/forgot-password/reset-password`
 const contactUsAPIRoute = `${websiteUrl}/api/contact-us`;
 const tutorialsObjArrayFromServerRoute = `${websiteUrl}/api/get-tutorials`;
 const emailSentPage = "/email-sent";
-const extensionChromeStoreLink = `https://chromewebstore.google.com/detail/wfr-toolkit-elevate-your/chpmkkhcpfhjdkkeiggiicfejnkhcidb`;
-const youtubeAccountLink = "https://www.youtube.com/@WFRToolkit";
-const twitterAccountLink = "https://twitter.com/work4reputation";
+const extensionChromeStoreLink = `https://chromewebstore.google.com/detail/twitter-x-outreach-extens/dngpbgapdaebamnpbjikicbjchejbgle`;
+const youtubeAccountLink = "https://www.youtube.com/@MakeICooktool";
+const twitterAccountLink = "https://x.com/makeICook";
 
 const allLinks = {
   tutorialsObjArrayFromServerRoute,
