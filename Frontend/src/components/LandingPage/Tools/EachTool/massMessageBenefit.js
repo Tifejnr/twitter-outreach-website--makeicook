@@ -1,5 +1,5 @@
 import { allToolsVideosObj } from "../../videos/allToolsVideos";
-const heading = `View words clients see first in your cover letter, so you can strategically optimize your opening lines, increasing your chances of getting your proposals viewed and getting hired.`;
+const heading = `Mass message Twitter profiles with 𝗭𝗲𝗿𝗼 𝗿𝗶𝘀𝗸 of your account getting banned, and with perfectly personalized greeting lines that increase reply rate.`;
 
 const overview = `Do you know the first few words of your cover letter could make or break the chances of getting your proposal viewed on Upwork? 
 
@@ -13,8 +13,10 @@ You can strategically optimize your opening lines, increasing your chances of ge
 
 const classicWayVideoUrl = allToolsVideosObj.viewWhatClientSeesFirstDemo;
 
-export const viewWordsClientSeeFirstInCoverLetterObj = {
+const massMessageBenefit = {
   heading,
   overview,
   classicWayVideoUrl,
 };
+
+export default massMessageBenefit;

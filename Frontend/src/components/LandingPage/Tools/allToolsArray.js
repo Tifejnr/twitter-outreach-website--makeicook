@@ -1,15 +1,17 @@
-import autoClientNameRetrievalObj from "./EachTool/autoClientNameRetrievalObj";
 import { filterButtonObj } from "./EachTool/filterButton";
 import descriptionAboveCoverLetterObj from "./EachTool/descriptionAboveCoverLetter";
-import { simulationFeatureObj } from "./EachTool/simulationFeature";
-import { viewWordsClientSeeFirstInCoverLetterObj } from "./EachTool/viewWordsClientSeeFirstInCoverLetter";
+import scrapeLeadsBenefitObj from "./EachTool/scrapeLeadsBenefitObj";
+import includesThreeMostImportantSalesPartObj from "./EachTool/includesThreeMostImportantSalesPartObj";
+import massMessageBenefit from "./EachTool/massMessageBenefit";
+import accessToAllRepliesScriptsObj from "./EachTool/accessToAllRepliesScriptsObj";
 // import autoInsertClientFirstNameObj from "./EachTool/autoInsertClientFirstName";
 
 export const allToolsArray = [
-  autoClientNameRetrievalObj,
-  viewWordsClientSeeFirstInCoverLetterObj,
+  includesThreeMostImportantSalesPartObj,
+  scrapeLeadsBenefitObj,
+  massMessageBenefit,
+  accessToAllRepliesScriptsObj,
   filterButtonObj,
-  simulationFeatureObj,
   descriptionAboveCoverLetterObj,
 
   // autoInsertClientFirstNameObj,

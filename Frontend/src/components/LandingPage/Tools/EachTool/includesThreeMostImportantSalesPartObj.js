@@ -1,6 +1,6 @@
 import { allToolsVideosObj } from "../../videos/allToolsVideos";
 const heading =
-  " Automatic retrieval of client names for cover letter personalization saving you valuable time and effort.";
+  "It includes the three most important features needed by every successful salesperson: Leads scraping, Mass messaging (DMing), and CRM (Customer Relationship Management).";
 const overview = `
 Do you prioritise greeting client with their name in your cover letter ?
 
@@ -8,10 +8,10 @@ WFR Toolkit helps with automatic retrieval of client names, saving you valuable 
 `;
 const classicWayVideoUrl = allToolsVideosObj.automaticClientNameRetrievalDemo;
 
-const autoClientNameRetrievalObj = {
+const includesThreeMostImportantSalesPartObj = {
   heading,
   overview,
   classicWayVideoUrl,
 };
 
-export default autoClientNameRetrievalObj;
+export default includesThreeMostImportantSalesPartObj;

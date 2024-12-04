@@ -1,7 +1,7 @@
 // import letterS from "/src/assets/SVGs/logo"
-import letterF from "/src/assets/SVGs/logo/letter-f.svg";
-import letterR from "/src/assets/SVGs/logo/letter-r.svg";
-import letterW from "/src/assets/SVGs/logo/letter-w.svg";
+import letterF from "/src/assets/SVGs/logo/mic-letter-i.svg";
+import letterR from "/src/assets/SVGs/logo/mic-letter-c.svg";
+import letterW from "/src/assets/SVGs/logo/mic-letter-m.svg";
 import chromeIcon from "/src/assets/SVGs/logo/chrome-icon-48px.svg";
 import logoutIcon from "/src/assets/SVGs/logout/logout.svg";
 import hidePasswordEye from "/src/assets/SVGs/PasswordRelated/hide-password-eye.svg";

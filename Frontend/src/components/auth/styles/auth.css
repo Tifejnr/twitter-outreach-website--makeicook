@@ -150,9 +150,8 @@ html {
   --soft-blue: hsl(240, 73%, 65%);
   /* violet & red */
   /*green*/
-  --green: #14a800;
-  --light-green: #70c964;
-  --violet: hsl(273, 75%, 66%);
+  --green: #e41827;
+  --light-green: #ec4d57;
   /* background */
   --pure-white: #fff;
   --background-color: #fff;
@@ -230,13 +229,13 @@ h3 {
 
 .letter-f {
   position: absolute;
-  top: -1em;
-  left: 0.18em;
+  top: -1.4em;
+  left: 1.7em;
 }
 .letter-r {
   position: absolute;
   top: -1em;
-  left: 3.6em;
+  left: 3.2em;
 }
 
 .logo-container .icon-title {

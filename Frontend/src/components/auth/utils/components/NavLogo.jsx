@@ -30,7 +30,7 @@ export default function NavLogo() {
             />
           </div>
         </div>
-        <h2 className="icon-title">Work for Reputation</h2>
+        <h2 className="icon-title">Make I Cook</h2>
       </div>
     </>
   );
