@@ -1,5 +1,5 @@
-import faqArray from "./all-faq-objects-array/allFaqObjs";
-import FaqBlueprint from "./FaqBlueprint";
+// import faqArray from "./all-faq-objects-array/allFaqObjs";
+// import FaqBlueprint from "./FaqBlueprint";
 
 export default function Faq() {
   return (
@@ -11,11 +11,11 @@ export default function Faq() {
           <div className="search-input"></div>
         </div>
 
-        <ul className="faq__faqs-list">
+        {/* <ul className="faq__faqs-list">
           {faqArray.map((faqObj, index) => (
             <FaqBlueprint key={index} index={index} {...faqObj} />
           ))}
-        </ul>
+        </ul> */}
       </section>
     </>
   );

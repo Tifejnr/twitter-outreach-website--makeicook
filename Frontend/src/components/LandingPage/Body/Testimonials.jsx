@@ -1,5 +1,5 @@
-import allImagesContainerArray from "../../auth/utils/images/allImagesContainer";
-import TestimonialPictureBlueprint from "./testimonial-pictures/TestimonialPictureBlueprint";
+// import allImagesContainerArray from "../../auth/utils/images/allImagesContainer";
+// import TestimonialPictureBlueprint from "./testimonial-pictures/TestimonialPictureBlueprint";
 
 export default function Testimonials() {
   return (
@@ -10,12 +10,12 @@ export default function Testimonials() {
         <h4>What users of WFR Toolkit extension have said :</h4>
 
         <section className="all-testimonials-container">
-          {allImagesContainerArray.map((eachImageSrc, index) => (
+          {/* {allImagesContainerArray.map((eachImageSrc, index) => (
             <TestimonialPictureBlueprint
               key={index}
               eachImageSrc={eachImageSrc}
             />
-          ))}
+          ))} */}
         </section>
       </section>
     </section>

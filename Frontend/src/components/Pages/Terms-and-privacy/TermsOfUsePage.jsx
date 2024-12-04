@@ -32,14 +32,13 @@ export default function TermsOfUsePage() {
             <section>
               <p>
                 These are the Terms and Conditions of Use that regulate your
-                relationship with ‘workforreputation.com’’, ‘Work for
-                Reputation’, ‘we’, ‘us’, ‘Platform’, ‘Company’, or ‘our’. By
-                using Work for Reputation or registering for an account, you
-                agree to the terms and conditions which will result in a legal
-                agreement between you and workforreputation.com’. These Terms
-                are meant to inform Users about the limitations and equirements
-                that must be considered and followed when using Work for
-                Reputation services.
+                relationship with ‘makeicook.com’’, ‘Make I Cook’, ‘we’, ‘us’,
+                ‘Platform’, ‘Company’, or ‘our’. By using Work for Reputation or
+                registering for an account, you agree to the terms and
+                conditions which will result in a legal agreement between you
+                and makeicook.com’. These Terms are meant to inform Users about
+                the limitations and equirements that must be considered and
+                followed when using Make I Cook services.
               </p>
 
               <p>
@@ -91,15 +90,15 @@ export default function TermsOfUsePage() {
             <section>
               <h3>Support for Services</h3>
               <p>
-                Work for Reputation will offer appropriate assistance with the
-                Services. Work for Reputation developed a number of tools to
-                assist users with commonly asked concerns as well as other
-                technical and general support difficulties. Work for Reputation
-                also tests regular updates, maintenance, troubleshooting and
-                other methods to improve the Services. Work for Reputation does
-                not guarantee that any of the above will continue to operate,
-                and it has the right to alter, decrease, limit, or cancel its
-                maintenance and support activities at any time.
+                Make I Cook will offer appropriate assistance with the Services.
+                Make I Cook developed a number of tools to assist users with
+                commonly asked concerns as well as other technical and general
+                support difficulties. Make I Cook also tests regular updates,
+                maintenance, troubleshooting and other methods to improve the
+                Services. Make I Cook does not guarantee that any of the above
+                will continue to operate, and it has the right to alter,
+                decrease, limit, or cancel its maintenance and support
+                activities at any time.
               </p>
             </section>
 
@@ -128,26 +127,25 @@ export default function TermsOfUsePage() {
             <section>
               <h3>Payment & Subscription</h3>
               <p>
-                You agree to pay &apos;workforreputation.com&apos; the fees
-                specified for that service by selecting a subscription plan.
-                Your invoice will include the subscription or purchase price.
-                You allow us to charge any credit card or other payment method
-                we have on record for you to collect the then-applicable fee.
-                Work for Reputation maintains the right to amend the Payment
-                Terms and fees by giving you thirty (30) days written notice.
-                You can cancel your Work for Reputation account at any time from
-                the dashboard provided to you. Written notices refer to, but are
-                not limited to, website, emails & in-app notifications. Work for
-                Reputation includes access to email support at
-                https://workforreputation.com/contact-us/. “Contact Us” means
-                the ability to make requests for technical support assistance by
-                email at any time concerning the use of Work for Reputation.
-                Work for Reputation will assist in accordance with our
-                established standards, procedures, and policies. Please note
-                that repeated Free Account registrations are not permitted,
-                whether for business, educational, or personal purposes. If we
-                detect numerous registrations, we retain the right to cancel all
-                old and new accounts at our discretion.
+                You agree to pay &apos;makeicook.com&apos; the fees specified
+                for that service by selecting a subscription plan. Your invoice
+                will include the subscription or purchase price. You allow us to
+                charge any credit card or other payment method we have on record
+                for you to collect the then-applicable fee. Make I Cook
+                maintains the right to amend the Payment Terms and fees by
+                giving you thirty (30) days written notice. You can cancel your
+                Make I Cook account at any time from the dashboard provided to
+                you. Written notices refer to, but are not limited to, website,
+                emails & in-app notifications. Make I Cook includes access to
+                email support at https://makeicook.com/contact-us/. “Contact Us”
+                means the ability to make requests for technical support
+                assistance by email at any time concerning the use of Make I
+                Cook. Make I Cook will assist in accordance with our established
+                standards, procedures, and policies. Please note that repeated
+                Free Account registrations are not permitted, whether for
+                business, educational, or personal purposes. If we detect
+                numerous registrations, we retain the right to cancel all old
+                and new accounts at our discretion.
               </p>
             </section>
 
@@ -179,11 +177,13 @@ export default function TermsOfUsePage() {
               <h3>Contact Us</h3>
               <p>
                 If you have any questions regarding the Terms and Conditions,
-                you may contact us on workforrepuataion@gmail.com
+                you may contact us on makeicookofficial@gmail.com
               </p>
             </section>
 
-            <p>Last Updated: January 18, 2024.</p>
+            <p id="last-updated-text-privacy-policy">
+              Last Updated: December 4, 2024.
+            </p>
           </article>
         </section>
 
