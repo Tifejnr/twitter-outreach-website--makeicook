@@ -8,7 +8,7 @@ const setupMiddleware = (app) => {
         defaultSrc: ["'self'"],
         connectSrc: [
           "'self'",
-          "https://www.workforreputation.com",
+          "https://www.makeicook.com",
           "chrome-extension://chpmkkhcpfhjdkkeiggiicfejnkhcidb",
           "https://www.google-analytics.com",
           "https://www.youtube.com",
