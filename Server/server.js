@@ -197,27 +197,3 @@ app.get("*", function (req, res) {
 app.listen(3000, function () {
   console.log("Listening on port 3000");
 });
-
-`
-Top 5 Reasons Upwork Freelancers Love the WFR Toolkit
-
-1. Automatic retrieval of client names for cover letter personalization saving you valuable time and effort.
-How it works: https://i.ibb.co/R4hsWFV/getting-client-name-wfr-gif.gif
-
-2. View words clients see first in your cover letter, so you can strategically optimize your opening lines, increasing your chances of getting your proposals viewed and getting hired.
-How it works: https://i.ibb.co/GW8KnqP/view-what-client-see-first-gif-n.gif
-
-3. Get a summary of what it's like working with a client based on previous freelancers' feedback, giving you insight into whether a client is someone you want to work with.
-How it works: https://i.ibb.co/fS6JKbM/get-summary-of-how-its-like-working-with-client-wfr.gif
-
-4. Save text templates to reuse (copy) while writing cover letters, eliminating repetitive typing and saving time.
-
-You can save text templates for various purposes, such as cover letters, project links, or closing remarks.
-
-How it works:https://i.ibb.co/9Z9Dfvv/text-template-copy-tut-wfr-toolkit-gif.gif
-
-5. Job post directly above your cover letter input box ensuring you don't have to scroll upwards to reference information from the job post again.
-
-How it works:https://i.ibb.co/5nVg0wq/job-post-abover-cover-letter-gif-wfr-toolkit.gif
-
-`;
