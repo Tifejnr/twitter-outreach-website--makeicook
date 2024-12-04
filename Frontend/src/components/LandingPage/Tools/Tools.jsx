@@ -5,7 +5,10 @@ export default function ToolsSection() {
   return (
     <section className="tools-section-cont">
       <header>
-        <h2>Top 5 reasons Upwork freelancers use WFR toolkit to land jobs</h2>
+        <h2>
+          Top 7 reasons users of this extension make more sales through twitter
+          outreach
+        </h2>
       </header>
 
       {allToolsArray.map((toolDetails, index) => (

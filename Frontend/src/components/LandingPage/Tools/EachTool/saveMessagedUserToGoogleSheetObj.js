@@ -1,6 +1,6 @@
 import { allToolsVideosObj } from "../../videos/allToolsVideos";
 const heading =
-  "Save text templates to reuse (copy) while writing cover letters, eliminating repetitive typing and saving time.";
+  "Add messaged Twitter profiles to a Google Sheet, enabling you to continue the messaging process on any device while ensuring that people who have already been messaged on another device are not contacted again.";
 
 const overview = `Simply save all your favorite filters once. 
 
@@ -19,8 +19,10 @@ With WFR Toolkit, finding the right opportunity has never been easier.
 
 const classicWayVideoUrl = allToolsVideosObj.oneClickFilteringDemo;
 
-export const filterButtonObj = {
+const saveMessagedUserToGoogleSheetObj = {
   heading,
   overview,
   classicWayVideoUrl,
 };
+
+export default saveMessagedUserToGoogleSheetObj;
