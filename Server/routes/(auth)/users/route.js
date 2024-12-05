@@ -117,8 +117,6 @@ signUpRouter.post("/", async (req, res) => {
     return res.json({ token });
   }
 
-  return res.json({ token });
-
   //normal website login
   const { error } = websiteSignUpValidation(bodyRequest);
   if (error) return res.json({ emailError: error.details[0].message });
