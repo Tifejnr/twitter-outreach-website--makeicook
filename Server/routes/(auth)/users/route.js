@@ -69,57 +69,55 @@ signUpRouter.post("/", async (req, res) => {
       JWT_PRIVATE_KEY
     );
 
-    if (!fromMakeICookExtension) {
-      //send welcome to new user
-      const subject = "Welcome to Work for Reputation - WFR Toolkit!";
-      const folderDir = `${emailTemplateFolderSrc}/welcome-email`;
+    //send welcome to new user
+    const subject = "Welcome to Twitter Outreach extension - Make I Cook!";
+    const folderDir = `${emailTemplateFolderSrc}/welcome-email`;
 
-      const fullName = bodyRequest.name;
-      const customerEmail = bodyRequest.email;
+    const fullName = bodyRequest.name;
+    const customerEmail = bodyRequest.email;
 
-      const name = getFirstName(fullName);
+    const name = getFirstName(fullName);
 
-      const customerParams = {
-        subject: subject,
-        folderDir: folderDir,
-        customerEmail,
-      };
+    const customerParams = {
+      subject: subject,
+      folderDir: folderDir,
+      customerEmail,
+    };
 
-      const emailContextParamsNow = {
-        name,
-      };
+    const emailContextParamsNow = {
+      name,
+    };
 
-      const result = await sendEmail(customerParams, emailContextParamsNow);
+    const result = await sendEmail(customerParams, emailContextParamsNow);
 
-      // const trialCreditsGivenEmailResult=
-      const trialCreditsSubject = `${name}, You’ve Received ${accountUser.credits} Free Credits – Here's How to Make the Most of Them!`;
-      const folderDirTrialCredits = `${emailTemplateFolderSrc}/trial-credits-given-email`;
+    // // const trialCreditsGivenEmailResult=
+    // const trialCreditsSubject = `${name}, You’ve Received ${accountUser.credits} Free Credits – Here's How to Make the Most of Them!`;
+    // const folderDirTrialCredits = `${emailTemplateFolderSrc}/trial-credits-given-email`;
 
-      const customerParamsTrialCredits = {
-        subject: trialCreditsSubject,
-        folderDir: folderDirTrialCredits,
-        customerEmail,
-      };
+    // const customerParamsTrialCredits = {
+    //   subject: trialCreditsSubject,
+    //   folderDir: folderDirTrialCredits,
+    //   customerEmail,
+    // };
 
-      const emailContextParamsNowTrialCredits = {
-        customerName: name,
-        credits: accountUser.credits,
-      };
+    // const emailContextParamsNowTrialCredits = {
+    //   customerName: name,
+    //   credits: accountUser.credits,
+    // };
 
-      await sendEmail(
-        customerParamsTrialCredits,
-        emailContextParamsNowTrialCredits
-      );
+    // await sendEmail(
+    //   customerParamsTrialCredits,
+    //   emailContextParamsNowTrialCredits
+    // );
 
-      if (result) {
-        return res.json({ token });
-      }
-
+    if (result) {
       return res.json({ token });
     }
 
     return res.json({ token });
   }
+
+  return res.json({ token });
 
   //normal website login
   const { error } = websiteSignUpValidation(bodyRequest);
