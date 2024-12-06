@@ -48,7 +48,7 @@ processChatsWithAiRouter.post("/", async (req, res) => {
   const promptToKnow = `
   This is a conversation between a sales closer and a prospect.
 
-  Return "Yes" or "No" and why only.
+  Return "Yes" or "No" only.
 
   Does it look like the prospect is asking the sales closer to go ahead and send the questions ?
   `;
