@@ -50,7 +50,7 @@ processChatsWithAiRouter.post("/", async (req, res) => {
 
   Return "Yes" or "No" and why only.
 
-  Does it look like the prospect is asking the sales closer to go on and send the questions ?
+  Does it look like the prospect is asking the sales closer to go ahead and send the questions ?
   `;
 
   console.log("conversation", conversation);
