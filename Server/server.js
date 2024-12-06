@@ -54,6 +54,7 @@ import processTweetsForVerdictRouter from "./routes/(ai-related)/process-tweet-f
 import getTweeterProfilePersonaRouter from "./routes/(ai-related)/get-tweeter-profile-persona/getTweeterProfilePersona.js";
 import getClientPainPointRouter from "./routes/(ai-related)/get-client-pain-point/getClientPainPoint.js";
 import sendMakeICookTutorialsRouter from "./routes/stored-messages-on-server/sendMakeICookTutorials.js";
+import processChatsWithAiRouter from "./routes/(ai-related)/process-chats/processChatsWithAi.js";
 
 // runNow();
 // async function runNow() {
@@ -116,6 +117,7 @@ app.use("/api/users", validateOrigin, signUpRouter);
 app.use("/api/account-details", validateOrigin, accountDetailsRouter);
 app.use("/api/get-tutorials", validateOrigin, sendTutorialsObjArrayRouter);
 
+app.use("/api/process-chat", validateOrigin, processChatsWithAiRouter);
 app.use(
   "/api/get-makeicook-tutorials",
   validateOrigin,
