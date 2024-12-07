@@ -40,7 +40,7 @@ processChatsWithAiRouter.post("/", async (req, res) => {
     .map(
       ({ eachMessage, isItSalesCloserMessage }) =>
         `${
-          isItSalesCloserMessage ? "Sales closer:" : "Prospect:"
+          isItSalesCloserMessage ? "Sales person:" : "Prospect:"
         }\n${eachMessage}`
     )
     .join("\n\n");
