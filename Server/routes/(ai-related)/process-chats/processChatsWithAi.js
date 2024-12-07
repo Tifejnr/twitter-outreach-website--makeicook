@@ -43,22 +43,18 @@ processChatsWithAiRouter.post("/", async (req, res) => {
   console.log("conversation", conversation);
 
   try {
-    //process messages
-
-    let responsesArray = [];
-
+    // Process messages
     console.log("aiChattingConfigsArray", aiChattingConfigsArray);
 
-    // Loop through the tweetConditions array
+    // Loop through the aiChattingConfigsArray
     for (let aiChattingConfig of aiChattingConfigsArray) {
       const { condition, responseIftrue } = aiChattingConfig;
 
-      const promptToKnow = `This is a conversation between a sales person and a prospect.
+      if (condition === "") {
+        continue;
+      }
 
-  Return "Yes" or "No" only.
- 
-  ${condition}
-  `;
+      const promptToKnow = `This is a conversation between a sales person and a prospect. Return "Yes" or "No" only. ${condition}`;
       const response = await getStraightAiResponse(
         promptToKnow,
         conversation,
@@ -66,25 +62,20 @@ processChatsWithAiRouter.post("/", async (req, res) => {
         maxTokens
       );
 
-      console.log("response", response);
-
-      responsesArray.push(response);
-
       // Stop the loop if "Yes" is found
       if (response.includes("Yes")) {
         return res.json({
-          aiResponse: responseIftrue,
+          aiResponse: responseIftrue, // Return the exact responseIftrue
         });
       }
     }
 
-    // If no "Yes" was found in the loop, return "No"
+    // If no "Yes" was found in the loop, return "None returned true"
     return res.json({
       aiResponse: "None returned true",
     });
   } catch (error) {
     console.log("error,", error);
-
     return res.json({ error: "Internal server error" });
   }
 });
