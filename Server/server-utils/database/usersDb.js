@@ -1,5 +1,49 @@
 import mongoose from "mongoose";
 
+const aiChattingConfigArraySchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  condition: {
+    type: String,
+    required: true,
+  },
+  responseIftrue: {
+    type: String,
+    required: true,
+  },
+});
+
+const replyTemplateArraySchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  text: {
+    type: String,
+    required: true,
+  },
+});
+const sheetObjArraySchema = new mongoose.Schema({
+  sheetName: {
+    type: String,
+    required: true,
+  },
+  sheetLink: {
+    type: String,
+    required: true,
+  },
+  sheetId: {
+    type: String,
+    required: true,
+  },
+  serviceAccountCredentials: {
+    type: Object, // Correct type for storing JSON-like objects
+    required: true,
+  },
+});
+
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -44,17 +88,19 @@ const userSchema = new mongoose.Schema({
     default: "NA",
   },
 
-  profileLink: {
-    type: String,
-    maxlength: 1000,
-    default: "NA",
+  replyTemplateArray: {
+    type: [replyTemplateArraySchema],
+    default: [],
   },
 
-  jobsCompleted: {
-    type: Number,
-    max: 15,
-    min: 0,
-    default: 0,
+  sheetObjArray: {
+    type: [sheetObjArraySchema],
+    default: [],
+  },
+
+  aiChattingConfigArray: {
+    type: [aiChattingConfigArraySchema],
+    default: [],
   },
 
   jobsToBeCompleted: {
