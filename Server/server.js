@@ -48,13 +48,14 @@ import handlePaymentsRouter from "./routes/subscription-payment/handlePayment.js
 import webhookPaystackRouter from "./routes/subscription-payment/webhook/webhookPaystack.js";
 import accountDetailsRouter from "./routes/(auth)/users/account-details/accountDetails.js";
 import sendTutorialsObjArrayRouter from "./routes/stored-messages-on-server/sendTutorialsObjArray.js";
-import optimizeCoverLetterOpeningRouter from "./routes/(ai-related)/optimize-cover-letter-opening/optimizeCoverLetterOpening.js";
+// import optimizeCoverLetterOpeningRouter from "./routes/(ai-related)/optimize-cover-letter-opening/optimizeCoverLetterOpening.js";
 // import giveUsers50Credits from "./routes/(auth)/users-stats/reset-stats-daily/giveUsers50Credits.js";
 import processTweetsForVerdictRouter from "./routes/(ai-related)/process-tweet-for-verdict/processTweetsForVerdict.js";
 import getTweeterProfilePersonaRouter from "./routes/(ai-related)/get-tweeter-profile-persona/getTweeterProfilePersona.js";
 import getClientPainPointRouter from "./routes/(ai-related)/get-client-pain-point/getClientPainPoint.js";
 import sendMakeICookTutorialsRouter from "./routes/stored-messages-on-server/sendMakeICookTutorials.js";
 import processChatsWithAiRouter from "./routes/(ai-related)/process-chats/processChatsWithAi.js";
+import saveUserDetailsRouter from "./routes/save-user-details/saveUserDetails.js";
 
 // runNow();
 // async function runNow() {
@@ -161,11 +162,9 @@ app.use(
   validateOrigin,
   getNameRouterToPersonalizeDmRouter
 );
-// app.use(
-//   "/api/optimize-cover-letter-opening",
-//   validateOrigin,
-//   optimizeCoverLetterOpeningRouter
-// );
+
+app.use("/api/user-detail", validateOrigin, saveUserDetailsRouter);
+
 app.use(
   "/api/get-client-pain-points",
   validateOrigin,
