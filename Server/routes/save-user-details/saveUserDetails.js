@@ -9,8 +9,12 @@ saveUserDetailsRouter.post("/", async (req, res) => {
     const bodyRequest = await req.body;
 
     const { paramToServer } = bodyRequest;
-    const { aiChattingConfigArray, sheetObjArray, replyTemplateArray } =
-      paramToServer;
+    const {
+      aiChattingConfigArray,
+      sheetObjArray,
+      replyTemplateArray,
+      processingDetailOnlyArray,
+    } = paramToServer;
 
     const resultOfTokenValidation = await isTokenValid(bodyRequest);
 
@@ -33,6 +37,9 @@ saveUserDetailsRouter.post("/", async (req, res) => {
 
     if (replyTemplateArray) {
       accountUser.replyTemplateArray = replyTemplateArray;
+    }
+    if (processingDetailOnlyArray) {
+      accountUser.processingDetailOnlyArray = processingDetailOnlyArray;
     }
 
     await accountUser.save();
@@ -61,14 +68,19 @@ saveUserDetailsRouter.post("/get", async (req, res) => {
 
     if (!accountUser) return res.status(401).json({ invalidUser: true });
 
-    const { aiChattingConfigArray, sheetObjArray, replyTemplateArray } =
-      accountUser;
+    const {
+      aiChattingConfigArray,
+      sheetObjArray,
+      replyTemplateArray,
+      processingDetailOnlyArray,
+    } = accountUser;
 
     return res.json({
       success: true,
       aiChattingConfigArray,
       sheetObjArray,
       replyTemplateArray,
+      processingDetailOnlyArray,
     });
   } catch (error) {
     console.log(error);

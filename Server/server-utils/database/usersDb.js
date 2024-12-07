@@ -1,5 +1,15 @@
 import mongoose from "mongoose";
 
+const processingDetailOnlyArraySchema = new mongoose.Schema({
+  mainQuestionToCheckCondition: {
+    type: String,
+    // required: true,
+  },
+  tweetConditionsForYesOrNoVerdictArray: {
+    type: [String],
+    // required: true,
+  },
+});
 const aiChattingConfigArraySchema = new mongoose.Schema({
   title: {
     type: String,
@@ -90,6 +100,11 @@ const userSchema = new mongoose.Schema({
 
   replyTemplateArray: {
     type: [replyTemplateArraySchema],
+    default: [],
+  },
+
+  processingDetailOnlyArray: {
+    type: [processingDetailOnlyArraySchema],
     default: [],
   },
 
