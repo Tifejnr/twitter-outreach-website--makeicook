@@ -4,11 +4,6 @@ import isTokenValid from "../../../server-utils/middleware/token-validity/isToke
 import getStraightAiResponse from "../get-client-name/get-ai-response/getStraightAiResponse.js";
 
 const creditsIsZeroText = "Buy credits";
-const youFocusApproachFormat = `
-{Greeting} you need {address client pain point}
-
-"you need" is a must, after greeting.
-`;
 
 const processChatsWithAiRouter = express.Router();
 
@@ -40,7 +35,7 @@ processChatsWithAiRouter.post("/", async (req, res) => {
     .map(
       ({ eachMessage, isItSalesCloserMessage }) =>
         `${
-          isItSalesCloserMessage ? "Sales person:" : "Prospect:"
+          isItSalesCloserMessage ? "Sales person : " : "Prospect : "
         }\n${eachMessage}`
     )
     .join("\n\n");
@@ -49,6 +44,8 @@ processChatsWithAiRouter.post("/", async (req, res) => {
 
   try {
     //process messages
+
+    let responsesArray = [];
 
     // Loop through the tweetConditions array
     for (let aiChattingConfig of aiChattingConfigsArray) {
