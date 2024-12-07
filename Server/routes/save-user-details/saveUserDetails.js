@@ -7,8 +7,10 @@ const saveUserDetailsRouter = express.Router();
 saveUserDetailsRouter.post("/", async (req, res) => {
   try {
     const bodyRequest = await req.body;
+
+    const { paramToServer } = bodyRequest;
     const { aiChattingConfigArray, sheetObjArray, replyTemplateArray } =
-      bodyRequest;
+      paramToServer;
 
     const resultOfTokenValidation = await isTokenValid(bodyRequest);
 
@@ -61,8 +63,6 @@ saveUserDetailsRouter.post("/get", async (req, res) => {
 
     const { aiChattingConfigArray, sheetObjArray, replyTemplateArray } =
       accountUser;
-
-    await accountUser.save();
 
     return res.json({
       success: true,
