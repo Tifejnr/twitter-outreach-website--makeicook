@@ -30,7 +30,7 @@ processChatsWithAiRouter.post("/", async (req, res) => {
     });
   }
 
-  const { allMessagesTextArray } = bodyRequest;
+  const { allMessagesTextArray, aiChattingConfigsArray } = bodyRequest;
   const { credits } = resultOfTokenValidation;
 
   const temperature = 0.1;
@@ -45,28 +45,42 @@ processChatsWithAiRouter.post("/", async (req, res) => {
     )
     .join("\n\n");
 
-  const promptToKnow = `
-  This is a conversation between a sales closer and a prospect.
-
-  Return "Yes" or "No" only.
-
-  Does it look like the prospect is asking the sales closer to go ahead and send the questions ?
-  `;
-
   console.log("conversation", conversation);
 
   try {
-    //get client pain points from description
-    const aiResponse = await getStraightAiResponse(
-      promptToKnow,
-      conversation,
-      temperature,
-      maxTokens
-    );
+    //process messages
 
-    console.log("aiResponse", aiResponse);
+    // Loop through the tweetConditions array
+    for (let aiChattingConfig of aiChattingConfigsArray) {
+      const { condition, responseIftrue } = aiChattingConfig;
 
-    return res.json({ aiResponse });
+      const promptToKnow = `This is a conversation between a sales person and a prospect.
+
+  Return "Yes" or "No" only.
+ 
+  ${condition}
+  `;
+      const response = await getStraightAiResponse(
+        promptToKnow,
+        conversation,
+        temperature,
+        maxTokens
+      );
+
+      responsesArray.push(response);
+
+      // Stop the loop if "Yes" is found
+      if (response.includes("Yes")) {
+        return res.json({
+          aiResponse: responseIftrue,
+        });
+      }
+    }
+
+    // If no "Yes" was found in the loop, return "No"
+    return res.json({
+      aiResponse: "None returned true",
+    });
   } catch (error) {
     console.log("error,", error);
 
