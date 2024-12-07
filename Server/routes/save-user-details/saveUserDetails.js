@@ -59,11 +59,17 @@ saveUserDetailsRouter.get("/", async (req, res) => {
 
     if (!accountUser) return res.status(401).json({ invalidUser: true });
 
-    const { favoriteTeams } = accountUser;
+    const { aiChattingConfigArray, sheetObjArray, replyTemplateArray } =
+      accountUser;
 
     await accountUser.save();
 
-    return res.json({ success: true, favoriteTeams });
+    return res.json({
+      success: true,
+      aiChattingConfigArray,
+      sheetObjArray,
+      replyTemplateArray,
+    });
   } catch (error) {
     console.log(error);
     return res
