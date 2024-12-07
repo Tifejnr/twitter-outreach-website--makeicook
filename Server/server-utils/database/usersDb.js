@@ -18,11 +18,11 @@ const aiChattingConfigArraySchema = new mongoose.Schema({
 const replyTemplateArraySchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    // required: true,
   },
   text: {
     type: String,
-    required: true,
+    // required: true,
   },
 });
 const sheetObjArraySchema = new mongoose.Schema({
