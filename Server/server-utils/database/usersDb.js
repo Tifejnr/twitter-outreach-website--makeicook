@@ -3,15 +3,15 @@ import mongoose from "mongoose";
 const aiChattingConfigArraySchema = new mongoose.Schema({
   title: {
     type: String,
-    required: true,
+    // required: true,
   },
   condition: {
     type: String,
-    required: true,
+    // required: true,
   },
   responseIftrue: {
     type: String,
-    required: true,
+    // required: true,
   },
 });
 
@@ -28,19 +28,19 @@ const replyTemplateArraySchema = new mongoose.Schema({
 const sheetObjArraySchema = new mongoose.Schema({
   sheetName: {
     type: String,
-    required: true,
+    // required: true,
   },
   sheetLink: {
     type: String,
-    required: true,
+    // required: true,
   },
   sheetId: {
     type: String,
-    required: true,
+    // required: true,
   },
   serviceAccountCredentials: {
     type: Object, // Correct type for storing JSON-like objects
-    required: true,
+    // required: true,
   },
 });
 

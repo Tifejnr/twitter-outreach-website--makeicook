@@ -8,8 +8,6 @@ saveUserDetailsRouter.post("/", async (req, res) => {
   try {
     const bodyRequest = await req.body;
 
-    console.log(" bodyRequest", bodyRequest);
-
     const { paramToServer } = bodyRequest;
     const { aiChattingConfigArray, sheetObjArray, replyTemplateArray } =
       paramToServer;
