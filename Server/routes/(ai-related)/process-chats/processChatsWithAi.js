@@ -47,6 +47,8 @@ processChatsWithAiRouter.post("/", async (req, res) => {
 
     let responsesArray = [];
 
+    console.log("aiChattingConfigsArray", aiChattingConfigsArray);
+
     // Loop through the tweetConditions array
     for (let aiChattingConfig of aiChattingConfigsArray) {
       const { condition, responseIftrue } = aiChattingConfig;
@@ -63,6 +65,8 @@ processChatsWithAiRouter.post("/", async (req, res) => {
         temperature,
         maxTokens
       );
+
+      console.log("response", response);
 
       responsesArray.push(response);
 
