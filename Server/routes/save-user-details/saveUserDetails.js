@@ -44,7 +44,7 @@ saveUserDetailsRouter.post("/", async (req, res) => {
   }
 });
 
-saveUserDetailsRouter.get("/", async (req, res) => {
+saveUserDetailsRouter.post("/get", async (req, res) => {
   try {
     const bodyRequest = await req.body;
 
