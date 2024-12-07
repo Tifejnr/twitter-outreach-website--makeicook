@@ -40,11 +40,8 @@ processChatsWithAiRouter.post("/", async (req, res) => {
     )
     .join("\n\n");
 
-  console.log("conversation", conversation);
-
   try {
     // Process messages
-    console.log("aiChattingConfigsArray", aiChattingConfigsArray);
 
     // Loop through the aiChattingConfigsArray
     for (let aiChattingConfig of aiChattingConfigsArray) {
