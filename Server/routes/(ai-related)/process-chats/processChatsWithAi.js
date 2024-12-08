@@ -69,7 +69,7 @@ processChatsWithAiRouter.post("/", async (req, res) => {
         continue;
       }
 
-      const promptToKnow = `This is a message from a prospect. Return "Yes" or "No" and why only. ${condition}`;
+      const promptToKnow = `This is a message from a prospect. Return "Yes" or "No" and your why. ${condition}`;
       const response = await getStraightAiResponse(
         promptToKnow,
         lastProspectMessage,
