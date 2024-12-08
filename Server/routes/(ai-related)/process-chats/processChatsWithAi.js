@@ -59,6 +59,8 @@ processChatsWithAiRouter.post("/", async (req, res) => {
         maxTokens
       );
 
+      console.log("response ", response);
+
       // Stop the loop if "Yes" is found
       if (response.includes("Yes")) {
         return res.json({
