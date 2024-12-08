@@ -180,30 +180,6 @@ wfrOutreachRecordingRouter.post("/", async (req, res) => {
         reasonForFailureSheetParams
       );
 
-      // //add teams involved text
-      // const teamsInvolvedSheetParams = {
-      //   sheetsAPI,
-      //   spreadsheetId,
-      //   columnLetter: teamsInvolvedColumnLetter,
-      //   textToInput: teamsInvolvedText,
-      // };
-
-      // const teamInvolvedAdditionResult = await addTextToASheetColumn(
-      //   teamsInvolvedSheetParams
-      // );
-
-      // //add option chosen text
-      // const optionChosenSheetParams = {
-      //   sheetsAPI,
-      //   spreadsheetId,
-      //   columnLetter: optionChosenColumnLetter,
-      //   textToInput: optionChosenText,
-      // };
-
-      // const optionChosenAdditionResult = await addTextToASheetColumn(
-      //   optionChosenSheetParams
-      // );
-
       if (
         // optionChosenAdditionResult.status == 200 &&
         // teamInvolvedAdditionResult.status === 200 &&

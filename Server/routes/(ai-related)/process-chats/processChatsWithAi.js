@@ -51,7 +51,7 @@ processChatsWithAiRouter.post("/", async (req, res) => {
         continue;
       }
 
-      const promptToKnow = `This is a conversation between a sales person and a prospect. Return "Yes" or "No" only. ${condition}`;
+      const promptToKnow = `This is a conversation between a sales person and a prospect. Return "Yes" or "No" and why only. ${condition}`;
       const response = await getStraightAiResponse(
         promptToKnow,
         conversation,
