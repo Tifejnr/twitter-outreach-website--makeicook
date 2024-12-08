@@ -5,6 +5,17 @@ import getStraightAiResponse from "../get-client-name/get-ai-response/getStraigh
 
 const creditsIsZeroText = "Buy credits";
 
+function getLastNonSalesCloserMessage(array) {
+  // Find the last object where isItSalesCloserMessage is false
+  for (let i = array.length - 1; i >= 0; i--) {
+    if (array[i].isItSalesCloserMessage === false) {
+      return array[i];
+    }
+  }
+  // Return null if no matching object is found
+  return null;
+}
+
 const processChatsWithAiRouter = express.Router();
 
 processChatsWithAiRouter.post("/", async (req, res) => {
@@ -40,6 +51,13 @@ processChatsWithAiRouter.post("/", async (req, res) => {
     )
     .join("\n\n");
 
+  const lastProspectMessageObj =
+    getLastNonSalesCloserMessage(allMessagesTextArray);
+
+  const lastProspectMessage = lastProspectMessageObj.eachMessage;
+
+  console.log("lastProspectMessage", lastProspectMessage);
+
   try {
     // Process messages
 
@@ -51,10 +69,10 @@ processChatsWithAiRouter.post("/", async (req, res) => {
         continue;
       }
 
-      const promptToKnow = `This is a conversation between a sales person and a prospect. Return "Yes" or "No" and why only. ${condition}`;
+      const promptToKnow = `This is a message from a prospect. Return "Yes" or "No" and why only. ${condition}`;
       const response = await getStraightAiResponse(
         promptToKnow,
-        conversation,
+        lastProspectMessage,
         temperature,
         maxTokens
       );
