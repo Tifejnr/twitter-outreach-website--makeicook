@@ -79,7 +79,7 @@ processChatsWithAiRouter.post("/", async (req, res) => {
   //   .join("\n\n");
 
   const lastProspectMessage =
-    getLastNonSalesCloserMessage(allMessagesTextArray);
+    getLastNonSalesCloserMessages(allMessagesTextArray);
 
   const lastSalesCloserMessage =
     getLastSalesCloserMessage(allMessagesTextArray);
