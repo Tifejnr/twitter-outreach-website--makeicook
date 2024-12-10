@@ -81,7 +81,7 @@ Prospect response : ${lastProspectMessage}
 
     // Loop through the aiChattingConfigsArray
     for (let aiChattingConfig of aiChattingConfigsArray) {
-      const { condition, responseIftrue, myLastSentMessageFormat } =
+      const { title, condition, responseIftrue, myLastSentMessageFormat } =
         aiChattingConfig;
 
       if (condition === "") {
@@ -101,6 +101,12 @@ Prospect response : ${lastProspectMessage}
           temperature,
           maxTokens
         );
+
+      console.log(
+        "responseIfFormatOfSalesPersonMessageMatches",
+        responseIfFormatOfSalesPersonMessageMatches,
+        title
+      );
 
       if (responseIfFormatOfSalesPersonMessageMatches.includes("No")) {
         continue;
