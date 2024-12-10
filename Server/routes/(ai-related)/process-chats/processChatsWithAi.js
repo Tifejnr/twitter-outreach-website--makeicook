@@ -87,7 +87,7 @@ Prospect response : ${lastProspectMessage}
         continue;
       }
 
-      const promptCheckIfMyLastMessageFormatIsOkay = ` Return "Yes" or "No" only.
+      const promptCheckIfMyLastMessageFormatIsOkay = ` Return "Yes" or "No" and why only.
 
       is this message 95% same format as this : 
       ${myLastSentMessageFormat}
@@ -106,7 +106,7 @@ Prospect response : ${lastProspectMessage}
         responseIfFormatOfSalesPersonMessageMatches
       );
 
-      if (responseIfFormatOfSalesPersonMessageMatches == "No") {
+      if (responseIfFormatOfSalesPersonMessageMatches.includes("No")) {
         continue;
       }
 
