@@ -72,7 +72,7 @@ processChatsWithAiRouter.post("/", async (req, res) => {
   const lastConversations = `
 Sales person message : ${lastSalesCloserMessage}
 
-Prospect response : ${lastConversations}
+Prospect response : ${lastProspectMessage}
 `;
 
   try {
