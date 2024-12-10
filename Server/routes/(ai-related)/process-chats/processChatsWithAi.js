@@ -39,7 +39,9 @@ function getLastNonSalesCloserMessage(array) {
   }
 
   // Join the text properties with a newline character
-  return lastTrueIndex !== -1 ? result.map((item) => item.text).join("\n") : "";
+  return lastTrueIndex !== -1
+    ? result.map((item) => item.eachMessage).join("\n")
+    : "";
 }
 
 const processChatsWithAiRouter = express.Router();
