@@ -21,7 +21,9 @@ function getLastSalesCloserMessage(array) {
   }
 
   // Join the text properties with a newline character
-  return lastTrueIndex !== -1 ? result.map((item) => item.text).join("\n") : "";
+  return lastTrueIndex !== -1
+    ? result.map((item) => item.eachMessage).join("\n")
+    : "";
 }
 function getLastNonSalesCloserMessage(array) {
   let lastTrueIndex = -1; // To track the last index where isItSalesCloserMessage === true
