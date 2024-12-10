@@ -105,7 +105,8 @@ Prospect response : ${lastProspectMessage}
       console.log(
         "responseIfFormatOfSalesPersonMessageMatches",
         responseIfFormatOfSalesPersonMessageMatches,
-        title
+        title,
+        lastSalesCloserMessage
       );
 
       if (responseIfFormatOfSalesPersonMessageMatches.includes("No")) {
