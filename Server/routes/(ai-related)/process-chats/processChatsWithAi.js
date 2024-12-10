@@ -102,14 +102,7 @@ Prospect response : ${lastProspectMessage}
           maxTokens
         );
 
-      console.log(
-        " responseIfFormatOfSalesPersonMessageMatches",
-        responseIfFormatOfSalesPersonMessageMatches
-      );
-
       if (responseIfFormatOfSalesPersonMessageMatches.includes("No")) {
-        console.log("lastSalesCloserMessage", lastSalesCloserMessage);
-        console.log("myLastSentMessageFormat", myLastSentMessageFormat);
         continue;
       }
 
