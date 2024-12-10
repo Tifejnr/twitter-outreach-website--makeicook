@@ -64,10 +64,11 @@ processChatsWithAiRouter.post("/", async (req, res) => {
   const lastProspectMessageObj =
     getLastNonSalesCloserMessage(allMessagesTextArray);
 
-  const lastSalesCloserMessage =
+  const lastSalesCloserMessageObj =
     getLastSalesCloserMessage(allMessagesTextArray);
 
   const lastProspectMessage = lastProspectMessageObj.eachMessage;
+  const lastSalesCloserMessage = lastSalesCloserMessageObj.eachMessage;
 
   const lastConversations = `
 Sales person message : ${lastSalesCloserMessage}
@@ -89,7 +90,7 @@ Prospect response : ${lastProspectMessage}
 
       const promptCheckIfMyLastMessageFormatIsOkay = ` Return "Yes" or "No" and why only.
 
-      Does this whole message contains 90% same sentences and words as this : 
+      is this whole message 95% same format as this : 
       ${myLastSentMessageFormat}
        `;
 
