@@ -90,8 +90,6 @@ Sales person message : ${lastSalesCloserMessage}
 Prospect response : ${lastProspectMessage}
 `;
 
-  console.log("lastConversations", lastConversations);
-
   try {
     // Process messages
 
@@ -104,7 +102,7 @@ Prospect response : ${lastProspectMessage}
         continue;
       }
 
-      const promptCheckIfMyLastMessageFormatIsOkay = ` Return "Yes" or "No" and your why .
+      const promptCheckIfMyLastMessageFormatIsOkay = ` Return "Yes" or "No" only .
 
       is content of this message the almost the same with this except for minor changes?:
       ${myLastSentMessageFormat}
