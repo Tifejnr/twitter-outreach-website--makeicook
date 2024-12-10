@@ -52,14 +52,14 @@ processChatsWithAiRouter.post("/", async (req, res) => {
   const temperature = 0.1;
   const maxTokens = 1500;
 
-  const conversation = allMessagesTextArray
-    .map(
-      ({ eachMessage, isItSalesCloserMessage }) =>
-        `${
-          isItSalesCloserMessage ? "Sales person : " : "Prospect : "
-        }\n${eachMessage}`
-    )
-    .join("\n\n");
+  // const conversation = allMessagesTextArray
+  //   .map(
+  //     ({ eachMessage, isItSalesCloserMessage }) =>
+  //       `${
+  //         isItSalesCloserMessage ? "Sales person : " : "Prospect : "
+  //       }\n${eachMessage}`
+  //   )
+  //   .join("\n\n");
 
   const lastProspectMessageObj =
     getLastNonSalesCloserMessage(allMessagesTextArray);
