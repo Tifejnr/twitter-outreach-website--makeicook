@@ -6,24 +6,40 @@ import getStraightAiResponse from "../get-client-name/get-ai-response/getStraigh
 const creditsIsZeroText = "Buy credits";
 
 function getLastSalesCloserMessage(array) {
-  // Find the last object where isItSalesCloserMessage is false
+  let lastTrueIndex = -1; // To track the last index where isItSalesCloserMessage === true
+  let result = []; // To store the messages with isItSalesCloserMessage === false
+
+  // Iterate through the array to find the last true index
   for (let i = array.length - 1; i >= 0; i--) {
-    if (array[i].isItSalesCloserMessage === true) {
-      return array[i];
+    if (array[i].isItSalesCloserMessage === false && lastTrueIndex === -1) {
+      lastTrueIndex = i; // Set the last true index
+    }
+    // If we've already found a true message and find a false one after it
+    if (lastTrueIndex !== -1 && array[i].isItSalesCloserMessage === true) {
+      result.unshift(array[i]); // Add the false message to the result
     }
   }
-  // Return null if no matching object is found
-  return null;
+
+  // Join the text properties with a newline character
+  return lastTrueIndex !== -1 ? result.map((item) => item.text).join("\n") : "";
 }
 function getLastNonSalesCloserMessage(array) {
-  // Find the last object where isItSalesCloserMessage is false
+  let lastTrueIndex = -1; // To track the last index where isItSalesCloserMessage === true
+  let result = []; // To store the messages with isItSalesCloserMessage === false
+
+  // Iterate through the array to find the last true index
   for (let i = array.length - 1; i >= 0; i--) {
-    if (array[i].isItSalesCloserMessage === false) {
-      return array[i];
+    if (array[i].isItSalesCloserMessage === true && lastTrueIndex === -1) {
+      lastTrueIndex = i; // Set the last true index
+    }
+    // If we've already found a true message and find a false one after it
+    if (lastTrueIndex !== -1 && array[i].isItSalesCloserMessage === false) {
+      result.unshift(array[i]); // Add the false message to the result
     }
   }
-  // Return null if no matching object is found
-  return null;
+
+  // Join the text properties with a newline character
+  return lastTrueIndex !== -1 ? result.map((item) => item.text).join("\n") : "";
 }
 
 const processChatsWithAiRouter = express.Router();
@@ -61,20 +77,19 @@ processChatsWithAiRouter.post("/", async (req, res) => {
   //   )
   //   .join("\n\n");
 
-  const lastProspectMessageObj =
+  const lastProspectMessage =
     getLastNonSalesCloserMessage(allMessagesTextArray);
 
-  const lastSalesCloserMessageObj =
+  const lastSalesCloserMessage =
     getLastSalesCloserMessage(allMessagesTextArray);
-
-  const lastProspectMessage = lastProspectMessageObj.eachMessage;
-  const lastSalesCloserMessage = lastSalesCloserMessageObj.eachMessage;
 
   const lastConversations = `
 Sales person message : ${lastSalesCloserMessage}
 
 Prospect response : ${lastProspectMessage}
 `;
+
+  console.log("lastConversations", lastConversations);
 
   try {
     // Process messages
