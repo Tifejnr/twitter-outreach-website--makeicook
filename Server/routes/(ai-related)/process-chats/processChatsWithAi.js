@@ -102,12 +102,12 @@ Prospect response : ${lastProspectMessage}
           maxTokens
         );
 
-      console.log(
-        "responseIfFormatOfSalesPersonMessageMatches",
-        responseIfFormatOfSalesPersonMessageMatches,
-        title,
-        lastSalesCloserMessage
-      );
+      // console.log(
+      //   "responseIfFormatOfSalesPersonMessageMatches",
+      //   responseIfFormatOfSalesPersonMessageMatches,
+      //   title,
+      //   lastSalesCloserMessage
+      // );
 
       if (responseIfFormatOfSalesPersonMessageMatches.includes("No")) {
         continue;
