@@ -23,6 +23,10 @@ const aiChattingConfigArraySchema = new mongoose.Schema({
     type: String,
     // required: true,
   },
+  myLastSentMessageFormat: {
+    type: String,
+    // required: true,
+  },
 });
 
 const replyTemplateArraySchema = new mongoose.Schema({
