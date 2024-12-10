@@ -106,9 +106,9 @@ Prospect response : ${lastProspectMessage}
         continue;
       }
 
-      const promptToKnow = `This is a prospect replying to sales person. 
-      
-      Return "Yes" or "No" only.       
+      const promptToKnow = `Return "Yes" or "No" only.       
+
+      From this conversation : ${lastConversations} 
 ${condition}`;
       const response = await getStraightAiResponse(
         promptToKnow,
