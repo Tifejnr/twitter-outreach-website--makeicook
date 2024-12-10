@@ -5,6 +5,16 @@ import getStraightAiResponse from "../get-client-name/get-ai-response/getStraigh
 
 const creditsIsZeroText = "Buy credits";
 
+function getLastSalesCloserMessage(array) {
+  // Find the last object where isItSalesCloserMessage is false
+  for (let i = array.length - 1; i >= 0; i--) {
+    if (array[i].isItSalesCloserMessage === true) {
+      return array[i];
+    }
+  }
+  // Return null if no matching object is found
+  return null;
+}
 function getLastNonSalesCloserMessage(array) {
   // Find the last object where isItSalesCloserMessage is false
   for (let i = array.length - 1; i >= 0; i--) {
@@ -54,9 +64,16 @@ processChatsWithAiRouter.post("/", async (req, res) => {
   const lastProspectMessageObj =
     getLastNonSalesCloserMessage(allMessagesTextArray);
 
+  const lastSalesCloserMessage =
+    getLastSalesCloserMessage(allMessagesTextArray);
+
   const lastProspectMessage = lastProspectMessageObj.eachMessage;
 
-  console.log("lastProspectMessage", lastProspectMessage);
+  const lastConversations = `
+Sales person message : ${lastSalesCloserMessage}
+
+Prospect response : ${lastConversations}
+`;
 
   try {
     // Process messages
@@ -69,10 +86,12 @@ processChatsWithAiRouter.post("/", async (req, res) => {
         continue;
       }
 
-      const promptToKnow = `This is a message from a prospect. Return "Yes" or "No" and your why. ${condition}`;
+      const promptToKnow = `This is a prospect replying to sales person. 
+      
+      Return "Yes" or "No" and your why. ${condition}`;
       const response = await getStraightAiResponse(
         promptToKnow,
-        lastProspectMessage,
+        lastConversations,
         temperature,
         maxTokens
       );
