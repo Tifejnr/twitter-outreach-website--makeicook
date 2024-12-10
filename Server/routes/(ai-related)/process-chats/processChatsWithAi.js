@@ -6,25 +6,16 @@ import getStraightAiResponse from "../get-client-name/get-ai-response/getStraigh
 const creditsIsZeroText = "Buy credits";
 
 function getLastSalesCloserMessage(array) {
-  let lastTrueIndex = -1; // To track the last index where isItSalesCloserMessage === true
-  let result = []; // To store the messages with isItSalesCloserMessage === false
-
-  // Iterate through the array to find the last true index
+  // Find the last object where isItSalesCloserMessage is true
   for (let i = array.length - 1; i >= 0; i--) {
-    if (array[i].isItSalesCloserMessage === false && lastTrueIndex === -1) {
-      lastTrueIndex = i; // Set the last true index
-    }
-    // If we've already found a true message and find a false one after it
-    if (lastTrueIndex !== -1 && array[i].isItSalesCloserMessage === true) {
-      result.unshift(array[i]); // Add the false message to the result
+    if (array[i].isItSalesCloserMessage === true) {
+      return array[i].eachMessage;
     }
   }
-
-  // Join the text properties with a newline character
-  return lastTrueIndex !== -1
-    ? result.map((item) => item.eachMessage).join("\n")
-    : "";
+  // Return null if no matching object is found
+  return "";
 }
+
 function getLastNonSalesCloserMessage(array) {
   let lastTrueIndex = -1; // To track the last index where isItSalesCloserMessage === true
   let result = []; // To store the messages with isItSalesCloserMessage === false
