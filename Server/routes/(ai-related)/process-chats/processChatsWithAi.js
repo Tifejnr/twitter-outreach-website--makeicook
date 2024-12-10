@@ -90,7 +90,7 @@ Prospect response : ${lastProspectMessage}
 
       const promptCheckIfMyLastMessageFormatIsOkay = ` Return "Yes" or "No" and why only.
 
-      is this whole message 90% same format as this : 
+      is this message 90% same format as this : 
       ${myLastSentMessageFormat}
        `;
 
