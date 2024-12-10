@@ -16,27 +16,33 @@ function getLastSalesCloserMessage(array) {
   return "";
 }
 
-function getLastNonSalesCloserMessage(array) {
-  let lastTrueIndex = -1; // To track the last index where isItSalesCloserMessage === true
-  let result = []; // To store the messages with isItSalesCloserMessage === false
+function getLastNonSalesCloserMessages(array) {
+  let lastTrueIndex = -1;
 
-  // Iterate through the array to find the last true index
+  // Find the last index where isItSalesCloserMessage === true
   for (let i = array.length - 1; i >= 0; i--) {
-    if (array[i].isItSalesCloserMessage === true && lastTrueIndex === -1) {
-      lastTrueIndex = i; // Set the last true index
-    }
-    // If we've already found a true message and find a false one after it
-    if (lastTrueIndex !== -1 && array[i].isItSalesCloserMessage === false) {
-      result.unshift(array[i]); // Add the false message to the result
+    if (array[i].isItSalesCloserMessage === true) {
+      lastTrueIndex = i;
+      break; // Stop searching once the last true index is found
     }
   }
 
-  // Join the text properties with a newline character
-  return lastTrueIndex !== -1
-    ? result.map((item) => item.eachMessage).join("\n")
-    : "";
-}
+  // If no true message is found, return an empty string
+  if (lastTrueIndex === -1) {
+    return "";
+  }
 
+  // Collect all false messages after the last true index
+  const result = [];
+  for (let i = lastTrueIndex + 1; i < array.length; i++) {
+    if (array[i].isItSalesCloserMessage === false) {
+      result.push(array[i].eachMessage);
+    }
+  }
+
+  // Join the collected messages with a newline character
+  return result.join("\n");
+}
 const processChatsWithAiRouter = express.Router();
 
 processChatsWithAiRouter.post("/", async (req, res) => {
