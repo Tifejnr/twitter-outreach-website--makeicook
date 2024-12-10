@@ -80,9 +80,33 @@ Prospect response : ${lastProspectMessage}
 
     // Loop through the aiChattingConfigsArray
     for (let aiChattingConfig of aiChattingConfigsArray) {
-      const { condition, responseIftrue } = aiChattingConfig;
+      const { condition, responseIftrue, myLastSentMessageFormat } =
+        aiChattingConfig;
 
       if (condition === "") {
+        continue;
+      }
+
+      const promptCheckIfMyLastMessageFormatIsOkay = ` Return "Yes" or "No" only.
+
+      is this message 95% same format as this : 
+      ${myLastSentMessageFormat}
+       `;
+
+      const responseIfFormatOfSalesPersonMessageMatches =
+        await getStraightAiResponse(
+          promptCheckIfMyLastMessageFormatIsOkay,
+          lastSalesCloserMessage,
+          temperature,
+          maxTokens
+        );
+
+      console.log(
+        " responseIfFormatOfSalesPersonMessageMatches",
+        responseIfFormatOfSalesPersonMessageMatches
+      );
+
+      if (responseIfFormatOfSalesPersonMessageMatches == "No") {
         continue;
       }
 
