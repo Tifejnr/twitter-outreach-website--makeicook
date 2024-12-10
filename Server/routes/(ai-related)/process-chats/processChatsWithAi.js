@@ -88,9 +88,9 @@ Prospect response : ${lastProspectMessage}
         continue;
       }
 
-      const promptCheckIfMyLastMessageFormatIsOkay = ` Return "Yes" or "No" and why only.
+      const promptCheckIfMyLastMessageFormatIsOkay = ` Return "Yes" or "No"  only.
 
-      is this whole message 95% same format as this : 
+      is this whole message 90% same format as this : 
       ${myLastSentMessageFormat}
        `;
 
@@ -108,7 +108,8 @@ Prospect response : ${lastProspectMessage}
 
       const promptToKnow = `This is a prospect replying to sales person. 
       
-      Return "Yes" or "No" and your why. ${condition}`;
+      Return "Yes" or "No" only.       
+${condition}`;
       const response = await getStraightAiResponse(
         promptToKnow,
         lastConversations,
