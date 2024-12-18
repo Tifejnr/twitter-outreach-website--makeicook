@@ -4,6 +4,12 @@ import { getNameToGreetWithFromAi, confirmNamePrompt } from "./route.js";
 
 const thereText = "";
 
+const promptBeSureNameIsFoundAsGivenNameSomewhere = `
+Return "Yes" or "No" only.
+
+Is this name found as a given name in any country in the world ?
+`;
+
 export default async function confirmAllAreRealNames(namesArray, finalName) {
   let firstNameResultsArray = [];
 
@@ -15,6 +21,16 @@ export default async function confirmAllAreRealNames(namesArray, finalName) {
 
     if (isNameARealName == "Yes") {
       firstNameResultsArray.push(firstNameNow);
+    }
+    if (isNameARealName == "No") {
+      const isNameANameElsewhereRes = await getNameToGreetWithFromAi(
+        promptBeSureNameIsFoundAsGivenNameSomewhere,
+        firstNameNow
+      );
+
+      if (isNameANameElsewhereRes == "Yes") {
+        firstNameResultsArray.push(firstNameNow);
+      }
     }
   }
 

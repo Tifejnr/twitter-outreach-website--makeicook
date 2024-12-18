@@ -32,18 +32,6 @@ export default async function isTokenValid(bodyRequest) {
 
     const { credits } = accountUser;
 
-    if (isJssHomePage) {
-      const accountUser = await user.findById(decodedPayload._id);
-
-      if (!accountUser) return { invalidToken: true };
-
-      if (accountUser.jobsCompleted && accountUser.jobsCompleted < 10) {
-        return { notAuthorizedOnJSSHomePage: true };
-      }
-
-      return { authorizedOnJSSHomePage: true };
-    }
-
     //if request is to get client name from wfr extension
     if (prompt) {
       const accountUser = await user.findById(decodedPayload._id);
@@ -52,24 +40,13 @@ export default async function isTokenValid(bodyRequest) {
 
       accountUser.jobsToBeCompleted++;
 
-      const blacklistedEmail = "PAVILIONPEE@GMAIL.COM";
-      const blacklistedEmail2 = "Aliomarr3885@gmail.com";
-
       await accountUser.save();
-
-      if (accountUser.email == blacklistedEmail) {
-        return { blacklistedEmail };
-      }
-      if (accountUser.email == blacklistedEmail2) {
-        return { blacklistedEmail: blacklistedEmail2 };
-      }
 
       console.log(
         fromExtension,
         "usage time",
         accountUser.jobsToBeCompleted,
-        accountUser.email,
-        jobId
+        accountUser.email
         // currentUrl
       );
 
