@@ -42,7 +42,7 @@ sendEmailVerificationCodeRouter.post("/", async (req, res) => {
 
     //send code to user email
     const subject =
-      "New Registration - Verification Required - WFR Toolkit Extension";
+      "New Registration - Verification Required - Twitter(X) Dm Outreach extension";
     const folderDir = `${emailTemplateFolderSrc}/email-verification`;
 
     const fullName = bodyRequest.name;
