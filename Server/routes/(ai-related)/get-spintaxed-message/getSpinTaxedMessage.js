@@ -4,14 +4,10 @@ import isTokenValid from "../../../server-utils/middleware/token-validity/isToke
 
 const getSpinTaxedMessageRouter = express.Router();
 
-export const confirmNamePrompt = `Return "Yes" or "No" for this question.
+function getRandomTemperature() {
+  const min = 0.6;
+  const max = 0.8;
 
-Ignoring numbers or symbols in the name.
-
-Is the name below likely a human name or a human nickname ?
-`;
-
-function getRandomTemperature(min = 0.6, max = 0.7) {
   return Math.random() * (max - min) + min;
 }
 
@@ -38,12 +34,13 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
   try {
     const promptToSpinTaxText = `spin tax the words not listed to be replaced in this message only.
 
-Be highly professionl and formal in your spin tax choice of words.    
+Be highly professionl with words you are exchanging with spin taxed choice of words.    
+
+Don't use negative sounding choice of words during spin tax.    
 
 Never change the structure of the message.
 
 don't replace the following words : ${finalPhrasesToExcludeDuringSpintax}
-
 
 Only return the spun text. Don't explain anything, don't prefix the spun text with any explanation or any revision.`;
 
