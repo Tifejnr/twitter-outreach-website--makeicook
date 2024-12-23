@@ -11,7 +11,9 @@ Ignoring numbers or symbols in the name.
 Is the name below likely a human name or a human nickname ?
 `;
 
-const thereText = "";
+function getRandomTemperature(min = 0.4, max = 0.8) {
+  return Math.random() * (max - min) + min;
+}
 
 getSpinTaxedMessageRouter.post("/", async (req, res) => {
   const bodyRequest = await req.body;
@@ -33,11 +35,6 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
 
   const { finalPhrasesToExcludeDuringSpintax, messageToSpinTax } = bodyRequest;
 
-  console.log(
-    "finalPhrasesToExcludeDuringSpintax",
-    finalPhrasesToExcludeDuringSpintax
-  );
-
   try {
     const promptToSpinTaxText = `spin tax the words not listed to be replaced in this message only.
 
@@ -49,7 +46,8 @@ Only return the spun text. Don't explain anything, don't prefix the spun text wi
 
     const spinTaxedMessage = await getStraightAiResponse(
       promptToSpinTaxText,
-      messageToSpinTax
+      messageToSpinTax,
+      getRandomTemperature()
     );
 
     //return final shit still
