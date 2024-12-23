@@ -5,8 +5,8 @@ import isTokenValid from "../../../server-utils/middleware/token-validity/isToke
 const getSpinTaxedMessageRouter = express.Router();
 
 function getRandomTemperature() {
-  const min = 0.6;
-  const max = 0.8;
+  const min = 0.5;
+  const max = 0.9;
 
   return Math.random() * (max - min) + min;
 }
@@ -39,7 +39,7 @@ Never change the structure of the message.
 don't replace any of these words please : ${finalPhrasesToExcludeDuringSpintax} .
 don't spintax any of these words please : ${finalPhrasesToExcludeDuringSpintax} .
 
-Be very professional.  Don't spintax with words a 3 year old won't understand, choose the simplest words for spintx.  
+Be very professional.  Don't spintax with words a 3 year old won't understand, choose the simplest words for spintax.  
 
 Only return the spun text. Don't explain anything, don't prefix the spun text with any explanation or any revision.`;
 
