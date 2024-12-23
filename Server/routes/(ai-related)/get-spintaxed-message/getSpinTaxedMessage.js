@@ -11,7 +11,7 @@ Ignoring numbers or symbols in the name.
 Is the name below likely a human name or a human nickname ?
 `;
 
-function getRandomTemperature(min = 0.4, max = 0.8) {
+function getRandomTemperature(min = 0.6, max = 0.7) {
   return Math.random() * (max - min) + min;
 }
 
