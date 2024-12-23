@@ -33,11 +33,11 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
 
   try {
     const promptToSpinTaxText = `spin tax the words not listed to be replaced in this message only.
-    
+Be very professional.    
 
 Never change the structure of the message.
 
-don't replace these words please : ${finalPhrasesToExcludeDuringSpintax}
+don't replace any of these words please : ${finalPhrasesToExcludeDuringSpintax}
 
 Only return the spun text. Don't explain anything, don't prefix the spun text with any explanation or any revision.`;
 
