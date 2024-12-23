@@ -42,6 +42,10 @@ Never change the structure of the message.
 
 don't replace the following words : ${finalPhrasesToExcludeDuringSpintax}
 
+don't replace the following words : ${finalPhrasesToExcludeDuringSpintax}
+
+don't replace the following words : ${finalPhrasesToExcludeDuringSpintax}
+
 Only return the spun text. Don't explain anything, don't prefix the spun text with any explanation or any revision.`;
 
     const spinTaxedMessage = await getStraightAiResponse(
