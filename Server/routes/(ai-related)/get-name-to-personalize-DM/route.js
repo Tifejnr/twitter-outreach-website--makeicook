@@ -4,6 +4,7 @@ import { HfInference } from "@huggingface/inference";
 import getSecretKeys from "../../../envVariables/envVariables.js";
 import confirmAllAreRealNames from "./confirmAllAreRealNames.js";
 import isNameAMixtureOfTwoNames from "./isNameAMixtureOfTwoNames.js";
+import isTokenValid from "../../../server-utils/middleware/token-validity/isTokenValid.js";
 
 const keysObject = getSecretKeys();
 const model = keysObject.aiModel;
@@ -35,20 +36,20 @@ const thereText = "";
 getNameRouterToPersonalizeDmRouter.post("/", async (req, res) => {
   const bodyRequest = await req.body;
 
-  // const resultOfTokenValidation = await isTokenValid(bodyRequest);
+  const resultOfTokenValidation = await isTokenValid(bodyRequest);
 
-  // if (resultOfTokenValidation.nullJWTToken)
-  //   return res.json({ nullJWTToken: true });
+  if (resultOfTokenValidation.nullJWTToken)
+    return res.json({ nullJWTToken: true });
 
-  // if (resultOfTokenValidation.invalidToken)
-  //   return res.json({ invalidToken: true });
+  if (resultOfTokenValidation.invalidToken)
+    return res.json({ invalidToken: true });
 
-  // if (resultOfTokenValidation.blacklistedEmail) {
-  //   console.log("blacklistedEmail", resultOfTokenValidation.blacklistedEmail);
-  //   return res.json({
-  //     clientNameResponse: "Hadhri",
-  //   });
-  // }
+  if (resultOfTokenValidation.blacklistedEmail) {
+    console.log("blacklistedEmail", resultOfTokenValidation.blacklistedEmail);
+    return res.json({
+      clientNameResponse: "Hadhri",
+    });
+  }
 
   const { username, displayName } = bodyRequest;
 

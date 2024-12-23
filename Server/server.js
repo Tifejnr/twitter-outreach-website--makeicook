@@ -56,10 +56,11 @@ import getClientPainPointRouter from "./routes/(ai-related)/get-client-pain-poin
 import sendMakeICookTutorialsRouter from "./routes/stored-messages-on-server/sendMakeICookTutorials.js";
 import processChatsWithAiRouter from "./routes/(ai-related)/process-chats/processChatsWithAi.js";
 import saveUserDetailsRouter from "./routes/save-user-details/saveUserDetails.js";
+import getSpinTaxedMessageRouter from "./routes/(ai-related)/get-spintaxed-message/getSpinTaxedMessage.js";
 
 // runNow();
 // async function runNow() {
-//   const arrayToDelet = ["akovahh@gmail.com", "twitterhottest3@gmail.com"];
+//   const arrayToDelet = ["akovahh@gmail.com"];
 //   arrayToDelet.map(async (email) => {
 //     await deleteUsersWithEmail(email);
 //   });
@@ -164,6 +165,11 @@ app.use(
 );
 
 app.use("/api/user-detail", validateOrigin, saveUserDetailsRouter);
+app.use(
+  "/api/get-spin-taxed-message",
+  validateOrigin,
+  getSpinTaxedMessageRouter
+);
 
 app.use(
   "/api/get-client-pain-points",
