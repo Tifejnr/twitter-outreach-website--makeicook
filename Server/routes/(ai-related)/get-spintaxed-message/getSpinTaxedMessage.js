@@ -38,7 +38,9 @@ Never change the structure of the message.
 
 Never replace "{name}".
 
-never replace any of these words please : ${finalPhrasesToExcludeDuringSpintax} .
+Never replace "Twitter".
+
+Never replace any of these words please : " ${finalPhrasesToExcludeDuringSpintax} "
 
 Be very professional.  Don't spintax with words a 3 year old won't understand, choose the simplest words for spintax.  
 
