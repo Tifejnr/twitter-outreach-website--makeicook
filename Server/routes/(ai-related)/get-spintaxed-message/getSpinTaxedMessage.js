@@ -60,10 +60,7 @@ ${phrasesOnNewLine}
 Be very professional.  Don't spintax with words a 3 year old won't understand, choose the simplest words for spintax.  
 
 
-Only return the spun text only. Don't explain anything, don't prefix the spun text with any explanation or any revision.
-Only return the spun text only. Don't explain anything, don't prefix the spun text with any explanation or any revision.
-
-`;
+Only return the spun text only. Don't explain anything, don't prefix the spun text with any explanation.`;
 
     const spinTaxedMessageRaw = await getStraightAiResponse(
       promptToSpinTaxText,
