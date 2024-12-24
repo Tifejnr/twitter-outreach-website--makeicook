@@ -16,7 +16,7 @@ function formatPhrases(input) {
   const phrases = input.split(",").map((phrase) => phrase.trim());
 
   // Map each phrase into the desired format
-  const formattedLines = phrases.map((phrase) => `Do not replace ${phrase}`);
+  const formattedLines = phrases.map((phrase) => `Do not replace "${phrase}"`);
 
   // Join the lines with newlines
   return formattedLines.join("\n");
