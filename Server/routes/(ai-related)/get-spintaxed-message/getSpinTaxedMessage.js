@@ -36,10 +36,12 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
 
 Never change the structure of the message.
 
-don't replace any of these words please : ${finalPhrasesToExcludeDuringSpintax} .
-don't spintax any of these words please : ${finalPhrasesToExcludeDuringSpintax} .
+Never replace "{name}".
+
+never replace any of these words please : ${finalPhrasesToExcludeDuringSpintax} .
 
 Be very professional.  Don't spintax with words a 3 year old won't understand, choose the simplest words for spintax.  
+
 
 Only return the spun text. Don't explain anything, don't prefix the spun text with any explanation or any revision.
 Only return the spun text. Don't explain anything, don't prefix the spun text with any explanation or any revision.
