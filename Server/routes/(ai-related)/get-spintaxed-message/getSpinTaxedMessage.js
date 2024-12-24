@@ -17,7 +17,7 @@ function formatPhrases(input) {
 
   // Map each phrase into the desired format
   const formattedLines = phrases.map(
-    (phrase) => `Strictly do not replace "${phrase}"`
+    (phrase) => `Note : do not replace "${phrase}"`
   );
 
   // Join the lines with newlines
@@ -60,8 +60,8 @@ ${phrasesOnNewLine}
 Be very professional.  Don't spintax with words a 3 year old won't understand, choose the simplest words for spintax.  
 
 
-Only return the spun text. Don't explain anything, don't prefix the spun text with any explanation or any revision.
-Only return the spun text. Don't explain anything, don't prefix the spun text with any explanation or any revision.
+Only return the spun text only. Don't explain anything, don't prefix the spun text with any explanation or any revision.
+Only return the spun text only. Don't explain anything, don't prefix the spun text with any explanation or any revision.
 
 `;
 
