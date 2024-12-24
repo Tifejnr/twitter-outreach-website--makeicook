@@ -11,6 +11,17 @@ function getRandomTemperature() {
   return Math.random() * (max - min) + min;
 }
 
+function formatPhrases(input) {
+  // Split the input string by commas and trim each phrase
+  const phrases = input.split(",").map((phrase) => phrase.trim());
+
+  // Map each phrase into the desired format
+  const formattedLines = phrases.map((phrase) => `Do not replace ${phrase}`);
+
+  // Join the lines with newlines
+  return formattedLines.join("\n");
+}
+
 getSpinTaxedMessageRouter.post("/", async (req, res) => {
   const bodyRequest = await req.body;
 
@@ -31,16 +42,16 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
 
   const { finalPhrasesToExcludeDuringSpintax, messageToSpinTax } = bodyRequest;
 
+  const phrasesOnNewLine = formatPhrases(finalPhrasesToExcludeDuringSpintax);
+
   try {
     const promptToSpinTaxText = `spintax the words not listed to be replaced in this message only.
 
-Never change the structure of the message.
+Do not change the structure of the message.
 
-Never replace "{name}".
+Do not replace "{name}".
 
-Never replace "Twitter".
-
-Never replace any of these words please : " ${finalPhrasesToExcludeDuringSpintax} "
+${phrasesOnNewLine}
 
 Be very professional.  Don't spintax with words a 3 year old won't understand, choose the simplest words for spintax.  
 
