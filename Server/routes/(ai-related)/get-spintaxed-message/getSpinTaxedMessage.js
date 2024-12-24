@@ -41,13 +41,20 @@ don't spintax any of these words please : ${finalPhrasesToExcludeDuringSpintax} 
 
 Be very professional.  Don't spintax with words a 3 year old won't understand, choose the simplest words for spintax.  
 
-Only return the spun text. Don't explain anything, don't prefix the spun text with any explanation or any revision.`;
+Only return the spun text. Don't explain anything, don't prefix the spun text with any explanation or any revision.
+Only return the spun text. Don't explain anything, don't prefix the spun text with any explanation or any revision.
 
-    const spinTaxedMessage = await getStraightAiResponse(
+`;
+
+    const spinTaxedMessageRaw = await getStraightAiResponse(
       promptToSpinTaxText,
       messageToSpinTax,
       getRandomTemperature()
     );
+
+    const spunTextPrefix = "Here is the spun text:";
+
+    const spinTaxedMessage = spinTaxedMessageRaw.replace(spunTextPrefix, "");
 
     //return final shit still
     return res.json({
