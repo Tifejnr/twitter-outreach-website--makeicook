@@ -12,6 +12,21 @@ Only return the spun text prefixing it with "Here is the spun text : "
 
 alone only.`;
 
+function removeSpunText(input, originalText) {
+  const phraseToRemove = "Here is the spun text:";
+  const cleanedString = input.split(phraseToRemove).join(""); // Removes all occurrences of the phrase
+
+  // Confirm the phrase "spun text" is no longer present
+  if (cleanedString.includes("spun text")) {
+    console.error(
+      "Removal failed: 'spun text' is still present in the string."
+    );
+    return originalText; // Return null to indicate failure
+  }
+
+  return cleanedString; // Return the cleaned string
+}
+
 function getRandomTemperature() {
   const min = 0.7;
   const max = 0.8;
@@ -80,11 +95,10 @@ Only return the spun text prefixing it with "Here is the spun text :"`;
       getRandomTemperature()
     );
 
-    const spunTextPrefix = "Here is the spun text :";
-    const spunTextPrefix2 = "Here is the spun text:";
-
-    const spinTaxedMessage1 = spinTaxedMessageRaw.replace(spunTextPrefix, "");
-    const spinTaxedMessage = spinTaxedMessage1.replace(spunTextPrefix2, "");
+    const spinTaxedMessage = removeSpunText(
+      spinTaxedMessageRaw,
+      messageToSpinTax
+    );
 
     //return final shit still
     return res.json({
