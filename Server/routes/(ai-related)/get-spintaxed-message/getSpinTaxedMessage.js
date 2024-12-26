@@ -53,6 +53,8 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
 
 Do not change the structure of the message.
 
+Do not replace any human name.
+
 Do not replace "{name}".
 
 ${phrasesOnNewLine}
