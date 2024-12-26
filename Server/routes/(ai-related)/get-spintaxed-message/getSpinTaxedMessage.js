@@ -44,7 +44,9 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
 
   const { finalPhrasesToExcludeDuringSpintax, messageToSpinTax } = bodyRequest;
 
-  const phrasesOnNewLine = formatPhrases(finalPhrasesToExcludeDuringSpintax);
+  const phrasesOnNewLine = formatPhrases(
+    finalPhrasesToExcludeDuringSpintax.trim()
+  );
 
   // console.log("phrasesOnNewLine", phrasesOnNewLine);
 
