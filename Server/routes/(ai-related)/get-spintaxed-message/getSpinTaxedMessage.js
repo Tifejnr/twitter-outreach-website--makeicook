@@ -83,7 +83,7 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
   // console.log("phrasesOnNewLine", phrasesOnNewLine);
 
   try {
-    const promptToSpinTaxText = `spintax the words not listed to be replaced in this message only.
+    const promptToSpinTaxText = `spintax 4 words in this message only.
 
 Do not change the structure of the message.
 
