@@ -13,12 +13,12 @@ Only return the spun text prefixing it with "Here is the spun text : "
 alone only.`;
 
 function removeSpunText(input, originalText) {
-  const phraseToRemove = "Here is the spun text:";
+  const phraseToRemove = "Here:";
   const cleanedString = input.split(phraseToRemove).join(""); // Removes all occurrences of the phrase
 
   // Confirm the phrase "spun text" is no longer present
   if (cleanedString.includes("spun text")) {
-    const spunTextPrefix2 = "Here is the spun text:";
+    const spunTextPrefix2 = "Here:";
 
     const spinTaxedMessageSpunTextRemoved = input.replace(spunTextPrefix2, "");
 
@@ -48,9 +48,7 @@ function formatPhrases(input) {
   const phrases = input.split(",").map((phrase) => phrase.trim());
 
   // Map each phrase into the desired format
-  const formattedLines = phrases.map(
-    (phrase) => `Note: Do not replace "${phrase}"`
-  );
+  const formattedLines = phrases.map((phrase) => `Do not replace "${phrase}"`);
 
   // Join the lines with newlines
   return formattedLines.join("\n");
@@ -83,19 +81,22 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
   // console.log("phrasesOnNewLine", phrasesOnNewLine);
 
   try {
-    const promptToSpinTaxText = `spintax 4 words in this message only.
+    const promptToSpinTaxText = `
 
 Do not change the structure of the message.
 
 Do not replace any human name.
 
-Do not replace "{name}".
+Do not replace "{name}".  
 
 ${phrasesOnNewLine}
+    
+Spintax 4 words in this message except the words I told you not to replace above.
+
 
 Be very professional.  Don't spintax with words a 3 year old won't understand, choose the simplest words for spintax.  
 
-Only return the spun text prefixing it with "Here is the spun text :"`;
+Only return the spun text prefixing it with "Here:" `;
 
     const spinTaxedMessageRaw = await getStraightAiResponse(
       promptToSpinTaxText,
