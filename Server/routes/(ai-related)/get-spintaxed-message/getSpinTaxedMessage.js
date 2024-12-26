@@ -81,8 +81,10 @@ Only return the spun text prefixing it with "Here is the spun text :"`;
     );
 
     const spunTextPrefix = "Here is the spun text :";
+    const spunTextPrefix2 = "Here is the spun text:";
 
-    const spinTaxedMessage = spinTaxedMessageRaw.replace(spunTextPrefix, "");
+    const spinTaxedMessage1 = spinTaxedMessageRaw.replace(spunTextPrefix, "");
+    const spinTaxedMessage = spinTaxedMessage1.replace(spunTextPrefix2, "");
 
     //return final shit still
     return res.json({
