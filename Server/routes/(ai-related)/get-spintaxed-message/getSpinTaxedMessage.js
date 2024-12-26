@@ -19,7 +19,8 @@ function removeSpunText(input, originalText) {
   // Confirm the phrase "spun text" is no longer present
   if (cleanedString.includes("spun text")) {
     console.error(
-      "Removal failed: 'spun text' is still present in the string."
+      "Removal failed: 'spun text' is still present in the string.",
+      input
     );
     return originalText; // Return null to indicate failure
   }
