@@ -17,7 +17,8 @@ function formatPhrases(input) {
 
   // Map each phrase into the desired format
   const formattedLines = phrases.map(
-    (phrase) => `Note : never ever replace "${phrase}"`
+    (phrase) =>
+      `Important note: "${phrase}" is immutable and must remain exactly as it is. Do not replace or change it.`
   );
 
   // Join the lines with newlines
