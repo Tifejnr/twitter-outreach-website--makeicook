@@ -96,6 +96,8 @@ Spintax 4 words in this message except the words I told you not to replace above
 
 Be very professional.  Don't spintax with words a 3 year old won't understand, choose the simplest words for spintax.  
 
+Don't spintax with agrressive words.
+
 Only return the spun text prefixing it with "Here:" `;
 
     const spinTaxedMessageRaw = await getStraightAiResponse(
