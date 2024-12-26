@@ -49,8 +49,7 @@ function formatPhrases(input) {
 
   // Map each phrase into the desired format
   const formattedLines = phrases.map(
-    (phrase) =>
-      `Important note:  Do not replace or change this word:  "${phrase}"`
+    (phrase) => `Note: Do not replace "${phrase}"`
   );
 
   // Join the lines with newlines
