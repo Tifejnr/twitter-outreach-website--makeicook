@@ -4,6 +4,14 @@ import isTokenValid from "../../../server-utils/middleware/token-validity/isToke
 
 const getSpinTaxedMessageRouter = express.Router();
 
+const returnOnlySpunText = `Note : Don't explain anything in your response. 
+
+Note : Don't put any Note in your response. 
+
+Only return the spun text prefixing it with "Here is the spun text : "
+
+alone only.`;
+
 function getRandomTemperature() {
   const min = 0.5;
   const max = 0.9;
@@ -64,11 +72,7 @@ ${phrasesOnNewLine}
 
 Be very professional.  Don't spintax with words a 3 year old won't understand, choose the simplest words for spintax.  
 
-Note : Don't explain anything in your response. 
-
-Note : Don't put any Note in your response. 
-
-NOte : In your response, Only return the spun text alone only.`;
+Only return the spun text prefixing it with "Here is the spun text :"`;
 
     const spinTaxedMessageRaw = await getStraightAiResponse(
       promptToSpinTaxText,
@@ -76,7 +80,7 @@ NOte : In your response, Only return the spun text alone only.`;
       getRandomTemperature()
     );
 
-    const spunTextPrefix = "Here is the spun text:";
+    const spunTextPrefix = "Here is the spun text :";
 
     const spinTaxedMessage = spinTaxedMessageRaw.replace(spunTextPrefix, "");
 
