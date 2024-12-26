@@ -13,8 +13,8 @@ Only return the spun text prefixing it with "Here is the spun text : "
 alone only.`;
 
 function getRandomTemperature() {
-  const min = 0.5;
-  const max = 0.6;
+  const min = 0.1;
+  const max = 0.3;
 
   return Math.random() * (max - min) + min;
 }
