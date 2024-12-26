@@ -14,7 +14,7 @@ alone only.`;
 
 function getRandomTemperature() {
   const min = 0.5;
-  const max = 0.9;
+  const max = 0.6;
 
   return Math.random() * (max - min) + min;
 }
@@ -26,7 +26,7 @@ function formatPhrases(input) {
   // Map each phrase into the desired format
   const formattedLines = phrases.map(
     (phrase) =>
-      `Important note: "${phrase}" is immutable and must remain exactly as it is. Do not replace or change it.`
+      `Important note:  Do not replace or change this word:  "${phrase}"`
   );
 
   // Join the lines with newlines
