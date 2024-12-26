@@ -4,14 +4,6 @@ import isTokenValid from "../../../server-utils/middleware/token-validity/isToke
 
 const getSpinTaxedMessageRouter = express.Router();
 
-const returnOnlySpunText = `Note : Don't explain anything in your response. 
-
-Note : Don't put any Note in your response. 
-
-Only return the spun text prefixing it with "Here is the spun text : "
-
-alone only.`;
-
 function removeSpunText(input, originalText) {
   const phraseToRemove = "Here:";
   const cleanedString = input.split(phraseToRemove).join(""); // Removes all occurrences of the phrase
@@ -48,7 +40,7 @@ function formatPhrases(input) {
   const phrases = input.split(",").map((phrase) => phrase.trim());
 
   // Map each phrase into the desired format
-  const formattedLines = phrases.map((phrase) => `Do not replace "${phrase}"`);
+  const formattedLines = phrases.map((phrase) => `Do not replace "${phrase}" `);
 
   // Join the lines with newlines
   return formattedLines.join("\n");
@@ -93,7 +85,7 @@ ${phrasesOnNewLine}
 Spintax 4 words in this message except the words I told you not to replace above.
 
 
-Be very professional.  Don't spintax with words a 3 year old won't understand, choose the simplest words for spintax.  
+Be very calm.  Don't spintax with words a 3 year old won't understand, choose the simplest words for spintax.  
 
 Don't spintax with agrressive words.
 
