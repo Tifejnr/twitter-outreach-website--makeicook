@@ -14,7 +14,7 @@ alone only.`;
 
 function getRandomTemperature() {
   const min = 0.1;
-  const max = 0.3;
+  const max = 0.2;
 
   return Math.random() * (max - min) + min;
 }
