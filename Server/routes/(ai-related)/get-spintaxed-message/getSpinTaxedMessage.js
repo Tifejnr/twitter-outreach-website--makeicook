@@ -18,11 +18,19 @@ function removeSpunText(input, originalText) {
 
   // Confirm the phrase "spun text" is no longer present
   if (cleanedString.includes("spun text")) {
-    console.error(
-      "Removal failed: 'spun text' is still present in the string.",
-      input
-    );
-    return originalText; // Return null to indicate failure
+    const spunTextPrefix2 = "Here is the spun text:";
+
+    const spinTaxedMessageSpunTextRemoved = input.replace(spunTextPrefix2, "");
+
+    if (spinTaxedMessageSpunTextRemoved.includes("spun text")) {
+      console.error(
+        "Removal failed: 'spun text' is still present in the string.",
+        input
+      );
+      return originalText; // Return null to indicate failure
+    }
+
+    return spinTaxedMessageSpunTextRemoved;
   }
 
   return cleanedString; // Return the cleaned string
