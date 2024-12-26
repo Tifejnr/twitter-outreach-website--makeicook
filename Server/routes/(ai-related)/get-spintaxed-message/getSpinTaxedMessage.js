@@ -82,7 +82,6 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
 
   try {
     const promptToSpinTaxText = `
-
 Do not change the structure of the message.
 
 Do not replace any human name.
