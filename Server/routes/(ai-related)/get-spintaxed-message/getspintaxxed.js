@@ -104,7 +104,7 @@ You must maintain the exact structure of the sentence.
 
 You must not return a note or explain anything you did in your response.
 
-You must Only return the spun text prefixing it with "Here:" `;
+Only return the spun text prefixing it with "Here:" `;
 
     const spinTaxedMessageRaw = await getStraightAiResponse(
       promptToSpinTaxText,
