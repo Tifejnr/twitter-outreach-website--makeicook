@@ -100,6 +100,8 @@ You must not spin tax with agrressive words.
 
 You must not be too casual.
 
+You must not return a note or explain anything you did in your response.
+
 Only return the spun text prefixing it with "Here:" `;
 
     const spinTaxedMessageRaw = await getStraightAiResponse(
