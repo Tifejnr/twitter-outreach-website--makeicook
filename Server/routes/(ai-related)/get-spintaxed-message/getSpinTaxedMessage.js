@@ -81,14 +81,16 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
     finalMessageToSpintax = messageToSpinTax;
   }
 
-  // console.log("phrasesOnNewLine", phrasesOnNewLine);
+  console.log("finalMessageToSpintax", finalMessageToSpintax);
 
   try {
     const promptToSpinTaxText = `
-
+You must maintain the exact structure of the sentence.
 
 ${phrasesOnNewLine}
-    
+
+
+
 Spin tax four least most important words in this sentence BUT do not replace any of the words I told you not to replace above.
 
 You must not replace any of the words I told you not to replace above.
