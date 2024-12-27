@@ -29,8 +29,8 @@ function removeSpunText(input, originalText) {
 }
 
 function getRandomTemperature() {
-  const min = 0.7;
-  const max = 0.8;
+  const min = 0.1;
+  const max = 0.2;
 
   return Math.random() * (max - min) + min;
 }
@@ -70,6 +70,7 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
     finalPhrasesToExcludeDuringSpintax.trim()
   );
   let finalMessageToSpintax;
+
   const firstParagrapgh = getFirstParagraph(messageToSpinTax);
 
   if (firstParagrapgh) {
