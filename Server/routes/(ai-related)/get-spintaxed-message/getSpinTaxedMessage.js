@@ -87,10 +87,10 @@ Do not change the structure of the message.
 
 ${phrasesOnNewLine}
     
-Spin tax 4 words in this message BUT do not replace any of the words I told you not to replace above.
+Spin tax four least most important words in this message BUT do not replace any of the words I told you not to replace above.
 
+NOte: Do not replace any of the words I told you not to replace above.
 
-Do not replace any of the words I told you not to replace above.
 
 
 Be very calm.  Don't spintax with words a 3 year old won't understand, choose the simplest words for spintax.  
