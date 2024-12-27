@@ -69,6 +69,14 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
   const phrasesOnNewLine = formatPhrases(
     finalPhrasesToExcludeDuringSpintax.trim()
   );
+  let finalMessageToSpintax;
+  const firstParagrapgh = getFirstParagraph(messageToSpinTax);
+
+  if (firstParagrapgh) {
+    finalMessageToSpintax = messageToSpinTax.replace(firstParagrapgh, "");
+  } else {
+    finalMessageToSpintax = messageToSpinTax;
+  }
 
   // console.log("phrasesOnNewLine", phrasesOnNewLine);
 
@@ -87,24 +95,30 @@ Spintax 4 words in this message except the words I told you not to replace above
 
 Be very calm.  Don't spintax with words a 3 year old won't understand, choose the simplest words for spintax.  
 
-Don't spintax with agrressive words.
+Don't spintax with agrressive words. Don't be too casual.
 
 Only return the spun text prefixing it with "Here:" `;
 
     const spinTaxedMessageRaw = await getStraightAiResponse(
       promptToSpinTaxText,
-      messageToSpinTax,
+      finalMessageToSpintax,
       getRandomTemperature()
     );
 
     const spinTaxedMessage = removeSpunText(
       spinTaxedMessageRaw,
-      messageToSpinTax
+      finalMessageToSpintax
     );
+
+    const firstParagraphAddedBack = `${firstParagrapgh}
+    
+${spinTaxedMessage}`;
 
     //return final shit still
     return res.json({
-      spinTaxedMessage,
+      spinTaxedMessage: firstParagrapgh
+        ? firstParagraphAddedBack
+        : spinTaxedMessage,
       isItError: spinTaxedMessage.includes("error"),
     });
   } catch (error) {
@@ -113,5 +127,20 @@ Only return the spun text prefixing it with "Here:" `;
     return res.json({ error: "Internal server error" });
   }
 });
+
+function getFirstParagraph(inputString) {
+  // Check if the string contains a double-spaced new line
+  const paragraphDelimiter = /\n\s*\n/;
+
+  if (paragraphDelimiter.test(inputString)) {
+    // Split the string into paragraphs
+    const paragraphs = inputString.split(paragraphDelimiter);
+    // Return the first paragraph
+    return paragraphs[0];
+  }
+
+  // If no double-spaced new line is found, return false
+  return false;
+}
 
 export default getSpinTaxedMessageRouter;
