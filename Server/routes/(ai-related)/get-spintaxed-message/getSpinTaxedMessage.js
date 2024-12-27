@@ -85,18 +85,17 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
     const promptToSpinTaxText = `
 Do not change the structure of the message.
 
-Do not replace any human name.
-
-Do not replace "{name}".  
-
 ${phrasesOnNewLine}
     
-Spintax 4 words in this message except the words I told you not to replace above.
+Spin tax 4 words in this message BUT do not replace any of the words I told you not to replace above.
+
+
+Do not replace any of the words I told you not to replace above.
 
 
 Be very calm.  Don't spintax with words a 3 year old won't understand, choose the simplest words for spintax.  
 
-Don't spintax with agrressive words. Don't be too casual.
+Don't spin tax with agrressive words. Don't be too casual.
 
 Only return the spun text prefixing it with "Here:" `;
 
