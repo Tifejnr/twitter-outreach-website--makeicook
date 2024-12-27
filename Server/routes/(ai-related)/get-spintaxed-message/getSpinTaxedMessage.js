@@ -85,7 +85,7 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
 
   try {
     const promptToSpinTaxText = `
-You must maintain the structure of the sentence.
+
 
 ${phrasesOnNewLine}
     
@@ -99,6 +99,8 @@ You must Be very calm.  Don't spintax with words a 3 year old won't understand, 
 You must not spin tax with agrressive words. 
 
 You must not be too casual.
+
+You must maintain the exact structure of the sentence.
 
 You must not return a note or explain anything you did in your response.
 
