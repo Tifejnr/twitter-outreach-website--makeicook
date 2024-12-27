@@ -40,7 +40,9 @@ function formatPhrases(input) {
   const phrases = input.split(",").map((phrase) => phrase.trim());
 
   // Map each phrase into the desired format
-  const formattedLines = phrases.map((phrase) => `Do not replace "${phrase}" `);
+  const formattedLines = phrases.map(
+    (phrase) => `You must not replace "${phrase}" `
+  );
 
   // Join the lines with newlines
   return formattedLines.join("\n");
@@ -83,19 +85,20 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
 
   try {
     const promptToSpinTaxText = `
-Do not change the structure of the message.
+You must maintain the structure of the sentence.
 
 ${phrasesOnNewLine}
     
-Spin tax four least most important words in this message BUT do not replace any of the words I told you not to replace above.
+Spin tax four least most important words in this sentence BUT do not replace any of the words I told you not to replace above.
 
-NOte: Do not replace any of the words I told you not to replace above.
+You must not replace any of the words I told you not to replace above.
 
 
+You must Be very calm.  Don't spintax with words a 3 year old won't understand, choose the simplest words for spintax.  
 
-Be very calm.  Don't spintax with words a 3 year old won't understand, choose the simplest words for spintax.  
+You must not spin tax with agrressive words. 
 
-Don't spin tax with agrressive words. Don't be too casual.
+You must not be too casual.
 
 Only return the spun text prefixing it with "Here:" `;
 
