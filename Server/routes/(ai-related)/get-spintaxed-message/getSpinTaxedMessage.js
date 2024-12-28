@@ -106,7 +106,7 @@ You must maintain the exact structure of the message.
 
 You must not return a note or explain anything you did in your response.
 
-You must Only return the spun text prefixing it with "Here:" `;
+You must Only return the full spun text prefixing it with "Here:" `;
     // Regular expression to split the input into paragraphs
     // const paragraphDelimiter = /\n\s*\n/;
 
