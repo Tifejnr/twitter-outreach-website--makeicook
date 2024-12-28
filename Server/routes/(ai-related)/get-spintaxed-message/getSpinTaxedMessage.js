@@ -89,6 +89,7 @@ You must maintain the exact structure of the message.
 
 ${phrasesOnNewLine}
 
+YOu must not replace "Twitter"
 
 Spin tax 4 words from this message BUT do not replace any of the words I told you not to replace above.
 
