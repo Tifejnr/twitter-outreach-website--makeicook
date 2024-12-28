@@ -85,26 +85,34 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
 
   try {
     const promptToSpinTaxText = `
-Spin tax this message.
-
-Do not change the structure of the message.
+You must not change the structure of the sentence.
 
 ${phrasesOnNewLine}
 
 YOu must not replace "Twitter"
 
+Spin tax four words in this sentence BUT do not replace any of the words I told you not to replace above.
 
-Do not change the structure of the message.
+You must not replace any of the words I told you not to replace above.
+
+
+You must Be very calm.  Don't spintax with words a 3 year old won't understand, choose the simplest words for spintax.  
+
+You must not spin tax with agrressive words. 
+
+You must not be too casual.
+
+You must maintain the exact structure of the sentence.
 
 You must not return a note or explain anything you did in your response.
 
-You must Only return the spun text prefixing it with "Here:" `;
+Only return the spun text prefixing it with "Here:"`;
     // Regular expression to split the input into paragraphs
-    // const paragraphDelimiter = /\n\s*\n/;
+    const paragraphDelimiter = /\n\s*\n/;
 
-    // // Split the input string into paragraphs
-    // const paragraphsMessageArray =
-    //   finalMessageToSpintax.split(paragraphDelimiter);
+    // Split the input string into paragraphs
+    const paragraphsMessageArray =
+      finalMessageToSpintax.split(paragraphDelimiter);
 
     // // Process each paragraph
     // const processedParagraphs = [];
