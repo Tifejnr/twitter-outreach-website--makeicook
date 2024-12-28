@@ -111,7 +111,8 @@ You must Only return the spun text prefixing it with "Here:" `;
     const paragraphDelimiter = /\n\s*\n/;
 
     // Split the input string into paragraphs
-    const paragraphsMessageArray = inputString.split(paragraphDelimiter);
+    const paragraphsMessageArray =
+      finalMessageToSpintax.split(paragraphDelimiter);
 
     // Process each paragraph
     const processedParagraphs = [];
