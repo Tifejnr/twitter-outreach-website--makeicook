@@ -91,7 +91,7 @@ ${phrasesOnNewLine}
 
 
 
-Spin tax four least most important words in this message BUT do not replace any of the words I told you not to replace above.
+Spin tax least most important words in this message BUT do not replace any of the words I told you not to replace above.
 
 You must not replace any of the words I told you not to replace above.
 
@@ -107,18 +107,31 @@ You must maintain the exact structure of the message.
 You must not return a note or explain anything you did in your response.
 
 You must Only return the spun text prefixing it with "Here:" `;
+    // Regular expression to split the input into paragraphs
+    const paragraphDelimiter = /\n\s*\n/;
 
-    const spinTaxedMessageRaw = await getStraightAiResponse(
-      promptToSpinTaxText,
-      finalMessageToSpintax,
-      getRandomTemperature()
-    );
+    // Split the input string into paragraphs
+    const paragraphsMessageArray = inputString.split(paragraphDelimiter);
 
-    const spinTaxedMessage = removeSpunText(
-      spinTaxedMessageRaw,
-      finalMessageToSpintax
-    );
+    // Process each paragraph
+    const processedParagraphs = [];
+    for (const paragraph of paragraphsMessageArray) {
+      // Assuming `getStraightAiResponse` and `removeSpunText` are async functions
+      const spinTaxedMessageRaw = await getStraightAiResponse(
+        promptToSpinTaxText,
+        paragraph, // Process the current paragraph
+        getRandomTemperature()
+      );
 
+      // Process the response further with `removeSpunText`
+      const spinTaxedMessage = removeSpunText(spinTaxedMessageRaw, paragraph);
+
+      // Add the processed paragraph to the array
+      processedParagraphs.push(spinTaxedMessage);
+    }
+
+    // Join the processed paragraphs with double newlines
+    const spinTaxedMessage = processedParagraphs.join("\n\n");
     const firstParagraphAddedBack = `${firstParagrapgh}
     
 ${spinTaxedMessage}`;
