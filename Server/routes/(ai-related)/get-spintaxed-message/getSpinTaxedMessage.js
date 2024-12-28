@@ -85,8 +85,6 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
 
   try {
     const promptToSpinTaxText = `
-You must maintain the exact structure of the message.
-
 ${phrasesOnNewLine}
 
 YOu must not replace "Twitter"
