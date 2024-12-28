@@ -91,7 +91,7 @@ ${phrasesOnNewLine}
 
 
 
-Spin tax least most important words in this message BUT do not replace any of the words I told you not to replace above.
+Spin tax few words in this message BUT do not replace any of the words I told you not to replace above.
 
 You must not replace any of the words I told you not to replace above.
 
