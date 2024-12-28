@@ -85,13 +85,13 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
 
   try {
     const promptToSpinTaxText = `
-You must maintain the exact structure of the sentence.
+You must maintain the exact structure of the paragrapgh.
 
 ${phrasesOnNewLine}
 
 
 
-Spin tax 4 words in this sentence BUT do not replace any of the words I told you not to replace above.
+Spin tax 4 words in this paragrapgh BUT do not replace any of the words I told you not to replace above.
 
 You must not replace any of the words I told you not to replace above.
 
@@ -102,9 +102,11 @@ You must not spin tax with agrressive words.
 
 You must not be too casual.
 
-You must maintain the exact structure of the sentence.
+You must maintain the exact structure of the paragrapgh.
 
 You must not return a note or explain anything you did in your response.
+
+You must return only one paragrapgh as response.
 
 You must Only return the spun text prefixing it with "Here:" `;
     // Regular expression to split the input into paragraphs
@@ -117,6 +119,7 @@ You must Only return the spun text prefixing it with "Here:" `;
     // Process each paragraph
     const processedParagraphs = [];
     for (const paragraph of paragraphsMessageArray) {
+      console.log("paragraph ", paragraph);
       // Assuming `getStraightAiResponse` and `removeSpunText` are async functions
       const spinTaxedMessageRaw = await getStraightAiResponse(
         promptToSpinTaxText,
