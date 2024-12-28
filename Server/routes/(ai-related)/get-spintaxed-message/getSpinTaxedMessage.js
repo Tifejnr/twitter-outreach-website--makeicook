@@ -125,7 +125,10 @@ You must Only return the spun text prefixing it with "Here:" `;
     );
 
     // Process the response further with `removeSpunText`
-    const spinTaxedMessage = removeSpunText(spinTaxedMessageRaw, paragraph);
+    const spinTaxedMessage = removeSpunText(
+      spinTaxedMessageRaw,
+      finalMessageToSpintax
+    );
 
     //   // Add the processed paragraph to the array
     //   processedParagraphs.push(spinTaxedMessage);
