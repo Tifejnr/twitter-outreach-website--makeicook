@@ -85,13 +85,14 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
 
   try {
     const promptToSpinTaxText = `
-You must not change the structure of the sentence.
+YOur response must follow exactly this structure : ${finalMessageToSpintax}
+
 
 ${phrasesOnNewLine}
 
 YOu must not replace "Twitter"
 
-Spin tax four words in this sentence BUT do not replace any of the words I told you not to replace above.
+Spin tax four words in this message BUT do not replace any of the words I told you not to replace above.
 
 You must not replace any of the words I told you not to replace above.
 
@@ -102,7 +103,7 @@ You must not spin tax with agrressive words.
 
 You must not be too casual.
 
-You must maintain the exact structure of the sentence.
+You must maintain the exact structure of the message.
 
 You must not return a note or explain anything you did in your response.
 
