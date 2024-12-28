@@ -29,8 +29,8 @@ function removeSpunText(input, originalText) {
 }
 
 function getRandomTemperature() {
-  const min = 0.1;
-  const max = 0.2;
+  const min = 0.6;
+  const max = 0.8;
 
   return Math.random() * (max - min) + min;
 }
@@ -85,13 +85,12 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
 
   try {
     const promptToSpinTaxText = `
-You must maintain the exact structure of the paragrapgh.
+You must maintain the exact structure of the message.
 
 ${phrasesOnNewLine}
 
 
-
-Spin tax 4 words in this paragrapgh BUT do not replace any of the words I told you not to replace above.
+Spin tax 4 words from this message BUT do not replace any of the words I told you not to replace above.
 
 You must not replace any of the words I told you not to replace above.
 
@@ -102,40 +101,38 @@ You must not spin tax with agrressive words.
 
 You must not be too casual.
 
-You must maintain the exact structure of the paragrapgh.
+You must maintain the exact structure of the message.
 
 You must not return a note or explain anything you did in your response.
 
-You must return only one paragrapgh as response.
-
 You must Only return the spun text prefixing it with "Here:" `;
     // Regular expression to split the input into paragraphs
-    const paragraphDelimiter = /\n\s*\n/;
+    // const paragraphDelimiter = /\n\s*\n/;
 
-    // Split the input string into paragraphs
-    const paragraphsMessageArray =
-      finalMessageToSpintax.split(paragraphDelimiter);
+    // // Split the input string into paragraphs
+    // const paragraphsMessageArray =
+    //   finalMessageToSpintax.split(paragraphDelimiter);
 
-    // Process each paragraph
-    const processedParagraphs = [];
-    for (const paragraph of paragraphsMessageArray) {
-      console.log("paragraph ", paragraph);
-      // Assuming `getStraightAiResponse` and `removeSpunText` are async functions
-      const spinTaxedMessageRaw = await getStraightAiResponse(
-        promptToSpinTaxText,
-        paragraph, // Process the current paragraph
-        getRandomTemperature()
-      );
+    // // Process each paragraph
+    // const processedParagraphs = [];
+    // for (const paragraph of paragraphsMessageArray) {
+    //   console.log("paragraph ", paragraph);
+    // Assuming `getStraightAiResponse` and `removeSpunText` are async functions
+    const spinTaxedMessageRaw = await getStraightAiResponse(
+      promptToSpinTaxText,
+      finalMessageToSpintax, // Process the current paragraph
+      getRandomTemperature()
+    );
 
-      // Process the response further with `removeSpunText`
-      const spinTaxedMessage = removeSpunText(spinTaxedMessageRaw, paragraph);
+    // Process the response further with `removeSpunText`
+    const spinTaxedMessage = removeSpunText(spinTaxedMessageRaw, paragraph);
 
-      // Add the processed paragraph to the array
-      processedParagraphs.push(spinTaxedMessage);
-    }
+    //   // Add the processed paragraph to the array
+    //   processedParagraphs.push(spinTaxedMessage);
+    // }
 
-    // Join the processed paragraphs with double newlines
-    const spinTaxedMessage = processedParagraphs.join("\n\n");
+    // // Join the processed paragraphs with double newlines
+    // const spinTaxedMessage = processedParagraphs.join("\n\n");
     const firstParagraphAddedBack = `${firstParagrapgh}
     
 ${spinTaxedMessage}`;
