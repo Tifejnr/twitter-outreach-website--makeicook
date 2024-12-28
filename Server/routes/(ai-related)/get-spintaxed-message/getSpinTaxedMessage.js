@@ -81,7 +81,7 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
     finalMessageToSpintax = messageToSpinTax;
   }
 
-  console.log("finalMessageToSpintax", finalMessageToSpintax);
+  // console.log("finalMessageToSpintax", finalMessageToSpintax);
 
   try {
     const promptToSpinTaxText = `
@@ -91,18 +91,9 @@ ${phrasesOnNewLine}
 
 YOu must not replace "Twitter"
 
-Spin tax 4 words from this message BUT do not replace any of the words I told you not to replace above.
+Spin tax this message BUT do not replace any of the words I told you not to replace above.
 
 You must not replace any of the words I told you not to replace above.
-
-
-You must Be very calm.  Don't spintax with words a 3 year old won't understand, choose the simplest words for spintax.  
-
-You must not spin tax with agrressive words. 
-
-You must not be too casual.
-
-You must maintain the exact structure of the message.
 
 You must not return a note or explain anything you did in your response.
 
