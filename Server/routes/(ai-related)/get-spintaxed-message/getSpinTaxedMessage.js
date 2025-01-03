@@ -91,6 +91,7 @@ YOur response must follow exactly this structure : ${finalMessageToSpintax}
 ${phrasesOnNewLine}
 
 YOu must not replace "Twitter"
+YOu must not replace "send"
 
 Spin tax four words in this message BUT do not replace any of the words I told you not to replace above.
 

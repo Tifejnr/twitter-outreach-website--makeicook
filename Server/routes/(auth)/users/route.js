@@ -70,8 +70,7 @@ signUpRouter.post("/", async (req, res) => {
     );
 
     //send welcome to new user
-    const subject =
-      "Welcome to Twitter(X) Dm Outreach extension - Make I Cook!";
+    const subject = "Welcome to Twitter(X) Prospecting tool - Make I Cook!";
     const folderDir = `${emailTemplateFolderSrc}/welcome-email`;
 
     const fullName = bodyRequest.name;
