@@ -1,4 +1,4 @@
-const heroSecondHeadingtext = `Twitter X Outreach extension - Mass DM, Leads scraping, CRM`;
+const heroSecondHeadingtext = `Twitter (X) Prospecting tool - Mass DM, Leads scraping, CRM`;
 
 const belowFaqFirstHeadingText =
   "Want to make more sales from Twitter outreach ?";

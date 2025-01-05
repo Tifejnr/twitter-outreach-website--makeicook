@@ -6,7 +6,7 @@ import BelowHero from "./Body/BelowHero";
 import BelowTestimonials from "./Body/BelowTestimonials";
 import Testimonials from "./Body/Testimonials";
 import FAQ from "./FAQ/FAQ";
-// import PricingPage from "../PricingPage/PricingPage";
+import PricingPage from "../PricingPage/PricingPage";
 import ToolsSection from "./Tools/Tools";
 import FooterPages from "../Pages/Footer/FooterPages";
 import pagesLinkObj from "../component-utils/pageLinks/pagesLinkObj";
@@ -33,7 +33,7 @@ export default function LandingPage() {
       <BelowHero />
       <ToolsSection />
       <Testimonials />
-      {/* <PricingPage /> */}
+      <PricingPage />
       <FAQ />
 
       <BelowTestimonials />

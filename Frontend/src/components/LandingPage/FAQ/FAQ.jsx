@@ -1,6 +1,6 @@
-// import Blueprint from "./Blueprint";
+import Blueprint from "./Blueprint";
 
-// import { faqArray } from "./AllFaqsObj";
+import { faqArray } from "./AllFaqsObj";
 
 export default function FAQ() {
   return (
@@ -10,11 +10,11 @@ export default function FAQ() {
           <h2 className="faq__heading">Frequently Asked Questions</h2>
         </div>
 
-        {/* <ul className="faq__faqs-list">
+        <ul className="faq__faqs-list">
           {faqArray.map((faqObj, index) => (
             <Blueprint key={index} faqObj={faqObj} />
           ))}
-        </ul> */}
+        </ul>
       </section>
     </>
   );

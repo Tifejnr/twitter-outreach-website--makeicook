@@ -54,7 +54,7 @@ export default function Blueprint(props) {
           )}
           {props.faqObj.toolsTutorial && (
             <a className="contact-us-link-faq" href={toolsTutorialPage}>
-              WFR Toolkit tutorial
+              X prospecting extension tutorials
             </a>
           )}
           {props.faqObj.extensionChromeStoreLink && (
@@ -65,7 +65,7 @@ export default function Blueprint(props) {
                 target="_blank"
                 rel="noreferrer"
               >
-                WFR Toolkit - Chrome store
+                X prospecting extension - Chrome store
               </a>
 
               <span>

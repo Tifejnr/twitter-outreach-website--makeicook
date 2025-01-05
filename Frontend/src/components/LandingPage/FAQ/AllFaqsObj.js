@@ -1,31 +1,33 @@
 export const faqArray = [
   {
     question:
-      "Will using this extension guarantee winning more jobs on Upwork?",
-    answer:
-      "Yes, we have had testimonials of people who got jobs using this extension, here is a link to one : https://x.com/iamrichygold/status/1812123443082498074",
-  },
-
-  {
-    question: "Do you provide Tutorials on how to use WFR toolkit extension?",
-    answer: "Yes. WFR toolkit tutorials can be found by clicking: ",
+      "Do you provide Tutorials on how to use Twitter (X) prospecting extension?",
+    answer: "Yes. All Our tutorials can be found by clicking: ",
     toolsTutorial: true,
   },
 
   {
-    question: "Are there any costs associated with using this extension?",
+    question:
+      "Do I need to connect my Twitter (X) account before I can use the extension like in Drippi?",
     answer:
-      "Yes, Credits are only deducted when you access the proposal submission page.",
+      "No, you only need to ensure the Twitter (X) account to be used for sending Dms is logged in on your browser before running the extension",
   },
+
   {
-    question: "Do credits expire ?",
-    answer: "No, Credits have no expiration",
+    question: "Can I send DMs to anyone?",
+    answer:
+      "Because Twitter user can opt in Allow messages requests from everyone in their settings. so you can only send the users who allowed anyone messages. If a user has messaged you, you can send him or her a DM even if they have opted out of allowing message requests from everyone.",
+  },
+
+  {
+    question: "Are there any costs associated with using this tool?",
+    answer: "Yes, check out our pricing plans for more details on the costs",
   },
 
   {
     question: "Do you have a Refund Policy?",
     answer:
-      "No, we don't have a refund policy. You get 20 credits for free trial to test the tool before deciding to buy more credits",
+      "No, we don't have a refund policy. You can test the tool for free before deciding to subscribe",
   },
 
   {
@@ -37,20 +39,20 @@ export const faqArray = [
   {
     question: "Is this extension secure?",
     answer:
-      "Our Chrome extension has undergone rigorous review by Google Chrome. Each update is subject to a strict inspection process, lasting anywhere from hours to several days.",
+      "Yes, Our Chrome extension has undergone rigorous review by Google Chrome. Each update is subject to a strict inspection process, lasting anywhere from hours to several days.",
   },
 
-  {
-    question: "Does the extension access my Upwork profile?",
-    answer:
-      "No, the extension does not read your profile. Hence, why you need to manually enter your details when you sign up",
-  },
+  // {
+  //   question: "Does the extension access my Upwork profile?",
+  //   answer:
+  //     "No, the extension does not read your profile. Hence, why you need to manually enter your details when you sign up",
+  // },
 
-  {
-    question: "Can I disable features I don't want?",
-    answer: `Yes. Click on 'Change settings' option, search through the list of all available features and toggle 
-    your unwanted feature(s) OFF to disable it.`,
-  },
+  // {
+  //   question: "Can I disable features I don't want?",
+  //   answer: `Yes. Click on 'Change settings' option, search through the list of all available features and toggle
+  //   your unwanted feature(s) OFF to disable it.`,
+  // },
 
   {
     question: "Can I request features I will like?",
@@ -72,7 +74,7 @@ export const faqArray = [
   },
 
   {
-    question: "Where can I install WFR Toolkit extension?",
+    question: "Where can I install Twitter (X) prospecting extension ?",
     answer:
       "It's easy to add our extension to your Chrome browser. Just visit this link: ",
     extensionChromeStoreLink: true,

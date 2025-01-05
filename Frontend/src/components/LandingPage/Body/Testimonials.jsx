@@ -7,7 +7,7 @@ export default function Testimonials() {
       <section className="hero-inner-container">
         <h2>Testimonials</h2>
 
-        <h4>What users of Twitter outreach extension have said :</h4>
+        <h4>What users of Twitter (X) prospecting tool have said :</h4>
 
         <section className="all-testimonials-container">
           {/* {allImagesContainerArray.map((eachImageSrc, index) => (
