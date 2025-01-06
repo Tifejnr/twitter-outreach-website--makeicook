@@ -1,4 +1,4 @@
-export const faqArray = [
+const faqArray = [
   {
     question:
       "Do you provide Tutorials on how to use Twitter (X) prospecting extension?",
@@ -91,3 +91,5 @@ export const faqArray = [
     contactUsLink: true,
   },
 ];
+
+export default faqArray;

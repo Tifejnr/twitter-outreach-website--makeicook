@@ -1,6 +1,6 @@
 import Blueprint from "./Blueprint";
 
-import { faqArray } from "./AllFaqsObj";
+import faqArray from "./AllFaqsObj";
 
 export default function FAQ() {
   return (
