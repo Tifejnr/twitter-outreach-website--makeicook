@@ -22,7 +22,10 @@ const twitterXOutreachExtensionChromeStore =
 const twitterXOutreachExtensionDevModeAcct =
   "chrome-extension://nknhbhcdkfbflbabhjpjnjnaofkbkeph";
 
+const makeICookSiteUrl = "https://www.makeicook.com";
+
 const allowedOriginArrays = [
+  makeICookSiteUrl,
   twitterXOutreachExtensionDevModeAcct,
   twitterXOutreachExtensionChromeStore,
   realOutreachBotExtension,
