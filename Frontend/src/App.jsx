@@ -16,9 +16,7 @@ import TermsOfUsePage from "./components/Pages/Terms-and-privacy/TermsOfUsePage"
 import PrivacyPolicyPage from "./components/Pages/Terms-and-privacy/privacyPolicy";
 import PaymentCallbackUrlPage from "./components/Pages/call-back-url-page/PaymentCallbackUrlPage";
 import TutorialsPage from "./components/Pages/Tutorials/Tutorials";
-// import HomepageLamz from "./components/home-page/HomepageLamz";
-
-import PricingPage from "./components/PricingPage/PricingPage";
+import Pricing from "./components/Pages/Pricing";
 // import OauthPage from "./compnents/Trello-oauth-page/OauthPage";
 // import LandingPage from "./compnents/LandingPage/LandingPage";
 // import HomePage from "./compnents/Home-nav-items/HomePage";
@@ -62,7 +60,7 @@ function App() {
           }
         /> */}
 
-        <Route path="/pricing" element={<PricingPage />} />
+        <Route path="/pricing" element={<Pricing />} />
         <Route path="/contact-us" element={<MainContactPage />} />
         <Route path="/tutorials" element={<TutorialsPage />} />
         <Route path="/about-us" element={<AboutUsPage />} />

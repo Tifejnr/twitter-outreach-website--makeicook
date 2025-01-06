@@ -32,8 +32,8 @@ export const faqArray = [
 
   {
     question:
-      "Will using this extension lead to my Upwork account being banned?",
-    answer: `No. We've received no reports of users experiencing issues with Upwork as a result of using our extension. It is designed to align with Upwork's terms and conditions, particularly in relation to ethical AI use. `,
+      "Will using this extension lead to my Twitter account being banned?",
+    answer: `No. We've received no reports of users experiencing account ban on Twitter as a result of using our extension. It is designed to align with Twitter's terms and conditions, particularly in relation to ethical AI use. `,
   },
 
   {
@@ -41,18 +41,6 @@ export const faqArray = [
     answer:
       "Yes, Our Chrome extension has undergone rigorous review by Google Chrome. Each update is subject to a strict inspection process, lasting anywhere from hours to several days.",
   },
-
-  // {
-  //   question: "Does the extension access my Upwork profile?",
-  //   answer:
-  //     "No, the extension does not read your profile. Hence, why you need to manually enter your details when you sign up",
-  // },
-
-  // {
-  //   question: "Can I disable features I don't want?",
-  //   answer: `Yes. Click on 'Change settings' option, search through the list of all available features and toggle
-  //   your unwanted feature(s) OFF to disable it.`,
-  // },
 
   {
     question: "Can I request features I will like?",
