@@ -6,7 +6,8 @@ export default function ToolsSection() {
     <section className="tools-section-cont">
       <header>
         <h2>
-          Top 6 reasons people make more sales with twitter outreach extension
+          Top 5 Reasons Users Get More Responses and Make More Sales with
+          Twitter (X) Prospecting Tool
         </h2>
       </header>
 

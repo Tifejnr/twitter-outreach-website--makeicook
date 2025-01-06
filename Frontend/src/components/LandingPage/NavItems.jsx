@@ -8,7 +8,7 @@ export default function NavItemsLandingPage() {
   // const setIsMenuIconShowing = useStore((state) => state.setIsMenuIconShowing);
 
   const faqSection = "#faq__text-container";
-  // const pricingSection = ".pricing-section";
+  const pricingSection = ".pricing-section";
   const toolsSection = ".tools-section-cont";
   const testimonialsSection = ".testimonials-cont";
 
@@ -18,11 +18,11 @@ export default function NavItemsLandingPage() {
     // setIsMenuIconShowing(true);
   };
 
-  // const pricingClick = () => {
-  //   smoothScroll(pricingSection, 36);
-  //   closeMenuBar();
-  //   // setIsMenuIconShowing(true);
-  // };
+  const pricingClick = () => {
+    smoothScroll(pricingSection, 36);
+    closeMenuBar();
+    // setIsMenuIconShowing(true);
+  };
 
   const toolsClick = () => {
     smoothScroll(toolsSection, 60);
@@ -43,9 +43,9 @@ export default function NavItemsLandingPage() {
           <li className="nav-list" onClick={toolsClick}>
             <h3 id="tools">Benefits</h3>
           </li>
-          {/* <li className="nav-list" onClick={pricingClick}>
+          <li className="nav-list" onClick={pricingClick}>
             <h3 className="pricing">Pricing</h3>
-          </li> */}
+          </li>
           <li className="nav-list" onClick={faqClick}>
             <h3 className="faq">FAQ</h3>
           </li>

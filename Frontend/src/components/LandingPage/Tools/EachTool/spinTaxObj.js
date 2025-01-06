@@ -1,6 +1,6 @@
 import { allToolsVideosObj } from "../../videos/allToolsVideos";
 const heading =
-  "It includes the three most important features needed by every successful salesperson: Leads scraping, Mass messaging (DMing), and CRM (Customer Relationship Management).";
+  "Sent messages are spin-taxed with AI without losing core message structure to bypass spam detection by Twitter";
 const overview = `
 Do you prioritise greeting client with their name in your cover letter ?
 
@@ -8,10 +8,10 @@ WFR Toolkit helps with automatic retrieval of client names, saving you valuable 
 `;
 const classicWayVideoUrl = allToolsVideosObj.automaticClientNameRetrievalDemo;
 
-const includesThreeMostImportantSalesPartObj = {
+const spinTaxObj = {
   heading,
   overview,
   classicWayVideoUrl,
 };
 
-export default includesThreeMostImportantSalesPartObj;
+export default spinTaxObj;

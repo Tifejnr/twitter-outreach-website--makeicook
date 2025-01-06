@@ -1,4 +1,4 @@
-const originalWebsiteOrigin = "https://workforreputation.com";
+const originalWebsiteOrigin = "https://makeicook.com";
 
 const wfrToolkitExtensionOrigin =
   "chrome-extension://chpmkkhcpfhjdkkeiggiicfejnkhcidb";

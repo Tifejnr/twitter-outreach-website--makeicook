@@ -2,13 +2,13 @@ const heroSecondHeadingtext = `Twitter (X) Prospecting tool - Mass DM, Leads scr
 
 const belowFaqFirstHeadingText =
   "Want to make more sales from Twitter outreach ?";
-const heroFirstHeadingText = "Make more sales from twitter outreach";
+const heroFirstHeadingText = "Make more sales from twitter (X) outreach";
 
 const cookieName = "wfr-auth";
 const forgotPassCookieName = "wfr-forgot-pass-tk";
 const userIdCookieName = "wfr-user-id";
 
-const callToActionTextUnder = "Only available as a chrome extension";
+const callToActionTextUnder = "";
 
 const aboutUsPageCTA = "Best Twitter Dm extension for mass messaging";
 

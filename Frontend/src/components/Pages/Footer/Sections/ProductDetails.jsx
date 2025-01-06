@@ -10,6 +10,9 @@ export default function ProductDetails() {
           <a href={pagesLinkObj.toolsLink} target="_blank" rel="noreferrer">
             <p>Benefits</p>
           </a>
+          <a href={pagesLinkObj.pricingLink} target="_blank" rel="noreferrer">
+            <p>Pricing</p>
+          </a>
 
           <a href={pagesLinkObj.faqLink} target="_blank" rel="noreferrer">
             <p>FAQ</p>

@@ -16,6 +16,19 @@ export default function Hero() {
           <section className="call-to-action-cont">
             <GetStartedIcon />
           </section>
+
+          <iframe
+            width="100%"
+            height="315"
+            src={
+              "https://www.youtube.com/embed/sYKheJ2jIL4?si=fG7bPA1yHxOBpTbh"
+            }
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            loading="lazy"
+          ></iframe>
         </div>
       </section>
     </>
