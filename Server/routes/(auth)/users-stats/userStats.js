@@ -24,17 +24,13 @@ userStatsRouter.post("/", async (req, res) => {
 
     if (!accountUser) return { invalidToken: true };
 
-    accountUser.noOfTimesUsedAllTime++;
-
-    if (accountUser.credits !== 0) {
-      accountUser.credits--;
-    }
+    //add to total no of messages from account today
+    accountUser.noOfMessagesSentToday++;
 
     console.log(
-      "aaccountUser.noOfTimesUsedAllTime",
-      accountUser.noOfTimesUsedAllTime,
-      accountUser.email,
-      accountUser.credits
+      "aaccountUser.noOfMessagesSentToday",
+      accountUser.noOfMessagesSentToday,
+      accountUser.email
     );
 
     //check if  user has used it today to update daily stats
