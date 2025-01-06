@@ -52,7 +52,7 @@ userStatsRouter.post("/", async (req, res) => {
 
     accountUser.lastFiveUsedDates = newUsageDatesArray;
     accountUser.hasItBeenUsedToday = true;
-    accountUser.noOfTimesUsedDailyOnly++;
+    accountUser.noOfMessagesSentToday++;
 
     await accountUser.save();
     return res.json({ processingDone: true });

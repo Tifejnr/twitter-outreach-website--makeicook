@@ -7,6 +7,7 @@ export default async function resetStatsBy12AmDaily() {
       {}, // No filter, apply to all users
       {
         $set: { hasItBeenUsedToday: false }, // Reset to false
+        $set: { noOfMessagesSentToday: 0 }, // Reset to false
         $inc: { totalNoOfPossibleUsageIfUsedDailyOnly: 1 }, // Increment by 1
       }
     );
