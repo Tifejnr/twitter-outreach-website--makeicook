@@ -6,8 +6,8 @@ export default function ToolsSection() {
     <section className="tools-section-cont">
       <header>
         <h2>
-          Top 5 Reasons Users Get More Responses and Make More Sales with
-          Twitter (X) Prospecting Tool
+          Top 5 reasons users get more responses and make more sales with
+          Twitter (X) Prospecting tool
         </h2>
       </header>
 

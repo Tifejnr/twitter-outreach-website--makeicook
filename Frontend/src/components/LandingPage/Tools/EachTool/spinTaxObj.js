@@ -1,6 +1,6 @@
 import { allToolsVideosObj } from "../../videos/allToolsVideos";
 const heading =
-  "Sent messages are spin-taxed with AI without losing core message structure to bypass spam detection by Twitter";
+  "Sent messages are spin-taxed with AI to bypass spam detection by Twitter";
 const overview = `
 Do you prioritise greeting client with their name in your cover letter ?
 

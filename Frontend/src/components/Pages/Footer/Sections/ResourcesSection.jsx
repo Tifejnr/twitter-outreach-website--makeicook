@@ -8,12 +8,16 @@ export default function ResourcesSection() {
       <section>
         <h3>Resources</h3>
         <ul>
-          <a href={pagesLinkObj.blogPageLink}>
-            <p>Blog</p>
+          <a
+            href={pagesLinkObj.tutorialsPageLink}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <p>Tutorials</p>
           </a>
 
-          <a href={pagesLinkObj.tutorialsPageLink}>
-            <p>Tutorials</p>
+          <a href={pagesLinkObj.blogPageLink} target="_blank" rel="noreferrer">
+            <p>Blog</p>
           </a>
 
           {/* <li>< Link   htmlFor={reviewsPageLink}><p>Reviews</p></ Link  ></li>
