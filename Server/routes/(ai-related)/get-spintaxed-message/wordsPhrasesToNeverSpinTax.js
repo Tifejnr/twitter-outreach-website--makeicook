@@ -90,7 +90,6 @@ const wordsPhrasesToNeverSpinTax = [
   "This",
   "Twitter",
   "thing",
-  "more",
   "is",
   "your",
 ];
