@@ -86,7 +86,6 @@ handlePaymentsRouter.post("/payment", [nowVerifyAmount], async (req, res) => {
       store: storeId,
       variant: variantId,
     });
-    console.log("newCheckout", newCheckout);
 
     if (!newCheckout) {
       console.log("checkout not sucessfull");
@@ -94,6 +93,8 @@ handlePaymentsRouter.post("/payment", [nowVerifyAmount], async (req, res) => {
     }
 
     const checkoutUrl = newCheckout.data.attributes.url;
+
+    // console.log("newCheckout", newCheckout);
     return res.json({ paymentLink: checkoutUrl });
   } catch (error) {
     console.log("An error occurred in checkout:", error);

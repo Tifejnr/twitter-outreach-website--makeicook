@@ -18,7 +18,7 @@ export default async function getCheckoutLink(planPrice) {
     );
 
     if (response.unauthorizedToken) return response;
-    const checkoutUrl = response.data.checkoutUrl;
+    const checkoutUrl = response.data.paymentLink;
 
     if (checkoutUrl) return { checkoutUrl };
     // const data = await response.data;
