@@ -91,6 +91,7 @@ const wordsPhrasesToNeverSpinTax = [
   "Twitter",
   "thing",
   "more",
+  "is",
 ];
 
 export default wordsPhrasesToNeverSpinTax;
