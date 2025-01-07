@@ -52,7 +52,7 @@ handlePaymentsRouter.post("/payment", [nowVerifyAmount], async (req, res) => {
     const product = allPricingPlansObj.find(
       (eachPrice) => eachPrice.planPrice === planPrice
     );
-
+    console.log("product", product);
     if (!product) {
       console.log("product not found");
       return res.status(402).json({ notFound: true });
