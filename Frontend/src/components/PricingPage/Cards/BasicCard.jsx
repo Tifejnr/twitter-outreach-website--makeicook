@@ -3,6 +3,8 @@ import allIconsContainer from "../../auth/utils/icons/allIconsContainer";
 // import getCheckoutLink from "../checkoutUrl/fetchUrl";
 
 import PropTypes from "prop-types";
+import getCheckoutLink from "../checkoutUrl/getCheckoutLink";
+import { useNavigate } from "react-router-dom";
 
 export default function BasicCard(props) {
   const planNameRef = useRef(null);
@@ -10,24 +12,22 @@ export default function BasicCard(props) {
 
   const { planObjs } = props;
 
-  const { planName } = planObjs;
+  const { planName, planPrice } = planObjs;
+
+  const navigate = useNavigate();
 
   const planCheckout = async () => {
-    const planNameTarget = planNameRef.current;
+    const response = await getCheckoutLink(planPrice);
+    console.log(response);
 
-    if (!planNameTarget) return console.log("plan name ref not found");
-    const planName = planNameTarget.innerHTML;
-    // const response = await getCheckoutLink(planName);
-    // console.log(response);
+    if (response.unauthorizedToken) return navigate("/register");
 
-    // if (response.unauthorizedToken) return navigate("/register");
+    if (response.invalidJWT) return navigate("/sign-in");
 
-    // if (response.invalidJWT) return navigate("/sign-in");
-
-    // const checkoutUrl = response.checkoutUrl;
+    const checkoutUrl = response.checkoutUrl;
 
     // Redirect the user to the specified link
-    // if (checkoutUrl) window.location.href = checkoutUrl;
+    if (checkoutUrl) window.location.href = checkoutUrl;
   };
 
   return (
@@ -211,7 +211,17 @@ export default function BasicCard(props) {
           </div>
         )}
 
-        {planName != "Free" && <button className="getPlanBtn">Get Plan</button>}
+        {planName != "Free" && (
+          <button
+            className="getPlanBtn"
+            onClick={async (e) => {
+              e.preventDefault();
+              await planCheckout();
+            }}
+          >
+            Get Plan
+          </button>
+        )}
       </div>
     </div>
   );
@@ -223,6 +233,5 @@ BasicCard.propTypes = {
     planPrice: PropTypes.number,
     suitabilityTimeUsage: PropTypes.string,
     planDailyMessageLimit: PropTypes.number,
-    perCreditInfo: PropTypes.string,
   }),
 };

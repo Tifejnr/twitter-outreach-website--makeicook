@@ -11,7 +11,6 @@ const variantIdBusinessTest = "654471";
 
 const businessPlanObj = {
   planName: "Business",
-  perCreditInfo: 0.2,
   planDailyMessageLimit: 500,
   planPrice: 20,
   suitabilityTimeUsage: "for selling products or services",
@@ -23,7 +22,6 @@ const variantIdLargeScaleTest = "654499";
 
 const largeScalePlanObj = {
   planName: "Large Scale",
-  perCreditInfo: 0.16,
   planDailyMessageLimit: 3000,
   planPrice: 80,
   suitabilityTimeUsage: "for selling products or services on a large scale",
@@ -32,6 +30,6 @@ const largeScalePlanObj = {
     : variantIdLargeScale,
 };
 
-const allPricingPlansObj = [largeScalePlanObj, businessPlanObj, freePlanObj];
+const allPricingPlansObj = [freePlanObj, businessPlanObj, largeScalePlanObj];
 
 export default allPricingPlansObj;

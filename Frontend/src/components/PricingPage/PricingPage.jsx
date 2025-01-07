@@ -16,6 +16,9 @@ export default function PricingPage() {
     }
   }, []);
 
+  if (allPricingPlansObjArray.length == 0)
+    return <h2>Loading pricing plans</h2>;
+
   return (
     <>
       <section className="pricing-section">

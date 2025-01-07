@@ -10,7 +10,7 @@ export default async function getAllPlansFromServer() {
       return { errorMessage: data.invalidLoginDetails };
     if (data.joiError) return { errorMessage: data.joiError };
 
-    if (data.allPricingPlansObj) return { data };
+    if (data.allPricingPlansObj) return data;
 
     return [];
   } catch (error) {

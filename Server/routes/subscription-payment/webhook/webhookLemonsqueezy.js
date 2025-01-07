@@ -58,7 +58,7 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
     const { event_name, custom_data } = meta;
     const { user_id, creditsAwarded, variantId, coachCode } = custom_data;
 
-    if (event_name === orderCreatedEvent) {
+    if (event_name === subscription_created) {
       // Destructure data to get payment details
       const { attributes } = data;
       const {
@@ -68,6 +68,7 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
         user_email,
         order_number,
         total_formatted,
+        subscription_created,
       } = attributes;
 
       if (status_formatted !== "Paid") return res.sendStatus(204); // Ignore unpaid orders
@@ -110,7 +111,8 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
       const reference = customTransRefGenLemonsqueezy(coachCode, order_number);
 
       //send payment received receipts
-      const subject = "Payment Received - Work for Reputation - WFR Toolkit!";
+      const subject =
+        "Payment Received - Twitter (X) prospecting tool  - Make I Cook";
       const folderDir = `${emailTemplateFolderSrc}/receipt/to-customer`;
 
       const customerParams = {
