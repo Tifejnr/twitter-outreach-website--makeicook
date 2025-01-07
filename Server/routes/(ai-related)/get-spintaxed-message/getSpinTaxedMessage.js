@@ -69,6 +69,8 @@ your must only return the synonym for the word or the word only.
 Your response must be one word.
 
   `;
+
+          console.log("synonymsArray", synonymsArray);
           const response = await getStraightAiResponse(
             promptToSpinTaxTest,
             word,
