@@ -91,7 +91,7 @@ const paystackWebhookCallbackUrl =
 
 app.use("/api/lemon-webhooks", webhookLemonsqueezyRouter);
 const lemonSqueezyWebhookCallbackUrl =
-  "https://workforreputation.com/api/lemon-webhooks";
+  "https://makeicook.com/api/lemon-webhooks";
 
 const limiter = exppressLimiter.limit;
 
