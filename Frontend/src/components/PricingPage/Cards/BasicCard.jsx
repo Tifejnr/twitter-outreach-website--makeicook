@@ -201,7 +201,7 @@ export default function BasicCard(props) {
                 />
                 <p>
                   Send up to <b>{props.planObjs.planCreditsAmount}</b> messages
-                  per day
+                  per <b>day</b>
                 </p>
               </li>
             </ul>

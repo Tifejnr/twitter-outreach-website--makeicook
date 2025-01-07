@@ -8,6 +8,12 @@ const faqArray = [
 
   {
     question:
+      "Will using this extension lead to my Twitter account being banned?",
+    answer: `No. We've received no reports of users experiencing account ban on Twitter as a result of using our extension. It is designed to align with Twitter's terms and conditions, particularly in relation to ethical AI use. `,
+  },
+
+  {
+    question:
       "Do I need to connect my Twitter (X) account before I can use the extension like in Drippi?",
     answer:
       "No, you only need to ensure the Twitter (X) account to be used for sending Dms is logged in on your browser before running the extension",
@@ -28,12 +34,6 @@ const faqArray = [
     question: "Do you have a Refund Policy?",
     answer:
       "No, we don't have a refund policy. You can test the tool for free before deciding to subscribe",
-  },
-
-  {
-    question:
-      "Will using this extension lead to my Twitter account being banned?",
-    answer: `No. We've received no reports of users experiencing account ban on Twitter as a result of using our extension. It is designed to align with Twitter's terms and conditions, particularly in relation to ethical AI use. `,
   },
 
   {
