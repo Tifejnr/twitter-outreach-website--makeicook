@@ -80,7 +80,7 @@ Your response must be one word.
           return response.trim();
         } catch (error) {
           console.error(`Error fetching synonym for "${word}":`, error);
-          return null; // Return null or handle missing synonyms
+          return word; // Return null or handle missing synonyms
         }
       })
     );
