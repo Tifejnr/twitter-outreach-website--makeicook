@@ -6,6 +6,7 @@ import convertCommaSeperatedStringToArray from "./utils/convertCommaSeperatedStr
 import combineArrayOfStringsToOneArray from "./utils/combineArrayOfStringsToOneArray.js";
 import wordsPhrasesToNeverSpinTax from "./wordsPhrasesToNeverSpinTax.js";
 import pickWordsToSpinTaxRandomly from "./utils/pickWordsToSpinTaxRandomly.js";
+import matchWordsAndSynonymsArrayToObjArray from "./utils/matchWordsAndSynonymsArrayToObjArray.js";
 
 const getSpinTaxedMessageRouter = express.Router();
 
@@ -124,7 +125,7 @@ You must not prefix your output with any text.
 
     console.log("synonymsArrayy", synonymsArray);
 
-    const objWordsAndSynonymArray = matchArraysToObjects(
+    const objWordsAndSynonymArray = matchWordsAndSynonymsArrayToObjArray(
       wordsToFindSynonmy,
       synonymsArray
     );
