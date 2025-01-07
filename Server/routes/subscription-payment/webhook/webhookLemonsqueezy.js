@@ -54,9 +54,11 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
     }
 
     // Signature is valid, proceed with processing the event
+
+    console.log("req.body", req.body);
     const { data, meta } = req.body;
     const { event_name, custom_data } = meta;
-    const { user_id, creditsAwarded, variantId, coachCode } = custom_data;
+    const { user_id, variantId, coachCode } = custom_data;
 
     if (event_name === subscription_created) {
       // Destructure data to get payment details

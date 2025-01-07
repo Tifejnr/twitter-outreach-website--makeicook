@@ -26,8 +26,8 @@ export default function BasicCard(props) {
 
     const checkoutUrl = response.checkoutUrl;
 
-    // Redirect the user to the specified link
-    if (checkoutUrl) window.location.href = checkoutUrl;
+    // Redirect the user to the specified link in a new tab
+    if (checkoutUrl) window.open(checkoutUrl, "_blank");
   };
 
   return (

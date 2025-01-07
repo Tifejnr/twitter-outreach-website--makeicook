@@ -18,7 +18,7 @@ const corsOptions = {
 
 // Use bodyParser.text() middleware for LemonSqueezy routes
 import webhookLemonsqueezyRouter from "./routes/subscription-payment/webhook/webhookLemonsqueezy.js";
-app.use("/api/lemon-webhooks", webhookLemonsqueezyRouter);
+app.use("/api/lemon-webhooks-test", webhookLemonsqueezyRouter);
 
 app.use(cors(corsOptions));
 app.use(express.json());

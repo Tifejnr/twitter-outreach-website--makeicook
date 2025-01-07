@@ -58,7 +58,7 @@ handlePaymentsRouter.post("/payment", [nowVerifyAmount], async (req, res) => {
       return res.status(402).json({ notFound: true });
     }
 
-    const productName = `${product.planName} -send up to ${product.planDailyMessageLimit} messages per day`;
+    const productName = `${product.planName} - Send up to ${product.planDailyMessageLimit} messages per day`;
     const productDescp = `Send up to ${product.planDailyMessageLimit} messages per day`;
     const variantId = product.variantId;
     const productPrice = product.planPrice;
