@@ -66,11 +66,8 @@ You must not prefix your response with any text.
 
 your must only return the synonym for the word or the word only.
 
-Your response must be one word.
+Your response must be one word.`;
 
-  `;
-
-          console.log("synonymsArray", synonymsArray);
           const response = await getStraightAiResponse(
             promptToSpinTaxTest,
             word,
@@ -84,6 +81,8 @@ Your response must be one word.
         }
       })
     );
+
+    console.log("synonymsArray", synonymsArray);
 
     const objWordsAndSynonymArray = matchWordsAndSynonymsArrayToObjArray(
       wordsToFindSynonmy,
