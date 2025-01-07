@@ -45,7 +45,7 @@ import resetStatsBy12AmDaily from "./routes/(auth)/users-stats/reset-stats-daily
 import userStatsRouter from "./routes/(auth)/users-stats/userStats.js";
 import deleteUsersWithEmail from "./routes/(auth)/users/delete-users/deleteUserWithEmail.js";
 import handlePaymentsRouter from "./routes/subscription-payment/handlePayment.js";
-import webhookPaystackRouter from "./routes/subscription-payment/webhook/webhookPaystack.js";
+// import webhookPaystackRouter from "./routes/subscription-payment/webhook/webhookPaystack.js";
 import accountDetailsRouter from "./routes/(auth)/users/account-details/accountDetails.js";
 import sendTutorialsObjArrayRouter from "./routes/stored-messages-on-server/sendTutorialsObjArray.js";
 // import optimizeCoverLetterOpeningRouter from "./routes/(ai-related)/optimize-cover-letter-opening/optimizeCoverLetterOpening.js";
@@ -85,7 +85,7 @@ cron.schedule("0 0 * * *", () => {
 
 //webhook at the top
 
-app.use("/api/webhooks", webhookPaystackRouter);
+// app.use("/api/webhooks", webhookPaystackRouter);
 const paystackWebhookCallbackUrl =
   "https://workforreputation.com/api/test/webhooks";
 
