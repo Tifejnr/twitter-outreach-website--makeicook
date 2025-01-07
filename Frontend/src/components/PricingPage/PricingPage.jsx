@@ -1,8 +1,21 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import BasicCard from "./Cards/BasicCard";
-import { allPricingPlansObjArray } from "./allPlansInfo";
+import getAllPlansFromServer from "./getAllPlansFromServer";
 
 export default function PricingPage() {
+  const [allPricingPlansObjArray, setAllPricingPlansObjArray] = useState([]);
+
+  useEffect(() => {
+    runRightNow();
+    async function runRightNow() {
+      const response = await getAllPlansFromServer();
+
+      const { allPricingPlansObj } = response;
+
+      setAllPricingPlansObjArray(allPricingPlansObj ? allPricingPlansObj : []);
+    }
+  }, []);
+
   return (
     <>
       <section className="pricing-section">

@@ -59,7 +59,8 @@ export default function BasicCard(props) {
                   height={100}
                 />
                 <p>
-                  Send up to <b>{props.planObjs.planCreditsAmount}</b> messages
+                  Send up to <b>{props.planObjs.planDailyMessageLimit}</b>{" "}
+                  messages
                   <span className="span-per-day-text"> per day</span>
                 </p>
               </li>
@@ -138,7 +139,8 @@ export default function BasicCard(props) {
                   height={100}
                 />
                 <p>
-                  Send up to <b>{props.planObjs.planCreditsAmount}</b> messages
+                  Send up to <b>{props.planObjs.planDailyMessageLimit}</b>{" "}
+                  messages
                   <span className="span-per-day-text"> per day</span>
                 </p>
               </li>
@@ -200,7 +202,8 @@ export default function BasicCard(props) {
                   height={100}
                 />
                 <p>
-                  Send up to <b>{props.planObjs.planCreditsAmount}</b> messages
+                  Send up to <b>{props.planObjs.planDailyMessageLimit}</b>{" "}
+                  messages
                   <span className="span-per-day-text"> per day</span>
                 </p>
               </li>
@@ -219,7 +222,7 @@ BasicCard.propTypes = {
     planName: PropTypes.string,
     planPrice: PropTypes.number,
     suitabilityTimeUsage: PropTypes.string,
-    planCreditsAmount: PropTypes.number,
+    planDailyMessageLimit: PropTypes.number,
     perCreditInfo: PropTypes.string,
   }),
 };

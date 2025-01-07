@@ -8,7 +8,7 @@ export default function GetStartedIcon() {
   return (
     <>
       <a
-        title="Get WFR Toolkit on chrome web store"
+        title="Get Twitter (X) prospecting extension on chrome web store"
         href={allLinks.extensionChromeStoreLink}
         rel="noreferrer"
         className="oauth-button real-oauth"

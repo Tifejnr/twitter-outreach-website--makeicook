@@ -1,4 +1,4 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import allLinks from "../../../auth/utils/links/allLinks";
 
 export default async function contactUsRequestToServer(contactUsParams) {
@@ -14,7 +14,7 @@ export default async function contactUsRequestToServer(contactUsParams) {
     if (data.emailSent) return { emailSent: true };
 
     return { somethingElseHappened: true };
-  } catch (error: any) {
+  } catch (error) {
     console.log(error.response);
     // const errorResponse: ErrorResponse = error.response?.data || {};
 

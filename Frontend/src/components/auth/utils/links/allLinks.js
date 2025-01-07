@@ -17,12 +17,14 @@ const forgotPasswordAPIRoute = `${websiteUrl}/api/forgot-password`;
 const resetPasswordAPIRoute = `${websiteUrl}/api/forgot-password/reset-password`;
 const contactUsAPIRoute = `${websiteUrl}/api/contact-us`;
 const tutorialsObjArrayFromServerRoute = `${websiteUrl}/api/get-tutorials`;
+const pricingPlansGettingServerRoute = `${websiteUrl}/api/pricing/getPrices`;
 const emailSentPage = "/email-sent";
 const extensionChromeStoreLink = `https://chromewebstore.google.com/detail/twitter-x-outreach-extens/dngpbgapdaebamnpbjikicbjchejbgle`;
 const youtubeAccountLink = "https://www.youtube.com/@MakeICooktool";
 const twitterAccountLink = "https://x.com/makeICook";
 
 const allLinks = {
+  pricingPlansGettingServerRoute,
   tutorialsObjArrayFromServerRoute,
   twitterAccountLink,
   youtubeAccountLink,
