@@ -92,6 +92,7 @@ const wordsPhrasesToNeverSpinTax = [
   "thing",
   "more",
   "is",
+  "your",
 ];
 
 export default wordsPhrasesToNeverSpinTax;
