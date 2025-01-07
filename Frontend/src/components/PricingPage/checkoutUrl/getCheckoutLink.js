@@ -1,6 +1,6 @@
 import axios from "axios";
-import getCookies from "../../utilis/cookiesSetting/getCookies";
 import allLinks from "../../auth/utils/links/allLinks";
+import getCookies from "../../component-utils/cookiesSetting/getCookies";
 
 export default async function getCheckoutLink(planPrice) {
   const token = getCookies();
