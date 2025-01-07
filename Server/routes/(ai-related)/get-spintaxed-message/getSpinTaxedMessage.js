@@ -10,50 +10,6 @@ import matchWordsAndSynonymsArrayToObjArray from "./utils/matchWordsAndSynonymsA
 
 const getSpinTaxedMessageRouter = express.Router();
 
-function removeSpunText(input, originalText) {
-  const phraseToRemove = "Here:";
-  const cleanedString = input.split(phraseToRemove).join(""); // Removes all occurrences of the phrase
-
-  // Confirm the phrase "spun text" is no longer present
-  if (cleanedString.includes("spun text")) {
-    const spunTextPrefix2 = "Here:";
-
-    const spinTaxedMessageSpunTextRemoved = input.replace(spunTextPrefix2, "");
-
-    if (spinTaxedMessageSpunTextRemoved.includes("spun text")) {
-      console.error(
-        "Removal failed: 'spun text' is still present in the string.",
-        input
-      );
-      return originalText; // Return null to indicate failure
-    }
-
-    return spinTaxedMessageSpunTextRemoved;
-  }
-
-  return cleanedString; // Return the cleaned string
-}
-
-function getRandomTemperature() {
-  const min = 0.6;
-  const max = 0.8;
-
-  return Math.random() * (max - min) + min;
-}
-
-function formatPhrases(input) {
-  // Split the input string by commas and trim each phrase
-  const phrases = input.split(",").map((phrase) => phrase.trim());
-
-  // Map each phrase into the desired format
-  const formattedLines = phrases.map(
-    (phrase) => `You must not replace "${phrase}" `
-  );
-
-  // Join the lines with newlines
-  return formattedLines.join("\n");
-}
-
 getSpinTaxedMessageRouter.post("/", async (req, res) => {
   const bodyRequest = await req.body;
 
