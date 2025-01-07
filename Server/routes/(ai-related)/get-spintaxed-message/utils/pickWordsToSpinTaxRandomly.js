@@ -2,8 +2,13 @@ import convertArrayOfStringToCommSepertedString from "./convertArrayOfStringToCo
 
 export default function pickWordsToSpinTaxRandomly(
   sentence,
-  excludedWordsArray
+  excludedWordsArray,
+  phrasesToExcludeByForceArray
 ) {
+  for (let phrasesToExcludeByForce of phrasesToExcludeByForceArray) {
+    sentence = sentence.replace(phrasesToExcludeByForce, "");
+  }
+
   const allExcludedArrayInLowerCase = excludedWordsArray.map((eachWord) => {
     return eachWord.trim().toLowerCase();
   });

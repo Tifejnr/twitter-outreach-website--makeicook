@@ -44,7 +44,8 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
 
     const randomWordsPicked = pickWordsToSpinTaxRandomly(
       messageToSpinTax,
-      excludedWordsArray
+      excludedWordsArray,
+      phrasesToExcludeArray
     );
 
     const wordsToFindSynonmy = randomWordsPicked;
@@ -78,8 +79,6 @@ You must not prefix your output with any text.
         }
       })
     );
-
-    console.log("synonymsArrayy", synonymsArray);
 
     const objWordsAndSynonymArray = matchWordsAndSynonymsArrayToObjArray(
       wordsToFindSynonmy,
