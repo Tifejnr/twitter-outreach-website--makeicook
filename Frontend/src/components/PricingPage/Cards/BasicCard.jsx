@@ -60,7 +60,7 @@ export default function BasicCard(props) {
                 />
                 <p>
                   Send up to <b>{props.planObjs.planCreditsAmount}</b> messages
-                  per day
+                  <span className="span-per-day-text"> per day</span>
                 </p>
               </li>
 
@@ -139,7 +139,7 @@ export default function BasicCard(props) {
                 />
                 <p>
                   Send up to <b>{props.planObjs.planCreditsAmount}</b> messages
-                  per day
+                  <span className="span-per-day-text"> per day</span>
                 </p>
               </li>
 
@@ -201,7 +201,7 @@ export default function BasicCard(props) {
                 />
                 <p>
                   Send up to <b>{props.planObjs.planCreditsAmount}</b> messages
-                  per <b>day</b>
+                  <span className="span-per-day-text"> per day</span>
                 </p>
               </li>
             </ul>

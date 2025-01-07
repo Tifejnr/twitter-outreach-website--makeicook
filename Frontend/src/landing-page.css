@@ -2087,3 +2087,7 @@ h2.title {
   left: 50%;
   height: 10rem;
 }
+
+.span-per-day-text {
+  font-weight: 600;
+}
