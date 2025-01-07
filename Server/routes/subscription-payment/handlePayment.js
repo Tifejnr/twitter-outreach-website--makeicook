@@ -48,11 +48,11 @@ handlePaymentsRouter.post("/payment", [nowVerifyAmount], async (req, res) => {
 
   try {
     //getting product details first
-    //is it dollar payment.
+
     const product = allPricingPlansObj.find(
       (eachPrice) => eachPrice.planPrice === planPrice
     );
-    console.log("product", product);
+
     if (!product) {
       console.log("product not found");
       return res.status(402).json({ notFound: true });
@@ -86,6 +86,7 @@ handlePaymentsRouter.post("/payment", [nowVerifyAmount], async (req, res) => {
       store: storeId,
       variant: variantId,
     });
+    console.log("newCheckout", newCheckout);
 
     if (!newCheckout) {
       console.log("checkout not sucessfull");
