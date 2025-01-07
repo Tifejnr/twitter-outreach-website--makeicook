@@ -122,17 +122,14 @@ signUpRouter.post("/", async (req, res) => {
   if (error) return res.json({ emailError: error.details[0].message });
 
   const entryCode = bodyRequest.entryCode;
-  if (!(entryCode == entry_code || entryCode == TIFE_ENTRY_CODE))
-    return res.json({ invalidCode: "Invalid Entry Code" });
 
   let accountUser = await user.findOne({ email: bodyRequest.email });
 
   if (accountUser)
     return res.json({ alreadyRegistered: "User already registered" });
 
-  accountUser = new user(
-    _.pick(bodyRequest, ["name", "email", "password", "entryCode"])
-  );
+  accountUser = new user(_.pick(bodyRequest, ["name", "email", "password"]));
+  accountUser.entryCode = entryCode ? entryCode : "tifownauto";
 
   const salt = await bcrypt.genSalt(11);
   accountUser.password = await bcrypt.hash(accountUser.password, salt);
