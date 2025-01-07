@@ -61,9 +61,12 @@ If the word does not have an exact synonym that won't change the message, you mu
 
 Your response should be the synonym for the word or the word only.
 
+
+You must not prefix your response with any text.
+
 your must only return the synonym for the word or the word only.
 
-You must not prefix your output with any text.
+Your response must be one word.
 
   `;
           const response = await getStraightAiResponse(
