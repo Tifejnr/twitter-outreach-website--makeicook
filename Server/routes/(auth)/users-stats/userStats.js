@@ -26,6 +26,7 @@ userStatsRouter.post("/", async (req, res) => {
 
     //add to total no of messages from account today
     accountUser.noOfMessagesSentToday++;
+    accountUser.allTimeNoOfMessagesSent++;
 
     console.log(
       "aaccountUser.noOfMessagesSentToday",
@@ -52,7 +53,6 @@ userStatsRouter.post("/", async (req, res) => {
 
     accountUser.lastFiveUsedDates = newUsageDatesArray;
     accountUser.hasItBeenUsedToday = true;
-    accountUser.noOfMessagesSentToday++;
 
     await accountUser.save();
     return res.json({ processingDone: true });

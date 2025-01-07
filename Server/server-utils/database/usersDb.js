@@ -146,6 +146,12 @@ const userSchema = new mongoose.Schema({
     default: 0,
   },
 
+  allTimeNoOfMessagesSent: {
+    type: Number,
+    min: 0,
+    default: 0,
+  },
+
   noOfTimesUsedDailyOnly: {
     type: Number,
     min: 0,
