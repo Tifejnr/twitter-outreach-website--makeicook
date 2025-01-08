@@ -66,9 +66,10 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
     console.log("event_name", event_name);
 
     if (
-      event_name.trim() == subscriptionCreatedEvent.trim() ||
-      event_name.trim() == subscriptionPaymentSuccessEvent.trim() ||
-      event_name.trim() == subscriptionUpdatedEvent.trim()
+      event_name.trim() == subscriptionCreatedEvent.trim()
+      // ||
+      // event_name.trim() == subscriptionPaymentSuccessEvent.trim() ||
+      // event_name.trim() == subscriptionUpdatedEvent.trim()
     ) {
       // Destructure data to get payment details
       const { attributes } = data;
