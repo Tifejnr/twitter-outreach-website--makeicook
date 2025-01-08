@@ -80,7 +80,7 @@ Your response should be the synonym for the word or the word only.
 
 You must not prefix your response with any text.
 
-your must only return the synonym for the word or the word only.
+Only return the synonym for the word or the word.
 
 Your response must be one word.
 
