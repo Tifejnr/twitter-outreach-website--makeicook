@@ -299,7 +299,7 @@ export default function SignUpPage() {
             </button>
 
             <p className="registering-terms-text">
-              By Registering, I agree to Work for Reputation&apos;s
+              By Registering, I agree to Make I Cook&apos;s
               <span> </span>
               <Link
                 href={allLinks.termsOfServiceLink}

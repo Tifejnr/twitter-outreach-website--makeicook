@@ -9,15 +9,16 @@ import FAQ from "./FAQ/FAQ";
 import PricingPage from "../PricingPage/PricingPage";
 import ToolsSection from "./Tools/Tools";
 import FooterPages from "../Pages/Footer/FooterPages";
-import pagesLinkObj from "../component-utils/pageLinks/pagesLinkObj";
+// import pagesLinkObj from "../component-utils/pageLinks/pagesLinkObj";
+import allLinks from "../auth/utils/links/allLinks";
 
 export default function LandingPage() {
   return (
     <>
       <nav className="nav">
         <LandingPageToggle
-          innerText="Free start"
-          pageLink={pagesLinkObj.registerPageLink}
+          innerText="Install tool"
+          pageLink={allLinks.extensionChromeStoreLink}
         />
 
         <ul className="nav__menu landing-page-nav-menu">

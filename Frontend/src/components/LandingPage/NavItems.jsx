@@ -57,11 +57,13 @@ export default function NavItemsLandingPage() {
 
       <li>
         <ul className="inner-nav-item-container">
-          <a href={allLinks.loginPagePath}>
-            <h3 id="loginLandingPage">Log In</h3>
-          </a>
-          <a href={allLinks.signUpPage} className="sign-up-cont">
-            <h4 className="sign-up">Start for free</h4>
+          <a
+            href={allLinks.extensionChromeStoreLink}
+            className="sign-up-cont"
+            rel="noreferrer"
+            target="_blank"
+          >
+            <h4 className="sign-up">Install tool</h4>
           </a>
         </ul>
       </li>

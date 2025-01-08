@@ -27,7 +27,7 @@ export default function LandingPageToggle(props) {
           ""
         ) : (
           <article className="myProfileIcon">
-            <a href={props.pageLink}>
+            <a href={props.pageLink} rel="noreferrer" target="_blank">
               <button id="start-for-free-mobile-lp">
                 <p>{props.innerText}</p>
               </button>

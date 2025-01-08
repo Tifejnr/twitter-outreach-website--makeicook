@@ -2,7 +2,7 @@ import allIconsContainer from "../../auth/utils/icons/allIconsContainer";
 import allLinks from "../../auth/utils/links/allLinks";
 import compConstValues from "../../component-utils/comp-constant-values/compConstValues";
 
-const buttonLabel = "Get  extension";
+const buttonLabel = "Install  extension";
 
 export default function GetStartedIcon() {
   return (
