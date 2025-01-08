@@ -84,6 +84,9 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
       const renewalDate = formatCustomDate(renews_at);
       const reference = customTransRefGenLemonsqueezy(coachCode, `${order_id}`);
 
+      console.log("first console renewalDate", renewalDate, renews_at);
+      console.log("first console order_id", order_id, reference);
+
       if (status_formatted != "Paid") return res.sendStatus(204); // Ignore unpaid orders
 
       // Get product details based on variant_id
