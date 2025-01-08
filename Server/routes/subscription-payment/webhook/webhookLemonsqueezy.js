@@ -14,7 +14,9 @@ import allPricingPlansObj from "../all-plan-obj/allPlanObj.js";
 const keysObjects = getSecretKeys();
 const secret = keysObjects.webHookSecretLemon;
 
-const orderCreatedEvent = "order_created";
+const subscriptionPaymentSuccessEvent = "subscription_payment_success";
+const subscriptionCreatedEvent = "subscription_created";
+const subscriptionUpdatedEvent = "subscription_updated";
 
 const webhookLemonsqueezyRouter = express.Router();
 
@@ -55,12 +57,15 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
 
     // Signature is valid, proceed with processing the event
 
-    console.log("req.body", req.body);
     const { data, meta } = req.body;
     const { event_name, custom_data } = meta;
     const { user_id, variantId, coachCode } = custom_data;
 
-    if (event_name === subscription_created) {
+    if (
+      event_name.trim() == subscriptionCreatedEvent.trim() ||
+      event_name.trim() == subscriptionPaymentSuccessEvent.trim() ||
+      event_name.trim() == subscriptionUpdatedEvent.trim()
+    ) {
       // Destructure data to get payment details
       const { attributes } = data;
       const {
@@ -68,9 +73,9 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
         created_at,
         user_name,
         user_email,
-        order_number,
-        total_formatted,
-        subscription_created,
+        order_id,
+        subtotal_formatted,
+        renews_at,
       } = attributes;
 
       if (status_formatted !== "Paid") return res.sendStatus(204); // Ignore unpaid orders
@@ -89,28 +94,17 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
       const accountUser = await user.findById(user_id);
       if (!accountUser) return res.status(400).json({ invalid_User: true });
 
+      const paidFor = `${product.planName} plan`;
+
       //set  user status to paid
       accountUser.isPaid = true;
-
-      //add the payed for credit to current users credits
-      let currentUserCredits = accountUser.credits;
-
-      if (!isFinite(currentUserCredits)) {
-        currentUserCredits = 0;
-      }
-
-      const totalAccountCredits =
-        Number(currentUserCredits) + Number(creditsAwarded);
-
-      console.log("totalAccountCredits", totalAccountCredits);
-
-      accountUser.credits = totalAccountCredits;
+      accountUser.paidFor = paidFor;
 
       //save user details
       await accountUser.save();
 
       const paymentDate = formatCustomDate(created_at);
-      const reference = customTransRefGenLemonsqueezy(coachCode, order_number);
+      const reference = customTransRefGenLemonsqueezy(coachCode, order_id);
 
       //send payment received receipts
       const subject =
@@ -130,8 +124,8 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
         paymentChannel: channel,
         paymentDate,
         transReference: reference,
-        paid_For: `${creditsAwarded} credits`,
-        amount_Paid: total_formatted,
+        paid_For: paidFor,
+        amount_Paid: subtotal_formatted,
       };
 
       const result = await sendEmail(customerParams, emailContextParamsNow);
