@@ -57,7 +57,7 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
 
     // Signature is valid, proceed with processing the event
 
-    console.log("req.body", req.body);
+    // console.log("req.body", req.body);
 
     const { data, meta } = req.body;
     const { event_name, custom_data } = meta;
@@ -79,6 +79,9 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
         subtotal_formatted,
         renews_at,
       } = attributes;
+
+      console.log("renews_at", renews_at);
+      console.log(" created_at", created_at);
 
       if (status_formatted != "Paid") return res.sendStatus(204); // Ignore unpaid orders
 
