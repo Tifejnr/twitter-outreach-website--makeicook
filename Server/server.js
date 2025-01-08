@@ -18,7 +18,7 @@ const corsOptions = {
 
 // Use bodyParser.text() middleware for LemonSqueezy routes
 import webhookLemonsqueezyRouter from "./routes/subscription-payment/webhook/webhookLemonsqueezy.js";
-app.use("/api/lemon-webhooks-test", webhookLemonsqueezyRouter);
+app.use("/api/lemon-webhooks", webhookLemonsqueezyRouter);
 
 app.use(cors(corsOptions));
 app.use(express.json());
@@ -89,9 +89,9 @@ cron.schedule("0 0 * * *", () => {
 const paystackWebhookCallbackUrl =
   "https://workforreputation.com/api/test/webhooks";
 
-app.use("/api/lemon-webhooks", webhookLemonsqueezyRouter);
+// app.use("/api/lemon-webhooks", webhookLemonsqueezyRouter);
 const lemonSqueezyWebhookCallbackUrl =
-  "https://makeicook.com/api/lemon-webhooks-test";
+  "https://makeicook.com/api/lemon-webhooks";
 
 const limiter = exppressLimiter.limit;
 
