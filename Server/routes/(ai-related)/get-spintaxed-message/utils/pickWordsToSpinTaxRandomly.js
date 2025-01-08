@@ -26,8 +26,6 @@ export default function pickWordsToSpinTaxRandomly(
   // Calculate 30% of the filtered words, rounded up, but not more than 5
   const numToPick = Math.min(Math.ceil(filteredWords.length * 0.4), 7);
 
-  console.log("filteredWords", filteredWords);
-
   // If there are fewer words than numToPick, return them all
   if (filteredWords.length <= numToPick) {
     return filteredWords;
@@ -42,6 +40,8 @@ export default function pickWordsToSpinTaxRandomly(
       pickedWords.push(word);
     }
   }
+
+  console.log("pickedWords", pickedWords);
 
   return pickedWords;
 }

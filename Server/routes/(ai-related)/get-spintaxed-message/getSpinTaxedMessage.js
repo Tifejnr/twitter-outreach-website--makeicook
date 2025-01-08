@@ -8,6 +8,7 @@ import wordsPhrasesToNeverSpinTax from "./wordsPhrasesToNeverSpinTax.js";
 import pickWordsToSpinTaxRandomly from "./utils/pickWordsToSpinTaxRandomly.js";
 import matchWordsAndSynonymsArrayToObjArray from "./utils/matchWordsAndSynonymsArrayToObjArray.js";
 import getRandomtemperature from "./utils/getRandomtemperature.js";
+import getRandomCopywriterName from "./utils/getRandomCopywriterName.js";
 
 const getSpinTaxedMessageRouter = express.Router();
 
@@ -50,11 +51,14 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
     );
 
     const wordsToFindSynonmy = randomWordsPicked;
+    const copywriterName = getRandomCopywriterName();
 
     const synonymsArray = await Promise.all(
       wordsToFindSynonmy.map(async (word) => {
         try {
           const promptToSpinTaxTest = `Putting how "${word}" was used in this message : " ${messageToSpinTax} "
+
+Acting like you are ${copywriterName}
 
 Return its synonym that won't change the message.
 
