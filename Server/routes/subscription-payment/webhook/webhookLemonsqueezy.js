@@ -18,6 +18,9 @@ const subscriptionPaymentSuccessEvent = "subscription_payment_success";
 const subscriptionCreatedEvent = "subscription_created";
 const subscriptionUpdatedEvent = "subscription_updated";
 
+let renewalDate = "",
+  reference = "";
+
 const webhookLemonsqueezyRouter = express.Router();
 
 // Custom middleware to capture the raw request body before parsing it
@@ -80,9 +83,9 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
         renews_at,
       } = attributes;
 
-      let paymentDate = formatCustomDate(created_at);
-      let renewalDate = formatCustomDate(renews_at);
-      let reference = customTransRefGenLemonsqueezy(coachCode, `${order_id}`);
+      const paymentDate = formatCustomDate(created_at);
+      renewalDate = formatCustomDate(renews_at);
+      reference = customTransRefGenLemonsqueezy(coachCode, `${order_id}`);
 
       console.log("first console renewalDate", renewalDate, renews_at);
       console.log("first console order_id", order_id, reference);
@@ -93,6 +96,7 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
       const product = allPricingPlansObj.find(
         (planObj) => `${planObj.variantId}` == variantId
       );
+
       if (!product) {
         console.log("Product not found");
         return res.status(402).json({ notFound: true });
