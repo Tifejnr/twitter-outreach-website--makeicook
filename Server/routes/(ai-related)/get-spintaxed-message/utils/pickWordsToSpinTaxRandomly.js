@@ -24,7 +24,7 @@ export default function pickWordsToSpinTaxRandomly(
     (word) => !excludedWordsArrayToString.includes(word.trim().toLowerCase())
   );
   // Calculate 30% of the filtered words, rounded up, but not more than 5
-  const numToPick = Math.min(Math.ceil(filteredWords.length * 0.3), 5);
+  const numToPick = Math.min(Math.ceil(filteredWords.length * 0.4), 7);
 
   console.log("filteredWords", filteredWords);
 

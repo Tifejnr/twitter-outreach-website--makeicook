@@ -83,10 +83,11 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
         renews_at,
       } = attributes;
 
-      if (status_formatted != "Paid") {
-        console.log("status_formatted doesn't equal to paid mf");
-        return res.sendStatus(204); // Ignore unpaid orders
-      }
+      // if (status_formatted != "Paid") {
+      //   console.log("status_formatted doesn't equal to paid mf");
+
+      //   return res.sendStatus(204); // Ignore unpaid orders
+      // }
 
       // Get product details based on variant_id
       const product = allPricingPlansObj.find(
