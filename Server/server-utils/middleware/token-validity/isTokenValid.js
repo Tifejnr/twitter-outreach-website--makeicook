@@ -1,14 +1,14 @@
 import jwt from "jsonwebtoken";
 import user from "../../database/usersDb.js";
 import getSecretKeys from "../../../envVariables/envVariables.js";
+import getAccountDailyMessagesLimit from "../../../routes/(auth)/users-stats/utils/getAccountDailyMessagesLImit.js";
 
 export default async function isTokenValid(bodyRequest) {
   //get request sent
   const keysObject = getSecretKeys();
   const JWT_PRIVATE_KEY = keysObject.JWT_PRIVATE_KEY;
 
-  const { fromExtension, isJssHomePage, prompt, jobId, currentUrl } =
-    bodyRequest;
+  const { fromExtension, prompt } = bodyRequest;
 
   let token;
 
@@ -30,7 +30,15 @@ export default async function isTokenValid(bodyRequest) {
 
     const accountUser = await user.findById(decodedPayload._id);
 
-    const { credits } = accountUser;
+    const dailyLimit = getAccountDailyMessagesLimit(accountUser);
+
+    const isLimitReached = accountUser.noOfMessagesSentToday >= dailyLimit;
+
+    const messagesSentTrackingObj = {
+      isLimitReached,
+      noOfMessagesSentToday: accountUser.noOfMessagesSentToday,
+      dailyLimit,
+    };
 
     //if request is to get client name from wfr extension
     if (prompt) {
@@ -53,7 +61,7 @@ export default async function isTokenValid(bodyRequest) {
       // return { decodedPayload, credits };
     }
 
-    return { decodedPayload, credits };
+    return { decodedPayload, messagesSentTrackingObj };
   } catch (ex) {
     return { invalidToken: true };
   }

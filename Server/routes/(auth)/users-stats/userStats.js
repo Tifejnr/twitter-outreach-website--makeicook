@@ -2,6 +2,7 @@ import express from "express";
 import isTokenValid from "../../../server-utils/middleware/token-validity/isTokenValid.js";
 import user from "../../../server-utils/database/usersDb.js";
 import updateDatesUsageArray from "./utils/updateDatesUsageArray.js";
+import getAccountDailyMessagesLimit from "./utils/getAccountDailyMessagesLImit.js";
 
 const userStatsRouter = express.Router();
 
@@ -28,6 +29,16 @@ userStatsRouter.post("/", async (req, res) => {
     accountUser.noOfMessagesSentToday++;
     accountUser.allTimeNoOfMessagesSent++;
 
+    const dailyLimit = getAccountDailyMessagesLimit(accountUser);
+
+    const isLimitReached = accountUser.noOfMessagesSentToday >= dailyLimit;
+
+    const messagesSentTrackingObj = {
+      isLimitReached,
+      noOfMessagesSentToday: accountUser.noOfMessagesSentToday,
+      dailyLimit,
+    };
+
     console.log(
       "aaccountUser.noOfMessagesSentToday",
       accountUser.noOfMessagesSentToday,
@@ -39,7 +50,7 @@ userStatsRouter.post("/", async (req, res) => {
 
     if (hasItBeenUsedToday) {
       await accountUser.save();
-      return res.json({ processingDone: true });
+      return res.json({ processingDone: true, messagesSentTrackingObj });
     }
 
     //if user hasn't used that day, proceed to processing
@@ -55,7 +66,7 @@ userStatsRouter.post("/", async (req, res) => {
     accountUser.hasItBeenUsedToday = true;
 
     await accountUser.save();
-    return res.json({ processingDone: true });
+    return res.json({ processingDone: true, messagesSentTrackingObj });
   }
 });
 

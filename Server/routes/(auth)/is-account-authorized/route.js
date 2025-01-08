@@ -12,20 +12,16 @@ isAccountAuthorizedRouter.post("/", async (req, res) => {
   if (resultOfTokenValidation.nullJWTToken)
     return res.json({ nullJWTToken: true });
 
-  if (resultOfTokenValidation.decodedPayload)
-    return res.json({ authorziedAccount: true });
+  const { messagesSentTrackingObj } = resultOfTokenValidation;
 
   if (resultOfTokenValidation.decodedPayload)
-    return res.json({ isAuthorized: true });
+    return res.json({ authorziedAccount: true, messagesSentTrackingObj });
+
+  if (resultOfTokenValidation.decodedPayload)
+    return res.json({ isAuthorized: true, messagesSentTrackingObj });
 
   if (resultOfTokenValidation.invalidToken)
     return res.json({ invalidToken: true });
-
-  if (resultOfTokenValidation.authorizedOnJSSHomePage)
-    return res.json({ authorizedOnJSSHomePage: true });
-
-  if (resultOfTokenValidation.notAuthorizedOnJSSHomePage)
-    return res.json({ notAuthorizedOnJSSHomePage: true });
 
   // cookies().set("xAuth", token, {
   //   maxAge: 1209600000,

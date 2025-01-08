@@ -1,6 +1,7 @@
 import express from "express";
 import isTokenValid from "../../../../server-utils/middleware/token-validity/isTokenValid.js";
 import user from "../../../../server-utils/database/usersDb.js";
+import getAccountDailyMessagesLimit from "../../users-stats/utils/getAccountDailyMessagesLImit.js";
 
 const accountDetailsRouter = express.Router();
 
@@ -30,6 +31,16 @@ accountDetailsRouter.post("/", async (req, res) => {
     if (!accountUser) return { invalidToken: true };
     const { name, email, credits } = accountUser;
 
+    const dailyLimit = getAccountDailyMessagesLimit(accountUser);
+
+    const isLimitReached = accountUser.noOfMessagesSentToday >= dailyLimit;
+
+    const messagesSentTrackingObj = {
+      isLimitReached,
+      noOfMessagesSentToday: accountUser.noOfMessagesSentToday,
+      dailyLimit,
+    };
+
     const detailsToSendToClient = {
       name,
       email,
@@ -38,6 +49,7 @@ accountDetailsRouter.post("/", async (req, res) => {
 
     return res.json({
       accountDetails: detailsToSendToClient,
+      messagesSentTrackingObj,
     });
   } catch (error) {
     console.log("error,", error);
