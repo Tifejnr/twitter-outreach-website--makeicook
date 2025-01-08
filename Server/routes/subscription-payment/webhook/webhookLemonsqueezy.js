@@ -88,9 +88,12 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
       reference = customTransRefGenLemonsqueezy(coachCode, `${order_id}`);
 
       console.log("first console renewalDate", renewalDate, renews_at);
-      console.log("first console order_id", order_id, reference);
+      console.log("attributes", attributes);
 
-      if (status_formatted != "Paid") return res.sendStatus(204); // Ignore unpaid orders
+      if (status_formatted != "Paid") {
+        console.log("status_formatted doesn't equal to paid mf");
+        return res.sendStatus(204); // Ignore unpaid orders
+      }
 
       // Get product details based on variant_id
       const product = allPricingPlansObj.find(
@@ -115,7 +118,7 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
       //save user details
       await accountUser.save();
 
-      console.log("renewalDate", renewalDate, renews_at);
+      console.log("laer console renewalDate", renewalDate, renews_at);
       console.log(" order_id", order_id, reference);
 
       //send payment received receipts
