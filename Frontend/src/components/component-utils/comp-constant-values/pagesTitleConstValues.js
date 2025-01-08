@@ -1,4 +1,4 @@
-const mainName = "Work for Reputation";
+const mainName = "Twitter prospecting tool - Make I Cook";
 const signIn = `Sign In | ${mainName}`;
 const signUp = `Sign Up | ${mainName}`;
 const forgotPassword = `Forgot your Password | ${mainName}`;

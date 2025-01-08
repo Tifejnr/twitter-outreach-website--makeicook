@@ -80,9 +80,9 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
         renews_at,
       } = attributes;
 
-      const paymentDate = formatCustomDate(created_at);
-      const renewalDate = formatCustomDate(renews_at);
-      const reference = customTransRefGenLemonsqueezy(coachCode, `${order_id}`);
+      let paymentDate = formatCustomDate(created_at);
+      let renewalDate = formatCustomDate(renews_at);
+      let reference = customTransRefGenLemonsqueezy(coachCode, `${order_id}`);
 
       console.log("first console renewalDate", renewalDate, renews_at);
       console.log("first console order_id", order_id, reference);
@@ -93,7 +93,6 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
       const product = allPricingPlansObj.find(
         (planObj) => `${planObj.variantId}` == variantId
       );
-
       if (!product) {
         console.log("Product not found");
         return res.status(402).json({ notFound: true });
