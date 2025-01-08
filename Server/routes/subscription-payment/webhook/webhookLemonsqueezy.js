@@ -106,6 +106,7 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
       if (!accountUser) return res.status(400).json({ invalid_User: true });
 
       const paidFor = `${product.planName} plan`;
+      const amountPaidInUsd = `$${product.planPrice}.00`;
 
       //set  user status to paid
       accountUser.isPaid = true;
@@ -133,7 +134,7 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
         paymentDate,
         transReference: reference,
         paid_For: paidFor,
-        amount_Paid: subtotal_formatted,
+        amount_Paid: amountPaidInUsd,
         renewalDate,
       };
 
