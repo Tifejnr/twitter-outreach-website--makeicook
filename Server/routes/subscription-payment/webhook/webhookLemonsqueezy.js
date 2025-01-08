@@ -83,13 +83,6 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
         renews_at,
       } = attributes;
 
-      const paymentDate = formatCustomDate(created_at);
-      renewalDate = formatCustomDate(renews_at);
-      reference = customTransRefGenLemonsqueezy(coachCode, `${order_id}`);
-
-      console.log("first console renewalDate", renewalDate, renews_at);
-      console.log("attributes", attributes);
-
       if (status_formatted != "Paid") {
         console.log("status_formatted doesn't equal to paid mf");
         return res.sendStatus(204); // Ignore unpaid orders
@@ -118,43 +111,62 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
       //save user details
       await accountUser.save();
 
-      console.log("laer console renewalDate", renewalDate, renews_at);
-      console.log(" order_id", order_id, reference);
+      const x = true;
 
-      //send payment received receipts
-      const subject =
-        "Payment Received - Twitter (X) prospecting tool  - Make I Cook";
-      const folderDir = `${emailTemplateFolderSrc}/receipt/to-customer`;
+      if (x) {
+        // Destructure data to get payment details
+        const { attributes } = data;
+        const {
+          created_at,
+          user_name,
+          user_email,
+          order_id,
+          subtotal_formatted,
+          renews_at,
+        } = attributes;
 
-      const customerParams = {
-        subject: subject,
-        folderDir: folderDir,
-        customerEmail: user_email,
-      };
+        const paymentDate = formatCustomDate(created_at);
+        renewalDate = formatCustomDate(renews_at);
+        reference = customTransRefGenLemonsqueezy(coachCode, `${order_id}`);
 
-      const channel = "Card";
+        console.log("first console renewalDate", renewalDate, renews_at);
+        console.log("attributes", attributes);
 
-      const emailContextParamsNow = {
-        name: user_name,
-        paymentChannel: channel,
-        paymentDate,
-        transReference: reference,
-        paid_For: paidFor,
-        amount_Paid: subtotal_formatted,
-        renewalDate,
-      };
+        //send payment received receipts
+        const subject =
+          "Payment Received - Twitter (X) prospecting tool  - Make I Cook";
+        const folderDir = `${emailTemplateFolderSrc}/receipt/to-customer`;
 
-      const result = await sendEmail(customerParams, emailContextParamsNow);
+        const customerParams = {
+          subject: subject,
+          folderDir: folderDir,
+          customerEmail: user_email,
+        };
 
-      if (result) {
-        console.log("Payment succesfulyy processed");
-        res.sendStatus(200);
+        const channel = "Card";
 
-        return;
+        const emailContextParamsNow = {
+          name: user_name,
+          paymentChannel: channel,
+          paymentDate,
+          transReference: reference,
+          paid_For: paidFor,
+          amount_Paid: subtotal_formatted,
+          renewalDate,
+        };
+
+        const result = await sendEmail(customerParams, emailContextParamsNow);
+
+        if (result) {
+          console.log("Payment succesfulyy processed");
+          res.sendStatus(200);
+
+          return;
+        }
+
+        // Respond with a 200 status to acknowledge receipt of the webhook
+        return res.sendStatus(200);
       }
-
-      // Respond with a 200 status to acknowledge receipt of the webhook
-      return res.sendStatus(200);
     } else {
       // For other events, respond with a 204 status to indicate that the event is not handled by this endpoint
       return res.sendStatus(204);
