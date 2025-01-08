@@ -103,7 +103,17 @@ handlePaymentsRouter.post("/payment", [nowVerifyAmount], async (req, res) => {
 });
 
 handlePaymentsRouter.post("/getPrices", async (req, res) => {
-  console.log("someone clicked on pricing page within extension oo");
+  console.log("someone clicked on pricing page on the website");
+  try {
+    res.status(200).json({ allPricingPlansObj });
+  } catch (error) {
+    console.log(error);
+    res.json({ error: error.message });
+  }
+});
+
+handlePaymentsRouter.post("/getPrices-extension", async (req, res) => {
+  console.log("someone clicked on pricing page inside extension");
   try {
     res.status(200).json({ allPricingPlansObj });
   } catch (error) {

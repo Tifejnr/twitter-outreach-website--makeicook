@@ -9,6 +9,7 @@ import pickWordsToSpinTaxRandomly from "./utils/pickWordsToSpinTaxRandomly.js";
 import matchWordsAndSynonymsArrayToObjArray from "./utils/matchWordsAndSynonymsArrayToObjArray.js";
 import getRandomtemperature from "./utils/getRandomtemperature.js";
 import getRandomCopywriterName from "./utils/getRandomCopywriterName.js";
+import getCorrectWordCasing from "./utils/getCorrectWordCasing.js";
 
 const getSpinTaxedMessageRouter = express.Router();
 
@@ -42,6 +43,16 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
       phrasesToExcludeArray
     );
 
+    const isLuckyNo0Point9Picked = getRandomtemperature();
+
+    if (isLuckyNo0Point9Picked == 0.9) {
+      //return final shit still
+      res.json({
+        spinTaxedMessage: messageToSpinTax,
+      });
+      return;
+    }
+
     // console.log("excludedWordsArray", excludedWordsArray);
 
     const randomWordsPicked = pickWordsToSpinTaxRandomly(
@@ -71,15 +82,21 @@ You must not prefix your response with any text.
 
 your must only return the synonym for the word or the word only.
 
-Your response must be one word.`;
+Your response must be one word.
+
+Your response must be one word.
+
+`;
 
           const response = await getStraightAiResponse(
             promptToSpinTaxTest,
             word,
             getRandomtemperature(),
-            500
+            1500
           );
-          return response.trim();
+
+          const correctCasing = getCorrectWordCasing(word, response.trim());
+          return correctCasing;
         } catch (error) {
           console.error(`Error fetching synonym for "${word}":`, error);
           return word; // Return null or handle missing synonyms
