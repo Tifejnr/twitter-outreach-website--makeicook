@@ -63,6 +63,8 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
     const { event_name, custom_data } = meta;
     const { user_id, variantId, coachCode } = custom_data;
 
+    console.log("event_name", event_name);
+
     if (
       event_name.trim() == subscriptionCreatedEvent.trim() ||
       event_name.trim() == subscriptionPaymentSuccessEvent.trim() ||

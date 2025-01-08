@@ -7,6 +7,7 @@ import combineArrayOfStringsToOneArray from "./utils/combineArrayOfStringsToOneA
 import wordsPhrasesToNeverSpinTax from "./wordsPhrasesToNeverSpinTax.js";
 import pickWordsToSpinTaxRandomly from "./utils/pickWordsToSpinTaxRandomly.js";
 import matchWordsAndSynonymsArrayToObjArray from "./utils/matchWordsAndSynonymsArrayToObjArray.js";
+import getRandomtemperature from "./utils/getRandomtemperature.js";
 
 const getSpinTaxedMessageRouter = express.Router();
 
@@ -71,7 +72,7 @@ Your response must be one word.`;
           const response = await getStraightAiResponse(
             promptToSpinTaxTest,
             word,
-            0.1,
+            getRandomtemperature(),
             500
           );
           return response.trim();
