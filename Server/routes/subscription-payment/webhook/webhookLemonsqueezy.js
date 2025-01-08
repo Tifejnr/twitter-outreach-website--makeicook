@@ -74,7 +74,7 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
       // Destructure data to get payment details
       const { attributes } = data;
 
-      console.log("data", data);
+      // console.log("data", data);
       const {
         // status_formatted,
         created_at,
