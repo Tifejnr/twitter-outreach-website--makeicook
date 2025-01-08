@@ -80,6 +80,10 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
         renews_at,
       } = attributes;
 
+      const paymentDate = formatCustomDate(created_at);
+      const renewalDate = formatCustomDate(renews_at);
+      const reference = customTransRefGenLemonsqueezy(coachCode, `${order_id}`);
+
       if (status_formatted != "Paid") return res.sendStatus(204); // Ignore unpaid orders
 
       // Get product details based on variant_id
@@ -104,10 +108,6 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
 
       //save user details
       await accountUser.save();
-
-      const paymentDate = formatCustomDate(created_at);
-      const renewalDate = formatCustomDate(renews_at);
-      const reference = customTransRefGenLemonsqueezy(coachCode, `${order_id}`);
 
       console.log("renewalDate", renewalDate, renews_at);
       console.log(" order_id", order_id, reference);
