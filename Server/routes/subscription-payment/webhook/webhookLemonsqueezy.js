@@ -104,6 +104,7 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
       await accountUser.save();
 
       const paymentDate = formatCustomDate(created_at);
+      const renewalDate = formatCustomDate(renews_at);
       const reference = customTransRefGenLemonsqueezy(coachCode, order_id);
 
       //send payment received receipts
@@ -126,6 +127,7 @@ webhookLemonsqueezyRouter.post("/", async (req, res) => {
         transReference: reference,
         paid_For: paidFor,
         amount_Paid: subtotal_formatted,
+        renewalDate,
       };
 
       const result = await sendEmail(customerParams, emailContextParamsNow);

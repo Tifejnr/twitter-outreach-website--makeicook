@@ -2,11 +2,11 @@
 
   <head>
     <style>
-      #body { background: rgba(209, 255, 189, 0.3); --green: #14a800;
+      #body { background: rgba(209, 255, 189, 0.3); --green: #e41827;;
       padding-bottom: 5rem; } table, td, th { border-bottom: 1px solid #f2f2f2;
       border-collapse: collapse; padding: 0.4rem; color: #17252a; } table {
       margin: auto auto; padding: 2rem 0; height: 60%; width: 56%; border-top:
-      3px solid #14a800; background-color: #fff; } tbody { background-color:
+      3px solid #e41827;; background-color: #fff; } tbody { background-color:
       #fff; } .removeBorder { border: none; padding: 1rem 0; font-size: 1rem; }
       .paymentDetails { padding-top: 2rem; font-weight: 500; border-bottom:
       none; border-top: 1px solid #f2f2f2; } .amountBold { font-weight: 700;
@@ -14,7 +14,7 @@
       .paymentDetailsTable td { border: 5px solid transparent; background:
       rgba(209, 255, 189, 0.3); } tfoot th { font-weight: 500; } tfoot {
       padding-top: 1rem; margin-bottom: 5rem; } header { text-align: center;
-      color: #14a800; padding-top: 2.5rem; } header h2 { font-size: 1rem;
+      color: #e41827;; padding-top: 2.5rem; } header h2 { font-size: 1rem;
       font-weight: 700; margin: 0; }
     </style>
   </head>
@@ -25,7 +25,7 @@
       <tr class="logo-container">
         <td align="center">
           <img
-            src="https://i.ibb.co/6Yg7Qrc/new-wfr-email-logo.jpg"
+            src="https://i.ibb.co/0mK6rzj/micnow-logo.jpg"
             alt="wfr toolkit logo"
           />
         </td>
@@ -34,14 +34,15 @@
       <thead>
         <tr>
           <th colspan="2" class="removeBorder" class="removeBorder">
-            Receipt From Work For Reputation
+            Receipt From Twitter (X) Prospecting tool -Make I Cool
           </th>
         </tr>
       </thead>
       <thead>
         <tr>
           <th colspan="2" class="removeBorder">
-            Your payment has been received by Work For Reputataion
+            Your subscription payment has been received by Twitter (X)
+            Prospecting tool
           </th>
         </tr>
       </thead>
@@ -77,12 +78,21 @@
               style="text-align: right; font-weight: 600"
             >{{paymentChannel}}</td>
           </tr>
+
+          <tr>
+            <td>Renewal</td>
+            <td style="text-align: right; font-weight: 600">
+              {{renewalDate}}
+            </td>
+          </tr>
+
           <tr>
             <td>Reference</td>
             <td style="text-align: right; font-weight: 600">
               {{transReference}}
             </td>
           </tr>
+
         </tbody>
       </table>
 
