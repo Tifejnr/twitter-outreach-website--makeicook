@@ -35,7 +35,10 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
   const { decodedPayload } = resultOfTokenValidation;
   const accountUser = await user.findById(decodedPayload._id);
 
-  console.log("Got here man");
+  console.log(
+    "Got here man",
+    accountUser.temporarillyStoredMessageSpinTaxParams
+  );
 
   let lastPickedObjWordsAndSynonymArray,
     lastPickedTemperatureForMessageSpinTax,
