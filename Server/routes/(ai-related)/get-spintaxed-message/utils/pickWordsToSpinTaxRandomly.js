@@ -47,7 +47,6 @@ export default function pickWordsToSpinTaxRandomly(
 
   if (dontBeStrict) {
     // Randomly select the required number of words
-    lastPickedWordsArray;
     const pickedWords = [];
     while (pickedWords.length < numToPick) {
       const randomIndex = Math.floor(Math.random() * filteredWords.length);
