@@ -1,7 +1,8 @@
 import convertArrayOfStringToCommSepertedString from "./convertArrayOfStringToCommSepertedString.js";
 
 function shouldPickingBeStrict() {
-  return Math.random() < 0.5;
+  const randomValue = Math.round(Math.random()); // Randomly picks 0 or 1
+  return randomValue === 1;
 }
 
 export default function pickWordsToSpinTaxRandomly(
@@ -44,6 +45,8 @@ export default function pickWordsToSpinTaxRandomly(
   }
 
   const dontBeStrict = shouldPickingBeStrict();
+
+  console.log("dontBeStrict", dontBeStrict);
 
   if (dontBeStrict) {
     // Randomly select the required number of words
