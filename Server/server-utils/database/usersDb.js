@@ -10,6 +10,37 @@ const processingDetailOnlyArraySchema = new mongoose.Schema({
     // required: true,
   },
 });
+
+const pickedWordAndSynonymsGivenArraySchema = new mongoose.Schema({
+  word: {
+    type: String,
+    // required: true,
+  },
+  synonym: {
+    type: String,
+    // required: true,
+  },
+});
+
+const TemporarilyStoredMessagingParamsSchema = new mongoose.Schema({
+  lastPickedObjWordsAndSynonymArray: {
+    type: [pickedWordAndSynonymsGivenArraySchema],
+    // required: true,
+  },
+
+  lastPickedTemperatureForMessageSpinTax: {
+    type: Number,
+    // required: true,
+  },
+  lastPickedGreatWriterName: {
+    type: String,
+    // required: true,
+  },
+  // lastPickedWriterName: {
+  //   type: String,
+  //   // required: true,
+  // },
+});
 const aiChattingConfigArraySchema = new mongoose.Schema({
   title: {
     type: String,
@@ -100,6 +131,11 @@ const userSchema = new mongoose.Schema({
     minlength: 2,
     maxlength: 1250,
     default: "NA",
+  },
+
+  temporarillyStoredMessageSpinTaxParams: {
+    type: TemporarilyStoredMessagingParamsSchema,
+    default: null,
   },
 
   replyTemplateArray: {

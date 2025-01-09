@@ -10,6 +10,7 @@ import matchWordsAndSynonymsArrayToObjArray from "./utils/matchWordsAndSynonymsA
 import getRandomtemperature from "./utils/getRandomtemperature.js";
 import getRandomCopywriterName from "./utils/getRandomCopywriterName.js";
 import getCorrectWordCasing from "./utils/getCorrectWordCasing.js";
+import user from "../../../server-utils/database/usersDb.js";
 
 const getSpinTaxedMessageRouter = express.Router();
 
@@ -29,6 +30,28 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
     return res.json({
       clientNameResponse: "Hadhri",
     });
+  }
+
+  const { decodedPayload } = resultOfTokenValidation;
+  const accountUser = await user.findById(decodedPayload._id);
+
+  let lastPickedObjWordsAndSynonymArray,
+    lastPickedTemperatureForMessageSpinTax,
+    lastPickedGreatWriterName;
+
+  const { temporarillyStoredMessageSpinTaxParams } = accountUser;
+
+  if (temporarillyStoredMessageSpinTaxParams) {
+    lastPickedObjWordsAndSynonymArray =
+      temporarillyStoredMessageSpinTaxParams.lastPickedObjWordsAndSynonymArray;
+    lastPickedTemperatureForMessageSpinTax =
+      temporarillyStoredMessageSpinTaxParams.lastPickedTemperatureForMessageSpinTax;
+    lastPickedGreatWriterName =
+      temporarillyStoredMessageSpinTaxParams.lastPickedGreatWriterName;
+  } else {
+    lastPickedObjWordsAndSynonymArray = [{ word: "", synonym: "" }];
+    lastPickedTemperatureForMessageSpinTax = getRandomtemperature(0.2);
+    lastPickedGreatWriterName = getRandomCopywriterName("");
   }
 
   const { finalPhrasesToExcludeDuringSpintax, messageToSpinTax } = bodyRequest;
@@ -62,16 +85,31 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
     );
 
     const wordsToFindSynonmy = randomWordsPicked;
-    const copywriterName = getRandomCopywriterName();
+    const bestWriterName = getRandomCopywriterName(lastPickedGreatWriterName);
+    const spinTaxTemperature = getRandomtemperature(
+      lastPickedTemperatureForMessageSpinTax
+    );
 
     const synonymsArray = await Promise.all(
       wordsToFindSynonmy.map(async (word) => {
         try {
+          const wordWasUsedLastTime = lastPickedObjWordsAndSynonymArray.find(
+            (wordSynonymObj) => wordSynonymObj.word.trim() == word.trim()
+          );
+
+          let noteAboutEsuringADifferentSynonymIsOutputed = "";
+
+          if (wordWasUsedLastTime) {
+            noteAboutEsuringADifferentSynonymIsOutputed = `Note : " ${wordWasUsedLastTime.synonym} " cannot be a synonym in this context`;
+          }
+
           const promptToSpinTaxTest = `Putting how "${word}" was used in this message : " ${messageToSpinTax} "
 
-Acting like you are ${copywriterName}
+Acting like you are ${bestWriterName}
 
 Return its synonym that won't change the message.
+
+${noteAboutEsuringADifferentSynonymIsOutputed}
 
 If the word does not have an exact synonym that won't change the message, you must return the word itself.
 
@@ -91,7 +129,7 @@ Your response must be one word.
           const response = await getStraightAiResponse(
             promptToSpinTaxTest,
             word,
-            getRandomtemperature(),
+            spinTaxTemperature,
             1500
           );
 
@@ -117,6 +155,12 @@ Your response must be one word.
     );
 
     console.log("spinTaxedMessage", spinTaxedMessage);
+
+    accountUser.lastPickedGreatWriterName = bestWriterName;
+    accountUser.lastPickedTemperatureForMessageSpinTax = spinTaxTemperature;
+    accountUser.lastPickedObjWordsAndSynonymArray = objWordsAndSynonymArray;
+
+    await accountUser.save();
 
     //return final shit still
     return res.json({

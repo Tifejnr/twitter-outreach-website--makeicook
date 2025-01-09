@@ -1,27 +1,41 @@
-const greatCopywriters = [
-  "David Ogilvy",
-  "Dan Kennedy",
-  "Gary Halbert",
-  "Eugene Schwartz",
-  "John Carlton",
-  "Clayton Makepeace",
-  "Bob Bly",
-  "Joanna Wiebe",
-  "Ann Handley",
-  "Seth Godin",
-  "Brian Clark",
-  "Neil Patel",
-  "Joe Sugarman",
-  "Roy H. Williams",
-  "Jay Abraham",
-  "Drayton Bird",
-  "Frank Kern",
-  "Russell Brunson",
-  "Marie Forleo",
-  "Laura Belgray",
+const mostPopularWriters = [
+  "William Shakespeare",
+  "J.K. Rowling",
+  "Stephen King",
+  "Agatha Christie",
+  "Charles Dickens",
+  "Jane Austen",
+  "Mark Twain",
+  "George Orwell",
+  "Leo Tolstoy",
+  "J.R.R. Tolkien",
+  "Ernest Hemingway",
+  "Homer",
+  "Gabriel García Márquez",
+  "John Steinbeck",
+  "Victor Hugo",
+  "Fyodor Dostoevsky",
+  "Dr. Seuss",
+  "Virginia Woolf",
+  "C.S. Lewis",
+  "Dan Brown",
+  "Harper Lee",
+  "Suzanne Collins",
+  "Emily Brontë",
+  "J.D. Salinger",
+  "Herman Melville",
+  "Edgar Allan Poe",
+  "Dante Alighieri",
+  "Oscar Wilde",
+  "Arthur Conan Doyle",
+  "R.L. Stine",
 ];
 
-export default function getRandomCopywriterName() {
-  const randomIndex = Math.floor(Math.random() * greatCopywriters.length);
-  return greatCopywriters[randomIndex];
+export default function getRandomCopywriterName(lastPickedName) {
+  let randomName;
+  do {
+    const randomIndex = Math.floor(Math.random() * mostPopularWriters.length);
+    randomName = mostPopularWriters[randomIndex];
+  } while (randomName === lastPickedName); // Ensure it's not the same as the last picked name
+  return randomName;
 }
