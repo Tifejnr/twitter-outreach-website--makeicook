@@ -23,6 +23,13 @@ export default function pickWordsToSpinTaxRandomly(
   const filteredWords = words.filter(
     (word) => !excludedWordsArrayToString.includes(word.trim().toLowerCase())
   );
+
+  // If there are fewer than 4 filtered words, return them all
+  if (filteredWords.length < 4) {
+    console.log("pickedWords (all filtered words)", filteredWords);
+    return filteredWords;
+  }
+
   // Calculate 30% of the filtered words, rounded up, but not more than 5
   const numToPick = Math.min(Math.ceil(filteredWords.length * 0.4), 7);
 
