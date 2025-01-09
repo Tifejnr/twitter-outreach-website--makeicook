@@ -150,9 +150,14 @@ Your response must be one word.
 
     console.log("spinTaxedMessage", spinTaxedMessage);
 
-    accountUser.lastPickedGreatWriterName = bestWriterName;
-    accountUser.lastPickedTemperatureForMessageSpinTax = spinTaxTemperature;
-    accountUser.lastPickedObjWordsAndSynonymArray = objWordsAndSynonymArray;
+    const temporarillyStoredMessageSpinTaxParamsNow = {
+      lastPickedGreatWriterName: bestWriterName,
+      lastPickedTemperatureForMessageSpinTax: spinTaxTemperature,
+      lastPickedObjWordsAndSynonymArray: objWordsAndSynonymArray,
+    };
+
+    accountUser.temporarillyStoredMessageSpinTaxParams =
+      temporarillyStoredMessageSpinTaxParamsNow;
 
     await accountUser.save();
 
