@@ -17,6 +17,8 @@ const getSpinTaxedMessageRouter = express.Router();
 getSpinTaxedMessageRouter.post("/", async (req, res) => {
   const bodyRequest = await req.body;
 
+  console.log("Got here man");
+
   const resultOfTokenValidation = await isTokenValid(bodyRequest);
 
   if (resultOfTokenValidation.nullJWTToken)
