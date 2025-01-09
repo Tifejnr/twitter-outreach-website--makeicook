@@ -59,8 +59,6 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
       lastPickedTemperatureForMessageSpinTax
     );
 
-    console.log("isLuckyNo0Point9Picked", isLuckyNo0Point9Picked);
-
     if (isLuckyNo0Point9Picked == 0.9) {
       //return final shit still
       res.json({
@@ -82,15 +80,17 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
       lastPickedTemperatureForMessageSpinTax
     );
 
-    console.log("spinTaxTemperature", spinTaxTemperature);
-
     const synonymsArray = await Promise.all(
       wordsToFindSynonmy.map(async (word) => {
         try {
           const wordWasUsedLastTime = lastPickedObjWordsAndSynonymArray.find(
             (wordSynonymObj) => wordSynonymObj.word.trim() == word.trim()
           );
-          console.log("wordWasUsedLastTime", wordWasUsedLastTime);
+          console.log(
+            "wordWasUsedLastTime",
+            wordWasUsedLastTime,
+            lastPickedObjWordsAndSynonymArray
+          );
           let noteAboutEsuringADifferentSynonymIsOutputed = "";
 
           if (wordWasUsedLastTime) {
