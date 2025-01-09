@@ -86,11 +86,7 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
           const wordWasUsedLastTime = lastPickedObjWordsAndSynonymArray.find(
             (wordSynonymObj) => wordSynonymObj.word.trim() == word.trim()
           );
-          console.log(
-            "wordWasUsedLastTime",
-            wordWasUsedLastTime,
-            lastPickedObjWordsAndSynonymArray
-          );
+
           let noteAboutEsuringADifferentSynonymIsOutputed = "";
 
           if (wordWasUsedLastTime) {
