@@ -3,7 +3,8 @@ import convertArrayOfStringToCommSepertedString from "./convertArrayOfStringToCo
 export default function pickWordsToSpinTaxRandomly(
   sentence,
   excludedWordsArray,
-  phrasesToExcludeByForceArray
+  phrasesToExcludeByForceArray,
+  lastPickedWordsArray
 ) {
   for (let phrasesToExcludeByForce of phrasesToExcludeByForceArray) {
     sentence = sentence.replace(phrasesToExcludeByForce, "");
@@ -40,15 +41,32 @@ export default function pickWordsToSpinTaxRandomly(
 
   // Randomly select the required number of words
   const pickedWords = [];
-  while (pickedWords.length < numToPick) {
-    const randomIndex = Math.floor(Math.random() * filteredWords.length);
-    const word = filteredWords[randomIndex];
-    if (!pickedWords.includes(word)) {
+  const availableWords = filteredWords.filter(
+    (word) => !lastPickedWordsArray.includes(word)
+  ); // Words not in lastPickedWordsArray
+
+  // Pick from availableWords first
+  while (pickedWords.length < numToPick && availableWords.length > 0) {
+    const randomIndex = Math.floor(Math.random() * availableWords.length);
+    const word = availableWords[randomIndex];
+    pickedWords.push(word);
+    availableWords.splice(randomIndex, 1); // Remove picked word to avoid duplicates
+  }
+
+  // If more words are needed, pick from lastPickedWordsArray
+  const remainingWordsNeeded = numToPick - pickedWords.length;
+  if (remainingWordsNeeded > 0) {
+    const additionalWords = lastPickedWordsArray.filter(
+      (word) => !pickedWords.includes(word)
+    );
+    while (pickedWords.length < numToPick && additionalWords.length > 0) {
+      const randomIndex = Math.floor(Math.random() * additionalWords.length);
+      const word = additionalWords[randomIndex];
       pickedWords.push(word);
+      additionalWords.splice(randomIndex, 1); // Remove picked word to avoid duplicates
     }
   }
 
   console.log("pickedWords", pickedWords);
-
   return pickedWords;
 }
