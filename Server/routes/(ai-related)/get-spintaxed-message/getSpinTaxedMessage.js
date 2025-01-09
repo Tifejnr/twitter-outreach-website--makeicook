@@ -74,10 +74,11 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
     const wordsToFindSynonmy = randomWordsPicked;
     const bestWriterName = getRandomCopywriterName(lastPickedGreatWriterName);
 
-    console.log("bestWriterName", bestWriterName);
     const spinTaxTemperature = getRandomtemperature(
       lastPickedTemperatureForMessageSpinTax
     );
+
+    console.log("spinTaxTemperature", spinTaxTemperature);
 
     const synonymsArray = await Promise.all(
       wordsToFindSynonmy.map(async (word) => {
@@ -85,7 +86,7 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
           const wordWasUsedLastTime = lastPickedObjWordsAndSynonymArray.find(
             (wordSynonymObj) => wordSynonymObj.word.trim() == word.trim()
           );
-
+          console.log("wordWasUsedLastTime", wordWasUsedLastTime);
           let noteAboutEsuringADifferentSynonymIsOutputed = "";
 
           if (wordWasUsedLastTime) {

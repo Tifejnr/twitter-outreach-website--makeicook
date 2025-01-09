@@ -10,7 +10,6 @@ const mostPopularWriters = [
   "Leo Tolstoy",
   "J.R.R. Tolkien",
   "Ernest Hemingway",
-  "Homer",
   "Gabriel García Márquez",
   "John Steinbeck",
   "Victor Hugo",
