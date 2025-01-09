@@ -59,6 +59,8 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
       lastPickedTemperatureForMessageSpinTax
     );
 
+    console.log("isLuckyNo0Point9Picked", isLuckyNo0Point9Picked);
+
     if (isLuckyNo0Point9Picked == 0.9) {
       //return final shit still
       res.json({
