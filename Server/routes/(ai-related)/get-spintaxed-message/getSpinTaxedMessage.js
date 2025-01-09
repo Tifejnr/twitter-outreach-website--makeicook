@@ -11,6 +11,7 @@ import getRandomtemperature from "./utils/getRandomtemperature.js";
 import getRandomCopywriterName from "./utils/getRandomCopywriterName.js";
 import getCorrectWordCasing from "./utils/getCorrectWordCasing.js";
 import user from "../../../server-utils/database/usersDb.js";
+import processLastPickWordsSynLongerVersion from "./utils/processLastPickWordsSynLongerVersion.js";
 
 const getSpinTaxedMessageRouter = express.Router();
 
@@ -41,6 +42,7 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
     lastPickedObjWordsAndSynonymArray,
     lastPickedGreatWriterName,
     lastPickedTemperatureForMessageSpinTax,
+    lastPickedObjWordsAndSynonymArrayLongerVersion,
   } = temporarillyStoredMessageSpinTaxParams;
 
   const { finalPhrasesToExcludeDuringSpintax, messageToSpinTax } = bodyRequest;
@@ -87,12 +89,19 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
       lastPickedTemperatureForMessageSpinTax
     );
 
+    const lastPickedObjWordsAndSynonymArrayLOngerVersionNow =
+      processLastPickWordsSynLongerVersion(
+        lastPickedObjWordsAndSynonymArray,
+        lastPickedObjWordsAndSynonymArrayLongerVersion
+      );
+
     const synonymsArray = await Promise.all(
       wordsToFindSynonmy.map(async (word) => {
         try {
-          const wordWasUsedLastTime = lastPickedObjWordsAndSynonymArray.find(
-            (wordSynonymObj) => wordSynonymObj.word.trim() == word.trim()
-          );
+          const wordWasUsedLastTime =
+            lastPickedObjWordsAndSynonymArrayLOngerVersionNow.find(
+              (wordSynonymObj) => wordSynonymObj.word.trim() == word.trim()
+            );
 
           let noteAboutEsuringADifferentSynonymIsOutputed = "";
 
@@ -157,6 +166,8 @@ Your response must be one word.
       lastPickedGreatWriterName: bestWriterName,
       lastPickedTemperatureForMessageSpinTax: spinTaxTemperature,
       lastPickedObjWordsAndSynonymArray: objWordsAndSynonymArray,
+      lastPickedObjWordsAndSynonymArrayLongerVersion:
+        lastPickedObjWordsAndSynonymArrayLOngerVersionNow,
     };
 
     accountUser.temporarillyStoredMessageSpinTaxParams =

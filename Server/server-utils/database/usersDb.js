@@ -24,12 +24,17 @@ const pickedWordAndSynonymsGivenArraySchema = new mongoose.Schema({
 
 const defaultTemporarilyStoredMessagingParams = {
   lastPickedObjWordsAndSynonymArray: [{ word: "", synonym: "" }],
+  lastPickedObjWordsAndSynonymArrayLongerVersion: [{ word: "", synonym: "" }],
   lastPickedTemperatureForMessageSpinTax: 0.2,
   lastPickedGreatWriterName: "Brian Tracy",
 };
 
 const TemporarilyStoredMessagingParamsSchema = new mongoose.Schema({
   lastPickedObjWordsAndSynonymArray: {
+    type: [pickedWordAndSynonymsGivenArraySchema],
+    // required: true,
+  },
+  lastPickedObjWordsAndSynonymArrayLongerVersion: {
     type: [pickedWordAndSynonymsGivenArraySchema],
     // required: true,
   },

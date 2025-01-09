@@ -46,8 +46,6 @@ export default function pickWordsToSpinTaxRandomly(
 
   const dontBeStrict = shouldPickingBeStrict();
 
-  console.log("dontBeStrict", dontBeStrict);
-
   if (dontBeStrict) {
     // Randomly select the required number of words
     const pickedWords = [];
