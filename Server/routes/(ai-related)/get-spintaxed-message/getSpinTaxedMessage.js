@@ -65,8 +65,6 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
       return;
     }
 
-    // console.log("excludedWordsArray", excludedWordsArray);
-
     const randomWordsPicked = pickWordsToSpinTaxRandomly(
       messageToSpinTax,
       excludedWordsArray,
@@ -75,6 +73,8 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
 
     const wordsToFindSynonmy = randomWordsPicked;
     const bestWriterName = getRandomCopywriterName(lastPickedGreatWriterName);
+
+    console.log("bestWriterName", bestWriterName);
     const spinTaxTemperature = getRandomtemperature(
       lastPickedTemperatureForMessageSpinTax
     );
