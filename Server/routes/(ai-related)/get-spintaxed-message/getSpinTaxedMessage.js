@@ -17,8 +17,6 @@ const getSpinTaxedMessageRouter = express.Router();
 getSpinTaxedMessageRouter.post("/", async (req, res) => {
   const bodyRequest = await req.body;
 
-  console.log("Got here man");
-
   const resultOfTokenValidation = await isTokenValid(bodyRequest);
 
   if (resultOfTokenValidation.nullJWTToken)
@@ -36,6 +34,8 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
 
   const { decodedPayload } = resultOfTokenValidation;
   const accountUser = await user.findById(decodedPayload._id);
+
+  console.log("Got here man");
 
   let lastPickedObjWordsAndSynonymArray,
     lastPickedTemperatureForMessageSpinTax,
