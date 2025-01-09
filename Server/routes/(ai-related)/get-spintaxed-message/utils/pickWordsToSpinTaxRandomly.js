@@ -28,7 +28,7 @@ export default function pickWordsToSpinTaxRandomly(
   let numToPick;
 
   if (filteredWords.length < 4) {
-    numToPick = filteredWords.length;
+    numToPick = filteredWords.length - 1;
   } else {
     numToPick = Math.min(Math.ceil(filteredWords.length * 0.4), 7);
   }
