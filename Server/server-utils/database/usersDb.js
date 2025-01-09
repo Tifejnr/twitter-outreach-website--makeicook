@@ -22,6 +22,12 @@ const pickedWordAndSynonymsGivenArraySchema = new mongoose.Schema({
   },
 });
 
+const defaultTemporarilyStoredMessagingParams = {
+  lastPickedObjWordsAndSynonymArray: [{ word: "", synonym: "" }],
+  lastPickedTemperatureForMessageSpinTax: 0.2,
+  lastPickedGreatWriterName: "",
+};
+
 const TemporarilyStoredMessagingParamsSchema = new mongoose.Schema({
   lastPickedObjWordsAndSynonymArray: {
     type: [pickedWordAndSynonymsGivenArraySchema],
@@ -135,7 +141,7 @@ const userSchema = new mongoose.Schema({
 
   temporarillyStoredMessageSpinTaxParams: {
     type: TemporarilyStoredMessagingParamsSchema,
-    default: null,
+    default: defaultTemporarilyStoredMessagingParams,
   },
 
   replyTemplateArray: {

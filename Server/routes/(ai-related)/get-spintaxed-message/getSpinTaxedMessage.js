@@ -35,29 +35,15 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
   const { decodedPayload } = resultOfTokenValidation;
   const accountUser = await user.findById(decodedPayload._id);
 
-  console.log(
-    "Got here man",
-    accountUser.temporarillyStoredMessageSpinTaxParams
-  );
-
-  let lastPickedObjWordsAndSynonymArray,
-    lastPickedTemperatureForMessageSpinTax,
-    lastPickedGreatWriterName;
-
   const { temporarillyStoredMessageSpinTaxParams } = accountUser;
 
-  if (temporarillyStoredMessageSpinTaxParams) {
-    lastPickedObjWordsAndSynonymArray =
-      temporarillyStoredMessageSpinTaxParams.lastPickedObjWordsAndSynonymArray;
-    lastPickedTemperatureForMessageSpinTax =
-      temporarillyStoredMessageSpinTaxParams.lastPickedTemperatureForMessageSpinTax;
-    lastPickedGreatWriterName =
-      temporarillyStoredMessageSpinTaxParams.lastPickedGreatWriterName;
-  } else {
-    lastPickedObjWordsAndSynonymArray = [{ word: "", synonym: "" }];
-    lastPickedTemperatureForMessageSpinTax = getRandomtemperature(0.2);
-    lastPickedGreatWriterName = getRandomCopywriterName("");
-  }
+  console.log("Got here man", temporarillyStoredMessageSpinTaxParams);
+
+  const {
+    lastPickedObjWordsAndSynonymArray,
+    lastPickedGreatWriterName,
+    lastPickedTemperatureForMessageSpinTax,
+  } = temporarillyStoredMessageSpinTaxParams;
 
   const { finalPhrasesToExcludeDuringSpintax, messageToSpinTax } = bodyRequest;
 
