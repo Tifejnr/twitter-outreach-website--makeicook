@@ -29,6 +29,7 @@ const mostPopularWriters = [
   "Oscar Wilde",
   "Arthur Conan Doyle",
   "R.L. Stine",
+  "Brian Tracy",
 ];
 
 export default function getRandomCopywriterName(lastPickedName) {
