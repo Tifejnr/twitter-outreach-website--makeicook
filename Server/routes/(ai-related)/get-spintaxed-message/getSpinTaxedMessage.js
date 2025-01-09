@@ -37,8 +37,6 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
 
   const { temporarillyStoredMessageSpinTaxParams } = accountUser;
 
-  console.log("Got here man", temporarillyStoredMessageSpinTaxParams);
-
   const {
     lastPickedObjWordsAndSynonymArray,
     lastPickedGreatWriterName,
