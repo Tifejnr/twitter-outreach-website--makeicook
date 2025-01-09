@@ -1,4 +1,4 @@
-import combineArrayOfStringsToOneArray from "./combineArrayOfStringsToOneArray";
+import combineArrayOfStringsToOneArray from "./combineArrayOfStringsToOneArray.js";
 
 export default function processLastPickWordsSynLongerVersion(
   latestWordSynonmyArray,
