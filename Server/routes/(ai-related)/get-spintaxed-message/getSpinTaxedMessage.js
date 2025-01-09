@@ -67,10 +67,17 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
       return;
     }
 
+    const lastPickedWordsArray = lastPickedObjWordsAndSynonymArray.map(
+      (eachSynomyPlusWordObj) => {
+        return eachSynomyPlusWordObj.word;
+      }
+    );
+
     const randomWordsPicked = pickWordsToSpinTaxRandomly(
       messageToSpinTax,
       excludedWordsArray,
-      phrasesToExcludeArray
+      phrasesToExcludeArray,
+      lastPickedWordsArray
     );
 
     const wordsToFindSynonmy = randomWordsPicked;
