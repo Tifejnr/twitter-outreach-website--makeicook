@@ -1,5 +1,9 @@
 import convertArrayOfStringToCommSepertedString from "./convertArrayOfStringToCommSepertedString.js";
 
+function shouldPickingBeStrict() {
+  return Math.random() < 0.5;
+}
+
 export default function pickWordsToSpinTaxRandomly(
   sentence,
   excludedWordsArray,
@@ -39,6 +43,24 @@ export default function pickWordsToSpinTaxRandomly(
     return filteredWords;
   }
 
+  const dontBeStrict = shouldPickingBeStrict();
+
+  if (dontBeStrict) {
+    // Randomly select the required number of words
+    lastPickedWordsArray;
+    const pickedWords = [];
+    while (pickedWords.length < numToPick) {
+      const randomIndex = Math.floor(Math.random() * filteredWords.length);
+      const word = filteredWords[randomIndex];
+      if (!pickedWords.includes(word)) {
+        pickedWords.push(word);
+      }
+    }
+
+    console.log("pickedWords  ,No stictness", pickedWords);
+    return pickedWords;
+  }
+
   // Randomly select the required number of words
   const pickedWords = [];
   const availableWords = filteredWords.filter(
@@ -67,6 +89,6 @@ export default function pickWordsToSpinTaxRandomly(
     }
   }
 
-  console.log("pickedWords", pickedWords);
+  console.log("pickedWords strict", pickedWords);
   return pickedWords;
 }
