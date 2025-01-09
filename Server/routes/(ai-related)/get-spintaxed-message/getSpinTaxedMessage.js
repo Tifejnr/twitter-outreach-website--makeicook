@@ -55,7 +55,9 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
       phrasesToExcludeArray
     );
 
-    const isLuckyNo0Point9Picked = getRandomtemperature();
+    const isLuckyNo0Point9Picked = getRandomtemperature(
+      lastPickedTemperatureForMessageSpinTax
+    );
 
     if (isLuckyNo0Point9Picked == 0.9) {
       //return final shit still
