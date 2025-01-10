@@ -113,7 +113,7 @@ getSpinTaxedMessageRouter.post("/", async (req, res) => {
 
 Acting like you are ${bestWriterName}
 
-Return its synonym that won't change the message.
+Return its synonym that won't change the message in the approrpriate tense.
 
 ${noteAboutEsuringADifferentSynonymIsOutputed}
 
