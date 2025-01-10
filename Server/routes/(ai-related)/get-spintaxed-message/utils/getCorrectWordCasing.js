@@ -33,5 +33,18 @@ export default function getCorrectWordCasing(str1, str2) {
   const casingCondition = detectCasingCondition(str1);
 
   // Apply the casing condition to the second string
-  return applyCasing(str2, casingCondition);
+
+  return applyCasing(getLastSplitText(str2), casingCondition);
+}
+
+function getLastSplitText(response) {
+  // Check if the response contains the delimiter
+  if (response.includes("→")) {
+    // Split the response using the delimiter
+    const parts = response.split("→");
+    // Return the last segment
+    return parts[parts.length - 1];
+  }
+  // Return null or an appropriate value if no split occurs
+  return response;
 }
