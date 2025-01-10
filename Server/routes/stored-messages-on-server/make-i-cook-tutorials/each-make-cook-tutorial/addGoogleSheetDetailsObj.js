@@ -1,6 +1,6 @@
 const heading = `How to find all google sheet details -Twitter (X) Prospecting extension tutorial`;
 const videoUrl =
-  "https://www.youtube.com/embed/4tjmk2x1E38?si=BXa7CjzQMDg9q6W_";
+  "https://www.youtube.com/embed/v7wn6LhPx6Q?si=_BhVA1-rPTvq8e8g";
 
 const addGoogleSheetDetailsObj = {
   heading,
